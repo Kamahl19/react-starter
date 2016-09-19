@@ -1,0 +1,23 @@
+{
+  "name": "react-starter-backend",
+  "version": "0.1.0",
+  "description": "Backend for react starter project",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node app/server"
+  },
+  "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^2.0.1"
+  },
+  "dependencies": {
+    "bcryptjs": "~2.3.0",
+    "body-parser": "~1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "~4.14.0",
+    "jsonwebtoken": "~7.1.9",
+    "mongoose": "~4.6.0",
+    "morgan": "~1.7.0"
+  }
+}
