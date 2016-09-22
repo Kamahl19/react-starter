@@ -81,10 +81,10 @@ export const logoutAndRedirect = () =>
 /**
  * Fetch User data
  */
-export const fetchUserSuccess = (data) => ({
+export const fetchUserSuccess = ({ user }) => ({
     type: FETCH_USER_SUCCESS,
     payload: {
-        user: data.user
+        user
     }
 });
 
