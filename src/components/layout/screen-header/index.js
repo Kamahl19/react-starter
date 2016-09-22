@@ -42,10 +42,12 @@ export default class ScreenHeader extends Component {
 
         return (
             <Navbar.Collapse>
+
                 <UserDropdown
                     user={user}
                     onLogoutClicked={logout}
                 />
+
             </Navbar.Collapse>
         );
     }

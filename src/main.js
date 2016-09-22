@@ -28,3 +28,6 @@ render(
 // TODO - error middleware
 // TODO - router v4
 // TODO - HOC auth rewrite to functions
+// TODO - reselect
+// TODO - flow
+// TODO - https://github.com/facebookincubator/create-react-app
