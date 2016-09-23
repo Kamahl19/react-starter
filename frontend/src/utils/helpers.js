@@ -22,7 +22,7 @@ export const createReducer = (initialState, reducerMap) =>
 /**
  * API Communication Helpers
  */
-export const checkHttpStatus = (response) => {
+const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
@@ -33,9 +33,8 @@ export const checkHttpStatus = (response) => {
     throw error;
 };
 
-export const parseJSON = (response) => response.json();
+const parseJSON = (response) => response.json();
 
-// TODO - rewrite
 export const fetchApi = ({ path, method, token, body, dispatch, cb, fb, contentType }) => {
     const headers = {
         Accept: 'application/json',
@@ -60,8 +59,7 @@ export const fetchApi = ({ path, method, token, body, dispatch, cb, fb, contentT
         const { response } = error;
 
         if (response) {
-            response.json()
-            .then((err) => {
+            response.json().then((err) => {
                 const { message } = err;
 
                 if (message) {

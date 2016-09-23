@@ -51,7 +51,7 @@ export default class App extends Component {
 
             const token = localStorage.getItem(window.tokenName);
 
-            dispatch(loginUserSuccess(token, user));
+            dispatch(loginUserSuccess({ token, user }));
 
             dispatch(push(queryNext || '/'));
         }

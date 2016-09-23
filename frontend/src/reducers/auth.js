@@ -67,7 +67,6 @@ export default createReducer(initialState, {
             ...state,
             ...{
                 user,
-                isAuthenticating: false,
             }
         };
     },
@@ -75,14 +74,12 @@ export default createReducer(initialState, {
         ...state,
         ...{
             user: null,
-            isAuthenticating: false,
         }
     }),
     [FETCH_USER_REQUEST]: (state) => ({
         ...state,
         ...{
             user: null,
-            isAuthenticating: true,
         }
     }),
 });

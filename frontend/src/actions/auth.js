@@ -1,6 +1,5 @@
 import { push } from 'react-router-redux';
-import Alert from 'react-s-alert';
-import { checkHttpStatus, parseJSON, fetchApi } from '@utils/helpers';
+import { fetchApi } from '@utils/helpers';
 import constants from '@constants';
 
 const {
@@ -9,7 +8,7 @@ const {
     FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_USER_REQUEST,
 } = constants;
 
-export const loginUserSuccess = (token, user) => ({
+export const loginUserSuccess = ({ token, user }) => ({
     type: LOGIN_USER_SUCCESS,
     payload: {
         token,
@@ -25,42 +24,20 @@ export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST
 });
 
-// TODO - reuse fetch api
 export const loginUser = (credentials, redirect) =>
     (dispatch) => {
         dispatch(loginUserRequest());
 
-        return fetch(`${window.backendUrl}/login`, {
+        return fetchApi({
+            path: '/login',
             method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(checkHttpStatus)
-        .then(parseJSON)
-        .then((response) => {
-            const { token, user } = response.data;
-
-            dispatch(loginUserSuccess(token, user));
-
+            body: JSON.stringify(credentials),
+            dispatch,
+            cb: loginUserSuccess,
+            fb: loginUserFailure,
+        }).then(() => {
             if (redirect) {
                 dispatch(push(redirect));
-            }
-        })
-        .catch((error) => {
-            const { response } = error;
-
-            if (response) {
-                response.json()
-                .then((err) => {
-                    if (err.message) {
-                        Alert.error(err.message);
-                    }
-
-                    dispatch(loginUserFailure());
-                });
             }
         });
     };
