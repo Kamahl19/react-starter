@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/config.prod.js --display-error-details",
     "build": "npm run clean && npm i && npm run build:webpack",
-    "start": "webpack-dashboard -- node devServer.js",
+    "start": "node devServer.js",
     "lint": "eslint src webpack devServer.js",
     "wpdebug": "webpack --progress --profile --colors --display-error-details --display-cached --config webpack/config.dev.js"
   },
@@ -58,7 +58,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "webpack-dashboard": "^0.1.8",
     "webpack-dev-middleware": "^1.7.0",
     "webpack-hot-middleware": "^2.12.2"
   },

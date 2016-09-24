@@ -1,23 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import ReactLoaders from 'react-loaders';
-import { connect } from 'react-redux';
 
 import './loader.less';
 
-const mapStateToProps = (state) => ({
-    unfinishedRequests: state.loader.unfinishedRequests,
-});
-
-@connect(mapStateToProps)
 export default class Loader extends Component {
     static propTypes = {
-        unfinishedRequests: PropTypes.array,
+        show: PropTypes.bool.isRequired,
     };
 
     render() {
-        const { unfinishedRequests } = this.props;
+        const { show } = this.props;
 
-        if (!unfinishedRequests || unfinishedRequests.length === 0) {
+        if (!show) {
             return <div />;
         }
 

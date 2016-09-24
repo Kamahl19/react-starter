@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ScreenContent } from '@components/layout';
-
-// TODO - move to containers
+import { Home } from '@components/screens';
 
 const mapStateToProps = (state) => ({
     user: state.auth.user,
@@ -10,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 @connect(mapStateToProps)
-export default class IndexPage extends Component {
+export default class HomeContainer extends Component {
     static propTypes = {
         user: PropTypes.object,
         isLoggedIn: PropTypes.bool.isRequired,
@@ -19,18 +17,10 @@ export default class IndexPage extends Component {
     render() {
         const { user, isLoggedIn } = this.props;
 
+        const userName = isLoggedIn ? user.name : 'visitor';
+
         return (
-            <ScreenContent>
-
-                {!isLoggedIn &&
-                    <h1>Hello visitor</h1>
-                }
-
-                {user &&
-                    <h1>Hello {user.name}</h1>
-                }
-
-            </ScreenContent>
+            <Home userName={userName} />
         );
     }
 }

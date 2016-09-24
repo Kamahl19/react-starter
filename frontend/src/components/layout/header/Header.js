@@ -1,25 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { logoutAndRedirect } from '@actions/auth';
 import { LinkContainer } from 'react-router-bootstrap';
 import UserDropdown from './UserDropdown';
 
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.auth.isLoggedIn,
-    user: state.auth.user,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(logoutAndRedirect())
-});
-
-@connect(mapStateToProps, mapDispatchToProps)
-export default class ScreenHeader extends Component {
+export default class Header extends Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool.isRequired,
-        user: PropTypes.object,
+        userName: PropTypes.string.isRequired,
         logout: PropTypes.func.isRequired,
     };
 
@@ -38,13 +26,13 @@ export default class ScreenHeader extends Component {
     }
 
     renderIsLoggedInMenu() {
-        const { user, logout } = this.props;
+        const { userName, logout } = this.props;
 
         return (
             <Navbar.Collapse>
 
                 <UserDropdown
-                    user={user}
+                    userName={userName}
                     onLogoutClicked={logout}
                 />
 

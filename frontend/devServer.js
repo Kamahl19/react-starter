@@ -2,13 +2,10 @@
 
 const express = require('express');
 const webpack = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const config = require('./webpack/config.dev');
 
 const app = express();
 const compiler = webpack(config);
-
-compiler.apply(new DashboardPlugin());
 
 console.log(config);
 

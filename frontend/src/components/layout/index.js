@@ -1,2 +1,4 @@
-export MainWrapper from './MainWrapper';
+export Header from './header/Header';
+export Footer from './Footer';
 export ScreenContent from './ScreenContent';
+export Loader from './Loader';

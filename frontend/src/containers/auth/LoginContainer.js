@@ -2,10 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from '@actions/auth';
-import { ScreenContent } from '@components/layout';
-import LoginForm from './LoginForm';
-
-// TODO - move to containers
+import { Login } from '@components/auth';
 
 const mapStateToProps = (state, ownProps) => ({
     isAuthenticating: state.auth.isAuthenticating,
@@ -17,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Login extends Component {
+export default class LoginContainer extends Component {
     static propTypes = {
         isAuthenticating: PropTypes.bool.isRequired,
         queryNext: PropTypes.string,
@@ -34,14 +31,10 @@ export default class Login extends Component {
         const { isAuthenticating } = this.props;
 
         return (
-            <ScreenContent>
-
-                <LoginForm
-                    isAuthenticating={isAuthenticating}
-                    onLoginClick={this.onLoginClick}
-                />
-
-            </ScreenContent>
+            <Login
+                isAuthenticating={isAuthenticating}
+                onLoginClick={this.onLoginClick}
+            />
         );
     }
 }

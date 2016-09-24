@@ -1,3 +1,2 @@
-export IndexPage from './IndexPage';
-export LoginPage from './login/LoginPage';
+export Home from './Home';
 export Error404 from './Error404';

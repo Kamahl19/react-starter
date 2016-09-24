@@ -4,19 +4,18 @@ import { Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 export default class UserDropdown extends Component {
     static propTypes = {
         onLogoutClicked: PropTypes.func.isRequired,
-        user: PropTypes.object,
+        userName: PropTypes.string.isRequired,
     };
 
     onLogoutClick = (e) => {
         e.preventDefault();
-
         this.props.onLogoutClicked();
     }
 
     render() {
-        const { user } = this.props;
+        const { userName } = this.props;
 
-        const title = (<span>Hi {user.name}</span>);
+        const title = (<span>Hi {userName}</span>);
 
         return (
             <Nav pullRight>

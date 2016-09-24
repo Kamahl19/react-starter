@@ -26,8 +26,9 @@ render(
 // TODO - redux saga
 // TODO - api middleware
 // TODO - error middleware
-// TODO - router v4
 // TODO - HOC auth rewrite to functions
+
+// TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect
 // TODO - flow
-// TODO - https://github.com/facebookincubator/create-react-app
+// TODO - router v4

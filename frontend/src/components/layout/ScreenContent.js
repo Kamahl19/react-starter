@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { Grid } from 'react-bootstrap';
 import classnames from 'classnames';
+
+import './screen-content.less';
 
 export default class ScreenContent extends Component {
     static propTypes = {
@@ -16,7 +19,9 @@ export default class ScreenContent extends Component {
 
         return (
             <div className={cn}>
-                {children}
+                <Grid>
+                    {children}
+                </Grid>
             </div>
         );
     }
