@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 
+const getIntersection = (arr1, arr2) => arr1.filter((x) => arr2.includes(x));
+
 export default (stateNames) => (ComposedComponent) => class extends Component {
-    state = stateNames.reduce((o, stateName) => ({
-        ...o,
-        [stateName]: '',
-    }), {});
+    constructor(props) {
+        super(props);
+
+        const intersection = getIntersection(Object.keys(props), stateNames);
+
+        if (intersection.length) {
+            console.warn(`LinkedState: ${intersection} props are interfering with stateNames!`);
+        }
+
+        this.state = stateNames.reduce((o, stateName) => ({
+            ...o,
+            [stateName]: '',
+        }), {});
+    }
 
     linkState = (stateName) => ({
         value: this.state[stateName],
