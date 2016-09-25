@@ -1,10 +1,12 @@
+import { REQUEST, SUCCESS, FAILURE } from '@constants';
+
 const initialState = {
     unfinishedRequests: [],
 };
 
 export default (state = initialState, action) => {
-    const requestStart = action.type.includes('_REQUEST');
-    const requestFinish = action.type.includes('_SUCCESS') || action.type.includes('_FAILURE');
+    const requestStart = action.type.includes(REQUEST);
+    const requestFinish = action.type.includes(SUCCESS) || action.type.includes(FAILURE);
 
     const reducer = () => {
         const unfinishedRequests = state.unfinishedRequests.concat();
@@ -13,7 +15,7 @@ export default (state = initialState, action) => {
             unfinishedRequests.push(action.type);
         }
         else if (requestFinish) {
-            const type = action.type.replace('_SUCCESS', '_REQUEST').replace('_FAILURE', '_REQUEST');
+            const type = action.type.replace(SUCCESS, REQUEST).replace(FAILURE, REQUEST);
             unfinishedRequests.splice(unfinishedRequests.indexOf(type), 1);
         }
 

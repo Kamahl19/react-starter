@@ -1,4 +1,7 @@
 import { callAPI } from '@utils/helpers';
+import constants from '@constants';
+
+const { REQUEST, SUCCESS, FAILURE } = constants;
 
 export default function callAPIMiddleware({ dispatch, getState }) {
     return (next) => (action) => {
@@ -25,9 +28,9 @@ export default function callAPIMiddleware({ dispatch, getState }) {
             return undefined;
         }
 
-        const requestType = `${typePrefix}_REQUEST`;
-        const successType = `${typePrefix}_SUCCESS`;
-        const failureType = `${typePrefix}_FAILURE`;
+        const requestType = `${typePrefix}_${REQUEST}`;
+        const successType = `${typePrefix}_${SUCCESS}`;
+        const failureType = `${typePrefix}_${FAILURE}`;
 
         dispatch({ ...payload, type: requestType });
 

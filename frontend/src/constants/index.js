@@ -1,6 +1,10 @@
 import { createConstants } from '@utils/helpers';
 
 export default createConstants(
+    'REQUEST',
+    'SUCCESS',
+    'FAILURE',
+
     'LOGIN_USER',
     'LOGIN_USER_REQUEST',
     'LOGIN_USER_FAILURE',
