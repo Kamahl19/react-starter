@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { logoutAndRedirect } from '@actions/auth';
 import { Header } from '@components/layout';
 
@@ -9,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(logoutAndRedirect())
+    actions: bindActionCreators({ logoutAndRedirect }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -17,11 +18,11 @@ export default class HeaderContainer extends Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool.isRequired,
         user: PropTypes.object,
-        logout: PropTypes.func.isRequired,
+        actions: PropTypes.object.isRequired,
     };
 
     render() {
-        const { isLoggedIn, user, logout } = this.props;
+        const { isLoggedIn, user, actions } = this.props;
 
         const userName = user ? user.name : '';
 
@@ -29,7 +30,7 @@ export default class HeaderContainer extends Component {
             <Header
                 isLoggedIn={isLoggedIn}
                 userName={userName}
-                logout={logout}
+                logout={actions.logoutAndRedirect}
             />
         );
     }

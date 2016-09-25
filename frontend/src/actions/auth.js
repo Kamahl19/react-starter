@@ -19,19 +19,20 @@ export const loginUser = (credentials) => ({
             method: 'post',
             body: JSON.stringify(credentials),
         }
-    }
+    },
+    payload: credentials,
+    validate: 'loginCredentials',
 });
 
 /**
  * Logout
  */
-export const logout = () => ({
-    type: LOGOUT_USER
-});
-
 export const logoutAndRedirect = () =>
     (dispatch) => {
-        dispatch(logout());
+        dispatch({
+            type: LOGOUT_USER
+        });
+
         dispatch(push('/'));
     };
 

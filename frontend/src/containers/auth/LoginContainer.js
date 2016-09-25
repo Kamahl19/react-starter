@@ -24,6 +24,10 @@ export default class LoginContainer extends Component {
         dispatch: PropTypes.func.isRequired,
     };
 
+    state = {
+        formErrors: {},
+    };
+
     onLoginClick = (credentials) => {
         const { actions, queryNext, dispatch } = this.props;
 
@@ -31,16 +35,18 @@ export default class LoginContainer extends Component {
             if (queryNext) {
                 dispatch(push(queryNext));
             }
-        });
+        }).catch((formErrors) => this.setState({ formErrors }));
     }
 
     render() {
         const { isAuthenticating } = this.props;
+        const { formErrors } = this.state;
 
         return (
             <Login
                 isAuthenticating={isAuthenticating}
                 onLoginClick={this.onLoginClick}
+                formErrors={formErrors}
             />
         );
     }

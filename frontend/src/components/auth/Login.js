@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-import formValidation from '@utils/formValidation';
 import linkedState from '@utils/LinkedState';
 import { ScreenContent } from '@components/layout';
 import { Input } from '@components/ui/inputs';
@@ -13,10 +12,7 @@ export default class Login extends Component {
         password: PropTypes.string.isRequired,
         onLoginClick: PropTypes.func.isRequired,
         isAuthenticating: PropTypes.bool.isRequired,
-    };
-
-    state = {
-        formErrors: {},
+        formErrors: PropTypes.object.isRequired,
     };
 
     handleLoginClick = (e) => {
@@ -24,22 +20,11 @@ export default class Login extends Component {
 
         const { email, password } = this.props;
 
-        // TODO - move to middleware
-        formValidation({ loginCredentials: { email, password } })
-        .then((formErrors) => {
-            this.setState({ formErrors });
-
-            if (formErrors.hasErrors) {
-                return;
-            }
-
-            this.props.onLoginClick({ email, password });
-        });
+        this.props.onLoginClick({ email, password });
     }
 
     render() {
-        const { isAuthenticating, linkState } = this.props;
-        const { formErrors } = this.state;
+        const { isAuthenticating, linkState, formErrors } = this.props;
 
         return (
             <ScreenContent>
