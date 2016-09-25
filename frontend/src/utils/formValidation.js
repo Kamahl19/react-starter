@@ -1,14 +1,4 @@
-import yup from 'yup';
-
-/**
- * Schemas for forms
- */
-const schemas = {
-    loginCredentials: yup.object().shape({
-        email: yup.string().max(255).email().required(),
-        password: yup.string().min(6).required(),
-    }),
-};
+import formSchemas from './formSchemas';
 
 const formatError = (err) => {
     const arr = err.split(' ');
@@ -21,15 +11,12 @@ const formatError = (err) => {
 
 const validateObject = (obj, schema) =>
     new Promise((resolve) => {
-        const opts = {
-            abortEarly: false,
-        };
-
-        schema.validate(obj, opts)
+        schema.validate(obj, { abortEarly: false })
         .then(() => {
-            resolve([]);
+            resolve({});
         })
         .catch((res) => {
+            const formatedErrors = {};
             const paths = [];
 
             const uniqueErrors = res.inner.filter((err) => {
@@ -39,8 +26,6 @@ const validateObject = (obj, schema) =>
                 }
                 return false;
             });
-
-            const formatedErrors = {};
 
             for (const err of uniqueErrors) {
                 formatedErrors[err.path] = formatError(err.message);
@@ -52,39 +37,43 @@ const validateObject = (obj, schema) =>
 
 const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 
-export default (data, skipScroll = false) => new Promise((resolve, reject) => {
-    const promises = [];
+export default (data, skipScroll = false) =>
+    new Promise((resolve, reject) => {
+        const promises = [];
 
-    Object.keys(data).forEach((key) => {
-        if (schemas[key]) {
-            promises.push(validateObject(data[key], schemas[key]));
-        }
+        Object.keys(data).forEach((schemaName) => {
+            if (formSchemas[schemaName]) {
+                promises.push(validateObject(data[schemaName], formSchemas[schemaName]));
+            }
+        });
+
+        let formErrors = {};
+
+        Promise.all(promises).then((results) => {
+            for (const result of results) {
+                formErrors = { ...formErrors, ...result };
+            }
+
+            const errorKeys = Object.keys(formErrors);
+
+            // Scroll to first error
+            if (!skipScroll && errorKeys.length) {
+                const offsets = errorKeys.map((path) =>
+                    documentOffsetTop(document.getElementById(`input_${path}`))
+                );
+
+                const elem = document.querySelector('.screen-content');
+                const topOffset = parseInt(window.getComputedStyle(elem).getPropertyValue('padding'), 10);
+
+                window.scrollTo(0, Math.min(...offsets) - topOffset);
+            }
+
+            if (errorKeys.length) {
+                reject(formErrors);
+            }
+            else {
+                resolve();
+            }
+        })
+        .catch(() => resolve());
     });
-
-    let formErrors = {};
-
-    Promise.all(promises).then((results) => {
-        for (const result of results) {
-            formErrors = { ...formErrors, ...result };
-        }
-
-        // Scroll to first error
-        if (!skipScroll) {
-            const offsets = Object.keys(formErrors).map((path) => {
-                const elem = document.getElementById(`input_${path}`);
-                return documentOffsetTop(elem);
-            });
-
-            const elem = document.querySelector('.screen-content');
-            const style = window.getComputedStyle(elem);
-            const topOffset = parseInt(style.getPropertyValue('padding'), 10);
-
-            window.scrollTo(0, Math.min(...offsets) - topOffset);
-        }
-
-        formErrors.hasErrors = !!Object.keys(formErrors).length;
-
-        resolve(formErrors);
-    })
-    .catch(() => reject(formErrors));
-});

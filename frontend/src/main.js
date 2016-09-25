@@ -23,8 +23,8 @@ render(
     document.getElementById('root')
 );
 
-// TODO - error middleware
 // TODO - HOC auth rewrite to functions
+// TODO - redux promise
 
 // TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect

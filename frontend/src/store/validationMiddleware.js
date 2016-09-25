@@ -7,14 +7,6 @@ export default () => (next) => (action) => {
         return next(action);
     }
 
-    return new Promise((resolve, reject) => {
-        formValidation({ [validate]: payload })
-        .then((formErrors) => {
-            if (formErrors.hasErrors) {
-                return reject(formErrors);
-            }
-
-            return resolve(next(action));
-        });
-    });
+    return formValidation({ [validate]: payload })
+            .then(() => next(action));
 };
