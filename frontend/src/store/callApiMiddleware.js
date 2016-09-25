@@ -6,18 +6,18 @@ const { REQUEST, SUCCESS, FAILURE } = constants;
 export default function callAPIMiddleware({ dispatch, getState }) {
     return (next) => (action) => {
         const {
-            typePrefix,
+            typeName,
             api,
             shouldCallAPI = () => true,
             payload = {}
         } = action;
 
-        if (!typePrefix) {
+        if (!typeName) {
             return next(action);
         }
 
-        if (typeof typePrefix !== 'string') {
-            throw new Error('Expected `typePrefix` to be string.');
+        if (typeof typeName !== 'string') {
+            throw new Error('Expected `typeName` to be string.');
         }
 
         if (typeof api.path !== 'string') {
@@ -28,9 +28,9 @@ export default function callAPIMiddleware({ dispatch, getState }) {
             return undefined;
         }
 
-        const requestType = `${typePrefix}_${REQUEST}`;
-        const successType = `${typePrefix}_${SUCCESS}`;
-        const failureType = `${typePrefix}_${FAILURE}`;
+        const requestType = `${typeName}_${REQUEST}`;
+        const successType = `${typeName}_${SUCCESS}`;
+        const failureType = `${typeName}_${FAILURE}`;
 
         dispatch({ ...payload, type: requestType });
 

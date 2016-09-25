@@ -12,7 +12,7 @@ export const loginUserSuccess = ({ token, user }) => ({
 });
 
 export const loginUser = (credentials) => ({
-    typePrefix: LOGIN_USER,
+    typeName: LOGIN_USER,
     api: {
         path: '/login',
         options: {
@@ -38,7 +38,7 @@ export const logoutAndRedirect = () =>
  * Fetch User data
  */
 export const fetchUser = (userId) => ({
-    typePrefix: FETCH_USER,
+    typeName: FETCH_USER,
     api: {
         path: `/users/${userId}`,
     }

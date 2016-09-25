@@ -61,27 +61,28 @@ const getRequestOptions = (customOptions = {}) => {
     return result;
 };
 
-export const callAPI = ({ path, options }) => new Promise((resolve, reject) => {
-    const rejectWithAlert = (message = 'An unexpected error has occured') => {
-        Alert.error(message);
-        reject(message);
-    };
+export const callAPI = ({ path, options }) =>
+    new Promise((resolve, reject) => {
+        const rejectWithAlert = (message = 'An unexpected error has occured') => {
+            Alert.error(message);
+            reject(message);
+        };
 
-    fetch(window.backendUrl + path, getRequestOptions(options))
-        .then(checkHttpStatus)
-        .then(parseJSON)
-        .then(({ data }) => {
-            resolve(data);
-        })
-        .catch(({ response }) => {
-            if (!response) {
-                rejectWithAlert();
-            }
-            else {
-                response.json().then(({ message }) => {
-                    rejectWithAlert(message);
-                })
-                .catch(() => rejectWithAlert());
-            }
-        });
-});
+        fetch(window.backendUrl + path, getRequestOptions(options))
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then(({ data }) => {
+                resolve(data);
+            })
+            .catch(({ response }) => {
+                if (!response) {
+                    rejectWithAlert();
+                }
+                else {
+                    response.json().then(({ message }) => {
+                        rejectWithAlert(message);
+                    })
+                    .catch(() => rejectWithAlert());
+                }
+            });
+    });
