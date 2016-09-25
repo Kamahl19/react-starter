@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 import linkedState from '@utils/LinkedState';
+import formValidation from '@utils/formValidation';
 import { ScreenContent } from '@components/layout';
 import { Input } from '@components/ui/inputs';
 
@@ -12,19 +13,27 @@ export default class Login extends Component {
         password: PropTypes.string.isRequired,
         onLoginClick: PropTypes.func.isRequired,
         isAuthenticating: PropTypes.bool.isRequired,
-        formErrors: PropTypes.object.isRequired,
+    };
+
+    state = {
+        formErrors: {},
     };
 
     handleLoginClick = (e) => {
         e.preventDefault();
 
-        const { email, password } = this.props;
+        const { email, password, onLoginClick } = this.props;
 
-        this.props.onLoginClick({ email, password });
+        const formData = { email, password };
+
+        return formValidation({ loginCredentials: formData })
+                .then(() => onLoginClick(formData))
+                .catch((formErrors) => this.setState({ formErrors }));
     }
 
     render() {
-        const { isAuthenticating, linkState, formErrors } = this.props;
+        const { isAuthenticating, linkState } = this.props;
+        const { formErrors } = this.state;
 
         return (
             <ScreenContent>

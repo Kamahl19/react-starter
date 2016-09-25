@@ -5,11 +5,9 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '@reducers';
 import apiMiddleware from './callApiMiddleware';
-import validationMiddleware from './validationMiddleware';
 
 const enhancer = compose(
     applyMiddleware(
-        validationMiddleware,
         apiMiddleware,
         thunk,
         createLogger(),

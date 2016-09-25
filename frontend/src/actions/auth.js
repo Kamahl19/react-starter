@@ -20,8 +20,6 @@ export const loginUser = (credentials) => ({
             body: JSON.stringify(credentials),
         }
     },
-    payload: credentials,
-    validate: 'loginCredentials',
 });
 
 /**
