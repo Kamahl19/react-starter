@@ -23,12 +23,11 @@ render(
     document.getElementById('root')
 );
 
-// TODO - redux saga
-// TODO - api middleware
 // TODO - error middleware
 // TODO - HOC auth rewrite to functions
 
 // TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect
+// TODO - redux saga
 // TODO - flow
 // TODO - router v4

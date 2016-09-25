@@ -3,20 +3,18 @@ import { connect } from 'react-redux';
 import { Loader } from '@components/layout';
 
 const mapStateToProps = (state) => ({
-    unfinishedRequests: state.loader.unfinishedRequests,
+    showLoader: !!state.loader.unfinishedRequests.length,
 });
 
 @connect(mapStateToProps)
 export default class LoaderContainer extends Component {
     static propTypes = {
-        unfinishedRequests: PropTypes.array.isRequired,
+        showLoader: PropTypes.bool.isRequired,
     };
 
     render() {
-        const { unfinishedRequests } = this.props;
-
         return (
-            <Loader show={!!unfinishedRequests.length} />
+            <Loader show={this.props.showLoader} />
         );
     }
 }

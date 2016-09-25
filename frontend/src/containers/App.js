@@ -37,7 +37,7 @@ export default class App extends Component {
         if (isTokenValid(token)) {
             const { userId } = jwtDecode(token);
 
-            this.props.actions.fetchUser(token, userId);
+            this.props.actions.fetchUser(userId);
         }
     }
 

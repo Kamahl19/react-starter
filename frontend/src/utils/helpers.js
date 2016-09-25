@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux';
+import _ from 'lodash';
 import Alert from 'react-s-alert';
 
 /**
@@ -35,53 +35,53 @@ const checkHttpStatus = (response) => {
 
 const parseJSON = (response) => response.json();
 
-export const fetchApi = ({ path, method, token, body, dispatch, cb, fb, contentType }) => {
-    const headers = {
-        Accept: 'application/json',
-        'Content-Type': contentType || 'application/json',
+const getRequestOptions = (customOptions = {}) => {
+    const defaultFetchOptions = {
+        method: 'get',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        }
     };
 
+    const token = localStorage.getItem(window.tokenName);
+
     if (token) {
-        headers.Authorization = `Bearer ${token}`;
+        defaultFetchOptions.headers.Authorization = `Bearer ${token}`;
     }
 
-    return fetch(window.backendUrl + path, {
-        method,
-        headers,
-        body,
-    })
-    .then(checkHttpStatus)
-    .then(parseJSON)
-    .then((response) => {
-        dispatch(cb(response.data));
-    })
-    .catch((error) => {
-        const { response } = error;
+    const result = _.merge({}, defaultFetchOptions, customOptions);
 
-        if (response) {
-            response.json().then((err) => {
-                const { message } = err;
+    // In case of file uploads, its neccessary to delete `Content-Type`
+    // so browser sets it implicitly along with `boundary`
+    if (result.headers['Content-Type'] === '') {
+        delete result.headers['Content-Type'];
+    }
 
-                if (message) {
-                    Alert.error(message);
-                }
-
-                if (response.status === 401) {
-                    dispatch({
-                        type: 'LOGIN_USER_FAILURE'
-                    });
-
-                    dispatch(push('/login'));
-                }
-                else {
-                    dispatch(fb());
-                }
-            });
-        }
-        else {
-            Alert.error('An unexpected error has occured');
-
-            dispatch(fb());
-        }
-    });
+    return result;
 };
+
+export const callAPI = ({ path, options }) => new Promise((resolve, reject) => {
+    const rejectWithAlert = (message = 'An unexpected error has occured') => {
+        Alert.error(message);
+        reject(message);
+    };
+
+    fetch(window.backendUrl + path, getRequestOptions(options))
+        .then(checkHttpStatus)
+        .then(parseJSON)
+        .then(({ data }) => {
+            resolve(data);
+        })
+        .catch(({ response }) => {
+            if (!response) {
+                rejectWithAlert();
+            }
+            else {
+                response.json().then(({ message }) => {
+                    rejectWithAlert(message);
+                })
+                .catch(() => rejectWithAlert());
+            }
+        });
+});

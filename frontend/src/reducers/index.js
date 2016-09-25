@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import constants from '@constants';
+import { LOGOUT_USER } from '@constants';
 import auth from './auth';
 import loader from './loader';
 
@@ -11,7 +11,7 @@ const appReducer = combineReducers({
 });
 
 export default (state, action) => {
-    if (action.type === constants.LOGOUT_USER) {
+    if (action.type === LOGOUT_USER) {
         return appReducer(undefined, action);
     }
 
