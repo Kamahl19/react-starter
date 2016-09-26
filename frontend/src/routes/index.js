@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from '@containers/App';
-import { HomeContainer } from '@containers/screens';
+import { HomeContainer, LoginContainer } from '@containers/screens';
 import { Error404 } from '@components/screens';
-import { IsVisitor as isVisitor, LoginContainer } from '@containers/auth';
+import { IsVisitor as isVisitor } from '@containers/auth';
 
 export default (
     <Route path="/" component={App}>
