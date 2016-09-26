@@ -4,13 +4,12 @@ import Alert from 'react-s-alert';
 /**
  * Redux Helpers
  */
-export function createConstants(...constants) {
-    return constants.reduce((acc, constant) => {
+export const createConstants = (...constants) =>
+    constants.reduce((acc, constant) => {
         const acc2 = acc;
         acc2[constant] = constant;
         return acc2;
     }, {});
-}
 
 export const createReducer = (initialState, reducerMap) =>
     (state = initialState, action) => {
