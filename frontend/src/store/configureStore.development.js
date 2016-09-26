@@ -8,9 +8,9 @@ import apiMiddleware from './callApiMiddleware';
 
 const enhancer = compose(
     applyMiddleware(
+        createLogger(),
         apiMiddleware,
         thunk,
-        createLogger(),
         routerMiddleware(hashHistory),
     )
 );

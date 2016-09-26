@@ -25,7 +25,7 @@ export const loginUser = (credentials) => ({
 /**
  * Logout
  */
-export const logoutAndRedirect = () =>
+export const logout = () =>
     (dispatch) => {
         dispatch({
             type: LOGOUT_USER

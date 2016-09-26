@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logoutAndRedirect } from '@actions/auth';
+import { logout } from '@actions/auth';
 import { Header } from '@components/layout';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ logoutAndRedirect }, dispatch),
+    actions: bindActionCreators({ logout }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -30,7 +30,7 @@ export default class HeaderContainer extends Component {
             <Header
                 isLoggedIn={isLoggedIn}
                 userName={userName}
-                logout={actions.logoutAndRedirect}
+                logout={actions.logout}
             />
         );
     }
