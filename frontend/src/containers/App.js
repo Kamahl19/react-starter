@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import jwtDecode from 'jwt-decode';
 import Alert from 'react-s-alert';
 import { Footer } from '@components/layout';
@@ -17,7 +16,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ fetchUser, loginUserSuccess }, dispatch),
-    redirectAfterLogin: (queryNext) => dispatch(push(queryNext || '/'))
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -28,7 +26,6 @@ export default class App extends Component {
         user: PropTypes.object,
         queryNext: PropTypes.string,
         actions: PropTypes.object.isRequired,
-        redirectAfterLogin: PropTypes.func.isRequired,
     };
 
     componentWillMount() {
@@ -42,14 +39,10 @@ export default class App extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { user, isLoggedIn, queryNext, actions, redirectAfterLogin } = nextProps;
+        const { user, isLoggedIn, queryNext, actions } = nextProps;
 
         if (user && !isLoggedIn) {
-            const token = localStorage.getItem(window.tokenName);
-
-            actions.loginUserSuccess({ token, user });
-
-            redirectAfterLogin(queryNext);
+            actions.loginUserSuccess(user, queryNext);
         }
     }
 

@@ -3,13 +3,14 @@ import { Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 
 export default class UserDropdown extends Component {
     static propTypes = {
-        onLogoutClicked: PropTypes.func.isRequired,
+        logout: PropTypes.func.isRequired,
         userName: PropTypes.string.isRequired,
     };
 
-    onLogoutClick = (e) => {
+    handleLogout = (e) => {
         e.preventDefault();
-        this.props.onLogoutClicked();
+
+        this.props.logout();
     }
 
     render() {
@@ -20,7 +21,7 @@ export default class UserDropdown extends Component {
         return (
             <Nav pullRight>
                 <NavDropdown title={title} id="user-dropdown">
-                    <MenuItem onClick={this.onLogoutClick}>Log Out</MenuItem>
+                    <MenuItem onClick={this.handleLogout}>Log Out</MenuItem>
                 </NavDropdown>
             </Nav>
         );

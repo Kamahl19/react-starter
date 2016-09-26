@@ -33,7 +33,7 @@ export default class Header extends Component {
 
                 <UserDropdown
                     userName={userName}
-                    onLogoutClicked={logout}
+                    logout={logout}
                 />
 
             </Navbar.Collapse>

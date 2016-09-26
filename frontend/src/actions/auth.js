@@ -3,13 +3,15 @@ import constants from '@constants';
 
 const { LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_USER } = constants;
 
-export const loginUserSuccess = ({ token, user }) => ({
-    type: LOGIN_USER_SUCCESS,
-    payload: {
-        token,
-        user,
-    }
-});
+export const loginUserSuccess = (user, queryNext) =>
+    (dispatch) => Promise.resolve(dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: {
+            token: localStorage.getItem(window.tokenName),
+            user,
+        }
+    }))
+    .then(() => dispatch(push(queryNext || '/')));
 
 export const loginUser = (credentials) => ({
     typeName: LOGIN_USER,
@@ -26,13 +28,10 @@ export const loginUser = (credentials) => ({
  * Logout
  */
 export const logout = () =>
-    (dispatch) => {
-        dispatch({
-            type: LOGOUT_USER
-        });
-
-        dispatch(push('/'));
-    };
+    (dispatch) => Promise.resolve(dispatch({
+        type: LOGOUT_USER
+    }))
+    .then(() => dispatch(push('/')));
 
 /**
  * Fetch User data
