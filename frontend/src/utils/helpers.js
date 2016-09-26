@@ -2,23 +2,6 @@ import _ from 'lodash';
 import Alert from 'react-s-alert';
 
 /**
- * Redux Helpers
- */
-export const createConstants = (...constants) =>
-    constants.reduce((acc, constant) => {
-        const acc2 = acc;
-        acc2[constant] = constant;
-        return acc2;
-    }, {});
-
-export const createReducer = (initialState, reducerMap) =>
-    (state = initialState, action) => {
-        const reducer = reducerMap[action.type];
-
-        return (reducer) ? reducer(state, action.payload) : state;
-    };
-
-/**
  * API Communication Helpers
  */
 const checkHttpStatus = (response) => {

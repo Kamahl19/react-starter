@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Root } from '@containers';
-import configureStore from '@store/configureStore';
+import configureStore from '@redux/configureStore';
 
 polyfill();
 

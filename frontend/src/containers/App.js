@@ -28,6 +28,7 @@ export default class App extends Component {
         actions: PropTypes.object.isRequired,
     };
 
+    // TODO
     componentWillMount() {
         const token = localStorage.getItem(window.tokenName);
 
@@ -38,6 +39,7 @@ export default class App extends Component {
         }
     }
 
+    // TODO
     componentWillReceiveProps(nextProps) {
         const { user, isLoggedIn, queryNext, actions } = nextProps;
 

@@ -1,10 +1,9 @@
-import { createReducer } from '@utils/helpers';
+import { createReducer } from '@redux/reduxHelpers';
 import constants from '@constants';
 
 const {
-    LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE,
-    LOGOUT_USER,
-    FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_USER_REQUEST,
+    REQUEST, SUCCESS, FAILURE,
+    LOGIN_USER, LOGOUT_USER, FETCH_USER,
 } = constants;
 
 const initialState = {
@@ -15,36 +14,38 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-    [LOGIN_USER_REQUEST]: (state) => ({
-        ...state,
-        ...{
-            isAuthenticating: true,
-        }
-    }),
-    [LOGIN_USER_SUCCESS]: (state, payload) => {
-        const { token, user } = payload;
-
-        localStorage.setItem(window.tokenName, token);
-
-        return {
+    [LOGIN_USER]: {
+        [REQUEST]: (state) => ({
             ...state,
             ...{
-                token,
-                user,
-                isLoggedIn: true,
-                isAuthenticating: false,
+                isAuthenticating: true,
             }
-        };
-    },
-    [LOGIN_USER_FAILURE]: (state) => {
-        localStorage.removeItem(window.tokenName);
+        }),
+        [SUCCESS]: (state, payload) => {
+            const { token, user } = payload;
 
-        return {
-            ...state,
-            ...{
-                isAuthenticating: false,
-            }
-        };
+            localStorage.setItem(window.tokenName, token);
+
+            return {
+                ...state,
+                ...{
+                    token,
+                    user,
+                    isLoggedIn: true,
+                    isAuthenticating: false,
+                }
+            };
+        },
+        [FAILURE]: (state) => {
+            localStorage.removeItem(window.tokenName);
+
+            return {
+                ...state,
+                ...{
+                    isAuthenticating: false,
+                }
+            };
+        },
     },
 
     [LOGOUT_USER]: (state) => {
@@ -60,26 +61,29 @@ export default createReducer(initialState, {
         };
     },
 
-    [FETCH_USER_SUCCESS]: (state, payload) => {
-        const { user } = payload;
-
-        return {
+    [FETCH_USER]: {
+        [REQUEST]: (state) => ({
             ...state,
             ...{
-                user,
+                user: null,
             }
-        };
-    },
-    [FETCH_USER_FAILURE]: (state) => ({
-        ...state,
-        ...{
-            user: null,
-        }
-    }),
-    [FETCH_USER_REQUEST]: (state) => ({
-        ...state,
-        ...{
-            user: null,
-        }
-    }),
+        }),
+        [SUCCESS]: (state, payload) => {
+            const { user } = payload;
+
+            return {
+                ...state,
+                ...{
+                    user,
+                }
+            };
+        },
+        [FAILURE]: (state) => ({
+            ...state,
+            ...{
+                user: null,
+            }
+        }),
+    }
+
 });

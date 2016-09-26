@@ -10,7 +10,7 @@ module.exports = {
     '@containers': resolve(...src, 'containers'),
     '@reducers': resolve(...src, 'reducers'),
     '@routes': resolve(...src, 'routes'),
-    '@store': resolve(...src, 'store'),
+    '@redux': resolve(...src, 'redux'),
     '@styles': resolve(...src, 'styles'),
     '@utils': resolve(...src, 'utils'),
 };

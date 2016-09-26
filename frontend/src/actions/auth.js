@@ -1,8 +1,14 @@
 import { push } from 'react-router-redux';
 import constants from '@constants';
 
-const { LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_USER } = constants;
+const {
+    LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_USER,
+} = constants;
 
+/**
+ * Login
+ */
+// TODO
 export const loginUserSuccess = (user, queryNext) =>
     (dispatch) => Promise.resolve(dispatch({
         type: LOGIN_USER_SUCCESS,
@@ -13,16 +19,22 @@ export const loginUserSuccess = (user, queryNext) =>
     }))
     .then(() => dispatch(push(queryNext || '/')));
 
-export const loginUser = (credentials) => ({
-    typeName: LOGIN_USER,
-    api: {
-        path: '/login',
-        options: {
-            method: 'post',
-            body: JSON.stringify(credentials),
+export const loginUser = (credentials, queryNext) =>
+    (dispatch) => Promise.resolve(dispatch({
+        typeName: LOGIN_USER,
+        api: {
+            path: '/login',
+            options: {
+                method: 'post',
+                body: JSON.stringify(credentials),
+            }
+        },
+    }))
+    .then(() => {
+        if (queryNext) {
+            dispatch(push(queryNext));
         }
-    },
-});
+    });
 
 /**
  * Logout
