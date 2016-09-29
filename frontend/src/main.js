@@ -25,6 +25,5 @@ render(
 
 // TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect
-// TODO - redux saga
 // TODO - flow
 // TODO - router v4
