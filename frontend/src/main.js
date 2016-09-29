@@ -23,8 +23,6 @@ render(
     document.getElementById('root')
 );
 
-// TODO - HOC auth rewrite to functions
-
 // TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect
 // TODO - redux saga

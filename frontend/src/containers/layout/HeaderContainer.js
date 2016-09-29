@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logout } from '@actions/auth';
+import { logout } from '@actions/user';
 import { Header } from '@components/layout';
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: state.auth.isLoggedIn,
-    user: state.auth.user,
+    isLoggedIn: state.user.isLoggedIn,
+    user: state.user.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Home } from '@components/screens';
 
 const mapStateToProps = (state) => ({
-    user: state.auth.user,
-    isLoggedIn: state.auth.isLoggedIn,
+    user: state.user.user,
+    isLoggedIn: state.user.isLoggedIn,
 });
 
 @connect(mapStateToProps)

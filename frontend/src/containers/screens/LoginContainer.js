@@ -1,30 +1,52 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loginUser } from '@actions/auth';
+import { replace } from 'react-router-redux';
+import { loginUser } from '@actions/user';
 import { Login } from '@components/screens';
 
 const mapStateToProps = (state, ownProps) => ({
-    isAuthenticating: state.auth.isAuthenticating,
-    queryNext: ownProps.location.query.next,
+    isAuthenticating: state.user.isAuthenticating,
+    isLoggedIn: state.user.isLoggedIn,
+    redirect: ownProps.location.query.redirect || '/',
 });
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ loginUser }, dispatch),
+    dispatch,
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LoginContainer extends Component {
     static propTypes = {
         isAuthenticating: PropTypes.bool.isRequired,
-        queryNext: PropTypes.string,
+        isLoggedIn: PropTypes.bool.isRequired,
         actions: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired,
+        redirect: PropTypes.string.isRequired,
     };
 
-    onLoginClick = (credentials) => {
-        const { actions, queryNext } = this.props;
+    componentWillMount() {
+        const { isLoggedIn, dispatch, redirect } = this.props;
 
-        actions.loginUser(credentials, queryNext);
+        if (isLoggedIn) {
+            dispatch(replace(redirect));
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { isLoggedIn, dispatch, redirect } = nextProps;
+        const { isLoggedIn: wasLoggedIn } = this.props;
+
+        if (!wasLoggedIn && isLoggedIn) {
+            dispatch(replace(redirect));
+        }
+    }
+
+    onLoginClick = (credentials) => {
+        const { actions } = this.props;
+
+        actions.loginUser(credentials);
     }
 
     render() {
