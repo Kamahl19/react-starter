@@ -7,14 +7,6 @@ const {
 /**
  * Login
  */
-export const loginUserSuccess = (user) => ({
-    type: LOGIN_USER_SUCCESS,
-    payload: {
-        token: localStorage.getItem(window.tokenName),
-        user,
-    }
-});
-
 export const loginUser = (credentials) => ({
     typeName: LOGIN_USER,
     api: {
@@ -24,6 +16,14 @@ export const loginUser = (credentials) => ({
             body: JSON.stringify(credentials),
         }
     },
+});
+
+export const loginUserWithToken = (user, token) => ({
+    type: LOGIN_USER_SUCCESS,
+    payload: {
+        token,
+        user,
+    }
 });
 
 /**

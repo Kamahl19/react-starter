@@ -1,9 +1,6 @@
 import _ from 'lodash';
 import Alert from 'react-s-alert';
 
-/**
- * API Communication Helpers
- */
 const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response;

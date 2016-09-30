@@ -5,42 +5,33 @@ import jwtDecode from 'jwt-decode';
 import Alert from 'react-s-alert';
 import { Footer } from '@components/layout';
 import { HeaderContainer, LoaderContainer } from '@containers/layout';
-import { loginUserSuccess, fetchUser } from '@actions/user';
+import { loginUserWithToken, fetchUser } from '@actions/user';
 import { isTokenValid } from '@utils/authHelpers';
 
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.user.isLoggedIn,
-    user: state.user.user,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ fetchUser, loginUserSuccess }, dispatch),
+    actions: bindActionCreators({ fetchUser, loginUserWithToken }, dispatch),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(undefined, mapDispatchToProps)
 export default class App extends Component {
     static propTypes = {
         children: PropTypes.node.isRequired,
-        isLoggedIn: PropTypes.bool.isRequired,
-        user: PropTypes.object,
         actions: PropTypes.object.isRequired,
     };
 
     componentWillMount() {
+        const { actions } = this.props;
+
         const token = localStorage.getItem(window.tokenName);
 
         if (isTokenValid(token)) {
             const { userId } = jwtDecode(token);
 
-            this.props.actions.fetchUser(userId);
-        }
-    }
+            actions.fetchUser(userId).then(({ payload }) => {
+                const { user } = payload;
 
-    componentWillReceiveProps(nextProps) {
-        const { user, isLoggedIn, actions } = nextProps;
-
-        if (user && !isLoggedIn) {
-            actions.loginUserSuccess(user);
+                actions.loginUserWithToken(user, token);
+            });
         }
     }
 

@@ -1,4 +1,4 @@
-import { callAPI } from '@utils/helpers';
+import { callAPI } from '@utils/apiHelpers';
 import constants from '@constants';
 
 const { REQUEST, SUCCESS, FAILURE } = constants;
