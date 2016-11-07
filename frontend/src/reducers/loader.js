@@ -1,4 +1,6 @@
-import { REQUEST, SUCCESS, FAILURE } from '@constants';
+import actionTypes from '@redux/actionTypes';
+
+const { REQUEST, SUCCESS, FAILURE } = actionTypes;
 
 const initialState = {
     unfinishedRequests: [],

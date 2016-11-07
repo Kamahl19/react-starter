@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const aliases = require('./aliases.js');
-const commons = require('./common.js');
+const aliases = require('./aliases');
+const commons = require('./common');
 
 module.exports = {
     title: 'React Starter',

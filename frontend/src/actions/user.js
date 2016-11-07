@@ -1,8 +1,8 @@
-import constants from '@constants';
+import actionTypes from '@redux/actionTypes';
 
 const {
     LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_USER,
-} = constants;
+} = actionTypes;
 
 /**
  * Login
@@ -21,8 +21,8 @@ export const loginUser = (credentials) => ({
 export const loginUserWithToken = (user, token) => ({
     type: LOGIN_USER_SUCCESS,
     payload: {
-        token,
         user,
+        token,
     }
 });
 

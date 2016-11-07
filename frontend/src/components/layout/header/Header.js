@@ -47,6 +47,7 @@ export default class Header extends Component {
             <div className="screen-header">
 
                 <Navbar fixedTop>
+
                     <Navbar.Header>
                         <Navbar.Brand>
                             <Link to="/">React Starter</Link>
@@ -61,6 +62,7 @@ export default class Header extends Component {
                     {isLoggedIn &&
                         this.renderIsLoggedInMenu()
                     }
+
                 </Navbar>
 
             </div>

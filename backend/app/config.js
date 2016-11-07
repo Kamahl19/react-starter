@@ -12,8 +12,6 @@ const config = {
     },
     dbUrl: 'mongodb://react-starter:p4ssw0rd@ds033976.mlab.com:33976/react-starter',
     dbOptions: {
-        user: 'react-starter',
-        pass: 'p4ssw0rd',
         server: {
             socketOptions: {
                 keepAlive: 1,
@@ -31,7 +29,6 @@ const config = {
     tokenExpireIn: 24 * 60 * 60, // 1 day
     cacheFilesFor: '1d', // 1 day
     port: '3001',
-    entriesDisabled: true,
 };
 
 module.exports = config;

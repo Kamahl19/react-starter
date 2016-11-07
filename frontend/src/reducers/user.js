@@ -1,10 +1,10 @@
 import { createReducer } from '@redux/reduxHelpers';
-import constants from '@constants';
+import actionTypes from '@redux/actionTypes';
 
 const {
     REQUEST, SUCCESS, FAILURE,
     LOGIN_USER, LOGOUT_USER, FETCH_USER,
-} = constants;
+} = actionTypes;
 
 const initialState = {
     token: null,
