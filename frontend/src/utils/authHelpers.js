@@ -3,11 +3,11 @@ import { userRoles } from '@constants/values';
 
 export const checkIsAdmin = (userRole) => userRole === userRoles.ADMINISTRATOR;
 
+export const decodeToken = (token) => jwtDecode(token);
+
 export const isTokenValid = (token) => {
     if (token) {
-        const decoded = jwtDecode(token);
-
-        if (decoded.exp > (new Date().getTime() / 1000)) {
+        if (decodeToken(token).exp > (new Date().getTime() / 1000)) {
             return true;
         }
     }

@@ -8,6 +8,4 @@ export default createConstants(
     'LOGIN_USER',
     'LOGOUT_USER',
     'FETCH_USER',
-
-    'LOGIN_USER_SUCCESS',
 );

@@ -1,7 +1,7 @@
 import actionTypes from '@redux/actionTypes';
 
 const {
-    LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_USER,
+    REQUEST, SUCCESS, FAILURE, LOGIN_USER, LOGOUT_USER, FETCH_USER,
 } = actionTypes;
 
 /**
@@ -18,8 +18,16 @@ export const loginUser = (credentials) => ({
     },
 });
 
+export const loginUserRequest = () => ({
+    type: `${LOGIN_USER}_${REQUEST}`,
+});
+
+export const loginUserFailure = () => ({
+    type: `${LOGIN_USER}_${FAILURE}`,
+});
+
 export const loginUserWithToken = (user, token) => ({
-    type: LOGIN_USER_SUCCESS,
+    type: `${LOGIN_USER}_${SUCCESS}`,
     payload: {
         user,
         token,

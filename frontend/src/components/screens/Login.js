@@ -31,6 +31,12 @@ export default class Login extends Component {
                 .catch((formErrors) => this.setState({ formErrors }));
     }
 
+    handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            this.handleLoginClick(e);
+        }
+    }
+
     render() {
         const { isAuthenticating, linkState } = this.props;
         const { formErrors } = this.state;
@@ -47,15 +53,17 @@ export default class Login extends Component {
                         placeholder="E-mail"
                         name="email"
                         error={formErrors.email}
+                        onKeyPress={this.handleEnter}
                         autoFocus
                     />
 
                     <Input
                         {...linkState('password')}
+                        type="password"
                         placeholder="Password"
                         name="password"
                         error={formErrors.password}
-                        type="password"
+                        onKeyPress={this.handleEnter}
                     />
 
                     <Button

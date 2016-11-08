@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import jwtDecode from 'jwt-decode';
 import Alert from 'react-s-alert';
 import { Footer } from '@components/layout';
 import { HeaderContainer, LoaderContainer } from '@containers/layout';
-import { loginUserWithToken, fetchUser } from '@actions/user';
-import { isTokenValid } from '@utils/authHelpers';
+import { loginUserRequest, loginUserFailure, loginUserWithToken, fetchUser } from '@actions/user';
+import { decodeToken, isTokenValid } from '@utils/authHelpers';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ fetchUser, loginUserWithToken }, dispatch),
+    actions: bindActionCreators({
+        fetchUser,
+        loginUserRequest,
+        loginUserFailure,
+        loginUserWithToken
+    }, dispatch),
 });
 
 @connect(undefined, mapDispatchToProps)
@@ -25,12 +29,16 @@ export default class App extends Component {
         const token = localStorage.getItem(window.tokenName);
 
         if (isTokenValid(token)) {
-            const { userId } = jwtDecode(token);
+            actions.loginUserRequest();
+
+            const { userId } = decodeToken(token);
 
             actions.fetchUser(userId).then(({ payload }) => {
                 const { user } = payload;
 
                 actions.loginUserWithToken(user, token);
+            }, () => {
+                actions.loginUserFailure();
             });
         }
     }
