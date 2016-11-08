@@ -12,6 +12,7 @@ module.exports = {
     entry: {
         main: [
             'babel-polyfill',
+            'whatwg-fetch',
             './src/main',
         ]
     },
@@ -49,10 +50,6 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.ProvidePlugin({
-            Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
-            fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-        }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             inject: 'body',

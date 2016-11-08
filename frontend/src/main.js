@@ -1,15 +1,10 @@
-import { polyfill } from 'es6-promise';
-
 import '@styles/main.less';
-
 import React from 'react';
 import { render } from 'react-dom';
 import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Root } from '@containers';
 import configureStore from '@redux/configureStore';
-
-polyfill();
 
 window.backendUrl = 'http://localhost:3001/api';
 window.tokenName = 'react-starter-token';
