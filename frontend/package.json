@@ -16,7 +16,7 @@
     "npm": "^3.10.9"
   },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/config.prod.js --display-error-details",
     "build": "npm run clean && npm run build:webpack",
     "start": "node devServer.js",

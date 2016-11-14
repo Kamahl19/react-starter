@@ -11,7 +11,7 @@ module.exports = lodash.merge(baseConfig, {
     debug: false,
 
     output: {
-        path: commons.root('dist'),
+        path: commons.root('build'),
         filename: '[name].bundle.[hash].js',
         sourceMapFilename: '[file].map',
         chunkFilename: '[id].chunk.js',
