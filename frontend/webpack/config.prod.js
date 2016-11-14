@@ -41,12 +41,14 @@ module.exports = lodash.merge(baseConfig, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"production"'
         }),
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compressor: {
-                warnings: false
+                warnings: false,
+                drop_debugger: true,
+                passes: 3,
             }
         }),
-        new webpack.optimize.DedupePlugin(),
     ]),
 
     postcss: [

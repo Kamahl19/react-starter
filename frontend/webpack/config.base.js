@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const aliases = require('./aliases');
@@ -58,29 +57,9 @@ module.exports = {
                 collapseWhitespace: true,
                 removeTagWhitespace: true,
             },
-            chunksSortMode: function compare(a, b) {
-                // common always first
-                if (a.names[0] === 'common') {
-                    return -1;
-                }
-                // main always last
-                if (a.names[0] === 'main') {
-                    return 1;
-                }
-                // vendor before main
-                if (a.names[0] === 'vendor' && b.names[0] === 'main') {
-                    return -1;
-                }
-                else {
-                    return 1;
-                }
-                // a must be equal to b
-                return 0;
-            }
         }),
         new CopyWebpackPlugin([
             { from: 'static' }
         ]),
     ],
 };
-
