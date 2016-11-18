@@ -1,6 +1,6 @@
 # React Starter
 
-Simple starter project including both React app and Express.js server as API
+Simple starter project including both React app and Express.js server for API
 
 ## What’s Inside?
 
@@ -29,7 +29,7 @@ git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
 ```
 
-Run `create-react-app` using custom `react-scripts` customized for this starter:
+Run `create-react-app` using [custom `react-scripts`](https://github.com/Kamahl19/create-react-app/tree/master/packages/react-scripts) customized for this starter:
 
 ```sh
 create-react-app client --scripts-version react-scripts-kamahl19-fork
@@ -44,10 +44,10 @@ rm -rf public src
 
 Copy `public` and `src` folders from `/frontend` folder into `/client` folder
 
-Merge frontend/package.json to client/package.json:
+Merge `frontend/package.json` to `client/package.json`:
 
-1. use the content of client/package.json
-2. use dependencies and engines from frontend/package.json
+1. use the content of `client/package.json`
+2. use `dependencies` and `engines` from `frontend/package.json`
 
 Install client dependencies
 
