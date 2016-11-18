@@ -36,7 +36,7 @@ create-react-app client --scripts-version react-scripts-kamahl19-fork
 cd client
 ```
 
-Remove `public` and `src` folders:
+Remove `public` and `src` folders from `client` folder:
 
 ```sh
 rm -rf public src
@@ -49,11 +49,19 @@ Merge `frontend/package.json` to `client/package.json`:
 1. use the content of `client/package.json`
 2. use `dependencies` and `engines` from `frontend/package.json`
 
-Install client dependencies
+Remove the frontend
+
+```sh
+cd ../
+rm -rf frontend
+```
+
+Run the client
 
 ```sh
 cd client
 npm i
+npm start
 ```
 
 Run the backend
@@ -61,13 +69,6 @@ Run the backend
 ```sh
 cd backend
 npm i
-npm start
-```
-
-Run the client
-
-```sh
-cd client
 npm start
 ```
 
