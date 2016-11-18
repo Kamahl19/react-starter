@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Home } from '@components/screens';
+import { Home } from '@src/components/screens';
 
 const mapStateToProps = (state) => ({
     user: state.user.user,

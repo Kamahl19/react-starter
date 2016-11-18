@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { LOGOUT_USER } from '@redux/actionTypes';
+import { LOGOUT_USER } from '@src/redux/actionTypes';
 import user from './user';
 import loader from './loader';
 

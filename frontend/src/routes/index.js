@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { routerActions } from 'react-router-redux';
-import App from '@containers/App';
-import { LoginContainer, HomeContainer, UserProfileContainer } from '@containers/screens';
-import { Error404 } from '@components/screens';
+import App from '@src/containers/App';
+import { LoginContainer, HomeContainer, UserProfileContainer } from '@src/containers/screens';
+import { Error404 } from '@src/components/screens';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
 const IsLoggedIn = UserAuthWrapper({

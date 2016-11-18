@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ScreenContent } from '@components/layout';
+import { ScreenContent } from '@src/components/layout';
 
 export default class UserProfile extends Component {
     static propTypes = {

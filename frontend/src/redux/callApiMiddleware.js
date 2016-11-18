@@ -1,5 +1,5 @@
-import { callAPI } from '@utils/apiHelpers';
-import actionTypes from '@redux/actionTypes';
+import { callAPI } from '@src/utils/apiHelpers';
+import actionTypes from '@src/redux/actionTypes';
 
 const { REQUEST, SUCCESS, FAILURE } = actionTypes;
 

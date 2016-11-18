@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logout } from '@actions/user';
-import { Header } from '@components/layout';
+import { logout } from '@src/actions/user';
+import { Header } from '@src/components/layout';
 
 const mapStateToProps = (state) => ({
     isLoggedIn: state.user.isLoggedIn,

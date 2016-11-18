@@ -13,9 +13,9 @@ export default function formValidation(data, skipScroll = false) {
         let formErrors = {};
 
         Promise.all(promises).then((results) => {
-            for (const result of results) {
+            results.forEach((result) => {
                 formErrors = { ...formErrors, ...result };
-            }
+            });
 
             const errorKeys = Object.keys(formErrors);
 
@@ -69,9 +69,9 @@ function validateObject(obj, schema) {
                 return false;
             });
 
-            for (const err of uniqueErrors) {
+            uniqueErrors.forEach((err) => {
                 formatedErrors[err.path] = formatError(err.message);
-            }
+            });
 
             resolve(formatedErrors);
         });

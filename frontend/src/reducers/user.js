@@ -1,5 +1,5 @@
-import { createReducer } from '@redux/reduxHelpers';
-import actionTypes from '@redux/actionTypes';
+import { createReducer } from '@src/redux/reduxHelpers';
+import actionTypes from '@src/redux/actionTypes';
 
 const {
     REQUEST, SUCCESS, FAILURE,

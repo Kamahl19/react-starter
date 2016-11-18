@@ -1,4 +1,4 @@
-import actionTypes from '@redux/actionTypes';
+import actionTypes from '@src/redux/actionTypes';
 
 const {
     REQUEST, SUCCESS, FAILURE, LOGIN_USER, LOGOUT_USER, FETCH_USER,

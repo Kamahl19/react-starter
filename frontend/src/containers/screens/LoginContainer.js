@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { replace } from 'react-router-redux';
-import { loginUser } from '@actions/user';
-import { Login } from '@components/screens';
+import { loginUser } from '@src/actions/user';
+import { Login } from '@src/components/screens';
 
 const mapStateToProps = (state, ownProps) => ({
     isAuthenticating: state.user.isAuthenticating,

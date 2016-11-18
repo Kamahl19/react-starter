@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
-import { Footer } from '@components/layout';
-import { HeaderContainer, LoaderContainer } from '@containers/layout';
-import { loginUserRequest, loginUserFailure, loginUserWithToken, fetchUser } from '@actions/user';
-import { decodeToken, isTokenValid } from '@utils/authHelpers';
+import { Footer } from '@src/components/layout';
+import { HeaderContainer, LoaderContainer } from '@src/containers/layout';
+import { loginUserRequest, loginUserFailure, loginUserWithToken, fetchUser } from '@src/actions/user';
+import { decodeToken, isTokenValid } from '@src/utils/authHelpers';
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({

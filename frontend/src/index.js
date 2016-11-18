@@ -1,10 +1,10 @@
-import '@styles/main.less';
+import '@src/styles/main.less';
 import React from 'react';
 import { render } from 'react-dom';
 import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { Root } from '@containers';
-import configureStore from '@redux/configureStore';
+import { Root } from '@src/containers';
+import configureStore from '@src/redux/configureStore';
 
 window.backendUrl = 'http://localhost:3001/api';
 window.tokenName = 'react-starter-token';
@@ -18,7 +18,6 @@ render(
     document.getElementById('root')
 );
 
-// TODO - https://github.com/facebookincubator/create-react-app
 // TODO - reselect
 // TODO - flow
 // TODO - router v4

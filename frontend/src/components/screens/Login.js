@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-import linkedState from '@utils/LinkedState';
-import formValidation from '@utils/formValidation';
-import { ScreenContent } from '@components/layout';
-import { Input } from '@components/ui/inputs';
+import linkedState from '@src/utils/LinkedState';
+import formValidation from '@src/utils/formValidation';
+import { ScreenContent } from '@src/components/layout';
+import { Input } from '@src/components/ui/inputs';
 
 @linkedState(['email', 'password'])
 export default class Login extends Component {

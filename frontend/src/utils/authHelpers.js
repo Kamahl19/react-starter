@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { userRoles } from '@constants/values';
+import { userRoles } from '@src/constants/values';
 
 export const checkIsAdmin = (userRole) => userRole === userRoles.ADMINISTRATOR;
 

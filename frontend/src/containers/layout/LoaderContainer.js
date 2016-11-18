@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Loader } from '@components/layout';
+import { Loader } from '@src/components/layout';
 
 const mapStateToProps = (state) => ({
     showLoader: !!state.loader.unfinishedRequests.length,
