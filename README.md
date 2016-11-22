@@ -12,7 +12,9 @@ Simple starter project including both React app and Express.js server for API
 * toast / alert
 * form validation
 
-## Getting Started
+## Getting Started With create-react-app
+
+If you dont want to use create-react-app, scroll down to [Getting Started Without create-react-app](#getting-started-without-create-react-app)
 
 ### Installation
 
@@ -72,9 +74,16 @@ npm i
 npm start
 ```
 
-Download 
-
 ## User login
 
 * username: `test@test.com`
 * password: `password`
+
+## Getting Started Without create-react-app
+
+Clone this repository and add your own webpack solution
+
+```sh
+git clone https://github.com/Kamahl19/react-starter my-app
+cd my-app
+```
