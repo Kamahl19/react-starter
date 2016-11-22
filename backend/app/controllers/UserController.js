@@ -1,5 +1,3 @@
-'use strict';
-
 const User = require('../models/User');
 const helpers = require('../helpers');
 const InternalServerError = require('../errors/InternalServerError');

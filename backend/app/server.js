@@ -1,5 +1,3 @@
-'use strict';
-
 const http = require('http');
 const mongoose = require('mongoose');
 const config = require('./config');
@@ -89,7 +87,7 @@ function cleanShutDown(code = 0) {
  * Connect to MongoDB
  */
 try {
-    mongoose.connect(config.dbUrl, config.dbOptions);
+    mongoose.connect(config.mongolab.url, config.mongolab.options);
 }
 catch (err) {
     console.error('Sever initialization failed ', err.message);

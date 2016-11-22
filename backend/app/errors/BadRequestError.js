@@ -1,5 +1,3 @@
-'use strict';
-
 function BadRequestError(error) {
     Error.call(this, error.message);
     Error.captureStackTrace(this, this.constructor);

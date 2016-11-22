@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
@@ -10,11 +8,11 @@ const config = require('./config');
 
 const app = express();
 
-// Gzip
-app.use(compression());
-
 // Set port
 app.set('port', normalizePort(process.env.PORT || config.port));
+
+// Gzip
+app.use(compression());
 
 // Parse body of the POST request
 app.use(bodyParser.json());
@@ -23,13 +21,12 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // Allow CORS
-app.use(cors(config.corsOptions));
+app.use(cors(config.cors));
 
 // Serve frontend app
 app.use('/', express.static(__dirname + '/public', { maxAge: config.cacheFilesFor }));
 
 // Routes
-app.get('/test', (req, res) => { res.send('Running'); });
 app.use('/api', userRoutes);
 
 // Catch 404 and forward to error handler

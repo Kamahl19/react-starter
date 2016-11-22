@@ -1,5 +1,3 @@
-'use strict';
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
@@ -25,10 +23,10 @@ userSchema.methods.getAuthToken = function () {
     };
 
     const options = {
-        expiresIn: config.tokenExpireIn,
+        expiresIn: config.jwt.tokenExpireIn,
     };
 
-    const token = jwt.sign(payload, config.passwordSecret, options);
+    const token = jwt.sign(payload, config.jwt.passwordSecret, options);
 
     return token;
 };

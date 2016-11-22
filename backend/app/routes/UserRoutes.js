@@ -1,5 +1,3 @@
-'use strict';
-
 const router = require('express').Router();
 const UserController = require('../controllers/UserController');
 const isLoggedIn = require('../middleware/isLoggedIn');
