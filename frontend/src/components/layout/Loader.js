@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactLoaders from 'react-loaders';
 
-import './loader.less';
+import './loader.scss';
 
 export default class Loader extends Component {
     static propTypes = {

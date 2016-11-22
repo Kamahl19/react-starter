@@ -1,0 +1,18 @@
+@import "variables.scss";
+
+// Toaster styles
+@import "~react-s-alert/dist/s-alert-default.css";
+
+.s-alert-box.s-alert-show {
+    z-index: 9999;
+}
+
+// Customizing bootstrap
+@import "bootstrap-customized.scss";
+
+/**
+ * General CSS
+ */
+ * {
+    outline: 0 !important;
+}

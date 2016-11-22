@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Kamahl19/react-starter#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "jwt-decode": "^2.1.0",
     "lodash": "^4.16.4",

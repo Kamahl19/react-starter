@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Grid } from 'react-bootstrap';
 import classnames from 'classnames';
 
-import './screen-content.less';
+import './screen-content.scss';
 
 export default class ScreenContent extends Component {
     static propTypes = {
