@@ -1,9 +1,3 @@
-import HomeContainer from './HomeContainer';
-import LoginContainer from './LoginContainer';
-import UserProfileContainer from './UserProfileContainer';
-
-export {
-    HomeContainer,
-    LoginContainer,
-    UserProfileContainer,
-};
+export { default as HomeContainer } from './HomeContainer';
+export { default as LoginContainer } from './LoginContainer';
+export { default as UserProfileContainer } from './UserProfileContainer';

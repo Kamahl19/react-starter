@@ -1,7 +1,2 @@
-import Root from './Root';
-import App from './App';
-
-export {
-    Root,
-    App,
-};
+export { default as Root } from './Root';
+export { default as App } from './App';
