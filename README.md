@@ -31,7 +31,7 @@ git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
 ```
 
-Run `create-react-app` using [custom `react-scripts`](https://github.com/Kamahl19/create-react-app/tree/master/packages/react-scripts) customized for this starter:
+Run `create-react-app` using [custom `react-scripts`](https://github.com/Kamahl19/create-react-app/tree/kamahl19-customizations/packages/react-scripts) customized for this starter:
 
 ```sh
 create-react-app client --scripts-version react-scripts-kamahl19-fork
