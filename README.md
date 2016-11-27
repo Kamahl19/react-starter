@@ -11,6 +11,7 @@ Simple starter project including both React app and Express.js server for API
 * loader
 * toast / alert
 * form validation
+* [forked create-react-app](https://github.com/Kamahl19/create-react-app/tree/kamahl19-customizations/packages/react-scripts)
 
 ## Getting Started With create-react-app
 
