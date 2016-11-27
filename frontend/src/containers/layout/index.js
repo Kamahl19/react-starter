@@ -1,2 +1,7 @@
-export HeaderContainer from './HeaderContainer';
-export LoaderContainer from './LoaderContainer';
+import HeaderContainer from './HeaderContainer';
+import LoaderContainer from './LoaderContainer';
+
+export {
+    HeaderContainer,
+    LoaderContainer,
+};

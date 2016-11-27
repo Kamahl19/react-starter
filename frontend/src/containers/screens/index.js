@@ -1,3 +1,9 @@
-export HomeContainer from './HomeContainer';
-export LoginContainer from './LoginContainer';
-export UserProfileContainer from './UserProfileContainer';
+import HomeContainer from './HomeContainer';
+import LoginContainer from './LoginContainer';
+import UserProfileContainer from './UserProfileContainer';
+
+export {
+    HomeContainer,
+    LoginContainer,
+    UserProfileContainer,
+};

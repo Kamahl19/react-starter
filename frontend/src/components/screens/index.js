@@ -1,4 +1,11 @@
-export Home from './Home';
-export UserProfile from './UserProfile';
-export Login from './Login';
-export Error404 from './Error404';
+import Home from './Home';
+import UserProfile from './UserProfile';
+import Login from './Login';
+import Error404 from './Error404';
+
+export {
+    Home,
+    UserProfile,
+    Login,
+    Error404,
+};
