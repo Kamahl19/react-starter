@@ -16,6 +16,15 @@
     "npm": "^3.10.9"
   },
   "homepage": "https://github.com/Kamahl19/react-starter#readme",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts-kamahl19-fork": "^0.3.0"
+  },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
