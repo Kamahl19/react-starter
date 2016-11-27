@@ -1,5 +1,5 @@
 {
-  "name": "react-starter",
+  "name": "react-starter-client",
   "version": "0.1.0",
   "description": "Simple react starter project",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
@@ -12,7 +12,7 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": "7.0.0",
+    "node": "^7.2.0",
     "npm": "^3.10.9"
   },
   "homepage": "https://github.com/Kamahl19/react-starter#readme",
