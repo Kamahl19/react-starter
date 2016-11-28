@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "experimentalDecorators": true
+    },
+    "files": [
+        "src/"
+    ]
+}

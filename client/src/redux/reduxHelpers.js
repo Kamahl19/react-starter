@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import lodash from 'lodash';
 
 export const createConstants = (...constants) =>
     constants.reduce((acc, constant) => {
@@ -11,8 +11,8 @@ export const createReducer = (initialState, reducerMap) => {
     const makeType = (prefix, type) => prefix.concat(type).join('_');
 
     const iterator = (reducers, initial = {}, prefix = []) =>
-        _.reduce(reducers, (acc, reducer, type) => {
-            if (_.isFunction(reducer)) {
+        lodash.reduce(reducers, (acc, reducer, type) => {
+            if (lodash.isFunction(reducer)) {
                 return { ...acc, [makeType(prefix, type)]: reducer };
             }
             return iterator(reducer, acc, [makeType(prefix, type)]);

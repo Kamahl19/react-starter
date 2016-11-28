@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import lodash from 'lodash';
 import Alert from 'react-s-alert';
 
 const checkHttpStatus = (response) => {
@@ -29,7 +29,7 @@ const getRequestOptions = (customOptions = {}) => {
         defaultFetchOptions.headers.Authorization = `Bearer ${token}`;
     }
 
-    const result = _.merge({}, defaultFetchOptions, customOptions);
+    const result = lodash.merge({}, defaultFetchOptions, customOptions);
 
     // In case of file uploads, its neccessary to delete `Content-Type`
     // so browser sets it implicitly along with `boundary`
