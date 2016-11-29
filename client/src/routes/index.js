@@ -1,19 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import { routerActions } from 'react-router-redux';
 import App from '@src/containers/App';
 import { LoginContainer, HomeContainer, UserProfileContainer } from '@src/containers/screens';
 import { Error404 } from '@src/components/screens';
-import { UserAuthWrapper } from 'redux-auth-wrapper';
-
-const IsLoggedIn = UserAuthWrapper({
-    authSelector: (state) => state.user,
-    predicate: (user) => user.isLoggedIn,
-    authenticatingSelector: (state) => state.user.isAuthenticating,
-    failureRedirectPath: '/login',
-    redirectAction: routerActions.replace,
-    wrapperDisplayName: 'IsLoggedIn',
-});
+import { IsLoggedIn } from '@src/utils/authHelpers';
 
 export default (
     <Route path="/" component={App}>
