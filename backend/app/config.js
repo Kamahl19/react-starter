@@ -7,6 +7,7 @@ const config = {
         allowedHeaders: 'Timezone-Offset,Origin,X-Requested-With,Content-Type,Accept,Authorization',
     },
     mongolab: {
+        // Credentials stored in repo instead of env var :(
         url: 'mongodb://react-starter:p4ssw0rd@ds033976.mlab.com:33976/react-starter',
         options: {
             server: {
@@ -25,9 +26,9 @@ const config = {
     },
     jwt: {
         passwordSecret: 'secret',
-        tokenExpireIn: 24 * 60 * 60, // 1 day
+        tokenExpireIn: 24 * 60 * 60,
     },
-    cacheFilesFor: '1d', // 1 day
+    cacheFilesFor: '1d',
     port: '3001',
 };
 

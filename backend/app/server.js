@@ -12,6 +12,8 @@ const server = http.createServer(app);
 mongoose.connection.on('connected', () => {
     console.log('MongoDB connected');
 
+    mongoose.Promise = global.Promise;
+
     // Seed DB
     SeedDB.seed();
 
