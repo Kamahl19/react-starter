@@ -17,7 +17,3 @@ render(
     <Root store={store} history={history} />,
     document.getElementById('root')
 );
-
-// TODO - reselect
-// TODO - flow
-// TODO - router v4
