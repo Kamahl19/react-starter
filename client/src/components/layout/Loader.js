@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ReactLoaders from 'react-loaders';
+import { Loader as ReactLoaders } from 'react-loaders';
 
 import './loader.scss';
 
