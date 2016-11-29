@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Loader as ReactLoaders } from 'react-loaders';
 
+import 'loaders.css/src/animations/ball-spin-fade-loader.scss';
 import './loader.scss';
 
 export default class Loader extends Component {
@@ -16,7 +17,7 @@ export default class Loader extends Component {
         }
 
         return (
-            <div className="overlay">
+            <div className="loader-overlay">
                 <ReactLoaders
                     type="ball-spin-fade-loader"
                 />

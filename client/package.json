@@ -29,6 +29,7 @@
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "jwt-decode": "^2.1.0",
+    "loaders.css": "^0.1.2",
     "lodash": "^4.17.2",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.7",
