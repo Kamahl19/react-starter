@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 /**
@@ -28,7 +27,7 @@ module.exports = (req, res, next) => {
         return next(new UnauthorizedError({ message: 'No authorization token was found' }));
     }
 
-    jwt.verify(token, config.jwt.passwordSecret, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             return next(new UnauthorizedError(err));
         }

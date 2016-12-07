@@ -9,7 +9,7 @@ const config = require('./config');
 const app = express();
 
 // Set port
-app.set('port', normalizePort(process.env.PORT || config.port));
+app.set('port', normalizePort(process.env.PORT));
 
 // Gzip
 app.use(compression());
