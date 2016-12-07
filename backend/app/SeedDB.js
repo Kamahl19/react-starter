@@ -1,6 +1,6 @@
 const User = require('./models/User');
 
-function createUser() {
+function createAdmin() {
     const email = 'test@test.com';
     const name = 'test';
     const password = 'password';
@@ -13,6 +13,7 @@ function createUser() {
             const newUser = new User({
                 email,
                 name,
+                isAdmin: true,
                 password: User.generateHash(password),
             });
 
@@ -21,7 +22,7 @@ function createUser() {
                     console.log(err2);
                 }
                 else {
-                    console.log('User created');
+                    console.log('Admin created');
                 }
             });
         }
@@ -30,6 +31,6 @@ function createUser() {
 
 module.exports = {
     seed: () => {
-        createUser();
+        createAdmin();
     }
 };

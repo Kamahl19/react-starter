@@ -8,6 +8,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false },
     name: { type: String, default: '' },
+    isAdmin: { type: Boolean, default: false },
 });
 
 /**
@@ -20,6 +21,7 @@ userSchema.methods.validPassword = function (password) {
 userSchema.methods.getAuthToken = function () {
     const payload = {
         userId: this._id,
+        isAdmin: this.isAdmin,
     };
 
     const options = {
