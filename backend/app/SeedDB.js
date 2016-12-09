@@ -1,4 +1,5 @@
 const User = require('./models/User');
+const logger = require('./logger');
 
 function createAdmin() {
     const email = 'test@test.com';
@@ -7,7 +8,7 @@ function createAdmin() {
 
     User.findOne({ name }, (err, user) => {
         if (err) {
-            console.log(err);
+            logger.error(err);
         }
         else if (!user) {
             const newUser = new User({
@@ -19,10 +20,10 @@ function createAdmin() {
 
             newUser.save((err2) => {
                 if (err) {
-                    console.log(err2);
+                    logger.error(err2);
                 }
                 else {
-                    console.log('Admin created');
+                    logger.info('Admin created');
                 }
             });
         }
