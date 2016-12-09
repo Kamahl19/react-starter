@@ -28,16 +28,16 @@ Run the client
 
 ```sh
 cd client
-npm i
-npm start
+yarn install
+yarn start
 ```
 
 Run the backend
 
 ```sh
 cd backend
-npm i
-npm start
+yarn install
+yarn start
 ```
 
 ## User login
