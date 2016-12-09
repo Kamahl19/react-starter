@@ -43,6 +43,7 @@
     "cors": "^2.8.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "helmet": "^3.1.0",
     "jsonwebtoken": "^7.2.1",
     "middleware-flow": "^0.8.0",
     "mongoose": "^4.7.2",

@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -26,6 +27,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // Allow CORS
 app.use(cors(config.cors));
+
+// Secure app by setting various HTTP headers
+app.use(helmet());
 
 // Serve frontend app
 app.use('/', express.static(__dirname + '/public', { maxAge: config.cacheFilesFor }));
