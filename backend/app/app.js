@@ -5,20 +5,24 @@ const morgan = require('morgan');
 const cors = require('cors');
 const userRoutes = require('./routes/UserRoutes');
 const config = require('./config');
+const helpers = require('./helpers');
 
 const app = express();
 
 // Set port
-app.set('port', normalizePort(process.env.PORT));
+app.set('port', helpers.normalizePort(process.env.PORT));
+
+// Parse body params and attach them to req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Gzip
 app.use(compression());
 
-// Parse body of the POST request
-app.use(bodyParser.json());
-
 // Use morgan to log requests to the console
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
 
 // Allow CORS
 app.use(cors(config.cors));
@@ -45,24 +49,5 @@ app.use((err, req, res, next) => {
         error: (process.env.NODE_ENV === 'development') ? err : {}
     });
 });
-
-/**
- * Normalize a port into a number, string, or false.
- */
-function normalizePort(val) {
-    const port = parseInt(val, 10);
-
-    // Named pipe
-    if (isNaN(port)) {
-        return val;
-    }
-
-    // Port number
-    if (port >= 0) {
-        return port;
-    }
-
-    return false;
-}
 
 module.exports = app;

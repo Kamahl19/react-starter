@@ -1,7 +1,7 @@
 {
   "name": "react-starter-backend",
   "version": "0.1.0",
-  "description": "Backend for react starter project",
+  "description": "A Boilerplate application for building REST APIs using ExpressJS and MongoDB",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
   "repository": {
@@ -11,19 +11,28 @@
   "bugs": {
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
+  "keywords": [
+    "express",
+    "node",
+    "node.js",
+    "mongodb",
+    "mongoose",
+    "REST",
+    "API",
+    "boilerplate"
+  ],
   "engines": {
     "node": ">=7.2.0",
     "yarn": ">=0.17.10"
   },
-  "homepage": "https://github.com/Kamahl19/react-starter#readme",
-  "main": "app/server.js",
+  "main": "app/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon --inspect app/server.js"
+    "start": "cross-env NODE_ENV=development nodemon --inspect app/index.js"
   },
   "devDependencies": {
     "cross-env": "^3.1.3",
     "eslint": "^3.11.1",
-    "eslint-plugin-node": "^3.0.4",
+    "eslint-plugin-node": "^3.0.5",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
@@ -34,9 +43,9 @@
     "cors": "^2.8.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "jsonwebtoken": "^7.1.9",
+    "jsonwebtoken": "^7.2.1",
     "middleware-flow": "^0.8.0",
-    "mongoose": "^4.7.0",
+    "mongoose": "^4.7.2",
     "morgan": "^1.7.0"
   }
 }

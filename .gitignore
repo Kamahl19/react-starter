@@ -1,5 +1,12 @@
-.DS_Store
+# Logs
+logs
 *.log
-*.log.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Dependency directory
 node_modules
+
 .env
