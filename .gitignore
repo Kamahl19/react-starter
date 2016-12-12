@@ -9,4 +9,7 @@ Thumbs.db
 # Dependency directory
 node_modules
 
+# Build
+client/build
+
 .env
