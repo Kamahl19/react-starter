@@ -1,26 +1,6 @@
 {
   "name": "react-starter-backend",
   "version": "0.1.0",
-  "description": "A Boilerplate application for building REST APIs using ExpressJS and MongoDB",
-  "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kamahl19/react-starter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Kamahl19/react-starter/issues"
-  },
-  "keywords": [
-    "express",
-    "node",
-    "node.js",
-    "mongodb",
-    "mongoose",
-    "REST",
-    "API",
-    "boilerplate"
-  ],
   "engines": {
     "node": ">=7.2.0",
     "yarn": ">=0.17.10"
