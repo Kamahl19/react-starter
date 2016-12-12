@@ -33,7 +33,7 @@ mongoose.connection.on('error', (err) => {
 server.on('listening', () => {
     const { address, port } = server.address();
 
-    logger.info(`Listening on ${address}: ${port}`);
+    logger.info(`Listening on ${address}:${port}`);
 });
 
 // Catch server `error` event

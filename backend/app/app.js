@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path');
 const helmet = require('helmet');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const cors = require('cors');
 const userRoutes = require('./routes/UserRoutes');
 const config = require('./config');
 const helpers = require('./helpers');
@@ -26,13 +26,18 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Allow CORS
-app.use(cors(config.cors));
+if (config.cors.origin) {
+    const cors = require('cors');
+    app.use(cors(config.cors));
+}
 
 // Secure app by setting various HTTP headers
 app.use(helmet());
 
 // Serve frontend app
-app.use('/', express.static(__dirname + '/public', { maxAge: config.cacheFilesFor }));
+app.use('/', express.static(path.resolve(__dirname, 'public'), {
+    maxAge: config.cacheFilesFor,
+}));
 
 // Routes
 app.use('/api', userRoutes);

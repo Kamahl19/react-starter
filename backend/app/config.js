@@ -1,8 +1,6 @@
-const frontendUrl = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : 'http://domain.com';
-
 const config = {
     cors: {
-        origin: frontendUrl,
+        origin: (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : '',
         methods: 'POST,GET,PUT,OPTIONS,DELETE',
         allowedHeaders: 'Timezone-Offset,Origin,X-Requested-With,Content-Type,Accept,Authorization',
     },
