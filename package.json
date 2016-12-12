@@ -14,7 +14,7 @@
   "keywords": ["express", "node", "node.js", "mongodb", "mongoose", "REST", "API", "boilerplate", "react", "redux"],
   "engines": {
     "node": ">=7.2.0",
-    "yarn": ">=0.17.10"
+    "npm": ">=3.10.10"
   },
   "main": "backend/app/index.js"
 }
