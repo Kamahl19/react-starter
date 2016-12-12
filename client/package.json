@@ -1,7 +1,7 @@
 {
   "name": "react-starter-client",
   "version": "0.1.0",
-  "description": "Simple react starter project",
+  "description": "A Boilerplate application for building React apps",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
   "repository": {
