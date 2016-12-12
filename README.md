@@ -11,7 +11,6 @@ Simple starter project including both React app and Express Rest API server
     * Logging
     * Env variables using .env
     * Cors, Compression, Helmet..
-    * PM2
 * React Starter
     * Auth using JWT
     * Redux (thunk, call-api-middleware, logger)
@@ -33,10 +32,7 @@ git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
 ```
 
-Set Enviroment Variables
-```
-create .env file using the .env.example file
-```
+Set Enviroment Variables using ``.env`` file in the ``/backend`` folder
 
 Seed DB & Start the backend
 
