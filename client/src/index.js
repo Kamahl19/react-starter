@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Root } from '@src/containers';
 import configureStore from '@src/redux/configureStore';
 
-window.backendUrl = (process.env.NODE_ENV === 'production') ? '/' : 'http://localhost:3001/api';
+window.backendUrl = (process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:3001/api';
 window.tokenName = 'react-starter-token';
 
 const store = configureStore();
