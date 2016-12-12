@@ -24,7 +24,16 @@ git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
 ```
 
-Run the client
+Seed DB & Start the backend
+
+```sh
+cd backend
+yarn install
+yarn run seed
+yarn start
+```
+
+Start the client
 
 ```sh
 cd client
@@ -32,15 +41,12 @@ yarn install
 yarn start
 ```
 
-Run the backend
+## Admin login
 
-```sh
-cd backend
-yarn install
-yarn start
-```
+* username: `admin@example.com`
+* password: `password`
 
 ## User login
 
-* username: `test@test.com`
+* username: `user@example.com`
 * password: `password`

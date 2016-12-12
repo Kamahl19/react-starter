@@ -5,7 +5,6 @@ const http = require('http');
 const mongoose = require('mongoose');
 const config = require('./config');
 const app = require('./app');
-const SeedDB = require('./SeedDB');
 const logger = require('./logger');
 
 const server = http.createServer(app);
@@ -16,9 +15,6 @@ mongoose.Promise = global.Promise;
 // Catch MongoDB `connect` event
 mongoose.connection.on('connected', () => {
     logger.info('MongoDB connected');
-
-    // Seed DB
-    SeedDB.seed();
 
     server.listen(app.get('port'), '0.0.0.0');
 });

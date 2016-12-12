@@ -22,7 +22,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-scripts-kamahl19-fork": "^0.3.0"
+    "react-scripts-kamahl19-fork": "^0.3.6"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
