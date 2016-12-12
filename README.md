@@ -1,6 +1,6 @@
 # React Starter
 
-Simple starter project including both React app and Express.js server for API
+Simple starter project including both React app and Express Rest API server
 
 ## What’s Inside?
 
