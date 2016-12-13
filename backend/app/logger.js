@@ -1,14 +1,5 @@
 const bunyan = require('bunyan');
-const fs = require('fs');
-
-const logDirectory = process.env.LOG_DIR || '/logs';
-
-try {
-    fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
-}
-catch (ex) {
-    console.log(`Cannot create log directory: ${ex}`);
-}
+const path = require('path');
 
 const logger = bunyan.createLogger({
     name: 'react-starter-backend',
@@ -16,7 +7,7 @@ const logger = bunyan.createLogger({
         stream: process.stdout,
     }, {
         type: 'rotating-file',
-        path: logDirectory + '/logs.log',
+        path: path.resolve(__dirname, 'logs', 'logs.log'),
         period: '7d',
         count: 53,
     }]
