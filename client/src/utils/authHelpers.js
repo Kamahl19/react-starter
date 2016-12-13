@@ -1,9 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { userRoles } from '@src/constants/values';
-
-export const checkIsAdmin = (userRole) => userRole === userRoles.ADMINISTRATOR;
 
 export const decodeToken = (token) => jwtDecode(token);
 
@@ -24,4 +21,14 @@ export const IsLoggedIn = UserAuthWrapper({
     failureRedirectPath: '/login',
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'IsLoggedIn',
+});
+
+export const IsAdmin = UserAuthWrapper({
+    authSelector: (state) => state.user,
+    predicate: (user) => user.user && user.user.isAdmin,
+    authenticatingSelector: (state) => state.user.isAuthenticating,
+    failureRedirectPath: '/',
+    redirectAction: routerActions.replace,
+    wrapperDisplayName: 'IsAdmin',
+    allowRedirectBack: false,
 });
