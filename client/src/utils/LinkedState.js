@@ -21,7 +21,7 @@ export default (stateNames) => (ComposedComponent) => class extends Component {
 
     linkState = (stateName) => ({
         value: this.state[stateName],
-        onChange: (e) => this.setState({ [stateName]: e.target.value }),
+        onChange: (e) => this.setState({ [stateName]: e.target ? e.target.value : e }),
     });
 
     render() {
