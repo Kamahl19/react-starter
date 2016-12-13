@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { logout } from '@src/actions/user';
 import { Header } from '@src/components/layout';
 
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.user.isLoggedIn,
-    user: state.user.user,
+const mapStateToProps = ({ user }) => ({
+    isLoggedIn: user.isLoggedIn,
+    userName: (user.user && user.user.name) || '',
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,14 +17,12 @@ const mapDispatchToProps = (dispatch) => ({
 export default class HeaderContainer extends Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool.isRequired,
-        user: PropTypes.object,
+        userName: PropTypes.string.isRequired,
         actions: PropTypes.object.isRequired,
     };
 
     render() {
-        const { isLoggedIn, user, actions } = this.props;
-
-        const userName = user ? user.name : '';
+        const { isLoggedIn, userName, actions } = this.props;
 
         return (
             <Header

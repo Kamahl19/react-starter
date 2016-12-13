@@ -4,8 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 export default class UserDropdown extends Component {
     static propTypes = {
-        logout: PropTypes.func.isRequired,
         userName: PropTypes.string.isRequired,
+        logout: PropTypes.func.isRequired,
     };
 
     handleLogout = (e) => {
@@ -25,6 +25,7 @@ export default class UserDropdown extends Component {
                     <LinkContainer to="/me">
                         <MenuItem>Profile</MenuItem>
                     </LinkContainer>
+                    <MenuItem divider/>
                     <MenuItem onClick={this.handleLogout}>Log Out</MenuItem>
                 </NavDropdown>
             </Nav>

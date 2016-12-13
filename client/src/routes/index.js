@@ -10,9 +10,9 @@ export default (
 
         <IndexRoute component={HomeContainer} />
 
-        <Route path="me" component={IsLoggedIn(UserProfileContainer)} />
-
         <Route path="login" component={LoginContainer} />
+
+        <Route path="me" component={IsLoggedIn(UserProfileContainer)} />
 
         <Route path="*" component={Error404} />
 

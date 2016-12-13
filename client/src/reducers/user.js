@@ -48,19 +48,6 @@ export default createReducer(initialState, {
         },
     },
 
-    [LOGOUT_USER]: (state) => {
-        localStorage.removeItem(window.tokenName);
-
-        return {
-            ...state,
-            ...{
-                token: null,
-                user: null,
-                isLoggedIn: false,
-            }
-        };
-    },
-
     [FETCH_USER]: {
         [REQUEST]: (state) => ({
             ...state,
@@ -84,6 +71,19 @@ export default createReducer(initialState, {
                 user: null,
             }
         }),
-    }
+    },
+
+    [LOGOUT_USER]: (state) => {
+        localStorage.removeItem(window.tokenName);
+
+        return {
+            ...state,
+            ...{
+                token: null,
+                user: null,
+                isLoggedIn: false,
+            }
+        };
+    },
 
 });
