@@ -3,49 +3,36 @@ import actionTypes from '@src/redux/actionTypes';
 
 const {
     REQUEST, SUCCESS, FAILURE,
-    LOGIN_USER, LOGOUT_USER, FETCH_USER,
+    UPDATE_USER, DELETE_USER, FETCH_USER, FETCH_USERS,
 } = actionTypes;
 
 const initialState = {
-    token: null,
+    users: [],
     user: null,
-    isLoggedIn: false,
-    isAuthenticating: false,
 };
 
 export default createReducer(initialState, {
-    [LOGIN_USER]: {
+
+    [DELETE_USER]: {
         [REQUEST]: (state) => ({
             ...state,
-            ...{
-                isAuthenticating: true,
-            }
         }),
-        [SUCCESS]: (state, payload) => {
-            const { token, user } = payload;
-
-            localStorage.setItem(window.tokenName, token);
+        [SUCCESS]: (state, { user }) => {
+            const userIdx = state.users.map((u) => u.id).indexOf(user.id);
 
             return {
                 ...state,
                 ...{
-                    token,
-                    user,
-                    isLoggedIn: true,
-                    isAuthenticating: false,
+                    users: [
+                        ...state.users.slice(0, userIdx),
+                        ...state.users.slice(userIdx + 1),
+                    ],
                 }
             };
         },
-        [FAILURE]: (state) => {
-            localStorage.removeItem(window.tokenName);
-
-            return {
-                ...state,
-                ...{
-                    isAuthenticating: false,
-                }
-            };
-        },
+        [FAILURE]: (state) => ({
+            ...state,
+        }),
     },
 
     [FETCH_USER]: {
@@ -55,16 +42,12 @@ export default createReducer(initialState, {
                 user: null,
             }
         }),
-        [SUCCESS]: (state, payload) => {
-            const { user } = payload;
-
-            return {
-                ...state,
-                ...{
-                    user,
-                }
-            };
-        },
+        [SUCCESS]: (state, { user }) => ({
+            ...state,
+            ...{
+                user,
+            }
+        }),
         [FAILURE]: (state) => ({
             ...state,
             ...{
@@ -73,17 +56,25 @@ export default createReducer(initialState, {
         }),
     },
 
-    [LOGOUT_USER]: (state) => {
-        localStorage.removeItem(window.tokenName);
-
-        return {
+    [FETCH_USERS]: {
+        [REQUEST]: (state) => ({
             ...state,
             ...{
-                token: null,
-                user: null,
-                isLoggedIn: false,
+                users: [],
             }
-        };
+        }),
+        [SUCCESS]: (state, { users }) => ({
+            ...state,
+            ...{
+                users,
+            }
+        }),
+        [FAILURE]: (state) => ({
+            ...state,
+            ...{
+                users: [],
+            }
+        }),
     },
 
 });

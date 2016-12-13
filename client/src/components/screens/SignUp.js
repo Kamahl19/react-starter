@@ -6,21 +6,23 @@ import { Input } from '@src/components/ui/inputs';
 
 import './auth.scss';
 
-@linkedState(['email', 'password'])
-export default class Login extends Component {
+@linkedState(['name', 'email', 'password', 'repeatPassword'])
+export default class SignUp extends Component {
     static propTypes = {
         linkState: PropTypes.func.isRequired,
+        name: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
+        repeatPassword: PropTypes.string.isRequired,
         onSubmit: PropTypes.func.isRequired,
         isAuthenticating: PropTypes.bool.isRequired,
         formErrors: PropTypes.object.isRequired,
     };
 
     handleSubmit = (e) => {
-        const { email, password, onSubmit } = this.props;
+        const { name, email, password, repeatPassword, onSubmit } = this.props;
 
-        onSubmit({ email, password });
+        onSubmit({ name, email, password, repeatPassword });
     }
 
     handleEnter = (e) => {
@@ -37,7 +39,16 @@ export default class Login extends Component {
 
                 <div className="auth-form">
 
-                    <h3>Log In</h3>
+                    <h3>Sign Up</h3>
+
+                    <Input
+                        {...linkState('name')}
+                        placeholder="Name"
+                        name="name"
+                        error={formErrors.name}
+                        onKeyPress={this.handleEnter}
+                        autoFocus
+                    />
 
                     <Input
                         {...linkState('email')}
@@ -45,7 +56,6 @@ export default class Login extends Component {
                         name="email"
                         error={formErrors.email}
                         onKeyPress={this.handleEnter}
-                        autoFocus
                     />
 
                     <Input
@@ -57,13 +67,22 @@ export default class Login extends Component {
                         onKeyPress={this.handleEnter}
                     />
 
+                    <Input
+                        {...linkState('repeatPassword')}
+                        type="password"
+                        placeholder="Repeat Password"
+                        name="repeatPassword"
+                        error={formErrors.repeatPassword}
+                        onKeyPress={this.handleEnter}
+                    />
+
                     <Button
                         type="submit"
                         onClick={this.handleSubmit}
                         disabled={isAuthenticating}
                         bsStyle="primary"
                     >
-                        Log In
+                        Sign Up
                     </Button>
 
                 </div>

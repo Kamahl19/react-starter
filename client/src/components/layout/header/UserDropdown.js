@@ -8,9 +8,7 @@ export default class UserDropdown extends Component {
         logout: PropTypes.func.isRequired,
     };
 
-    handleLogout = (e) => {
-        e.preventDefault();
-
+    handleLogout = () => {
         this.props.logout();
     }
 

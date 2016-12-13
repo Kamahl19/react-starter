@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loginUser } from '@src/actions/auth';
-import { Login } from '@src/components/screens';
+import { signUp } from '@src/actions/auth';
+import { SignUp } from '@src/components/screens';
 import formValidation from '@src/utils/formValidation';
 
 const mapStateToProps = ({ auth }) => ({
@@ -10,11 +10,11 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ loginUser }, dispatch),
+    actions: bindActionCreators({ signUp }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class LoginContainer extends Component {
+export default class SignUpContainer extends Component {
     static propTypes = {
         isAuthenticating: PropTypes.bool.isRequired,
         actions: PropTypes.object.isRequired,
@@ -24,11 +24,11 @@ export default class LoginContainer extends Component {
         formErrors: {},
     };
 
-    onSubmit = (loginCredentials) => {
+    onSubmit = (signUpData) => {
         const { actions } = this.props;
 
-        formValidation({ loginCredentials })
-            .then(() => actions.loginUser(loginCredentials))
+        formValidation({ signUpData })
+            .then(() => actions.signUp(signUpData))
             .catch((formErrors) => this.setState({ formErrors }));
     }
 
@@ -37,9 +37,9 @@ export default class LoginContainer extends Component {
         const { formErrors } = this.state;
 
         return (
-            <Login
-                isAuthenticating={isAuthenticating}
+            <SignUp
                 formErrors={formErrors}
+                isAuthenticating={isAuthenticating}
                 onSubmit={this.onSubmit}
             />
         );

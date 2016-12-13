@@ -1,26 +1,46 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchUsers, deleteUser } from '@src/actions/user';
 import { Home } from '@src/components/screens';
 
-const mapStateToProps = (state) => ({
-    user: state.user.user,
-    isLoggedIn: state.user.isLoggedIn,
+const mapStateToProps = ({ auth, user }) => ({
+    users: user.users,
+    canDelete: auth.isLoggedIn && auth.user.isAdmin,
 });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({
+        fetchUsers,
+        deleteUser,
+    }, dispatch),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class HomeContainer extends Component {
     static propTypes = {
-        user: PropTypes.object,
-        isLoggedIn: PropTypes.bool.isRequired,
+        actions: PropTypes.object.isRequired,
+        users: PropTypes.array.isRequired,
+        canDelete: PropTypes.bool.isRequired,
     };
 
-    render() {
-        const { user, isLoggedIn } = this.props;
+    componentWillMount() {
+        this.props.actions.fetchUsers();
+    }
 
-        const userName = isLoggedIn ? user.name : 'visitor';
+    onDeleteClick = (userId) => {
+        this.props.actions.deleteUser(userId);
+    }
+
+    render() {
+        const { users, canDelete } = this.props;
 
         return (
-            <Home userName={userName} />
+            <Home
+                users={users}
+                canDelete={canDelete}
+                onDeleteClick={this.onDeleteClick}
+            />
         );
     }
 }

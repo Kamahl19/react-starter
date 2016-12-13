@@ -7,13 +7,13 @@ const isOwnId = require('../middleware/isOwnId');
 
 router.route('/users')
     // Get all users
-    .get(isLoggedIn, UserController.getAll)
+    .get(UserController.getAll)
     // Create new user
     .post(UserController.create);
 
 router.route('/users/:userId')
     // Get user by ID
-    .get(isLoggedIn, UserController.getById)
+    .get(UserController.getById)
     // Update user
     .put(isLoggedIn, or(isOwnId, isAdmin), UserController.update)
     // Delete user

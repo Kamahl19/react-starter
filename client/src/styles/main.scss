@@ -10,9 +10,18 @@
 // Customizing bootstrap
 @import "bootstrap-customized.scss";
 
+// Font Awesome styles
+@import "~font-awesome/css/font-awesome.min.css";
+
 /**
  * General CSS
  */
  * {
     outline: 0 !important;
+}
+
+#screen-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }

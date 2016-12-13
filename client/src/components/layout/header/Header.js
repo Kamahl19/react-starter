@@ -16,6 +16,9 @@ export default class Header extends Component {
             <Navbar.Collapse>
 
                 <Nav pullRight>
+                    <LinkContainer to="/sign-up">
+                        <NavItem>Sign Up</NavItem>
+                    </LinkContainer>
                     <LinkContainer to="/login">
                         <NavItem>Log In</NavItem>
                     </LinkContainer>

@@ -1,52 +1,52 @@
 import actionTypes from '@src/redux/actionTypes';
 
 const {
-    REQUEST, SUCCESS, FAILURE, LOGIN_USER, LOGOUT_USER, FETCH_USER,
+    UPDATE_USER, DELETE_USER, FETCH_USER, FETCH_USERS,
 } = actionTypes;
 
 /**
- * Login
+ * Update User
  */
-export const loginUser = (credentials) => ({
-    typeName: LOGIN_USER,
+export const updateUser = (userId, userData) => ({
+    typeName: UPDATE_USER,
     api: {
-        path: '/login',
+        path: `/users/${userId}`,
         options: {
-            method: 'post',
-            body: JSON.stringify(credentials),
+            method: 'put',
+            body: JSON.stringify(userData),
         }
-    },
-});
-
-export const loginUserRequest = () => ({
-    type: `${LOGIN_USER}_${REQUEST}`,
-});
-
-export const loginUserFailure = () => ({
-    type: `${LOGIN_USER}_${FAILURE}`,
-});
-
-export const loginUserWithToken = (user, token) => ({
-    type: `${LOGIN_USER}_${SUCCESS}`,
-    payload: {
-        user,
-        token,
     }
 });
 
 /**
- * Logout
+ * Delete User
  */
-export const logout = () => ({
-    type: LOGOUT_USER
+export const deleteUser = (userId) => ({
+    typeName: DELETE_USER,
+    api: {
+        path: `/users/${userId}`,
+        options: {
+            method: 'delete',
+        }
+    }
 });
 
 /**
- * Fetch User data
+ * Fetch User
  */
 export const fetchUser = (userId) => ({
     typeName: FETCH_USER,
     api: {
         path: `/users/${userId}`,
+    }
+});
+
+/**
+ * Fetch Users
+ */
+export const fetchUsers = () => ({
+    typeName: FETCH_USERS,
+    api: {
+        path: `/users`,
     }
 });

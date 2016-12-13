@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 
+import './footer.scss';
+
 export default class Footer extends Component {
     render() {
         return (
-            <div className="footer">
+            <footer className="screen-footer">
                 <Grid>
-                    Footer
+                    This is a footer
                 </Grid>
-            </div>
+            </footer>
         );
     }
 }

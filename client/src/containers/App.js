@@ -4,16 +4,10 @@ import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 import { Footer } from '@src/components/layout';
 import { HeaderContainer, LoaderContainer } from '@src/containers/layout';
-import { loginUserRequest, loginUserFailure, loginUserWithToken, fetchUser } from '@src/actions/user';
-import { decodeToken, isTokenValid } from '@src/utils/authHelpers';
+import { loginWithToken } from '@src/actions/auth';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({
-        fetchUser,
-        loginUserRequest,
-        loginUserFailure,
-        loginUserWithToken
-    }, dispatch),
+    actions: bindActionCreators({ loginWithToken }, dispatch),
 });
 
 @connect(undefined, mapDispatchToProps)
@@ -24,30 +18,14 @@ export default class App extends Component {
     };
 
     componentWillMount() {
-        const { actions } = this.props;
-
-        const token = localStorage.getItem(window.tokenName);
-
-        if (isTokenValid(token)) {
-            actions.loginUserRequest();
-
-            const { userId } = decodeToken(token);
-
-            actions.fetchUser(userId).then(({ payload }) => {
-                const { user } = payload;
-
-                actions.loginUserWithToken(user, token);
-            }, () => {
-                actions.loginUserFailure();
-            });
-        }
+        this.props.actions.loginWithToken();
     }
 
     render() {
         const { children } = this.props;
 
         return (
-            <div>
+            <div id="screen-wrapper">
 
                 <HeaderContainer />
 

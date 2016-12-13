@@ -37,6 +37,7 @@ const UserController = {
                 }
 
                 return helpers.getSuccessResult(res, {
+                    token: user.getAuthToken(),
                     user: {
                         id: user._id,
                         email: user.email,
