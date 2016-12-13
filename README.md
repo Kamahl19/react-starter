@@ -61,7 +61,14 @@ npm run build
 
 Deploy app to Heroku
 ```sh
-TODO
+cd backend
+heroku login
+heroku create my-app
+git init
+heroku git:remote -a my-app
+git add .
+git commit -am "initial commit"
+git push heroku master
 ```
 
 ## Login credentials
