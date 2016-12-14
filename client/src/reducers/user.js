@@ -7,74 +7,41 @@ const {
 } = actionTypes;
 
 const initialState = {
-    users: [],
     user: null,
+    users: [],
 };
 
-export default createReducer(initialState, {
-
-    [DELETE_USER]: {
-        [REQUEST]: (state) => ({
-            ...state,
-        }),
-        [SUCCESS]: (state, { user }) => {
-            const userIdx = state.users.map((u) => u.id).indexOf(user.id);
-
-            return {
-                ...state,
-                ...{
-                    users: [
-                        ...state.users.slice(0, userIdx),
-                        ...state.users.slice(userIdx + 1),
-                    ],
-                }
-            };
-        },
-        [FAILURE]: (state) => ({
-            ...state,
-        }),
-    },
-
+const user = createReducer(initialState.user, {
     [FETCH_USER]: {
-        [REQUEST]: (state) => ({
-            ...state,
-            ...{
-                user: null,
-            }
-        }),
-        [SUCCESS]: (state, { user }) => ({
-            ...state,
-            ...{
-                user,
-            }
-        }),
-        [FAILURE]: (state) => ({
-            ...state,
-            ...{
-                user: null,
-            }
-        }),
-    },
+        [REQUEST]: (state) => state,
+        [SUCCESS]: (state, { user }) => user,
+        [FAILURE]: (state) => null,
+    }
+})
 
+const removeUser = (users, user) => {
+    const userId = state.users.map((u) => u.id).indexOf(user.id);
+    
+    return [
+        ...users.slice(0, userId),
+        ...users.slice(userId + 1),
+    ]
+}
+
+const users = createReducer(initialState.users, {
     [FETCH_USERS]: {
-        [REQUEST]: (state) => ({
-            ...state,
-            ...{
-                users: [],
-            }
-        }),
-        [SUCCESS]: (state, { users }) => ({
-            ...state,
-            ...{
-                users,
-            }
-        }),
-        [FAILURE]: (state) => ({
-            ...state,
-            ...{
-                users: [],
-            }
-        }),
+        [REQUEST]: (state) => [],
+        [SUCCESS]: (state, { users }) => users,
+        [FAILURE]: (state) => [],
     },
+    [DELETE_USER]: {
+        [REQUEST]: (state) => state,
+        [SUCCESS]: (state, { user }) => removeUser(state, user),
+        [FAILURE]: (state) => state,
+    },
+})
 
-});
+export default combineReducers({
+    user,
+    users,
+})
