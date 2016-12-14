@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { isAuthenticatingSelector } from '@src/redux/selectors';
 import { loginUser } from '@src/actions/auth';
 import { Login } from '@src/components/screens';
 import formValidation from '@src/utils/formValidation';
 
-const mapStateToProps = ({ auth }) => ({
-    isAuthenticating: auth.isAuthenticating,
+const mapStateToProps = (state) => ({
+    isAuthenticating: isAuthenticatingSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

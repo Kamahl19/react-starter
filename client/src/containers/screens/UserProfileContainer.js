@@ -1,13 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { makeUserIdFromUrlSelector, userDetailSelector } from '@src/redux/selectors';
 import { fetchUser } from '@src/actions/user';
 import { UserProfile } from '@src/components/screens';
 
-const mapStateToProps = ({ user, auth }, { params }) => ({
-    user: user.user,
-    userId: params.userId || auth.user.id,
-});
+const mapStateToProps = () => {
+    const userIdFromUrlSelector = makeUserIdFromUrlSelector();
+
+    return (state, props) => ({
+        user: userDetailSelector(state),
+        userId: userIdFromUrlSelector(state, props),
+    });
+};
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ fetchUser }, dispatch),

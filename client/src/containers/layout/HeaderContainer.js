@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { authIsLoggedInSelector, authUserNameSelector } from '@src/redux/selectors';
 import { logout } from '@src/actions/auth';
 import { Header } from '@src/components/layout';
 
@@ -18,9 +19,9 @@ HeaderContainer.propTypes = {
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ auth }) => ({
-    isLoggedIn: auth.isLoggedIn,
-    userName: (auth.user && auth.user.name) || '',
+const mapStateToProps = (state) => ({
+    isLoggedIn: authIsLoggedInSelector(state),
+    userName: authUserNameSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

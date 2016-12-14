@@ -59,6 +59,7 @@
     "redux": "^3.6.0",
     "redux-auth-wrapper": "^0.9.0",
     "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.4",
     "yup": "^0.21.2"
   }
 }

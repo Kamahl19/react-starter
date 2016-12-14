@@ -44,11 +44,11 @@ export const IsAnonymous = UserAuthWrapper({
 });
 
 export const LoginWrapper = UserAuthWrapper({
-  authSelector: (state) => state.auth,
-  predicate: (auth) => !auth.isLoggedIn,
-  authenticatingSelector: (state) => state.auth.isAuthenticating,
-  failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
-  redirectAction: routerActions.replace,
-  wrapperDisplayName: 'LoginWrapper',
-  allowRedirectBack: false,
-})
+    authSelector: (state) => state.auth,
+    predicate: (auth) => !auth.isLoggedIn,
+    authenticatingSelector: (state) => state.auth.isAuthenticating,
+    failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
+    redirectAction: routerActions.replace,
+    wrapperDisplayName: 'LoginWrapper',
+    allowRedirectBack: false,
+});
