@@ -11,7 +11,7 @@ export const authUserNameSelector = createSelector(
     (user) => (user && user.name) || '',
 );
 
-export const paramsUserIdSelector = (undefined, props) => props.params && props.params.userId;
+export const paramsUserIdSelector = (_, props) => props.params && props.params.userId;
 
 export const makeUserIdFromUrlSelector = () =>
     createSelector(
