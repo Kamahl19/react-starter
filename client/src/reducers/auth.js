@@ -48,44 +48,6 @@ export default createReducer(initialState, {
         },
     },
 
-    [FETCH_LOGGED_IN_USER]: {
-        [REQUEST]: (state) => ({
-            ...state,
-            ...{
-                user: null,
-            }
-        }),
-        [SUCCESS]: (state, payload) => {
-            const { user } = payload;
-
-            return {
-                ...state,
-                ...{
-                    user,
-                }
-            };
-        },
-        [FAILURE]: (state) => ({
-            ...state,
-            ...{
-                user: null,
-            }
-        }),
-    },
-
-    [LOGOUT_USER]: (state) => {
-        localStorage.removeItem(window.tokenName);
-
-        return {
-            ...state,
-            ...{
-                token: null,
-                user: null,
-                isLoggedIn: false,
-            }
-        };
-    },
-
     [SIGN_UP]: {
         [REQUEST]: (state) => ({
             ...state,
@@ -108,16 +70,41 @@ export default createReducer(initialState, {
                 }
             };
         },
-        [FAILURE]: (state) => {
-            localStorage.removeItem(window.tokenName);
+        [FAILURE]: (state) => ({
+            ...state,
+            ...{
+                isAuthenticating: false,
+            }
+        }),
+    },
 
-            return {
-                ...state,
-                ...{
-                    isAuthenticating: false,
-                }
-            };
-        },
+    [FETCH_LOGGED_IN_USER]: {
+        [REQUEST]: (state) => state,
+        [SUCCESS]: (state, payload) => ({
+            ...state,
+            ...{
+                user: payload.user,
+            }
+        }),
+        [FAILURE]: (state) => ({
+            ...state,
+            ...{
+                user: null,
+            }
+        }),
+    },
+
+    [LOGOUT_USER]: (state) => {
+        localStorage.removeItem(window.tokenName);
+
+        return {
+            ...state,
+            ...{
+                token: null,
+                user: null,
+                isLoggedIn: false,
+            }
+        };
     },
 
 });
