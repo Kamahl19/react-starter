@@ -1,18 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 
-export default class TableCustom extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-    };
+const Tbl = ({ children, ...props }) => (
+    <Table striped responsive bordered {...props}>
+        {children}
+    </Table>
+);
 
-    render() {
-        const { children, ...props } = this.props;
+Tbl.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
-        return (
-            <Table striped responsive bordered {...props}>
-                {children}
-            </Table>
-        );
-    }
-}
+export default Tbl;

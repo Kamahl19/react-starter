@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUsers, deleteUser } from '@src/actions/user';
-import { Home } from '@src/components/screens';
+import { UserTable } from '@src/components/screens';
 
 const mapStateToProps = ({ auth, user }) => ({
     users: user.users,
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class HomeContainer extends Component {
+export default class UserTableContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
         users: PropTypes.array.isRequired,
@@ -36,7 +36,7 @@ export default class HomeContainer extends Component {
         const { users, canDelete } = this.props;
 
         return (
-            <Home
+            <UserTable
                 users={users}
                 canDelete={canDelete}
                 onDeleteClick={this.onDeleteClick}

@@ -1,48 +1,44 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
-export default class Input extends Component {
-    static propTypes = {
-        type: PropTypes.string,
-        name: PropTypes.string,
-        label: PropTypes.string,
-        help: PropTypes.string,
-        bsSize: PropTypes.string,
-        error: PropTypes.string,
-    };
+const Input = ({ type, name, label, help, bsSize, error, ...props }) => (
+    <FormGroup
+        controlId={`input_${name}`}
+        bsSize={bsSize}
+        validationState={error ? 'error' : undefined}
+    >
 
-    static defaultProps = {
-        type: 'text',
-    };
+        {label &&
+            <ControlLabel>{label}</ControlLabel>
+        }
 
-    render() {
-        const { type, name, label, help, bsSize, error, ...props } = this.props;
+        <FormControl
+            type={type}
+            {...props}
+        />
 
-        return (
-            <FormGroup
-                controlId={`input_${name}`}
-                bsSize={bsSize}
-                validationState={error ? 'error' : undefined}
-            >
+        {help &&
+            <HelpBlock>{help}</HelpBlock>
+        }
 
-                {label &&
-                    <ControlLabel>{label}</ControlLabel>
-                }
+        {error &&
+            <HelpBlock>{error}</HelpBlock>
+        }
 
-                <FormControl
-                    type={type}
-                    {...props}
-                />
+    </FormGroup>
+);
 
-                {help &&
-                    <HelpBlock>{help}</HelpBlock>
-                }
+Input.propTypes = {
+    type: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.string,
+    help: PropTypes.string,
+    bsSize: PropTypes.string,
+    error: PropTypes.string,
+};
 
-                {error &&
-                    <HelpBlock>{error}</HelpBlock>
-                }
+Input.defaultProps = {
+    type: 'text',
+};
 
-            </FormGroup>
-        );
-    }
-}
+export default Input;

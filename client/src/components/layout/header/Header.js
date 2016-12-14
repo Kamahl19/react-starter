@@ -1,74 +1,35 @@
-import React, { Component, PropTypes } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import React, { PropTypes } from 'react';
+import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
-import UserDropdown from './UserDropdown';
+import AnonymousMenu from './AnonymousMenu';
+import UserMenu from './UserMenu';
 
-export default class Header extends Component {
-    static propTypes = {
-        isLoggedIn: PropTypes.bool.isRequired,
-        userName: PropTypes.string.isRequired,
-        logout: PropTypes.func.isRequired,
-    };
-
-    renderVisitorMenu() {
-        return (
-            <Navbar.Collapse>
-
-                <Nav pullRight>
-                    <LinkContainer to="/sign-up">
-                        <NavItem>Sign Up</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                        <NavItem>Log In</NavItem>
-                    </LinkContainer>
-                </Nav>
-
-            </Navbar.Collapse>
-        );
-    }
-
-    renderIsLoggedInMenu() {
-        const { userName, logout } = this.props;
-
-        return (
-            <Navbar.Collapse>
-
-                <UserDropdown
+const Header = ({ isLoggedIn, userName, logout }) => (
+    <div className="screen-header">
+        <Navbar fixedTop>
+            <Navbar.Header>
+                <Navbar.Brand>
+                    <Link to="/">React Starter</Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+            </Navbar.Header>
+            {!isLoggedIn &&
+                <AnonymousMenu />
+            }
+            {isLoggedIn &&
+                <UserMenu
                     userName={userName}
                     logout={logout}
                 />
+            }
+        </Navbar>
+    </div>
+);
 
-            </Navbar.Collapse>
-        );
-    }
+Header.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    userName: PropTypes.string.isRequired,
+    logout: PropTypes.func.isRequired,
+};
 
-    render() {
-        const { isLoggedIn } = this.props;
-
-        return (
-            <div className="screen-header">
-
-                <Navbar fixedTop>
-
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <Link to="/">React Starter</Link>
-                        </Navbar.Brand>
-                        <Navbar.Toggle />
-                    </Navbar.Header>
-
-                    {!isLoggedIn &&
-                        this.renderVisitorMenu()
-                    }
-
-                    {isLoggedIn &&
-                        this.renderIsLoggedInMenu()
-                    }
-
-                </Navbar>
-
-            </div>
-        );
-    }
-}
+export default Header;

@@ -1,28 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { Grid } from 'react-bootstrap';
 import classnames from 'classnames';
 
 import './screen-content.scss';
 
-export default class ScreenContent extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-        className: PropTypes.string,
-    };
+const ScreenContent = ({ children, className }) => {
+    const cn = classnames('screen-content', {
+        [className]: className,
+    });
 
-    render() {
-        const { children, className } = this.props;
+    return (
+        <div className={cn}>
+            <Grid>
+                {children}
+            </Grid>
+        </div>
+    );
+};
 
-        const cn = classnames('screen-content', {
-            [className]: className,
-        });
+ScreenContent.propTypes = {
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+};
 
-        return (
-            <div className={cn}>
-                <Grid>
-                    {children}
-                </Grid>
-            </div>
-        );
-    }
-}
+export default ScreenContent;

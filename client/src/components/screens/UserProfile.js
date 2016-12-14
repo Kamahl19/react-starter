@@ -1,21 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { ScreenContent } from '@src/components/layout';
 
-export default class UserProfile extends Component {
-    static propTypes = {
-        user: PropTypes.object.isRequired,
-    };
+const UserProfile = ({ user }) => (
+    <ScreenContent>
 
-    render() {
-        const { user } = this.props;
+        <h1>{user.name}</h1>
+        <p>E-mail: {user.email}</p>
 
-        return (
-            <ScreenContent>
+    </ScreenContent>
+);
 
-                <h1>{user.name}</h1>
-                <p>E-mail: {user.email}</p>
+UserProfile.propTypes = {
+    user: PropTypes.object.isRequired,
+};
 
-            </ScreenContent>
-        );
-    }
-}
+export default UserProfile;

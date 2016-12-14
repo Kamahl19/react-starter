@@ -7,6 +7,20 @@ const {
 } = actionTypes;
 
 /**
+ * Sign Up
+ */
+export const signUp = (userData) => ({
+    typeName: SIGN_UP,
+    api: {
+        path: '/users',
+        options: {
+            method: 'post',
+            body: JSON.stringify(userData),
+        }
+    }
+});
+
+/**
  * Login
  */
 export const loginUser = (credentials) => ({
@@ -64,17 +78,3 @@ export const loginWithToken = () =>
                 .catch(() => dispatch(loginUserFailure()));
         }
     };
-
-/**
- * Sign Up
- */
-export const signUp = (userData) => ({
-    typeName: SIGN_UP,
-    api: {
-        path: '/users',
-        options: {
-            method: 'post',
-            body: JSON.stringify(userData),
-        }
-    }
-});

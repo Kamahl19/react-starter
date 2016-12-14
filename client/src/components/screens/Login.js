@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 import linkedState from '@src/utils/LinkedState';
 import { ScreenContent } from '@src/components/layout';
-import { Input } from '@src/components/ui/inputs';
+import { Input } from '@src/components/ui';
 
 import './auth.scss';
 
@@ -35,7 +35,7 @@ export default class Login extends Component {
         return (
             <ScreenContent>
 
-                <div className="auth-form">
+                <form className="auth-form">
 
                     <h3>Log In</h3>
 
@@ -66,7 +66,7 @@ export default class Login extends Component {
                         Log In
                     </Button>
 
-                </div>
+                </form>
 
             </ScreenContent>
         );
