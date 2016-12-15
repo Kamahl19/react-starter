@@ -1,6 +1,9 @@
 import actionTypes from '@src/redux/actionTypes';
+import { createSelector } from 'reselect';
 
 const { REQUEST, SUCCESS, FAILURE } = actionTypes;
+
+// REDUCERS
 
 const initialState = {
     unfinishedRequests: [],
@@ -31,3 +34,9 @@ export default (state = initialState, action) => {
 
     return reducer(state, action.payload);
 };
+
+// SELECTORS
+
+export const getUnfinishedRequests = (state) => state.unfinishedRequests;
+
+
