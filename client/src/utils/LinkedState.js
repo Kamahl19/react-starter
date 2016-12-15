@@ -9,7 +9,6 @@ export default (stateNames) => (ComposedComponent) => class extends Component {
         const intersection = getIntersection(Object.keys(props), stateNames);
 
         if (intersection.length) {
-            // eslint-disable-next-line
             console.warn(`LinkedState: ${intersection} props are interfering with stateNames!`);
         }
 
