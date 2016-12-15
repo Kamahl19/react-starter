@@ -1,5 +1,5 @@
 import actionTypes from '@src/redux/actionTypes';
-import { decodeToken, isTokenValid } from '@src/utils/authHelpers';
+import { decodeToken, isTokenValid, getToken } from '@src/utils/authHelpers';
 
 const {
     REQUEST, SUCCESS, FAILURE,
@@ -66,7 +66,7 @@ const loginUserFailure = () => ({
 
 export const loginWithToken = () =>
     (dispatch) => {
-        const token = localStorage.getItem(window.tokenName);
+        const token = getToken();
 
         if (isTokenValid(token)) {
             const { userId } = decodeToken(token);

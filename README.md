@@ -32,7 +32,7 @@ git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
 ```
 
-Set Enviroment Variables using ``.env`` file in the ``/backend`` folder
+Create ``.env`` files in both ``/backend`` and ``/client`` folders according to ``.env.example``
 
 Seed DB & Start the backend
 

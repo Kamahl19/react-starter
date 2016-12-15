@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authIsLoggedInSelector, authUserNameSelector } from '@src/redux/selectors';
+import { getIsLoggedIn, getUserName } from '@src/reducers/auth';
 import { logout } from '@src/actions/auth';
 import { Header } from '@src/components/layout';
 
@@ -20,8 +20,8 @@ HeaderContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: authIsLoggedInSelector(state),
-    userName: authUserNameSelector(state),
+    isLoggedIn: getIsLoggedIn(state),
+    userName: getUserName(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

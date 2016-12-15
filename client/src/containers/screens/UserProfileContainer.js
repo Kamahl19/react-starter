@@ -1,16 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { makeUserIdFromUrlSelector, userDetailSelector } from '@src/redux/selectors';
+import { createSelector } from 'reselect';
+import { getUser } from '@src/reducers/user';
+import { getUserId } from '@src/reducers/auth';
 import { fetchUser } from '@src/actions/user';
 import { UserProfile } from '@src/components/screens';
 
+const getUserIdFromUrl = (_, props) => props.params && props.params.userId;
+
+const makeGetUserIdFromUrlOrAuth = () =>
+    createSelector(
+        getUserId,
+        getUserIdFromUrl,
+        (userId, paramUserId) => paramUserId || userId || '',
+    );
+
 const mapStateToProps = () => {
-    const userIdFromUrlSelector = makeUserIdFromUrlSelector();
+    const getUserIdFromUrlOrAuth = makeGetUserIdFromUrlOrAuth();
 
     return (state, props) => ({
-        user: userDetailSelector(state),
-        userId: userIdFromUrlSelector(state, props),
+        user: getUser(state),
+        userId: getUserIdFromUrlOrAuth(state, props),
     });
 };
 

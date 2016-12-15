@@ -2,20 +2,20 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@src/redux/reduxHelpers';
 import actionTypes from '@src/redux/actionTypes';
 
-
 const {
     REQUEST, SUCCESS, FAILURE,
     //UPDATE_USER,
     DELETE_USER, FETCH_USER, FETCH_USERS,
 } = actionTypes;
 
-// REDUCERS
-
 const initialState = {
     user: null,
     users: [],
 };
 
+/**
+ * REDUCERS
+ */
 const user = createReducer(initialState.user, {
     [FETCH_USER]: {
         [REQUEST]: (state) => state,
@@ -24,15 +24,8 @@ const user = createReducer(initialState.user, {
     }
 });
 
-/**
- * Remove user from array
- * @param users The users array
- * @param userToRemove The user to remove
- * @returns new array without deleted user
- */
-const removeUser = (users, userToRemove) => {
-    return _.remove(users, (user) => user.id === userToRemove.id)
-}
+const removeUser = (users, userToRemove) =>
+    users.filter((u) => u.id !== userToRemove.id);
 
 const users = createReducer(initialState.users, {
     [FETCH_USERS]: {
@@ -52,9 +45,11 @@ export default combineReducers({
     users,
 });
 
-// SELECTORS
-
+/**
+ * SELECTORS
+ */
 export const getUserState = (state) => state.user;
-export const getUser = (state) => getUserState(state).user;
-export const getUsers = (state) => getUserState(state).users;
 
+export const getUser = (state) => getUserState(state).user;
+
+export const getUsers = (state) => getUserState(state).users;

@@ -1,5 +1,8 @@
 import lodash from 'lodash';
 import Alert from 'react-s-alert';
+import { getToken } from '@src/utils/authHelpers';
+
+const backendUrl = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_BACKEND_URL_PROD : process.env.REACT_APP_BACKEND_URL_DEV;
 
 const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
@@ -23,7 +26,7 @@ const getRequestOptions = (customOptions = {}) => {
         }
     };
 
-    const token = localStorage.getItem(window.tokenName);
+    const token = getToken();
 
     if (token) {
         defaultFetchOptions.headers.Authorization = `Bearer ${token}`;
@@ -47,7 +50,7 @@ export const callAPI = ({ path, options }) =>
             reject(message);
         };
 
-        fetch(window.backendUrl + path, getRequestOptions(options))
+        fetch(backendUrl + path, getRequestOptions(options))
             .then(checkHttpStatus)
             .then(parseJSON)
             .then(({ data }) => {

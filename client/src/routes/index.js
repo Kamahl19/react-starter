@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from '@src/containers/App';
 import { LoginContainer, SignUpContainer, UserTableContainer, UserProfileContainer } from '@src/containers/screens';
 import { Error404 } from '@src/components/screens';
-import { IsAnonymous, IsLoggedIn, LoginWrapper } from '@src/utils/authHelpers';
+import { IsAnonymous, IsLoggedIn, LoginWrapper } from '@src/utils/authWrappers';
 
 export default (
     <Route path="/" component={App}>

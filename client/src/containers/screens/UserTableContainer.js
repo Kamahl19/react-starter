@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { usersSelector, canDeleteUserSelector } from '@src/redux/selectors';
+import { getUserIsAdmin } from '@src/reducers/auth';
+import { getUsers } from '@src/reducers/user';
 import { fetchUsers, deleteUser } from '@src/actions/user';
 import { UserTable } from '@src/components/screens';
 
 const mapStateToProps = (state) => ({
-    users: usersSelector(state),
-    canDelete: canDeleteUserSelector(state),
+    users: getUsers(state),
+    canDelete: getUserIsAdmin(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

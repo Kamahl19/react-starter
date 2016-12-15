@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { showLoaderSelector } from '@src/redux/selectors';
+import { getShowLoader } from '@src/reducers/loader';
 import { Loader } from '@src/components/layout';
 
 const LoaderContainer = ({ showLoader }) => (
@@ -12,7 +12,7 @@ LoaderContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    showLoader: showLoaderSelector(state),
+    showLoader: getShowLoader(state),
 });
 
 export default connect(mapStateToProps)(LoaderContainer);

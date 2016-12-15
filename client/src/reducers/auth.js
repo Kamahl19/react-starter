@@ -1,45 +1,53 @@
+import { createSelector } from 'reselect';
+import { combineReducers } from 'redux';
 import { createReducer } from '@src/redux/reduxHelpers';
+import { setToken, removeToken } from '@src/utils/authHelpers';
 import actionTypes from '@src/redux/actionTypes';
 import { getUnfinishedRequests } from '@src/reducers/loader';
-import { createSelector } from 'reselect';
 
 const {
     REQUEST, SUCCESS, FAILURE,
     LOGIN_USER, LOGOUT_USER, FETCH_LOGGED_IN_USER, SIGN_UP,
 } = actionTypes;
 
-// REDUCERS
-
 const initialState = {
     token: null,
     user: null,
 };
 
+/**
+ * REDUCERS
+ */
 const token = createReducer(initialState.token, {
-    [SUCCESS]: (state, payload) => {
-        const { token } = payload;
+    [LOGIN_USER]: {
+        [SUCCESS]: (state, payload) => {
+            const { token } = payload;
 
-        localStorage.setItem(window.tokenName, token);
+            setToken(token);
 
-        return token;
-    },
-    [LOGOUT_USER]: (state) => {
-        localStorage.removeItem(window.tokenName);
-
-        return null;
+            return token;
+        },
     },
     [SIGN_UP]: {
         [SUCCESS]: (state, payload) => {
             const { token } = payload;
 
-            localStorage.setItem(window.tokenName, token);
+            setToken(token);
 
             return token;
         },
     },
+    [LOGOUT_USER]: (state) => {
+        removeToken();
+
+        return null;
+    },
 });
 
 const user = createReducer(initialState.user, {
+    [LOGIN_USER]: {
+        [SUCCESS]: (state, payload) => payload.user,
+    },
     [SIGN_UP]: {
         [SUCCESS]: (state, payload) => payload.user,
     },
@@ -47,28 +55,44 @@ const user = createReducer(initialState.user, {
         [SUCCESS]: (state, payload) => payload.user,
         [FAILURE]: (state) => null,
     },
+    [LOGOUT_USER]: (state) => null,
 });
-
 
 export default combineReducers({
     token,
     user,
 });
 
-// SELECTORS
-
+/**
+ * SELECTORS
+ */
 export const getAuth = (state) => state.auth;
+
 export const getUser = (state) => getAuth(state).user;
+
 export const getToken = (state) => getAuth(state).token;
 
-export const isLoggedInSelector = createSelector(
+export const getIsLoggedIn = createSelector(
     getUser,
-    user => user !== null
+    (user) => user !== null,
 );
 
-const isAuthenticatingSelector = createSelector(
+export const getIsAuthenticating = createSelector(
     getUnfinishedRequests,
-    requests => requests.contains(`${LOGIN_USER}_${REQUEST}`) || requests.contains(`${SIGN_UP}_${REQUEST}`),
+    (unfinishedRequests) => unfinishedRequests.includes(`${LOGIN_USER}_${REQUEST}`) || unfinishedRequests.includes(`${SIGN_UP}_${REQUEST}`),
 );
 
+export const getUserName = createSelector(
+    getUser,
+    (user) => (user && user.name) || '',
+);
 
+export const getUserId = createSelector(
+    getUser,
+    (user) => user && user.id,
+);
+
+export const getUserIsAdmin = createSelector(
+    getUser,
+    (user) => !!(user && user.isAdmin),
+);

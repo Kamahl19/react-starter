@@ -3,12 +3,13 @@ import { createSelector } from 'reselect';
 
 const { REQUEST, SUCCESS, FAILURE } = actionTypes;
 
-// REDUCERS
-
 const initialState = {
     unfinishedRequests: [],
 };
 
+/**
+ * REDUCERS
+ */
 export default (state = initialState, action) => {
     const requestStart = action.type.includes(REQUEST);
     const requestFinish = action.type.includes(SUCCESS) || action.type.includes(FAILURE);
@@ -35,8 +36,14 @@ export default (state = initialState, action) => {
     return reducer(state, action.payload);
 };
 
-// SELECTORS
+/**
+ * SELECTORS
+ */
+export const getLoaderState = (state) => state.loader;
 
-export const getUnfinishedRequests = (state) => state.unfinishedRequests;
+export const getUnfinishedRequests = (state) => getLoaderState(state).unfinishedRequests;
 
-
+export const getShowLoader = createSelector(
+    getUnfinishedRequests,
+    (unfinishedRequests) => !!unfinishedRequests.length,
+);
