@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Error404 = () => (
-    <div style={{ padding: 100, textAlign: 'center' }}>
+import './error-404.scss';
+
+export default () => (
+    <div className="error-404">
         <h1>404</h1>
         <p>The page cannot be found</p>
     </div>
 );
-
-export default Error404;
