@@ -3,12 +3,10 @@ import { Grid } from 'react-bootstrap';
 
 import './footer.scss';
 
-const Footer = () => (
+export default () => (
     <footer className="screen-footer">
         <Grid>
             This is a footer
         </Grid>
     </footer>
 );
-
-export default Footer;

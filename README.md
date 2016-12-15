@@ -7,14 +7,14 @@ Simple starter project including both React app and Express Rest API server
 * Rest API Express Server
     * Mongo DB
     * DB Seeding
-    * Auth with JWT
+    * Auth using JWT
     * Logging
     * Env variables using .env
-    * Cors, Compression, Helmet..
+    * Cors, Compression, Helmet
 * React Starter
     * Auth using JWT
-    * Redux (thunk, call-api-middleware, logger)
-    * Bootstrap 3
+    * Redux (thunk, call-api-middleware, logger, Reselect)
+    * Bootstrap 3, Font Awesome
     * react-router
     * loader
     * toast / alert

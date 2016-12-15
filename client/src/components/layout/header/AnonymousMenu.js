@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const AnonymousMenu = () => (
+export default () => (
     <Navbar.Collapse>
         <Nav pullRight>
             <LinkContainer to="/sign-up">
@@ -14,5 +14,3 @@ const AnonymousMenu = () => (
         </Nav>
     </Navbar.Collapse>
 );
-
-export default AnonymousMenu;
