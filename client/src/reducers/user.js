@@ -31,8 +31,9 @@ const user = createReducer(initialState.user, {
  * @returns new array without deleted user
  */
 const removeUser = (users, userToRemove) => {
-    return _.remove(users, (user) => user.id === userToRemove.id)
-}
+    const id = userToRemove.id;
+    return _.reject(users, { id });
+};
 
 const users = createReducer(initialState.users, {
     [FETCH_USERS]: {
