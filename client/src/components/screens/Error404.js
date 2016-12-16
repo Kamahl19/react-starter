@@ -1,10 +1,14 @@
 import React from 'react';
+import { ScreenContent } from '@src/components/layout';
 
 import './error-404.scss';
 
 export default () => (
-    <div className="error-404">
+    <ScreenContent className="error-404">
+
         <h1>404</h1>
-        <p>The page cannot be found</p>
-    </div>
+
+        <p>The requested page was not found on this website.</p>
+
+    </ScreenContent>
 );
