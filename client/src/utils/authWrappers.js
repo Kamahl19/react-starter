@@ -1,6 +1,6 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { getIsLoggedIn, getUserIsAdmin, getIsAuthenticating } from '@src/reducers/auth';
+import { getIsLoggedIn, getUserIsAdmin, getIsAuthenticating } from '@src/ducks/auth';
 
 export const IsLoggedIn = UserAuthWrapper({
     authSelector: (state) => state,

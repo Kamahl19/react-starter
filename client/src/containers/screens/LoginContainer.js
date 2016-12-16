@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getIsAuthenticating } from '@src/reducers/auth';
-import { loginUser } from '@src/actions/auth';
+import { getIsAuthenticating } from '@src/ducks/auth';
+import { loginUser } from '@src/ducks/auth';
 import { Login } from '@src/components/screens';
 import formValidation from '@src/utils/formValidation';
 

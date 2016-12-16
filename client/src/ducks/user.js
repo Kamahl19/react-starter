@@ -1,21 +1,58 @@
 import { combineReducers } from 'redux';
-import { createReducer } from '@src/redux/reduxHelpers';
-import actionTypes from '@src/redux/actionTypes';
+import { createReducer } from '@src/utils/reduxHelpers';
+import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
-const {
-    REQUEST, SUCCESS, FAILURE,
-    //UPDATE_USER,
-    DELETE_USER, FETCH_USER, FETCH_USERS,
-} = actionTypes;
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USERS = 'FETCH_USERS';
 
+/**
+ * ACTIONS
+ */
+export const updateUser = (userId, userData) => ({
+    typeName: UPDATE_USER,
+    api: {
+        path: `/users/${userId}`,
+        options: {
+            method: 'put',
+            body: JSON.stringify(userData),
+        }
+    }
+});
+
+export const deleteUser = (userId) => ({
+    typeName: DELETE_USER,
+    api: {
+        path: `/users/${userId}`,
+        options: {
+            method: 'delete',
+        }
+    }
+});
+
+export const fetchUser = (userId) => ({
+    typeName: FETCH_USER,
+    api: {
+        path: `/users/${userId}`,
+    }
+});
+
+export const fetchUsers = () => ({
+    typeName: FETCH_USERS,
+    api: {
+        path: `/users`,
+    }
+});
+
+/**
+ * REDUCERS
+ */
 const initialState = {
     user: null,
     users: [],
 };
 
-/**
- * REDUCERS
- */
 const user = createReducer(initialState.user, {
     [FETCH_USER]: {
         [REQUEST]: (state) => state,

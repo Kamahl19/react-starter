@@ -1,4 +1,4 @@
-import formSchemas from './formSchemas';
+import formSchemas from '@src/utils/formSchemas';
 
 export default function formValidation(data, skipScroll = false) {
     return new Promise((resolve, reject) => {

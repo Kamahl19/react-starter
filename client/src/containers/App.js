@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 import { Footer } from '@src/components/layout';
 import { HeaderContainer, LoaderContainer } from '@src/containers/layout';
-import { loginWithToken } from '@src/actions/auth';
+import { loginWithToken } from '@src/ducks/auth';
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ loginWithToken }, dispatch),

@@ -1,16 +1,14 @@
-import actionTypes from '@src/redux/actionTypes';
 import { createSelector } from 'reselect';
-
-const { REQUEST, SUCCESS, FAILURE } = actionTypes;
-
-const initialState = {
-    unfinishedRequests: [],
-};
+import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
 /**
  * REDUCERS
  */
-export default (state = initialState, action) => {
+const initialState = {
+    unfinishedRequests: [],
+};
+
+export default function reducer(state = initialState, action) {
     const requestStart = action.type.includes(REQUEST);
     const requestFinish = action.type.includes(SUCCESS) || action.type.includes(FAILURE);
 

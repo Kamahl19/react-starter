@@ -1,7 +1,5 @@
 import { callAPI } from '@src/utils/apiHelpers';
-import actionTypes from '@src/redux/actionTypes';
-
-const { REQUEST, SUCCESS, FAILURE } = actionTypes;
+import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
 export default function callAPIMiddleware({ dispatch, getState }) {
     return (next) => (action) => {

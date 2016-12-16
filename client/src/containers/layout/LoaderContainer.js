@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getShowLoader } from '@src/reducers/loader';
+import { getShowLoader } from '@src/ducks/loader';
 import { Loader } from '@src/components/layout';
 
 const LoaderContainer = ({ showLoader }) => (

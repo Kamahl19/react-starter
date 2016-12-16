@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUserIsAdmin } from '@src/reducers/auth';
-import { getUsers } from '@src/reducers/user';
-import { fetchUsers, deleteUser } from '@src/actions/user';
+import { getUserIsAdmin } from '@src/ducks/auth';
+import { getUsers } from '@src/ducks/user';
+import { fetchUsers, deleteUser } from '@src/ducks/user';
 import { UserTable } from '@src/components/screens';
 
 const mapStateToProps = (state) => ({

@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import Alert from 'react-s-alert';
-import { getToken } from '@src/utils/authHelpers';
+import { getTokenFromLocalStorage } from '@src/utils/authHelpers';
 
 const backendUrl = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_BACKEND_URL_PROD : process.env.REACT_APP_BACKEND_URL_DEV;
 
@@ -26,7 +26,7 @@ const getRequestOptions = (customOptions = {}) => {
         }
     };
 
-    const token = getToken();
+    const token = getTokenFromLocalStorage();
 
     if (token) {
         defaultFetchOptions.headers.Authorization = `Bearer ${token}`;

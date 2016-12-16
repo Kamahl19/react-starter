@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { LOGOUT_USER } from '@src/redux/actionTypes';
-import auth from './auth';
-import user from './user';
-import loader from './loader';
+import { LOGOUT_USER } from '@src/ducks/auth';
+import auth from '@src/ducks/auth';
+import user from '@src/ducks/user';
+import loader from '@src/ducks/loader';
 
 const appReducer = combineReducers({
     auth,

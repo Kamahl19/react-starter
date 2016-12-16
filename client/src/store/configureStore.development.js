@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import rootReducer from '@src/reducers';
-import apiMiddleware from './callApiMiddleware';
+import rootReducer from '@src/ducks';
+import apiMiddleware from '@src/utils/callApiMiddleware';
 
 const enhancer = compose(
     applyMiddleware(
@@ -15,15 +15,4 @@ const enhancer = compose(
     )
 );
 
-export default function configureStore(initialState) {
-    const store = createStore(rootReducer, initialState, enhancer);
-
-    // TODO
-    if (module.hot) {
-        module.hot.accept('../reducers', () => {
-            store.replaceReducer(require('../reducers'));
-        });
-    }
-
-    return store;
-}
+export default (initialState) => createStore(rootReducer, initialState, enhancer);
