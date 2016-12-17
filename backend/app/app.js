@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/UserRoutes');
 const config = require('./config');
 const helpers = require('./helpers');
+const logger = require('./logger');
 
 const app = express();
 
@@ -53,6 +54,8 @@ app.use((req, res, next) => {
 
 // Error middleware
 app.use((err, req, res, next) => {
+    logger.error(err);
+
     res.status(err.status || 500);
 
     res.json({

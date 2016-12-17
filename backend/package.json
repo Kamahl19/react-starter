@@ -11,7 +11,18 @@
   "bugs": {
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
-  "keywords": ["express", "node", "node.js", "mongodb", "mongoose", "REST", "API", "boilerplate", "react", "redux"],
+  "keywords": [
+    "express",
+    "node",
+    "node.js",
+    "mongodb",
+    "mongoose",
+    "REST",
+    "API",
+    "boilerplate",
+    "react",
+    "redux"
+  ],
   "engines": {
     "node": ">=7.2.0",
     "npm": ">=3.10.10"
