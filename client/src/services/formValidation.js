@@ -1,6 +1,44 @@
 import formSchemas from '@src/utils/formSchemas';
 
-export default function formValidation(data, skipScroll = false) {
+function formatError(err) {
+    const arr = err.split(' ');
+
+    arr[0] = arr[0].replace(/([A-Z][a-z])/g, ' $1');
+    arr[0] = arr[0].charAt(0).toUpperCase() + arr[0].slice(1);
+
+    return arr.join(' ');
+}
+
+function validateObject(obj, schema) {
+    return new Promise((resolve) => {
+        schema.validate(obj, { abortEarly: false })
+        .then(() => {
+            resolve({});
+        })
+        .catch((res) => {
+            const formatedErrors = {};
+            const paths = [];
+
+            const uniqueErrors = res.inner.filter((err) => {
+                if (!paths.includes(err.path)) {
+                    paths.push(err.path);
+                    return true;
+                }
+                return false;
+            });
+
+            uniqueErrors.forEach((err) => {
+                formatedErrors[err.path] = formatError(err.message);
+            });
+
+            resolve(formatedErrors);
+        });
+    });
+}
+
+const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
+
+export default (data, skipScroll = false) => {
     return new Promise((resolve, reject) => {
         const promises = [];
 
@@ -40,44 +78,4 @@ export default function formValidation(data, skipScroll = false) {
         })
         .catch(() => resolve());
     });
-}
-
-function formatError(err) {
-    const arr = err.split(' ');
-
-    arr[0] = arr[0].replace(/([A-Z][a-z])/g, ' $1');
-    arr[0] = arr[0].charAt(0).toUpperCase() + arr[0].slice(1);
-
-    return arr.join(' ');
-}
-
-function validateObject(obj, schema) {
-    return new Promise((resolve) => {
-        schema.validate(obj, { abortEarly: false })
-        .then(() => {
-            resolve({});
-        })
-        .catch((res) => {
-            const formatedErrors = {};
-            const paths = [];
-
-            const uniqueErrors = res.inner.filter((err) => {
-                if (!paths.includes(err.path)) {
-                    paths.push(err.path);
-                    return true;
-                }
-                return false;
-            });
-
-            uniqueErrors.forEach((err) => {
-                formatedErrors[err.path] = formatError(err.message);
-            });
-
-            resolve(formatedErrors);
-        });
-    });
-}
-
-function documentOffsetTop(elem) {
-    return elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 }

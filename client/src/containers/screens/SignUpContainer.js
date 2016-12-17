@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getIsAuthenticating } from '@src/ducks/auth';
 import { signUp } from '@src/ducks/auth';
 import { SignUp } from '@src/components/screens';
-import formValidation from '@src/utils/formValidation';
+import formValidation from '@src/services/formValidation';
 
 const mapStateToProps = (state) => ({
     isAuthenticating: getIsAuthenticating(state),

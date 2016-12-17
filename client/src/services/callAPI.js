@@ -43,7 +43,7 @@ const getRequestOptions = (customOptions = {}) => {
     return result;
 };
 
-export const callAPI = ({ path, options }) =>
+export default ({ path, options }) =>
     new Promise((resolve, reject) => {
         const rejectWithAlert = (message = 'An unexpected error has occured') => {
             Alert.error(message);
