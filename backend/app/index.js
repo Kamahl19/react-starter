@@ -3,9 +3,9 @@ require('dotenv').config();
 
 const http = require('http');
 const mongoose = require('mongoose');
+const logger = require('./logger');
 const config = require('./config');
 const app = require('./app');
-const logger = require('./logger');
 
 const server = http.createServer(app);
 
