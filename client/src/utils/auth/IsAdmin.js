@@ -1,11 +1,11 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { getUserIsAdmin, getIsAuthenticating } from '@src/ducks/auth';
+import { getAuth } from '@src/ducks/auth';
 
 export default UserAuthWrapper({
-    authSelector: (state) => state,
-    predicate: getUserIsAdmin,
-    authenticatingSelector: getIsAuthenticating,
+    authSelector: getAuth,
+    predicate: (auth) => auth.user && auth.user.isAdmin,
+    authenticatingSelector: (auth) => auth.isAuthenticating,
     failureRedirectPath: '/',
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'IsAdmin',

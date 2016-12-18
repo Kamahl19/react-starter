@@ -1,11 +1,11 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { getIsLoggedIn, getIsAuthenticating } from '@src/ducks/auth';
+import { getAuth } from '@src/ducks/auth';
 
 export default UserAuthWrapper({
-    authSelector: (state) => state,
-    predicate: (state) => !getIsLoggedIn(state),
-    authenticatingSelector: getIsAuthenticating,
+    authSelector: getAuth,
+    predicate: (auth) => auth.user === null,
+    authenticatingSelector: (auth) => auth.isAuthenticating,
     failureRedirectPath: '/',
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'IsAnonymous',

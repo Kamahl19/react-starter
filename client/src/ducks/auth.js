@@ -2,7 +2,6 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 import { createReducer } from '@src/utils/reduxHelpers';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
-import { getUnfinishedRequests } from '@src/ducks/loader';
 import {
     decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage,
 } from '@src/utils/auth/authHelpers';
@@ -81,7 +80,21 @@ export const loginWithToken = () =>
  */
 const initialState = {
     user: null,
+    isAuthenticating: false,
 };
+
+const isAuthenticating = createReducer(initialState.isAuthenticating, {
+    [LOGIN_USER]: {
+        [REQUEST]: (state) => true,
+        [SUCCESS]: (state) => false,
+        [FAILURE]: (state) => false,
+    },
+    [SIGN_UP]: {
+        [REQUEST]: (state) => true,
+        [SUCCESS]: (state) => false,
+        [FAILURE]: (state) => false,
+    },
+});
 
 const user = createReducer(initialState.user, {
     [LOGIN_USER]: {
@@ -115,6 +128,7 @@ const user = createReducer(initialState.user, {
 
 export default combineReducers({
     user,
+    isAuthenticating,
 });
 
 /**
@@ -124,19 +138,16 @@ export const getAuth = (state) => state.auth;
 
 export const getUser = (state) => getAuth(state).user;
 
+export const getIsAuthenticating = (state) => getAuth(state).isAuthenticating;
+
 export const getIsLoggedIn = createSelector(
     getUser,
     (user) => user !== null,
 );
 
-export const getIsAuthenticating = createSelector(
-    getUnfinishedRequests,
-    (unfinishedRequests) => unfinishedRequests.includes(`${LOGIN_USER}_${REQUEST}`) || unfinishedRequests.includes(`${SIGN_UP}_${REQUEST}`),
-);
-
 export const getUserName = createSelector(
     getUser,
-    (user) => (user && user.name) || '',
+    (user) => (user && user.name),
 );
 
 export const getUserId = createSelector(
