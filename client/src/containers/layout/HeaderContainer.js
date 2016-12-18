@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getIsLoggedIn, getUserName } from '@src/ducks/auth';
-import { logout } from '@src/ducks/auth';
+import { getIsLoggedIn, getUserName, logout } from '@src/ducks/auth';
 import { Header } from '@src/components/layout';
 
 const HeaderContainer = ({ isLoggedIn, userName, actions }) => (

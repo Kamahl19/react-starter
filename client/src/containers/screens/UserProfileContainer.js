@@ -2,9 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
-import { getUser } from '@src/ducks/user';
+import { getSelectedUser, fetchUser } from '@src/ducks/users';
 import { getUserId } from '@src/ducks/auth';
-import { fetchUser } from '@src/ducks/user';
 import { UserProfile } from '@src/components/screens';
 
 const getUserIdFromUrl = (_, props) => props.params && props.params.userId;
@@ -20,7 +19,7 @@ const mapStateToProps = () => {
     const getUserIdFromUrlOrAuth = makeGetUserIdFromUrlOrAuth();
 
     return (state, props) => ({
-        user: getUser(state),
+        selectedUser: getSelectedUser(state),
         userId: getUserIdFromUrlOrAuth(state, props),
     });
 };
@@ -33,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default class UserProfileContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
-        user: PropTypes.object,
+        selectedUser: PropTypes.object,
         userId: PropTypes.string.isRequired,
     };
 
@@ -44,14 +43,14 @@ export default class UserProfileContainer extends Component {
     }
 
     render() {
-        const { user } = this.props;
+        const { selectedUser } = this.props;
 
-        if (!user) {
+        if (!selectedUser) {
             return (<div />);
         }
 
         return (
-            <UserProfile user={user} />
+            <UserProfile user={selectedUser} />
         );
     }
 }

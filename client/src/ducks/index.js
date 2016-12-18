@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { LOGOUT_USER } from '@src/ducks/auth';
-import auth from '@src/ducks/auth';
-import user from '@src/ducks/user';
+import auth, { LOGOUT_USER } from '@src/ducks/auth';
+import users from '@src/ducks/users';
 import loader from '@src/ducks/loader';
 
 const appReducer = combineReducers({
     auth,
-    user,
+    users,
     loader,
     routing: routerReducer,
 });
