@@ -1,6 +1,6 @@
 const config = {
     cors: {
-        origin: (process.env.NODE_ENV === 'development') ? process.env.CLIENT_URL_DEV : process.env.CLIENT_URL_PROD,
+        origin: process.env.CORS_ORIGIN,
         methods: 'POST,GET,PUT,OPTIONS,DELETE',
         allowedHeaders: 'Timezone-Offset,Origin,X-Requested-With,Content-Type,Accept,Authorization',
     },

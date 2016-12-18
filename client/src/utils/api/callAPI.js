@@ -2,8 +2,6 @@ import lodash from 'lodash';
 import Alert from 'react-s-alert';
 import { getTokenFromLocalStorage } from '@src/utils/auth/authHelpers';
 
-const backendUrl = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_BACKEND_URL_PROD : process.env.REACT_APP_BACKEND_URL_DEV;
-
 const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response;
@@ -50,7 +48,7 @@ export default ({ path, options }) =>
             reject(message);
         };
 
-        fetch(backendUrl + path, getRequestOptions(options))
+        fetch(process.env.REACT_APP_BACKEND_URL + path, getRequestOptions(options))
             .then(checkHttpStatus)
             .then(parseJSON)
             .then(({ data }) => {
