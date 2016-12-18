@@ -1,9 +1,11 @@
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 import { createReducer } from '@src/utils/reduxHelpers';
-import { decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage } from '@src/utils/authHelpers';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 import { getUnfinishedRequests } from '@src/ducks/loader';
+import {
+    decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage,
+} from '@src/utils/auth/authHelpers';
 
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';

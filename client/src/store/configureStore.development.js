@@ -4,7 +4,7 @@ import createLogger from 'redux-logger';
 import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '@src/ducks';
-import apiMiddleware from '@src/utils/callApiMiddleware';
+import apiMiddleware from '@src/utils/api/callApiMiddleware';
 
 const enhancer = compose(
     applyMiddleware(

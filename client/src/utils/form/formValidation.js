@@ -1,4 +1,4 @@
-import formSchemas from '@src/utils/formSchemas';
+import formSchemas from '@src/utils/form/formSchemas';
 
 function formatError(err) {
     const arr = err.split(' ');

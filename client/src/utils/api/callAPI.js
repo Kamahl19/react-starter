@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import Alert from 'react-s-alert';
-import { getTokenFromLocalStorage } from '@src/utils/authHelpers';
+import { getTokenFromLocalStorage } from '@src/utils/auth/authHelpers';
 
 const backendUrl = (process.env.NODE_ENV === 'production') ? process.env.REACT_APP_BACKEND_URL_PROD : process.env.REACT_APP_BACKEND_URL_DEV;
 

@@ -1,4 +1,4 @@
-import callAPI from '@src/services/callAPI';
+import callAPI from '@src/utils/api/callAPI';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
 export default function callAPIMiddleware({ dispatch, getState }) {
