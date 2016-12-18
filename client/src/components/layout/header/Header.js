@@ -28,7 +28,7 @@ const Header = ({ isLoggedIn, userName, logout }) => (
 
 Header.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    userName: PropTypes.string.isRequired,
+    userName: PropTypes.string,
     logout: PropTypes.func.isRequired,
 };
 

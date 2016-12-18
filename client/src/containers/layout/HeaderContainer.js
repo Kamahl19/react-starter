@@ -14,7 +14,7 @@ const HeaderContainer = ({ isLoggedIn, userName, actions }) => (
 
 HeaderContainer.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    userName: PropTypes.string.isRequired,
+    userName: PropTypes.string,
     actions: PropTypes.object.isRequired,
 };
 
