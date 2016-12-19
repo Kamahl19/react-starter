@@ -18,7 +18,7 @@ export default class UserUpdateContainer extends Component {
     static propTypes = {
         user: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
-        dispatredirectToMech: PropTypes.func.isRequired,
+        redirectToMe: PropTypes.func.isRequired,
     };
 
     state = {
@@ -26,7 +26,7 @@ export default class UserUpdateContainer extends Component {
     };
 
     onSubmit = (updateUserData) => {
-        const { actions, dispatch, user } = this.props;
+        const { actions, redirectToMe, user } = this.props;
 
         formValidation({ updateUserData })
             .then(() => actions.updateUser(user.id, updateUserData))
