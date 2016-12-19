@@ -16,35 +16,25 @@ const UserController = {
             return next(new BadRequestError({ message: 'User\'s data are missing.' }));
         }
 
-        User.findOne({ email }, (err, u) => {
+        const user = new User({
+            email,
+            name,
+            password: User.generateHash(password),
+        });
+
+        user.save(user, (err, user) => {
             if (err) {
                 return next(new InternalServerError(err));
             }
 
-            if (u) {
-                return next(new BadRequestError({ message: 'This email is already used.' }));
-            }
-
-            const user = new User({
-                email,
-                name,
-                password: User.generateHash(password),
-            });
-
-            user.save((err2) => {
-                if (err2) {
-                    return next(new InternalServerError(err2));
+            return helpers.getSuccessResult(res, {
+                token: user.getAuthToken(),
+                user: {
+                    id: user._id,
+                    email: user.email,
+                    name: user.name,
+                    isAdmin: user.isAdmin,
                 }
-
-                return helpers.getSuccessResult(res, {
-                    token: user.getAuthToken(),
-                    user: {
-                        id: user._id,
-                        email: user.email,
-                        name: user.name,
-                        isAdmin: user.isAdmin,
-                    }
-                });
             });
         });
     },
@@ -54,13 +44,19 @@ const UserController = {
      */
     update: (req, res, next) => {
         const { userId } = req.params;
-        const { userData } = req.body;
+        const { name, password } = req.body;
 
-        if (!userData) {
-            return next(new BadRequestError({ message: 'User\'s data is missing.' }));
+        if (!name) {
+            return next(new BadRequestError({ message: 'User\'s data are missing.' }));
         }
 
-        User.findById(userId, (err, user) => {
+        const newDate = { name };
+
+        if (password) {
+            newDate.password = User.generateHash(password);
+        }
+
+        User.findByIdAndUpdate(userId, newDate, { new: true }, (err, user) => {
             if (err) {
                 return next(new InternalServerError(err));
             }
@@ -69,27 +65,13 @@ const UserController = {
                 return next(new BadRequestError({ message: 'Requested user doesn\'t exist.' }));
             }
 
-            const newData = {
-                name: userData.name,
-            };
-
-            if (userData.password) {
-                newData.password = User.generateHash(userData.password);
-            }
-
-            user.update(newData, (err2) => {
-                if (err2) {
-                    return next(new InternalServerError(err2));
+            return helpers.getSuccessResult(res, {
+                user: {
+                    id: user._id,
+                    email: user.email,
+                    name: user.name,
+                    isAdmin: user.isAdmin,
                 }
-
-                return helpers.getSuccessResult(res, {
-                    user: {
-                        id: user._id,
-                        email: user.email,
-                        name: user.name,
-                        isAdmin: user.isAdmin,
-                    }
-                });
             });
         });
     },
@@ -100,7 +82,7 @@ const UserController = {
     delete: (req, res, next) => {
         const { userId } = req.params;
 
-        User.findById(userId, (err, user) => {
+        User.findByIdAndRemove(userId, (err, user) => {
             if (err) {
                 return next(new InternalServerError(err));
             }
@@ -109,19 +91,13 @@ const UserController = {
                 return next(new BadRequestError({ message: 'Requested user doesn\'t exist.' }));
             }
 
-            user.remove({ _id: userId }, (err2) => {
-                if (err2) {
-                    return next(new InternalServerError(err2));
+            return helpers.getSuccessResult(res, {
+                user: {
+                    id: user._id,
+                    email: user.email,
+                    name: user.name,
+                    isAdmin: user.isAdmin,
                 }
-
-                return helpers.getSuccessResult(res, {
-                    user: {
-                        id: user._id,
-                        email: user.email,
-                        name: user.name,
-                        isAdmin: user.isAdmin,
-                    }
-                });
             });
         });
     },
