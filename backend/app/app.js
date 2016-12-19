@@ -5,6 +5,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const userRoutes = require('./routes/UserRoutes');
+const productRoutes = require('./routes/ProductRoutes');
 const config = require('./config');
 const helpers = require('./helpers');
 const logger = require('./logger');
@@ -44,6 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Routes
 app.use('/api', userRoutes);
+app.use('/api', productRoutes);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {

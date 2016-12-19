@@ -1,4 +1,9 @@
-export { default as UserTableContainer } from './UserTableContainer';
 export { default as LoginContainer } from './LoginContainer';
 export { default as SignUpContainer } from './SignUpContainer';
+export { default as UserContainer } from './UserContainer';
 export { default as UserProfileContainer } from './UserProfileContainer';
+export { default as UserUpdateContainer } from './UserUpdateContainer';
+export { default as ProductContainer } from './ProductContainer';
+export { default as ProductTableContainer } from './ProductTableContainer';
+export { default as ProductDetailContainer } from './ProductDetailContainer';
+export { default as ProductUpdateContainer } from './ProductUpdateContainer';

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 const getIntersection = (arr1, arr2) => arr1.filter((x) => arr2.includes(x));
 
 export default (stateNames) => (ComposedComponent) => class extends Component {
+    static displayName = 'LinkedState';
+
     constructor(props) {
         super(props);
 

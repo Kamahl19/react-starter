@@ -20,4 +20,15 @@ export default {
         password: yup.string().min(6).required(),
         repeatPassword: yup.string().sameAs(yup.ref('password'), 'Passwords don\'t match').required(),
     }),
+
+    updateUserData: yup.object().shape({
+        name: yup.string().required(),
+        password: yup.string().nullable().transform((value) => value === '' ? null : value).min(6),
+        repeatPassword: yup.string().sameAs(yup.ref('password'), 'Passwords don\'t match'),
+    }),
+
+    updateProductData: yup.object().shape({
+        name: yup.string().required(),
+        description: yup.string(),
+    }),
 };

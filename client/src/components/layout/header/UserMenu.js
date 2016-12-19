@@ -7,9 +7,12 @@ const UserMenu = ({ userName, logout }) => (
         <Nav pullRight>
             <NavDropdown title={(<span>Hi {userName}</span>)} id="user-dropdown">
                 <LinkContainer to="/me">
-                    <MenuItem>Profile</MenuItem>
+                    <MenuItem>{userName}</MenuItem>
                 </LinkContainer>
-                <MenuItem divider/>
+                <LinkContainer to="/me/update">
+                    <MenuItem>Update Profile</MenuItem>
+                </LinkContainer>
+                <MenuItem divider />
                 <MenuItem onClick={logout}>Log Out</MenuItem>
             </NavDropdown>
         </Nav>

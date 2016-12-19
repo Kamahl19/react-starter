@@ -1,22 +1,31 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import App from '@src/containers/App';
-import { LoginContainer, SignUpContainer, UserTableContainer, UserProfileContainer } from '@src/containers/screens';
+import { Route, IndexRedirect } from 'react-router';
 import { Error404 } from '@src/components/screens';
-import { IsAnonymous, IsLoggedIn, LoginWrapper } from '@src/utils/auth';
+import { IsAnonymous, IsLoggedIn, IsAdmin, LoginWrapper } from '@src/utils/auth';
+import App from '@src/containers/App';
+import {
+    LoginContainer, SignUpContainer, UserProfileContainer, UserUpdateContainer,
+    ProductTableContainer, ProductDetailContainer, ProductUpdateContainer,
+} from '@src/containers/screens';
 
 export default (
     <Route path="/" component={App}>
 
-        <IndexRoute component={UserTableContainer} />
-
-        <Route path="users/:userId" component={UserProfileContainer} />
+        <IndexRedirect to="products" />
 
         <Route path="me" component={IsLoggedIn(UserProfileContainer)} />
+
+        <Route path="me/update" component={IsLoggedIn(UserUpdateContainer)} />
 
         <Route path="login" component={LoginWrapper(LoginContainer)} />
 
         <Route path="sign-up" component={IsAnonymous(SignUpContainer)} />
+
+        <Route path="products" component={ProductTableContainer} />
+
+        <Route path="products/:productId" component={ProductDetailContainer} />
+
+        <Route path="products/:productId/update" component={IsLoggedIn(IsAdmin(ProductUpdateContainer))} />
 
         <Route path="*" component={Error404} />
 

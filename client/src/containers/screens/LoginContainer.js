@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getIsAuthenticating, loginUser } from '@src/ducks/auth';
-import { Login } from '@src/components/screens';
+import { LoginForm } from '@src/components/screens';
 import formValidation from '@src/utils/form/formValidation';
 
 const mapStateToProps = (state) => ({
@@ -37,7 +37,7 @@ export default class LoginContainer extends Component {
         const { formErrors } = this.state;
 
         return (
-            <Login
+            <LoginForm
                 isAuthenticating={isAuthenticating}
                 formErrors={formErrors}
                 onSubmit={this.onSubmit}

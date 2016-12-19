@@ -6,10 +6,11 @@ import {
     decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage,
 } from '@src/utils/auth/authHelpers';
 
+export const SIGN_UP = 'SIGN_UP';
+export const FETCH_USER = 'FETCH_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-export const FETCH_LOGGED_IN_USER = 'FETCH_LOGGED_IN_USER';
-export const SIGN_UP = 'SIGN_UP';
 
 /**
  * ACTIONS
@@ -20,6 +21,24 @@ export const signUp = (userData) => ({
         path: '/users',
         options: {
             method: 'post',
+            body: JSON.stringify(userData),
+        }
+    }
+});
+
+export const fetchUser = (userId) => ({
+    typeName: FETCH_USER,
+    api: {
+        path: `/users/${userId}`,
+    }
+});
+
+export const updateUser = (userId, userData) => ({
+    typeName: UPDATE_USER,
+    api: {
+        path: `/users/${userId}`,
+        options: {
+            method: 'put',
             body: JSON.stringify(userData),
         }
     }
@@ -38,13 +57,6 @@ export const loginUser = (credentials) => ({
 
 export const logout = () => ({
     type: LOGOUT_USER
-});
-
-const fetchLoggedInUser = (userId) => ({
-    typeName: FETCH_LOGGED_IN_USER,
-    api: {
-        path: `/users/${userId}`,
-    }
 });
 
 const loginUserRequest = () => ({
@@ -69,7 +81,7 @@ export const loginWithToken = () =>
 
             dispatch(loginUserRequest());
 
-            dispatch(fetchLoggedInUser(userId))
+            dispatch(fetchUser(userId))
                 .then(({ payload }) => dispatch(loginUserSuccess(payload.user, token)))
                 .catch(() => dispatch(loginUserFailure()));
         }
@@ -97,15 +109,6 @@ const isAuthenticating = createReducer(initialState.isAuthenticating, {
 });
 
 const user = createReducer(initialState.user, {
-    [LOGIN_USER]: {
-        [SUCCESS]: (state, payload) => {
-            const { token, user } = payload;
-
-            saveTokenToLocalStorage(token);
-
-            return user;
-        },
-    },
     [SIGN_UP]: {
         [SUCCESS]: (state, payload) => {
             const { token, user } = payload;
@@ -115,9 +118,22 @@ const user = createReducer(initialState.user, {
             return user;
         },
     },
-    [FETCH_LOGGED_IN_USER]: {
+    [FETCH_USER]: {
+        [REQUEST]: (state) => null,
         [SUCCESS]: (state, payload) => payload.user,
         [FAILURE]: (state) => null,
+    },
+    [UPDATE_USER]: {
+        [SUCCESS]: (state, payload) => payload.user,
+    },
+    [LOGIN_USER]: {
+        [SUCCESS]: (state, payload) => {
+            const { token, user } = payload;
+
+            saveTokenToLocalStorage(token);
+
+            return user;
+        },
     },
     [LOGOUT_USER]: (state) => {
         removeTokenFromLocalStorage();
