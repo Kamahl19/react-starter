@@ -6,10 +6,12 @@ export default (stateNames) => (ComposedComponent) => class extends Component {
     constructor(props) {
         super(props);
 
-        const intersection = getIntersection(Object.keys(props), stateNames);
+        if (process.env.NODE_ENV === 'development') {
+            const intersection = getIntersection(Object.keys(props), stateNames);
 
-        if (intersection.length) {
-            console.warn(`LinkedState: ${intersection} props are interfering with stateNames!`);
+            if (intersection.length) {
+                console.warn(`LinkedState: ${intersection} props are interfering with stateNames!`);
+            }
         }
 
         this.state = stateNames.reduce((o, stateName) => ({
@@ -18,9 +20,13 @@ export default (stateNames) => (ComposedComponent) => class extends Component {
         }), {});
     }
 
+    changeValue = (stateName, value) => {
+        this.setState({ [stateName]: value });
+    }
+
     linkState = (stateName) => ({
         value: this.state[stateName],
-        onChange: (e) => this.setState({ [stateName]: e.target ? e.target.value : e }),
+        onChange: (e) => this.changeValue(stateName, e.target ? e.target.value : e),
     });
 
     render() {
@@ -28,6 +34,7 @@ export default (stateNames) => (ComposedComponent) => class extends Component {
             <ComposedComponent
                 {...this.props}
                 {...this.state}
+                linkSetState={(o) => this.setState(o)}
                 linkState={this.linkState}
             />
         );
