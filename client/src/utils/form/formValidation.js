@@ -38,7 +38,7 @@ function validateObject(obj, schema) {
 
 const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 
-export default (data, skipScroll = false) => {
+export default function formValidation(data, skipScroll = false) {
     return new Promise((resolve, reject) => {
         const promises = [];
 
@@ -48,12 +48,8 @@ export default (data, skipScroll = false) => {
             }
         });
 
-        let formErrors = {};
-
         Promise.all(promises).then((results) => {
-            results.forEach((result) => {
-                formErrors = { ...formErrors, ...result };
-            });
+            const formErrors = results.reduce((prev, curr) => ({ ...prev, ...curr }), {});
 
             const errorKeys = Object.keys(formErrors);
 
