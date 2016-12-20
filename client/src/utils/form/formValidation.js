@@ -16,22 +16,15 @@ function validateObject(obj, schema) {
             resolve({});
         })
         .catch((res) => {
-            const formatedErrors = {};
-            const paths = [];
-
-            const uniqueErrors = res.inner.filter((err) => {
-                if (!paths.includes(err.path)) {
-                    paths.push(err.path);
-                    return true;
+            const errors = res.inner.reduce((obj, err) => {
+                if (!obj[err.path]) {
+                    obj[err.path] = formatError(err.message);
                 }
-                return false;
-            });
 
-            uniqueErrors.forEach((err) => {
-                formatedErrors[err.path] = formatError(err.message);
-            });
+                return obj;
+            }, {});
 
-            resolve(formatedErrors);
+            resolve(errors);
         });
     });
 }
