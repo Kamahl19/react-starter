@@ -26,7 +26,7 @@ export default class ProductUpdateContainer extends Component {
     };
 
     onSubmit = (updateProductData) => {
-        const { actions, dispatch, redirectToProduct, product } = this.props;
+        const { actions, redirectToProduct, product } = this.props;
 
         formValidation({ updateProductData })
             .then(() => actions.updateProduct(product.id, updateProductData))

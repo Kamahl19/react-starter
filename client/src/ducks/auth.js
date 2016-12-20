@@ -119,7 +119,6 @@ const user = createReducer(initialState.user, {
         },
     },
     [FETCH_USER]: {
-        [REQUEST]: (state) => null,
         [SUCCESS]: (state, payload) => payload.user,
         [FAILURE]: (state) => null,
     },
