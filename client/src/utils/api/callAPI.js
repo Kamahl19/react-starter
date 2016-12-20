@@ -42,23 +42,27 @@ const getRequestOptions = (customOptions = {}) => {
 };
 
 export default function callApi({ path, options }) {
-    const rejectWithAlert = (message = 'An unexpected error has occured') => {
-        Alert.error(message);
-        return Promise.reject(message);
-    };
+    return new Promise((resolve, reject) => {
+        const rejectWithError = (message = 'An unexpected error has occured') => {
+            Alert.error(message);
+            reject(message);
+        };
 
-    return fetch(process.env.REACT_APP_BACKEND_URL + path, getRequestOptions(options))
-        .then(checkHttpStatus)
-        .then(parseJSON)
-        .then(({ data }) => data)
-        .catch(({ response }) => {
-            if (!response) {
-                return rejectWithAlert();
-            }
-            else {
-                return response.json()
-                    .then(({ message }) => rejectWithAlert(message))
-                    .catch(() => rejectWithAlert());
-            }
-        });
+        fetch(process.env.REACT_APP_BACKEND_URL + path, getRequestOptions(options))
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then(({ data }) => {
+                resolve(data);
+            })
+            .catch(({ response }) => {
+                if (!response) {
+                    rejectWithError();
+                }
+                else {
+                    response.json()
+                        .then(({ message }) => rejectWithError(message))
+                        .catch(() => rejectWithError());
+                }
+            });
+    });
 };
