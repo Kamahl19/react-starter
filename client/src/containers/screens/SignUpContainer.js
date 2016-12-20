@@ -27,6 +27,8 @@ export default class SignUpContainer extends Component {
     onSubmit = (signUpData) => {
         const { actions } = this.props;
 
+        this.setState({ formErrors: {} });
+
         formValidation({ signUpData })
             .then(() => actions.signUp(signUpData))
             .catch((formErrors) => this.setState({ formErrors }));

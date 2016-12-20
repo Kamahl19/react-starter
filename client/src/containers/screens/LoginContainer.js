@@ -27,6 +27,8 @@ export default class LoginContainer extends Component {
     onSubmit = (loginCredentials) => {
         const { actions } = this.props;
 
+        this.setState({ formErrors: {} });
+
         formValidation({ loginCredentials })
             .then(() => actions.loginUser(loginCredentials))
             .catch((formErrors) => this.setState({ formErrors }));

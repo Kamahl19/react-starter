@@ -24,9 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default (WrappedComponent) => class extends Component {
-    static displayName = 'ProductContainer';
-
+export default (WrappedComponent) => class ProductContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
         product: PropTypes.object,

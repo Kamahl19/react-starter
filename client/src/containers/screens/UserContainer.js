@@ -12,9 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default (WrappedComponent) => class extends Component {
-    static displayName = 'UserContainer';
-
+export default (WrappedComponent) => class UserContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
         user: PropTypes.object.isRequired,

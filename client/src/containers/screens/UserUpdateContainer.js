@@ -28,6 +28,8 @@ export default class UserUpdateContainer extends Component {
     onSubmit = (updateUserData) => {
         const { actions, redirectToMe, user } = this.props;
 
+        this.setState({ formErrors: {} });
+
         formValidation({ updateUserData })
             .then(() => actions.updateUser(user.id, updateUserData))
             .then(() => redirectToMe())

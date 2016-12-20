@@ -8,7 +8,7 @@ const initialState = {
     unfinishedRequests: [],
 };
 
-export default function reducer(state = initialState, action) {
+export default function loaderReducer(state = initialState, action) {
     const requestStart = action.type.includes(REQUEST);
     const requestFinish = action.type.includes(SUCCESS) || action.type.includes(FAILURE);
 
