@@ -1,12 +1,12 @@
-import callAPI from '@src/utils/api/callAPI';
+import callApi from '@src/utils/api/callApi';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
-export default function callAPIMiddleware({ dispatch, getState }) {
+export default function callApiMiddleware({ dispatch, getState }) {
     return (next) => (action) => {
         const {
             typeName,
             api,
-            shouldCallAPI = () => true,
+            shouldCallApi = () => true,
             payload = {}
         } = action;
 
@@ -22,7 +22,7 @@ export default function callAPIMiddleware({ dispatch, getState }) {
             throw new Error('Expected `api.path` to be a string');
         }
 
-        if (!shouldCallAPI(getState())) {
+        if (!shouldCallApi(getState())) {
             return undefined;
         }
 
@@ -32,9 +32,8 @@ export default function callAPIMiddleware({ dispatch, getState }) {
 
         dispatch({ ...payload, type: requestType });
 
-        return callAPI(api).then(
-            (data) => dispatch({ ...payload, ...{ payload: data, type: successType } }),
-            (error) => dispatch({ ...payload, ...{ payload: error, type: failureType } })
-        );
+        return callApi(api)
+            .then((data) => dispatch({ ...payload, ...{ payload: data, type: successType } }))
+            .catch((error) => dispatch({ ...payload, ...{ payload: error, type: failureType } }));
     };
 }

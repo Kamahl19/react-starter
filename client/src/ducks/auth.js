@@ -15,16 +15,24 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 /**
  * ACTIONS
  */
-export const signUp = (userData) => ({
-    typeName: SIGN_UP,
-    api: {
-        path: '/users',
-        options: {
-            method: 'post',
-            body: JSON.stringify(userData),
-        }
-    }
-});
+export const signUp = (userData) =>
+    (dispatch) => {
+        dispatch({
+            typeName: SIGN_UP,
+            api: {
+                path: '/users',
+                options: {
+                    method: 'post',
+                    body: JSON.stringify(userData),
+                }
+            }
+        })
+        .then(({ payload }) => {
+            if (payload.token) {
+                saveTokenToLocalStorage(payload.token);
+            }
+        });
+    };
 
 export const fetchUser = (userId) => ({
     typeName: FETCH_USER,
@@ -44,20 +52,33 @@ export const updateUser = (userId, userData) => ({
     }
 });
 
-export const loginUser = (credentials) => ({
-    typeName: LOGIN_USER,
-    api: {
-        path: '/login',
-        options: {
-            method: 'post',
-            body: JSON.stringify(credentials),
-        }
-    },
-});
+export const loginUser = (credentials) =>
+    (dispatch) => {
+        dispatch({
+            typeName: LOGIN_USER,
+            api: {
+                path: '/login',
+                options: {
+                    method: 'post',
+                    body: JSON.stringify(credentials),
+                }
+            },
+        })
+        .then(({ payload }) => {
+            if (payload.token) {
+                saveTokenToLocalStorage(payload.token);
+            }
+        });
+    };
 
-export const logout = () => ({
-    type: LOGOUT_USER
-});
+export const logout = () =>
+    (dispatch) => {
+        removeTokenFromLocalStorage();
+
+        dispatch({
+            type: LOGOUT_USER
+        });
+    };
 
 const loginUserRequest = () => ({
     type: `${LOGIN_USER}_${REQUEST}`,
@@ -110,13 +131,7 @@ const isAuthenticating = createReducer(initialState.isAuthenticating, {
 
 const user = createReducer(initialState.user, {
     [SIGN_UP]: {
-        [SUCCESS]: (state, payload) => {
-            const { token, user } = payload;
-
-            saveTokenToLocalStorage(token);
-
-            return user;
-        },
+        [SUCCESS]: (state, payload) => payload.user,
     },
     [FETCH_USER]: {
         [SUCCESS]: (state, payload) => payload.user,
@@ -126,19 +141,9 @@ const user = createReducer(initialState.user, {
         [SUCCESS]: (state, payload) => payload.user,
     },
     [LOGIN_USER]: {
-        [SUCCESS]: (state, payload) => {
-            const { token, user } = payload;
-
-            saveTokenToLocalStorage(token);
-
-            return user;
-        },
+        [SUCCESS]: (state, payload) => payload.user,
     },
-    [LOGOUT_USER]: (state) => {
-        removeTokenFromLocalStorage();
-
-        return null;
-    },
+    [LOGOUT_USER]: (state) => null,
 });
 
 export default combineReducers({
