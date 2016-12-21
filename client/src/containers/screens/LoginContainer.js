@@ -31,7 +31,7 @@ export default class LoginContainer extends Component {
 
         formValidation({ loginCredentials })
             .then(() => actions.loginUser(loginCredentials))
-            .catch((formErrors) => this.setState({ formErrors }));
+            .catch((err) => this.setState({ formErrors: err.loginCredentials }));
     }
 
     render() {

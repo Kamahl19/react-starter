@@ -31,7 +31,7 @@ export default class SignUpContainer extends Component {
 
         formValidation({ signUpData })
             .then(() => actions.signUp(signUpData))
-            .catch((formErrors) => this.setState({ formErrors }));
+            .catch((err) => this.setState({ formErrors: err.signUpData }));
     }
 
     render() {

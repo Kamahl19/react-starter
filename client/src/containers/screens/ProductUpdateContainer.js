@@ -33,7 +33,7 @@ export default class ProductUpdateContainer extends Component {
         formValidation({ updateProductData })
             .then(() => actions.updateProduct(product.id, updateProductData))
             .then(() => redirectToProduct(product.id))
-            .catch((formErrors) => this.setState({ formErrors }));
+            .catch((err) => this.setState({ formErrors: err.updateProductData }));
     }
 
     render() {

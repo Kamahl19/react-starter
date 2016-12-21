@@ -1,13 +1,36 @@
 import formSchemas from '@src/utils/form/formSchemas';
 
+const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
+
+function scrollToTheFirstError(errorPaths, formId) {
+    const parentElem = (typeof formId !== 'undefined') ? document.querySelector(`#${formId}`) : document;
+
+    let scrollTo = 0;
+
+    if (parentElem) {
+        const offsets = errorPaths.map((path) =>
+            documentOffsetTop(parentElem.querySelector(`#input_${path}`))
+        );
+
+        scrollTo = Math.min(...offsets);
+
+        const screenContent = document.querySelector('.screen-content');
+
+        if (screenContent) {
+            const screenContentPadding = parseInt(window.getComputedStyle(screenContent).getPropertyValue('padding'), 10);
+            scrollTo = scrollTo - screenContentPadding;
+        }
+    }
+
+    window.scrollTo(0, scrollTo);
+}
+
 const splitCamelCase = (camelCase) => camelCase.replace(/([A-Z][a-z])/g, ' $1');
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 function formatError(message) {
     const msgArr = message.split(' ');
-
     msgArr[0] = capitalize(splitCamelCase(msgArr[0]));
-
     return msgArr.join(' ');
 }
 
@@ -16,50 +39,21 @@ function getErrorMessages(errors) {
         if (!obj[err.path]) {
             obj[err.path] = err.params.label ? err.message : formatError(err.message);
         }
-
         return obj;
     }, {});
 }
 
-function validateObject(obj, schema) {
-    return new Promise((resolve) => {
-        schema.validate(obj, { abortEarly: false })
-            .then(() => resolve({}))
-            .catch((res) => resolve(getErrorMessages(res.inner)));
-    });
-}
+export default function formValidation(schemaData, skipScroll = false, formId) {
+    const schema = Object.keys(schemaData)[0];
 
-const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
+    return formSchemas[schema].validate(schemaData[schema], { abortEarly: false })
+        .catch(({ inner }) => {
+            const errorsObj = getErrorMessages(inner);
 
-export default function formValidation(formObjects, skipScroll = false) {
-    const promises = Object.keys(formObjects).reduce((arr, schema) =>
-        (formSchemas[schema] ? arr.concat(validateObject(formObjects[schema], formSchemas[schema])) : arr
-    ), []);
-
-    return new Promise((resolve, reject) => {
-        Promise.all(promises).then((results) => {
-            const formErrors = results.reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-            const errorKeys = Object.keys(formErrors);
-
-            if (errorKeys.length) {
-                // Scroll to first error
-                if (!skipScroll) {
-                    const offsets = errorKeys.map((path) =>
-                        documentOffsetTop(document.getElementById(`input_${path}`))
-                    );
-
-                    const screenContent = document.querySelector('.screen-content');
-                    const topOffset = parseInt(window.getComputedStyle(screenContent).getPropertyValue('padding'), 10);
-
-                    window.scrollTo(0, Math.min(...offsets) - topOffset);
-                }
-
-                reject(formErrors);
+            if (!skipScroll) {
+                scrollToTheFirstError(Object.keys(errorsObj), formId);
             }
-            else {
-                resolve();
-            }
-        })
-    });
+
+            return Promise.reject({ [schema]: errorsObj });
+        });
 }

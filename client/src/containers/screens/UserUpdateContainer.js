@@ -33,7 +33,7 @@ export default class UserUpdateContainer extends Component {
         formValidation({ updateUserData })
             .then(() => actions.updateUser(user.id, updateUserData))
             .then(() => redirectToMe())
-            .catch((formErrors) => this.setState({ formErrors }));
+            .catch((err) => this.setState({ formErrors: err.updateUserData }));
     }
 
     render() {
