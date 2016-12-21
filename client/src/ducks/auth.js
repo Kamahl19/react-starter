@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
-import { createReducer } from '@src/utils/reduxHelpers';
+import { createReducer } from 'redux-create';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 import {
     decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage,

@@ -58,6 +58,7 @@
     "react-s-alert": "^1.2.2",
     "redux": "^3.6.0",
     "redux-auth-wrapper": "^0.9.0",
+    "redux-create": "latest",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
     "yup": "^0.21.2"
