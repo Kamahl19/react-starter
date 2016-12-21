@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { createReducer } from '@src/utils/reduxHelpers';
+import { createReducer } from 'redux-create';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
