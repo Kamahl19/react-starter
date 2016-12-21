@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { push } from 'react-router-redux';
 import { createReducer } from '@src/utils/reduxHelpers';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
@@ -36,16 +37,24 @@ export const createProduct = (productData) => ({
     }
 });
 
-export const updateProduct = (productId, productData) => ({
-    typeName: UPDATE_PRODUCT,
-    api: {
-        path: `/products/${productId}`,
-        options: {
-            method: 'put',
-            body: JSON.stringify(productData),
-        }
-    }
-});
+export const updateProduct = (productId, productData) =>
+    (dispatch) => {
+        dispatch({
+            typeName: UPDATE_PRODUCT,
+            api: {
+                path: `/products/${productId}`,
+                options: {
+                    method: 'put',
+                    body: JSON.stringify(productData),
+                }
+            }
+        })
+        .then(({ payload }) => {
+            if (payload.product) {
+                dispatch(push(`products/${payload.product.id}`))
+            }
+        });
+    };
 
 export const deleteProduct = (productId) => ({
     typeName: DELETE_PRODUCT,

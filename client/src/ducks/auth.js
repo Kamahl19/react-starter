@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
+import { push } from 'react-router-redux';
 import { createReducer } from '@src/utils/reduxHelpers';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 import {
@@ -41,16 +42,24 @@ export const fetchUser = (userId) => ({
     }
 });
 
-export const updateUser = (userId, userData) => ({
-    typeName: UPDATE_USER,
-    api: {
-        path: `/users/${userId}`,
-        options: {
-            method: 'put',
-            body: JSON.stringify(userData),
-        }
-    }
-});
+export const updateUser = (userId, userData) =>
+    (dispatch) => {
+        dispatch({
+            typeName: UPDATE_USER,
+            api: {
+                path: `/users/${userId}`,
+                options: {
+                    method: 'put',
+                    body: JSON.stringify(userData),
+                }
+            }
+        })
+        .then(({ payload }) => {
+            if (payload.user) {
+                dispatch(push('/me'));
+            }
+        });
+    };
 
 export const loginUser = (credentials) =>
     (dispatch) => {
@@ -103,8 +112,14 @@ export const loginWithToken = () =>
             dispatch(loginUserRequest());
 
             dispatch(fetchUser(userId))
-                .then(({ payload }) => dispatch(loginUserSuccess(payload.user, token)))
-                .catch(() => dispatch(loginUserFailure()));
+                .then(({ payload }) => {
+                    if (payload.user) {
+                        dispatch(loginUserSuccess(payload.user, token));
+                    }
+                    else {
+                        dispatch(loginUserFailure())
+                    }
+                });
         }
     };
 

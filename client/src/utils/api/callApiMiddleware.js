@@ -6,7 +6,6 @@ export default function callApiMiddleware({ dispatch, getState }) {
         const {
             typeName,
             api,
-            shouldCallApi = () => true,
             payload = {}
         } = action;
 
@@ -22,10 +21,6 @@ export default function callApiMiddleware({ dispatch, getState }) {
             throw new Error('Expected `api.path` to be a string');
         }
 
-        if (!shouldCallApi(getState())) {
-            return undefined;
-        }
-
         const requestType = `${typeName}_${REQUEST}`;
         const successType = `${typeName}_${SUCCESS}`;
         const failureType = `${typeName}_${FAILURE}`;
@@ -34,7 +29,7 @@ export default function callApiMiddleware({ dispatch, getState }) {
 
         return callApi(api).then(
             (data) => dispatch({ ...payload, ...{ payload: data, type: successType } }),
-            (error) => dispatch({ ...payload, ...{ payload: error, type: failureType } })
+            (error) => dispatch({ ...payload, ...{ payload: error, type: failureType } }),
         );
     };
 }
