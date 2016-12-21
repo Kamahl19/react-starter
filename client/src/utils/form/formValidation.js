@@ -18,7 +18,7 @@ function scrollToTheFirstError(errorPaths, formId) {
 
         if (screenContent) {
             const screenContentPadding = parseInt(window.getComputedStyle(screenContent).getPropertyValue('padding'), 10);
-            scrollTo = scrollTo - screenContentPadding;
+            scrollTo -= screenContentPadding;
         }
     }
 

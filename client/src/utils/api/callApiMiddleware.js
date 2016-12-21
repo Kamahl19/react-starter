@@ -1,7 +1,7 @@
 import callApi from '@src/utils/api/callApi';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
-export default function callApiMiddleware({ dispatch, getState }) {
+export default function callApiMiddleware({ dispatch }) {
     return (next) => (action) => {
         const {
             typeName,
