@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import { Table } from '@src/components/ui';
-import { ScreenContent } from '@src/components/layout';
 
 const ProductTableRow = ({ product, idx, canDelete, canUpdate, onDeleteClick }) => (
     <tr>
@@ -41,42 +40,38 @@ ProductTableRow.propTypes = {
 };
 
 const ProductTable = ({ products, canDelete, canUpdate, onDeleteClick }) => (
-    <ScreenContent>
-
-        <Table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    {canUpdate &&
-                        <th></th>
-                    }
-                    {canDelete &&
-                        <th></th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                {products.map((product, idx) => (
-                    <ProductTableRow
-                        key={product.id}
-                        product={product}
-                        idx={idx}
-                        canDelete={canDelete}
-                        canUpdate={canUpdate}
-                        onDeleteClick={onDeleteClick}
-                    />
-                ))}
-                {!products.length &&
-                    <tr>
-                        <td colSpan={10}>No products</td>
-                    </tr>
+    <Table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                {canUpdate &&
+                    <th></th>
                 }
-            </tbody>
-        </Table>
-
-    </ScreenContent>
+                {canDelete &&
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            {products.map((product, idx) => (
+                <ProductTableRow
+                    key={product.id}
+                    product={product}
+                    idx={idx}
+                    canDelete={canDelete}
+                    canUpdate={canUpdate}
+                    onDeleteClick={onDeleteClick}
+                />
+            ))}
+            {!products.length &&
+                <tr>
+                    <td colSpan={10}>No products</td>
+                </tr>
+            }
+        </tbody>
+    </Table>
 );
 
 ProductTable.propTypes = {

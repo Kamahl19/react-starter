@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
-import { Footer } from '@src/components/layout';
-import { HeaderContainer, LoaderContainer } from '@src/containers/layout';
+import { HeaderContainer, ScreenContentContainer, FooterContainer, LoaderContainer } from '@src/containers/layout';
 import { loginWithToken } from '@src/ducks/auth';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -29,9 +28,11 @@ export default class App extends Component {
 
                 <HeaderContainer />
 
-                {children}
+                <ScreenContentContainer>
+                    {children}
+                </ScreenContentContainer>
 
-                <Footer />
+                <FooterContainer />
 
                 <LoaderContainer />
 

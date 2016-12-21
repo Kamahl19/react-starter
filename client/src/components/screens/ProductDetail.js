@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
-import { ScreenContent } from '@src/components/layout';
 
 const ProductDetail = ({ product }) => (
-    <ScreenContent>
+    <div>
 
         <h1>{product.name}</h1>
         <p>Description: {product.description}</p>
 
-    </ScreenContent>
+    </div>
 );
 
 ProductDetail.propTypes = {

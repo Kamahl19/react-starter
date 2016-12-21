@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 import linkedState from '@src/utils/LinkedState';
-import { ScreenContent } from '@src/components/layout';
 import { Input } from '@src/components/ui';
 
 @linkedState(['name', 'password', 'repeatPassword'])
@@ -32,47 +31,43 @@ export default class UserUpdateForm extends Component {
         const { linkState, formErrors } = this.props;
 
         return (
-            <ScreenContent>
+            <form>
 
-                <form>
+                <h3>Update Profile</h3>
 
-                    <h3>Update Profile</h3>
+                <Input
+                    {...linkState('name')}
+                    placeholder="Name"
+                    name="name"
+                    error={formErrors.name}
+                    autoFocus
+                />
 
-                    <Input
-                        {...linkState('name')}
-                        placeholder="Name"
-                        name="name"
-                        error={formErrors.name}
-                        autoFocus
-                    />
+                <Input
+                    {...linkState('password')}
+                    type="password"
+                    placeholder="New Password"
+                    name="password"
+                    error={formErrors.password}
+                />
 
-                    <Input
-                        {...linkState('password')}
-                        type="password"
-                        placeholder="New Password"
-                        name="password"
-                        error={formErrors.password}
-                    />
+                <Input
+                    {...linkState('repeatPassword')}
+                    type="password"
+                    placeholder="Repeat Password"
+                    name="repeatPassword"
+                    error={formErrors.repeatPassword}
+                />
 
-                    <Input
-                        {...linkState('repeatPassword')}
-                        type="password"
-                        placeholder="Repeat Password"
-                        name="repeatPassword"
-                        error={formErrors.repeatPassword}
-                    />
+                <Button
+                    type="submit"
+                    onClick={this.handleSubmit}
+                    bsStyle="primary"
+                >
+                    Submit
+                </Button>
 
-                    <Button
-                        type="submit"
-                        onClick={this.handleSubmit}
-                        bsStyle="primary"
-                    >
-                        Submit
-                    </Button>
-
-                </form>
-
-            </ScreenContent>
+            </form>
         );
     }
 }

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 import linkedState from '@src/utils/LinkedState';
-import { ScreenContent } from '@src/components/layout';
 import { Input } from '@src/components/ui';
 
 import './auth.scss';
@@ -35,59 +34,55 @@ export default class SignUpForm extends Component {
         const { isAuthenticating, linkState, formErrors } = this.props;
 
         return (
-            <ScreenContent>
+            <form className="auth-form">
 
-                <form className="auth-form">
+                <h3>Sign Up</h3>
 
-                    <h3>Sign Up</h3>
+                <Input
+                    {...linkState('name')}
+                    placeholder="Name"
+                    name="name"
+                    error={formErrors.name}
+                    onKeyPress={this.handleEnter}
+                    autoFocus
+                />
 
-                    <Input
-                        {...linkState('name')}
-                        placeholder="Name"
-                        name="name"
-                        error={formErrors.name}
-                        onKeyPress={this.handleEnter}
-                        autoFocus
-                    />
+                <Input
+                    {...linkState('email')}
+                    placeholder="E-mail"
+                    name="email"
+                    error={formErrors.email}
+                    onKeyPress={this.handleEnter}
+                />
 
-                    <Input
-                        {...linkState('email')}
-                        placeholder="E-mail"
-                        name="email"
-                        error={formErrors.email}
-                        onKeyPress={this.handleEnter}
-                    />
+                <Input
+                    {...linkState('password')}
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    error={formErrors.password}
+                    onKeyPress={this.handleEnter}
+                />
 
-                    <Input
-                        {...linkState('password')}
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        error={formErrors.password}
-                        onKeyPress={this.handleEnter}
-                    />
+                <Input
+                    {...linkState('repeatPassword')}
+                    type="password"
+                    placeholder="Repeat Password"
+                    name="repeatPassword"
+                    error={formErrors.repeatPassword}
+                    onKeyPress={this.handleEnter}
+                />
 
-                    <Input
-                        {...linkState('repeatPassword')}
-                        type="password"
-                        placeholder="Repeat Password"
-                        name="repeatPassword"
-                        error={formErrors.repeatPassword}
-                        onKeyPress={this.handleEnter}
-                    />
+                <Button
+                    type="submit"
+                    onClick={this.handleSubmit}
+                    disabled={isAuthenticating}
+                    bsStyle="primary"
+                >
+                    Sign Up
+                </Button>
 
-                    <Button
-                        type="submit"
-                        onClick={this.handleSubmit}
-                        disabled={isAuthenticating}
-                        bsStyle="primary"
-                    >
-                        Sign Up
-                    </Button>
-
-                </form>
-
-            </ScreenContent>
+            </form>
         );
     }
 }

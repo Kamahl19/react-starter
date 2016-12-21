@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
-import { Error404 } from '@src/components/screens';
 import { IsAnonymous, IsLoggedIn, IsAdmin, LoginWrapper } from '@src/utils/auth';
 import App from '@src/containers/App';
 import {
     LoginContainer, SignUpContainer, UserProfileContainer, UserUpdateContainer,
     ProductTableContainer, ProductDetailContainer, ProductUpdateContainer,
+    Error404Container,
 } from '@src/containers/screens';
 
 export default (
@@ -27,7 +27,7 @@ export default (
 
         <Route path="products/:productId/update" component={IsLoggedIn(IsAdmin(ProductUpdateContainer))} />
 
-        <Route path="*" component={Error404} />
+        <Route path="*" component={Error404Container} />
 
     </Route>
 );
