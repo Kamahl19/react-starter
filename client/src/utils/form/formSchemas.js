@@ -10,13 +10,13 @@ yup.addMethod(yup.mixed, 'sameAs', function(ref, message) {
 
 export default {
     loginCredentials: yup.object().shape({
-        email: yup.string().max(255).email().required(),
+        email: yup.string().max(255).email().required().label('E-mail'),
         password: yup.string().min(6).required(),
     }),
 
     signUpData: yup.object().shape({
         name: yup.string().required(),
-        email: yup.string().max(255).email().required(),
+        email: yup.string().max(255).email().required().label('E-mail'),
         password: yup.string().min(6).required(),
         repeatPassword: yup.string().sameAs(yup.ref('password'), 'Passwords don\'t match').required(),
     }),
