@@ -12,11 +12,11 @@ export const isTokenValid = (token) => {
     return false;
 };
 
-export const saveTokenToLocalStorage = (token) =>
+export const saveTokenToLS = (token) =>
     localStorage.setItem(process.env.REACT_APP_TOKEN_NAME, token);
 
-export const getTokenFromLocalStorage = () =>
+export const getTokenFromLS = () =>
     localStorage.getItem(process.env.REACT_APP_TOKEN_NAME);
 
-export const removeTokenFromLocalStorage = () =>
+export const removeTokenFromLS = () =>
     localStorage.removeItem(process.env.REACT_APP_TOKEN_NAME);

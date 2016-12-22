@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import Alert from 'react-s-alert';
-import { getTokenFromLocalStorage } from '@src/utils/auth/authHelpers';
+import { getTokenFromLS } from '@src/utils/auth/authHelpers';
 
 const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
@@ -24,24 +24,28 @@ const getRequestOptions = (customOptions = {}) => {
         }
     };
 
-    const token = getTokenFromLocalStorage();
+    const token = getTokenFromLS();
 
     if (token) {
         defaultFetchOptions.headers.Authorization = `Bearer ${token}`;
     }
 
-    const result = lodash.merge({}, defaultFetchOptions, customOptions);
+    const mergedOptions = lodash.merge({}, defaultFetchOptions, customOptions);
+
+    if (mergedOptions.body) {
+        mergedOptions.body = JSON.stringify(mergedOptions.body);
+    }
 
     // In case of file uploads, its neccessary to delete `Content-Type`
     // so browser sets it implicitly along with `boundary`
-    if (result.headers['Content-Type'] === '') {
-        delete result.headers['Content-Type'];
+    if (mergedOptions.headers['Content-Type'] === '') {
+        delete mergedOptions.headers['Content-Type'];
     }
 
-    return result;
+    return mergedOptions;
 };
 
-export default function callApi({ path, options }) {
+export default function callApi({ path = '/', options }) {
     const throwError = (message = 'An unexpected error has occured') => {
         Alert.error(message);
         throw new Error(message);

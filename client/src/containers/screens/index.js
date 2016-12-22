@@ -1,6 +1,5 @@
 export { default as LoginContainer } from './LoginContainer';
 export { default as SignUpContainer } from './SignUpContainer';
-export { default as UserContainer } from './UserContainer';
 export { default as UserProfileContainer } from './UserProfileContainer';
 export { default as UserUpdateContainer } from './UserUpdateContainer';
 export { default as ProductContainer } from './ProductContainer';

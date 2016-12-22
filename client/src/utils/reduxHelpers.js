@@ -1,21 +1,26 @@
-import lodash from 'lodash';
+import { flattenDeep, reduce, isFunction } from 'lodash';
+import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
 
-export const createConstants = (...constants) =>
-    constants.reduce((acc, constant) => {
-        const acc2 = acc;
-        acc2[constant] = constant;
-        return acc2;
-    }, {});
+export const createActionType = (...parts) => flattenDeep(parts).join('_');
+
+export const createActionCreator = (...type) => (payload) => ({
+    type: createActionType(type),
+    payload,
+});
+
+export const createActionCreators = (...type) => ({
+    request: createActionCreator(type, REQUEST),
+    success: createActionCreator(type, SUCCESS),
+    failure: createActionCreator(type, FAILURE),
+});
 
 export const createReducer = (initialState, reducerMap) => {
-    const makeType = (prefix, type) => prefix.concat(type).join('_');
-
     const iterator = (reducers, initial = {}, prefix = []) =>
-        lodash.reduce(reducers, (acc, reducer, type) => {
-            if (lodash.isFunction(reducer)) {
-                return { ...acc, [makeType(prefix, type)]: reducer };
+        reduce(reducers, (acc, reducer, type) => {
+            if (isFunction(reducer)) {
+                return { ...acc, [createActionType(prefix, type)]: reducer };
             }
-            return iterator(reducer, acc, [makeType(prefix, type)]);
+            return iterator(reducer, acc, [createActionType(prefix, type)]);
         }, initial);
 
     const flattened = iterator(reducerMap);

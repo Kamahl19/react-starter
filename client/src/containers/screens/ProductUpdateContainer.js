@@ -28,8 +28,11 @@ export default class ProductUpdateContainer extends Component {
         this.setState({ formErrors: {} });
 
         formValidation({ updateProductData })
-            .then(() => actions.updateProduct(product.id, updateProductData))
-            .catch((err) => this.setState({ formErrors: err.updateProductData }));
+            .then(() => {
+                actions.updateProduct(product.id, updateProductData);
+            }, (err) => {
+                this.setState({ formErrors: err.updateProductData });
+            });
     }
 
     render() {

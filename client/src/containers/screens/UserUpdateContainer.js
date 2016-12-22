@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateUser } from '@src/ducks/auth';
-import { UserContainer } from '@src/containers/screens';
+import { getUser, updateUser } from '@src/ducks/auth';
 import { UserUpdateForm } from '@src/components/screens';
 import formValidation from '@src/utils/form/formValidation';
+
+const mapStateToProps = (state) => ({
+    user: getUser(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ updateUser }, dispatch),
 });
 
-@UserContainer
-@connect(undefined, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class UserUpdateContainer extends Component {
     static propTypes = {
         user: PropTypes.object.isRequired,
@@ -28,13 +30,20 @@ export default class UserUpdateContainer extends Component {
         this.setState({ formErrors: {} });
 
         formValidation({ updateUserData })
-            .then(() => actions.updateUser(user.id, updateUserData))
-            .catch((err) => this.setState({ formErrors: err.updateUserData }));
+            .then(() => {
+                actions.updateUser(user.id, updateUserData);
+            }, (err) => {
+                this.setState({ formErrors: err.updateUserData });
+            });
     }
 
     render() {
         const { user } = this.props;
         const { formErrors } = this.state;
+
+        if (!user) {
+            return (<div />);
+        }
 
         return (
             <UserUpdateForm

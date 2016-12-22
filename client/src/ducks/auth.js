@@ -1,14 +1,13 @@
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 import { push } from 'react-router-redux';
-import { createReducer } from '@src/utils/reduxHelpers';
+import { createActionCreator, createActionCreators, createReducer } from '@src/utils/reduxHelpers';
+import { authApi } from '@src/api';
 import { REQUEST, SUCCESS, FAILURE } from '@src/constants/values';
-import {
-    decodeToken, isTokenValid, getTokenFromLocalStorage, saveTokenToLocalStorage, removeTokenFromLocalStorage,
-} from '@src/utils/auth/authHelpers';
+import { decodeToken, isTokenValid, getTokenFromLS, saveTokenToLS, removeTokenFromLS } from '@src/utils/auth/authHelpers';
 
-export const SIGN_UP = 'SIGN_UP';
 export const FETCH_USER = 'FETCH_USER';
+export const SIGN_UP = 'SIGN_UP';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
@@ -16,111 +15,93 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 /**
  * ACTIONS
  */
-export const signUp = (userData) =>
+const fetchUserActions = createActionCreators(FETCH_USER);
+const signUpActions = createActionCreators(SIGN_UP);
+const updateUserActions = createActionCreators(UPDATE_USER);
+const loginUserActions = createActionCreators(LOGIN_USER);
+const logoutUser = createActionCreator(LOGOUT_USER);
+
+export const fetchUser = (userId) =>
     (dispatch) => {
-        dispatch({
-            typeName: SIGN_UP,
-            api: {
-                path: '/users',
-                options: {
-                    method: 'post',
-                    body: JSON.stringify(userData),
-                }
-            }
-        })
-        .then(({ payload }) => {
-            if (payload.token) {
-                saveTokenToLocalStorage(payload.token);
-            }
-        });
+        dispatch(fetchUserActions.request());
+
+        authApi.fetchUser(userId)
+            .then((payload) => {
+                dispatch(fetchUserActions.success(payload));
+            })
+            .catch((error) => {
+                dispatch(fetchUserActions.failure(error));
+            });
     };
 
-export const fetchUser = (userId) => ({
-    typeName: FETCH_USER,
-    api: {
-        path: `/users/${userId}`,
-    }
-});
+export const signUp = (userData) =>
+    (dispatch) => {
+        dispatch(signUpActions.request());
+
+        authApi.createUser(userData)
+            .then((payload) => {
+                dispatch(signUpActions.success(payload));
+                saveTokenToLS(payload.token);
+            })
+            .catch((error) => {
+                 dispatch(signUpActions.failure(error))
+            });
+    };
 
 export const updateUser = (userId, userData) =>
     (dispatch) => {
-        dispatch({
-            typeName: UPDATE_USER,
-            api: {
-                path: `/users/${userId}`,
-                options: {
-                    method: 'put',
-                    body: JSON.stringify(userData),
-                }
-            }
-        })
-        .then(({ payload }) => {
-            if (payload.user) {
+        dispatch(updateUserActions.request());
+
+        authApi.updateUser(userId, userData)
+            .then((payload) => {
+                dispatch(updateUserActions.success(payload));
                 dispatch(push('/me'));
-            }
-        });
+            })
+            .catch((error) => {
+                dispatch(updateUserActions.failure(error));
+            });
     };
 
 export const loginUser = (credentials) =>
     (dispatch) => {
-        dispatch({
-            typeName: LOGIN_USER,
-            api: {
-                path: '/login',
-                options: {
-                    method: 'post',
-                    body: JSON.stringify(credentials),
-                }
-            },
-        })
-        .then(({ payload }) => {
-            if (payload.token) {
-                saveTokenToLocalStorage(payload.token);
-            }
-        });
+        dispatch(loginUserActions.request());
+
+        authApi.loginUser(credentials)
+            .then((payload) => {
+                dispatch(loginUserActions.success(payload));
+                saveTokenToLS(payload.token);
+            })
+            .catch((error) => {
+                dispatch(loginUserActions.failure(error));
+            });
     };
-
-export const logout = () =>
-    (dispatch) => {
-        removeTokenFromLocalStorage();
-
-        dispatch({
-            type: LOGOUT_USER
-        });
-    };
-
-const loginUserRequest = () => ({
-    type: `${LOGIN_USER}_${REQUEST}`,
-});
-
-const loginUserSuccess = (user, token) => ({
-    type: `${LOGIN_USER}_${SUCCESS}`,
-    payload: { user, token }
-});
-
-const loginUserFailure = () => ({
-    type: `${LOGIN_USER}_${FAILURE}`,
-});
 
 export const loginWithToken = () =>
     (dispatch) => {
-        const token = getTokenFromLocalStorage();
+        const token = getTokenFromLS();
 
         if (isTokenValid(token)) {
             const { userId } = decodeToken(token);
 
-            dispatch(loginUserRequest());
+            dispatch(fetchUserActions.request());
+            dispatch(loginUserActions.request());
 
-            dispatch(fetchUser(userId))
-                .then(({ payload }) => {
-                    if (payload.user) {
-                        dispatch(loginUserSuccess(payload.user, token));
-                    }
-                    else {
-                        dispatch(loginUserFailure())
-                    }
+            authApi.fetchUser(userId)
+                .then((payload) => {
+                    dispatch(fetchUserActions.success(payload));
+                    dispatch(loginUserActions.success({ user: payload.user, token }));
+                })
+                .catch((error) => {
+                    dispatch(fetchUserActions.failure(error));
+                    dispatch(loginUserActions.failure());
                 });
         }
+    };
+
+export const logout = () =>
+    (dispatch) => {
+        removeTokenFromLS();
+        dispatch(logoutUser());
     };
 
 /**
