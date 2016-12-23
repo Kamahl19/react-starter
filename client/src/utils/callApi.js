@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import Alert from 'react-s-alert';
-import { getTokenFromLS } from '@src/utils/auth/authHelpers';
+import { getTokenFromLS } from '@src/modules/auth/utils/tokenHelpers';
 
 const checkHttpStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {

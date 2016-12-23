@@ -1,4 +1,4 @@
-import formSchemas from '@src/utils/form/formSchemas';
+import formSchemas from './formSchemas';
 
 const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 
@@ -14,7 +14,7 @@ function scrollToTheFirstError(errorPaths, formId) {
 
         scrollTo = Math.min(...offsets);
 
-        const screenContent = document.querySelector('.screen-content');
+        const screenContent = document.querySelector('#screen-content');
 
         if (screenContent) {
             const screenContentPadding = parseInt(window.getComputedStyle(screenContent).getPropertyValue('padding'), 10);

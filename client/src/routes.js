@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
-import { IsAnonymous, IsLoggedIn, IsAdmin, LoginWrapper } from '@src/utils/auth';
-import App from '@src/containers/App';
-import {
-    LoginContainer, SignUpContainer, UserProfileContainer, UserUpdateContainer,
-    ProductTableContainer, ProductDetailContainer, ProductUpdateContainer,
-    Error404Container,
-} from '@src/containers/screens';
+import { IsAnonymous, IsLoggedIn, IsAdmin, LoginWrapper } from '@src/modules/auth/utils';
+import { AppContainer } from '@src/containers/app';
+import { LoginContainer, SignUpContainer, UserProfileContainer, UserUpdateContainer } from '@src/modules/auth/containers';
+import { ProductTableContainer, ProductDetailContainer, ProductUpdateContainer } from '@src/modules/products/containers';
+import { Error404Container } from '@src/modules/error-404/containers';
 
 export default (
-    <Route path="/" component={App}>
+    <Route path="/" component={AppContainer}>
 
         <IndexRedirect to="products" />
 
