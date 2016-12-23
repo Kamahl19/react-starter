@@ -24,6 +24,8 @@ export default class ProductUpdateForm extends Component {
     }
 
     handleSubmit = (e) => {
+        e.preventDefault();
+
         const { name, description, onSubmit } = this.props;
 
         onSubmit({ name, description });

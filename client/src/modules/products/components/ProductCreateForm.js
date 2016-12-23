@@ -14,6 +14,8 @@ export default class ProductCreateForm extends Component {
     };
 
     handleSubmit = (e) => {
+        e.preventDefault();
+
         const { name, description, onSubmit } = this.props;
 
         onSubmit({ name, description });

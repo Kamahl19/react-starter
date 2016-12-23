@@ -22,6 +22,8 @@ export default class UserUpdateForm extends Component {
     }
 
     handleSubmit = (e) => {
+        e.preventDefault();
+
         const { name, password, repeatPassword, onSubmit } = this.props;
 
         onSubmit({ name, password, repeatPassword });

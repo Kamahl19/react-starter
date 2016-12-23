@@ -18,6 +18,8 @@ export default class LoginForm extends Component {
     };
 
     handleSubmit = (e) => {
+        e.preventDefault();
+
         const { email, password, onSubmit } = this.props;
 
         onSubmit({ email, password });

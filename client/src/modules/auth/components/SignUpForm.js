@@ -19,6 +19,8 @@ export default class SignUpForm extends Component {
     };
 
     handleSubmit = (e) => {
+        e.preventDefault();
+
         const { name, email, password, repeatPassword, onSubmit } = this.props;
 
         onSubmit({ name, email, password, repeatPassword });
