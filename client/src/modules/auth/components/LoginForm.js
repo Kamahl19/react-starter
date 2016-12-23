@@ -32,6 +32,7 @@ export default class LoginForm extends Component {
 
                 <Input
                     {...linkState('email')}
+                    label="E-mail"
                     placeholder="E-mail"
                     name="email"
                     error={formErrors.email}
@@ -41,6 +42,7 @@ export default class LoginForm extends Component {
                 <Input
                     {...linkState('password')}
                     type="password"
+                    label="Password"
                     placeholder="Password"
                     name="password"
                     error={formErrors.password}

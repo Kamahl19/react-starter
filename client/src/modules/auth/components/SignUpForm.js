@@ -34,6 +34,7 @@ export default class SignUpForm extends Component {
 
                 <Input
                     {...linkState('name')}
+                    label="Name"
                     placeholder="Name"
                     name="name"
                     error={formErrors.name}
@@ -42,6 +43,7 @@ export default class SignUpForm extends Component {
 
                 <Input
                     {...linkState('email')}
+                    label="E-mail"
                     placeholder="E-mail"
                     name="email"
                     error={formErrors.email}
@@ -50,6 +52,7 @@ export default class SignUpForm extends Component {
                 <Input
                     {...linkState('password')}
                     type="password"
+                    label="Password"
                     placeholder="Password"
                     name="password"
                     error={formErrors.password}
@@ -58,6 +61,7 @@ export default class SignUpForm extends Component {
                 <Input
                     {...linkState('repeatPassword')}
                     type="password"
+                    label="Repeat Password"
                     placeholder="Repeat Password"
                     name="repeatPassword"
                     error={formErrors.repeatPassword}

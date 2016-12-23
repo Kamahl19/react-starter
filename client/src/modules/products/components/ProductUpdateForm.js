@@ -39,6 +39,7 @@ export default class ProductUpdateForm extends Component {
 
                 <Input
                     {...linkState('name')}
+                    label="Name"
                     placeholder="Name"
                     name="name"
                     error={formErrors.name}
@@ -48,6 +49,7 @@ export default class ProductUpdateForm extends Component {
                 <Input
                     {...linkState('description')}
                     type="textarea"
+                    label="Description"
                     placeholder="Description"
                     name="description"
                     error={formErrors.description}

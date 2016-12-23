@@ -37,6 +37,7 @@ export default class UserUpdateForm extends Component {
 
                 <Input
                     {...linkState('name')}
+                    label="Name"
                     placeholder="Name"
                     name="name"
                     error={formErrors.name}
@@ -46,6 +47,7 @@ export default class UserUpdateForm extends Component {
                 <Input
                     {...linkState('password')}
                     type="password"
+                    label="New Password"
                     placeholder="New Password"
                     name="password"
                     error={formErrors.password}
@@ -54,6 +56,7 @@ export default class UserUpdateForm extends Component {
                 <Input
                     {...linkState('repeatPassword')}
                     type="password"
+                    label="Repeat Password"
                     placeholder="Repeat Password"
                     name="repeatPassword"
                     error={formErrors.repeatPassword}
