@@ -36,6 +36,15 @@ userSchema.methods.getAuthToken = function () {
     return token;
 };
 
+userSchema.methods.getPublicData = function () {
+    return {
+        id: this._id,
+        email: this.email,
+        name: this.name,
+        isAdmin: this.isAdmin,
+    };
+};
+
 /**
  * Static methods
  */

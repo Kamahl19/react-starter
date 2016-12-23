@@ -6,6 +6,14 @@ const productSchema = new Schema({
     description: { type: String, default: '' },
 });
 
+productSchema.methods.getPublicData = function () {
+    return {
+        id: this._id,
+        email: this.name,
+        name: this.description,
+    };
+};
+
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

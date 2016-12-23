@@ -23,12 +23,7 @@ const UserController = {
             }
 
             return helpers.getSuccessResult(res, {
-                user: {
-                    id: user._id,
-                    email: user.email,
-                    name: user.name,
-                    isAdmin: user.isAdmin,
-                }
+                user: user.getPublicData()
             });
         });
     },
@@ -56,12 +51,7 @@ const UserController = {
 
             return helpers.getSuccessResult(res, {
                 token: user.getAuthToken(),
-                user: {
-                    id: user._id,
-                    email: user.email,
-                    name: user.name,
-                    isAdmin: user.isAdmin,
-                }
+                user: user.getPublicData()
             });
         });
     },
@@ -93,12 +83,7 @@ const UserController = {
             }
 
             return helpers.getSuccessResult(res, {
-                user: {
-                    id: user._id,
-                    email: user.email,
-                    name: user.name,
-                    isAdmin: user.isAdmin,
-                }
+                user: user.getPublicData()
             });
         });
     },
@@ -124,12 +109,7 @@ const UserController = {
 
             return helpers.getSuccessResult(res, {
                 token: user.getAuthToken(),
-                user: {
-                    id: user._id,
-                    email: user.email,
-                    name: user.name,
-                    isAdmin: user.isAdmin,
-                },
+                user: user.getPublicData()
             });
         });
     },
@@ -202,12 +182,7 @@ const UserController = {
                     helpers.getSuccessResult(res, {
                         message: `Success! Your password has been changed.`,
                         token: user.getAuthToken(),
-                        user: {
-                            id: user._id,
-                            email: user.email,
-                            name: user.name,
-                            isAdmin: user.isAdmin,
-                        }
+                        user: user.getPublicData()
                     });
                 })
                 .catch((reason) => {

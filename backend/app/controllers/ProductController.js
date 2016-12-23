@@ -15,11 +15,7 @@ const ProductController = {
             }
 
             return helpers.getSuccessResult(res, {
-                products: products.map((product) => ({
-                    id: product._id,
-                    name: product.name,
-                    description: product.description,
-                }))
+                products: products.map((product) => product.getPublicData())
             });
         });
     },
@@ -40,11 +36,7 @@ const ProductController = {
             }
 
             return helpers.getSuccessResult(res, {
-                product: {
-                    id: product._id,
-                    name: product.name,
-                    description: product.description,
-                }
+                product: product.getPublicData()
             });
         });
     },
@@ -70,11 +62,7 @@ const ProductController = {
             }
 
             return helpers.getSuccessResult(res, {
-                product: {
-                    id: product._id,
-                    name: product.name,
-                    description: product.description,
-                }
+                product: product.getPublicData()
             });
         });
     },
@@ -105,11 +93,7 @@ const ProductController = {
             }
 
             return helpers.getSuccessResult(res, {
-                product: {
-                    id: product._id,
-                    name: product.name,
-                    description: product.description,
-                }
+                product: product.getPublicData()
             });
         });
     },
@@ -130,11 +114,7 @@ const ProductController = {
             }
 
             return helpers.getSuccessResult(res, {
-                product: {
-                    id: product._id,
-                    name: product.name,
-                    description: product.description,
-                }
+                product: product.getPublicData()
             });
         });
     },
