@@ -5,6 +5,7 @@ import { formValidation } from '@src/utils/form';
 import { updateProduct } from '../ducks/productsDucks';
 import { ProductContainer } from '../containers';
 import { ProductUpdateForm } from '../components';
+import { updateProductSchema } from '../schema/productsSchema';
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ updateProduct }, dispatch),
@@ -22,16 +23,16 @@ export default class ProductUpdateContainer extends Component {
         formErrors: {},
     };
 
-    onSubmit = (updateProductData) => {
+    onSubmit = (productData) => {
         const { actions, product } = this.props;
 
         this.setState({ formErrors: {} });
 
-        formValidation({ updateProductData })
+        formValidation(updateProductSchema, productData)
             .then(() => {
-                actions.updateProduct(product.id, updateProductData);
-            }, (err) => {
-                this.setState({ formErrors: err.updateProductData });
+                actions.updateProduct(product.id, productData);
+            }, (formErrors) => {
+                this.setState({ formErrors });
             });
     }
 

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getUser, updateUser } from '../ducks/authDucks';
 import { UserUpdateForm } from '../components';
 import { formValidation } from '@src/utils/form';
+import { updateUserSchema } from '../schema/authSchema';
 
 const mapStateToProps = (state) => ({
     user: getUser(state),
@@ -24,16 +25,16 @@ export default class UserUpdateContainer extends Component {
         formErrors: {},
     };
 
-    onSubmit = (updateUserData) => {
+    onSubmit = (userData) => {
         const { actions, user } = this.props;
 
         this.setState({ formErrors: {} });
 
-        formValidation({ updateUserData })
+        formValidation(updateUserSchema, userData)
             .then(() => {
-                actions.updateUser(user.id, updateUserData);
-            }, (err) => {
-                this.setState({ formErrors: err.updateUserData });
+                actions.updateUser(user.id, userData);
+            }, (formErrors) => {
+                this.setState({ formErrors });
             });
     }
 

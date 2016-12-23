@@ -1,4 +1,12 @@
-import formSchemas from './formSchemas';
+import yup from 'yup';
+
+yup.addMethod(yup.mixed, 'sameAs', function(ref, message) {
+    return this.test('sameAs', message, function(value) {
+        const other = this.resolve(ref);
+
+        return !other || !value || value === other;
+    });
+});
 
 const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 
@@ -43,10 +51,8 @@ function getErrorMessages(errors) {
     }, {});
 }
 
-export default function formValidation(schemaData, skipScroll = false, formId) {
-    const schema = Object.keys(schemaData)[0];
-
-    return formSchemas[schema].validate(schemaData[schema], { abortEarly: false })
+export default function formValidation(schema, data, skipScroll = false, formId) {
+    return schema.validate(data, { abortEarly: false })
         .catch(({ inner }) => {
             const errorsObj = getErrorMessages(inner);
 
@@ -54,6 +60,8 @@ export default function formValidation(schemaData, skipScroll = false, formId) {
                 scrollToTheFirstError(Object.keys(errorsObj), formId);
             }
 
-            return Promise.reject({ [schema]: errorsObj });
+            return Promise.reject(
+                formId ? { [formId]: errorsObj } : errorsObj
+            );
         });
 }

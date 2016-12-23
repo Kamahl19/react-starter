@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getIsAuthenticating, signUp } from '../ducks/authDucks';
 import { SignUpForm } from '../components';
 import { formValidation } from '@src/utils/form';
+import { signUpSchema } from '../schema/authSchema';
 
 const mapStateToProps = (state) => ({
     isAuthenticating: getIsAuthenticating(state),
@@ -24,16 +25,16 @@ export default class SignUpContainer extends Component {
         formErrors: {},
     };
 
-    onSubmit = (signUpData) => {
+    onSubmit = (userData) => {
         const { actions } = this.props;
 
         this.setState({ formErrors: {} });
 
-        formValidation({ signUpData })
+        formValidation(signUpSchema, userData)
             .then(() => {
-                actions.signUp(signUpData);
-            }, (err) => {
-                this.setState({ formErrors: err.signUpData });
+                actions.signUp(userData);
+            }, (formErrors) => {
+                this.setState({ formErrors });
             });
     }
 
