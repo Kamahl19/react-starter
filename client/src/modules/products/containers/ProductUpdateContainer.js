@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { formValidation } from '@src/utils/form';
+import formValidation from '@src/utils/formValidation';
 import { updateProduct } from '../ducks/productsDucks';
 import { ProductContainer } from '../containers';
 import { ProductUpdateForm } from '../components';

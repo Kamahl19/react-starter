@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import formValidation from '@src/utils/formValidation';
 import { getIsAuthenticating, signUp } from '../ducks/authDucks';
 import { SignUpForm } from '../components';
-import { formValidation } from '@src/utils/form';
 import { signUpSchema } from '../schema/authSchema';
 
 const mapStateToProps = (state) => ({
