@@ -22,17 +22,11 @@ export default class LoginForm extends Component {
         onSubmit({ email, password });
     }
 
-    handleEnter = (e) => {
-        if (e.key === 'Enter') {
-            this.handleSubmit(e);
-        }
-    }
-
     render() {
         const { isAuthenticating, linkState, formErrors } = this.props;
 
         return (
-            <form className="auth-form">
+            <form onSubmit={this.handleSubmit} className="auth-form">
 
                 <h3>Log In</h3>
 
@@ -41,7 +35,6 @@ export default class LoginForm extends Component {
                     placeholder="E-mail"
                     name="email"
                     error={formErrors.email}
-                    onKeyPress={this.handleEnter}
                     autoFocus
                 />
 
@@ -51,7 +44,6 @@ export default class LoginForm extends Component {
                     placeholder="Password"
                     name="password"
                     error={formErrors.password}
-                    onKeyPress={this.handleEnter}
                 />
 
                 <Button

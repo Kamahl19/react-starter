@@ -24,17 +24,11 @@ export default class SignUpForm extends Component {
         onSubmit({ name, email, password, repeatPassword });
     }
 
-    handleEnter = (e) => {
-        if (e.key === 'Enter') {
-            this.handleSubmit(e);
-        }
-    }
-
     render() {
         const { isAuthenticating, linkState, formErrors } = this.props;
 
         return (
-            <form className="auth-form">
+            <form onSubmit={this.handleSubmit} className="auth-form">
 
                 <h3>Sign Up</h3>
 
@@ -43,7 +37,6 @@ export default class SignUpForm extends Component {
                     placeholder="Name"
                     name="name"
                     error={formErrors.name}
-                    onKeyPress={this.handleEnter}
                     autoFocus
                 />
 
@@ -52,7 +45,6 @@ export default class SignUpForm extends Component {
                     placeholder="E-mail"
                     name="email"
                     error={formErrors.email}
-                    onKeyPress={this.handleEnter}
                 />
 
                 <Input
@@ -61,7 +53,6 @@ export default class SignUpForm extends Component {
                     placeholder="Password"
                     name="password"
                     error={formErrors.password}
-                    onKeyPress={this.handleEnter}
                 />
 
                 <Input
@@ -70,7 +61,6 @@ export default class SignUpForm extends Component {
                     placeholder="Repeat Password"
                     name="repeatPassword"
                     error={formErrors.repeatPassword}
-                    onKeyPress={this.handleEnter}
                 />
 
                 <Button

@@ -23,7 +23,7 @@ export default class ProductCreateForm extends Component {
         const { linkState, formErrors } = this.props;
 
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
 
                 <h3>Create Product</h3>
 

@@ -31,7 +31,7 @@ export default class UserUpdateForm extends Component {
         const { linkState, formErrors } = this.props;
 
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
 
                 <h3>Update Profile</h3>
 
