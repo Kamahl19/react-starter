@@ -1,15 +1,20 @@
 import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
-const Input = ({ type, name, label, help, bsSize, error, ...props }) => (
+import './input.scss';
+
+const Input = ({ type, name, label, rightLabel, help, bsSize, error, ...props }) => (
     <FormGroup
         controlId={`input_${name}`}
         bsSize={bsSize}
         validationState={error ? 'error' : undefined}
     >
 
-        {label &&
-            <ControlLabel>{label}</ControlLabel>
+        {(label || rightLabel) &&
+            <ControlLabel>
+                {label}
+                <span className="right-label">{rightLabel}</span>
+            </ControlLabel>
         }
 
         <FormControl
