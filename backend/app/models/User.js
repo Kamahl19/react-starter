@@ -14,7 +14,7 @@ const userSchema = new Schema({
     profile: {
         name: { type: String, default: '' },
     },
-});
+}, { timestamps: true });
 
 /**
  * Methods

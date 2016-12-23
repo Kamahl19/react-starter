@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, default: '' },
-});
+}, { timestamps: true });
 
 productSchema.methods.getPublicData = function () {
     return {
