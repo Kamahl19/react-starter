@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const helpers = require('../helpers');
-const mailer = require('../mailer');
+const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
 const InternalServerError = require('../errors/InternalServerError');
 const BadRequestError = require('../errors/BadRequestError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
@@ -137,7 +137,7 @@ const UserController = {
 
             const link = `${req.headers.origin}${process.env.CORS_ORIGIN ? '/#' : ''}/reset-password/${newData.passwordResetToken}`;
 
-            mailer.sendForgottenPasswordMail({ to: user.email }, link)
+            sendForgottenPasswordMail({ to: user.email }, link)
                 .then(() => {
                     helpers.getSuccessResult(res, {
                         message: `An e-mail has been sent to ${user.email} with further instructions.`,
@@ -177,7 +177,7 @@ const UserController = {
                 return next(new BadRequestError({ message: 'Password reset token is invalid or has expired.' }));
             }
 
-            mailer.sendResetPasswordMail({ to: user.email })
+            sendResetPasswordMail({ to: user.email })
                 .then(() => {
                     helpers.getSuccessResult(res, {
                         message: `Success! Your password has been changed.`,
