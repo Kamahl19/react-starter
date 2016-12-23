@@ -40,7 +40,9 @@ const UserController = {
 
         const user = new User({
             email,
-            name,
+            profile: {
+                name,
+            },
             password: User.generateHash(password),
         });
 
@@ -67,7 +69,11 @@ const UserController = {
             return next(new BadRequestError({ message: 'User\'s data are missing.' }));
         }
 
-        const newData = { name };
+        const newData = {
+            profile: {
+                name
+            }
+        };
 
         if (password) {
             newData.password = User.generateHash(password);

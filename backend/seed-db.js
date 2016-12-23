@@ -3,18 +3,21 @@ require('dotenv').config();
 
 const seeder = require('mongoose-seed');
 const User = require('./app/models/User');
-const Product = require('./app/models/Product');
 
 const data = [{
     'model': 'User',
     'documents': [{
         email: 'admin@example.com',
-        name: 'admin',
+        profile: {
+            name: 'admin',
+        },
         password: User.generateHash('password'),
         isAdmin: true,
     }, {
         email: 'user@example.com',
-        name: 'user',
+        profile: {
+            name: 'user',
+        },
         password: User.generateHash('password'),
     }]
 }, {

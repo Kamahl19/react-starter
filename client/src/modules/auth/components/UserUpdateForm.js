@@ -18,7 +18,7 @@ export default class UserUpdateForm extends Component {
     componentWillMount() {
         const { linkSetState, user } = this.props;
 
-        linkSetState({ name: user.name });
+        linkSetState({ name: user.profile.name });
     }
 
     handleSubmit = (e) => {

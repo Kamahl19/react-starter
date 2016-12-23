@@ -10,8 +10,10 @@ const userSchema = new Schema({
     password: { type: String, required: true, select: false },
     passwordResetToken: String,
     passwordResetExpires: Date,
-    name: { type: String, default: '' },
     isAdmin: { type: Boolean, default: false },
+    profile: {
+        name: { type: String, default: '' },
+    },
 });
 
 /**
@@ -40,7 +42,7 @@ userSchema.methods.getPublicData = function () {
     return {
         id: this._id,
         email: this.email,
-        name: this.name,
+        profile: this.profile,
         isAdmin: this.isAdmin,
     };
 };

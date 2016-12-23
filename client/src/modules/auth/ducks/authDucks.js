@@ -196,7 +196,7 @@ export const getIsLoggedIn = createSelector(
 
 export const getUserName = createSelector(
     getUser,
-    (user) => (user && user.name),
+    (user) => (user && user.profile.name),
 );
 
 export const getUserId = createSelector(
