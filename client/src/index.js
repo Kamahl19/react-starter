@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Root } from '@src/containers';
-import configureStore from '@src/redux/configureStore';
+import configureStore from '@src/redux/store/configureStore';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);

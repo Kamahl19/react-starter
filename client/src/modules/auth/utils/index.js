@@ -1,4 +1,4 @@
-export { default as IsAdmin } from './IsAdmin';
-export { default as IsAnonymous } from './IsAnonymous';
-export { default as IsLoggedIn } from './IsLoggedIn';
-export { default as LoginWrapper } from './LoginWrapper';
+export { default as IsAdmin } from './hoc/IsAdmin';
+export { default as IsAnonymous } from './hoc/IsAnonymous';
+export { default as IsLoggedIn } from './hoc/IsLoggedIn';
+export { default as LoginWrapper } from './hoc/LoginWrapper';

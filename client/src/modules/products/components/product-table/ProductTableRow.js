@@ -3,7 +3,6 @@ import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
-import { Table } from '@src/components/table';
 
 const ProductTableRow = ({ product, idx, canDelete, canUpdate, onDeleteClick }) => (
     <tr>
@@ -39,46 +38,4 @@ ProductTableRow.propTypes = {
     onDeleteClick: PropTypes.func.isRequired,
 };
 
-const ProductTable = ({ products, canDelete, canUpdate, onDeleteClick }) => (
-    <Table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                {canUpdate &&
-                    <th></th>
-                }
-                {canDelete &&
-                    <th></th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            {products.map((product, idx) => (
-                <ProductTableRow
-                    key={product.id}
-                    product={product}
-                    idx={idx}
-                    canDelete={canDelete}
-                    canUpdate={canUpdate}
-                    onDeleteClick={onDeleteClick}
-                />
-            ))}
-            {!products.length &&
-                <tr>
-                    <td colSpan={10}>No products</td>
-                </tr>
-            }
-        </tbody>
-    </Table>
-);
-
-ProductTable.propTypes = {
-    products: PropTypes.array.isRequired,
-    canDelete: PropTypes.bool.isRequired,
-    canUpdate: PropTypes.bool.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
-};
-
-export default ProductTable;
+export default ProductTableRow;

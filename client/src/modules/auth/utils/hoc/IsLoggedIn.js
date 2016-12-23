@@ -1,13 +1,12 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { getAuth } from '../ducks/authDucks';
+import { getAuth } from '../../ducks/authDucks';
 
 export default UserAuthWrapper({
     authSelector: getAuth,
-    predicate: (auth) => auth.user === null,
+    predicate: (auth) => auth.user !== null,
     authenticatingSelector: (auth) => auth.isAuthenticating,
-    failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
+    failureRedirectPath: '/login',
     redirectAction: routerActions.replace,
-    wrapperDisplayName: 'LoginWrapper',
-    allowRedirectBack: false,
+    wrapperDisplayName: 'IsLoggedIn',
 });
