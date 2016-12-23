@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserIsAdmin } from '@src/modules/auth/ducks/authDucks';
 import { getProducts, fetchProducts, deleteProduct } from '../ducks/productsDucks';
-import { ProductTable } from '../components';
+import { ProductList } from '../components';
 
 const mapStateToProps = (state) => ({
     products: getProducts(state),
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class ProductTableContainer extends Component {
+export default class ProductListContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
         products: PropTypes.array.isRequired,
@@ -39,7 +39,7 @@ export default class ProductTableContainer extends Component {
         const { products, canDelete, canUpdate } = this.props;
 
         return (
-            <ProductTable
+            <ProductList
                 products={products}
                 canDelete={canDelete}
                 canUpdate={canUpdate}

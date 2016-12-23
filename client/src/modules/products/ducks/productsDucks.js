@@ -52,6 +52,7 @@ export const createProduct = (productData) =>
         productsApi.createProduct(productData)
             .then((payload) => {
                 dispatch(createProductActions.success(payload));
+                dispatch(push(`products/${payload.product.id}`));
             })
             .catch((error) => {
                 dispatch(createProductActions.failure(error));
