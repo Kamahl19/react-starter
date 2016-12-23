@@ -1,9 +1,7 @@
 const User = require('../models/User');
 const helpers = require('../helpers');
 const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
-const InternalServerError = require('../errors/InternalServerError');
-const BadRequestError = require('../errors/BadRequestError');
-const UnauthorizedError = require('../errors/UnauthorizedError');
+const { InternalServerError, BadRequestError, UnauthorizedError } = require('../errors');
 
 const UserController = {
 

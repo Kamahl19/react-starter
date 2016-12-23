@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const UserController = require('../controllers/UserController');
-const isLoggedIn = require('../middleware/isLoggedIn');
-const isOwnId = require('../middleware/isOwnId');
+const { isLoggedIn, isOwnId } = require('../middleware');
 
 router.route('/users')
     // Create new user

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const ProductController = require('../controllers/ProductController');
-const isLoggedIn = require('../middleware/isLoggedIn');
-const isAdmin = require('../middleware/isAdmin');
+const { isLoggedIn, isAdmin } = require('../middleware');
 
 router.route('/products')
     // Get all products

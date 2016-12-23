@@ -1,7 +1,6 @@
 const Product = require('../models/Product');
 const helpers = require('../helpers');
-const InternalServerError = require('../errors/InternalServerError');
-const BadRequestError = require('../errors/BadRequestError');
+const { InternalServerError, BadRequestError } = require('../errors');
 
 const ProductController = {
 
