@@ -32,4 +32,22 @@ export default {
                 body: credentials,
             }
         }),
+
+    forgottenPassword: (email) =>
+        callApi({
+            path: '/forgotten-password',
+            options: {
+                method: 'post',
+                body: email,
+            }
+        }),
+
+    resetPassword: (resetData) =>
+        callApi({
+            path: '/reset-password',
+            options: {
+                method: 'post',
+                body: resetData,
+            }
+        }),
 };

@@ -5,6 +5,15 @@ export const loginSchema = yup.object().shape({
     password: yup.string().min(6).required(),
 });
 
+export const forgottenPasswordSchema = yup.object().shape({
+    email: yup.string().max(255).email().required().label('E-mail'),
+});
+
+export const resetPasswordSchema = yup.object().shape({
+    password: yup.string().min(6).required(),
+    repeatPassword: yup.string().sameAs(yup.ref('password'), 'Passwords don\'t match').required(),
+});
+
 export const signUpSchema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().max(255).email().required().label('E-mail'),

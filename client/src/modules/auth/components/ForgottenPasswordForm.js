@@ -1,43 +1,36 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router';
 import linkedState from '@src/utils/LinkedState';
 import { Input } from '@src/components/inputs';
 
 import './auth.scss';
 
-@linkedState(['email', 'password'])
-export default class LoginForm extends Component {
+@linkedState(['email'])
+export default class ForgottenPasswordForm extends Component {
     static propTypes = {
         linkState: PropTypes.func.isRequired,
         email: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
         onSubmit: PropTypes.func.isRequired,
-        isAuthenticating: PropTypes.bool.isRequired,
         formErrors: PropTypes.object.isRequired,
     };
 
     handleSubmit = (e) => {
-        const { email, password, onSubmit } = this.props;
+        e.preventDefault();
 
-        onSubmit({ email, password });
-    }
+        const { email, onSubmit } = this.props;
 
-    renderForgotPassword() {
-        return (
-            <Link to="forgotten-password">
-                Forgot password?
-            </Link>
-        );
+        onSubmit({ email });
     }
 
     render() {
-        const { isAuthenticating, linkState, formErrors } = this.props;
+        const { linkState, formErrors } = this.props;
 
         return (
             <form onSubmit={this.handleSubmit} className="auth-form">
 
-                <h3>Log In</h3>
+                <h3>Forgotten Password</h3>
+
+                <p>Enter your E-mail and we will send you a password reset link.</p>
 
                 <Input
                     {...linkState('email')}
@@ -48,23 +41,12 @@ export default class LoginForm extends Component {
                     autoFocus
                 />
 
-                <Input
-                    {...linkState('password')}
-                    type="password"
-                    label="Password"
-                    placeholder="Password"
-                    name="password"
-                    error={formErrors.password}
-                    rightLabel={this.renderForgotPassword()}
-                />
-
                 <Button
                     type="submit"
                     onClick={this.handleSubmit}
-                    disabled={isAuthenticating}
                     bsStyle="primary"
                 >
-                    Log In
+                    Submit
                 </Button>
 
             </form>

@@ -54,7 +54,13 @@ export default function callApi({ path = '/', options }) {
     return fetch(process.env.REACT_APP_BACKEND_URL + path, getRequestOptions(options))
         .then(checkHttpStatus)
         .then(parseJSON)
-        .then(({ data }) => data)
+        .then(({ data }) => {
+            if (data.message) {
+                Alert.info(data.message);
+            }
+
+            return data;
+        })
         .catch(({ response }) => {
             if (!response) {
                 return throwError();

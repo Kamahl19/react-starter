@@ -53,7 +53,7 @@ export default class AppContainer extends Component {
 
                 <Alert
                     position="top-right"
-                    timeout={3000}
+                    timeout={5000}
                     stack={{ spacing: 10 }}
                 />
 

@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
     name: { type: String, default: '' },
     isAdmin: { type: Boolean, default: false },
 });
@@ -25,7 +28,7 @@ userSchema.methods.getAuthToken = function () {
     };
 
     const options = {
-        expiresIn: config.jwt.tokenExpireIn,
+        expiresIn: config.auth.jwtTokenExpireIn,
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, options);
@@ -37,6 +40,11 @@ userSchema.methods.getAuthToken = function () {
  * Static methods
  */
 userSchema.statics.generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+
+userSchema.statics.generatePasswordResetToken = () => ({
+    passwordResetToken: crypto.randomBytes(16).toString('hex'),
+    passwordResetExpires: Date.now() + config.auth.passwordResetExpireInMs,
+});
 
 const User = mongoose.model('User', userSchema);
 

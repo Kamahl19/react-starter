@@ -1,52 +1,35 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router';
 import linkedState from '@src/utils/LinkedState';
 import { Input } from '@src/components/inputs';
 
 import './auth.scss';
 
-@linkedState(['email', 'password'])
-export default class LoginForm extends Component {
+@linkedState(['password', 'repeatPassword'])
+export default class ResetPasswordForm extends Component {
     static propTypes = {
         linkState: PropTypes.func.isRequired,
-        email: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
+        repeatPassword: PropTypes.string.isRequired,
         onSubmit: PropTypes.func.isRequired,
-        isAuthenticating: PropTypes.bool.isRequired,
         formErrors: PropTypes.object.isRequired,
     };
 
     handleSubmit = (e) => {
-        const { email, password, onSubmit } = this.props;
+        e.preventDefault();
 
-        onSubmit({ email, password });
-    }
+        const { password, repeatPassword, onSubmit } = this.props;
 
-    renderForgotPassword() {
-        return (
-            <Link to="forgotten-password">
-                Forgot password?
-            </Link>
-        );
+        onSubmit({ password, repeatPassword });
     }
 
     render() {
-        const { isAuthenticating, linkState, formErrors } = this.props;
+        const { linkState, formErrors } = this.props;
 
         return (
             <form onSubmit={this.handleSubmit} className="auth-form">
 
-                <h3>Log In</h3>
-
-                <Input
-                    {...linkState('email')}
-                    label="E-mail"
-                    placeholder="E-mail"
-                    name="email"
-                    error={formErrors.email}
-                    autoFocus
-                />
+                <h3>Reset Password</h3>
 
                 <Input
                     {...linkState('password')}
@@ -55,16 +38,24 @@ export default class LoginForm extends Component {
                     placeholder="Password"
                     name="password"
                     error={formErrors.password}
-                    rightLabel={this.renderForgotPassword()}
+                    autoFocus
+                />
+
+                <Input
+                    {...linkState('repeatPassword')}
+                    type="password"
+                    label="Repeat Password"
+                    placeholder="Repeat Password"
+                    name="repeatPassword"
+                    error={formErrors.repeatPassword}
                 />
 
                 <Button
                     type="submit"
                     onClick={this.handleSubmit}
-                    disabled={isAuthenticating}
                     bsStyle="primary"
                 >
-                    Log In
+                    Submit
                 </Button>
 
             </form>

@@ -11,6 +11,8 @@ export const SIGN_UP = 'SIGN_UP';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const FORGOTTEN_PASSWORD = 'FORGOTTEN_PASSWORD';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
 
 /**
  * ACTIONS
@@ -19,6 +21,8 @@ const fetchUserActions = createActionCreators(FETCH_USER);
 const signUpActions = createActionCreators(SIGN_UP);
 const updateUserActions = createActionCreators(UPDATE_USER);
 const loginUserActions = createActionCreators(LOGIN_USER);
+const forgottenPasswordActions = createActionCreators(FORGOTTEN_PASSWORD);
+const resetPasswordActions = createActionCreators(RESET_PASSWORD);
 const logoutUser = createActionCreator(LOGOUT_USER);
 
 export const fetchUser = (userId) =>
@@ -96,6 +100,35 @@ export const loginWithToken = () =>
                     dispatch(loginUserActions.failure());
                 });
         }
+    };
+
+export const forgottenPassword = (email) =>
+    (dispatch) => {
+        dispatch(forgottenPasswordActions.request());
+
+        authApi.forgottenPassword(email)
+            .then((payload) => {
+                dispatch(forgottenPasswordActions.success(payload));
+                dispatch(push('/'));
+            })
+            .catch((error) => {
+                dispatch(forgottenPasswordActions.failure(error));
+            });
+    };
+
+export const resetPassword = (resetData) =>
+    (dispatch) => {
+        dispatch(resetPasswordActions.request());
+
+        authApi.resetPassword(resetData)
+            .then((payload) => {
+                dispatch(resetPasswordActions.success(payload));
+                dispatch(loginUserActions.success(payload));
+                saveTokenToLS(payload.token);
+            })
+            .catch((error) => {
+                dispatch(resetPasswordActions.failure(error));
+            });
     };
 
 export const logout = () =>

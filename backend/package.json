@@ -48,9 +48,12 @@
     "express": "^4.14.0",
     "helmet": "^3.1.0",
     "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.2",
     "middleware-flow": "^0.8.0",
     "mongoose": "^4.7.2",
     "mongoose-seed": "^0.3.1",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "nodemailer": "^2.7.0",
+    "nodemailer-mailgun-transport": "^1.2.3"
   }
 }
