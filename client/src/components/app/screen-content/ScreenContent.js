@@ -4,7 +4,7 @@ import { Grid } from 'react-bootstrap';
 import './screen-content.scss';
 
 const ScreenContent = ({ children }) => (
-    <div id="screen-content">
+    <div id="screen-content" className="screen-content">
         <Grid>
             {children}
         </Grid>

@@ -4,7 +4,7 @@ import { Grid } from 'react-bootstrap';
 import './footer.scss';
 
 export default () => (
-    <footer id="screen-footer">
+    <footer className="screen-footer">
         <Grid>
             This is a footer
         </Grid>

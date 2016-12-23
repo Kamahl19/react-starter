@@ -5,7 +5,7 @@ import AnonymousMenu from './AnonymousMenu';
 import UserMenu from './UserMenu';
 
 const Header = ({ isLoggedIn, userName, logout }) => (
-    <div id="screen-header">
+    <div className="screen-header">
         <Navbar fixedTop>
             <Navbar.Header>
                 <Navbar.Brand>

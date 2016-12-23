@@ -10,7 +10,7 @@ const Loader = ({ show }) => {
     }
 
     return (
-        <div id="loader-overlay">
+        <div className="loader-overlay">
             <ReactLoaders
                 type="ball-spin-fade-loader"
             />

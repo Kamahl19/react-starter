@@ -35,7 +35,7 @@ export default class AppContainer extends Component {
         const { actions, children, showLoader, isLoggedIn, userName } = this.props;
 
         return (
-            <div id="screen-wrapper">
+            <div className="screen-wrapper">
 
                 <Header
                     isLoggedIn={isLoggedIn}
