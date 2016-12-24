@@ -6,7 +6,7 @@ import {
     LoginContainer, SignUpContainer, ForgottenPasswordFormContainer, ResetPasswordFormContainer,
     UserProfileContainer, UserUpdateContainer,
 } from '@src/modules/auth/containers';
-import { ProductListContainer, ProductDetailContainer, ProductCreateContainer, ProductUpdateContainer } from '@src/modules/products/containers';
+import { ProductListContainer, ProductDetailContainer, ProductCreateContainer, ProductUpdateContainer } from '@src/modules/product/containers';
 import { Error404Container } from '@src/modules/error-404/containers';
 
 export default (

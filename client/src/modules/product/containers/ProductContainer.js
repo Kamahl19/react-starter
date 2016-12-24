@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createSelector } from 'reselect';
-import { getSelectedProduct, fetchProduct } from '../ducks/productsDucks';
+import { getSelectedProduct, fetchProduct } from '../ducks/productDucks';
 
 const makeGetProductIdFromUrl = () =>
     createSelector(

@@ -9,8 +9,8 @@ const productSchema = new Schema({
 productSchema.methods.getPublicData = function () {
     return {
         id: this._id,
-        email: this.name,
-        name: this.description,
+        name: this.name,
+        description: this.description,
     };
 };
 

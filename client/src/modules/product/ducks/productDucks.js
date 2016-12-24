@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { push } from 'react-router-redux';
 import { createActionCreators, createReducer } from '@src/redux/reduxHelpers';
 import { REQUEST, SUCCESS, FAILURE } from '@src/redux/actionTypes';
-import productsApi from '../api/productsApi';
+import productApi from '../api/productApi';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const FETCH_PRODUCT = 'FETCH_PRODUCT';
@@ -23,7 +23,7 @@ export const fetchProducts = () =>
     (dispatch) => {
         dispatch(fetchProductsActions.request());
 
-        productsApi.fetchProducts()
+        productApi.fetchProducts()
             .then((payload) => {
                 dispatch(fetchProductsActions.success(payload));
             })
@@ -36,7 +36,7 @@ export const fetchProduct = (productId) =>
     (dispatch) => {
         dispatch(fetchProductActions.request());
 
-        productsApi.fetchProduct(productId)
+        productApi.fetchProduct(productId)
             .then((payload) => {
                 dispatch(fetchProductActions.success(payload));
             })
@@ -49,7 +49,7 @@ export const createProduct = (productData) =>
     (dispatch) => {
         dispatch(createProductActions.request());
 
-        productsApi.createProduct(productData)
+        productApi.createProduct(productData)
             .then((payload) => {
                 dispatch(createProductActions.success(payload));
                 dispatch(push(`products/${payload.product.id}`));
@@ -63,7 +63,7 @@ export const updateProduct = (productId, productData) =>
     (dispatch) => {
         dispatch(updateProductActions.request());
 
-        productsApi.updateProduct(productId, productData)
+        productApi.updateProduct(productId, productData)
             .then((payload) => {
                 dispatch(updateProductActions.success(payload));
                 dispatch(push(`products/${payload.product.id}`));
@@ -77,7 +77,7 @@ export const deleteProduct = (productId) =>
     (dispatch) => {
         dispatch(deleteProductActions.request());
 
-        productsApi.deleteProduct(productId)
+        productApi.deleteProduct(productId)
             .then((payload) => {
                 dispatch(deleteProductActions.success(payload));
             })
@@ -124,8 +124,8 @@ export default combineReducers({
 /**
  * SELECTORS
  */
-export const getProductsState = (state) => state.products;
+export const getProductState = (state) => state.product;
 
-export const getSelectedProduct = (state) => getProductsState(state).selectedProduct;
+export const getSelectedProduct = (state) => getProductState(state).selectedProduct;
 
-export const getProducts = (state) => getProductsState(state).products;
+export const getProducts = (state) => getProductState(state).products;

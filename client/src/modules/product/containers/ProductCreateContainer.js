@@ -2,20 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import formValidation from '@src/utils/formValidation';
-import { updateProduct } from '../ducks/productsDucks';
-import { ProductContainer } from '../containers';
-import { ProductUpdateForm } from '../components';
-import { productSchema } from '../schema/productsSchema';
+import { createProduct } from '../ducks/productDucks';
+import { ProductCreateForm } from '../components';
+import { productSchema } from '../schema/productSchema';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ updateProduct }, dispatch),
+    actions: bindActionCreators({ createProduct }, dispatch),
 });
 
-@ProductContainer
 @connect(undefined, mapDispatchToProps)
-export default class ProductUpdateContainer extends Component {
+export default class ProductCreateContainer extends Component {
     static propTypes = {
-        product: PropTypes.object.isRequired,
         actions: PropTypes.object.isRequired,
     };
 
@@ -24,25 +21,23 @@ export default class ProductUpdateContainer extends Component {
     };
 
     onSubmit = (productData) => {
-        const { actions, product } = this.props;
+        const { actions } = this.props;
 
         this.setState({ formErrors: {} });
 
         formValidation(productSchema, productData)
             .then(() => {
-                actions.updateProduct(product.id, productData);
+                actions.createProduct(productData);
             }, (formErrors) => {
                 this.setState({ formErrors });
             });
     }
 
     render() {
-        const { product } = this.props;
         const { formErrors } = this.state;
 
         return (
-            <ProductUpdateForm
-                product={product}
+            <ProductCreateForm
                 formErrors={formErrors}
                 onSubmit={this.onSubmit}
             />

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserIsAdmin } from '@src/modules/auth/ducks/authDucks';
-import { getProducts, fetchProducts, deleteProduct } from '../ducks/productsDucks';
+import { getProducts, fetchProducts, deleteProduct } from '../ducks/productDucks';
 import { ProductList } from '../components';
 
 const mapStateToProps = (state) => ({
