@@ -55,6 +55,7 @@ export default class AppContainer extends Component {
                     position="top-right"
                     timeout={5000}
                     stack={{ spacing: 10 }}
+                    html
                 />
 
             </div>
