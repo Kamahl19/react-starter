@@ -7,6 +7,7 @@ import { ProductList } from '../components';
 
 const mapStateToProps = (state) => ({
     products: getProducts(state),
+    canCreate: getUserIsAdmin(state),
     canDelete: getUserIsAdmin(state),
     canUpdate: getUserIsAdmin(state),
 });
@@ -23,6 +24,7 @@ export default class ProductListContainer extends Component {
     static propTypes = {
         actions: PropTypes.object.isRequired,
         products: PropTypes.array.isRequired,
+        canCreate: PropTypes.bool.isRequired,
         canDelete: PropTypes.bool.isRequired,
         canUpdate: PropTypes.bool.isRequired,
     };
@@ -36,11 +38,12 @@ export default class ProductListContainer extends Component {
     }
 
     render() {
-        const { products, canDelete, canUpdate } = this.props;
+        const { products, canCreate, canDelete, canUpdate } = this.props;
 
         return (
             <ProductList
                 products={products}
+                canCreate={canCreate}
                 canDelete={canDelete}
                 canUpdate={canUpdate}
                 onDeleteClick={this.onDeleteClick}
