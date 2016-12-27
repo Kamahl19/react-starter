@@ -45,7 +45,7 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.1.0",
     "loaders.css": "^0.1.2",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.3",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
