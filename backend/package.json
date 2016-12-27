@@ -29,7 +29,7 @@
   },
   "main": "app/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon --inspect app/index.js",
+    "start": "cross-env NODE_ENV=development nodemon --inspect --harmony-async-await app/index.js",
     "seed": "node seed-db.js"
   },
   "devDependencies": {

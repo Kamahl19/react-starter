@@ -7,13 +7,13 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/UserRoutes');
 const productRoutes = require('./routes/ProductRoutes');
 const config = require('./config');
-const helpers = require('./helpers');
 const logger = require('./logger');
+const { normalizePort } = require('./helpers');
 
 const app = express();
 
 // Set port
-app.set('port', helpers.normalizePort(process.env.PORT));
+app.set('port', normalizePort(process.env.PORT));
 
 // Parse body params and attach them to req.body
 app.use(bodyParser.json());

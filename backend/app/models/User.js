@@ -12,18 +12,18 @@ const userSchema = new Schema({
     passwordResetExpires: Date,
     isAdmin: { type: Boolean, default: false },
     profile: {
-        name: { type: String, default: '' },
+        name: { type: String, required: true },
     },
 }, { timestamps: true });
 
 /**
  * Methods
  */
-userSchema.methods.validPassword = function (password) {
+userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.getAuthToken = function () {
+userSchema.methods.getAuthToken = function() {
     const payload = {
         userId: this._id,
         isAdmin: this.isAdmin,
@@ -38,7 +38,7 @@ userSchema.methods.getAuthToken = function () {
     return token;
 };
 
-userSchema.methods.getPublicData = function () {
+userSchema.methods.getPublicData = function() {
     return {
         id: this._id,
         email: this.email,
@@ -50,7 +50,7 @@ userSchema.methods.getPublicData = function () {
 /**
  * Static methods
  */
-userSchema.statics.generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+userSchema.statics.generateHash = (password) => (password ? bcrypt.hashSync(password, bcrypt.genSaltSync(10)) : null);
 
 userSchema.statics.generatePasswordResetToken = () => ({
     passwordResetToken: crypto.randomBytes(16).toString('hex'),

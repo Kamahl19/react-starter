@@ -6,7 +6,10 @@ const productSchema = new Schema({
     description: { type: String, default: '' },
 }, { timestamps: true });
 
-productSchema.methods.getPublicData = function () {
+/**
+ * Methods
+ */
+productSchema.methods.getPublicData = function() {
     return {
         id: this._id,
         name: this.name,

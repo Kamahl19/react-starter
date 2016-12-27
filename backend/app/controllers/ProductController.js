@@ -1,121 +1,118 @@
 const Product = require('../models/Product');
-const helpers = require('../helpers');
-const { InternalServerError, BadRequestError } = require('../errors');
+const { getSuccessResult } = require('../helpers');
+const { BadRequestError } = require('../errors');
 
 const ProductController = {
 
     /**
      * Get all Products
      */
-    getAll: (req, res, next) => {
-        Product.find({}, (err, products) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+    getAll: async (req, res, next) => {
+        try {
+            const products = await Product.find({});
 
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 products: products.map((product) => product.getPublicData())
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Get Product by ID
      */
-    getById: (req, res, next) => {
-        const { productId } = req.params;
+    getById: async (req, res, next) => {
+        try {
+            const { productId } = req.params;
 
-        Product.findById(productId, (err, product) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const product = await Product.findById(productId);
 
             if (!product) {
-                return next(new BadRequestError({ message: 'Requested product doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
             }
 
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 product: product.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Create Product
      */
-    create: (req, res, next) => {
-        const { name, description } = req.body;
+    create: async (req, res, next) => {
+        try {
+            const { name, description } = req.body;
 
-        if (!name) {
-            return next(new BadRequestError({ message: 'Product\'s data are missing.' }));
-        }
+            const product = new Product({
+                name,
+                description,
+            });
 
-        const product = new Product({
-            name,
-            description,
-        });
+            await product.save();
 
-        product.save((err) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
-
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 product: product.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Update Product
      */
-    update: (req, res, next) => {
-        const { productId } = req.params;
-        const { name, description } = req.body;
+    update: async (req, res, next) => {
+        try {
+            const { productId } = req.params;
+            const { name, description } = req.body;
 
-        if (!name) {
-            return next(new BadRequestError({ message: 'Product\'s data are missing.' }));
-        }
+            const newData = {
+                name,
+                description,
+            };
 
-        const newData = {
-            name,
-            description,
-        };
-
-        Product.findByIdAndUpdate(productId, newData, { new: true }, (err, product) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const product = await Product.findByIdAndUpdate(productId, newData, { new: true, runValidators: true });
 
             if (!product) {
-                return next(new BadRequestError({ message: 'Requested product doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
             }
 
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 product: product.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Delete Product
      */
-    delete: (req, res, next) => {
-        const { productId } = req.params;
+    delete: async (req, res, next) => {
+        try {
+            const { productId } = req.params;
 
-        Product.findByIdAndRemove(productId, (err, product) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const product = await Product.findByIdAndRemove(productId);
 
             if (!product) {
-                return next(new BadRequestError({ message: 'Requested product doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
             }
 
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 product: product.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
 };

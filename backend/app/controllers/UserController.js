@@ -1,198 +1,175 @@
 const User = require('../models/User');
-const helpers = require('../helpers');
+const { getSuccessResult } = require('../helpers');
 const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
-const { InternalServerError, BadRequestError, UnauthorizedError } = require('../errors');
+const { BadRequestError, UnauthorizedError } = require('../errors');
 
 const UserController = {
 
     /**
      * Get User by ID
      */
-    getById: (req, res, next) => {
-        const { userId } = req.params;
+    getById: async (req, res, next) => {
+        try {
+            const { userId } = req.params;
 
-        User.findById(userId, (err, user) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const user = await User.findById(userId);
 
             if (!user) {
-                return next(new BadRequestError({ message: 'Requested user doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
             }
 
-            return helpers.getSuccessResult(res, {
-                user: user.getPublicData()
+            return getSuccessResult(res, {
+                user: user.getPublicData(),
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Create User
      */
-    create: (req, res, next) => {
-        const { email, name, password } = req.body;
+    create: async (req, res, next) => {
+        try {
+            const { email, name, password } = req.body;
 
-        if (!email || !name || !password) {
-            return next(new BadRequestError({ message: 'User\'s data are missing.' }));
-        }
-
-        const user = new User({
-            email,
-            profile: {
-                name,
-            },
-            password: User.generateHash(password),
-        });
-
-        user.save((err) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
-
-            return helpers.getSuccessResult(res, {
-                token: user.getAuthToken(),
-                user: user.getPublicData()
+            const user = new User({
+                email,
+                profile: {
+                    name,
+                },
+                password: User.generateHash(password),
             });
-        });
+
+            await user.save();
+
+            return getSuccessResult(res, {
+                token: user.getAuthToken(),
+                user: user.getPublicData(),
+            });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Update User
      */
-    update: (req, res, next) => {
-        const { userId } = req.params;
-        const { name, password } = req.body;
+    update: async (req, res, next) => {
+        try {
+            const { userId } = req.params;
+            const { name, password } = req.body;
 
-        if (!name) {
-            return next(new BadRequestError({ message: 'User\'s data are missing.' }));
-        }
+            const newData = {
+                profile: {
+                    name
+                }
+            };
 
-        const newData = {
-            profile: {
-                name
+            if (password) {
+                newData.password = User.generateHash(password);
             }
-        };
 
-        if (password) {
-            newData.password = User.generateHash(password);
-        }
-
-        User.findByIdAndUpdate(userId, newData, { new: true }, (err, user) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const user = await User.findByIdAndUpdate(userId, newData, { new: true, runValidators: true });
 
             if (!user) {
-                return next(new BadRequestError({ message: 'Requested user doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
             }
 
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 user: user.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Login User
      */
-    login: (req, res, next) => {
-        const { email, password } = req.body;
+    login: async (req, res, next) => {
+        try {
+            const { email, password } = req.body;
 
-        if (!email || !password) {
-            return next(new UnauthorizedError({ message: 'Login credentials are missing.' }));
-        }
+            const user = await User.findOne({ email }, '+password');
 
-        User.findOne({ email }, '+password', (err, user) => {
-            if (err) {
-                return next(new InternalServerError(err));
+            if (!user.validPassword(password)) {
+                throw new UnauthorizedError({ message: 'Login credentials are wrong.' });
             }
 
-            if (!user || !user.validPassword(password)) {
-                return next(new UnauthorizedError({ message: 'Login credentials are wrong.' }));
-            }
-
-            return helpers.getSuccessResult(res, {
+            return getSuccessResult(res, {
                 token: user.getAuthToken(),
                 user: user.getPublicData()
             });
-        });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Forgotten Password
      */
-    forgottenPassword: (req, res, next) => {
-        const { email } = req.body;
+    forgottenPassword: async (req, res, next) => {
+        try {
+            const { email } = req.body;
 
-        if (!email) {
-            return next(new UnauthorizedError({ message: 'E-mail is missing.' }));
-        }
+            const newData = User.generatePasswordResetToken();
 
-        const newData = User.generatePasswordResetToken();
-
-        User.findOneAndUpdate({ email }, newData, { new: true }, (err, user) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const user = await User.findOneAndUpdate({ email }, newData, { new: true, runValidators: true });
 
             if (!user) {
-                return next(new BadRequestError({ message: 'Requested user doesn\'t exist.' }));
+                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
             }
 
             const link = `${req.headers.origin}${process.env.CORS_ORIGIN ? '/#' : ''}/reset-password/${newData.passwordResetToken}`;
 
-            sendForgottenPasswordMail({ to: user.email }, link)
-                .then(() => {
-                    helpers.getSuccessResult(res, {
-                        message: `An e-mail has been sent to ${user.email} with further instructions.`,
-                    });
-                })
-                .catch((reason) => {
-                    next(new InternalServerError(reason));
-                });
-        });
+            await sendForgottenPasswordMail({ to: user.email }, link);
+
+            return getSuccessResult(res, {
+                message: `An e-mail has been sent to ${user.email} with further instructions.`,
+            });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
     /**
      * Reset Password
      */
-    resetPassword: (req, res, next) => {
-        const { passwordResetToken, password } = req.body;
+    resetPassword: async (req, res, next) => {
+        try {
+            const { passwordResetToken, password } = req.body;
 
-        if (!passwordResetToken || !password) {
-            return next(new UnauthorizedError({ message: 'Password or Token are missing.' }));
-        }
+            const newData = {
+                password: User.generateHash(password),
+                passwordResetToken: undefined,
+                passwordResetExpires: undefined,
+            };
 
-        const newData = {
-            password: User.generateHash(password),
-            passwordResetToken: undefined,
-            passwordResetExpires: undefined,
-        };
-
-        User
-        .findOneAndUpdate({ passwordResetToken }, newData, { new: true })
-        .where('passwordResetExpires').gt(Date.now())
-        .exec((err, user) => {
-            if (err) {
-                return next(new InternalServerError(err));
-            }
+            const user = await User.findOneAndUpdate({ passwordResetToken }, newData, { new: true, runValidators: true })
+                                    .where('passwordResetExpires').gt(Date.now())
+                                    .exec();
 
             if (!user) {
-                return next(new BadRequestError({ message: 'Password reset token is invalid or has expired.' }));
+                throw new BadRequestError({ message: 'Password reset token is invalid or has expired.' });
             }
 
-            sendResetPasswordMail({ to: user.email })
-                .then(() => {
-                    helpers.getSuccessResult(res, {
-                        message: `Success! Your password has been changed.`,
-                        token: user.getAuthToken(),
-                        user: user.getPublicData()
-                    });
-                })
-                .catch((reason) => {
-                    next(new InternalServerError(reason));
-                });
-        });
+            await sendResetPasswordMail({ to: user.email });
+
+            return getSuccessResult(res, {
+                message: `Success! Your password has been changed.`,
+                token: user.getAuthToken(),
+                user: user.getPublicData()
+            });
+        }
+        catch (err) {
+            next(err);
+        }
     },
 
 };

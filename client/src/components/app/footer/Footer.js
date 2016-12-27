@@ -6,7 +6,7 @@ import './footer.scss';
 export default () => (
     <footer className="screen-footer">
         <Grid>
-            This is a footer
+            Footer
         </Grid>
     </footer>
 );
