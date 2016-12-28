@@ -1,5 +1,5 @@
 const lodash = require('lodash');
-const { sendMail } = require('./mailer');
+const { sendMail } = require('./utils/mailer');
 
 const sendForgottenPasswordMail = (options, link) => sendMail(lodash.merge({}, options, {
     subject: 'Reset your password',

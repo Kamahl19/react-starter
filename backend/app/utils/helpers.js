@@ -1,4 +1,4 @@
-const helpers = {
+module.exports = {
     /**
      * Return success result
      */
@@ -28,5 +28,3 @@ const helpers = {
         return false;
     },
 };
-
-module.exports = helpers;

@@ -2,7 +2,7 @@ const bunyan = require('bunyan');
 const fs = require('fs');
 const path = require('path');
 
-const logDirectory = process.env.LOG_DIR || path.resolve(__dirname, '..', 'logs');
+const logDirectory = process.env.LOG_DIR || path.resolve('./logs');
 
 try {
     fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);

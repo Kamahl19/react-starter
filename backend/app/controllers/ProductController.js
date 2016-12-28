@@ -1,5 +1,5 @@
 const Product = require('../models/Product');
-const { getSuccessResult } = require('../helpers');
+const { getSuccessResult } = require('../utils/helpers');
 const { BadRequestError } = require('../errors');
 
 const ProductController = {

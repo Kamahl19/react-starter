@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const http = require('http');
 const mongoose = require('mongoose');
-const logger = require('./logger');
+const logger = require('./utils/logger');
 const config = require('./config');
 const app = require('./app');
 

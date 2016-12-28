@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const { getSuccessResult } = require('../helpers');
+const { getSuccessResult } = require('../utils/helpers');
 const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
 const { BadRequestError, UnauthorizedError } = require('../errors');
 

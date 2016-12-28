@@ -7,8 +7,8 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/UserRoutes');
 const productRoutes = require('./routes/ProductRoutes');
 const config = require('./config');
-const logger = require('./logger');
-const { normalizePort } = require('./helpers');
+const logger = require('./utils/logger');
+const { normalizePort } = require('./utils/helpers');
 
 const app = express();
 
