@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const { getSuccessResult } = require('../utils/helpers');
-const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
-const { NotFoundError, UnauthorizedError, ForbiddenError } = require('../utils/apiErrors');
+const User = require('./UserModel');
+const { getSuccessResult } = require('../../utils/helpers');
+const { NotFoundError, UnauthorizedError, ForbiddenError } = require('../../utils/apiErrors');
+const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../../preddefinedMails');
 
 const UserController = {
 

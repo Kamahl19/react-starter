@@ -29,7 +29,7 @@ const config = {
         },
     },
     auth: {
-        jwtTokenExpireIn: 24 * 60 * 60, // 1 day
+        jwtTokenExpireInSec: 24 * 60 * 60, // 1 day
         passwordResetExpireInMs: 60 * 60 * 1000, // 1 hour
     },
     cacheFilesFor: '1d',

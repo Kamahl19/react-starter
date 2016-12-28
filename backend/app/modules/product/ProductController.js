@@ -1,6 +1,6 @@
-const Product = require('../models/Product');
-const { getSuccessResult } = require('../utils/helpers');
-const { NotFoundError } = require('../utils/apiErrors');
+const Product = require('./ProductModel');
+const { getSuccessResult } = require('../../utils/helpers');
+const { NotFoundError } = require('../../utils/apiErrors');
 
 const ProductController = {
 

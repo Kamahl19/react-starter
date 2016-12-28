@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const userRoutes = require('./UserRoutes');
-const productRoutes = require('./ProductRoutes');
+const userRoutes = require('./modules/user/UserRoutes');
+const productRoutes = require('./modules/product/ProductRoutes');
 
 router.get('/health-check', (req, res) => res.send('OK'));
 

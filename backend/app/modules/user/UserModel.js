@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const config = require('../config');
+const config = require('../../config');
 
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
@@ -30,7 +30,7 @@ userSchema.methods.getAuthToken = function() {
     };
 
     const options = {
-        expiresIn: config.auth.jwtTokenExpireIn,
+        expiresIn: config.auth.jwtTokenExpireInSec,
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, options);
