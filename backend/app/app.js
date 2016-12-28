@@ -15,17 +15,17 @@ const app = express();
 // Set port
 app.set('port', normalizePort(process.env.PORT));
 
+// Log requests to the console
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
 // Parse body params and attach them to req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Gzip
 app.use(compression());
-
-// Use morgan to log requests to the console
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-}
 
 // Allow CORS
 if (config.cors.origin) {
