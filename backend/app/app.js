@@ -5,8 +5,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const httpStatus = require('http-status');
-const userRoutes = require('./routes/UserRoutes');
-const productRoutes = require('./routes/ProductRoutes');
+const routes = require('./routes');
 const config = require('./config');
 const logger = require('./utils/logger');
 const { normalizePort } = require('./utils/helpers');
@@ -46,8 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Routes
-app.use('/api', userRoutes);
-app.use('/api', productRoutes);
+app.use('/api', routes);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
