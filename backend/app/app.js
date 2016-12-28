@@ -8,8 +8,8 @@ const httpStatus = require('http-status');
 const routes = require('./routes');
 const config = require('./config');
 const logger = require('./utils/logger');
-const { normalizePort } = require('./utils/helpers');
-const { NotFoundError } = require('./utils/apiErrors');
+const { normalizePort, getErrorMessage } = require('./utils/helpers');
+const { NotFoundError, BadRequestError } = require('./utils/apiErrors');
 
 const app = express();
 
@@ -46,6 +46,14 @@ if (process.env.NODE_ENV === 'production') {
 
 // Routes
 app.use('/api', routes);
+
+// Params/Body/Headers/Query Validation
+app.use((err, req, res, next) => {
+    if (err.isJoi) {
+        return next(new BadRequestError({ message: getErrorMessage(err.details) }));
+    }
+    return next(err);
+});
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
