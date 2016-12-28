@@ -24,11 +24,11 @@ export default (
 
         <Route path="sign-up" component={IsAnonymous(SignUpContainer)} />
 
-        <Route path="login" component={LoginWrapper(LoginContainer)} />
+        <Route path="auth/login" component={LoginWrapper(LoginContainer)} />
 
-        <Route path="forgotten-password" component={IsAnonymous(ForgottenPasswordFormContainer)} />
+        <Route path="auth/forgotten-password" component={IsAnonymous(ForgottenPasswordFormContainer)} />
 
-        <Route path="reset-password/:passwordResetToken" component={IsAnonymous(ResetPasswordFormContainer)} />
+        <Route path="auth/reset-password/:passwordResetToken" component={IsAnonymous(ResetPasswordFormContainer)} />
 
         <Route path="me" component={IsLoggedIn(UserProfileContainer)} />
 

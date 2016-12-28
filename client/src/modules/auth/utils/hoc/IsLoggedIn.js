@@ -6,7 +6,7 @@ export default UserAuthWrapper({
     authSelector: getAuth,
     predicate: (auth) => auth.user !== null,
     authenticatingSelector: (auth) => auth.isAuthenticating,
-    failureRedirectPath: '/login',
+    failureRedirectPath: '/auth/login',
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'IsLoggedIn',
 });

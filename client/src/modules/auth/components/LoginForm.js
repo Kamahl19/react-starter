@@ -27,7 +27,7 @@ export default class LoginForm extends Component {
 
     renderForgotPassword() {
         return (
-            <Link to="forgotten-password">
+            <Link to="auth/forgotten-password">
                 Forgot password?
             </Link>
         );

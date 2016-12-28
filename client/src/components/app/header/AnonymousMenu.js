@@ -8,7 +8,7 @@ export default () => (
             <LinkContainer to="/sign-up">
                 <NavItem>Sign Up</NavItem>
             </LinkContainer>
-            <LinkContainer to="/login">
+            <LinkContainer to="/auth/login">
                 <NavItem>Log In</NavItem>
             </LinkContainer>
         </Nav>

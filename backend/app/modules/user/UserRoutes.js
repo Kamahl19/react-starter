@@ -12,16 +12,4 @@ router.route('/users/:userId')
     // Update user
     .put(isLoggedIn, isOwnId, UserController.update);
 
-router.route('/login')
-    // Login
-    .post(UserController.login);
-
-router.route('/forgotten-password')
-    // Forgotten Password
-    .post(UserController.forgottenPassword);
-
-router.route('/reset-password')
-    // Reset Password
-    .post(UserController.resetPassword);
-
 module.exports = router;

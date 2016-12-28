@@ -26,7 +26,7 @@ export default {
 
     loginUser: (credentials) =>
         callApi({
-            path: '/login',
+            path: '/auth/login',
             options: {
                 method: 'post',
                 body: credentials,
@@ -35,7 +35,7 @@ export default {
 
     forgottenPassword: (email) =>
         callApi({
-            path: '/forgotten-password',
+            path: '/auth/forgotten-password',
             options: {
                 method: 'post',
                 body: email,
@@ -44,7 +44,7 @@ export default {
 
     resetPassword: (resetData) =>
         callApi({
-            path: '/reset-password',
+            path: '/auth/reset-password',
             options: {
                 method: 'post',
                 body: resetData,
