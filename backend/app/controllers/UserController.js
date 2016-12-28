@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const { getSuccessResult } = require('../utils/helpers');
 const { sendForgottenPasswordMail, sendResetPasswordMail } = require('../preddefinedMails');
-const { BadRequestError, UnauthorizedError } = require('../errors');
+const { NotFoundError, UnauthorizedError, ForbiddenError } = require('../utils/apiErrors');
 
 const UserController = {
 
@@ -15,7 +15,7 @@ const UserController = {
             const user = await User.findById(userId);
 
             if (!user) {
-                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
             }
 
             return getSuccessResult(res, {
@@ -75,7 +75,7 @@ const UserController = {
             const user = await User.findByIdAndUpdate(userId, newData, { new: true, runValidators: true });
 
             if (!user) {
-                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
             }
 
             return getSuccessResult(res, {
@@ -122,7 +122,7 @@ const UserController = {
             const user = await User.findOneAndUpdate({ email }, newData, { new: true, runValidators: true });
 
             if (!user) {
-                throw new BadRequestError({ message: 'Requested user doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
             }
 
             const link = `${req.headers.origin}${process.env.CORS_ORIGIN ? '/#' : ''}/reset-password/${newData.passwordResetToken}`;
@@ -156,7 +156,7 @@ const UserController = {
                                     .exec();
 
             if (!user) {
-                throw new BadRequestError({ message: 'Password reset token is invalid or has expired.' });
+                throw new ForbiddenError({ message: 'Password reset token is invalid or has expired.' });
             }
 
             await sendResetPasswordMail({ to: user.email });

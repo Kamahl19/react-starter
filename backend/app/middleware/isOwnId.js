@@ -1,4 +1,4 @@
-const { UnauthorizedError } = require('../errors');
+const { UnauthorizedError } = require('../utils/apiErrors');
 
 /**
  * Verify if user is accesing his own user account

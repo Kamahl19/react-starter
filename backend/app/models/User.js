@@ -25,7 +25,7 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.methods.getAuthToken = function() {
     const payload = {
-        userId: this._id,
+        userId: this.id,
         isAdmin: this.isAdmin,
     };
 
@@ -40,7 +40,7 @@ userSchema.methods.getAuthToken = function() {
 
 userSchema.methods.getPublicData = function() {
     return {
-        id: this._id,
+        id: this.id,
         email: this.email,
         profile: this.profile,
         isAdmin: this.isAdmin,

@@ -4,11 +4,13 @@ const helmet = require('helmet');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const httpStatus = require('http-status');
 const userRoutes = require('./routes/UserRoutes');
 const productRoutes = require('./routes/ProductRoutes');
 const config = require('./config');
 const logger = require('./utils/logger');
 const { normalizePort } = require('./utils/helpers');
+const { NotFoundError } = require('./utils/apiErrors');
 
 const app = express();
 
@@ -49,16 +51,14 @@ app.use('/api', productRoutes);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    return next(new NotFoundError('Not Found'));
 });
 
 // Error middleware
 app.use((err, req, res, next) => {
     logger.error(err);
 
-    res.status(err.status || 500);
+    res.status(err.status || httpStatus.INTERNAL_SERVER_ERROR);
 
     res.json({
         message: err.message,

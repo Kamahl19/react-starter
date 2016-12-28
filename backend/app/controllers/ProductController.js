@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const { getSuccessResult } = require('../utils/helpers');
-const { BadRequestError } = require('../errors');
+const { NotFoundError } = require('../utils/apiErrors');
 
 const ProductController = {
 
@@ -30,7 +30,7 @@ const ProductController = {
             const product = await Product.findById(productId);
 
             if (!product) {
-                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
             }
 
             return getSuccessResult(res, {
@@ -81,7 +81,7 @@ const ProductController = {
             const product = await Product.findByIdAndUpdate(productId, newData, { new: true, runValidators: true });
 
             if (!product) {
-                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
             }
 
             return getSuccessResult(res, {
@@ -103,7 +103,7 @@ const ProductController = {
             const product = await Product.findByIdAndRemove(productId);
 
             if (!product) {
-                throw new BadRequestError({ message: 'Requested product doesn\'t exist.' });
+                throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
             }
 
             return getSuccessResult(res, {

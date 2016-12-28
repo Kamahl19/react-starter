@@ -1,38 +1,26 @@
 const jwt = require('jsonwebtoken');
-const { UnauthorizedError } = require('../errors');
+const { UnauthorizedError } = require('../utils/apiErrors');
 
 /**
  * Verify user token
  */
 module.exports = (req, res, next) => {
-    let token;
-
-    if (req.headers && req.headers.authorization) {
-        const parts = req.headers.authorization.split(' ');
-
-        if (parts.length === 2) {
-            if (/^Bearer$/i.test(parts[0])) {
-                token = parts[1];
-            }
-            else {
-                return next(new UnauthorizedError({ message: 'Format is Authorization: Bearer [token]' }));
-            }
-        }
-        else {
-            return next(new UnauthorizedError({ message: 'Format is Authorization: Bearer [token]' }));
-        }
+    if (!req.headers || !req.headers.authorization) {
+        return next(new UnauthorizedError({ message: 'No authorization token was found.' }));
     }
 
-    if (!token) {
-        return next(new UnauthorizedError({ message: 'No authorization token was found' }));
+    const tokenParts = req.headers.authorization.split(' ');
+
+    if (tokenParts.length !== 2 || !(/^Bearer$/i.test(tokenParts[0])) || !tokenParts[1]) {
+        return next(new UnauthorizedError({ message: 'Format of the Authorization header is invalid.' }));
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return next(new UnauthorizedError(err));
-        }
-
+    try {
+        const decoded = jwt.verify(tokenParts[1], process.env.JWT_SECRET);
         req.user = decoded;
         next();
-    });
+    }
+    catch (err) {
+        return next(new UnauthorizedError(err));
+    }
 };
