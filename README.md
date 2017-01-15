@@ -30,9 +30,11 @@ Clone this repository:
 ```sh
 git clone https://github.com/Kamahl19/react-starter my-app
 cd my-app
+rm -rf .git
+git init
 ```
 
-Create ``.env`` files in both ``/backend`` and ``/client`` folders according to ``.env.example``
+This project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example` in both ``/backend`` and ``/client``, rename it to `.env` and add your env vars as you see fit.
 
 Seed DB & Start the backend
 

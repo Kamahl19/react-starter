@@ -31,9 +31,11 @@ mongoose.connection.on('error', (err) => {
 
 // Catch Server `listening` event
 server.on('listening', () => {
-    const { address, port } = server.address();
+    const addr = server.address();
+    const bind = typeof addr === 'string' ? `pipe ${addr}` : `${addr.address}:${addr.port}`;
 
-    logger.info(`Listening on ${address}:${port}`);
+    logger.info(`Listening on ${bind}`);
+    logger.info(`Environment on ${process.env.NODE_ENV}`);
 });
 
 // Catch server `error` event
