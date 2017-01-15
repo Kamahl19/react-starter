@@ -1,5 +1,8 @@
 import { flattenDeep, reduce, isFunction } from 'lodash';
-import { REQUEST, SUCCESS, FAILURE } from './actionTypes';
+
+export const REQUEST = 'REQUEST';
+export const SUCCESS = 'SUCCESS';
+export const FAILURE = 'FAILURE';
 
 export const createActionType = (...parts) => flattenDeep(parts).join('_');
 

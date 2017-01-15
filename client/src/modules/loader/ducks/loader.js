@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { REQUEST, SUCCESS, FAILURE } from '@src/redux/actionTypes';
+import { REQUEST, SUCCESS, FAILURE } from '@src/redux/reduxHelpers';
 
 /**
  * REDUCERS

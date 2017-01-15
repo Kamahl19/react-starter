@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 import { push } from 'react-router-redux';
-import { createActionCreator, createActionCreators, createReducer } from '@src/redux/reduxHelpers';
-import { REQUEST, SUCCESS, FAILURE } from '@src/redux/actionTypes';
+import { createActionCreator, createActionCreators, createReducer, REQUEST, SUCCESS, FAILURE } from '@src/redux/reduxHelpers';
 import authApi from '../api/authApi';
 import { decodeToken, isTokenValid, getTokenFromLS, saveTokenToLS, removeTokenFromLS } from '../utils/tokenHelpers';
 

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { push } from 'react-router-redux';
-import { createActionCreators, createReducer } from '@src/redux/reduxHelpers';
-import { REQUEST, SUCCESS, FAILURE } from '@src/redux/actionTypes';
+import { createActionCreators, createReducer, REQUEST, SUCCESS, FAILURE } from '@src/redux/reduxHelpers';
 import productApi from '../api/productApi';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
