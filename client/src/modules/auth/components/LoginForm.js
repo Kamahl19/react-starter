@@ -4,8 +4,6 @@ import { Link } from 'react-router';
 import linkedState from '@src/utils/LinkedState';
 import { Input } from '@src/components/inputs';
 
-import './auth.scss';
-
 @linkedState(['email', 'password'])
 export default class LoginForm extends Component {
     static propTypes = {

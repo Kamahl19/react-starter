@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap';
 import linkedState from '@src/utils/LinkedState';
 import { Input } from '@src/components/inputs';
 
-import './auth.scss';
-
 @linkedState(['name', 'email', 'password', 'repeatPassword'])
 export default class SignUpForm extends Component {
     static propTypes = {

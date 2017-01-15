@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap';
 import linkedState from '@src/utils/LinkedState';
 import { Input } from '@src/components/inputs';
 
-import './auth.scss';
-
 @linkedState(['email'])
 export default class ForgottenPasswordForm extends Component {
     static propTypes = {
