@@ -30,7 +30,7 @@ export default class SignUpForm extends Component {
         const { isAuthenticating, linkState, formErrors } = this.props;
 
         return (
-            <form onSubmit={this.handleSubmit} className="auth-form">
+            <form onSubmit={this.handleSubmit}>
 
                 <h3>Sign Up</h3>
 

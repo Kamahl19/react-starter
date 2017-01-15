@@ -26,7 +26,7 @@ export default class ForgottenPasswordForm extends Component {
         const { linkState, formErrors } = this.props;
 
         return (
-            <form onSubmit={this.handleSubmit} className="auth-form">
+            <form onSubmit={this.handleSubmit}>
 
                 <h3>Forgotten Password</h3>
 
