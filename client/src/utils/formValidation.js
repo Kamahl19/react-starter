@@ -1,23 +1,13 @@
-import yup from 'yup';
-
-yup.addMethod(yup.mixed, 'sameAs', function(ref, message) {
-    return this.test('sameAs', message, function(value) {
-        const other = this.resolve(ref);
-        return other === null || value === this.resolve(ref);
-    });
-});
+import Joi from 'joi-browser';
 
 const documentOffsetTop = (elem) => elem && elem.offsetTop + (elem.offsetParent ? documentOffsetTop(elem.offsetParent) : 0);
 
 function scrollToTheFirstError(errorPaths, formId) {
     const parentElem = (typeof formId !== 'undefined') ? document.querySelector(`#${formId}`) : document;
-
     let scrollTo = 0;
 
     if (parentElem) {
-        const offsets = errorPaths.map((path) =>
-            documentOffsetTop(parentElem.querySelector(`#input_${path}`))
-        );
+        const offsets = errorPaths.map((path) => documentOffsetTop(parentElem.querySelector(`#input_${path}`)));
 
         scrollTo = Math.min(...offsets);
 
@@ -36,31 +26,38 @@ const splitCamelCase = (camelCase) => camelCase.replace(/([A-Z][a-z])/g, ' $1');
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 function formatError(message) {
-    const msgArr = message.split(' ');
-    msgArr[0] = capitalize(splitCamelCase(msgArr[0]));
-    return msgArr.join(' ');
+    const msgArr = message.split('"');
+
+    if (!msgArr[1].includes(' ')) {
+        msgArr[1] = capitalize(splitCamelCase(msgArr[1]));
+    }
+
+    return msgArr.join('"');
 }
 
 function getErrorMessages(errors) {
     return errors.reduce((obj, err) => {
         if (!obj[err.path]) {
-            obj[err.path] = err.params.label ? err.message : formatError(err.message);
+            obj[err.path] = formatError(err.message);
         }
         return obj;
     }, {});
 }
 
-export default function formValidation(schema, data, skipScroll = false, formId) {
-    return schema.validate(data, { abortEarly: false })
-        .catch(({ inner }) => {
-            const errorsObj = getErrorMessages(inner);
+export default function formValidation(schema, data, { skipScroll = false, formId } = {}) {
+    return new Promise((resolve, reject) => {
+        Joi.validate(data, schema, { abortEarly: false }, (err) => {
+            if (err) {
+                const errorsObj = getErrorMessages(err.details);
 
-            if (!skipScroll) {
-                scrollToTheFirstError(Object.keys(errorsObj), formId);
+                if (!skipScroll) {
+                    scrollToTheFirstError(Object.keys(errorsObj), formId);
+                }
+
+                return reject(formId ? { [formId]: errorsObj } : errorsObj);
             }
 
-            return Promise.reject(
-                formId ? { [formId]: errorsObj } : errorsObj
-            );
+            resolve();
         });
+    });
 }

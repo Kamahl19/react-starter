@@ -1,34 +1,35 @@
-import yup from 'yup';
+import Joi from 'joi-browser';
 
-const stringRequired = yup.string().required();
-const emailRequired = yup.string().max(255).email().required().label('E-mail');
-const password = yup.string().min(6);
-const optionalPassword = yup.string().nullable().transform((value) => value === '' ? null : value).min(6);
-const repeatPassword = yup.string().sameAs(yup.ref('password'), 'Passwords don\'t match');
+const name = Joi.string().required();
+const email = Joi.string().max(255).email().required().label('E-mail');
+const password = Joi.string().min(6);
+const passwordOptional = Joi.string().allow('').min(6);
+const passwordWithoutLimit = Joi.string().required();
+const repeatPassword = Joi.string().valid(Joi.ref('password')).options({ language: { any: { allowOnly: 'Passwords don\'t match' } } });
 
-export const loginSchema = yup.object().shape({
-    email: emailRequired,
-    password: stringRequired,
+export const loginSchema = Joi.object().keys({
+    email,
+    password: passwordWithoutLimit,
 });
 
-export const forgottenPasswordSchema = yup.object().shape({
-    email: emailRequired,
+export const forgottenPasswordSchema = Joi.object().keys({
+    email,
 });
 
-export const resetPasswordSchema = yup.object().shape({
+export const resetPasswordSchema = Joi.object().keys({
     password,
     repeatPassword,
 });
 
-export const signUpSchema = yup.object().shape({
-    name: stringRequired,
-    email: emailRequired,
+export const signUpSchema = Joi.object().keys({
+    email,
+    name,
     password,
     repeatPassword,
 });
 
-export const updateUserSchema = yup.object().shape({
-    name: stringRequired,
-    password: optionalPassword,
+export const updateUserSchema = Joi.object().keys({
+    name,
+    password: passwordOptional,
     repeatPassword,
 });

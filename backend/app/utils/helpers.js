@@ -36,9 +36,13 @@ module.exports = {
     capitalize: (string) => string.charAt(0).toUpperCase() + string.slice(1),
 
     formatError: (message) => {
-        const msgArr = message.split(' ');
-        msgArr[0] = `"${this.capitalize(this.splitCamelCase(msgArr[0].slice(1, -1)))}"`;
-        return msgArr.join(' ');
+        const msgArr = message.split('"');
+
+        if (!msgArr[1].includes(' ')) {
+            msgArr[1] = this.capitalize(this.splitCamelCase(msgArr[1]));
+        }
+
+        return msgArr.join('"');
     },
 
     getErrorMessage: (errors) => errors.map(({ message }) => this.formatError(message)).join('\n'),

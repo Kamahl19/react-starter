@@ -43,6 +43,7 @@
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
+    "joi-browser": "^10.0.6",
     "jwt-decode": "^2.1.0",
     "loaders.css": "^0.1.2",
     "lodash": "^4.17.3",
@@ -59,7 +60,6 @@
     "redux": "^3.6.0",
     "redux-auth-wrapper": "^0.9.0",
     "redux-thunk": "^2.1.0",
-    "reselect": "^2.5.4",
-    "yup": "^0.21.2"
+    "reselect": "^2.5.4"
   }
 }

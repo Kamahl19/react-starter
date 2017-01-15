@@ -1,6 +1,9 @@
-import yup from 'yup';
+import Joi from 'joi-browser';
 
-export const productSchema = yup.object().shape({
-    name: yup.string().required(),
-    description: yup.string(),
+const name = Joi.string().required();
+const description = Joi.string();
+
+export const productSchema = Joi.object().keys({
+    name,
+    description,
 });
