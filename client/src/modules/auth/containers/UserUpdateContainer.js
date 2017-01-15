@@ -30,11 +30,9 @@ export default class UserUpdateContainer extends Component {
 
         this.setState({ formErrors: {} });
 
-        const { repeatPassword, ...userDataToSend } = userData;
-
         formValidation(updateUserSchema, userData)
             .then(() => {
-                actions.updateUser(user.id, userDataToSend);
+                actions.updateUser(user.id, { ...userData, repeatPassword: undefined });
             }, (formErrors) => {
                 this.setState({ formErrors });
             });

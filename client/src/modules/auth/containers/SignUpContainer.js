@@ -28,13 +28,11 @@ export default class SignUpContainer extends Component {
     onSubmit = (userData) => {
         const { actions } = this.props;
 
-        const { repeatPassword, ...userDataToSend } = userData;
-
         this.setState({ formErrors: {} });
 
         formValidation(signUpSchema, userData)
             .then(() => {
-                actions.signUp(userDataToSend);
+                actions.signUp({ ...userData, repeatPassword: undefined });
             }, (formErrors) => {
                 this.setState({ formErrors });
             });
