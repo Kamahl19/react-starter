@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '@src/modules/auth/ducks/authDucks';
+import { getUser } from '../ducks/authDucks';
 import { UserProfile } from '../components';
 
 const mapStateToProps = (state) => ({
