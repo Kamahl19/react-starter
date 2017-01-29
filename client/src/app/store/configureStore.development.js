@@ -5,7 +5,9 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '@src/app/reducers/rootReducer';
 
-const enhancer = compose(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
     applyMiddleware(
         createLogger(),
         thunk,
