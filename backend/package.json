@@ -39,6 +39,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.16.0",
     "bunyan": "^1.8.5",

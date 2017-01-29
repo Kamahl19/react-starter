@@ -1,4 +1,4 @@
-const { UnauthorizedError } = require('../utils/apiErrors');
+const { UnauthorizedError } = require('app/utils/apiErrors');
 
 /**
  * Verify if user is Admin

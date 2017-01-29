@@ -1,8 +1,8 @@
 const lodash = require('lodash');
 const nodemailer = require('nodemailer');
 const mailgunTransport = require('nodemailer-mailgun-transport');
-const logger = require('./logger');
-const config = require('../config');
+const logger = require('app/utils/logger');
+const config = require('app/config');
 
 const transporter = nodemailer.createTransport(mailgunTransport({
     auth: {

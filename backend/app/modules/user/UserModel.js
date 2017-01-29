@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const config = require('../../config');
+const config = require('app/config');
 
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
