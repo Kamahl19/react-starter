@@ -1,4 +1,4 @@
-import '@src/styles/main.scss';
+import '@src/app/styles/main.scss';
 import React from 'react';
 import { render } from 'react-dom';
 import { hashHistory } from 'react-router';
