@@ -1,6 +1,6 @@
 const User = require('./UserModel');
-const { getSuccessResult } = require('app/utils/helpers');
-const { NotFoundError } = require('app/utils/apiErrors');
+const { getSuccessResult } = require('src/common/utils/helpers');
+const { NotFoundError } = require('src/common/utils/apiErrors');
 
 const UserController = {
 

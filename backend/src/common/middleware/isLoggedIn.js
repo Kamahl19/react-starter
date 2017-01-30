@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { UnauthorizedError } = require('app/utils/apiErrors');
+const { UnauthorizedError } = require('src/common/utils/apiErrors');
 
 /**
  * Verify user token

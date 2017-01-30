@@ -4,6 +4,6 @@
     "experimentalDecorators": true
   },
   "files": [
-    "app/"
+    "src/"
   ]
 }

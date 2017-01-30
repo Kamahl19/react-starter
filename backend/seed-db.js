@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const seeder = require('mongoose-seed');
-const User = require('./app/models/User');
+const User = require('./src/models/User');
 
 const data = [{
     'model': 'User',
@@ -33,8 +33,8 @@ const data = [{
 
 seeder.connect(process.env.MONGO_URL, () => {
     seeder.loadModels([
-        'app/models/User.js',
-        'app/models/Product.js',
+        'src/models/User.js',
+        'src/models/Product.js',
     ]);
 
     seeder.clearModels(['User', 'Product'], () => {

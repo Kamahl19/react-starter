@@ -1,7 +1,8 @@
-const User = require('app/modules/user/UserModel');
-const { getSuccessResult } = require('app/utils/helpers');
-const { NotFoundError, UnauthorizedError, ForbiddenError } = require('app/utils/apiErrors');
-const { sendForgottenPasswordMail, sendResetPasswordMail } = require('app/preddefinedMails');
+const User = require('src/features/user/UserModel');
+const { getSuccessResult } = require('src/common/utils/helpers');
+const { NotFoundError, UnauthorizedError, ForbiddenError } = require('src/common/utils/apiErrors');
+const { mailer } = require('src/common/services');
+const { forgottenPasswordMail, resetPasswordMail } = require('src/app/preddefinedMails');
 
 const UserController = {
 
@@ -45,7 +46,7 @@ const UserController = {
 
             const link = `${req.headers.origin}${process.env.CORS_ORIGIN ? '/#' : ''}/auth/reset-password/${newData.passwordResetToken}`;
 
-            await sendForgottenPasswordMail({ to: user.email }, link);
+            await mailer.sendMail(user.email, forgottenPasswordMail(link));
 
             return getSuccessResult(res, {
                 message: `An e-mail has been sent to ${user.email} with further instructions.`,
@@ -77,7 +78,7 @@ const UserController = {
                 throw new ForbiddenError({ message: 'Password reset token is invalid or has expired.' });
             }
 
-            await sendResetPasswordMail({ to: user.email });
+            await mailer.sendMail(user.email, resetPasswordMail(user.email));
 
             return getSuccessResult(res, {
                 message: `Success! Your password has been changed.`,

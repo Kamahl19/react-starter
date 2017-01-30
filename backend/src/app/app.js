@@ -5,11 +5,11 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const httpStatus = require('http-status');
-const routes = require('app/routes');
-const config = require('app/config');
-const logger = require('app/utils/logger');
-const { normalizePort, getErrorMessage } = require('app/utils/helpers');
-const { NotFoundError, BadRequestError } = require('app/utils/apiErrors');
+const routes = require('src/app/routes');
+const config = require('src/app/config');
+const { logger } = require('src/common/services');
+const { normalizePort, getErrorMessage } = require('src/common/utils/helpers');
+const { NotFoundError, BadRequestError } = require('src/common/utils/apiErrors');
 
 const app = express();
 

@@ -27,9 +27,9 @@
     "node": ">=7.2.0",
     "npm": ">=3.10.10"
   },
-  "main": "app/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon --inspect --harmony app/index.js",
+    "start": "cross-env NODE_ENV=development nodemon --inspect --harmony src/index.js",
     "seed": "node seed-db.js"
   },
   "devDependencies": {
