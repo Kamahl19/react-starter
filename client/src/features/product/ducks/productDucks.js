@@ -19,70 +19,75 @@ const updateProductActions = createActionCreators(UPDATE_PRODUCT);
 const deleteProductActions = createActionCreators(DELETE_PRODUCT);
 
 export const fetchProducts = () =>
-    (dispatch) => {
-        dispatch(fetchProductsActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(fetchProductsActions.request());
 
-        productApi.fetchProducts()
-            .then((payload) => {
-                dispatch(fetchProductsActions.success(payload));
-            })
-            .catch((error) => {
-                dispatch(fetchProductsActions.failure(error));
-            });
+            const payload = await productApi.fetchProducts();
+
+            dispatch(fetchProductsActions.success(payload));
+        }
+        catch (err) {
+            dispatch(fetchProductsActions.failure(err));
+        }
     };
 
 export const fetchProduct = (productId) =>
-    (dispatch) => {
-        dispatch(fetchProductActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(fetchProductActions.request());
 
-        productApi.fetchProduct(productId)
-            .then((payload) => {
-                dispatch(fetchProductActions.success(payload));
-            })
-            .catch((error) => {
-                dispatch(fetchProductActions.failure(error));
-            });
+            const payload = await productApi.fetchProduct(productId);
+
+            dispatch(fetchProductActions.success(payload));
+        }
+        catch (err) {
+            dispatch(fetchProductActions.failure(err));
+        }
     };
 
 export const createProduct = (productData) =>
-    (dispatch) => {
-        dispatch(createProductActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(createProductActions.request());
 
-        productApi.createProduct(productData)
-            .then((payload) => {
-                dispatch(createProductActions.success(payload));
-                dispatch(push(`products/${payload.product.id}`));
-            })
-            .catch((error) => {
-                dispatch(createProductActions.failure(error));
-            });
+            const payload = await productApi.createProduct(productData);
+
+            dispatch(createProductActions.success(payload));
+            dispatch(push(`products/${payload.product.id}`));
+        }
+        catch (err) {
+            dispatch(createProductActions.failure(err));
+        }
     };
 
 export const updateProduct = (productId, productData) =>
-    (dispatch) => {
-        dispatch(updateProductActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(updateProductActions.request());
 
-        productApi.updateProduct(productId, productData)
-            .then((payload) => {
-                dispatch(updateProductActions.success(payload));
-                dispatch(push(`products/${payload.product.id}`));
-            })
-            .catch((error) => {
-                dispatch(updateProductActions.failure(error));
-            });
+            const payload = await productApi.updateProduct(productId, productData);
+
+            dispatch(updateProductActions.success(payload));
+            dispatch(push(`products/${payload.product.id}`));
+        }
+        catch (err) {
+            dispatch(updateProductActions.failure(err));
+        }
     };
 
 export const deleteProduct = (productId) =>
-    (dispatch) => {
-        dispatch(deleteProductActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(deleteProductActions.request());
 
-        productApi.deleteProduct(productId)
-            .then((payload) => {
-                dispatch(deleteProductActions.success(payload));
-            })
-            .catch((error) => {
-                dispatch(deleteProductActions.failure(error));
-            });
+            const payload = await productApi.deleteProduct(productId);
+
+            dispatch(deleteProductActions.success(payload));
+        }
+        catch (err) {
+            dispatch(deleteProductActions.failure(err));
+        }
     };
 
 /**

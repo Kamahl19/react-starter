@@ -25,109 +25,116 @@ const resetPasswordActions = createActionCreators(RESET_PASSWORD);
 const logoutUser = createActionCreator(LOGOUT_USER);
 
 export const fetchUser = (userId) =>
-    (dispatch) => {
-        dispatch(fetchUserActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(fetchUserActions.request());
 
-        authApi.fetchUser(userId)
-            .then((payload) => {
-                dispatch(fetchUserActions.success(payload));
-            })
-            .catch((error) => {
-                dispatch(fetchUserActions.failure(error));
-            });
+            const payload = await authApi.fetchUser(userId);
+
+            dispatch(fetchUserActions.success(payload));
+        }
+        catch (err) {
+            dispatch(fetchUserActions.failure(err));
+        }
     };
 
 export const signUp = (userData) =>
-    (dispatch) => {
-        dispatch(signUpActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(signUpActions.request());
 
-        authApi.createUser(userData)
-            .then((payload) => {
-                dispatch(signUpActions.success(payload));
-                saveTokenToLS(payload.token);
-            })
-            .catch((error) => {
-                 dispatch(signUpActions.failure(error))
-            });
+            const payload = await authApi.createUser(userData);
+
+            dispatch(signUpActions.success(payload));
+            saveTokenToLS(payload.token);
+        }
+        catch (err) {
+            dispatch(signUpActions.failure(err));
+        }
     };
 
 export const updateUser = (userId, userData) =>
-    (dispatch) => {
-        dispatch(updateUserActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(updateUserActions.request());
 
-        authApi.updateUser(userId, userData)
-            .then((payload) => {
-                dispatch(updateUserActions.success(payload));
-                dispatch(push('/me'));
-            })
-            .catch((error) => {
-                dispatch(updateUserActions.failure(error));
-            });
+            const payload = await authApi.updateUser(userId, userData);
+
+            dispatch(updateUserActions.success(payload));
+            dispatch(push('/me'));
+        }
+        catch (err) {
+            dispatch(updateUserActions.failure(err));
+        }
     };
 
 export const loginUser = (credentials) =>
-    (dispatch) => {
-        dispatch(loginUserActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(loginUserActions.request());
 
-        authApi.loginUser(credentials)
-            .then((payload) => {
-                dispatch(loginUserActions.success(payload));
-                saveTokenToLS(payload.token);
-            })
-            .catch((error) => {
-                dispatch(loginUserActions.failure(error));
-            });
+            const payload = await authApi.loginUser(credentials);
+
+            dispatch(loginUserActions.success(payload));
+            saveTokenToLS(payload.token);
+        }
+        catch (err) {
+            dispatch(loginUserActions.failure(err));
+        }
     };
 
 export const loginWithToken = () =>
-    (dispatch) => {
+    async (dispatch) => {
         const token = getTokenFromLS();
 
         if (isTokenValid(token)) {
-            const { userId } = decodeToken(token);
+            try {
+                dispatch(fetchUserActions.request());
+                dispatch(loginUserActions.request());
 
-            dispatch(fetchUserActions.request());
-            dispatch(loginUserActions.request());
+                const { userId } = decodeToken(token);
 
-            authApi.fetchUser(userId)
-                .then((payload) => {
-                    dispatch(fetchUserActions.success(payload));
-                    dispatch(loginUserActions.success({ user: payload.user, token }));
-                })
-                .catch((error) => {
-                    dispatch(fetchUserActions.failure(error));
-                    dispatch(loginUserActions.failure());
-                });
+                const payload = await authApi.fetchUser(userId);
+
+                dispatch(fetchUserActions.success(payload));
+                dispatch(loginUserActions.success({ user: payload.user, token }));
+            }
+            catch (err) {
+                dispatch(fetchUserActions.failure(err));
+                dispatch(loginUserActions.failure());
+            }
         }
     };
 
 export const forgottenPassword = (email) =>
-    (dispatch) => {
-        dispatch(forgottenPasswordActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(forgottenPasswordActions.request());
 
-        authApi.forgottenPassword(email)
-            .then((payload) => {
-                dispatch(forgottenPasswordActions.success(payload));
-                dispatch(push('/'));
-            })
-            .catch((error) => {
-                dispatch(forgottenPasswordActions.failure(error));
-            });
+            const payload = await authApi.forgottenPassword(email);
+
+            dispatch(forgottenPasswordActions.success(payload));
+            dispatch(push('/'));
+        }
+        catch (err) {
+            dispatch(forgottenPasswordActions.failure(err));
+        }
     };
 
 export const resetPassword = (resetData) =>
-    (dispatch) => {
-        dispatch(resetPasswordActions.request());
+    async (dispatch) => {
+        try {
+            dispatch(resetPasswordActions.request());
 
-        authApi.resetPassword(resetData)
-            .then((payload) => {
-                dispatch(resetPasswordActions.success(payload));
-                dispatch(loginUserActions.success(payload));
-                saveTokenToLS(payload.token);
-            })
-            .catch((error) => {
-                dispatch(resetPasswordActions.failure(error));
-            });
+            const payload = await authApi.resetPassword(resetData);
+
+            dispatch(resetPasswordActions.success(payload));
+            dispatch(loginUserActions.success(payload));
+            saveTokenToLS(payload.token);
+        }
+        catch (err) {
+            dispatch(resetPasswordActions.failure(err));
+        }
     };
 
 export const logout = () =>
