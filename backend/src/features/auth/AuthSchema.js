@@ -6,23 +6,23 @@ const passwordWithoutLimit = Joi.string().required();
 const passwordResetToken = Joi.string().hex().length(16);
 
 module.exports = {
-    login: {
-        body: Joi.object().keys({
-            email,
-            password: passwordWithoutLimit,
-        }),
-    },
+  login: {
+    body: Joi.object().keys({
+      email,
+      password: passwordWithoutLimit,
+    }),
+  },
 
-    forgottenPassword: {
-        body: Joi.object().keys({
-            email,
-        }),
-    },
+  forgottenPassword: {
+    body: Joi.object().keys({
+      email,
+    }),
+  },
 
-    resetPassword: {
-        body: Joi.object().keys({
-            password,
-            passwordResetToken
-        }),
-    },
+  resetPassword: {
+    body: Joi.object().keys({
+      password,
+      passwordResetToken
+    }),
+  },
 };

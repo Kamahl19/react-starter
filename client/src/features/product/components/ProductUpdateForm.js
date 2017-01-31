@@ -5,67 +5,67 @@ import { Input } from '@src/common/components/inputs';
 
 @linkedState(['name', 'description'])
 export default class ProductUpdateForm extends Component {
-    static propTypes = {
-        linkState: PropTypes.func.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        onSubmit: PropTypes.func.isRequired,
-        product: PropTypes.object.isRequired,
-        formErrors: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    linkState: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    product: PropTypes.object.isRequired,
+    formErrors: PropTypes.object.isRequired,
+  };
 
-    componentWillMount() {
-        const { linkSetState, product } = this.props;
+  componentWillMount() {
+    const { linkSetState, product } = this.props;
 
-        linkSetState({
-            name: product.name,
-            description: product.description,
-        });
-    }
+    linkSetState({
+      name: product.name,
+      description: product.description,
+    });
+  }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-        const { name, description, onSubmit } = this.props;
+    const { name, description, onSubmit } = this.props;
 
-        onSubmit({ name, description });
-    }
+    onSubmit({ name, description });
+  }
 
-    render() {
-        const { linkState, formErrors } = this.props;
+  render() {
+    const { linkState, formErrors } = this.props;
 
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+      <form onSubmit={this.handleSubmit}>
 
-                <h3>Update Product</h3>
+        <h3>Update Product</h3>
 
-                <Input
-                    {...linkState('name')}
-                    label="Name"
-                    placeholder="Name"
-                    name="name"
-                    error={formErrors.name}
-                    autoFocus
-                />
+        <Input
+          {...linkState('name')}
+          label="Name"
+          placeholder="Name"
+          name="name"
+          error={formErrors.name}
+          autoFocus
+        />
 
-                <Input
-                    {...linkState('description')}
-                    type="textarea"
-                    label="Description"
-                    placeholder="Description"
-                    name="description"
-                    error={formErrors.description}
-                />
+        <Input
+          {...linkState('description')}
+          type="textarea"
+          label="Description"
+          placeholder="Description"
+          name="description"
+          error={formErrors.description}
+        />
 
-                <Button
-                    type="submit"
-                    onClick={this.handleSubmit}
-                    bsStyle="primary"
-                >
-                    Submit
-                </Button>
+        <Button
+          type="submit"
+          onClick={this.handleSubmit}
+          bsStyle="primary"
+        >
+          Submit
+        </Button>
 
-            </form>
-        );
-    }
+      </form>
+    );
+  }
 }

@@ -25,165 +25,165 @@ const resetPasswordActions = createActionCreators(RESET_PASSWORD);
 const logoutUser = createActionCreator(LOGOUT_USER);
 
 export const fetchUser = (userId) =>
-    async (dispatch) => {
-        try {
-            dispatch(fetchUserActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(fetchUserActions.request());
 
-            const payload = await authApi.fetchUser(userId);
+      const payload = await authApi.fetchUser(userId);
 
-            dispatch(fetchUserActions.success(payload));
-        }
-        catch (err) {
-            dispatch(fetchUserActions.failure(err));
-        }
-    };
+      dispatch(fetchUserActions.success(payload));
+    }
+    catch (err) {
+      dispatch(fetchUserActions.failure(err));
+    }
+  };
 
 export const signUp = (userData) =>
-    async (dispatch) => {
-        try {
-            dispatch(signUpActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(signUpActions.request());
 
-            const payload = await authApi.createUser(userData);
+      const payload = await authApi.createUser(userData);
 
-            dispatch(signUpActions.success(payload));
-            saveTokenToLS(payload.token);
-        }
-        catch (err) {
-            dispatch(signUpActions.failure(err));
-        }
-    };
+      dispatch(signUpActions.success(payload));
+      saveTokenToLS(payload.token);
+    }
+    catch (err) {
+      dispatch(signUpActions.failure(err));
+    }
+  };
 
 export const updateUser = (userId, userData) =>
-    async (dispatch) => {
-        try {
-            dispatch(updateUserActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(updateUserActions.request());
 
-            const payload = await authApi.updateUser(userId, userData);
+      const payload = await authApi.updateUser(userId, userData);
 
-            dispatch(updateUserActions.success(payload));
-            dispatch(push('/me'));
-        }
-        catch (err) {
-            dispatch(updateUserActions.failure(err));
-        }
-    };
+      dispatch(updateUserActions.success(payload));
+      dispatch(push('/me'));
+    }
+    catch (err) {
+      dispatch(updateUserActions.failure(err));
+    }
+  };
 
 export const loginUser = (credentials) =>
-    async (dispatch) => {
-        try {
-            dispatch(loginUserActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(loginUserActions.request());
 
-            const payload = await authApi.loginUser(credentials);
+      const payload = await authApi.loginUser(credentials);
 
-            dispatch(loginUserActions.success(payload));
-            saveTokenToLS(payload.token);
-        }
-        catch (err) {
-            dispatch(loginUserActions.failure(err));
-        }
-    };
+      dispatch(loginUserActions.success(payload));
+      saveTokenToLS(payload.token);
+    }
+    catch (err) {
+      dispatch(loginUserActions.failure(err));
+    }
+  };
 
 export const loginWithToken = () =>
-    async (dispatch) => {
-        const token = getTokenFromLS();
+  async (dispatch) => {
+    const token = getTokenFromLS();
 
-        if (isTokenValid(token)) {
-            try {
-                dispatch(fetchUserActions.request());
-                dispatch(loginUserActions.request());
+    if (isTokenValid(token)) {
+      try {
+        dispatch(fetchUserActions.request());
+        dispatch(loginUserActions.request());
 
-                const { userId } = decodeToken(token);
+        const { userId } = decodeToken(token);
 
-                const payload = await authApi.fetchUser(userId);
+        const payload = await authApi.fetchUser(userId);
 
-                dispatch(fetchUserActions.success(payload));
-                dispatch(loginUserActions.success({ user: payload.user, token }));
-            }
-            catch (err) {
-                dispatch(fetchUserActions.failure(err));
-                dispatch(loginUserActions.failure());
-            }
-        }
-    };
+        dispatch(fetchUserActions.success(payload));
+        dispatch(loginUserActions.success({ user: payload.user, token }));
+      }
+      catch (err) {
+        dispatch(fetchUserActions.failure(err));
+        dispatch(loginUserActions.failure());
+      }
+    }
+  };
 
 export const forgottenPassword = (email) =>
-    async (dispatch) => {
-        try {
-            dispatch(forgottenPasswordActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(forgottenPasswordActions.request());
 
-            const payload = await authApi.forgottenPassword(email);
+      const payload = await authApi.forgottenPassword(email);
 
-            dispatch(forgottenPasswordActions.success(payload));
-            dispatch(push('/'));
-        }
-        catch (err) {
-            dispatch(forgottenPasswordActions.failure(err));
-        }
-    };
+      dispatch(forgottenPasswordActions.success(payload));
+      dispatch(push('/'));
+    }
+    catch (err) {
+      dispatch(forgottenPasswordActions.failure(err));
+    }
+  };
 
 export const resetPassword = (resetData) =>
-    async (dispatch) => {
-        try {
-            dispatch(resetPasswordActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(resetPasswordActions.request());
 
-            const payload = await authApi.resetPassword(resetData);
+      const payload = await authApi.resetPassword(resetData);
 
-            dispatch(resetPasswordActions.success(payload));
-            dispatch(loginUserActions.success(payload));
-            saveTokenToLS(payload.token);
-        }
-        catch (err) {
-            dispatch(resetPasswordActions.failure(err));
-        }
-    };
+      dispatch(resetPasswordActions.success(payload));
+      dispatch(loginUserActions.success(payload));
+      saveTokenToLS(payload.token);
+    }
+    catch (err) {
+      dispatch(resetPasswordActions.failure(err));
+    }
+  };
 
 export const logout = () =>
-    (dispatch) => {
-        removeTokenFromLS();
-        dispatch(logoutUser());
-    };
+  (dispatch) => {
+    removeTokenFromLS();
+    dispatch(logoutUser());
+  };
 
 /**
  * REDUCERS
  */
 const initialState = {
-    user: null,
-    isAuthenticating: false,
+  user: null,
+  isAuthenticating: false,
 };
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
-    [LOGIN_USER]: {
-        [REQUEST]: (state) => true,
-        [SUCCESS]: (state) => false,
-        [FAILURE]: (state) => false,
-    },
-    [SIGN_UP]: {
-        [REQUEST]: (state) => true,
-        [SUCCESS]: (state) => false,
-        [FAILURE]: (state) => false,
-    },
+  [LOGIN_USER]: {
+    [REQUEST]: (state) => true,
+    [SUCCESS]: (state) => false,
+    [FAILURE]: (state) => false,
+  },
+  [SIGN_UP]: {
+    [REQUEST]: (state) => true,
+    [SUCCESS]: (state) => false,
+    [FAILURE]: (state) => false,
+  },
 });
 
 const user = createReducer(initialState.user, {
-    [SIGN_UP]: {
-        [SUCCESS]: (state, payload) => payload.user,
-    },
-    [FETCH_USER]: {
-        [SUCCESS]: (state, payload) => payload.user,
-        [FAILURE]: (state) => null,
-    },
-    [UPDATE_USER]: {
-        [SUCCESS]: (state, payload) => payload.user,
-    },
-    [LOGIN_USER]: {
-        [SUCCESS]: (state, payload) => payload.user,
-    },
-    [LOGOUT_USER]: (state) => null,
+  [SIGN_UP]: {
+    [SUCCESS]: (state, payload) => payload.user,
+  },
+  [FETCH_USER]: {
+    [SUCCESS]: (state, payload) => payload.user,
+    [FAILURE]: (state) => null,
+  },
+  [UPDATE_USER]: {
+    [SUCCESS]: (state, payload) => payload.user,
+  },
+  [LOGIN_USER]: {
+    [SUCCESS]: (state, payload) => payload.user,
+  },
+  [LOGOUT_USER]: (state) => null,
 });
 
 export default combineReducers({
-    user,
-    isAuthenticating,
+  user,
+  isAuthenticating,
 });
 
 /**
@@ -196,21 +196,21 @@ export const getUser = (state) => getAuth(state).user;
 export const getIsAuthenticating = (state) => getAuth(state).isAuthenticating;
 
 export const getIsLoggedIn = createSelector(
-    getUser,
-    (user) => user !== null,
+  getUser,
+  (user) => user !== null,
 );
 
 export const getUserName = createSelector(
-    getUser,
-    (user) => (user && user.profile.name),
+  getUser,
+  (user) => (user && user.profile.name),
 );
 
 export const getUserId = createSelector(
-    getUser,
-    (user) => user && user.id,
+  getUser,
+  (user) => user && user.id,
 );
 
 export const getUserIsAdmin = createSelector(
-    getUser,
-    (user) => !!(user && user.isAdmin),
+  getUser,
+  (user) => !!(user && user.isAdmin),
 );

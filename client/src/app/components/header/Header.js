@@ -5,31 +5,31 @@ import AnonymousMenu from './AnonymousMenu';
 import UserMenu from './UserMenu';
 
 const Header = ({ isLoggedIn, userName, logout }) => (
-    <div className="screen-header">
-        <Navbar fixedTop>
-            <Navbar.Header>
-                <Navbar.Brand>
-                    <Link to="/">React Starter</Link>
-                </Navbar.Brand>
-                <Navbar.Toggle />
-            </Navbar.Header>
-            {!isLoggedIn &&
-                <AnonymousMenu />
-            }
-            {isLoggedIn &&
-                <UserMenu
-                    userName={userName}
-                    logout={logout}
-                />
-            }
-        </Navbar>
-    </div>
+  <div className="screen-header">
+    <Navbar fixedTop>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <Link to="/">React Starter</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
+      {!isLoggedIn &&
+        <AnonymousMenu />
+      }
+      {isLoggedIn &&
+        <UserMenu
+          userName={userName}
+          logout={logout}
+        />
+      }
+    </Navbar>
+  </div>
 );
 
 Header.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
-    userName: PropTypes.string,
-    logout: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  userName: PropTypes.string,
+  logout: PropTypes.func.isRequired,
 };
 
 export default Header;

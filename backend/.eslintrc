@@ -1,11 +1,11 @@
 {
-    "plugins": ["node"],
-    "extends": ["eslint:recommended", "plugin:node/recommended"],
-    "rules": {
-        "no-console": 0,
-        "node/exports-style": ["error", "module.exports"],
-        "node/no-unsupported-features": ["error", {
-            "ignores": ["asyncAwait"]
-        }]
-    }
+  "plugins": ["node"],
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "rules": {
+    "no-console": 0,
+    "node/exports-style": ["error", "module.exports"],
+    "node/no-unsupported-features": ["error", {
+      "ignores": ["asyncAwait"]
+    }]
+  }
 }

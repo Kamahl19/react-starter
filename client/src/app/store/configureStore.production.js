@@ -5,10 +5,10 @@ import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '@src/app/reducers/rootReducer';
 
 const enhancer = compose(
-    applyMiddleware(
-        thunk,
-        routerMiddleware(hashHistory),
-    )
+  applyMiddleware(
+    thunk,
+    routerMiddleware(hashHistory),
+  )
 );
 
 export default (initialState) => createStore(rootReducer, initialState, enhancer);

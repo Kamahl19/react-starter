@@ -8,11 +8,11 @@ import rootReducer from '@src/app/reducers/rootReducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(
-    applyMiddleware(
-        createLogger(),
-        thunk,
-        routerMiddleware(hashHistory),
-    )
+  applyMiddleware(
+    createLogger(),
+    thunk,
+    routerMiddleware(hashHistory),
+  )
 );
 
 export default (initialState) => createStore(rootReducer, initialState, enhancer);

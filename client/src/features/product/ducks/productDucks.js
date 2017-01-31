@@ -19,110 +19,110 @@ const updateProductActions = createActionCreators(UPDATE_PRODUCT);
 const deleteProductActions = createActionCreators(DELETE_PRODUCT);
 
 export const fetchProducts = () =>
-    async (dispatch) => {
-        try {
-            dispatch(fetchProductsActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(fetchProductsActions.request());
 
-            const payload = await productApi.fetchProducts();
+      const payload = await productApi.fetchProducts();
 
-            dispatch(fetchProductsActions.success(payload));
-        }
-        catch (err) {
-            dispatch(fetchProductsActions.failure(err));
-        }
-    };
+      dispatch(fetchProductsActions.success(payload));
+    }
+    catch (err) {
+      dispatch(fetchProductsActions.failure(err));
+    }
+  };
 
 export const fetchProduct = (productId) =>
-    async (dispatch) => {
-        try {
-            dispatch(fetchProductActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(fetchProductActions.request());
 
-            const payload = await productApi.fetchProduct(productId);
+      const payload = await productApi.fetchProduct(productId);
 
-            dispatch(fetchProductActions.success(payload));
-        }
-        catch (err) {
-            dispatch(fetchProductActions.failure(err));
-        }
-    };
+      dispatch(fetchProductActions.success(payload));
+    }
+    catch (err) {
+      dispatch(fetchProductActions.failure(err));
+    }
+  };
 
 export const createProduct = (productData) =>
-    async (dispatch) => {
-        try {
-            dispatch(createProductActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(createProductActions.request());
 
-            const payload = await productApi.createProduct(productData);
+      const payload = await productApi.createProduct(productData);
 
-            dispatch(createProductActions.success(payload));
-            dispatch(push(`products/${payload.product.id}`));
-        }
-        catch (err) {
-            dispatch(createProductActions.failure(err));
-        }
-    };
+      dispatch(createProductActions.success(payload));
+      dispatch(push(`products/${payload.product.id}`));
+    }
+    catch (err) {
+      dispatch(createProductActions.failure(err));
+    }
+  };
 
 export const updateProduct = (productId, productData) =>
-    async (dispatch) => {
-        try {
-            dispatch(updateProductActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(updateProductActions.request());
 
-            const payload = await productApi.updateProduct(productId, productData);
+      const payload = await productApi.updateProduct(productId, productData);
 
-            dispatch(updateProductActions.success(payload));
-            dispatch(push(`products/${payload.product.id}`));
-        }
-        catch (err) {
-            dispatch(updateProductActions.failure(err));
-        }
-    };
+      dispatch(updateProductActions.success(payload));
+      dispatch(push(`products/${payload.product.id}`));
+    }
+    catch (err) {
+      dispatch(updateProductActions.failure(err));
+    }
+  };
 
 export const deleteProduct = (productId) =>
-    async (dispatch) => {
-        try {
-            dispatch(deleteProductActions.request());
+  async (dispatch) => {
+    try {
+      dispatch(deleteProductActions.request());
 
-            const payload = await productApi.deleteProduct(productId);
+      const payload = await productApi.deleteProduct(productId);
 
-            dispatch(deleteProductActions.success(payload));
-        }
-        catch (err) {
-            dispatch(deleteProductActions.failure(err));
-        }
-    };
+      dispatch(deleteProductActions.success(payload));
+    }
+    catch (err) {
+      dispatch(deleteProductActions.failure(err));
+    }
+  };
 
 /**
  * REDUCERS
  */
 const initialState = {
-    selectedProduct: null,
-    products: [],
+  selectedProduct: null,
+  products: [],
 };
 
 const selectedProduct = createReducer(initialState.selectedProduct, {
-    [FETCH_PRODUCT]: {
-        [REQUEST]: (state) => null,
-        [SUCCESS]: (state, payload) => payload.product,
-        [FAILURE]: (state) => null,
-    }
+  [FETCH_PRODUCT]: {
+    [REQUEST]: (state) => null,
+    [SUCCESS]: (state, payload) => payload.product,
+    [FAILURE]: (state) => null,
+  }
 });
 
 const removeProduct = (products, productToRemove) =>
-    products.filter((p) => p.id !== productToRemove.id);
+  products.filter((p) => p.id !== productToRemove.id);
 
 const products = createReducer(initialState.products, {
-    [FETCH_PRODUCTS]: {
-        [REQUEST]: (state) => [],
-        [SUCCESS]: (state, payload) => payload.products,
-        [FAILURE]: (state) => [],
-    },
-    [DELETE_PRODUCT]: {
-        [SUCCESS]: (state, payload) => removeProduct(state, payload.product),
-    },
+  [FETCH_PRODUCTS]: {
+    [REQUEST]: (state) => [],
+    [SUCCESS]: (state, payload) => payload.products,
+    [FAILURE]: (state) => [],
+  },
+  [DELETE_PRODUCT]: {
+    [SUCCESS]: (state, payload) => removeProduct(state, payload.product),
+  },
 });
 
 export default combineReducers({
-    selectedProduct,
-    products,
+  selectedProduct,
+  products,
 });
 
 /**

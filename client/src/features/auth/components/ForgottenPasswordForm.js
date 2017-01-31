@@ -5,49 +5,49 @@ import { Input } from '@src/common/components/inputs';
 
 @linkedState(['email'])
 export default class ForgottenPasswordForm extends Component {
-    static propTypes = {
-        linkState: PropTypes.func.isRequired,
-        email: PropTypes.string.isRequired,
-        onSubmit: PropTypes.func.isRequired,
-        formErrors: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    linkState: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    formErrors: PropTypes.object.isRequired,
+  };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-        const { email, onSubmit } = this.props;
+    const { email, onSubmit } = this.props;
 
-        onSubmit({ email });
-    }
+    onSubmit({ email });
+  }
 
-    render() {
-        const { linkState, formErrors } = this.props;
+  render() {
+    const { linkState, formErrors } = this.props;
 
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+      <form onSubmit={this.handleSubmit}>
 
-                <h3>Forgotten Password</h3>
+        <h3>Forgotten Password</h3>
 
-                <p>Enter your E-mail and we will send you a password reset link.</p>
+        <p>Enter your E-mail and we will send you a password reset link.</p>
 
-                <Input
-                    {...linkState('email')}
-                    label="E-mail"
-                    placeholder="E-mail"
-                    name="email"
-                    error={formErrors.email}
-                    autoFocus
-                />
+        <Input
+          {...linkState('email')}
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          error={formErrors.email}
+          autoFocus
+        />
 
-                <Button
-                    type="submit"
-                    onClick={this.handleSubmit}
-                    bsStyle="primary"
-                >
-                    Submit
-                </Button>
+        <Button
+          type="submit"
+          onClick={this.handleSubmit}
+          bsStyle="primary"
+        >
+          Submit
+        </Button>
 
-            </form>
-        );
-    }
+      </form>
+    );
+  }
 }

@@ -1,4 +1,4 @@
 module.exports = {
-    logger: require('./logger'),
-    mailer: require('./mailer'),
+  logger: require('./logger'),
+  mailer: require('./mailer'),
 };

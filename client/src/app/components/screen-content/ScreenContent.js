@@ -4,15 +4,15 @@ import { Grid } from 'react-bootstrap';
 import './screen-content.scss';
 
 const ScreenContent = ({ children }) => (
-    <div id="screen-content" className="screen-content">
-        <Grid>
-            {children}
-        </Grid>
-    </div>
+  <div id="screen-content" className="screen-content">
+    <Grid>
+      {children}
+    </Grid>
+  </div>
 );
 
 ScreenContent.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default ScreenContent;

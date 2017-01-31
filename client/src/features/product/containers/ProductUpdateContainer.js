@@ -8,44 +8,44 @@ import { ProductUpdateForm } from '../components';
 import { productSchema } from '../schema/productSchema';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ updateProduct }, dispatch),
+  actions: bindActionCreators({ updateProduct }, dispatch),
 });
 
 @ProductContainer
 @connect(undefined, mapDispatchToProps)
 export default class ProductUpdateContainer extends Component {
-    static propTypes = {
-        product: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    product: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+  };
 
-    state = {
-        formErrors: {},
-    };
+  state = {
+    formErrors: {},
+  };
 
-    onSubmit = (productData) => {
-        const { actions, product } = this.props;
+  onSubmit = (productData) => {
+    const { actions, product } = this.props;
 
-        this.setState({ formErrors: {} });
+    this.setState({ formErrors: {} });
 
-        formValidation(productSchema, productData)
-            .then(() => {
-                actions.updateProduct(product.id, productData);
-            }, (formErrors) => {
-                this.setState({ formErrors });
-            });
-    }
+    formValidation(productSchema, productData)
+      .then(() => {
+        actions.updateProduct(product.id, productData);
+      }, (formErrors) => {
+        this.setState({ formErrors });
+      });
+  }
 
-    render() {
-        const { product } = this.props;
-        const { formErrors } = this.state;
+  render() {
+    const { product } = this.props;
+    const { formErrors } = this.state;
 
-        return (
-            <ProductUpdateForm
-                product={product}
-                formErrors={formErrors}
-                onSubmit={this.onSubmit}
-            />
-        );
-    }
+    return (
+      <ProductUpdateForm
+        product={product}
+        formErrors={formErrors}
+        onSubmit={this.onSubmit}
+      />
+    );
+  }
 }

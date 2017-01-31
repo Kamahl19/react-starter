@@ -4,7 +4,7 @@
 @import "~react-s-alert/dist/s-alert-default.css";
 
 .s-alert-box.s-alert-show {
-    z-index: 9999;
+  z-index: 9999;
 }
 
 // Customizing bootstrap
@@ -21,7 +21,7 @@
 }
 
 .screen-wrapper {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }

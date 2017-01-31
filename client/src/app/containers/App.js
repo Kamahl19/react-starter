@@ -8,57 +8,57 @@ import { getIsLoggedIn, getUserName, loginWithToken, logout } from '@src/feature
 import { getShowLoader } from '@src/features/loader/ducks/loader';
 
 const mapStateToProps = (state) => ({
-    showLoader: getShowLoader(state),
-    isLoggedIn: getIsLoggedIn(state),
-    userName: getUserName(state),
+  showLoader: getShowLoader(state),
+  isLoggedIn: getIsLoggedIn(state),
+  userName: getUserName(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ loginWithToken, logout }, dispatch),
+  actions: bindActionCreators({ loginWithToken, logout }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class AppContainer extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-        actions: PropTypes.object.isRequired,
-        showLoader: PropTypes.bool.isRequired,
-        isLoggedIn: PropTypes.bool.isRequired,
-        userName: PropTypes.string,
-    };
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    actions: PropTypes.object.isRequired,
+    showLoader: PropTypes.bool.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+    userName: PropTypes.string,
+  };
 
-    componentWillMount() {
-        this.props.actions.loginWithToken();
-    }
+  componentWillMount() {
+    this.props.actions.loginWithToken();
+  }
 
-    render() {
-        const { actions, children, showLoader, isLoggedIn, userName } = this.props;
+  render() {
+    const { actions, children, showLoader, isLoggedIn, userName } = this.props;
 
-        return (
-            <div className="screen-wrapper">
+    return (
+      <div className="screen-wrapper">
 
-                <Header
-                    isLoggedIn={isLoggedIn}
-                    userName={userName}
-                    logout={actions.logout}
-                />
+        <Header
+          isLoggedIn={isLoggedIn}
+          userName={userName}
+          logout={actions.logout}
+        />
 
-                <ScreenContent>
-                    {children}
-                </ScreenContent>
+        <ScreenContent>
+          {children}
+        </ScreenContent>
 
-                <Footer />
+        <Footer />
 
-                <Loader show={showLoader} />
+        <Loader show={showLoader} />
 
-                <Alert
-                    position="top-right"
-                    timeout={5000}
-                    stack={{ spacing: 10 }}
-                    html
-                />
+        <Alert
+          position="top-right"
+          timeout={5000}
+          stack={{ spacing: 10 }}
+          html
+        />
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }

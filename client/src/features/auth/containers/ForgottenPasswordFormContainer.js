@@ -7,40 +7,40 @@ import { ForgottenPasswordForm } from '../components';
 import { forgottenPasswordSchema } from '../schema/authSchema';
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ forgottenPassword }, dispatch),
+  actions: bindActionCreators({ forgottenPassword }, dispatch),
 });
 
 @connect(undefined, mapDispatchToProps)
 export default class ForgottenPasswordFormContainer extends Component {
-    static propTypes = {
-        actions: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+  };
 
-    state = {
-        formErrors: {},
-    };
+  state = {
+    formErrors: {},
+  };
 
-    onSubmit = (email) => {
-        const { actions } = this.props;
+  onSubmit = (email) => {
+    const { actions } = this.props;
 
-        this.setState({ formErrors: {} });
+    this.setState({ formErrors: {} });
 
-        formValidation(forgottenPasswordSchema, email)
-            .then(() => {
-                actions.forgottenPassword(email);
-            }, (formErrors) => {
-                this.setState({ formErrors });
-            });
-    }
+    formValidation(forgottenPasswordSchema, email)
+      .then(() => {
+        actions.forgottenPassword(email);
+      }, (formErrors) => {
+        this.setState({ formErrors });
+      });
+  }
 
-    render() {
-        const { formErrors } = this.state;
+  render() {
+    const { formErrors } = this.state;
 
-        return (
-            <ForgottenPasswordForm
-                formErrors={formErrors}
-                onSubmit={this.onSubmit}
-            />
-        );
-    }
+    return (
+      <ForgottenPasswordForm
+        formErrors={formErrors}
+        onSubmit={this.onSubmit}
+      />
+    );
+  }
 }

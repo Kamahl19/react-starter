@@ -6,68 +6,68 @@ import { Input } from '@src/common/components/inputs';
 
 @linkedState(['email', 'password'])
 export default class LoginForm extends Component {
-    static propTypes = {
-        linkState: PropTypes.func.isRequired,
-        email: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-        onSubmit: PropTypes.func.isRequired,
-        isAuthenticating: PropTypes.bool.isRequired,
-        formErrors: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    linkState: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    isAuthenticating: PropTypes.bool.isRequired,
+    formErrors: PropTypes.object.isRequired,
+  };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-        const { email, password, onSubmit } = this.props;
+    const { email, password, onSubmit } = this.props;
 
-        onSubmit({ email, password });
-    }
+    onSubmit({ email, password });
+  }
 
-    renderForgotPassword() {
-        return (
-            <Link to="auth/forgotten-password">
-                Forgot password?
-            </Link>
-        );
-    }
+  renderForgotPassword() {
+    return (
+      <Link to="auth/forgotten-password">
+        Forgot password?
+      </Link>
+    );
+  }
 
-    render() {
-        const { isAuthenticating, linkState, formErrors } = this.props;
+  render() {
+    const { isAuthenticating, linkState, formErrors } = this.props;
 
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+      <form onSubmit={this.handleSubmit}>
 
-                <h3>Log In</h3>
+        <h3>Log In</h3>
 
-                <Input
-                    {...linkState('email')}
-                    label="E-mail"
-                    placeholder="E-mail"
-                    name="email"
-                    error={formErrors.email}
-                    autoFocus
-                />
+        <Input
+          {...linkState('email')}
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          error={formErrors.email}
+          autoFocus
+        />
 
-                <Input
-                    {...linkState('password')}
-                    type="password"
-                    label="Password"
-                    placeholder="Password"
-                    name="password"
-                    error={formErrors.password}
-                    rightLabel={this.renderForgotPassword()}
-                />
+        <Input
+          {...linkState('password')}
+          type="password"
+          label="Password"
+          placeholder="Password"
+          name="password"
+          error={formErrors.password}
+          rightLabel={this.renderForgotPassword()}
+        />
 
-                <Button
-                    type="submit"
-                    onClick={this.handleSubmit}
-                    disabled={isAuthenticating}
-                    bsStyle="primary"
-                >
-                    Log In
-                </Button>
+        <Button
+          type="submit"
+          onClick={this.handleSubmit}
+          disabled={isAuthenticating}
+          bsStyle="primary"
+        >
+          Log In
+        </Button>
 
-            </form>
-        );
-    }
+      </form>
+    );
+  }
 }

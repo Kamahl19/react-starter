@@ -4,16 +4,16 @@ import { Provider } from 'react-redux';
 import routes from '@src/app/routes/routes';
 
 const Root = ({ store, history }) => (
-    <Provider store={store}>
-        <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
-            {routes}
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
+      {routes}
+    </Router>
+  </Provider>
 );
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default Root;
