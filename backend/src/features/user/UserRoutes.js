@@ -2,7 +2,8 @@ const router = require('express').Router();
 const Celebrate = require('celebrate');
 const UserController = require('./UserController');
 const UserSchema = require('./UserSchema');
-const { isLoggedIn, isOwnId } = require('src/common/middleware');
+const { isLoggedIn } = require('src/common/middleware');
+const { isOwnUserId } = require('./middleware');
 
 router.route('/users')
   // Create new user
@@ -10,8 +11,8 @@ router.route('/users')
 
 router.route('/users/:userId')
   // Get user by ID
-  .get(isLoggedIn, isOwnId, Celebrate(UserSchema.getById), UserController.getById)
+  .get(isLoggedIn, isOwnUserId, Celebrate(UserSchema.getById), UserController.getById)
   // Update user
-  .put(isLoggedIn, isOwnId, Celebrate(UserSchema.update), UserController.update);
+  .put(isLoggedIn, isOwnUserId, Celebrate(UserSchema.update), UserController.update);
 
 module.exports = router;
