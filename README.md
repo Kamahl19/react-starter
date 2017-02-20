@@ -40,17 +40,17 @@ Seed DB & Start the backend
 
 ```sh
 cd backend
-npm install
-npm run seed
-npm start
+yarn install
+yarn run seed
+yarn start
 ```
 
 Start the client
 
 ```sh
 cd client
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 ## Deployment
@@ -58,7 +58,7 @@ npm start
 Build client
 ```sh
 cd client
-npm run build
+yarn run build
 ```
 
 Deploy app to Heroku

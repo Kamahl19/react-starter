@@ -24,8 +24,8 @@
     "redux"
   ],
   "engines": {
-    "node": ">=7.2.0",
-    "npm": ">=3.10.10"
+    "node": "^7.5.0",
+    "yarn": "^0.20.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "copyfiles": "^1.1.0",
     "cross-env": "^3.1.4",
-    "react-scripts-kamahl19-fork": "^0.9.0",
+    "react-scripts-kamahl19-fork": "^0.9.1",
     "redux-logger": "^2.7.4"
   },
   "dependencies": {
@@ -58,7 +58,7 @@
     "react-router-redux": "^4.0.7",
     "react-s-alert": "^1.2.2",
     "redux": "^3.6.0",
-    "redux-auth-wrapper": "^0.10.0",
+    "redux-auth-wrapper": "^1.0.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^2.5.4"
   }
