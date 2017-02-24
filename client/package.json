@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/app/public",
+    "build": "cross-env react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

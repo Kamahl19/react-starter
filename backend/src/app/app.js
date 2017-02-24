@@ -39,7 +39,7 @@ app.use(helmet());
 
 // Serve frontend app
 if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.resolve(__dirname, 'public'), {
+  app.use('/', express.static(path.resolve(__dirname, '..', '..', 'public'), {
     maxAge: config.cacheFilesFor,
   }));
 }
