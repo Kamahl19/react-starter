@@ -30,11 +30,6 @@ function UnauthorizedError(error) {
 UnauthorizedError.prototype = Object.create(Error.prototype);
 UnauthorizedError.prototype.constructor = UnauthorizedError;
 
-module.exports = {
-  BadRequestError,
-  UnauthorizedError,
-};
-
 /**
  * ForbiddenError 403
  */
@@ -48,7 +43,7 @@ function ForbiddenError(error) {
 }
 
 ForbiddenError.prototype = Object.create(Error.prototype);
-ForbiddenError.prototype.constructor = UnauthorizedError;
+ForbiddenError.prototype.constructor = ForbiddenError;
 
 /**
  * NotFoundError 404
@@ -63,7 +58,7 @@ function NotFoundError(error) {
 }
 
 NotFoundError.prototype = Object.create(Error.prototype);
-NotFoundError.prototype.constructor = UnauthorizedError;
+NotFoundError.prototype.constructor = NotFoundError;
 
 module.exports = {
   BadRequestError,
