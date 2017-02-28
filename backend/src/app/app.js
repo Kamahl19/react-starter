@@ -38,11 +38,9 @@ if (config.cors.origin) {
 app.use(helmet());
 
 // Serve frontend app
-if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.resolve(__dirname, '..', '..', 'public'), {
-    maxAge: config.cacheFilesFor,
-  }));
-}
+app.use('/', express.static(path.resolve(__dirname, '..', '..', 'public'), {
+  maxAge: config.cacheFilesFor,
+}));
 
 // Routes
 app.use('/api', routes);

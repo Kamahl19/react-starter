@@ -11,6 +11,5 @@ node_modules
 
 # Build
 client/build
-backend/app/public
 
 .env

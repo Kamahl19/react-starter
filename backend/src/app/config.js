@@ -32,7 +32,7 @@ const config = {
     jwtTokenExpireInSec: 24 * 60 * 60, // 1 day
     passwordResetExpireInMs: 60 * 60 * 1000, // 1 hour
   },
-  cacheFilesFor: '1d',
+  cacheFilesFor: process.env.NODE_ENV === 'production' ? '1d' : 0,
 };
 
 module.exports = config;
