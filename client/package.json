@@ -28,7 +28,7 @@
     "yarn": "^0.20.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env BROWSER=chrome react-scripts start",
     "build": "cross-env react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
