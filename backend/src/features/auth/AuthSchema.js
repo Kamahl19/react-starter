@@ -22,7 +22,7 @@ module.exports = {
   resetPassword: {
     body: Joi.object().keys({
       password,
-      passwordResetToken
+      passwordResetToken,
     }),
   },
 };

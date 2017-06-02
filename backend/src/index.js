@@ -27,7 +27,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Catch MongoDB `error` event
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('error', err => {
   logger.error(`MongoDB error: ${err}`);
 });
 
@@ -41,7 +41,7 @@ server.on('listening', () => {
 });
 
 // Catch server `error` event
-server.on('error', (error) => {
+server.on('error', error => {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -70,8 +70,7 @@ process.on('SIGINT', cleanShutDown).on('SIGTERM', cleanShutDown);
 // Connect to MongoDB
 try {
   mongoose.connect(process.env.MONGO_URL, config.mongolab.options);
-}
-catch (err) {
+} catch (err) {
   logger.fatal(`Sever initialization failed: ${err.message}`);
 }
 

@@ -3,7 +3,6 @@ const { getSuccessResult } = require('src/common/utils/helpers');
 const { NotFoundError } = require('src/common/utils/apiErrors');
 
 const ProductController = {
-
   /**
    * Get all Products
    */
@@ -12,10 +11,9 @@ const ProductController = {
       const products = await Product.find({});
 
       return getSuccessResult(res, {
-        products: products.map((product) => product.getPublicData())
+        products: products.map(product => product.getPublicData()),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -30,14 +28,13 @@ const ProductController = {
       const product = await Product.findById(productId);
 
       if (!product) {
-        throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested product does not exist.' });
       }
 
       return getSuccessResult(res, {
-        product: product.getPublicData()
+        product: product.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -57,10 +54,9 @@ const ProductController = {
       await product.save();
 
       return getSuccessResult(res, {
-        product: product.getPublicData()
+        product: product.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -78,17 +74,19 @@ const ProductController = {
         description,
       };
 
-      const product = await Product.findByIdAndUpdate(productId, newData, { new: true, runValidators: true });
+      const product = await Product.findByIdAndUpdate(productId, newData, {
+        new: true,
+        runValidators: true,
+      });
 
       if (!product) {
-        throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested product does not exist.' });
       }
 
       return getSuccessResult(res, {
-        product: product.getPublicData()
+        product: product.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -103,18 +101,16 @@ const ProductController = {
       const product = await Product.findByIdAndRemove(productId);
 
       if (!product) {
-        throw new NotFoundError({ message: 'Requested product doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested product does not exist.' });
       }
 
       return getSuccessResult(res, {
-        product: product.getPublicData()
+        product: product.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
-
 };
 
 module.exports = ProductController;

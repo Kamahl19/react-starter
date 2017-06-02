@@ -19,7 +19,7 @@ BadRequestError.prototype.constructor = BadRequestError;
  * UnauthorizedError 401
  */
 function UnauthorizedError(error) {
-    Error.call(this, error.message);
+  Error.call(this, error.message);
   Error.captureStackTrace(this, this.constructor);
   this.name = 'UnauthorizedError';
   this.message = error.message;

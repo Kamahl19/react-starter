@@ -5,7 +5,6 @@ const { mailer } = require('src/common/services');
 const { forgottenPasswordMail, resetPasswordMail } = require('src/app/preddefinedMails');
 
 const UserController = {
-
   /**
    * Login
    */
@@ -21,10 +20,9 @@ const UserController = {
 
       return getSuccessResult(res, {
         token: user.getAuthToken(),
-        user: user.getPublicData()
+        user: user.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -38,21 +36,25 @@ const UserController = {
 
       const newData = User.generatePasswordResetToken();
 
-      const user = await User.findOneAndUpdate({ email }, newData, { new: true, runValidators: true });
+      const user = await User.findOneAndUpdate({ email }, newData, {
+        new: true,
+        runValidators: true,
+      });
 
       if (!user) {
-        throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested user does not exist.' });
       }
 
-      const link = `${req.headers.origin}${process.env.CORS_ORIGIN ? '/#' : ''}/auth/reset-password/${newData.passwordResetToken}`;
+      const link = `${req.headers.origin}${process.env.CORS_ORIGIN
+        ? '/#'
+        : ''}/auth/reset-password/${newData.passwordResetToken}`;
 
       await mailer.sendMail(user.email, forgottenPasswordMail(link));
 
       return getSuccessResult(res, {
         message: `An e-mail has been sent to ${user.email} with further instructions.`,
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -70,9 +72,13 @@ const UserController = {
         passwordResetExpires: undefined,
       };
 
-      const user = await User.findOneAndUpdate({ passwordResetToken }, newData, { new: true, runValidators: true })
-                              .where('passwordResetExpires').gt(Date.now())
-                              .exec();
+      const user = await User.findOneAndUpdate({ passwordResetToken }, newData, {
+        new: true,
+        runValidators: true,
+      })
+        .where('passwordResetExpires')
+        .gt(Date.now())
+        .exec();
 
       if (!user) {
         throw new ForbiddenError({ message: 'Password reset token is invalid or has expired.' });
@@ -83,14 +89,12 @@ const UserController = {
       return getSuccessResult(res, {
         message: `Success! Your password has been changed.`,
         token: user.getAuthToken(),
-        user: user.getPublicData()
+        user: user.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
-
 };
 
 module.exports = UserController;

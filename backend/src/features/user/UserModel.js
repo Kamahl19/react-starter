@@ -5,16 +5,19 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('src/app/config');
 
-const userSchema = new Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, select: false },
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-  isAdmin: { type: Boolean, default: false },
-  profile: {
-    name: { type: String, required: true },
+const userSchema = new Schema(
+  {
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true, select: false },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    isAdmin: { type: Boolean, default: false },
+    profile: {
+      name: { type: String, required: true },
+    },
   },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 /**
  * Methods
@@ -50,7 +53,8 @@ userSchema.methods.getPublicData = function() {
 /**
  * Static methods
  */
-userSchema.statics.generateHash = (password) => (password ? bcrypt.hashSync(password, bcrypt.genSaltSync(10)) : null);
+userSchema.statics.generateHash = password =>
+  password ? bcrypt.hashSync(password, bcrypt.genSaltSync(10)) : null;
 
 userSchema.statics.generatePasswordResetToken = () => ({
   passwordResetToken: crypto.randomBytes(16).toString('hex'),

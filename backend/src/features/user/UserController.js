@@ -3,7 +3,6 @@ const { getSuccessResult } = require('src/common/utils/helpers');
 const { NotFoundError } = require('src/common/utils/apiErrors');
 
 const UserController = {
-
   /**
    * Get User by ID
    */
@@ -14,14 +13,13 @@ const UserController = {
       const user = await User.findById(userId);
 
       if (!user) {
-        throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested user does not exist.' });
       }
 
       return getSuccessResult(res, {
         user: user.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -47,8 +45,7 @@ const UserController = {
         token: user.getAuthToken(),
         user: user.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
@@ -63,29 +60,30 @@ const UserController = {
 
       const newData = {
         profile: {
-          name
-        }
+          name,
+        },
       };
 
       if (password) {
         newData.password = User.generateHash(password);
       }
 
-      const user = await User.findByIdAndUpdate(userId, newData, { new: true, runValidators: true });
+      const user = await User.findByIdAndUpdate(userId, newData, {
+        new: true,
+        runValidators: true,
+      });
 
       if (!user) {
-        throw new NotFoundError({ message: 'Requested user doesn\'t exist.' });
+        throw new NotFoundError({ message: 'Requested user does not exist.' });
       }
 
       return getSuccessResult(res, {
-        user: user.getPublicData()
+        user: user.getPublicData(),
       });
-    }
-    catch (err) {
+    } catch (err) {
       next(err);
     }
   },
-
 };
 
 module.exports = UserController;

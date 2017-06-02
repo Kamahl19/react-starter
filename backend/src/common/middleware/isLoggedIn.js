@@ -11,16 +11,17 @@ module.exports = (req, res, next) => {
 
   const tokenParts = req.headers.authorization.split(' ');
 
-  if (tokenParts.length !== 2 || !(/^Bearer$/i.test(tokenParts[0])) || !tokenParts[1]) {
-    return next(new UnauthorizedError({ message: 'Format of the Authorization header is invalid.' }));
+  if (tokenParts.length !== 2 || !/^Bearer$/i.test(tokenParts[0]) || !tokenParts[1]) {
+    return next(
+      new UnauthorizedError({ message: 'Format of the Authorization header is invalid.' })
+    );
   }
 
   try {
     const decoded = jwt.verify(tokenParts[1], process.env.JWT_SECRET);
     req.user = decoded;
     next();
-  }
-  catch (err) {
+  } catch (err) {
     return next(new UnauthorizedError(err));
   }
 };
