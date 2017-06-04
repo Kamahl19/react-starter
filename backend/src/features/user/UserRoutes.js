@@ -2,8 +2,8 @@ const router = require('express').Router();
 const Celebrate = require('celebrate');
 const UserController = require('./UserController');
 const UserSchema = require('./UserSchema');
-const { isLoggedIn } = require('src/common/middleware');
-const { isOwnUserId } = require('./middleware');
+const isLoggedIn = require('src/common/middleware/isLoggedIn');
+const isOwnUserId = require('./middleware/isOwnUserId');
 
 router.route('/users').post(Celebrate(UserSchema.create), UserController.create);
 

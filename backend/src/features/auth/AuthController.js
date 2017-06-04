@@ -1,6 +1,6 @@
 const User = require('src/features/user/UserModel');
 const { NotFoundError, UnauthorizedError, ForbiddenError } = require('src/common/utils/apiErrors');
-const { mailer } = require('src/common/services');
+const mailer = require('src/common/services/mailer');
 const { forgottenPasswordMail, resetPasswordMail } = require('src/app/preddefinedMails');
 
 const UserController = {
@@ -63,7 +63,7 @@ const UserController = {
    */
   resetPassword: async (req, res, next) => {
     try {
-      const { passwordResetToken, password } = req.body;
+      const { email, passwordResetToken, password } = req.body;
 
       const newData = {
         password: User.generateHash(password),
@@ -71,7 +71,7 @@ const UserController = {
         passwordResetExpires: undefined,
       };
 
-      const user = await User.findOneAndUpdate({ passwordResetToken }, newData, {
+      const user = await User.findOneAndUpdate({ email, passwordResetToken }, newData, {
         new: true,
         runValidators: true,
       })

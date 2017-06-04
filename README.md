@@ -34,7 +34,7 @@ rm -rf .git
 git init
 ```
 
-This project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example` in both ``/backend`` and ``/client``, rename it to `.env` and add your env vars as you see fit.
+This project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example` in both ``/backend`` and ``/frontend``, rename it to `.env` and add your env vars as you see fit.
 
 Seed DB & Start the backend
 
@@ -45,19 +45,19 @@ yarn run seed
 yarn start
 ```
 
-Start the client
+Start the frontend
 
 ```sh
-cd client
+cd frontend
 yarn install
 yarn start
 ```
 
 ## Deployment
 
-Build client
+Build frontend
 ```sh
-cd client
+cd frontend
 yarn run build
 ```
 

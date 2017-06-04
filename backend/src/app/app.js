@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const httpStatus = require('http-status');
 const routes = require('src/app/routes');
 const config = require('src/app/config');
-const { logger } = require('src/common/services');
+const logger = require('src/common/services/logger');
 const { normalizePort, getErrorMessage } = require('src/common/utils/helpers');
 const { NotFoundError, BadRequestError } = require('src/common/utils/apiErrors');
 

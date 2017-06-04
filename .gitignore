@@ -13,6 +13,6 @@ Thumbs.db
 node_modules
 
 # Build
-client/build
+frontend/build
 
 .env
