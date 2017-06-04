@@ -11,10 +11,6 @@ const userSchema = new Schema(
     password: { type: String, required: true, select: false },
     passwordResetToken: String,
     passwordResetExpires: Date,
-    isAdmin: { type: Boolean, default: false },
-    profile: {
-      name: { type: String, required: true },
-    },
   },
   { timestamps: true }
 );
@@ -29,7 +25,6 @@ userSchema.methods.validPassword = function(password) {
 userSchema.methods.getAuthToken = function() {
   const payload = {
     userId: this.id,
-    isAdmin: this.isAdmin,
   };
 
   const options = {
@@ -45,8 +40,6 @@ userSchema.methods.getPublicData = function() {
   return {
     id: this.id,
     email: this.email,
-    profile: this.profile,
-    isAdmin: this.isAdmin,
   };
 };
 

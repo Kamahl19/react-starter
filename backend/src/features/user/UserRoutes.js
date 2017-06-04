@@ -9,7 +9,6 @@ router.route('/users').post(Celebrate(UserSchema.create), UserController.create)
 
 router
   .route('/users/:userId')
-  .get(isLoggedIn, isOwnUserId, Celebrate(UserSchema.getById), UserController.getById)
-  .put(isLoggedIn, isOwnUserId, Celebrate(UserSchema.update), UserController.update);
+  .get(isLoggedIn, isOwnUserId, Celebrate(UserSchema.getById), UserController.getById);
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const User = require('src/features/user/UserModel');
-const { getSuccessResult } = require('src/common/utils/helpers');
 const { NotFoundError, UnauthorizedError, ForbiddenError } = require('src/common/utils/apiErrors');
 const { mailer } = require('src/common/services');
 const { forgottenPasswordMail, resetPasswordMail } = require('src/app/preddefinedMails');
@@ -18,7 +17,7 @@ const UserController = {
         throw new UnauthorizedError({ message: 'Login credentials are wrong.' });
       }
 
-      return getSuccessResult(res, {
+      return res.json({
         token: user.getAuthToken(),
         user: user.getPublicData(),
       });
@@ -51,7 +50,7 @@ const UserController = {
 
       await mailer.sendMail(user.email, forgottenPasswordMail(link));
 
-      return getSuccessResult(res, {
+      return res.json({
         message: `An e-mail has been sent to ${user.email} with further instructions.`,
       });
     } catch (err) {
@@ -86,7 +85,7 @@ const UserController = {
 
       await mailer.sendMail(user.email, resetPasswordMail(user.email));
 
-      return getSuccessResult(res, {
+      return res.json({
         message: `Success! Your password has been changed.`,
         token: user.getAuthToken(),
         user: user.getPublicData(),

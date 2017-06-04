@@ -1,5 +1,4 @@
 const User = require('./UserModel');
-const { getSuccessResult } = require('src/common/utils/helpers');
 const { NotFoundError } = require('src/common/utils/apiErrors');
 
 const UserController = {
@@ -16,7 +15,7 @@ const UserController = {
         throw new NotFoundError({ message: 'Requested user does not exist.' });
       }
 
-      return getSuccessResult(res, {
+      return res.json({
         user: user.getPublicData(),
       });
     } catch (err) {
@@ -29,55 +28,17 @@ const UserController = {
    */
   create: async (req, res, next) => {
     try {
-      const { email, name, password } = req.body;
+      const { email, password } = req.body;
 
       const user = new User({
         email,
-        profile: {
-          name,
-        },
         password: User.generateHash(password),
       });
 
       await user.save();
 
-      return getSuccessResult(res, {
+      return res.json({
         token: user.getAuthToken(),
-        user: user.getPublicData(),
-      });
-    } catch (err) {
-      next(err);
-    }
-  },
-
-  /**
-   * Update User
-   */
-  update: async (req, res, next) => {
-    try {
-      const { userId } = req.params;
-      const { name, password } = req.body;
-
-      const newData = {
-        profile: {
-          name,
-        },
-      };
-
-      if (password) {
-        newData.password = User.generateHash(password);
-      }
-
-      const user = await User.findByIdAndUpdate(userId, newData, {
-        new: true,
-        runValidators: true,
-      });
-
-      if (!user) {
-        throw new NotFoundError({ message: 'Requested user does not exist.' });
-      }
-
-      return getSuccessResult(res, {
         user: user.getPublicData(),
       });
     } catch (err) {
