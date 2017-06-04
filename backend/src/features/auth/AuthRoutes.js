@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const Celebrate = require('celebrate');
+const validator = require('src/common/services/validator');
 const AuthController = require('./AuthController');
 const AuthSchema = require('./AuthSchema');
 
-router.route('/auth/login').post(Celebrate(AuthSchema.login), AuthController.login);
+router.route('/auth/login').post(validator(AuthSchema.login), AuthController.login);
 
 router
   .route('/auth/forgotten-password')
-  .post(Celebrate(AuthSchema.forgottenPassword), AuthController.forgottenPassword);
+  .post(validator(AuthSchema.forgottenPassword), AuthController.forgottenPassword);
 
 router
   .route('/auth/reset-password')
-  .post(Celebrate(AuthSchema.resetPassword), AuthController.resetPassword);
+  .post(validator(AuthSchema.resetPassword), AuthController.resetPassword);
 
 module.exports = router;
