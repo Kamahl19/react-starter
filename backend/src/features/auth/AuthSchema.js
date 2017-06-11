@@ -3,7 +3,7 @@ const Joi = require('joi');
 const email = Joi.string().max(255).email().required().label('E-mail');
 const password = Joi.string().min(6);
 const passwordWithoutLimit = Joi.string().required();
-const passwordResetToken = Joi.string().hex().length(16);
+const passwordResetToken = Joi.string().hex().length(32);
 
 module.exports = {
   login: {
@@ -21,6 +21,7 @@ module.exports = {
 
   resetPassword: {
     body: Joi.object().keys({
+      email,
       password,
       passwordResetToken,
     }),
