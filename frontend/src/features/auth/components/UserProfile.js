@@ -6,6 +6,7 @@ const UserProfile = ({ user, t }) =>
   <div>
     <h1>{t('User Profile')}</h1>
     <p>{t('Username')}: {user.email}</p>
+    <p>{t('Is Active')}: {user.isActive ? t('Yes') : t('No')}</p>
   </div>;
 
 UserProfile.propTypes = {

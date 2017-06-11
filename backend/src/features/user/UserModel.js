@@ -11,7 +11,7 @@ const userSchema = new Schema(
     password: { type: String, required: true, select: false },
     passwordResetToken: String,
     passwordResetExpires: Date,
-    active: { type: Boolean, default: false },
+    isActive: { type: Boolean, default: false },
     activationToken: String,
     activationExpires: Date,
   },
@@ -43,7 +43,7 @@ userSchema.methods.getPublicData = function() {
   return {
     id: this.id,
     email: this.email,
-    active: this.active,
+    isActive: this.isActive,
   };
 };
 

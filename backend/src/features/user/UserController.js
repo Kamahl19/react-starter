@@ -66,13 +66,13 @@ const UserController = {
       const { userId, activationToken } = req.params;
 
       const newData = {
-        active: true,
+        isActive: true,
         activationToken: undefined,
         activationExpires: undefined,
       };
 
       const user = await User.findOneAndUpdate(
-        { _id: userId, activationToken, active: false },
+        { _id: userId, activationToken, isActive: false },
         newData,
         {
           new: true,

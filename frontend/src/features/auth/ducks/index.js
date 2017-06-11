@@ -93,6 +93,7 @@ export const selectIsAuthenticating = state => selectAuth(state).isAuthenticatin
 
 export const selectUserId = state => selectUser(state).id;
 export const selectUserRole = state => selectUser(state).role;
+export const selectIsActive = state => selectUser(state).isActive;
 export const selectEmail = createSelector(selectUser, user => user && user.email);
 export const selectIsLoggedIn = createSelector(selectUser, user => user !== null);
 
