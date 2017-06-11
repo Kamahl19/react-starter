@@ -8,17 +8,18 @@ Simple starter project including both React app and Express Rest API server
     * Mongo DB
     * DB Seeding
     * Auth using JWT
-    * Logging
+    * Logging (bunyan & morgan)
     * Env variables using .env
     * Cors, Compression, Helmet
+    * E-mail service
+    * Request validation (joi)
 * React Starter
     * Auth using JWT
-    * Redux (thunk, call-api-middleware, logger, Reselect)
-    * Bootstrap 3, Font Awesome
+    * Ant.Design
+    * Axios
+    * i18n (i18next)
+    * Redux (saga, persist, logger, Reselect)
     * react-router
-    * loader
-    * toast / alert
-    * form validation
     * [forked create-react-app](https://github.com/Kamahl19/create-react-app/tree/kamahl19-customizations/packages/react-scripts)
 
 ## Getting Started With create-react-app
