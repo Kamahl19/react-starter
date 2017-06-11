@@ -11,6 +11,9 @@ const userSchema = new Schema(
     password: { type: String, required: true, select: false },
     passwordResetToken: String,
     passwordResetExpires: Date,
+    active: { type: Boolean, default: false },
+    activationToken: String,
+    activationExpires: Date,
   },
   { timestamps: true }
 );
@@ -40,6 +43,7 @@ userSchema.methods.getPublicData = function() {
   return {
     id: this.id,
     email: this.email,
+    active: this.active,
   };
 };
 
@@ -52,6 +56,11 @@ userSchema.statics.generateHash = password =>
 userSchema.statics.generatePasswordResetToken = () => ({
   passwordResetToken: crypto.randomBytes(16).toString('hex'),
   passwordResetExpires: Date.now() + config.auth.passwordResetExpireInMs,
+});
+
+userSchema.statics.generateActivationToken = () => ({
+  activationToken: crypto.randomBytes(16).toString('hex'),
+  activationExpires: Date.now() + config.auth.activationExpireInMs,
 });
 
 const User = mongoose.model('User', userSchema);

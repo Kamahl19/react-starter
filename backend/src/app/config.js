@@ -31,6 +31,7 @@ const config = {
   auth: {
     jwtTokenExpireInSec: 24 * 60 * 60, // 1 day
     passwordResetExpireInMs: 60 * 60 * 1000, // 1 hour
+    activationExpireInMs: 24 * 60 * 60 * 1000, // 1 day
   },
   cacheFilesFor: process.env.NODE_ENV === 'production' ? '1d' : 0,
 };

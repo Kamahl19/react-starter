@@ -6,7 +6,7 @@ import Spin from 'antd/lib/spin';
 import { selectIsInProgress } from '@src/features/spinner/ducks';
 import { apiCallIds } from '../api';
 import { resetPasswordRequest } from '../ducks';
-import { ResetPasswordForm } from '../components';
+import { ResetPassword } from '../components';
 
 const mapStateToProps = (state, props) => ({
   isLoading: selectIsInProgress(state, apiCallIds.RESET_PASSWORD),
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 const ResetPasswordContainer = ({ isLoading, passwordResetToken, actions }) =>
   <Spin spinning={isLoading}>
-    <ResetPasswordForm
+    <ResetPassword
       onSubmit={actions.resetPasswordRequest}
       passwordResetToken={passwordResetToken}
     />

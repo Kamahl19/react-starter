@@ -1,5 +1,7 @@
 const User = require('./UserModel');
-const { NotFoundError } = require('src/common/utils/apiErrors');
+const { NotFoundError, ForbiddenError } = require('src/common/utils/apiErrors');
+const mailer = require('src/common/services/mailer');
+const { activationMail } = require('src/app/preddefinedMails');
 
 const UserController = {
   /**
@@ -30,14 +32,63 @@ const UserController = {
     try {
       const { email, password } = req.body;
 
+      const activationTokenAndExpiration = User.generateActivationToken();
+
       const user = new User({
         email,
         password: User.generateHash(password),
+        activationToken: activationTokenAndExpiration.activationToken,
+        activationExpires: activationTokenAndExpiration.activationExpires,
       });
 
       await user.save();
 
+      const link = `${req.headers.origin}${process.env.CORS_ORIGIN
+        ? '/#'
+        : ''}/auth/activate/${user.id}/${user.activationToken}`;
+
+      await mailer.sendMail(user.email, activationMail(link));
+
       return res.json({
+        token: user.getAuthToken(),
+        user: user.getPublicData(),
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  /**
+   * Activate user
+   */
+  activate: async (req, res, next) => {
+    try {
+      const { userId, activationToken } = req.params;
+
+      const newData = {
+        active: true,
+        activationToken: undefined,
+        activationExpires: undefined,
+      };
+
+      const user = await User.findOneAndUpdate(
+        { _id: userId, activationToken, active: false },
+        newData,
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+        .where('activationExpires')
+        .gt(Date.now())
+        .exec();
+
+      if (!user) {
+        throw new ForbiddenError({ message: 'Activation token is invalid or has expired.' });
+      }
+
+      return res.json({
+        message: `Success! Your account has been activated.`,
         token: user.getAuthToken(),
         user: user.getPublicData(),
       });

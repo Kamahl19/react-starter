@@ -1,5 +1,5 @@
-export { default as LoginForm } from './LoginForm';
-export { default as ForgottenPasswordForm } from './ForgottenPasswordForm';
-export { default as ResetPasswordForm } from './ResetPasswordForm';
+export { default as Login } from './Login';
+export { default as ForgottenPassword } from './ForgottenPassword';
+export { default as ResetPassword } from './ResetPassword';
 export { default as UserProfile } from './UserProfile';
-export { default as SignUpForm } from './SignUpForm';
+export { default as SignUp } from './SignUp';

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
 import { selectIsAuthenticating, signUpRequest } from '../ducks';
-import { SignUpForm } from '../components';
+import { SignUp } from '../components';
 
 const mapStateToProps = state => ({
   isAuthenticating: selectIsAuthenticating(state),
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 
 const SignUpContainer = ({ isAuthenticating, actions }) =>
   <Spin spinning={isAuthenticating}>
-    <SignUpForm onSubmit={actions.signUp} />
+    <SignUp onSubmit={actions.signUp} />
   </Spin>;
 
 SignUpContainer.propTypes = {

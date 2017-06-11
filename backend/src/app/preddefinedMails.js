@@ -11,7 +11,14 @@ const resetPasswordMail = email => ({
   text: `Hello,\n\nThis is a confirmation that the password for your account ${email} has just been changed.\n`,
 });
 
+const activationMail = link => ({
+  subject: 'Activate your account',
+  text: `Please click on the following link, or paste this into your browser to activate your account:\n
+${link}\n`,
+});
+
 module.exports = {
   forgottenPasswordMail,
   resetPasswordMail,
+  activationMail,
 };

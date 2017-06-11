@@ -36,6 +36,10 @@ export default {
     });
   },
 
+  activateUser: ({ userId, activationToken }) => {
+    return apiClient.get(`/users/${userId}/activate/${activationToken}`);
+  },
+
   fetchMe: userId => {
     return apiClient.get(`/users/${userId}`);
   },

@@ -11,4 +11,8 @@ router
   .route('/users/:userId')
   .get(isLoggedIn, isOwnUserId, validator(UserSchema.getById), UserController.getById);
 
+router
+  .route('/users/:userId/activate/:activationToken')
+  .get(validator(UserSchema.activate), UserController.activate);
+
 module.exports = router;

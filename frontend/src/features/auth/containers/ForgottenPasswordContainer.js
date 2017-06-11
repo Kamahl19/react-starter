@@ -6,7 +6,7 @@ import Spin from 'antd/lib/spin';
 import { selectIsInProgress } from '@src/features/spinner/ducks';
 import { apiCallIds } from '../api';
 import { forgottenPasswordRequest } from '../ducks';
-import { ForgottenPasswordForm } from '../components';
+import { ForgottenPassword } from '../components';
 
 const mapStateToProps = state => ({
   isLoading: selectIsInProgress(state, apiCallIds.FORGOTTEN_PASSWORD),
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 
 const ForgottenPasswordContainer = ({ isLoading, actions }) =>
   <Spin spinning={isLoading}>
-    <ForgottenPasswordForm onSubmit={actions.forgottenPasswordRequest} />
+    <ForgottenPassword onSubmit={actions.forgottenPasswordRequest} />
   </Spin>;
 
 ForgottenPasswordContainer.propTypes = {

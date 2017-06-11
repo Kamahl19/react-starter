@@ -20,5 +20,3 @@ export default id => ModalComponent =>
       ),
     })
   )(props => <ModalComponent {...props} />);
-
-// TODO implement
