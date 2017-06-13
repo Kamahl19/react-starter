@@ -25,6 +25,7 @@ export default class HeaderContainer extends Component {
     actions: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     email: PropTypes.string,
+    location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
 
@@ -53,11 +54,13 @@ export default class HeaderContainer extends Component {
   };
 
   render() {
-    const { actions, isLoggedIn, menuMode, email } = this.props;
+    const { location, history, actions, isLoggedIn, menuMode, email } = this.props;
     const { responsiveMenuVisible } = this.state;
 
     return (
       <Header
+        location={location}
+        history={history}
         isLoggedIn={isLoggedIn}
         email={email}
         logout={actions.logout}

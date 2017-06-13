@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Layout from 'antd/lib/layout';
 import Menu from 'antd/lib/menu';
 import { translate } from 'react-i18next';
 import MobileMenu from './MobileMenu';
 
-@withRouter
 @translate()
 export default class Header extends Component {
   static propTypes = {
