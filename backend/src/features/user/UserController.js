@@ -43,9 +43,7 @@ const UserController = {
 
       await user.save();
 
-      const link = `${req.headers.origin}${process.env.CORS_ORIGIN
-        ? '/#'
-        : ''}/auth/activate/${user.id}/${user.activationToken}`;
+      const link = `${req.headers.origin}/auth/activate/${user.id}/${user.activationToken}`;
 
       await mailer.sendMail(user.email, activationMail(link));
 

@@ -6,7 +6,8 @@ export default UserAuthWrapper({
   authSelector: selectAuth,
   predicate: auth => auth.user === null,
   authenticatingSelector: auth => auth.isAuthenticating,
-  failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
+  failureRedirectPath: (state, props) =>
+    (props.location.query && props.location.query.redirect) || '/',
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'LoginWrapper',
   allowRedirectBack: false,

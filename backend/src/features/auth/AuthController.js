@@ -44,9 +44,7 @@ const UserController = {
         throw new NotFoundError({ message: 'Requested user does not exist.' });
       }
 
-      const link = `${req.headers.origin}${process.env.CORS_ORIGIN
-        ? '/#'
-        : ''}/auth/reset-password/${newData.passwordResetToken}`;
+      const link = `${req.headers.origin}/auth/reset-password/${newData.passwordResetToken}`;
 
       await mailer.sendMail(user.email, forgottenPasswordMail(link));
 

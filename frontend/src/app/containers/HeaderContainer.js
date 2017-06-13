@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Header } from '@src/app/components';
 import { ResponsiveMenu } from '@src/common/components/hoc';
 import { selectIsLoggedIn, selectEmail, logout } from '@src/features/auth/ducks';
@@ -15,18 +16,16 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ logout }, dispatch),
 });
 
+@withRouter
 @ResponsiveMenu()
 @connect(mapStateToProps, mapDispatchToProps)
 export default class HeaderContainer extends Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     menuMode: PropTypes.string.isRequired,
     actions: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     email: PropTypes.string,
+    history: PropTypes.object.isRequired,
   };
 
   state = {
@@ -34,11 +33,11 @@ export default class HeaderContainer extends Component {
   };
 
   componentDidMount() {
-    this.context.router.listen(this.hideResponsiveMenu);
+    this.unlisten = this.props.history.listen(this.hideResponsiveMenu);
   }
 
   componentWillUnmount() {
-    this.context.router.unsubscribe(this.hideResponsiveMenu);
+    this.unlisten();
   }
 
   showResponsiveMenu = () => {

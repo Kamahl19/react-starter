@@ -10,13 +10,15 @@ const MobileMenu = ({
   toggleResponsiveMenu,
   menuContent,
   visible,
+  onClick,
+  selectedKeys,
 }) =>
   <Popover
     overlayClassName="mobile-menu"
     placement="bottomLeft"
     content={[
       <Icon type="close" onClick={hideResponsiveMenu} key="close" />,
-      <Menu mode="inline" key="menu">
+      <Menu mode="inline" key="menu" onClick={onClick} selectedKeys={selectedKeys}>
         {menuContent}
       </Menu>,
     ]}
@@ -33,6 +35,8 @@ MobileMenu.propTypes = {
   hideResponsiveMenu: PropTypes.func.isRequired,
   toggleResponsiveMenu: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selectedKeys: PropTypes.array.isRequired,
 };
 
 export default MobileMenu;

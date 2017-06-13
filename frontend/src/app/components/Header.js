@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import Layout from 'antd/lib/layout';
 import Menu from 'antd/lib/menu';
 import { translate } from 'react-i18next';
-import { MenuItemLink } from '@src/common/components';
 import MobileMenu from './MobileMenu';
 
+@withRouter
 @translate()
 export default class Header extends Component {
   static propTypes = {
@@ -19,31 +19,46 @@ export default class Header extends Component {
     isLoggedIn: PropTypes.bool.isRequired,
     email: PropTypes.string,
     logout: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
+
+  onClick = e => {
+    const { history, logout } = this.props;
+
+    if (e.key === 'logout') {
+      logout();
+      return;
+    }
+
+    history.push(e.key);
+  };
+
+  getSelectedKeys() {
+    return [this.props.location.pathname];
+  }
 
   renderMenuContentAnonymouse() {
     const { t } = this.props;
 
     return [
-      <MenuItemLink to="/auth/sign-up" key="sign-up">
+      <Menu.Item key="/auth/sign-up">
         {t('Sign Up')}
-      </MenuItemLink>,
-      <MenuItemLink to="/auth/login" key="login">
+      </Menu.Item>,
+      <Menu.Item key="/auth/login">
         {t('Log In')}
-      </MenuItemLink>,
+      </Menu.Item>,
     ];
   }
 
   renderMenuContentUser() {
-    const { logout, t, email } = this.props;
+    const { t, email } = this.props;
 
     return (
       <Menu.SubMenu title={<span>{t('Hi')} {email}</span>}>
-        <MenuItemLink to="/me" key="me">{t('Profile')}</MenuItemLink>
+        <Menu.Item key="/me">{t('Profile')}</Menu.Item>
         <Menu.Divider key="divider" />
-        <Menu.Item key="logout">
-          <Link onClick={logout}>{t('Log Out')}</Link>
-        </Menu.Item>
+        <Menu.Item key="logout">{t('Log Out')}</Menu.Item>
       </Menu.SubMenu>
     );
   }
@@ -62,6 +77,8 @@ export default class Header extends Component {
       ? this.renderMenuContentUser()
       : this.renderMenuContentAnonymouse();
 
+    const selectedKeys = this.getSelectedKeys();
+
     if (menuMode === 'inline') {
       return (
         <MobileMenu
@@ -70,12 +87,14 @@ export default class Header extends Component {
           hideResponsiveMenu={hideResponsiveMenu}
           toggleResponsiveMenu={toggleResponsiveMenu}
           visible={responsiveMenuVisible}
+          onClick={this.onClick}
+          selectedKeys={selectedKeys}
         />
       );
     }
 
     return (
-      <Menu mode="horizontal" theme="dark">
+      <Menu mode="horizontal" theme="dark" onClick={this.onClick} selectedKeys={selectedKeys}>
         {menuContent}
       </Menu>
     );

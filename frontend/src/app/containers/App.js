@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from 'antd/lib/layout';
 import HeaderContainer from './HeaderContainer';
@@ -24,4 +25,4 @@ AppContainer.propTypes = {
   showSpinner: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps)(AppContainer);
+export default withRouter(connect(mapStateToProps)(AppContainer));

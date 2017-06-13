@@ -2,15 +2,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import { asyncLocalStorage } from 'redux-persist/storages';
 import createSagaMiddleware from 'redux-saga';
-import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-export default function configureStore() {
+export default function configureStore(history) {
   const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares = [sagaMiddleware, routerMiddleware(hashHistory)];
+  const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   if (process.env.NODE_ENV === 'development') {
     const { logger } = require('redux-logger');

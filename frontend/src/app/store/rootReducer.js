@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   auth,
   spinner,
   modal,
-  routing: routerReducer,
+  router: routerReducer,
 });
 
 export default (state, action) => {

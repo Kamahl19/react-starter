@@ -10,7 +10,7 @@ import { ResetPassword } from '../components';
 
 const mapStateToProps = (state, props) => ({
   isLoading: selectIsInProgress(state, apiCallIds.RESET_PASSWORD),
-  passwordResetToken: props.params.passwordResetToken,
+  passwordResetToken: props.match.params.passwordResetToken,
 });
 
 const mapDispatchToProps = dispatch => ({

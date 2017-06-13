@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { activateUserRequest } from '../ducks';
 
 const mapStateToProps = (state, props) => ({
-  userId: props.params.userId,
-  activationToken: props.params.activationToken,
+  userId: props.match.params.userId,
+  activationToken: props.match.params.activationToken,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
@@ -50,7 +50,7 @@ export default class LoginForm extends Component {
             <Button type="primary" htmlType="submit">
               {t('Log In')}
             </Button>
-            <Link to="auth/forgotten-password">
+            <Link to="/auth/forgotten-password">
               {t('Forgot password?')}
             </Link>
           </Form.Item>
