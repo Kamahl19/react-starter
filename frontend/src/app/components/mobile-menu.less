@@ -12,13 +12,24 @@
       height: 100vh;
       border-radius: 0;
 
-      .anticon-close {
-        font-size: @layout-header-height / 2;
-        line-height: @layout-header-height;
-      }
+      .ant-popover-inner-content {
+        display: flex;
+        flex-direction: column;
 
-      .ant-menu-inline {
-        border-right: 0;
+        .anticon-close {
+          font-size: @layout-header-height / 2;
+          line-height: @layout-header-height;
+          align-self: flex-end;
+        }
+
+        .ant-menu-inline {
+          border-right: 0;
+
+          .ant-menu-item {
+            line-height: 72px;
+            height: 72px;
+          }
+        }
       }
     }
   }
