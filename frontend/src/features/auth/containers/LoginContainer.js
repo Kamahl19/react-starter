@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
-import { selectIsAuthenticating, loginActions } from '../ducks';
+import { selectIsInProgress } from '@src/features/spinner/ducks';
+import { apiCallIds } from '../api';
+import { loginActions } from '../ducks';
 import { Login } from '../components';
 
 const mapStateToProps = state => ({
-  isAuthenticating: selectIsAuthenticating(state),
+  isLoading: selectIsInProgress(state, apiCallIds.LOGIN),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,13 +21,13 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-const LoginContainer = ({ isAuthenticating, actions }) =>
-  <Spin spinning={isAuthenticating}>
+const LoginContainer = ({ isLoading, actions }) =>
+  <Spin spinning={isLoading}>
     <Login onSubmit={actions.login} />
   </Spin>;
 
 LoginContainer.propTypes = {
-  isAuthenticating: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
 };
 

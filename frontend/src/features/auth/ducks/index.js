@@ -45,7 +45,6 @@ export const activateUserRequest = createActionCreator(ACTIVATE_USER);
 const initialState = {
   user: null,
   token: null,
-  isAuthenticating: false,
 };
 
 const user = createReducer(initialState.user, {
@@ -68,18 +67,9 @@ const token = createReducer(initialState.token, {
   [LOGOUT]: state => initialState.token,
 });
 
-const isAuthenticating = createReducer(initialState.isAuthenticating, {
-  [LOGIN]: {
-    [REQUEST]: state => true,
-    [SUCCESS]: state => false,
-    [FAILURE]: state => false,
-  },
-});
-
 export default combineReducers({
   user,
   token,
-  isAuthenticating,
 });
 
 /**
@@ -89,7 +79,6 @@ export const selectAuth = state => state.auth;
 
 export const selectUser = state => selectAuth(state).user;
 export const selectToken = state => selectAuth(state).token;
-export const selectIsAuthenticating = state => selectAuth(state).isAuthenticating;
 
 export const selectUserId = state => selectUser(state).id;
 export const selectUserRole = state => selectUser(state).role;
