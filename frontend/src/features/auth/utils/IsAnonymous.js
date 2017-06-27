@@ -3,9 +3,9 @@ import { routerActions } from 'react-router-redux';
 import { selectAuth } from '../ducks';
 
 export default UserAuthWrapper({
-  authSelector: selectAuth,
+  authSelector: state => selectAuth(state),
   predicate: auth => auth.user === null,
-  authenticatingSelector: auth => auth.isAuthenticating,
+  authenticatingSelector: state => state.auth.isAuthenticating,
   failureRedirectPath: '/',
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'IsAnonymous',
