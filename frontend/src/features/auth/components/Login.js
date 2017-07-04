@@ -34,7 +34,9 @@ export default class LoginForm extends Component {
 
     return (
       <div>
-        <h1>{t('Log In')}</h1>
+        <h1>
+          {t('Log In')}
+        </h1>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item label={t('E-mail')}>
             {getFieldDecorator('email', { rules: rules.email })(

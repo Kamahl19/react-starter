@@ -34,7 +34,9 @@ export default class ResetPasswordForm extends Component {
 
     return (
       <div>
-        <h1>{t('Reset Password')}</h1>
+        <h1>
+          {t('Reset Password')}
+        </h1>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item label={t('E-mail')}>
             {getFieldDecorator('email', { rules: rules.email })(

@@ -5,7 +5,9 @@ import { translate } from 'react-i18next';
 const NotFound = ({ t }) =>
   <div>
     <h1>404</h1>
-    <p>{t('Page not found')}</p>
+    <p>
+      {t('Page not found')}
+    </p>
   </div>;
 
 NotFound.propTypes = {

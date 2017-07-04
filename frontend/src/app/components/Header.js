@@ -53,11 +53,21 @@ export default class Header extends Component {
   renderMenuContentUser() {
     const { t, email } = this.props;
 
+    const title = (
+      <span>
+        {t('Hi')} {email}
+      </span>
+    );
+
     return (
-      <Menu.SubMenu title={<span>{t('Hi')} {email}</span>}>
-        <Menu.Item key="/me">{t('Profile')}</Menu.Item>
+      <Menu.SubMenu title={title}>
+        <Menu.Item key="/me">
+          {t('Profile')}
+        </Menu.Item>
         <Menu.Divider key="divider" />
-        <Menu.Item key="logout">{t('Log Out')}</Menu.Item>
+        <Menu.Item key="logout">
+          {t('Log Out')}
+        </Menu.Item>
       </Menu.SubMenu>
     );
   }
@@ -105,7 +115,9 @@ export default class Header extends Component {
     return (
       <Layout.Header>
         <div className="logo">
-          <Link to="/">{t('React Starter')}</Link>
+          <Link to="/">
+            {t('React Starter')}
+          </Link>
         </div>
         {this.renderMenu()}
       </Layout.Header>

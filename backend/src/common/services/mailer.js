@@ -4,11 +4,13 @@ const mailgunTransport = require('nodemailer-mailgun-transport');
 const logger = require('src/common/services/logger');
 const config = require('src/app/config');
 
+const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = process.env;
+
 const mailgunTransporter = nodemailer.createTransport(
   mailgunTransport({
     auth: {
-      api_key: process.env.MAILGUN_API_KEY,
-      domain: process.env.MAILGUN_DOMAIN,
+      api_key: MAILGUN_API_KEY,
+      domain: MAILGUN_DOMAIN,
     },
     logger,
   })
@@ -20,9 +22,7 @@ class DummyTransporter {
   }
 }
 
-const transporter = process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN
-  ? mailgunTransporter
-  : new DummyTransporter();
+const transporter = MAILGUN_API_KEY && MAILGUN_DOMAIN ? mailgunTransporter : new DummyTransporter();
 
 const defaultMailOptions = {
   from: {
