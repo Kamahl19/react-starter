@@ -6,9 +6,6 @@ logs
 .DS_Store
 Thumbs.db
 
-# IDE config
-.vscode
-
 # Dependency directory
 node_modules
 
