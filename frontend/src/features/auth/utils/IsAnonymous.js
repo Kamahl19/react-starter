@@ -1,6 +1,5 @@
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
-import { routerActions } from 'react-router-redux';
 import { selectIsInProgress } from '@src/features/spinner/ducks';
 import { selectAuth } from '../ducks';
 import { apiCallIds } from '../api';

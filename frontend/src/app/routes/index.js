@@ -24,7 +24,7 @@ export default (
     />
     <Route path="/auth/activate/:userId/:activationToken" component={UserActivationContainer} />
 
-    <Route path="/me" component={IsLoggedIn(() => <h1>Protected route</h1>)} />
+    <Route path="/me" component={IsLoggedIn(() => <h1>User Profile</h1>)} />
 
     <Route component={NotFound} />
   </Switch>
