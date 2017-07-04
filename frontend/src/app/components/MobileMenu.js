@@ -8,7 +8,7 @@ const MobileMenu = ({
   showResponsiveMenu,
   hideResponsiveMenu,
   toggleResponsiveMenu,
-  menuContent,
+  children,
   visible,
   onClick,
   selectedKeys,
@@ -19,7 +19,7 @@ const MobileMenu = ({
     content={[
       <Icon type="close" onClick={hideResponsiveMenu} key="close" />,
       <Menu mode="inline" key="menu" onClick={onClick} selectedKeys={selectedKeys}>
-        {menuContent}
+        {children}
       </Menu>,
     ]}
     trigger="click"
@@ -30,7 +30,7 @@ const MobileMenu = ({
   </Popover>;
 
 MobileMenu.propTypes = {
-  menuContent: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   showResponsiveMenu: PropTypes.func.isRequired,
   hideResponsiveMenu: PropTypes.func.isRequired,
   toggleResponsiveMenu: PropTypes.func.isRequired,

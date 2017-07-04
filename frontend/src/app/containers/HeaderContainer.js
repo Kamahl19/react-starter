@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { Header } from '@src/app/components';
-import { ResponsiveMenu } from '@src/common/components/hoc';
 import { selectIsLoggedIn, selectEmail, logout } from '@src/features/auth/ducks';
+import { Header, HeaderMenu } from '@src/app/components';
 
 const mapStateToProps = state => ({
   isLoggedIn: selectIsLoggedIn(state),
@@ -16,60 +14,15 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ logout }, dispatch),
 });
 
-@withRouter
-@ResponsiveMenu()
-@connect(mapStateToProps, mapDispatchToProps)
-export default class HeaderContainer extends Component {
-  static propTypes = {
-    menuMode: PropTypes.string.isRequired,
-    actions: PropTypes.object.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    email: PropTypes.string,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-  };
+const HeaderContainer = ({ isLoggedIn, email, actions }) =>
+  <Header>
+    <HeaderMenu isLoggedIn={isLoggedIn} email={email} logout={actions.logout} />
+  </Header>;
 
-  state = {
-    responsiveMenuVisible: false,
-  };
+HeaderContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  email: PropTypes.string,
+};
 
-  componentDidMount() {
-    this.unlisten = this.props.history.listen(this.hideResponsiveMenu);
-  }
-
-  componentWillUnmount() {
-    this.unlisten();
-  }
-
-  showResponsiveMenu = () => {
-    this.setState({ responsiveMenuVisible: true });
-  };
-
-  hideResponsiveMenu = () => {
-    this.setState({ responsiveMenuVisible: false });
-  };
-
-  toggleResponsiveMenu = responsiveMenuVisible => {
-    this.setState({ responsiveMenuVisible });
-  };
-
-  render() {
-    const { location, history, actions, isLoggedIn, menuMode, email } = this.props;
-    const { responsiveMenuVisible } = this.state;
-
-    return (
-      <Header
-        location={location}
-        history={history}
-        isLoggedIn={isLoggedIn}
-        email={email}
-        logout={actions.logout}
-        responsiveMenuVisible={responsiveMenuVisible}
-        menuMode={menuMode}
-        showResponsiveMenu={this.showResponsiveMenu}
-        hideResponsiveMenu={this.hideResponsiveMenu}
-        toggleResponsiveMenu={this.toggleResponsiveMenu}
-      />
-    );
-  }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
