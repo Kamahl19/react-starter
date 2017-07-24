@@ -30,7 +30,7 @@
     "redux-logger": "^3.0.6"
   },
   "dependencies": {
-    "antd": "^2.12.1",
+    "antd": "^2.12.2",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "history": "^4.6.2",
@@ -49,7 +49,7 @@
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.1",
     "redux-persist": "^4.8.0",
-    "redux-saga": "^0.15.3",
+    "redux-saga": "^0.15.5",
     "reselect": "^3.0.1"
   }
 }

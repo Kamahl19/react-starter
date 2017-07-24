@@ -137,9 +137,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0:
   dependencies:
     color-convert "^1.0.0"
 
-antd@^2.12.1:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.1.tgz#e4240d2a42fdbd12a55a85c0ff9cbbc0e7b94cfa"
+antd@^2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.2.tgz#bc48771964c4055c00ee371b4482b8b98ad4ac01"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -6187,9 +6187,9 @@ redux-persist@^4.8.0:
     lodash "^4.17.4"
     lodash-es "^4.17.4"
 
-redux-saga@^0.15.3:
-  version "0.15.4"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.4.tgz#27982a947280053b7ecbb5d3170c837a5fe6b261"
+redux-saga@^0.15.5:
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.5.tgz#1fca7e514b00cfbb7c3453ed870f253749635f0f"
 
 redux@^3.7.2:
   version "3.7.2"
