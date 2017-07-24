@@ -3,7 +3,5 @@
     "target": "ES6",
     "experimentalDecorators": true
   },
-  "files": [
-    "src/"
-  ]
+  "files": ["src/"]
 }
