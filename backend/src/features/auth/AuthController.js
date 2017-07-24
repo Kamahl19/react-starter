@@ -11,7 +11,7 @@ const UserController = {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ email }, '+password');
+      const user = await User.findOne({ email: email.toLowerCase() }, '+password');
 
       if (!user.validPassword(password)) {
         throw new UnauthorizedError({ message: 'Login credentials are wrong.' });
@@ -35,7 +35,7 @@ const UserController = {
 
       const newData = User.generatePasswordResetToken();
 
-      const user = await User.findOneAndUpdate({ email }, newData, {
+      const user = await User.findOneAndUpdate({ email: email.toLowerCase() }, newData, {
         new: true,
         runValidators: true,
       });
@@ -69,10 +69,14 @@ const UserController = {
         passwordResetExpires: undefined,
       };
 
-      const user = await User.findOneAndUpdate({ email, passwordResetToken }, newData, {
-        new: true,
-        runValidators: true,
-      })
+      const user = await User.findOneAndUpdate(
+        { email: email.toLowerCase(), passwordResetToken },
+        newData,
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
         .where('passwordResetExpires')
         .gt(Date.now())
         .exec();

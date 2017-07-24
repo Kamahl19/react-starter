@@ -35,7 +35,7 @@ const UserController = {
       const activationTokenAndExpiration = User.generateActivationToken();
 
       const user = new User({
-        email,
+        email: email.toLowerCase(),
         password: User.generateHash(password),
         activationToken: activationTokenAndExpiration.activationToken,
         activationExpires: activationTokenAndExpiration.activationExpires,
