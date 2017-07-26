@@ -2,39 +2,50 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Button } from 'react-native';
 import { EmailInput, PasswordInput } from './inputs';
+import { createForm, FormItem } from '../../../common/services/Form';
+import rules from '../rules';
 
+@createForm()
 export default class ResetPassword extends Component {
   static propTypes = {
+    form: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
     passwordResetToken: PropTypes.string.isRequired,
   };
 
-  state = {
-    email: '',
-    password: '',
-  };
-
   handleSubmit = () => {
-    const { onSubmit, passwordResetToken } = this.props;
-    const { email, password } = this.state;
+    const { onSubmit, passwordResetToken, form } = this.props;
 
-    onSubmit({ email, password, passwordResetToken });
+    form.validateFields((err, { email, password }) => {
+      if (!err) {
+        onSubmit({ email, password, passwordResetToken });
+      }
+    });
   };
-
-  onChangeEmail = email => this.setState({ email });
-
-  onChangePassword = password => this.setState({ password });
 
   render() {
-    const { email, password } = this.state;
+    const { form } = this.props;
+    const { getFieldDecorator } = form;
 
     return (
       <View>
         <Text>Reset Password</Text>
 
-        <EmailInput onChangeText={this.onChangeEmail} value={email} autoFocus />
+        <FormItem>
+          {getFieldDecorator('email', { rules: rules.email })(<EmailInput autoFocus />)}
+        </FormItem>
 
-        <PasswordInput onChangeText={this.onChangePassword} value={password} />
+        <FormItem>
+          {getFieldDecorator('password', {
+            rules: rules.passwordWithLimit,
+          })(<PasswordInput />)}
+        </FormItem>
+
+        <FormItem>
+          {getFieldDecorator('repeatPassword', {
+            rules: rules.repeatPassword(form),
+          })(<PasswordInput placeholder="Repeat Password" />)}
+        </FormItem>
 
         <Button onPress={this.handleSubmit} title="Submit" />
       </View>

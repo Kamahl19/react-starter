@@ -43,6 +43,7 @@
     "lodash.flattendeep": "^4.4.0",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.5.10",
+    "rc-form": "^1.4.3",
     "react": "16.0.0-alpha.12",
     "react-native": "0.46.2",
     "react-native-dropdownalert": "^2.10.0",
