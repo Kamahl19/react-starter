@@ -6,9 +6,14 @@ import {
   ResetPasswordContainer,
 } from '../../features/auth/containers';
 
-export default StackNavigator({
-  Login: { screen: LoginContainer },
-  SignUp: { screen: SignUpContainer },
-  ForgottenPassword: { screen: ForgottenPasswordContainer },
-  ResetPassword: { screen: ResetPasswordContainer },
-});
+export default StackNavigator(
+  {
+    Login: { screen: LoginContainer },
+    SignUp: { screen: SignUpContainer },
+    ForgottenPassword: { screen: ForgottenPasswordContainer },
+    ResetPassword: { screen: ResetPasswordContainer },
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);

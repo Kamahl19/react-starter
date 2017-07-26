@@ -10,6 +10,7 @@ import {
 import { relogin } from '../../features/auth/ducks';
 import configureStore from '../store/configureStore';
 import AppNavigator from '../navigators/AppNavigator';
+import BootScreen from '../components/BootScreen';
 
 export default class App extends Component {
   state = {
@@ -39,7 +40,7 @@ export default class App extends Component {
     const { store } = this.state;
 
     if (!store) {
-      return null;
+      return <BootScreen />;
     }
 
     return (

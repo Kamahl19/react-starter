@@ -1,12 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
-import { ScreenWrapper } from '../../common/components';
+import { ScreenWrapper, CenterView } from '../../common/components';
 import CustomDrawer from './drawer/CustomDrawer';
 
 const DemoHomeScreen = () =>
   <ScreenWrapper>
-    <Text>Welcome</Text>
+    <CenterView>
+      <Text>Welcome</Text>
+    </CenterView>
   </ScreenWrapper>;
 
 DemoHomeScreen.navigationOptions = {
@@ -15,7 +17,9 @@ DemoHomeScreen.navigationOptions = {
 
 const DemoProfileScreen = () =>
   <ScreenWrapper>
-    <Text>User Profile</Text>
+    <CenterView>
+      <Text>User Profile</Text>
+    </CenterView>
   </ScreenWrapper>;
 
 DemoProfileScreen.navigationOptions = {
@@ -32,6 +36,7 @@ export default DrawerNavigator(
     },
   },
   {
+    initialRouteName: 'Home',
     contentComponent: CustomDrawer,
   }
 );

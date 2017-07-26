@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 
 const ScreenWrapper = ({ children }) =>
-  <View style={styles.container}>
+  <View style={styles.component}>
     {children}
   </View>;
 
@@ -14,7 +14,8 @@ ScreenWrapper.propTypes = {
 export default ScreenWrapper;
 
 const styles = StyleSheet.create({
-  container: {
+  component: {
+    flexGrow: 1,
     marginTop: Platform.OS === 'ios' ? 20 : 0,
   },
 });
