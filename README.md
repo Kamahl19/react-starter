@@ -1,19 +1,21 @@
 # React Starter
 
-Simple starter project including both React app and Express Rest API server
+Simple starter project including React web app, React Native app and Express Rest API server
 
 ## What’s Inside?
 
 * Rest API Express Server
     * Mongo DB
     * DB Seeding
+    * Migrations
     * Auth using JWT
     * Logging (bunyan & morgan)
     * Env variables using .env
     * Cors, Compression, Helmet
     * E-mail service
     * Request validation (joi)
-* React Starter
+    * Basic user functionality (signup, login, logout, reset password, activate user)
+* React Web App Starter
     * Auth using JWT
     * Ant.Design
     * Axios
@@ -21,6 +23,15 @@ Simple starter project including both React app and Express Rest API server
     * Redux (saga, persist, logger, Reselect)
     * react-router
     * [forked create-react-app](https://github.com/Kamahl19/create-react-app/tree/kamahl19-customizations/packages/react-scripts)
+    * Basic user functionality (signup, login, logout, reset password, activate user)
+* React Native Starter
+    * Auth using JWT
+    * Axios
+    * Redux (saga, persist, logger, Reselect)
+    * React Navigation
+    * Form validation
+    * Alert service
+    * Basic user functionality (signup, login, logout, reset password, activate user)
 
 ## Getting Started With create-react-app
 
@@ -54,6 +65,14 @@ yarn install
 yarn start
 ```
 
+Start the React native
+
+```sh
+cd rnmobile
+yarn install
+react-native run-ios
+```
+
 ## Deployment
 
 Build frontend
@@ -75,11 +94,6 @@ git push heroku master
 ```
 
 ## Login credentials
-
-### Admin
-
-* username: `admin@example.com`
-* password: `password`
 
 ### User
 

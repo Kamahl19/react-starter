@@ -1,7 +1,7 @@
 {
   "name": "react-starter-frontend",
   "version": "0.2.0",
-  "description": "Simple starter project including both React app and Express Rest API server",
+  "description": "Simple starter project including React web app, React Native app and Express Rest API server",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
   "repository": {

@@ -1,7 +1,7 @@
 {
   "name": "rnmobile",
   "version": "0.0.1",
-  "description": "Simple starter project including React app, React Native app and Express Rest API server",
+  "description": "Simple starter project including React web app, React Native app and Express Rest API server",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
   "repository": {
