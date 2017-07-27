@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { View } from './';
 
 const CenterView = ({ direction, style, ...rest }) => {
   const directionStyle = styles[direction === 'row' ? 'rowDirection' : 'columnDirection'];
@@ -10,7 +11,7 @@ const CenterView = ({ direction, style, ...rest }) => {
 
 CenterView.propTypes = {
   direction: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.any,
 };
 
 export default CenterView;

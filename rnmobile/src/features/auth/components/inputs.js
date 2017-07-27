@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'react-native';
+import { TextInput } from '../../../common/components';
 
 export class EmailInput extends Component {
   static propTypes = {

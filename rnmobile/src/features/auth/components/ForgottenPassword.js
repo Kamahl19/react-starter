@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Button } from 'react-native';
-import { EmailInput } from './inputs';
+import { ScrollView, View, Text, Button } from '../../../common/components';
 import { createForm, FormItem } from '../../../common/services/Form';
+import { EmailInput } from './inputs';
 import rules from '../rules';
+import styles from './styles';
 
 @createForm()
 export default class ForgottenPassword extends Component {
@@ -26,15 +27,19 @@ export default class ForgottenPassword extends Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <View>
-        <Text>Forgotten Password</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>Forgotten Password</Text>
 
         <FormItem>
-          {getFieldDecorator('email', { rules: rules.email })(<EmailInput autoFocus />)}
+          {getFieldDecorator('email', { rules: rules.email })(
+            <EmailInput autoFocus style={styles.textInput} />
+          )}
         </FormItem>
 
-        <Button onPress={this.handleSubmit} title="Submit" />
-      </View>
+        <View style={styles.button}>
+          <Button onPress={this.handleSubmit} title="Submit" type="primary" />
+        </View>
+      </ScrollView>
     );
   }
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Button } from 'react-native';
-import { EmailInput, PasswordInput } from './inputs';
+import { ScrollView, View, Text, Button } from '../../../common/components';
 import { createForm, FormItem } from '../../../common/services/Form';
+import { EmailInput, PasswordInput } from './inputs';
 import rules from '../rules';
+import styles from './styles';
 
 @createForm()
 export default class Login extends Component {
@@ -29,23 +30,30 @@ export default class Login extends Component {
     const { getFieldDecorator } = form;
 
     return (
-      <View>
-        <Text>Log In</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>Log In</Text>
 
         <FormItem>
-          {getFieldDecorator('email', { rules: rules.email })(<EmailInput autoFocus />)}
+          {getFieldDecorator('email', { rules: rules.email })(
+            <EmailInput autoFocus style={styles.textInput} />
+          )}
         </FormItem>
 
         <FormItem>
-          {getFieldDecorator('password', { rules: rules.password })(<PasswordInput />)}
+          {getFieldDecorator('password', { rules: rules.password })(
+            <PasswordInput style={styles.textInput} />
+          )}
         </FormItem>
 
-        <Button onPress={this.handleSubmit} title="Log In" />
+        <View style={styles.button}>
+          <Button onPress={this.handleSubmit} title="Log In" type="primary" block />
+        </View>
 
-        <Button onPress={goToSignUp} title="Sign Up" />
-
-        <Button onPress={goToForgottenPassword} title="Forgot password?" />
-      </View>
+        <View style={styles.button}>
+          <Button onPress={goToForgottenPassword} title="Forgot password?" />
+          <Button onPress={goToSignUp} title="Sign Up" />
+        </View>
+      </ScrollView>
     );
   }
 }

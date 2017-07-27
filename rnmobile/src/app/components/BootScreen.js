@@ -1,6 +1,5 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
-import { CenterView } from '../../common/components';
+import { ActivityIndicator, CenterView } from '../../common/components';
 
 export default () =>
   <CenterView>

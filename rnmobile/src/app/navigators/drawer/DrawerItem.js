@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
-import TouchableItem from './TouchableItem';
+import { StyleSheet, Platform } from 'react-native';
+import { TouchableItem, View, Text } from '../../../common/components';
 
 const ItemContent = ({ label }) =>
   <View style={styles.item}>
@@ -19,13 +19,13 @@ const ClickableItem = ({ onPress, label }) =>
 const StaticItem = ({ label }) => <ItemContent label={label} />;
 
 export default ({ onPress, label }) =>
-  <View style={styles.container}>
+  <View style={styles.component}>
     {onPress && <ClickableItem onPress={onPress} label={label} />}
     {!onPress && <StaticItem label={label} />}
   </View>;
 
 const styles = StyleSheet.create({
-  container: {
+  component: {
     marginTop: Platform.OS === 'ios' ? 20 : 0,
     paddingVertical: 4,
   },

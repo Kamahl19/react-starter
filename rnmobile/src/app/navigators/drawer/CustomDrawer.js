@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
 import { logout, selectEmail } from '../../../features/auth/ducks';
+import { View } from '../../../common/components';
 import DrawerItem from './DrawerItem';
 
 const mapStateToProps = state => ({
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const CustomDrawer = ({ logout, email, style, ...rest }) =>
-  <View style={styles.container}>
+  <View style={styles.component}>
     <DrawerItem label={`Hi ${email}`} />
     <DrawerItems {...rest} />
     <DrawerItem label="Logout" onPress={logout} />
@@ -29,7 +30,7 @@ CustomDrawer.propTypes = {
 export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  component: {
+    flexGrow: 1,
   },
 });

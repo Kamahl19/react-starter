@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
+import { View } from '../../common/components';
 import AlertService from '../../common/services/alert';
 import {
   prepareRequestInterceptor,
@@ -45,7 +45,7 @@ export default class App extends Component {
 
     return (
       <Provider store={store}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flexGrow: 1 }}>
           <AppNavigator />
           <DropdownAlert ref={ref => AlertService.setAlert(ref)} />
         </View>
@@ -53,5 +53,3 @@ export default class App extends Component {
     );
   }
 }
-
-// TODO flex: 1

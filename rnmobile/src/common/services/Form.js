@@ -1,7 +1,8 @@
 import React, { Component, PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import createRcForm from 'rc-form/lib/createForm';
+import { View, Text } from '../../common/components';
 
 const FIELD_META_PROP = 'data-__meta';
 
