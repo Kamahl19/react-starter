@@ -5926,9 +5926,9 @@ react-error-overlay@^1.0.9:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-i18next@^4.6.4:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-4.6.4.tgz#b13f6095c41154f722e5278f508024c9e7efd07f"
+react-i18next@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-4.7.0.tgz#1ba1ac72c7438ff0eba23d5c11616eb4d0b23e87"
   dependencies:
     hoist-non-react-statics "1.2.0"
 
@@ -6187,9 +6187,9 @@ redux-persist@^4.8.0:
     lodash "^4.17.4"
     lodash-es "^4.17.4"
 
-redux-saga@^0.15.5:
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.5.tgz#1fca7e514b00cfbb7c3453ed870f253749635f0f"
+redux-saga@^0.15.6:
+  version "0.15.6"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.6.tgz#8638dc522de6c6c0a496fe8b2b5466287ac2dc4d"
 
 redux@^3.7.2:
   version "3.7.2"
