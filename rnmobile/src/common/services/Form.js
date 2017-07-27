@@ -52,7 +52,7 @@ export const createForm = options => {
     );
 };
 
-export class FormItem extends Component {
+export class FormItem extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
