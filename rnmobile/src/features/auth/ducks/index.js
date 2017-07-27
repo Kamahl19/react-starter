@@ -22,8 +22,6 @@ export const RELOGIN = 'auth/RELOGIN';
 export const FETCH_ME = 'auth/FETCH_ME';
 export const LOGOUT = 'auth/LOGOUT';
 export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
-export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
-export const ACTIVATE_USER = 'auth/ACTIVATE_USER';
 
 /**
  * ACTIONS
@@ -34,8 +32,6 @@ export const relogin = createActionCreator(RELOGIN);
 export const fetchMeActions = createApiActionCreators(FETCH_ME);
 export const logout = createActionCreator(LOGOUT);
 export const forgottenPasswordRequest = createActionCreator(FORGOTTEN_PASSWORD);
-export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
-export const activateUserRequest = createActionCreator(ACTIVATE_USER);
 
 /**
  * REDUCERS
@@ -116,27 +112,6 @@ function* forgottenPassword(action) {
   }
 }
 
-function* resetPassword({ payload }) {
-  const resp = yield call(api.resetPassword, payload);
-
-  yield doLogin(resp);
-}
-
-function* activateUser(action) {
-  const { userId, activationToken } = action.payload;
-
-  const resp = yield call(api.activateUser, {
-    userId,
-    activationToken,
-  });
-
-  if (resp.ok) {
-    AlertService.show('Your account has been activated successfully.');
-
-    yield doLogin(resp);
-  }
-}
-
 function* fetchMe({ payload }) {
   const resp = yield call(api.fetchMe, payload.userId);
 
@@ -176,6 +151,4 @@ export function* authSaga() {
   yield takeLatest(createActionType(LOGIN, REQUEST), login);
   yield takeLatest(RELOGIN, refetchMe);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
-  yield takeLatest(RESET_PASSWORD, resetPassword);
-  yield takeLatest(ACTIVATE_USER, activateUser);
 }

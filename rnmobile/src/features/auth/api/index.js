@@ -15,16 +15,6 @@ export default {
     return apiClient.post('/auth/forgotten-password', { email });
   },
 
-  resetPassword: resetData => {
-    delete resetData.repeatPassword;
-
-    return apiClient.post('/auth/reset-password', resetData);
-  },
-
-  activateUser: ({ userId, activationToken }) => {
-    return apiClient.get(`/users/${userId}/activate/${activationToken}`);
-  },
-
   fetchMe: userId => {
     return apiClient.get(`/users/${userId}`);
   },

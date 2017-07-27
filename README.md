@@ -31,7 +31,7 @@ Simple starter project including React web app, React Native app and Express Res
     * React Navigation
     * Form validation
     * Alert service
-    * Basic user functionality (signup, login, logout, reset password, activate user)
+    * Basic user functionality (signup, login, logout, reset password)
 
 ## Getting Started With create-react-app
 
