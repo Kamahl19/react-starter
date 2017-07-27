@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '@src/app/i18n';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
-import routes from '@src/app/routes';
+import i18n from '../../app/i18n';
+import routes from '../../app/routes';
 import App from './App';
 import ScrollToTop from './ScrollToTop';
 

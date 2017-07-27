@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { showModal, hideModal, selectIsVisible } from '../ducks';
-import { selectIsInProgress } from '@src/features/spinner/ducks';
+import { selectIsInProgress } from '../../../features/spinner/ducks';
 
 export default id => ModalComponent =>
   connect(

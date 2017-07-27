@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import message from 'antd/lib/message';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { t } from '@src/app/i18n';
+import { t } from '../../../app/i18n';
 import api from '../api';
 import {
   createActionCreator,
@@ -13,7 +13,7 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
-} from '@src/common/utils/reduxHelpers';
+} from '../../../common/utils/reduxHelpers';
 
 /**
  * ACTION TYPES

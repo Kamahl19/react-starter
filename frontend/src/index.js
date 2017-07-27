@@ -1,14 +1,11 @@
-import '@src/app/styles/main.less';
+import './app/styles/main.less';
 import React from 'react';
 import { render } from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
-import { Root } from '@src/app/containers';
-import configureStore from '@src/app/store/configureStore';
-import {
-  prepareRequestInterceptor,
-  handleResponsesInterceptor,
-} from '@src/common/services/apiClient';
-import { relogin } from '@src/features/auth/ducks';
+import { Root } from './app/containers';
+import configureStore from './app/store/configureStore';
+import { prepareRequestInterceptor, handleResponsesInterceptor } from './common/services/apiClient';
+import { relogin } from './features/auth/ducks';
 
 async function init() {
   const history = createHistory();

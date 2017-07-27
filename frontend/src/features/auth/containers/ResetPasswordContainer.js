@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
-import { selectIsInProgress } from '@src/features/spinner/ducks';
+import { selectIsInProgress } from '../../../features/spinner/ducks';
 import { apiCallIds } from '../api';
 import { resetPasswordRequest } from '../ducks';
 import { ResetPassword } from '../components';

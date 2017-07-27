@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { createActionCreator, createReducer } from '@src/common/utils/reduxHelpers';
+import { createActionCreator, createReducer } from '../../../common/utils/reduxHelpers';
 
 /**
  * ACTION TYPES

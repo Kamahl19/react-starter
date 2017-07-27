@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { IsAnonymous, IsLoggedIn, LoginWrapper } from '@src/features/auth/utils';
+import { IsAnonymous, IsLoggedIn, LoginWrapper } from '../../features/auth/utils';
 import {
   LoginContainer,
   SignUpContainer,
   ForgottenPasswordContainer,
   ResetPasswordContainer,
   UserActivationContainer,
-} from '@src/features/auth/containers';
-import NotFound from '@src/features/not-found/NotFound';
+} from '../../features/auth/containers';
+import NotFound from '../../features/not-found/NotFound';
 
 export default (
   <Switch>

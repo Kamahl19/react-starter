@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Menu from 'antd/lib/menu';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import { ResponsiveMenu } from '@src/common/components/hoc';
+import { ResponsiveMenu } from '../../common/components/hoc';
 import MobileMenu from './MobileMenu';
 
 @translate()

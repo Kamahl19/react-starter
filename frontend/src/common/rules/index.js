@@ -1,4 +1,4 @@
-import { t } from '@src/app/i18n';
+import { t } from '../../app/i18n';
 
 const required = { required: true, message: t('Field is required') };
 

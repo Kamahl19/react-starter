@@ -1,7 +1,7 @@
 import axios from 'axios';
 import message from 'antd/lib/message';
-import { selectToken, logout } from '@src/features/auth/ducks';
-import { startApiCall, finishApiCall } from '@src/features/spinner/ducks';
+import { selectToken, logout } from '../../features/auth/ducks';
+import { startApiCall, finishApiCall } from '../../features/spinner/ducks';
 
 const normalizeSuccessResponse = response => ({
   ...response,

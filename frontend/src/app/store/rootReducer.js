@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import auth, { LOGOUT } from '@src/features/auth/ducks';
-import spinner from '@src/features/spinner/ducks';
-import modal from '@src/features/modal/ducks';
+import auth, { LOGOUT } from '../../features/auth/ducks';
+import spinner from '../../features/spinner/ducks';
+import modal from '../../features/modal/ducks';
 
 const rootReducer = combineReducers({
   auth,

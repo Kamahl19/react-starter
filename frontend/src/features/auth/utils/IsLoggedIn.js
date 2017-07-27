@@ -1,6 +1,6 @@
-import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect'
+import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
 import { routerActions } from 'react-router-redux';
-import { selectIsInProgress } from '@src/features/spinner/ducks';
+import { selectIsInProgress } from '../../../features/spinner/ducks';
 import { selectAuth } from '../ducks';
 import { apiCallIds } from '../api';
 

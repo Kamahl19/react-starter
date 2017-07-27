@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from 'antd/lib/layout';
 import HeaderContainer from './HeaderContainer';
-import { Content, Footer } from '@src/app/components';
-import { selectShowSpinner } from '@src/features/spinner/ducks';
+import { Content, Footer } from '../../app/components';
+import { selectShowSpinner } from '../../features/spinner/ducks';
 
 const mapStateToProps = state => ({
   showSpinner: selectShowSpinner(state),

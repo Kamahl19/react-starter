@@ -1,5 +1,5 @@
-import { t } from '@src/app/i18n';
-import commonRules from '@src/common/rules';
+import { t } from '../../../app/i18n';
+import commonRules from '../../../common/rules';
 
 const email = [commonRules.required, commonRules.email];
 
