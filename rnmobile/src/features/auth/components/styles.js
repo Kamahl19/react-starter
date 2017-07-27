@@ -11,9 +11,11 @@ export default StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
   },
-  textInput: {
+  textInputContainer: {
     marginHorizontal: 6,
     marginVertical: 10,
+  },
+  textInput: {
     height: 40,
     borderBottomColor: Platform.select({ ios: '#ccc' }),
     borderBottomWidth: Platform.select({ ios: StyleSheet.hairlineWidth }),

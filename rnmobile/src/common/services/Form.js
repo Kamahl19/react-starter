@@ -1,5 +1,4 @@
 import React, { Component, PureComponent } from 'react';
-import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import createRcForm from 'rc-form/lib/createForm';
 import { View, Text } from '../../common/components';
@@ -56,6 +55,10 @@ export const createForm = options => {
 export class FormItem extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    style: PropTypes.any,
+    successStyle: PropTypes.any,
+    errorStyle: PropTypes.any,
+    validatingStyle: PropTypes.any,
   };
 
   static contextTypes = {
@@ -147,27 +150,19 @@ export class FormItem extends PureComponent {
   }
 
   render() {
+    const { style, children } = this.props;
+
     const validateStatus = this.getValidateStatus();
     const helpMsg = this.getHelpMsg();
 
     return (
-      <View>
-        {this.props.children}
+      <View style={style}>
+        {children}
         {!!validateStatus &&
-          <Text style={styles[validateStatus]}>
+          <Text style={this.props[`${validateStatus}Style`]}>
             {helpMsg}
           </Text>}
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  success: {
-    color: 'green',
-  },
-  error: {
-    color: 'red',
-  },
-  validating: {},
-});

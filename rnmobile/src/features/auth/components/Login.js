@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, Text, Button } from '../../../common/components';
-import { createForm, FormItem } from '../../../common/services/Form';
+import { ScrollView, View, Text, Button, FormItem } from '../../../common/components';
+import { createForm } from '../../../common/services/Form';
 import { EmailInput, PasswordInput } from './inputs';
 import rules from '../rules';
 import styles from './styles';
@@ -33,13 +33,13 @@ export default class Login extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Log In</Text>
 
-        <FormItem>
+        <FormItem style={styles.textInputContainer}>
           {getFieldDecorator('email', { rules: rules.email })(
             <EmailInput autoFocus style={styles.textInput} />
           )}
         </FormItem>
 
-        <FormItem>
+        <FormItem style={styles.textInputContainer}>
           {getFieldDecorator('password', { rules: rules.password })(
             <PasswordInput style={styles.textInput} />
           )}
