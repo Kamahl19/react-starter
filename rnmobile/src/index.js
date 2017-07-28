@@ -1,8 +1,8 @@
 import { AppRegistry, Platform } from 'react-native';
 import KeyboardManager from 'react-native-keyboard-manager';
-import App from './app/containers/App';
+import Root from './app/containers/Root';
 
-AppRegistry.registerComponent('rnmobile', () => App);
+AppRegistry.registerComponent('rnmobile', () => Root);
 
 if (Platform.OS === 'ios') {
   KeyboardManager.setEnable(true);

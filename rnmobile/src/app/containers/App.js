@@ -1,55 +1,24 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import { View } from '../../common/components';
 import AlertService from '../../common/services/alert';
-import {
-  prepareRequestInterceptor,
-  handleResponsesInterceptor,
-} from '../../common/services/apiClient';
-import { relogin } from '../../features/auth/ducks';
-import configureStore from '../store/configureStore';
+import { Spinner } from '../../features/spinner/components';
+import { selectShowSpinner } from '../../features/spinner/ducks';
 import AppNavigator from '../navigators/AppNavigator';
-import BootScreen from '../components/BootScreen';
 
-export default class App extends Component {
-  state = {
-    store: undefined,
-  };
+const mapStateToProps = state => ({
+  showSpinner: selectShowSpinner(state),
+});
 
-  componentWillMount() {
-    this.initStore().then(store => this.setState({ store }));
-  }
+const App = ({ showSpinner }) =>
+  <View style={{ flexGrow: 1 }}>
+    <AppNavigator />
+    {showSpinner && <Spinner large />}
+    <DropdownAlert ref={ref => AlertService.setAlert(ref)} />
+  </View>;
 
-  async initStore() {
-    const store = await configureStore();
+App.propTypes = { showSpinner: PropTypes.bool.isRequired };
 
-    prepareRequestInterceptor(store);
-    handleResponsesInterceptor(store);
-
-    const state = store.getState();
-
-    if (state && state.auth) {
-      store.dispatch(relogin(state.auth));
-    }
-
-    return store;
-  }
-
-  render() {
-    const { store } = this.state;
-
-    if (!store) {
-      return <BootScreen />;
-    }
-
-    return (
-      <Provider store={store}>
-        <View style={{ flexGrow: 1 }}>
-          <AppNavigator />
-          <DropdownAlert ref={ref => AlertService.setAlert(ref)} />
-        </View>
-      </Provider>
-    );
-  }
-}
+export default connect(mapStateToProps)(App);

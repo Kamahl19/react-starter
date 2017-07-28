@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { selectIsInProgress } from '../../../features/spinner/ducks';
+import { Spinner } from '../../../features/spinner/components';
+import { apiCallIds } from '../api';
 import { loginActions } from '../ducks';
 import { Login } from '../components';
+
+const mapStateToProps = state => ({
+  isLoading: selectIsInProgress(state, apiCallIds.LOGIN),
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
@@ -14,10 +21,11 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-@connect(undefined, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class LoginContainer extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     navigation: PropTypes.object.isRequired,
   };
 
@@ -30,14 +38,16 @@ export default class LoginContainer extends Component {
   goToForgottenPassword = () => this.props.navigation.navigate('ForgottenPassword');
 
   render() {
-    const { actions } = this.props;
+    const { actions, isLoading } = this.props;
 
     return (
-      <Login
-        onSubmit={actions.login}
-        goToSignUp={this.goToSignUp}
-        goToForgottenPassword={this.goToForgottenPassword}
-      />
+      <Spinner show={isLoading}>
+        <Login
+          onSubmit={actions.login}
+          goToSignUp={this.goToSignUp}
+          goToForgottenPassword={this.goToForgottenPassword}
+        />
+      </Spinner>
     );
   }
 }
