@@ -5990,9 +5990,9 @@ react-router@^4.1.1:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-scripts-kamahl19-fork@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-scripts-kamahl19-fork/-/react-scripts-kamahl19-fork-1.1.0.tgz#f82b6c839f04ca902139919569c618329f21d530"
+react-scripts-kamahl19-fork@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-scripts-kamahl19-fork/-/react-scripts-kamahl19-fork-1.2.0.tgz#00a0449c0078947f7611277527ca18c71c127122"
   dependencies:
     autoprefixer "7.1.1"
     babel-core "6.25.0"

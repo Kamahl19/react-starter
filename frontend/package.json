@@ -45,7 +45,7 @@
     "react-responsive": "^1.3.4",
     "react-router-dom": "^4.1.2",
     "react-router-redux": "next",
-    "react-scripts-kamahl19-fork": "^1.1.0",
+    "react-scripts-kamahl19-fork": "^1.2.0",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.1",
     "redux-persist": "^4.8.0",
