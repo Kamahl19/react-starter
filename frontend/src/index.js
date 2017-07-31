@@ -1,4 +1,4 @@
-import './app/styles/main.less';
+import './app/styles/main.css';
 import React from 'react';
 import { render } from 'react-dom';
 import createHistory from 'history/createBrowserHistory';

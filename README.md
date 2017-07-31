@@ -22,7 +22,7 @@ Simple starter project including React web app, React Native app and Express Res
     * i18n (i18next)
     * Redux (saga, persist, logger, Reselect)
     * react-router
-    * [forked create-react-app](https://github.com/Kamahl19/create-react-app/tree/kamahl19-customizations/packages/react-scripts)
+    * [create-react-app](https://github.com/facebookincubator/create-react-app)
     * Basic user functionality (signup, login, logout, reset password, activate user)
 * React Native Starter
     * Auth using JWT
@@ -33,9 +33,7 @@ Simple starter project including React web app, React Native app and Express Res
     * Alert service
     * Basic user functionality (signup, login, logout, reset password)
 
-## Getting Started With create-react-app
-
-### Installation
+## Getting Started
 
 Clone this repository:
 
@@ -62,6 +60,7 @@ Start the frontend
 ```sh
 cd frontend
 yarn install
+yarn watch-less
 yarn start
 ```
 
