@@ -1,15 +1,10 @@
-# Logs
-logs
-*.log
-
-# OS generated files
+# OSX
 .DS_Store
+
+# Windows
 Thumbs.db
 
-# Dependency directory
-node_modules
-
-# Build
-frontend/build
-
-.env
+# node.js
+node_modules/
+npm-debug.log
+yarn-error.log
