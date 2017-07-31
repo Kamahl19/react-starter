@@ -16,10 +16,11 @@
     "yarn": ">=0.24.6"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all -p watch-less start-js",
+    "start-js": "react-scripts start",
+    "watch-less": "yarn build-less && nodemon -e less -x \"yarn build-less\"",
     "build": "yarn build-less && react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
     "build-less": "lessc --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
-    "watch-less": "yarn build-less && nodemon -e less -x \"yarn build-less\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.{js,less,css}\"",
@@ -30,6 +31,7 @@
     "i18next-parser": "^0.12.0",
     "less": "^2.7.2",
     "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "react-scripts": "^1.0.10",
     "redux-logger": "^3.0.6"

@@ -60,7 +60,6 @@ Start the frontend
 ```sh
 cd frontend
 yarn install
-yarn watch-less
 yarn start
 ```
 
