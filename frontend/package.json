@@ -52,7 +52,7 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.1",
-    "redux-persist": "^4.8.0",
+    "redux-persist": "^4.8.3",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1"
   }
