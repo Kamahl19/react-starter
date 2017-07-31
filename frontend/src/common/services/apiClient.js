@@ -70,9 +70,10 @@ export function handleResponsesInterceptor(store) {
 }
 
 function showErrorMessage(error) {
-  const errorMsg = error.response
-    ? error.response.data.message || error.response.data.error.inner
-    : error;
+  const errorMsg =
+    error.response && error.response.data
+      ? error.response.data.message || error.response.data.error.inner
+      : error;
 
   if (Array.isArray(errorMsg)) {
     errorMsg.forEach(err => message.error(`${err}`, 5));
