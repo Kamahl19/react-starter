@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "experimentalDecorators": true
+    "target": "ES6"
   },
-  "files": [
-    "src/"
-  ]
+  "files": ["src/"]
 }
