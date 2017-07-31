@@ -7,9 +7,7 @@ import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
 import rules from '../rules';
 
-@translate()
-@Form.create()
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -61,3 +59,5 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+export default translate()(Form.create()(LoginForm));

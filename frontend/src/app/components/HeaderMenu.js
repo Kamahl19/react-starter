@@ -6,10 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { ResponsiveMenu } from '../../common/components/hoc';
 import MobileMenu from './MobileMenu';
 
-@translate()
-@withRouter
-@ResponsiveMenu()
-export default class HeaderMenu extends Component {
+class HeaderMenu extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired,
@@ -112,3 +109,5 @@ export default class HeaderMenu extends Component {
     );
   }
 }
+
+export default translate()(withRouter(ResponsiveMenu()(HeaderMenu)));

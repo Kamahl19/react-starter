@@ -18,8 +18,7 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class UserActivationContainer extends Component {
+class UserActivationContainer extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
@@ -35,3 +34,5 @@ export default class UserActivationContainer extends Component {
     return <div />;
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserActivationContainer);

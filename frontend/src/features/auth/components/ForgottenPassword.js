@@ -7,9 +7,7 @@ import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import rules from '../rules';
 
-@translate()
-@Form.create()
-export default class ForgottenPasswordForm extends Component {
+class ForgottenPasswordForm extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -56,3 +54,5 @@ export default class ForgottenPasswordForm extends Component {
     );
   }
 }
+
+export default translate()(Form.create()(ForgottenPasswordForm));
