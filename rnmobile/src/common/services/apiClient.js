@@ -71,9 +71,10 @@ export function handleResponsesInterceptor(store) {
 }
 
 function showErrorMessage(error) {
-  const errorMsg = error.response
-    ? error.response.data.message || error.response.data.error.inner
-    : error;
+  const errorMsg =
+    error.response && error.response.data
+      ? error.response.data.message || error.response.data.error.inner
+      : error;
 
   if (Array.isArray(errorMsg)) {
     AlertService.error(errorMsg.reduce((acc, curr) => `${acc}\n${curr}`, ''));
