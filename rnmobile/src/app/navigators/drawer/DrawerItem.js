@@ -1,6 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Platform } from 'react-native';
 import { TouchableItem, View, Text } from '../../../common/components';
+
+const DrawerItem = ({ onPress, label }) =>
+  <View style={styles.component}>
+    {onPress &&
+      <TouchableItem onPress={onPress} delayPressIn={0}>
+        <ItemContent label={label} />
+      </TouchableItem>}
+    {!onPress && <ItemContent label={label} />}
+  </View>;
+
+DrawerItem.PropTypes = {
+  onPress: PropTypes.func.isRequired,
+  label: PropTypes.node.isRequired,
+};
+
+export default DrawerItem;
 
 const ItemContent = ({ label }) =>
   <View style={styles.item}>
@@ -11,18 +28,9 @@ const ItemContent = ({ label }) =>
       : label}
   </View>;
 
-const ClickableItem = ({ onPress, label }) =>
-  <TouchableItem onPress={onPress} delayPressIn={0}>
-    <ItemContent label={label} />
-  </TouchableItem>;
-
-const StaticItem = ({ label }) => <ItemContent label={label} />;
-
-export default ({ onPress, label }) =>
-  <View style={styles.component}>
-    {onPress && <ClickableItem onPress={onPress} label={label} />}
-    {!onPress && <StaticItem label={label} />}
-  </View>;
+ItemContent.PropTypes = {
+  label: PropTypes.node.isRequired,
+};
 
 const styles = StyleSheet.create({
   component: {
