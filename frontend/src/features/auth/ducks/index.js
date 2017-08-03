@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import message from 'antd/lib/message';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { t } from '../../../app/i18n';
 import api from '../api';
@@ -25,7 +25,6 @@ export const FETCH_ME = 'auth/FETCH_ME';
 export const LOGOUT = 'auth/LOGOUT';
 export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
 export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
-export const ACTIVATE_USER = 'auth/ACTIVATE_USER';
 
 /**
  * ACTIONS
@@ -37,7 +36,6 @@ export const fetchMeActions = createApiActionCreators(FETCH_ME);
 export const logout = createActionCreator(LOGOUT);
 export const forgottenPasswordRequest = createActionCreator(FORGOTTEN_PASSWORD);
 export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
-export const activateUserRequest = createActionCreator(ACTIVATE_USER);
 
 /**
  * REDUCERS
@@ -124,23 +122,6 @@ function* resetPassword({ payload }) {
   yield doLogin(resp);
 }
 
-function* activateUser(action) {
-  const { userId, activationToken } = action.payload;
-
-  const resp = yield call(api.activateUser, {
-    userId,
-    activationToken,
-  });
-
-  if (resp.ok) {
-    message.success(t('Your account has been activated successfully'), 3);
-
-    yield doLogin(resp);
-  }
-
-  yield put(push('/'));
-}
-
 function* fetchMe({ payload }) {
   const resp = yield call(api.fetchMe, payload.userId);
 
@@ -179,12 +160,40 @@ function* logoutRedirect() {
   yield put(push('/auth/login'));
 }
 
+function* locationChanged({ payload }) {
+  const activatePath = '/auth/activate';
+
+  if (payload.pathname.includes(activatePath)) {
+    const exclude = activatePath.split('/');
+    const [userId, activationToken] = payload.pathname
+      .split('/')
+      .filter(part => !exclude.includes(part));
+
+    yield activateUser(userId, activationToken);
+  }
+}
+
+function* activateUser(userId, activationToken) {
+  const resp = yield call(api.activateUser, {
+    userId,
+    activationToken,
+  });
+
+  if (resp.ok) {
+    message.success(t('Your account has been activated successfully'), 3);
+
+    yield doLogin(resp);
+  }
+
+  yield put(push('/'));
+}
+
 export function* authSaga() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
   yield takeLatest(createActionType(LOGIN, REQUEST), login);
   yield takeLatest(RELOGIN, refetchMe);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
   yield takeLatest(RESET_PASSWORD, resetPassword);
-  yield takeLatest(ACTIVATE_USER, activateUser);
   yield takeLatest(LOGOUT, logoutRedirect);
+  yield takeEvery('@@router/LOCATION_CHANGE', locationChanged);
 }

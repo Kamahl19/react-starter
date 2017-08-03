@@ -6,7 +6,6 @@ import {
   SignUpContainer,
   ForgottenPasswordContainer,
   ResetPasswordContainer,
-  UserActivationContainer,
 } from '../../features/auth/containers';
 import NotFound from '../../features/not-found/NotFound';
 
@@ -22,7 +21,6 @@ export default (
       path="/auth/reset-password/:passwordResetToken"
       component={IsAnonymous(ResetPasswordContainer)}
     />
-    <Route path="/auth/activate/:userId/:activationToken" component={UserActivationContainer} />
 
     <Route path="/me" component={IsLoggedIn(() => <h1>User Profile</h1>)} />
 
