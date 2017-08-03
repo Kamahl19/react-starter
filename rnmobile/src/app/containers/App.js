@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import { View } from '../../common/components';
@@ -13,7 +14,7 @@ const mapStateToProps = state => ({
 });
 
 const App = ({ showSpinner }) =>
-  <View style={{ flexGrow: 1 }}>
+  <View style={styles.component}>
     <AppNavigator />
     {showSpinner && <Spinner large />}
     <DropdownAlert ref={ref => AlertService.setAlert(ref)} />
@@ -22,3 +23,9 @@ const App = ({ showSpinner }) =>
 App.propTypes = { showSpinner: PropTypes.bool.isRequired };
 
 export default connect(mapStateToProps)(App);
+
+const styles = StyleSheet.create({
+  component: {
+    flexGrow: 1,
+  },
+});
