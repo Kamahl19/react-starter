@@ -4,16 +4,6 @@ import { startApiCall, finishApiCall } from '../../features/spinner/ducks';
 import config from '../../config';
 import AlertService from './alert';
 
-const normalizeSuccessResponse = response => ({
-  ...response,
-  ok: true,
-});
-
-const normalizeErrorResponse = error => ({
-  ...error,
-  ok: false,
-});
-
 const apiClient = axios.create({
   responseType: 'json',
   baseURL: config.apiUrl,
@@ -68,6 +58,20 @@ export function handleResponsesInterceptor(store) {
       return normalizeErrorResponse(error);
     }
   );
+}
+
+function normalizeSuccessResponse(response) {
+  return {
+    ...response,
+    ok: true,
+  };
+}
+
+function normalizeErrorResponse(error) {
+  return {
+    ...error,
+    ok: false,
+  };
 }
 
 function showErrorMessage(error) {

@@ -3,16 +3,6 @@ import message from 'antd/lib/message';
 import { selectToken, logout } from '../../features/auth/ducks';
 import { startApiCall, finishApiCall } from '../../features/spinner/ducks';
 
-const normalizeSuccessResponse = response => ({
-  ...response,
-  ok: true,
-});
-
-const normalizeErrorResponse = error => ({
-  ...error,
-  ok: false,
-});
-
 const apiClient = axios.create({
   responseType: 'json',
   baseURL: process.env.REACT_APP_API_URL,
@@ -67,6 +57,20 @@ export function handleResponsesInterceptor(store) {
       return normalizeErrorResponse(error);
     }
   );
+}
+
+function normalizeSuccessResponse(response) {
+  return {
+    ...response,
+    ok: true,
+  };
+}
+
+function normalizeErrorResponse(error) {
+  return {
+    ...error,
+    ok: false,
+  };
 }
 
 function showErrorMessage(error) {

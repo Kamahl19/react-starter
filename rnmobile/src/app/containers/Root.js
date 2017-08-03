@@ -14,7 +14,7 @@ export default class Root extends Component {
     store: undefined,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.initStore().then(store => this.setState({ store }));
   }
 
