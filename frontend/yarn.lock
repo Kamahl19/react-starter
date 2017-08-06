@@ -137,9 +137,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^2.12.3:
-  version "2.12.3"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.3.tgz#6dbc6f077b1579aa4c8423e5180d55cc1ffde4c3"
+antd@^2.12.4:
+  version "2.12.4"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.4.tgz#513f451ac4699da1edbfb2145a35b3707c30211b"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -171,7 +171,7 @@ antd@^2.12.3:
     rc-steps "~2.5.1"
     rc-switch "~1.5.1"
     rc-table "~5.4.0"
-    rc-tabs "~8.0.0"
+    rc-tabs "~9.0.2"
     rc-time-picker "~2.4.1"
     rc-tooltip "~3.4.6"
     rc-tree "~1.7.0"
@@ -5795,9 +5795,9 @@ rc-table@~5.4.0:
     shallowequal "^0.2.2"
     warning "^3.0.0"
 
-rc-tabs@~8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-8.0.0.tgz#24519e7bafd43b0440e9c651a0d3ef0312bcfcac"
+rc-tabs@~9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-9.0.2.tgz#2008ffc0ab9b8e573d077d2be19ec76adbb73539"
   dependencies:
     babel-runtime "6.x"
     classnames "2.x"
@@ -5945,9 +5945,9 @@ react-error-overlay@^1.0.9:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-i18next@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-4.7.0.tgz#1ba1ac72c7438ff0eba23d5c11616eb4d0b23e87"
+react-i18next@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-4.8.0.tgz#92f0d281c5f39ac8f3c3f381562d523e9d830254"
   dependencies:
     hoist-non-react-statics "1.2.0"
 
