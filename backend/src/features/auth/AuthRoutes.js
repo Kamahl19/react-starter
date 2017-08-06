@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const validator = require('src/common/services/validator');
+const validator = require('../../common/services/validator');
 const AuthController = require('./AuthController');
 const AuthSchema = require('./AuthSchema');
 

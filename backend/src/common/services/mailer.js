@@ -1,8 +1,8 @@
 const lodash = require('lodash');
 const nodemailer = require('nodemailer');
 const mailgunTransport = require('nodemailer-mailgun-transport');
-const logger = require('src/common/services/logger');
-const config = require('src/app/config');
+const logger = require('../../common/services/logger');
+const config = require('../../app/config');
 
 const { MAILGUN_API_KEY, MAILGUN_DOMAIN } = process.env;
 

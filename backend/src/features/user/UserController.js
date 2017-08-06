@@ -1,7 +1,7 @@
 const User = require('./UserModel');
-const { NotFoundError, ForbiddenError } = require('src/common/utils/apiErrors');
-const mailer = require('src/common/services/mailer');
-const { activationMail } = require('src/app/preddefinedMails');
+const { NotFoundError, ForbiddenError } = require('../../common/utils/apiErrors');
+const mailer = require('../../common/services/mailer');
+const { activationMail } = require('../../app/preddefinedMails');
 
 const UserController = {
   /**

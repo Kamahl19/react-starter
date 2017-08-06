@@ -1,7 +1,11 @@
-const User = require('src/features/user/UserModel');
-const { NotFoundError, UnauthorizedError, ForbiddenError } = require('src/common/utils/apiErrors');
-const mailer = require('src/common/services/mailer');
-const { forgottenPasswordMail, resetPasswordMail } = require('src/app/preddefinedMails');
+const User = require('../../features/user/UserModel');
+const {
+  NotFoundError,
+  UnauthorizedError,
+  ForbiddenError,
+} = require('../../common/utils/apiErrors');
+const mailer = require('../../common/services/mailer');
+const { forgottenPasswordMail, resetPasswordMail } = require('../../app/preddefinedMails');
 
 const UserController = {
   /**

@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const validator = require('src/common/services/validator');
+const validator = require('../../common/services/validator');
 const UserController = require('./UserController');
 const UserSchema = require('./UserSchema');
-const isLoggedIn = require('src/common/middleware/isLoggedIn');
+const isLoggedIn = require('../../common/middleware/isLoggedIn');
 const isOwnUserId = require('./middleware/isOwnUserId');
 
 router.route('/users').post(validator(UserSchema.create), UserController.create);

@@ -1,13 +1,11 @@
-require('app-module-path/cwd');
-
 // Load .env file with all the configuration
 require('dotenv').config();
 
 const http = require('http');
 const mongoose = require('mongoose');
-const logger = require('src/common/services/logger');
-const config = require('src/app/config');
-const app = require('src/app/app');
+const logger = require('./common/services/logger');
+const config = require('./app/config');
+const app = require('./app/app');
 
 const server = http.createServer(app);
 
