@@ -22,8 +22,8 @@
     "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
-    "eslint": "^4.3.0",
+    "cross-env": "^5.0.4",
+    "eslint": "^4.4.0",
     "eslint-plugin-node": "^5.1.1",
     "nodemon": "^1.11.0",
     "prettier": "^1.5.3"
@@ -31,7 +31,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
-    "bunyan": "^1.8.10",
+    "bunyan": "^1.8.12",
     "celebrate": "^4.0.1",
     "compression": "^1.7.0",
     "cors": "^2.8.4",
@@ -40,7 +40,7 @@
     "helmet": "^3.8.1",
     "http-status": "^1.0.1",
     "joi": "^10.6.0",
-    "jsonwebtoken": "^7.4.1",
+    "jsonwebtoken": "^7.4.2",
     "lodash": "^4.17.4",
     "middleware-flow": "^0.8.0",
     "mongoose": "^4.11.5",
