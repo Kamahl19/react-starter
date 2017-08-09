@@ -8,7 +8,7 @@ const httpStatus = require('http-status');
 const routes = require('../app/routes');
 const config = require('../app/config');
 const logger = require('../common/services/logger');
-const { normalizePort, getErrorMessage } = require('../common/utils/helpers');
+const { normalizePort, formatErrorMessage } = require('../common/utils/helpers');
 const { NotFoundError, BadRequestError } = require('../common/utils/apiErrors');
 
 const app = express();
@@ -51,7 +51,7 @@ app.use('/api', routes);
 // Params/Body/Headers/Query Validation
 app.use((err, req, res, next) => {
   if (err.isJoi) {
-    return next(new BadRequestError({ message: getErrorMessage(err.details) }));
+    return next(new BadRequestError({ message: formatErrorMessage(err.details) }));
   }
   return next(err);
 });

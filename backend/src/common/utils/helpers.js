@@ -18,28 +18,24 @@ const normalizePort = val => {
 };
 
 /**
- * Validation error formatters
+ * Format error message
  */
 const splitCamelCase = camelCase => camelCase.replace(/([A-Z][a-z])/g, ' $1');
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
-const formatError = message => {
-  const msgArr = message.split('"');
+const formatErrorMessage = errors =>
+  errors.map(({ message }) => {
+    const msgArr = message.split('"');
 
-  if (!msgArr[1].includes(' ')) {
-    msgArr[1] = capitalize(splitCamelCase(msgArr[1]));
-  }
+    if (!msgArr[1].includes(' ')) {
+      msgArr[1] = capitalize(splitCamelCase(msgArr[1]));
+    }
 
-  return msgArr.join('"');
-};
-
-const getErrorMessage = errors => errors.map(({ message }) => formatError(message));
+    return msgArr.join('"');
+  });
 
 module.exports = {
   normalizePort,
-  splitCamelCase,
-  capitalize,
-  formatError,
-  getErrorMessage,
+  formatErrorMessage,
 };
