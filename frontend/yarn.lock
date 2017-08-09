@@ -137,9 +137,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^2.12.4:
-  version "2.12.4"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.4.tgz#513f451ac4699da1edbfb2145a35b3707c30211b"
+antd@^2.12.5:
+  version "2.12.5"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.12.5.tgz#33026a36f13dc1bec1beee88267dc1772110c381"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -157,7 +157,7 @@ antd@^2.12.4:
     rc-checkbox "~2.0.3"
     rc-collapse "~1.7.5"
     rc-dialog "~6.5.10"
-    rc-dropdown "~1.4.11"
+    rc-dropdown "~1.5.0"
     rc-editor-mention "~0.6.12"
     rc-form "~1.4.0"
     rc-input-number "~3.6.0"
@@ -3155,9 +3155,13 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@1.2.0, hoist-non-react-statics@1.x, hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@1.2.0, hoist-non-react-statics@1.x, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+
+hoist-non-react-statics@^2.2.1:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.2.2.tgz#c0eca5a7d5a28c5ada3107eb763b01da6bfa81fb"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -5637,9 +5641,9 @@ rc-dialog@~6.5.10:
     rc-animate "2.x"
     rc-util "^4.0.4"
 
-rc-dropdown@~1.4.11:
-  version "1.4.12"
-  resolved "https://registry.yarnpkg.com/rc-dropdown/-/rc-dropdown-1.4.12.tgz#02dea9f73fa579300586b869130aa2bf955ee733"
+rc-dropdown@~1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/rc-dropdown/-/rc-dropdown-1.5.0.tgz#2648ea78b4d56646ef306978873d3fa8993b8c48"
   dependencies:
     prop-types "^15.5.8"
     rc-trigger "1.x"
@@ -5960,12 +5964,11 @@ react-lazy-load@^3.0.10:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-redux@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.5.tgz#f8e8c7b239422576e52d6b7db06439469be9846a"
+react-redux@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"
   dependencies:
-    create-react-class "^15.5.3"
-    hoist-non-react-statics "^1.0.3"
+    hoist-non-react-statics "^2.2.1"
     invariant "^2.0.0"
     lodash "^4.2.0"
     lodash-es "^4.2.0"
