@@ -28,6 +28,7 @@
     "prettier": "^1.5.3"
   },
   "dependencies": {
+    "async-middleware": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "bunyan": "^1.8.12",

@@ -58,7 +58,7 @@ app.use((err, req, res, next) => {
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-  return next(new NotFoundError('Not Found'));
+  return next(new NotFoundError({ message: 'Not Found' }));
 });
 
 // Error middleware
