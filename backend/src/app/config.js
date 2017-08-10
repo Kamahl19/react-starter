@@ -32,8 +32,13 @@ const config = {
     jwtTokenExpireInSec: 24 * 60 * 60, // 1 day
     passwordResetExpireInMs: 60 * 60 * 1000, // 1 hour
     activationExpireInMs: 24 * 60 * 60 * 1000, // 1 day
+    saltRounds: 10,
   },
   cacheFilesFor: process.env.NODE_ENV === 'production' ? '1d' : 0,
+  logger: {
+    period: '7d',
+    count: 53,
+  },
 };
 
 module.exports = config;

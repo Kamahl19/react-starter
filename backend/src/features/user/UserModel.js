@@ -28,7 +28,7 @@ userSchema.pre('save', function save(next) {
     return next();
   }
 
-  bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.genSalt(config.auth.saltRounds, (err, salt) => {
     if (err) {
       return next(err);
     }

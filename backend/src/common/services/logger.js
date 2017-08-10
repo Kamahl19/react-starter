@@ -1,6 +1,7 @@
 const bunyan = require('bunyan');
 const fs = require('fs');
 const path = require('path');
+const config = require('../../app/config');
 
 const logDirectory = process.env.LOG_DIR || path.resolve('./logs');
 
@@ -19,8 +20,8 @@ const logger = bunyan.createLogger({
     {
       type: 'rotating-file',
       path: logDirectory + '/logs.log',
-      period: '7d',
-      count: 53,
+      period: config.logger.period,
+      count: config.logger.count,
     },
   ],
 });
