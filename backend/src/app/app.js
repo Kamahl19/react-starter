@@ -4,12 +4,14 @@ const helmet = require('helmet');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const httpStatus = require('http-status');
 const routes = require('../app/routes');
 const config = require('../app/config');
-const logger = require('../common/services/logger');
-const { normalizePort, formatErrorMessage } = require('../common/utils/helpers');
-const { NotFoundError, BadRequestError } = require('../common/utils/apiErrors');
+const { normalizePort } = require('../common/utils/helpers');
+const {
+  errorHandler,
+  notFoundHandler,
+  formValidationErrorHandler,
+} = require('./middleware/errorHandlers');
 
 const app = express();
 
@@ -45,32 +47,12 @@ app.use(
   })
 );
 
-// Routes
 app.use('/api', routes);
 
-// Params/Body/Headers/Query Validation
-app.use((err, req, res, next) => {
-  if (err.isJoi) {
-    return next(new BadRequestError({ message: formatErrorMessage(err.details) }));
-  }
-  return next(err);
-});
+app.use(formValidationErrorHandler);
 
-// Catch 404 and forward to error handler
-app.use((req, res, next) => {
-  return next(new NotFoundError({ message: 'Not Found' }));
-});
+app.use(notFoundHandler);
 
-// Error middleware
-app.use((err, req, res, next) => {
-  logger.error(err);
-
-  res.status(err.status || httpStatus.INTERNAL_SERVER_ERROR);
-
-  res.json({
-    message: err.message,
-    error: process.env.NODE_ENV === 'development' ? err : {},
-  });
-});
+app.use(errorHandler);
 
 module.exports = app;
