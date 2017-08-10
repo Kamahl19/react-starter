@@ -13,7 +13,7 @@ function formValidationErrorHandler(err, req, res, next) {
 }
 
 // Catch 404 and forward to error handler
-function notFoundhandler(req, res, next) {
+function catch404handler(req, res, next) {
   return next(new NotFoundError({ message: 'Not Found' }));
 }
 
@@ -31,6 +31,6 @@ function errorHandler(err, req, res, next) {
 
 module.exports = {
   formValidationErrorHandler,
-  notFoundhandler,
+  catch404handler,
   errorHandler,
 };

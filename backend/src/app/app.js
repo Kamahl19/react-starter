@@ -9,7 +9,7 @@ const config = require('../app/config');
 const { normalizePort } = require('../common/utils/helpers');
 const {
   errorHandler,
-  notFoundHandler,
+  catch404handler,
   formValidationErrorHandler,
 } = require('./middleware/errorHandlers');
 
@@ -51,7 +51,7 @@ app.use('/api', routes);
 
 app.use(formValidationErrorHandler);
 
-app.use(notFoundHandler);
+app.use(catch404handler);
 
 app.use(errorHandler);
 
