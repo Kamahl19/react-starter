@@ -21,7 +21,7 @@ mongoose.connection.on('connected', () => {
 
 // Catch MongoDB `disconnect` event
 mongoose.connection.on('disconnected', () => {
-  logger.fatal('MongoDB disconnected');
+  logger.info('MongoDB disconnected');
 });
 
 // Catch MongoDB `error` event
