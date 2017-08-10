@@ -64,7 +64,7 @@ const UserController = {
     const { email, passwordResetToken, password } = req.body;
 
     const newData = {
-      password: User.generateHash(password),
+      password,
       passwordResetToken: undefined,
       passwordResetExpires: undefined,
     };

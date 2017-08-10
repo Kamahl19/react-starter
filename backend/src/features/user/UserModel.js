@@ -19,6 +19,43 @@ const userSchema = new Schema(
 );
 
 /**
+ * Hash password on Save
+ */
+userSchema.pre('save', function save(next) {
+  const user = this;
+
+  if (!user.isModified('password')) {
+    return next();
+  }
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) {
+        return next(err);
+      }
+
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+/**
+ * Make email lowercase
+ */
+userSchema.pre('save', function(next) {
+  if (this.isModified('email')) {
+    this.email = this.email.toLowerCase();
+  }
+
+  next();
+});
+
+/**
  * Methods
  */
 userSchema.methods.validPassword = function(password) {
@@ -50,9 +87,6 @@ userSchema.methods.getPublicData = function() {
 /**
  * Static methods
  */
-userSchema.statics.generateHash = password =>
-  password ? bcrypt.hashSync(password, bcrypt.genSaltSync(10)) : null;
-
 userSchema.statics.generatePasswordResetToken = () => ({
   passwordResetToken: crypto.randomBytes(16).toString('hex'),
   passwordResetExpires: Date.now() + config.auth.passwordResetExpireInMs,
