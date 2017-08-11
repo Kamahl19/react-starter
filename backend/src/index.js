@@ -40,8 +40,10 @@ server.on('error', error => {
 
 process.on('SIGINT', cleanShutDown).on('SIGTERM', cleanShutDown);
 
-db.init(() => {
-  server.listen(app.get('port'), '0.0.0.0');
+db.init({
+  onConnected: () => {
+    server.listen(app.get('port'), '0.0.0.0');
+  },
 });
 
 try {

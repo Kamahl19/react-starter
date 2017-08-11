@@ -4,19 +4,20 @@ const config = require('./config');
 
 mongoose.Promise = global.Promise;
 
-function init(onConnected) {
+function init({ onConnected, onDisconnected, onError }) {
   mongoose.connection.on('connected', () => {
     logger.info('MongoDB connected');
-
-    onConnected();
+    onConnected && onConnected();
   });
 
   mongoose.connection.on('disconnected', () => {
     logger.info('MongoDB disconnected');
+    onDisconnected && onDisconnected();
   });
 
   mongoose.connection.on('error', err => {
     logger.error(`MongoDB error: ${err}`);
+    onError && onError();
   });
 }
 
