@@ -3,7 +3,7 @@ const {
   AuthTokenNotFoundError,
   AuthTokenInvalidError,
 } = require('../../../common/messages/errors');
-const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../utils');
+const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../authUtils');
 
 /**
  * Verify user token
