@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
   mail: {
     from: {
       name: 'Your Name',
@@ -40,5 +40,3 @@ const config = {
     count: 53,
   },
 };
-
-module.exports = config;

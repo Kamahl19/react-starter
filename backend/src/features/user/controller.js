@@ -14,7 +14,7 @@ const {
 } = require('../../common/messages/errors');
 const { comparePassword } = require('./authUtils');
 
-const UserController = {
+module.exports = {
   /**
    * Get User by ID
    */
@@ -184,5 +184,3 @@ const UserController = {
     });
   }),
 };
-
-module.exports = UserController;
