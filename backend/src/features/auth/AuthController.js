@@ -6,7 +6,7 @@ const {
   ForbiddenError,
 } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
-const { forgottenPasswordMail, resetPasswordMail } = require('../../app/preddefinedMails');
+const { forgottenPasswordMail, resetPasswordMail } = require('../../app/emails');
 
 const UserController = {
   /**

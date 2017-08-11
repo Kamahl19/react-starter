@@ -49,10 +49,9 @@ app.use(
 
 app.use('/api', routes);
 
+// Error handlers
 app.use(formValidationErrorHandler);
-
 app.use(catch404handler);
-
 app.use(errorHandler);
 
 module.exports = app;

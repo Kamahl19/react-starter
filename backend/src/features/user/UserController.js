@@ -2,7 +2,7 @@ const { wrap } = require('async-middleware');
 const User = require('./UserModel');
 const { NotFoundError, ForbiddenError } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
-const { activationMail } = require('../../app/preddefinedMails');
+const { activationMail } = require('../../app/emails');
 
 const UserController = {
   /**
