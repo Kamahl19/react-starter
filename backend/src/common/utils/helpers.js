@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -35,7 +37,17 @@ const formatErrorMessage = errors =>
     return msgArr.join('"');
   });
 
+/**
+ * Generate Hex Token
+ */
+function generateHexToken() {
+  return crypto.randomBytes(16).toString('hex');
+}
+
 module.exports = {
   normalizePort,
+  splitCamelCase,
+  capitalize,
   formatErrorMessage,
+  generateHexToken,
 };

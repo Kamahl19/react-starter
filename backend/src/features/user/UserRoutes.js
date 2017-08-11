@@ -3,7 +3,7 @@ const validator = require('../../common/services/validator');
 const UserController = require('./UserController');
 const UserSchema = require('./UserSchema');
 const isLoggedIn = require('../auth/middleware/isLoggedIn');
-const isOwnUserId = require('./middleware/isOwnUserId');
+const isOwnUserId = require('../auth/middleware/isOwnUserId');
 
 router.route('/users').post(validator(UserSchema.create), UserController.create);
 

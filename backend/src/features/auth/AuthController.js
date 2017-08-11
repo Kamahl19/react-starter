@@ -7,6 +7,7 @@ const {
 } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
 const { forgottenPasswordMail, resetPasswordMail } = require('../../app/emails');
+const { comparePassword } = require('./authHelpers');
 
 const UserController = {
   /**
@@ -21,7 +22,7 @@ const UserController = {
       throw new NotFoundError({ message: 'Requested user does not exist.' });
     }
 
-    if (!user.validPassword(password)) {
+    if (!comparePassword(password, user.password)) {
       throw new UnauthorizedError({ message: 'Login credentials are wrong.' });
     }
 
