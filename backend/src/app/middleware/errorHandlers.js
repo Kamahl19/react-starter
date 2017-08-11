@@ -3,7 +3,9 @@ const { wrap } = require('async-middleware');
 const logger = require('../../common/services/logger');
 const { PageNotFoundError, RequestNotValidError } = require('../../common/messages/errors');
 
-// Params/Body/Headers/Query Validation
+/**
+ * Params/Body/Headers/Query Validation
+ */
 const requestValidationErrorHandler = wrap((err, req, res, next) => {
   if (err.isJoi) {
     throw RequestNotValidError(err.details);
@@ -12,12 +14,16 @@ const requestValidationErrorHandler = wrap((err, req, res, next) => {
   throw err;
 });
 
-// Catch 404 and forward to error handler
+/**
+ * Catch 404 and forward to error handler
+ */
 const catch404handler = wrap((req, res, next) => {
   throw PageNotFoundError();
 });
 
-// Log and return error
+/**
+ * Log and return error
+ */
 function errorHandler(err, req, res, next) {
   logger.error(err);
 
