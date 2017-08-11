@@ -1,3 +1,5 @@
+'use strict';
+
 const router = require('express').Router();
 const validator = require('../../common/services/validator');
 const controller = require('./controller');

@@ -1,3 +1,5 @@
+'use strict';
+
 const httpStatus = require('http-status');
 const { wrap } = require('async-middleware');
 const logger = require('../../common/services/logger');

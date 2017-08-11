@@ -1,3 +1,5 @@
+'use strict';
+
 const { wrap } = require('async-middleware');
 const { NotAllowedAccessError } = require('../../../common/messages/errors');
 

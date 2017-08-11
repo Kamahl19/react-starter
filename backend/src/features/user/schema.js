@@ -1,3 +1,5 @@
+'use strict';
+
 const Joi = require('joi');
 const { email, password, passwordWithoutLimit, objectId, hexToken } = require('../../common/rules');
 

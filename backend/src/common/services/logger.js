@@ -1,3 +1,5 @@
+'use strict';
+
 const bunyan = require('bunyan');
 const fs = require('fs');
 const path = require('path');

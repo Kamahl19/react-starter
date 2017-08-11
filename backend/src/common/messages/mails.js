@@ -1,3 +1,5 @@
+'use strict';
+
 const forgottenPasswordMail = ({ origin, passwordResetToken }) => ({
   subject: 'Reset your password',
   text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n
