@@ -1,14 +1,10 @@
 const Joi = require('joi');
-
-const email = Joi.string().max(255).email().required().label('E-mail');
-const password = Joi.string().min(6);
-const userId = Joi.string().hex().length(24);
-const activationToken = Joi.string().hex().length(32);
+const { email, password, objectId, hexToken } = require('../../common/rules');
 
 module.exports = {
   getById: {
     params: Joi.object().keys({
-      userId,
+      userId: objectId,
     }),
   },
 
@@ -21,8 +17,8 @@ module.exports = {
 
   activate: {
     params: Joi.object().keys({
-      userId,
-      activationToken,
+      userId: objectId,
+      activationToken: hexToken,
     }),
   },
 };

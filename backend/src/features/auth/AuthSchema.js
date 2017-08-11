@@ -1,9 +1,5 @@
 const Joi = require('joi');
-
-const email = Joi.string().max(255).email().required().label('E-mail');
-const password = Joi.string().min(6);
-const passwordWithoutLimit = Joi.string().required();
-const passwordResetToken = Joi.string().hex().length(32);
+const { email, password, passwordWithoutLimit, hexToken } = require('../../common/rules');
 
 module.exports = {
   login: {
@@ -23,7 +19,7 @@ module.exports = {
     body: Joi.object().keys({
       email,
       password,
-      passwordResetToken,
+      passwordResetToken: hexToken,
     }),
   },
 };
