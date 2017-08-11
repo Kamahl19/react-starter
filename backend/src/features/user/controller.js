@@ -1,5 +1,5 @@
 const { wrap } = require('async-middleware');
-const User = require('./UserModel');
+const User = require('./model');
 const { NotFoundError, ForbiddenError } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
 const { activationMail } = require('../../app/emails');

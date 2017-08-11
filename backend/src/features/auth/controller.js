@@ -1,5 +1,5 @@
 const { wrap } = require('async-middleware');
-const User = require('../../features/user/UserModel');
+const User = require('../../features/user/model');
 const {
   NotFoundError,
   UnauthorizedError,
@@ -7,7 +7,7 @@ const {
 } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
 const { forgottenPasswordMail, resetPasswordMail } = require('../../app/emails');
-const { comparePassword } = require('./authHelpers');
+const { comparePassword } = require('./utils');
 
 const UserController = {
   /**

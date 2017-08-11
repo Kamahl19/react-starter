@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const validator = require('../../common/services/validator');
-const AuthController = require('./AuthController');
-const AuthSchema = require('./AuthSchema');
+const AuthController = require('./controller');
+const AuthSchema = require('./schema');
 
 router.route('/auth/login').post(validator(AuthSchema.login), AuthController.login);
 

@@ -1,6 +1,6 @@
 const { wrap } = require('async-middleware');
 const { UnauthorizedError } = require('../../../common/utils/apiErrors');
-const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../authHelpers');
+const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../utils');
 
 /**
  * Verify user token
