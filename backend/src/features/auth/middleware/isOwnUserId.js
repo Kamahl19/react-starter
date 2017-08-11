@@ -1,12 +1,12 @@
 const { wrap } = require('async-middleware');
-const { UnauthorizedError } = require('../../../common/utils/apiErrors');
+const { NotAllowedAccessError } = require('../../../common/messages/errors');
 
 /**
  * Verify if user is accesing his own user account
  */
 module.exports = wrap((req, res, next) => {
   if (!req.jwtPayload || !req.params || req.jwtPayload.sub !== req.params.userId) {
-    throw new UnauthorizedError({ message: 'You are not allowed to access this page.' });
+    throw NotAllowedAccessError();
   }
 
   next();

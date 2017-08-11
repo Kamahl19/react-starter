@@ -112,6 +112,11 @@ function* forgottenPassword(action) {
   const resp = yield call(api.forgottenPassword, email);
 
   if (resp.ok) {
+    message.success(
+      t('An e-mail with further instructions has been sent to youe e-mail address.'),
+      3
+    );
+
     yield put(push('/'));
   }
 }

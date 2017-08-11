@@ -1,12 +1,12 @@
 const { wrap } = require('async-middleware');
 const User = require('../../features/user/model');
-const {
-  NotFoundError,
-  UnauthorizedError,
-  ForbiddenError,
-} = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
-const { forgottenPasswordMail, resetPasswordMail } = require('../../app/emails');
+const { forgottenPasswordMail, resetPasswordMail } = require('../../common/messages/mails');
+const {
+  UserNotFoundError,
+  LoginCredentialsError,
+  PasswordResetTokenInvalidError,
+} = require('../../common/messages/errors');
 const { comparePassword } = require('./utils');
 
 const UserController = {
@@ -19,11 +19,11 @@ const UserController = {
     const user = await User.findOne({ email: email.toLowerCase() }, '+password');
 
     if (!user) {
-      throw new NotFoundError({ message: 'Requested user does not exist.' });
+      throw UserNotFoundError();
     }
 
     if (!comparePassword(password, user.password)) {
-      throw new UnauthorizedError({ message: 'Login credentials are wrong.' });
+      throw LoginCredentialsError();
     }
 
     return res.json({
@@ -46,16 +46,18 @@ const UserController = {
     });
 
     if (!user) {
-      throw new NotFoundError({ message: 'Requested user does not exist.' });
+      throw UserNotFoundError();
     }
 
-    const link = `${req.headers.origin}/auth/reset-password/${newData.passwordResetToken}`;
+    await mailer.sendMail(
+      user.email,
+      forgottenPasswordMail({
+        origin: req.headers.origin,
+        passwordResetToken: newData.passwordResetToken,
+      })
+    );
 
-    await mailer.sendMail(user.email, forgottenPasswordMail(link));
-
-    return res.json({
-      message: `An e-mail has been sent to ${user.email} with further instructions.`,
-    });
+    return res.end();
   }),
 
   /**
@@ -83,13 +85,12 @@ const UserController = {
       .exec();
 
     if (!user) {
-      throw new ForbiddenError({ message: 'Password reset token is invalid or has expired.' });
+      throw PasswordResetTokenInvalidError();
     }
 
-    await mailer.sendMail(user.email, resetPasswordMail(user.email));
+    await mailer.sendMail(user.email, resetPasswordMail({ email: user.email }));
 
     return res.json({
-      message: `Success! Your password has been changed.`,
       token: user.getAuthToken(),
       user: user.getPublicData(),
     });

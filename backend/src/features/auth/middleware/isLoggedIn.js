@@ -1,5 +1,8 @@
 const { wrap } = require('async-middleware');
-const { UnauthorizedError } = require('../../../common/utils/apiErrors');
+const {
+  AuthTokenNotFoundError,
+  AuthTokenInvalidError,
+} = require('../../../common/messages/errors');
 const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../utils');
 
 /**
@@ -7,11 +10,11 @@ const { isAuthHeaderValid, getPayloadFromAuthHeader } = require('../utils');
  */
 module.exports = wrap((req, res, next) => {
   if (!req.headers || !req.headers.authorization) {
-    throw new UnauthorizedError({ message: 'No authorization token was found.' });
+    throw AuthTokenNotFoundError();
   }
 
   if (!isAuthHeaderValid(req.headers.authorization)) {
-    throw new UnauthorizedError({ message: 'Format of the Authorization header is invalid.' });
+    throw AuthTokenInvalidError();
   }
 
   req.jwtPayload = getPayloadFromAuthHeader(req.headers.authorization);

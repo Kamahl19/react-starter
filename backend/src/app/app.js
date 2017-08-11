@@ -10,7 +10,7 @@ const { normalizePort } = require('../common/utils/helpers');
 const {
   errorHandler,
   catch404handler,
-  formValidationErrorHandler,
+  requestValidationErrorHandler,
 } = require('./middleware/errorHandlers');
 
 const app = express();
@@ -50,7 +50,7 @@ app.use(
 app.use('/api', routes);
 
 // Error handlers
-app.use(formValidationErrorHandler);
+app.use(requestValidationErrorHandler);
 app.use(catch404handler);
 app.use(errorHandler);
 

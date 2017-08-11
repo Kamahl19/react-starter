@@ -1,13 +1,12 @@
 const httpStatus = require('http-status');
 const { wrap } = require('async-middleware');
 const logger = require('../../common/services/logger');
-const { NotFoundError, BadRequestError } = require('../../common/utils/apiErrors');
-const { formatErrorMessage } = require('../../common/utils/helpers');
+const { PageNotFoundError, RequestNotValidError } = require('../../common/messages/errors');
 
 // Params/Body/Headers/Query Validation
-const formValidationErrorHandler = wrap((err, req, res, next) => {
+const requestValidationErrorHandler = wrap((err, req, res, next) => {
   if (err.isJoi) {
-    throw new BadRequestError({ message: formatErrorMessage(err.details) });
+    throw RequestNotValidError(err.details);
   }
 
   throw err;
@@ -15,7 +14,7 @@ const formValidationErrorHandler = wrap((err, req, res, next) => {
 
 // Catch 404 and forward to error handler
 const catch404handler = wrap((req, res, next) => {
-  throw new NotFoundError({ message: 'Not Found' });
+  throw PageNotFoundError();
 });
 
 // Log and return error
@@ -31,7 +30,7 @@ function errorHandler(err, req, res, next) {
 }
 
 module.exports = {
-  formValidationErrorHandler,
+  requestValidationErrorHandler,
   catch404handler,
   errorHandler,
 };

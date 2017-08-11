@@ -1,8 +1,8 @@
 const { wrap } = require('async-middleware');
 const User = require('./model');
-const { NotFoundError, ForbiddenError } = require('../../common/utils/apiErrors');
 const mailer = require('../../common/services/mailer');
-const { activationMail } = require('../../app/emails');
+const { activationMail } = require('../../common/messages/mails');
+const { UserNotFoundError, ActivationTokenInvalidError } = require('../../common/messages/errors');
 
 const UserController = {
   /**
@@ -14,7 +14,7 @@ const UserController = {
     const user = await User.findById(userId);
 
     if (!user) {
-      throw new NotFoundError({ message: 'Requested user does not exist.' });
+      throw UserNotFoundError();
     }
 
     return res.json({
@@ -39,9 +39,14 @@ const UserController = {
 
     await user.save();
 
-    const link = `${req.headers.origin}/auth/activate/${user.id}/${user.activationToken}`;
-
-    await mailer.sendMail(user.email, activationMail(link));
+    await mailer.sendMail(
+      user.email,
+      activationMail({
+        origin: req.headers.origin,
+        userId: user.id,
+        activationToken: user.activationToken,
+      })
+    );
 
     return res.json({
       token: user.getAuthToken(),
@@ -74,11 +79,10 @@ const UserController = {
       .exec();
 
     if (!user) {
-      throw new ForbiddenError({ message: 'Activation token is invalid or has expired.' });
+      throw ActivationTokenInvalidError();
     }
 
     return res.json({
-      message: `Success! Your account has been activated.`,
       token: user.getAuthToken(),
       user: user.getPublicData(),
     });
