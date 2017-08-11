@@ -1,28 +1,11 @@
 require('dotenv').config();
 
 const http = require('http');
-const mongoose = require('mongoose');
 const logger = require('./common/services/logger');
-const config = require('./app/config');
 const app = require('./app/app');
+const db = require('./app/db');
 
 const server = http.createServer(app);
-
-mongoose.Promise = global.Promise;
-
-mongoose.connection.on('connected', () => {
-  logger.info('MongoDB connected');
-
-  server.listen(app.get('port'), '0.0.0.0');
-});
-
-mongoose.connection.on('disconnected', () => {
-  logger.info('MongoDB disconnected');
-});
-
-mongoose.connection.on('error', err => {
-  logger.error(`MongoDB error: ${err}`);
-});
 
 server.on('listening', () => {
   const addr = server.address();
@@ -57,16 +40,19 @@ server.on('error', error => {
 
 process.on('SIGINT', cleanShutDown).on('SIGTERM', cleanShutDown);
 
+db.init(() => {
+  server.listen(app.get('port'), '0.0.0.0');
+});
+
 try {
-  mongoose.connect(process.env.MONGO_URL, config.mongolab.options);
+  db.connect();
 } catch (err) {
   logger.fatal(`Sever initialization failed: ${err.message}`);
 }
 
 function cleanShutDown(code = 0) {
-  mongoose.connection.close(() => {
-    logger.info('Mongoose connection with DB is disconnected through app termination');
-
+  db.closeConnection(() => {
+    logger.info('DB connection is closed through app termination');
     process.exit(code);
   });
 }
