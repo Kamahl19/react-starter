@@ -1,5 +1,4 @@
 {
-  "sourceType": "module",
   "extends": "react-app",
   "globals": {
     "__DEV__": false
