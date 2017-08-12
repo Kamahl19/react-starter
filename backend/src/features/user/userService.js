@@ -3,6 +3,8 @@
 const User = require('./userModel');
 const mailer = require('../../common/services/mailer');
 const { comparePassword } = require('./authUtils');
+const { generateHexToken } = require('../../common/utils/helpers');
+const config = require('../../common/config');
 const {
   forgottenPasswordMail,
   resetPasswordMail,
@@ -27,13 +29,11 @@ module.exports = {
   },
 
   createUser: async (userData, origin) => {
-    const activationTokenAndExpiration = User.generateActivationToken();
-
     const user = new User({
       email: userData.email,
       password: userData.password,
-      activationToken: activationTokenAndExpiration.activationToken,
-      activationExpires: activationTokenAndExpiration.activationExpires,
+      activationToken: generateHexToken(),
+      activationExpires: Date.now() + config.auth.activationExpireInMs,
     });
 
     await user.save();
@@ -91,7 +91,10 @@ module.exports = {
   },
 
   forgottenPassword: async (email, origin) => {
-    const newData = User.generatePasswordResetToken();
+    const newData = {
+      passwordResetToken: generateHexToken(),
+      passwordResetExpires: Date.now() + config.auth.passwordResetExpireInMs,
+    };
 
     const user = await User.findOneAndUpdate({ email: email.toLowerCase() }, newData, {
       new: true,
