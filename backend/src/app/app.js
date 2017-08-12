@@ -7,7 +7,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('../app/routes');
-const config = require('../app/config');
+const config = require('../common/config');
 const { normalizePort } = require('../common/utils/helpers');
 const {
   errorHandler,

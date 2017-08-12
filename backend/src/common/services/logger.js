@@ -3,7 +3,7 @@
 const bunyan = require('bunyan');
 const fs = require('fs');
 const path = require('path');
-const config = require('../../app/config');
+const config = require('../config');
 
 const logDirectory = process.env.LOG_DIR || path.resolve('./logs');
 

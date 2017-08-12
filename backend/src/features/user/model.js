@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const config = require('../../app/config');
+const config = require('../../common/config');
 const { generateHexToken } = require('../../common/utils/helpers');
 const { generateJWTToken, hashPassword } = require('./authUtils');
 

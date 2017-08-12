@@ -5,7 +5,7 @@ require('dotenv').config();
 const http = require('http');
 const logger = require('./common/services/logger');
 const app = require('./app/app');
-const db = require('./app/db');
+const db = require('./common/services/db');
 
 const server = http.createServer(app);
 

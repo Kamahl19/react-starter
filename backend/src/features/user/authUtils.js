@@ -2,7 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const config = require('../../app/config');
+const config = require('../../common/config');
 
 function parseAuthHeader(authHeader) {
   const parts = authHeader.split(' ');
