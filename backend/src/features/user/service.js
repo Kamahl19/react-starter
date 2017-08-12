@@ -15,8 +15,6 @@ const {
   PasswordResetTokenInvalidError,
 } = require('../../common/messages/errors');
 
-// TODO wrap to catch error???
-
 module.exports = {
   getUserById: async userId => {
     const user = await User.findById(userId);
