@@ -2,8 +2,8 @@
 
 const router = require('express').Router();
 const validator = require('../../common/services/validator');
-const controller = require('./controller');
-const schema = require('./schema');
+const controller = require('./userController');
+const schema = require('./userSchema');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const isOwnUserId = require('./middleware/isOwnUserId');
 

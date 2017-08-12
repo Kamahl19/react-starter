@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require('./model');
+const User = require('./userModel');
 const mailer = require('../../common/services/mailer');
 const { comparePassword } = require('./authUtils');
 const {

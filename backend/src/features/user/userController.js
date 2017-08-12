@@ -8,7 +8,7 @@ const {
   login,
   forgottenPassword,
   resetPassword,
-} = require('./service');
+} = require('./userService');
 
 module.exports = {
   getById: wrap(async (req, res) => {
