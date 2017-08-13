@@ -3,3 +3,6 @@ logs
 
 # env variables
 .env
+
+# build
+public
