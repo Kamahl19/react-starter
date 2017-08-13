@@ -113,7 +113,7 @@ function* forgottenPassword({ payload }) {
 
   if (resp.ok) {
     AlertService.success(
-      t('An e-mail with further instructions has been sent to youe e-mail address.')
+      t('An e-mail with further instructions has been sent to your e-mail address.')
     );
 
     yield put(push('/'));
@@ -140,10 +140,7 @@ function* locationChanged({ payload }) {
 }
 
 function* activateUser(userId, activationToken) {
-  const resp = yield call(api.activateUser, {
-    userId,
-    activationToken,
-  });
+  const resp = yield call(api.activateUser, userId, activationToken);
 
   if (resp.ok) {
     AlertService.success(t('Your account has been activated successfully'));

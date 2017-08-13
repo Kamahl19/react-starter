@@ -40,7 +40,7 @@ export default {
     });
   },
 
-  activateUser: ({ userId, activationToken }) => {
+  activateUser: (userId, activationToken) => {
     return apiClient.get(`/users/${userId}/activate/${activationToken}`);
   },
 };
