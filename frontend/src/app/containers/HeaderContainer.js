@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectIsLoggedIn, selectEmail, logout } from '../../features/auth/ducks';
+import { selectIsLoggedIn, selectUserEmail, logout } from '../../features/auth/ducks';
 import { Header, HeaderMenu } from '../../app/components';
 
 const mapStateToProps = state => ({
   isLoggedIn: selectIsLoggedIn(state),
-  email: selectEmail(state),
+  email: selectUserEmail(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
-import { logout, selectEmail } from '../../../features/auth/ducks';
+import { logout, selectUserEmail } from '../../../features/auth/ducks';
 import { View } from '../../../common/components';
 import DrawerItem from './DrawerItem';
 
 const mapStateToProps = state => ({
-  email: selectEmail(state),
+  email: selectUserEmail(state),
 });
 
 const mapDispatchToProps = dispatch => ({

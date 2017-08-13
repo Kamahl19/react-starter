@@ -78,10 +78,7 @@ export const selectAuth = state => state.auth;
 export const selectUser = state => selectAuth(state).user;
 export const selectToken = state => selectAuth(state).token;
 
-export const selectUserId = state => selectUser(state).id;
-export const selectUserRole = state => selectUser(state).role;
-export const selectIsActive = state => selectUser(state).isActive;
-export const selectEmail = createSelector(selectUser, user => user && user.email);
+export const selectUserEmail = createSelector(selectUser, user => user && user.email);
 export const selectIsLoggedIn = createSelector(selectUser, user => user !== null);
 
 /**
