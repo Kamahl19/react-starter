@@ -90,13 +90,13 @@ export const selectIsLoggedIn = createSelector(selectUser, user => user !== null
 function* signUp({ payload }) {
   const resp = yield call(api.signUp, payload);
 
-  yield doLogin(resp);
+  yield call(doLogin, resp);
 }
 
 function* login({ payload }) {
   const resp = yield call(api.login, payload);
 
-  yield doLogin(resp);
+  yield call(doLogin, resp);
 }
 
 function* doLogin(resp) {
@@ -105,26 +105,6 @@ function* doLogin(resp) {
   } else {
     yield put(loginActions.failure(resp.error));
   }
-}
-
-function* forgottenPassword(action) {
-  const { email } = action.payload;
-  const resp = yield call(api.forgottenPassword, email);
-
-  if (resp.ok) {
-    message.success(
-      t('An e-mail with further instructions has been sent to youe e-mail address.'),
-      3
-    );
-
-    yield put(push('/'));
-  }
-}
-
-function* resetPassword({ payload }) {
-  const resp = yield call(api.resetPassword, payload);
-
-  yield doLogin(resp);
 }
 
 function* fetchMe({ payload }) {
@@ -141,14 +121,14 @@ function* fetchMe({ payload }) {
 
 function* refetchMe({ payload }) {
   if (payload.user && payload.token) {
-    const resp = yield fetchMe({
+    const resp = yield call(fetchMe, {
       payload: {
         userId: payload.user.id,
       },
     });
 
     if (resp.ok) {
-      yield doLogin({
+      yield call(doLogin, {
         ...resp,
         data: {
           user: resp.data.user,
@@ -156,13 +136,32 @@ function* refetchMe({ payload }) {
         },
       });
     } else {
-      yield doLogin(resp);
+      yield call(doLogin, resp);
     }
   }
 }
 
 function* logoutRedirect() {
   yield put(push('/auth/login'));
+}
+
+function* forgottenPassword({ payload }) {
+  const resp = yield call(api.forgottenPassword, payload.email);
+
+  if (resp.ok) {
+    message.success(
+      t('An e-mail with further instructions has been sent to youe e-mail address.'),
+      3
+    );
+
+    yield put(push('/'));
+  }
+}
+
+function* resetPassword({ payload }) {
+  const resp = yield call(api.resetPassword, payload);
+
+  yield call(doLogin, resp);
 }
 
 function* locationChanged({ payload }) {
@@ -174,7 +173,7 @@ function* locationChanged({ payload }) {
       .split('/')
       .filter(part => !exclude.includes(part));
 
-    yield activateUser(userId, activationToken);
+    yield call(activateUser, userId, activationToken);
   }
 }
 
@@ -187,7 +186,7 @@ function* activateUser(userId, activationToken) {
   if (resp.ok) {
     message.success(t('Your account has been activated successfully'), 3);
 
-    yield doLogin(resp);
+    yield call(doLogin, resp);
   }
 
   yield put(push('/'));
@@ -197,8 +196,8 @@ export function* authSaga() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
   yield takeLatest(createActionType(LOGIN, REQUEST), login);
   yield takeLatest(RELOGIN, refetchMe);
+  yield takeLatest(LOGOUT, logoutRedirect);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
   yield takeLatest(RESET_PASSWORD, resetPassword);
-  yield takeLatest(LOGOUT, logoutRedirect);
   yield takeEvery('@@router/LOCATION_CHANGE', locationChanged);
 }
