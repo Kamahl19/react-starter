@@ -24,7 +24,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.{js,less,css}\"",
-    "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false"
+    "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
+    "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
     "copyfiles": "^1.2.0",
@@ -56,6 +57,7 @@
     "redux-auth-wrapper": "^2.0.1",
     "redux-persist": "^4.8.3",
     "redux-saga": "^0.15.6",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "source-map-explorer": "^1.4.0"
   }
 }
