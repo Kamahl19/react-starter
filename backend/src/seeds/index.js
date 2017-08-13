@@ -2,7 +2,6 @@
 require('dotenv').config();
 
 const seeder = require('mongoose-seed');
-const User = require('./src/models/User');
 
 const data = [
   {
@@ -10,14 +9,15 @@ const data = [
     documents: [
       {
         email: 'user@example.com',
-        password: User.generateHash('password'),
+        password: 'password',
+        isActive: true,
       },
     ],
   },
 ];
 
 seeder.connect(process.env.MONGO_URL, () => {
-  seeder.loadModels(['src/models/User.js']);
+  seeder.loadModels(['src/features/user/userModel.js']);
 
   seeder.clearModels(['User'], () => {
     seeder.populateModels(data, () => {

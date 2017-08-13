@@ -18,7 +18,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon --inspect src/index.js",
-    "seed": "node seed-db.js",
+    "seed": "node src/seeds/index.js",
     "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
