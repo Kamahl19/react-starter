@@ -128,7 +128,7 @@ function* resetPassword({ payload }) {
 }
 
 function* locationChanged({ payload }) {
-  const activatePath = '/auth/activate';
+  const activatePath = '/auth/activate/';
 
   if (payload.pathname.includes(activatePath)) {
     const exclude = activatePath.split('/');
