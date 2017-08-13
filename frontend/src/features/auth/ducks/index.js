@@ -20,8 +20,7 @@ import {
  */
 export const SIGN_UP_REQUEST = 'auth/SIGN_UP_REQUEST';
 export const LOGIN = 'auth/LOGIN';
-export const RELOGIN = 'auth/RELOGIN';
-export const FETCH_ME = 'auth/FETCH_ME';
+export const RELOGIN_REQUEST = 'auth/RELOGIN_REQUEST';
 export const LOGOUT = 'auth/LOGOUT';
 export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
 export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
@@ -31,8 +30,7 @@ export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
  */
 export const signUpRequest = createActionCreator(SIGN_UP_REQUEST);
 export const loginActions = createApiActionCreators(LOGIN);
-export const relogin = createActionCreator(RELOGIN);
-export const fetchMeActions = createApiActionCreators(FETCH_ME);
+export const reloginRequest = createActionCreator(RELOGIN_REQUEST);
 export const logout = createActionCreator(LOGOUT);
 export const forgottenPasswordRequest = createActionCreator(FORGOTTEN_PASSWORD);
 export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
@@ -48,19 +46,15 @@ const initialState = {
 const user = createReducer(initialState.user, {
   [LOGIN]: {
     [SUCCESS]: (state, payload) => payload.user,
-    [FAILURE]: (state, payload) => initialState.user,
-  },
-  [LOGOUT]: state => initialState.user,
-  [FETCH_ME]: {
-    [SUCCESS]: (state, payload) => payload.user,
     [FAILURE]: state => initialState.user,
   },
+  [LOGOUT]: state => initialState.user,
 });
 
 const token = createReducer(initialState.token, {
   [LOGIN]: {
     [SUCCESS]: (state, payload) => payload.token,
-    [FAILURE]: (state, payload) => initialState.token,
+    [FAILURE]: state => initialState.token,
   },
   [LOGOUT]: state => initialState.token,
 });
@@ -87,54 +81,26 @@ export const selectIsLoggedIn = createSelector(selectUser, user => user !== null
 function* signUp({ payload }) {
   const resp = yield call(api.signUp, payload);
 
-  yield call(doLogin, resp);
+  yield call(receiveLogin, resp);
 }
 
 function* login({ payload }) {
   const resp = yield call(api.login, payload);
 
-  yield call(doLogin, resp);
+  yield call(receiveLogin, resp);
 }
 
-function* doLogin(resp) {
+function* relogin() {
+  const resp = yield call(api.relogin);
+
+  yield call(receiveLogin, resp);
+}
+
+function* receiveLogin(resp) {
   if (resp.ok) {
     yield put(loginActions.success(resp.data));
   } else {
     yield put(loginActions.failure(resp.error));
-  }
-}
-
-function* fetchMe({ payload }) {
-  const resp = yield call(api.fetchMe, payload.userId);
-
-  if (resp.ok) {
-    yield put(fetchMeActions.success(resp.data));
-  } else {
-    yield put(fetchMeActions.failure(resp.error));
-  }
-
-  return resp;
-}
-
-function* refetchMe({ payload }) {
-  if (payload.user && payload.token) {
-    const resp = yield call(fetchMe, {
-      payload: {
-        userId: payload.user.id,
-      },
-    });
-
-    if (resp.ok) {
-      yield call(doLogin, {
-        ...resp,
-        data: {
-          user: resp.data.user,
-          token: payload.token,
-        },
-      });
-    } else {
-      yield call(doLogin, resp);
-    }
   }
 }
 
@@ -158,7 +124,7 @@ function* forgottenPassword({ payload }) {
 function* resetPassword({ payload }) {
   const resp = yield call(api.resetPassword, payload);
 
-  yield call(doLogin, resp);
+  yield call(receiveLogin, resp);
 }
 
 function* locationChanged({ payload }) {
@@ -183,7 +149,7 @@ function* activateUser(userId, activationToken) {
   if (resp.ok) {
     message.success(t('Your account has been activated successfully'), 3);
 
-    yield call(doLogin, resp);
+    yield call(receiveLogin, resp);
   }
 
   yield put(push('/'));
@@ -192,7 +158,7 @@ function* activateUser(userId, activationToken) {
 export function* authSaga() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
   yield takeLatest(createActionType(LOGIN, REQUEST), login);
-  yield takeLatest(RELOGIN, refetchMe);
+  yield takeLatest(RELOGIN_REQUEST, relogin);
   yield takeLatest(LOGOUT, logoutRedirect);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
   yield takeLatest(RESET_PASSWORD, resetPassword);

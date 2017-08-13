@@ -5,7 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import { Root } from './app/containers';
 import configureStore from './app/store/configureStore';
 import { prepareRequestInterceptor, handleResponsesInterceptor } from './common/services/apiClient';
-import { relogin } from './features/auth/ducks';
+import { reloginRequest } from './features/auth/ducks';
 
 async function init() {
   const history = createHistory();
@@ -16,8 +16,8 @@ async function init() {
 
   const state = store.getState();
 
-  if (state && state.auth) {
-    store.dispatch(relogin(state.auth));
+  if (state && state.auth && state.auth.token) {
+    store.dispatch(reloginRequest());
   }
 
   render(<Root store={store} history={history} />, document.getElementById('root'));

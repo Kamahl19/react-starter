@@ -4,7 +4,7 @@ import {
   prepareRequestInterceptor,
   handleResponsesInterceptor,
 } from '../../common/services/apiClient';
-import { relogin } from '../../features/auth/ducks';
+import { reloginRequest } from '../../features/auth/ducks';
 import { Spinner } from '../../features/spinner/components';
 import configureStore from '../store/configureStore';
 import App from './App';
@@ -26,8 +26,8 @@ export default class Root extends Component {
 
     const state = store.getState();
 
-    if (state && state.auth) {
-      store.dispatch(relogin(state.auth));
+    if (state && state.auth && state.auth.token) {
+      store.dispatch(reloginRequest());
     }
 
     return store;

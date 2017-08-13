@@ -21,6 +21,10 @@ export default {
     });
   },
 
+  relogin: () => {
+    return apiClient.get('/auth/relogin');
+  },
+
   forgottenPassword: email => {
     return apiClient.post(
       '/auth/forgotten-password',
@@ -29,9 +33,5 @@ export default {
         apiCallId: apiCallIds.FORGOTTEN_PASSWORD,
       }
     );
-  },
-
-  fetchMe: userId => {
-    return apiClient.get(`/users/${userId}`);
   },
 };
