@@ -86,13 +86,13 @@ export const selectIsLoggedIn = createSelector(selectUser, user => user !== null
 function* signUp({ payload }) {
   const resp = yield call(api.signUp, payload);
 
-  yield doLogin(resp);
+  yield call(doLogin, resp);
 }
 
 function* login({ payload }) {
   const resp = yield call(api.login, payload);
 
-  yield doLogin(resp);
+  yield call(doLogin, resp);
 }
 
 function* doLogin(resp) {
@@ -100,15 +100,6 @@ function* doLogin(resp) {
     yield put(loginActions.success(resp.data));
   } else {
     yield put(loginActions.failure(resp.error));
-  }
-}
-
-function* forgottenPassword(action) {
-  const { email } = action.payload;
-  const resp = yield call(api.forgottenPassword, email);
-
-  if (resp.ok) {
-    AlertService.success('Link to reset your password has been sent to your e-mail.');
   }
 }
 
@@ -126,14 +117,14 @@ function* fetchMe({ payload }) {
 
 function* refetchMe({ payload }) {
   if (payload.user && payload.token) {
-    const resp = yield fetchMe({
+    const resp = yield call(fetchMe, {
       payload: {
         userId: payload.user.id,
       },
     });
 
     if (resp.ok) {
-      yield doLogin({
+      yield call(doLogin, {
         ...resp,
         data: {
           user: resp.data.user,
@@ -141,8 +132,16 @@ function* refetchMe({ payload }) {
         },
       });
     } else {
-      yield doLogin(resp);
+      yield call(doLogin, resp);
     }
+  }
+}
+
+function* forgottenPassword({ payload }) {
+  const resp = yield call(api.forgottenPassword, payload.email);
+
+  if (resp.ok) {
+    AlertService.success('Link to reset your password has been sent to your e-mail.');
   }
 }
 
