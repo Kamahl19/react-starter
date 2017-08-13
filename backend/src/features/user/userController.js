@@ -45,8 +45,9 @@ module.exports = {
 
   login: wrap(async (req, res) => {
     const { email, password } = req.body;
+    const userId = req.jwtPayload && req.jwtPayload.sub;
 
-    const user = await login(email, password);
+    const user = userId ? await getUserById(userId) : await login(email, password);
 
     return res.json({
       token: user.getAuthToken(),

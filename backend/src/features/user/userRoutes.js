@@ -4,20 +4,17 @@ const router = require('express').Router();
 const validator = require('../../common/services/validator');
 const controller = require('./userController');
 const schema = require('./userSchema');
-const isLoggedIn = require('./middleware/isLoggedIn');
-const isOwnUserId = require('./middleware/isOwnUserId');
+const verifyToken = require('./middleware/verifyToken');
 
 router.route('/users').post(validator(schema.create), controller.create);
-
-router
-  .route('/users/:userId')
-  .get(isLoggedIn, isOwnUserId, validator(schema.getById), controller.getById);
 
 router
   .route('/users/:userId/activate/:activationToken')
   .get(validator(schema.activate), controller.activate);
 
 router.route('/auth/login').post(validator(schema.login), controller.login);
+
+router.route('/auth/relogin').get(verifyToken, controller.login);
 
 router
   .route('/auth/forgotten-password')
