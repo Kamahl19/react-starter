@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import message from 'antd/lib/message';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+import AlertService from '../../../common/services/alert';
 import { t } from '../../../app/i18n';
 import api from '../api';
 import {
@@ -112,9 +112,8 @@ function* forgottenPassword({ payload }) {
   const resp = yield call(api.forgottenPassword, payload.email);
 
   if (resp.ok) {
-    message.success(
-      t('An e-mail with further instructions has been sent to youe e-mail address.'),
-      3
+    AlertService.success(
+      t('An e-mail with further instructions has been sent to youe e-mail address.')
     );
 
     yield put(push('/'));
@@ -147,7 +146,7 @@ function* activateUser(userId, activationToken) {
   });
 
   if (resp.ok) {
-    message.success(t('Your account has been activated successfully'), 3);
+    AlertService.success(t('Your account has been activated successfully'));
 
     yield call(receiveLogin, resp);
   }

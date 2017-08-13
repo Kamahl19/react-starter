@@ -1,5 +1,5 @@
 import axios from 'axios';
-import message from 'antd/lib/message';
+import AlertService from '../../common/services/alert';
 import { selectToken, logout } from '../../features/auth/ducks';
 import { startApiCall, finishApiCall } from '../../features/spinner/ducks';
 
@@ -80,8 +80,8 @@ function showErrorMessage(error) {
       : error;
 
   if (Array.isArray(errorMsg)) {
-    errorMsg.forEach(err => message.error(`${err}`, 5));
+    errorMsg.forEach(err => AlertService.error(`${err}`, 5));
   } else {
-    message.error(`${errorMsg}`, 5);
+    AlertService.error(`${errorMsg}`);
   }
 }
