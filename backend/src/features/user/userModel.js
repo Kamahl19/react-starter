@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { generateJWTToken, hashPassword } = require('./authUtils');
+const { generateJWTToken } = require('./authUtils');
 
 const userSchema = new Schema(
   {
@@ -16,36 +16,6 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
-
-/**
- * Hash password on Save
- */
-userSchema.pre('save', async function save(next) {
-  const user = this;
-
-  if (!user.isModified('password')) {
-    return next();
-  }
-
-  try {
-    const hash = await hashPassword(user.password);
-    user.password = hash;
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
-
-/**
- * Make email lowercase
- */
-userSchema.pre('save', function(next) {
-  if (this.isModified('email')) {
-    this.email = this.email.toLowerCase();
-  }
-
-  next();
-});
 
 /**
  * Methods

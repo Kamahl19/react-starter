@@ -2,7 +2,7 @@
 
 const User = require('./userModel');
 const mailer = require('../../common/services/mailer');
-const { comparePassword } = require('./authUtils');
+const { comparePassword, hashPassword } = require('./authUtils');
 const { generateHexToken } = require('../../common/utils/helpers');
 const config = require('../../common/config');
 const {
@@ -29,9 +29,11 @@ module.exports = {
   },
 
   createUser: async (userData, origin) => {
+    const password = await hashPassword(userData.password);
+
     const user = new User({
-      email: userData.email,
-      password: userData.password,
+      email: userData.email.toLowerCase(),
+      password,
       activationToken: generateHexToken(),
       activationExpires: Date.now() + config.auth.activationExpireInMs,
     });
@@ -114,7 +116,9 @@ module.exports = {
     );
   },
 
-  resetPassword: async (email, passwordResetToken, password) => {
+  resetPassword: async (email, passwordResetToken, plainPassword) => {
+    const password = await hashPassword(plainPassword);
+
     const newData = {
       password,
       passwordResetToken: undefined,
