@@ -35,7 +35,8 @@
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "react-scripts": "^1.0.11",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "source-map-explorer": "^1.4.0"
   },
   "dependencies": {
     "antd": "^2.12.6",
@@ -57,7 +58,6 @@
     "redux-auth-wrapper": "^2.0.1",
     "redux-persist": "^4.8.3",
     "redux-saga": "^0.15.6",
-    "reselect": "^3.0.1",
-    "source-map-explorer": "^1.4.0"
+    "reselect": "^3.0.1"
   }
 }
