@@ -6042,9 +6042,9 @@ react-error-overlay@^1.0.10:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-i18next@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-4.8.0.tgz#92f0d281c5f39ac8f3c3f381562d523e9d830254"
+react-i18next@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-5.0.0.tgz#cd733c409e2734ea53240fd2e930a2733bf4c6d4"
   dependencies:
     hoist-non-react-statics "1.2.0"
 

@@ -22,7 +22,7 @@
     "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
-    "eslint": "^4.4.1",
+    "eslint": "^4.5.0",
     "eslint-plugin-node": "^5.1.1",
     "nodemon": "^1.11.0",
     "prettier": "^1.5.3"
