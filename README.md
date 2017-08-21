@@ -51,7 +51,7 @@ Seed DB & Start the backend
 ```sh
 cd backend
 yarn install
-yarn run seed
+yarn seed
 yarn start
 ```
 
@@ -76,7 +76,7 @@ react-native run-ios
 Build frontend
 ```sh
 cd frontend
-yarn run build
+yarn build
 ```
 
 Deploy app to Heroku
@@ -93,7 +93,7 @@ git push heroku master
 
 ## Login credentials
 
-### User
+### After running `yarn seed` you can login with these credentials
 
 * username: `user@example.com`
 * password: `password`

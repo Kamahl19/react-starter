@@ -2,22 +2,12 @@
 require('dotenv').config();
 
 const seeder = require('mongoose-seed');
+const { hashPassword } = require('../features/user/authUtils');
 
-const data = [
-  {
-    model: 'User',
-    documents: [
-      {
-        email: 'user@example.com',
-        password: 'password',
-        isActive: true,
-      },
-    ],
-  },
-];
-
-seeder.connect(process.env.MONGO_URL, () => {
+seeder.connect(process.env.MONGO_URL, async () => {
   seeder.loadModels(['src/features/user/userModel.js']);
+
+  const data = await getData();
 
   seeder.clearModels(['User'], () => {
     seeder.populateModels(data, () => {
@@ -26,3 +16,20 @@ seeder.connect(process.env.MONGO_URL, () => {
     });
   });
 });
+
+async function getData() {
+  const password = await hashPassword('password');
+
+  return [
+    {
+      model: 'User',
+      documents: [
+        {
+          email: 'user@example.com',
+          password,
+          isActive: true,
+        },
+      ],
+    },
+  ];
+}
