@@ -39,7 +39,7 @@
     "source-map-explorer": "^1.4.0"
   },
   "dependencies": {
-    "antd": "^2.12.6",
+    "antd": "^2.12.7",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "history": "^4.6.2",
@@ -56,7 +56,7 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.1",
-    "redux-persist": "^4.8.3",
+    "redux-persist": "^4.9.1",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1"
   }
