@@ -6,7 +6,7 @@ import CustomDrawer from './drawer/CustomDrawer';
 const DemoHomeScreen = () =>
   <ScreenWrapper>
     <CenterView>
-      <Text>Welcome</Text>
+      <Text>Slide right to open the Sider</Text>
     </CenterView>
   </ScreenWrapper>;
 
@@ -14,24 +14,10 @@ DemoHomeScreen.navigationOptions = {
   drawerLabel: 'Home',
 };
 
-const DemoProfileScreen = () =>
-  <ScreenWrapper>
-    <CenterView>
-      <Text>User Profile</Text>
-    </CenterView>
-  </ScreenWrapper>;
-
-DemoProfileScreen.navigationOptions = {
-  drawerLabel: 'My Profile',
-};
-
 export default DrawerNavigator(
   {
     Home: {
       screen: DemoHomeScreen,
-    },
-    Profile: {
-      screen: DemoProfileScreen,
     },
   },
   {
