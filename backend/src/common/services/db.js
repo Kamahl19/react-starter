@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const logger = require('./logger');
 const config = require('../config');
 
-mongoose.Promise = global.Promise;
-
 function init({ onConnected, onDisconnected, onError }) {
   mongoose.connection.on('connected', () => {
     logger.info('MongoDB connected');

@@ -14,20 +14,11 @@ module.exports = {
   },
   mongolab: {
     options: {
-      server: {
-        socketOptions: {
-          keepAlive: 1000,
-          connectTimeoutMS: 30000,
-          socketTimeoutMS: 30000,
-        },
-      },
-      replset: {
-        socketOptions: {
-          keepAlive: 1000,
-          connectTimeoutMS: 30000,
-          socketTimeoutMS: 30000,
-        },
-      },
+      keepAlive: 30000,
+      connectTimeoutMS: 30000,
+      socketTimeoutMS: 30000,
+      useMongoClient: true,
+      promiseLibrary: global.Promise,
     },
   },
   auth: {
