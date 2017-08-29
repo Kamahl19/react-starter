@@ -1,6 +1,6 @@
 {
   "name": "rnmobile",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple starter project including React web app, React Native app and Express Rest API server",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
@@ -12,8 +12,8 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "yarn": ">=0.24.6"
+    "node": ">=8.4.0",
+    "yarn": ">=0.27.5"
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
