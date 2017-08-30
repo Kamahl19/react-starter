@@ -15,12 +15,13 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
 });
 
-const CustomDrawer = ({ logout, email, ...rest }) =>
+const CustomDrawer = ({ logout, email, ...rest }) => (
   <View style={styles.component}>
     <DrawerItem label={`Hi ${email}`} />
     <DrawerItems {...rest} />
     <DrawerItem label="Logout" onPress={logout} />
-  </View>;
+  </View>
+);
 
 CustomDrawer.propTypes = {
   logout: PropTypes.func.isRequired,

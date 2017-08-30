@@ -16,10 +16,11 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ signUp: signUpRequest }, dispatch),
 });
 
-const SignUpContainer = ({ actions, isLoading }) =>
+const SignUpContainer = ({ actions, isLoading }) => (
   <Spinner show={isLoading}>
     <SignUp onSubmit={actions.signUp} />
-  </Spinner>;
+  </Spinner>
+);
 
 SignUpContainer.propTypes = {
   actions: PropTypes.object.isRequired,

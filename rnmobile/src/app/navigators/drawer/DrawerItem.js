@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Platform } from 'react-native';
 import { TouchableItem, View, Text } from '../../../common/components';
 
-const DrawerItem = ({ onPress, label }) =>
+const DrawerItem = ({ onPress, label }) => (
   <View style={styles.component}>
-    {onPress &&
+    {onPress && (
       <TouchableItem onPress={onPress} delayPressIn={0}>
         <ItemContent label={label} />
-      </TouchableItem>}
+      </TouchableItem>
+    )}
     {!onPress && <ItemContent label={label} />}
-  </View>;
+  </View>
+);
 
 DrawerItem.PropTypes = {
   onPress: PropTypes.func.isRequired,
@@ -19,14 +21,11 @@ DrawerItem.PropTypes = {
 
 export default DrawerItem;
 
-const ItemContent = ({ label }) =>
+const ItemContent = ({ label }) => (
   <View style={styles.item}>
-    {typeof label === 'string'
-      ? <Text style={styles.label}>
-          {label}
-        </Text>
-      : label}
-  </View>;
+    {typeof label === 'string' ? <Text style={styles.label}>{label}</Text> : label}
+  </View>
+);
 
 ItemContent.PropTypes = {
   label: PropTypes.node.isRequired,

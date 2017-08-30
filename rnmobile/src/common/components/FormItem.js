@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, Platform } from 'react-native';
 import { FormItem } from '../../common/services/Form';
 
-export default props =>
+export default props => (
   <FormItem
     successStyle={styles.successStyle}
     errorStyle={styles.errorStyle}
     validatingStyle={styles.validatingStyle}
     {...props}
-  />;
+  />
+);
 
 const styles = StyleSheet.create({
   successStyle: {

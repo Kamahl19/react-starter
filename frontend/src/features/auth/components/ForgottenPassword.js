@@ -32,9 +32,7 @@ class ForgottenPasswordForm extends Component {
 
     return (
       <div>
-        <h1>
-          {t('Forgotten Password')}
-        </h1>
+        <h1>{t('Forgotten Password')}</h1>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item label={t('E-mail')}>
             {getFieldDecorator('email', { rules: rules.email })(
@@ -45,9 +43,7 @@ class ForgottenPasswordForm extends Component {
             <Button type="primary" htmlType="submit">
               {t('Submit')}
             </Button>
-            <Link to="/auth/login">
-              {t('Log In')}
-            </Link>
+            <Link to="/auth/login">{t('Log In')}</Link>
           </Form.Item>
         </Form>
       </div>

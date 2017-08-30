@@ -3,12 +3,13 @@ import { DrawerNavigator } from 'react-navigation';
 import { ScreenWrapper, CenterView, Text } from '../../common/components';
 import CustomDrawer from './drawer/CustomDrawer';
 
-const DemoHomeScreen = () =>
+const DemoHomeScreen = () => (
   <ScreenWrapper>
     <CenterView>
       <Text>Slide right to open the Sider</Text>
     </CenterView>
-  </ScreenWrapper>;
+  </ScreenWrapper>
+);
 
 DemoHomeScreen.navigationOptions = {
   drawerLabel: 'Home',

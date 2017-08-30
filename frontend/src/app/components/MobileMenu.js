@@ -12,7 +12,7 @@ const MobileMenu = ({
   visible,
   onClick,
   selectedKeys,
-}) =>
+}) => (
   <Popover
     overlayClassName="mobile-menu"
     placement="bottomLeft"
@@ -27,7 +27,8 @@ const MobileMenu = ({
     onVisibleChange={toggleResponsiveMenu}
   >
     <Icon type="bars" onClick={showResponsiveMenu} />
-  </Popover>;
+  </Popover>
+);
 
 MobileMenu.propTypes = {
   children: PropTypes.node.isRequired,

@@ -13,12 +13,13 @@ const mapStateToProps = state => ({
   showSpinner: selectShowSpinner(state),
 });
 
-const App = ({ showSpinner }) =>
+const App = ({ showSpinner }) => (
   <View style={styles.component}>
     <AppNavigator />
     {showSpinner && <Spinner large />}
     <DropdownAlert ref={ref => AlertService.setAlert(ref)} />
-  </View>;
+  </View>
+);
 
 App.propTypes = { showSpinner: PropTypes.bool.isRequired };
 

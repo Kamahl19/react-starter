@@ -53,17 +53,11 @@ export default class TouchableItem extends Component {
             this.props.borderless || false
           )}
         >
-          <View style={this.props.style}>
-            {Children.only(this.props.children)}
-          </View>
+          <View style={this.props.style}>{Children.only(this.props.children)}</View>
         </TouchableNativeFeedback>
       );
     }
 
-    return (
-      <TouchableOpacity {...this.props}>
-        {this.props.children}
-      </TouchableOpacity>
-    );
+    return <TouchableOpacity {...this.props}>{this.props.children}</TouchableOpacity>;
   }
 }

@@ -21,10 +21,11 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-const LoginContainer = ({ isLoading, actions }) =>
+const LoginContainer = ({ isLoading, actions }) => (
   <Spin spinning={isLoading}>
     <Login onSubmit={actions.login} />
-  </Spin>;
+  </Spin>
+);
 
 LoginContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,

@@ -22,13 +22,14 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-const ResetPasswordContainer = ({ isLoading, passwordResetToken, actions }) =>
+const ResetPasswordContainer = ({ isLoading, passwordResetToken, actions }) => (
   <Spin spinning={isLoading}>
     <ResetPassword
       onSubmit={actions.resetPasswordRequest}
       passwordResetToken={passwordResetToken}
     />
-  </Spin>;
+  </Spin>
+);
 
 ResetPasswordContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,

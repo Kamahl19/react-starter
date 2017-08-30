@@ -158,10 +158,7 @@ export class FormItem extends PureComponent {
     return (
       <View style={style}>
         {children}
-        {!!validateStatus &&
-          <Text style={this.props[`${validateStatus}Style`]}>
-            {helpMsg}
-          </Text>}
+        {!!validateStatus && <Text style={this.props[`${validateStatus}Style`]}>{helpMsg}</Text>}
       </View>
     );
   }

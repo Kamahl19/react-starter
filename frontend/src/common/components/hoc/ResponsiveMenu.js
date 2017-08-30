@@ -7,9 +7,11 @@ export default (maxWidth = '767px', menuModes = ['horizontal', 'inline']) => Men
       return (
         <MediaQuery maxWidth={maxWidth}>
           {matches =>
-            matches
-              ? <MenuComponent {...this.props} menuMode={menuModes[1]} />
-              : <MenuComponent {...this.props} menuMode={menuModes[0]} />}
+            matches ? (
+              <MenuComponent {...this.props} menuMode={menuModes[1]} />
+            ) : (
+              <MenuComponent {...this.props} menuMode={menuModes[0]} />
+            )}
         </MediaQuery>
       );
     }

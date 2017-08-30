@@ -21,10 +21,11 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-const ForgottenPasswordContainer = ({ actions, isLoading }) =>
+const ForgottenPasswordContainer = ({ actions, isLoading }) => (
   <Spinner show={isLoading}>
     <ForgottenPassword onSubmit={actions.forgottenPasswordRequest} />
-  </Spinner>;
+  </Spinner>
+);
 
 ForgottenPasswordContainer.propTypes = {
   actions: PropTypes.object.isRequired,

@@ -11,14 +11,13 @@ const mapStateToProps = state => ({
   showSpinner: selectShowSpinner(state),
 });
 
-const AppContainer = ({ children, showSpinner }) =>
+const AppContainer = ({ children, showSpinner }) => (
   <Layout>
     <HeaderContainer />
-    <Content showSpinner={showSpinner}>
-      {children}
-    </Content>
+    <Content showSpinner={showSpinner}>{children}</Content>
     <Footer />
-  </Layout>;
+  </Layout>
+);
 
 AppContainer.propTypes = {
   children: PropTypes.node.isRequired,

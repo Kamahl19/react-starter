@@ -14,10 +14,11 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ logout }, dispatch),
 });
 
-const HeaderContainer = ({ isLoggedIn, email, actions }) =>
+const HeaderContainer = ({ isLoggedIn, email, actions }) => (
   <Header>
     <HeaderMenu isLoggedIn={isLoggedIn} email={email} logout={actions.logout} />
-  </Header>;
+  </Header>
+);
 
 HeaderContainer.propTypes = {
   actions: PropTypes.object.isRequired,

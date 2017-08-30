@@ -60,30 +60,24 @@ class HeaderMenu extends Component {
     const { t, menuMode, isLoggedIn, email } = this.props;
     const { responsiveMenuVisible } = this.state;
 
-    const menuContent = isLoggedIn
-      ? <Menu.SubMenu
-          title={
-            <span>
-              {t('Hi')} {email}
-            </span>
-          }
-        >
-          <Menu.Item key="/me">
-            {t('Profile')}
-          </Menu.Item>
-          <Menu.Divider key="divider" />
-          <Menu.Item key="logout">
-            {t('Log Out')}
-          </Menu.Item>
-        </Menu.SubMenu>
-      : [
-          <Menu.Item key="/auth/sign-up">
-            {t('Sign Up')}
-          </Menu.Item>,
-          <Menu.Item key="/auth/login">
-            {t('Log In')}
-          </Menu.Item>,
-        ];
+    const menuContent = isLoggedIn ? (
+      <Menu.SubMenu
+        title={
+          <span>
+            {t('Hi')} {email}
+          </span>
+        }
+      >
+        <Menu.Item key="/me">{t('Profile')}</Menu.Item>
+        <Menu.Divider key="divider" />
+        <Menu.Item key="logout">{t('Log Out')}</Menu.Item>
+      </Menu.SubMenu>
+    ) : (
+      [
+        <Menu.Item key="/auth/sign-up">{t('Sign Up')}</Menu.Item>,
+        <Menu.Item key="/auth/login">{t('Log In')}</Menu.Item>,
+      ]
+    );
 
     const selectedKeys = this.getSelectedKeys();
 

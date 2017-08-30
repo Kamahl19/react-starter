@@ -27,11 +27,7 @@ const Button = ({ type, buttonLeft, buttonRight, onPress, style, title, block })
     >
       <View style={[styles.view, blockStyle]}>
         {buttonLeft || null}
-        {title !== ''
-          ? <Text style={[activeTypeStyle.title, styles.title]}>
-              {title}
-            </Text>
-          : null}
+        {title !== '' ? <Text style={[activeTypeStyle.title, styles.title]}>{title}</Text> : null}
         {buttonRight || null}
       </View>
     </TouchableItem>
