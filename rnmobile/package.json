@@ -18,7 +18,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.js\"",
+    "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.js\"",
     "react-devtools": "react-devtools"
   },
   "devDependencies": {

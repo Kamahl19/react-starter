@@ -23,7 +23,7 @@
     "build-less": "lessc --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.{js,less,css}\"",
+    "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less,css}\"",
     "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
   },

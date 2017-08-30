@@ -19,7 +19,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon --inspect src/index.js",
     "seed": "node src/seeds/index.js",
-    "prettify": "prettier --single-quote --trailing-comma es5 --print-width 100 --write \"{src,__{tests,mocks}__}/**/*.js\""
+    "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
     "eslint": "^4.5.0",
