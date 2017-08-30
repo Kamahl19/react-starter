@@ -1,7 +1,7 @@
 {
   "name": "react-starter-frontend",
   "version": "1.0.0",
-  "description": "Simple starter project including React web app, React Native app and Express Rest API server",
+  "description": "Simple starter for React, React Native and Express API server",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
   "repository": {
@@ -19,12 +19,15 @@
     "start": "npm-run-all -p watch-less start-js",
     "start-js": "react-scripts start",
     "watch-less": "yarn build-less && nodemon -e less -x \"yarn build-less\"",
-    "build": "yarn build-less && react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
-    "build-less": "lessc --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
+    "build":
+      "yarn build-less && react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
+    "build-less":
+      "lessc --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
-    "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
+    "extract-translations":
+      "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {

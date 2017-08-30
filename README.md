@@ -1,6 +1,6 @@
 # React Starter
 
-Simple starter project including React web app, React Native app and Express Rest API server
+Simple starter for React, React Native and Express API server
 
 ## What’s Inside?
 
