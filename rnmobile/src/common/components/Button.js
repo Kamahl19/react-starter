@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     transform: [{ translateY: -1 }],
   },
   block: {
-    width: '100%',
+    flexGrow: 1,
   },
 });
 
