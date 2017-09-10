@@ -30,7 +30,7 @@
   "dependencies": {
     "async-middleware": "^1.2.1",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.0",
     "bunyan": "^1.8.12",
     "celebrate": "^4.0.3",
     "compression": "^1.7.0",
@@ -43,7 +43,7 @@
     "jsonwebtoken": "^8.0.0",
     "lodash": "^4.17.4",
     "middleware-flow": "^0.8.0",
-    "mongoose": "^4.11.10",
+    "mongoose": "^4.11.11",
     "mongoose-seed": "^0.3.2",
     "morgan": "^1.8.2",
     "nodemailer": "^4.1.0",
