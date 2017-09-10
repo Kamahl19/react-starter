@@ -13,25 +13,25 @@ module.exports = {
   UserNotFoundError: () => new NotFoundError({ message: 'Requested user does not exist.' }),
 
   ActivationTokenInvalidError: () =>
-    ForbiddenError({
+    new ForbiddenError({
       message: 'Activation token is invalid or has expired.',
     }),
 
   PasswordResetTokenInvalidError: () =>
-    ForbiddenError({
+    new ForbiddenError({
       message: 'Password reset token is invalid or has expired.',
     }),
 
   LoginCredentialsError: () => new UnauthorizedError({ message: 'Login credentials are wrong.' }),
 
   NotAllowedAccessError: () =>
-    UnauthorizedError({ message: 'You are not allowed to access this page.' }),
+    new UnauthorizedError({ message: 'You are not allowed to access this page.' }),
 
   AuthTokenNotFoundError: () =>
     new UnauthorizedError({ message: 'No authorization token was found.' }),
 
   AuthTokenInvalidError: () =>
-    UnauthorizedError({
+    new UnauthorizedError({
       message: 'Format of the Authorization header is invalid.',
     }),
 
