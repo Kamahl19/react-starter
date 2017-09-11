@@ -143,9 +143,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.0.tgz#48d4aaa94e7a79de94a8b393a485ee8bce6a64c2"
+antd@^2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.1.tgz#9c09aedf07a2d1bdd31c0d69822f9e32c9f73386"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -169,14 +169,14 @@ antd@^2.13.0:
     rc-input-number "~3.6.0"
     rc-menu "~5.0.10"
     rc-notification "~2.0.0"
-    rc-pagination "~1.12.0"
+    rc-pagination "~1.12.4"
     rc-progress "~2.2.2"
     rc-rate "~2.1.1"
     rc-select "~6.9.0"
     rc-slider "~8.2.0"
     rc-steps "~2.5.1"
     rc-switch "~1.5.1"
-    rc-table "~5.6.1"
+    rc-table "~5.6.7"
     rc-tabs "~9.1.2"
     rc-time-picker "~2.4.1"
     rc-tooltip "~3.4.6"
@@ -5861,9 +5861,9 @@ rc-notification@~2.0.0:
     rc-animate "2.x"
     rc-util "^4.0.4"
 
-rc-pagination@~1.12.0:
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.4.tgz#1e15d7c3ffd322ffdea324263d30339a83270c65"
+rc-pagination@~1.12.4:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.6.tgz#f8a8275604367051e7912e6320a2ce03dca6b73e"
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.7"
@@ -5925,9 +5925,9 @@ rc-switch@~1.5.1:
     classnames "^2.2.1"
     prop-types "^15.5.6"
 
-rc-table@~5.6.1:
-  version "5.6.4"
-  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-5.6.4.tgz#3189ba6cea0bc73556b68379a6329c7052fe0745"
+rc-table@~5.6.7:
+  version "5.6.7"
+  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-5.6.7.tgz#3eebbe60dad419b4b78d8c59ae8e738be56d0dfb"
   dependencies:
     babel-runtime "6.x"
     component-classes "^1.2.6"

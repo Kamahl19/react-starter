@@ -39,7 +39,7 @@
     "source-map-explorer": "^1.4.0"
   },
   "dependencies": {
-    "antd": "^2.13.0",
+    "antd": "^2.13.1",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
