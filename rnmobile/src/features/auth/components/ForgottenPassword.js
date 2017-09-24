@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ScrollView, View, Text, Button, FormItem } from '../../../common/components';
 import { createForm } from '../../../common/services/Form';
 import { EmailInput } from './inputs';
-import rules from '../rules';
+import rules from '../../../common/rules';
 import styles from './styles';
 
 @createForm()
@@ -31,7 +31,7 @@ export default class ForgottenPassword extends Component {
         <Text style={styles.title}>Forgotten Password</Text>
 
         <FormItem style={styles.textInputContainer}>
-          {getFieldDecorator('email', { rules: rules.email })(
+          {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
             <EmailInput autoFocus style={styles.textInput} />
           )}
         </FormItem>
