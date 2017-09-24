@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
-import rules from '../rules';
+import rules from '../../../common/rules';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -35,12 +35,12 @@ class LoginForm extends Component {
         <h1>{t('Log In')}</h1>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item label={t('E-mail')}>
-            {getFieldDecorator('email', { rules: rules.email })(
+            {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
               <Input placeholder={t('E-mail')} autoFocus />
             )}
           </Form.Item>
           <Form.Item label={t('Password')}>
-            {getFieldDecorator('password', { rules: rules.password })(
+            {getFieldDecorator('password', { rules: [rules.required, rules.password] })(
               <Input type="password" placeholder={t('Password')} />
             )}
           </Form.Item>

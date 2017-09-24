@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from 'antd/lib/button';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
-import rules from '../rules';
+import rules from '../../../common/rules';
 
 class ForgottenPasswordForm extends Component {
   static propTypes = {
@@ -35,7 +35,7 @@ class ForgottenPasswordForm extends Component {
         <h1>{t('Forgotten Password')}</h1>
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item label={t('E-mail')}>
-            {getFieldDecorator('email', { rules: rules.email })(
+            {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
               <Input placeholder={t('E-mail')} autoFocus />
             )}
           </Form.Item>
