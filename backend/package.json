@@ -22,7 +22,7 @@
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
-    "eslint": "^4.7.0",
+    "eslint": "^4.7.2",
     "eslint-plugin-node": "^5.1.1",
     "nodemon": "^1.12.1",
     "prettier": "^1.7.0"
@@ -30,20 +30,20 @@
   "dependencies": {
     "async-middleware": "^1.2.1",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "bunyan": "^1.8.12",
-    "celebrate": "^5.0.0",
+    "celebrate": "^5.0.1",
     "compression": "^1.7.0",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "helmet": "^3.8.1",
     "http-status": "^1.0.1",
-    "joi": "^11.0.1",
+    "joi": "^11.0.3",
     "jsonwebtoken": "^8.0.1",
     "lodash": "^4.17.4",
     "middleware-flow": "^0.8.0",
-    "mongoose": "^4.11.11",
+    "mongoose": "^4.11.12",
     "mongoose-seed": "^0.3.2",
     "morgan": "^1.8.2",
     "nodemailer": "^4.1.0",

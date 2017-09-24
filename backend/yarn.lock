@@ -264,13 +264,13 @@ bluebird@^3.1.1:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
 
-body-parser@^1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.1.tgz#9c1629370bcfd42917f30641a2dcbe2ec50d4c26"
+body-parser@^1.18.2:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.2.tgz#87678a19d84b47d859b83199bd59bce222b10454"
   dependencies:
     bytes "3.0.0"
     content-type "~1.0.4"
-    debug "2.6.8"
+    debug "2.6.9"
     depd "~1.1.1"
     http-errors "~1.6.2"
     iconv-lite "0.4.19"
@@ -375,9 +375,9 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
-celebrate@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/celebrate/-/celebrate-5.0.0.tgz#1caf2b7bd08815a7b3e163a4dc3cf2da02acb93f"
+celebrate@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/celebrate/-/celebrate-5.0.1.tgz#63e2b706f74ca4edfde6b41024e6e05186bbf972"
   dependencies:
     escape-html "1.0.3"
     fastseries "1.7.2"
@@ -631,6 +631,12 @@ debug@2.6.7:
   dependencies:
     ms "2.0.0"
 
+debug@2.6.9:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
+  dependencies:
+    ms "2.0.0"
+
 debug@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.0.1.tgz#0564c612b521dc92d9f2988f0549e34f9c98db64"
@@ -800,9 +806,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.0.tgz#d35fc07c472520be3de85b3da11e99c576afd515"
+eslint@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.2.tgz#ff6f5f5193848a27ee9b627be3e73fb9cb5e662e"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -1622,9 +1628,18 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-joi@11.x.x, joi@^11.0.1:
+joi@11.x.x:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/joi/-/joi-11.0.1.tgz#a97bafd15b4cea708462f862a4e8e8b4072c5985"
+  dependencies:
+    hoek "4.x.x"
+    isemail "3.x.x"
+    items "2.x.x"
+    topo "2.x.x"
+
+joi@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-11.0.3.tgz#6b43faa805da32e54ab0722b38058c25cc7c3910"
   dependencies:
     hoek "4.x.x"
     isemail "3.x.x"
@@ -2011,9 +2026,9 @@ mongoose-seed@^0.3.2:
     lodash "~3.9.3"
     path "~0.11.14"
 
-mongoose@^4.11.11:
-  version "4.11.11"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.11.11.tgz#ae9baf860241e086c90b226fdda52f1afddc6a7b"
+mongoose@^4.11.12:
+  version "4.11.12"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.11.12.tgz#48ebd5cad051f6ddfd46648b86a19c7fd30e36db"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"

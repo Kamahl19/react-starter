@@ -1801,9 +1801,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.0.tgz#d35fc07c472520be3de85b3da11e99c576afd515"
+eslint@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.2.tgz#ff6f5f5193848a27ee9b627be3e73fb9cb5e662e"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -4177,15 +4177,15 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-dropdownalert@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-2.11.0.tgz#d3d17b38f317d722ec5cb17a8a14fedf2473b550"
+react-native-dropdownalert@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-2.12.0.tgz#d10bf507beff1473aca02f71a1e2ec00e71041af"
   dependencies:
     prop-types "^15.5.10"
 
-react-native-keyboard-manager@^4.0.10-3:
-  version "4.0.10-3"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-manager/-/react-native-keyboard-manager-4.0.10-3.tgz#c144fb5fd7e964d192b52fa3eb574656ded44c45"
+react-native-keyboard-manager@^4.0.13-1:
+  version "4.0.13-1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-manager/-/react-native-keyboard-manager-4.0.13-1.tgz#0d196ad62ed7faabd3ecc1f06c432a035e57d623"
 
 react-native-tab-view@^0.0.67:
   version "0.0.67"
@@ -4193,9 +4193,9 @@ react-native-tab-view@^0.0.67:
   dependencies:
     prop-types "^15.5.8"
 
-react-native-vector-icons@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.3.0.tgz#49eab845fbcde6354cb3dbcb62c1abd1f6abc866"
+react-native-vector-icons@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.4.0.tgz#cdfc1cd86ab495b2a4926bcec8f08c155475cbf1"
   dependencies:
     lodash "^4.0.0"
     prop-types "^15.5.10"
@@ -4414,9 +4414,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^4.9.1:
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.9.1.tgz#271fa31d1c782ebf9082fb5174e829db24faf59e"
+redux-persist@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.0.tgz#6252cabc2cdec1e9b65b16da3c0d1f44be06a60e"
   dependencies:
     json-stringify-safe "^5.0.1"
     lodash "^4.17.4"
