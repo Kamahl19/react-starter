@@ -1,10 +1,8 @@
-import { t } from '../../app/i18n';
-
 const required = { required: true, message: 'Field is required' };
 
 const email = { type: 'email', message: 'E-mail is not valid' };
 
-const password = { type: 'string', message: t('Password is not valid') };
+const password = { type: 'string', message: 'Password is not valid' };
 
 const passwordWithLimit = [
   password,
