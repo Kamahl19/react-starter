@@ -3289,6 +3289,10 @@ hoist-non-react-statics@1.2.0, hoist-non-react-statics@1.x, hoist-non-react-stat
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
+hoist-non-react-statics@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
+
 hoist-non-react-statics@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.2.2.tgz#c0eca5a7d5a28c5ada3107eb763b01da6bfa81fb"
@@ -3435,9 +3439,9 @@ i18next-parser@^0.12.0:
     through2 "~2.0.3"
     vinyl "~2.0.1"
 
-i18next@^9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-9.0.1.tgz#8b8a55d017c1e256df9700ded277d47c53cd833b"
+i18next@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-9.1.0.tgz#408005fe262a990c8d93946a6de0c77bba11667b"
 
 iconv-lite@0.4.13:
   version "0.4.13"
@@ -5585,9 +5589,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.7.3.tgz#8e6974725273914b1c47439959dd3d3ba53664b6"
+prettier@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.7.4.tgz#5e8624ae9363c80f95ec644584ecdf55d74f93fa"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -6142,11 +6146,11 @@ react-error-overlay@^2.0.2:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-i18next@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-6.0.2.tgz#c942d6587bf5fa409342e9af8dfc7c1350afc248"
+react-i18next@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-6.0.5.tgz#fb31ae534e5b42847d0a0539868c55c1ce6feb5d"
   dependencies:
-    hoist-non-react-statics "1.2.0"
+    hoist-non-react-statics "2.3.1"
     html-parse-stringify2 "2.0.1"
 
 react-lazy-load@^3.0.10:
@@ -6169,9 +6173,9 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-responsive@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-1.3.4.tgz#95f75a73fc57c6db05a5e422d761e3b41982b00a"
+react-responsive@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-2.0.0.tgz#4019fd493b6619c12cf0b06911ed543c2d94e504"
   dependencies:
     hyphenate-style-name "^1.0.0"
     matchmediaquery "^0.2.1"
