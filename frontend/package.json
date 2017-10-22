@@ -44,6 +44,7 @@
     "classnames": "^2.2.5",
     "history": "^4.7.2",
     "i18next": "^10.0.3",
+    "localforage": "^1.5.2",
     "lodash.flattendeep": "^4.4.0",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.6.0",

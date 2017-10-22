@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
-import { asyncLocalStorage } from 'redux-persist/storages';
+import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './rootReducer';
@@ -28,7 +28,7 @@ export default function configureStore(history) {
       persistStore(
         store,
         {
-          storage: asyncLocalStorage,
+          storage: localForage,
           blacklist: ['spinner', 'modal'],
         },
         () => {
