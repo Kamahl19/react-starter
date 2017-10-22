@@ -36,11 +36,15 @@
     "prettier": "^1.7.4",
     "react-devtools": "^2.5.2",
     "react-test-renderer": "^16.0.0",
+    "reactotron-react-native": "^1.12.3",
+    "reactotron-redux": "^1.12.2",
+    "reactotron-redux-saga": "^1.12.2",
     "redux-logger": "^3.0.6"
   },
   "dependencies": {
     "axios": "^0.17.0",
     "lodash.flattendeep": "^4.4.0",
+    "lodash.memoize": "^4.1.2",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.6.0",
     "rc-form": "^1.4.8",
