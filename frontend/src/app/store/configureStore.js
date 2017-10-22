@@ -3,6 +3,7 @@ import { autoRehydrate, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
+
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 

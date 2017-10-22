@@ -1,4 +1,5 @@
 import i18n from 'i18next';
+
 import locales from './locales';
 
 const COMMON_NAMESPACE = 'common';
@@ -12,14 +13,14 @@ Object.keys(locales).forEach(locale => {
 });
 
 const i18nInstance = i18n.init({
-  lng: 'en',
-  fallbackLng: 'en',
-  ns: COMMON_NAMESPACE,
   defaultNS: COMMON_NAMESPACE,
-  nsSeparator: false,
+  fallbackLng: 'en',
   keySeparator: false,
-  returnEmptyString: false,
+  lng: 'en',
+  ns: COMMON_NAMESPACE,
+  nsSeparator: false,
   resources: resources,
+  returnEmptyString: false,
 });
 
 export default i18nInstance;

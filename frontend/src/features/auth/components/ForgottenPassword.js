@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from 'antd/lib/button';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
+
 import rules from '../../../common/rules';
 
 class ForgottenPasswordForm extends Component {

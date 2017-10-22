@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
+
 import { selectIsInProgress } from '../../../features/spinner/ducks';
 import { apiCallIds } from '../api';
 import { resetPasswordRequest } from '../ducks';
@@ -22,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-const ResetPasswordContainer = ({ isLoading, passwordResetToken, actions }) => (
+const ResetPasswordContainer = ({ actions, isLoading, passwordResetToken }) => (
   <Spin spinning={isLoading}>
     <ResetPassword
       onSubmit={actions.resetPasswordRequest}
@@ -32,9 +33,9 @@ const ResetPasswordContainer = ({ isLoading, passwordResetToken, actions }) => (
 );
 
 ResetPasswordContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   passwordResetToken: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer);

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+
 import AlertService from '../../../common/services/alert';
 import { t } from '../../../app/i18n';
 import api from '../api';

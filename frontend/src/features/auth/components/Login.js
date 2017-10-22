@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
+
 import rules from '../../../common/rules';
 
 class LoginForm extends Component {

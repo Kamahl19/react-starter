@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
+
 import rules from '../../../common/rules';
 
 class SignUpForm extends Component {

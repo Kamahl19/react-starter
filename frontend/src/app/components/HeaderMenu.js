@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from 'antd/lib/menu';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import { ResponsiveMenu } from '../../common/components/hoc';
+import MediaQuery from 'react-responsive';
+import Menu from 'antd/lib/menu';
+
 import MobileMenu from './MobileMenu';
 
 class HeaderMenu extends Component {
   static propTypes = {
-    t: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    menuMode: PropTypes.string.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
     email: PropTypes.string,
+    history: PropTypes.object.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   state = {
@@ -52,15 +52,10 @@ class HeaderMenu extends Component {
     history.push(e.key);
   };
 
-  getSelectedKeys() {
-    return [this.props.location.pathname];
-  }
+  renderMenuContent() {
+    const { email, isLoggedIn, t } = this.props;
 
-  render() {
-    const { t, menuMode, isLoggedIn, email } = this.props;
-    const { responsiveMenuVisible } = this.state;
-
-    const menuContent = isLoggedIn ? (
+    return isLoggedIn ? (
       <Menu.SubMenu
         title={
           <span>
@@ -78,30 +73,39 @@ class HeaderMenu extends Component {
         <Menu.Item key="/auth/login">{t('Log In')}</Menu.Item>,
       ]
     );
+  }
 
-    const selectedKeys = this.getSelectedKeys();
-
-    if (menuMode === 'inline') {
-      return (
-        <MobileMenu
-          showResponsiveMenu={this.showResponsiveMenu}
-          hideResponsiveMenu={this.hideResponsiveMenu}
-          toggleResponsiveMenu={this.toggleResponsiveMenu}
-          visible={responsiveMenuVisible}
-          onClick={this.onClick}
-          selectedKeys={selectedKeys}
-        >
-          {menuContent}
-        </MobileMenu>
-      );
-    }
+  render() {
+    const { location } = this.props;
+    const { responsiveMenuVisible } = this.state;
 
     return (
-      <Menu mode="horizontal" theme="dark" onClick={this.onClick} selectedKeys={selectedKeys}>
-        {menuContent}
-      </Menu>
+      <MediaQuery maxWidth="767px">
+        {matches =>
+          matches ? (
+            <MobileMenu
+              hideResponsiveMenu={this.hideResponsiveMenu}
+              onClick={this.onClick}
+              selectedKeys={[location.pathname]}
+              showResponsiveMenu={this.showResponsiveMenu}
+              toggleResponsiveMenu={this.toggleResponsiveMenu}
+              visible={responsiveMenuVisible}
+            >
+              {this.renderMenuContent()}
+            </MobileMenu>
+          ) : (
+            <Menu
+              mode="horizontal"
+              onClick={this.onClick}
+              selectedKeys={[location.pathname]}
+              theme="dark"
+            >
+              {this.renderMenuContent()}
+            </Menu>
+          )}
+      </MediaQuery>
     );
   }
 }
 
-export default translate()(withRouter(ResponsiveMenu()(HeaderMenu)));
+export default translate()(withRouter(HeaderMenu));

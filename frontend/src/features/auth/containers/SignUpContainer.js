@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
+
 import { selectIsInProgress } from '../../../features/spinner/ducks';
 import { apiCallIds } from '../api';
 import { signUpRequest } from '../ducks';
@@ -16,15 +17,15 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ signUp: signUpRequest }, dispatch),
 });
 
-const SignUpContainer = ({ isLoading, actions }) => (
+const SignUpContainer = ({ actions, isLoading }) => (
   <Spin spinning={isLoading}>
     <SignUp onSubmit={actions.signUp} />
   </Spin>
 );
 
 SignUpContainer.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);

@@ -2,6 +2,7 @@ import './app/styles/main.css';
 import React from 'react';
 import { render } from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
+
 import { Root } from './app/containers';
 import configureStore from './app/store/configureStore';
 import { prepareRequestInterceptor, handleResponsesInterceptor } from './common/services/apiClient';

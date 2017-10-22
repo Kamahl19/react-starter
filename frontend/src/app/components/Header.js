@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Layout from 'antd/lib/layout';
 import { translate } from 'react-i18next';
 
-const Header = ({ t, children }) => (
+const Header = ({ children, t }) => (
   <Layout.Header>
     <div className="logo">
       <Link to="/">{t('React Starter')}</Link>
@@ -14,8 +14,8 @@ const Header = ({ t, children }) => (
 );
 
 Header.propTypes = {
-  t: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default translate()(Header);

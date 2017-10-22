@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from 'antd/lib/layout';
+
 import HeaderContainer from './HeaderContainer';
 import { Content, Footer } from '../../app/components';
 import { selectShowSpinner } from '../../features/spinner/ducks';

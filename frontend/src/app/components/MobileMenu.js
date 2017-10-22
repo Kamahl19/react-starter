@@ -5,39 +5,39 @@ import Icon from 'antd/lib/icon';
 import Popover from 'antd/lib/popover';
 
 const MobileMenu = ({
-  showResponsiveMenu,
   hideResponsiveMenu,
-  toggleResponsiveMenu,
   children,
-  visible,
   onClick,
   selectedKeys,
+  showResponsiveMenu,
+  toggleResponsiveMenu,
+  visible,
 }) => (
   <Popover
-    overlayClassName="mobile-menu"
-    placement="bottomLeft"
     content={[
       <Icon type="close" onClick={hideResponsiveMenu} key="close" />,
       <Menu mode="inline" key="menu" onClick={onClick} selectedKeys={selectedKeys}>
         {children}
       </Menu>,
     ]}
+    onVisibleChange={toggleResponsiveMenu}
+    overlayClassName="mobile-menu"
+    placement="bottomLeft"
     trigger="click"
     visible={visible}
-    onVisibleChange={toggleResponsiveMenu}
   >
-    <Icon type="bars" onClick={showResponsiveMenu} />
+    <Icon onClick={showResponsiveMenu} type="bars" />
   </Popover>
 );
 
 MobileMenu.propTypes = {
-  children: PropTypes.node.isRequired,
-  showResponsiveMenu: PropTypes.func.isRequired,
   hideResponsiveMenu: PropTypes.func.isRequired,
-  toggleResponsiveMenu: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   selectedKeys: PropTypes.array.isRequired,
+  showResponsiveMenu: PropTypes.func.isRequired,
+  toggleResponsiveMenu: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
 };
 
 export default MobileMenu;

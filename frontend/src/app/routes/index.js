@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
 import { IsAnonymous, IsLoggedIn, LoginWrapper } from '../../features/auth/utils';
 import {
-  LoginContainer,
-  SignUpContainer,
   ForgottenPasswordContainer,
+  LoginContainer,
   ResetPasswordContainer,
+  SignUpContainer,
 } from '../../features/auth/containers';
 import NotFound from '../../features/not-found/NotFound';
 
