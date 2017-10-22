@@ -1,4 +1,4 @@
-import apiClient from '../../../common/services/apiClient';
+import apiClient from '../../common/services/apiClient';
 
 export const apiCallIds = {
   SIGN_UP: 'SIGN_UP',

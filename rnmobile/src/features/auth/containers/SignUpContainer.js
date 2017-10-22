@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { selectIsInProgress } from '../../../features/spinner/ducks';
-import { Spinner } from '../../../features/spinner/components';
+import Spinner from '../../../features/spinner';
 import { apiCallIds } from '../api';
 import { signUpRequest } from '../ducks';
 import { SignUp } from '../components';

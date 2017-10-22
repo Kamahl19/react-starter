@@ -1,10 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import {
-  LoginContainer,
-  SignUpContainer,
-  ForgottenPasswordContainer,
-} from '../../features/auth/containers';
+import { LoginContainer, SignUpContainer, ForgottenPasswordContainer } from './containers';
 
 export default StackNavigator(
   {

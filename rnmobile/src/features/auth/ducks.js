@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import AlertService from '../../../common/services/alert';
+import AlertService from '../../common/services/alert';
 import {
   createActionCreator,
   createApiActionCreators,
@@ -11,8 +11,8 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
-} from '../../../common/utils/reduxHelpers';
-import api from '../api';
+} from '../../common/utils/reduxHelpers';
+import api from './api';
 
 /**
  * ACTION TYPES

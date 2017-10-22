@@ -6,7 +6,7 @@ import {
   handleResponsesInterceptor,
 } from '../../common/services/apiClient';
 import { reloginRequest } from '../../features/auth/ducks';
-import { Spinner } from '../../features/spinner/components';
+import Spinner from '../../features/spinner';
 import configureStore from '../store/configureStore';
 import App from './App';
 

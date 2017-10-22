@@ -29,7 +29,7 @@ export default function configureStore() {
         store,
         {
           storage: AsyncStorage,
-          blacklist: ['spinner'],
+          whitelist: ['auth'],
         },
         () => {
           resolve(store);

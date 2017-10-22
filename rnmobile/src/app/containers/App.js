@@ -6,7 +6,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 
 import { View } from '../../common/components';
 import AlertService from '../../common/services/alert';
-import { Spinner } from '../../features/spinner/components';
+import Spinner from '../../features/spinner';
 import { selectShowSpinner } from '../../features/spinner/ducks';
 import AppNavigator from '../navigators/AppNavigator';
 
