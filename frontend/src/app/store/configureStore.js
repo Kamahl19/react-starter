@@ -30,7 +30,7 @@ export default function configureStore(history) {
         store,
         {
           storage: localForage,
-          blacklist: ['spinner', 'modal'],
+          whitelist: ['auth'],
         },
         () => {
           resolve(store);
