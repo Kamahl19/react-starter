@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { selectToken, logout } from '../../features/auth/ducks';
-import { startApiCall, finishApiCall } from '../../features/spinner/ducks';
+
+import { logout, selectToken } from '../../features/auth/ducks';
+import { finishApiCall, startApiCall } from '../../features/spinner/ducks';
 import config from '../../config';
 import AlertService from './alert';
 

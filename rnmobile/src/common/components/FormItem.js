@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Platform } from 'react-native';
+
 import { FormItem } from '../../common/services/Form';
 
 export default props => (
   <FormItem
-    successStyle={styles.successStyle}
     errorStyle={styles.errorStyle}
+    successStyle={styles.successStyle}
     validatingStyle={styles.validatingStyle}
     {...props}
   />

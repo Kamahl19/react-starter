@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
 import AlertService from '../../../common/services/alert';
 import {
   createActionCreator,

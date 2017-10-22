@@ -1,5 +1,6 @@
 import { AppRegistry, Platform } from 'react-native';
 import KeyboardManager from 'react-native-keyboard-manager';
+
 import Root from './app/containers/Root';
 
 AppRegistry.registerComponent('rnmobile', () => Root);

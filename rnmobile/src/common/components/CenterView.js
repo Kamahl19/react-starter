@@ -1,13 +1,19 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+
 import { View } from './';
 
-const CenterView = ({ direction, style, ...rest }) => {
-  const directionStyle = styles[direction === 'row' ? 'rowDirection' : 'columnDirection'];
-
-  return <View style={[styles.component, directionStyle, style]} {...rest} />;
-};
+const CenterView = ({ direction, style, ...rest }) => (
+  <View
+    style={[
+      styles.component,
+      styles[direction === 'row' ? 'rowDirection' : 'columnDirection'],
+      style,
+    ]}
+    {...rest}
+  />
+);
 
 CenterView.propTypes = {
   direction: PropTypes.string,

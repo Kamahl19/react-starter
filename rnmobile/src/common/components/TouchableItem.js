@@ -12,6 +12,7 @@
 import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
+
 import { View, TouchableOpacity, TouchableNativeFeedback } from './';
 
 const ANDROID_VERSION_LOLLIPOP = 21;

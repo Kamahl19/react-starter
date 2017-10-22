@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Platform } from 'react-native';
 import PropTypes from 'prop-types';
+
 import { View } from './';
 
 const ScreenWrapper = ({ children }) => <View style={styles.component}>{children}</View>;

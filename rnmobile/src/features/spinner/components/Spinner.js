@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
+
 import { ActivityIndicator, View } from '../../../common/components';
 
-const Spinner = ({ show, children, large }) => {
+const Spinner = ({ children, large, show }) => {
   const Indicator = <ActivityIndicator size={large ? 'large' : 'small'} style={styles.spinner} />;
 
   if (children) {
@@ -19,9 +20,9 @@ const Spinner = ({ show, children, large }) => {
 };
 
 Spinner.propTypes = {
-  show: PropTypes.bool,
   children: PropTypes.node,
   large: PropTypes.bool,
+  show: PropTypes.bool,
 };
 
 export default Spinner;

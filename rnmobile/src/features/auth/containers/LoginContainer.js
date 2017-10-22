@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { selectIsInProgress } from '../../../features/spinner/ducks';
 import { Spinner } from '../../../features/spinner/components';
 import { apiCallIds } from '../api';

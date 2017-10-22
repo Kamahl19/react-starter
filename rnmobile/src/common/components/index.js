@@ -1,11 +1,11 @@
 export {
   ActivityIndicator,
-  View,
   ScrollView,
   Text,
   TextInput,
-  TouchableOpacity,
   TouchableNativeFeedback,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 export { default as Button } from './Button';

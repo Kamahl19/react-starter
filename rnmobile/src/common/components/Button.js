@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform, StyleSheet } from 'react-native';
+
 import { Text, TouchableItem, TouchableNativeFeedback, View } from './';
 
 const HIT_SLOP = {
@@ -10,7 +11,7 @@ const HIT_SLOP = {
   left: 6,
 };
 
-const Button = ({ type, buttonLeft, buttonRight, onPress, style, title, block }) => {
+const Button = ({ block, buttonLeft, buttonRight, onPress, style, title, type }) => {
   const activeTypeStyle = typeStyles[type || 'default'];
   const blockStyle = block ? styles.block : undefined;
 
@@ -35,12 +36,13 @@ const Button = ({ type, buttonLeft, buttonRight, onPress, style, title, block })
 };
 
 Button.propTypes = {
-  type: PropTypes.oneOf(['default', 'primary']),
+  block: PropTypes.bool,
   buttonLeft: PropTypes.node,
   buttonRight: PropTypes.node,
   onPress: PropTypes.func.isRequired,
   style: PropTypes.any,
   title: PropTypes.string,
+  type: PropTypes.oneOf(['default', 'primary']),
 };
 
 export default Button;

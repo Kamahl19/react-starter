@@ -1,5 +1,6 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
+
 import { ScreenWrapper, CenterView, Text } from '../../common/components';
 import CustomDrawer from './drawer/CustomDrawer';
 

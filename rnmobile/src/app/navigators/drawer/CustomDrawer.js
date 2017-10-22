@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
+
 import { logout, selectUserEmail } from '../../../features/auth/ducks';
 import { View } from '../../../common/components';
 import DrawerItem from './DrawerItem';
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
 });
 
-const CustomDrawer = ({ logout, email, ...rest }) => (
+const CustomDrawer = ({ email,logout, , ...rest }) => (
   <View style={styles.component}>
     <DrawerItem label={`Hi ${email}`} />
     <DrawerItems {...rest} />
@@ -24,8 +25,8 @@ const CustomDrawer = ({ logout, email, ...rest }) => (
 );
 
 CustomDrawer.propTypes = {
-  logout: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer);

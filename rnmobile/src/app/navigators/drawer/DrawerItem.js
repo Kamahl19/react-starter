@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Platform } from 'react-native';
-import { TouchableItem, View, Text } from '../../../common/components';
 
-const DrawerItem = ({ onPress, label }) => (
+import { Text, TouchableItem, View } from '../../../common/components';
+
+const DrawerItem = ({ label, onPress }) => (
   <View style={styles.component}>
     {onPress && (
       <TouchableItem onPress={onPress} delayPressIn={0}>
@@ -15,8 +16,8 @@ const DrawerItem = ({ onPress, label }) => (
 );
 
 DrawerItem.PropTypes = {
-  onPress: PropTypes.func.isRequired,
   label: PropTypes.node.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default DrawerItem;

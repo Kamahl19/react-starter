@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { ScrollView, View, Text, Button, FormItem } from '../../../common/components';
 import { createForm } from '../../../common/services/Form';
 import { EmailInput, PasswordInput } from './inputs';
@@ -10,9 +11,9 @@ import styles from './styles';
 export default class Login extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func.isRequired,
     goToSignUp: PropTypes.func.isRequired,
     goToForgottenPassword: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   handleSubmit = () => {
@@ -26,7 +27,7 @@ export default class Login extends Component {
   };
 
   render() {
-    const { goToSignUp, goToForgottenPassword, form } = this.props;
+    const { form, goToSignUp, goToForgottenPassword } = this.props;
     const { getFieldDecorator } = form;
 
     return (

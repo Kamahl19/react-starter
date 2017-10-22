@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { TextInput } from '../../../common/components';
 
 export class EmailInput extends Component {
   static propTypes = {
-    value: PropTypes.string,
     onChangeText: PropTypes.func,
+    value: PropTypes.string,
   };
 
   render() {
@@ -26,8 +27,8 @@ export class EmailInput extends Component {
 
 export class PasswordInput extends Component {
   static propTypes = {
-    value: PropTypes.string,
     onChangeText: PropTypes.func,
+    value: PropTypes.string,
   };
 
   render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { ScrollView, View, Text, Button, FormItem } from '../../../common/components';
 import { createForm } from '../../../common/services/Form';
 import { EmailInput } from './inputs';
