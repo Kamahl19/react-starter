@@ -3,9 +3,9 @@ import { createSelector } from 'reselect';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
-import AlertService from '../../../common/services/alert';
-import { t } from '../../../app/i18n';
-import api from '../api';
+import AlertService from '../../common/services/alert';
+import { t } from '../../app/i18n';
+import api from './api';
 import {
   createActionCreator,
   createApiActionCreators,
@@ -14,7 +14,7 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
-} from '../../../common/utils/reduxHelpers';
+} from '../../common/utils/reduxHelpers';
 
 /**
  * ACTION TYPES
