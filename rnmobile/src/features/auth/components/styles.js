@@ -1,4 +1,6 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { getColor } from '../../../common/utils/color';
 
 export default StyleSheet.create({
   container: {
@@ -17,8 +19,8 @@ export default StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderBottomColor: Platform.select({ ios: '#ccc' }),
-    borderBottomWidth: Platform.select({ ios: StyleSheet.hairlineWidth }),
+    borderBottomColor: getColor('gray'),
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   button: {
     marginVertical: 15,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Platform } from 'react-native';
 
 import { Text, TouchableItem, View } from '../../../common/components';
+import { getColor } from '../../../common/utils/color';
 
 const DrawerItem = ({ label, onPress }) => (
   <View style={styles.component}>
@@ -45,6 +46,5 @@ const styles = StyleSheet.create({
   label: {
     margin: 16,
     fontWeight: 'bold',
-    color: 'rgba(0, 0, 0, .87)',
   },
 });

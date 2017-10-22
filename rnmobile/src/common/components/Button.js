@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Platform, StyleSheet } from 'react-native';
 
 import { Text, TouchableItem, TouchableNativeFeedback, View } from './';
+import { getColor } from '../utils/color';
 
 const HIT_SLOP = {
   top: 6,
@@ -18,7 +19,7 @@ const Button = ({ block, buttonLeft, buttonRight, onPress, style, title, type })
   return (
     <TouchableItem
       onPress={onPress}
-      pressColor="white"
+      pressColor={getColor('white')}
       style={[activeTypeStyle.view, blockStyle, styles.touchableWrapper, style]}
       hitSlop={HIT_SLOP}
       useForeground={Platform.select({
@@ -75,18 +76,18 @@ const styles = StyleSheet.create({
 const typeStyles = {
   default: StyleSheet.create({
     view: {
-      backgroundColor: '#ccc',
+      backgroundColor: getColor('gray'),
     },
     title: {
-      color: '#666',
+      color: getColor('darkGray'),
     },
   }),
   primary: StyleSheet.create({
     view: {
-      backgroundColor: Platform.select({ ios: '#006FFF', android: '#2196F3' }),
+      backgroundColor: getColor('blue'),
     },
     title: {
-      color: Platform.select({ ios: 'white', android: 'white' }),
+      color: getColor('white'),
     },
   }),
 };

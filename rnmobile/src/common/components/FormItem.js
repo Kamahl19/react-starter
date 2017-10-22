@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { FormItem } from '../../common/services/Form';
+import { getColor } from '../utils/color';
 
 export default props => (
   <FormItem
@@ -14,12 +15,12 @@ export default props => (
 
 const styles = StyleSheet.create({
   successStyle: {
-    color: Platform.select({ ios: 'rgb(76, 217, 100)', android: '#4CAF50' }),
+    color: getColor('green'),
   },
   errorStyle: {
-    color: Platform.select({ ios: 'rgb(255, 59, 48)', android: '#F44336' }),
+    color: getColor('red'),
   },
   validatingStyle: {
-    color: Platform.select({ ios: '#8e8e93', android: '#9E9E9E' }),
+    color: getColor('lightGray'),
   },
 });
