@@ -39,25 +39,25 @@
     "source-map-explorer": "^1.5.0"
   },
   "dependencies": {
-    "antd": "^2.13.4",
-    "axios": "^0.16.2",
+    "antd": "^2.13.6",
+    "axios": "^0.17.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
-    "i18next": "^9.1.0",
+    "i18next": "^10.0.3",
     "lodash.flattendeep": "^4.4.0",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-i18next": "^6.0.5",
+    "react-i18next": "^6.0.6",
     "react-redux": "^5.0.6",
-    "react-responsive": "^2.0.0",
+    "react-responsive": "^3.0.0",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "next",
+    "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.2",
     "redux-persist": "^4.10.1",
-    "redux-saga": "^0.15.6",
+    "redux-saga": "^0.16.0",
     "reselect": "^3.0.1"
   }
 }
