@@ -47,12 +47,17 @@ export default class Login extends Component {
         </FormItem>
 
         <View style={styles.button}>
-          <Button onPress={this.handleSubmit} title="Log In" type="primary" block />
+          <Button block onPress={this.handleSubmit} title="Log In" size="lg" type="primary" />
         </View>
 
         <View style={styles.button}>
-          <Button onPress={goToForgottenPassword} title="Forgot password?" />
-          <Button onPress={goToSignUp} title="Sign Up" />
+          <Button
+            onPress={goToForgottenPassword}
+            size="md"
+            type="default"
+            title="Forgot password?"
+          />
+          <Button onPress={goToSignUp} size="md" type="default" title="Sign Up" />
         </View>
       </ScrollView>
     );

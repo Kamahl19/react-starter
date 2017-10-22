@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Platform, StyleSheet } from 'react-native';
 
 import { Text, TouchableItem, TouchableNativeFeedback, View } from './';
+import { css } from '../utils/style';
 import { getColor } from '../utils/color';
 
 const HIT_SLOP = {
@@ -12,64 +13,64 @@ const HIT_SLOP = {
   left: 6,
 };
 
-const Button = ({ block, buttonLeft, buttonRight, onPress, style, title, type }) => {
-  const activeTypeStyle = typeStyles[type || 'default'];
-  const blockStyle = block ? styles.block : undefined;
+export default class Button extends Component {
+  static propTypes = {
+    block: PropTypes.bool,
+    disabled: PropTypes.bool,
+    onPress: PropTypes.func.isRequired,
+    size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']).isRequired,
+    style: PropTypes.any,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['default', 'primary']).isRequired,
+  };
 
-  return (
-    <TouchableItem
-      onPress={onPress}
-      pressColor={getColor('white')}
-      style={[activeTypeStyle.view, blockStyle, styles.touchableWrapper, style]}
-      hitSlop={HIT_SLOP}
-      useForeground={Platform.select({
-        ios: () => false,
-        android: TouchableNativeFeedback.canUseNativeForeground,
-      })()}
-    >
-      <View style={[styles.view, blockStyle]}>
-        {buttonLeft || null}
-        {title !== '' ? <Text style={[activeTypeStyle.title, styles.title]}>{title}</Text> : null}
-        {buttonRight || null}
-      </View>
-    </TouchableItem>
-  );
-};
+  id = `button-${Math.random()}`;
 
-Button.propTypes = {
-  block: PropTypes.bool,
-  buttonLeft: PropTypes.node,
-  buttonRight: PropTypes.node,
-  onPress: PropTypes.func.isRequired,
-  style: PropTypes.any,
-  title: PropTypes.string,
-  type: PropTypes.oneOf(['default', 'primary']),
-};
+  render() {
+    const { block, disabled, onPress, size, style, title, type } = this.props;
 
-export default Button;
+    const activeSizeStyle = sizeStyles[size];
+    const activeTypeStyle = typeStyles[type];
+
+    return (
+      <TouchableItem
+        disabled={disabled}
+        hitSlop={HIT_SLOP}
+        key={`${this.id}-${disabled ? 'disabled' : 'enabled'}`}
+        onPress={onPress}
+        pressColor={getColor('white')}
+        style={[
+          css('opacity', disabled ? 0.5 : 1),
+          activeTypeStyle.view,
+          styles.touchableWrapper,
+          style,
+          block ? { width: '100%' } : undefined,
+        ]}
+        useForeground={Platform.select({
+          ios: () => false,
+          android: TouchableNativeFeedback.canUseNativeForeground,
+        })()}
+      >
+        <View style={[styles.button, activeSizeStyle.button]}>
+          <Text style={[styles.title, activeSizeStyle.title, activeTypeStyle.title]}>{title}</Text>
+        </View>
+      </TouchableItem>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   touchableWrapper: {
-    margin: 6,
     alignSelf: 'center',
-    borderRadius: 2,
   },
-  view: {
-    flexDirection: 'row',
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 64,
-    minHeight: 36,
-    paddingHorizontal: 8,
+    overflow: 'hidden',
   },
   title: {
     fontWeight: '500',
-    fontSize: 16,
-    marginHorizontal: 8,
     transform: [{ translateY: -1 }],
-  },
-  block: {
-    flexGrow: 1,
   },
 });
 
@@ -88,6 +89,45 @@ const typeStyles = {
     },
     title: {
       color: getColor('white'),
+    },
+  }),
+};
+
+const sizeStyles = {
+  xs: StyleSheet.create({
+    title: {
+      fontSize: 12,
+    },
+    button: {
+      height: 20,
+      paddingHorizontal: 11,
+    },
+  }),
+  sm: StyleSheet.create({
+    title: {
+      fontSize: 12,
+    },
+    button: {
+      height: 24,
+      paddingHorizontal: 15,
+    },
+  }),
+  md: StyleSheet.create({
+    title: {
+      fontSize: 15,
+    },
+    button: {
+      height: 34,
+      paddingHorizontal: 15,
+    },
+  }),
+  lg: StyleSheet.create({
+    title: {
+      fontSize: 17,
+    },
+    button: {
+      height: 48,
+      paddingHorizontal: 15,
     },
   }),
 };

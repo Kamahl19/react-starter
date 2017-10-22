@@ -14,7 +14,6 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   textInputContainer: {
-    marginHorizontal: 6,
     marginVertical: 10,
   },
   textInput: {

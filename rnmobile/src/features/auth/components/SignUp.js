@@ -51,7 +51,7 @@ export default class SignUp extends Component {
         </FormItem>
 
         <View style={styles.button}>
-          <Button onPress={this.handleSubmit} title="Sign Up" type="primary" />
+          <Button block onPress={this.handleSubmit} size="lg" title="Sign Up" type="primary" />
         </View>
       </ScrollView>
     );

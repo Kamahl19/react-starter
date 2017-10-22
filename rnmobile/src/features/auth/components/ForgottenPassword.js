@@ -38,7 +38,7 @@ export default class ForgottenPassword extends Component {
         </FormItem>
 
         <View style={styles.button}>
-          <Button onPress={this.handleSubmit} title="Submit" type="primary" />
+          <Button onPress={this.handleSubmit} title="Submit" size="lg" type="primary" />
         </View>
       </ScrollView>
     );
