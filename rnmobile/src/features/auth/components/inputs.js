@@ -14,11 +14,11 @@ export class EmailInput extends Component {
 
     return (
       <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        label="E-mail"
         onChangeText={onChangeText}
         value={value}
-        keyboardType="email-address"
-        placeholder="E-mail"
-        autoCapitalize="none"
         {...rest}
       />
     );
@@ -36,10 +36,10 @@ export class PasswordInput extends Component {
 
     return (
       <TextInput
+        label="Password"
         onChangeText={onChangeText}
-        value={value}
-        placeholder="Password"
         secureTextEntry
+        value={value}
         {...rest}
       />
     );

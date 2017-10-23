@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 const typeStyles = {
   default: StyleSheet.create({
     view: {
-      backgroundColor: getColor('gray'),
+      backgroundColor: getColor('lightGray'),
     },
     title: {
       color: getColor('darkGray'),

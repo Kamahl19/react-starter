@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import { getColor } from '../../../common/utils/color';
-
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -13,16 +11,8 @@ export default StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
   },
-  textInputContainer: {
-    marginVertical: 10,
-  },
-  textInput: {
-    height: 40,
-    borderBottomColor: getColor('gray'),
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   button: {
-    marginVertical: 15,
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

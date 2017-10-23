@@ -16,10 +16,12 @@
     "yarn": ">=0.27.5"
   },
   "scripts": {
+    "android-shake": "adb shell input keyevent KEYCODE_MENU",
+    "list-iphones": "instruments -s devices",
+    "prettify": "prettier --write '{src,__{tests,mocks}__}/**/*.js'",
+    "react-devtools": "react-devtools",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.js\"",
-    "react-devtools": "react-devtools"
+    "test": "jest"
   },
   "devDependencies": {
     "babel-eslint": "8.0.1",
@@ -52,6 +54,7 @@
     "react-native": "^0.49.2",
     "react-native-dropdownalert": "^3.1.2",
     "react-native-keyboard-manager": "^4.0.13-4",
+    "react-native-material-textfield": "^0.10.0",
     "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",

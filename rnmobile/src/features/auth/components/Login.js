@@ -34,15 +34,15 @@ export default class Login extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Log In</Text>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
-            <EmailInput autoFocus style={styles.textInput} />
+            <EmailInput autoFocus />
           )}
         </FormItem>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('password', { rules: [rules.required, rules.password] })(
-            <PasswordInput style={styles.textInput} />
+            <PasswordInput />
           )}
         </FormItem>
 

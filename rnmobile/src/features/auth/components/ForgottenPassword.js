@@ -31,9 +31,9 @@ export default class ForgottenPassword extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Forgotten Password</Text>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
-            <EmailInput autoFocus style={styles.textInput} />
+            <EmailInput autoFocus />
           )}
         </FormItem>
 

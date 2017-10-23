@@ -32,22 +32,22 @@ export default class SignUp extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Sign Up</Text>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('email', { rules: [rules.required, rules.email] })(
-            <EmailInput autoFocus style={styles.textInput} />
+            <EmailInput autoFocus />
           )}
         </FormItem>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('password', {
             rules: rules.passwordWithLimit,
-          })(<PasswordInput style={styles.textInput} />)}
+          })(<PasswordInput />)}
         </FormItem>
 
-        <FormItem style={styles.textInputContainer}>
+        <FormItem>
           {getFieldDecorator('repeatPassword', {
             rules: rules.repeatPassword(form),
-          })(<PasswordInput placeholder="Repeat Password" style={styles.textInput} />)}
+          })(<PasswordInput placeholder="Repeat Password" />)}
         </FormItem>
 
         <View style={styles.button}>

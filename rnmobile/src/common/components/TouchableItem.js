@@ -31,7 +31,7 @@ export default class TouchableItem extends Component {
 
   static defaultProps = {
     borderless: false,
-    pressColor: getColor('lightGray'),
+    pressColor: getColor('gray'),
   };
 
   render() {

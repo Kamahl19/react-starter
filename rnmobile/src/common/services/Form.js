@@ -1,8 +1,8 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component, PureComponent, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import createRcForm from 'rc-form/lib/createForm';
 
-import { Text, View } from '../../common/components';
+import { View } from '../../common/components';
 
 const FIELD_META_PROP = 'data-__meta';
 
@@ -57,9 +57,9 @@ export class FormItem extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     style: PropTypes.any,
-    successStyle: PropTypes.any,
-    errorStyle: PropTypes.any,
-    validatingStyle: PropTypes.any,
+    successColor: PropTypes.string,
+    errorColor: PropTypes.string,
+    validatingColor: PropTypes.string,
   };
 
   static contextTypes = {
@@ -158,8 +158,10 @@ export class FormItem extends PureComponent {
 
     return (
       <View style={style}>
-        {children}
-        {!!validateStatus && <Text style={this.props[`${validateStatus}Style`]}>{helpMsg}</Text>}
+        {cloneElement(children, {
+          error: !!validateStatus ? helpMsg : undefined,
+          errorColor: !!validateStatus ? this.props[`${validateStatus}Color`] : undefined,
+        })}
       </View>
     );
   }
