@@ -15,6 +15,7 @@ export class EmailInput extends Component {
     return (
       <TextInput
         autoCapitalize="none"
+        autoCorrect={false}
         keyboardType="email-address"
         label="E-mail"
         onChangeText={onChangeText}
