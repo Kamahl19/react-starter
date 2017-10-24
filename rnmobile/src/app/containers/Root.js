@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 import {
   prepareRequestInterceptor,
@@ -10,41 +11,25 @@ import Spinner from '../../features/spinner';
 import configureStore from '../store/configureStore';
 import App from './App';
 
-export default class Root extends Component {
-  state = {
-    store: undefined,
-  };
+const { store, persistor } = configureStore();
 
-  componentDidMount() {
-    this.initStore().then(store => this.setState({ store }));
-  }
+prepareRequestInterceptor(store);
+handleResponsesInterceptor(store);
 
-  async initStore() {
-    const store = await configureStore();
+function relogin() {
+  const state = store.getState();
 
-    prepareRequestInterceptor(store);
-    handleResponsesInterceptor(store);
-
-    const state = store.getState();
-
-    if (state && state.auth && state.auth.token) {
-      store.dispatch(reloginRequest());
-    }
-
-    return store;
-  }
-
-  render() {
-    const { store } = this.state;
-
-    if (!store) {
-      return <Spinner large />;
-    }
-
-    return (
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
+  if (state && state.auth && state.auth.token) {
+    store.dispatch(reloginRequest());
   }
 }
+
+const Root = () => (
+  <Provider store={store}>
+    <PersistGate loading={<Spinner large />} persistor={persistor} onBeforeLift={relogin}>
+      <App />
+    </PersistGate>
+  </Provider>
+);
+
+export default Root;

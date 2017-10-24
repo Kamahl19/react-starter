@@ -3340,7 +3340,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.4, lodash-es@^4.2.0, lodash-es@^4.2.1:
+lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
@@ -4587,13 +4587,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^4.10.1:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.1.tgz#4fb2b789942f10f56d51cc7ad068d9d6beb46124"
-  dependencies:
-    json-stringify-safe "^5.0.1"
-    lodash "^4.17.4"
-    lodash-es "^4.17.4"
+redux-persist@^5.0.0-rc.7:
+  version "5.0.0-rc.7"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.0.0-rc.7.tgz#25b13f376fc739144a1ded5e203c50294f1dd5ac"
 
 redux-saga@^0.15.3:
   version "0.15.6"

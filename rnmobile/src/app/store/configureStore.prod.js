@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import { autoRehydrate, persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import createSagaMiddleware from 'redux-saga';
 
@@ -9,29 +9,20 @@ import rootSaga from './rootSaga';
 export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares = [sagaMiddleware];
+  const persistedReducer = persistReducer(
+    {
+      key: 'root',
+      storage: AsyncStorage,
+      whitelist: ['auth'],
+    },
+    rootReducer
+  );
 
-  return new Promise((resolve, reject) => {
-    const store = createStore(
-      rootReducer,
-      compose(autoRehydrate(), applyMiddleware(...middlewares))
-    );
+  const store = createStore(persistedReducer, compose(applyMiddleware(sagaMiddleware)));
 
-    sagaMiddleware.run(rootSaga);
+  const persistor = persistStore(store);
 
-    try {
-      persistStore(
-        store,
-        {
-          storage: AsyncStorage,
-          whitelist: ['auth'],
-        },
-        () => {
-          resolve(store);
-        }
-      );
-    } catch (e) {
-      reject(e);
-    }
-  });
+  sagaMiddleware.run(rootSaga);
+
+  return { store, persistor };
 }
