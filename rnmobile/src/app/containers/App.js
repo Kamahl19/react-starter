@@ -24,7 +24,9 @@ const App = ({ showSpinner }) => (
   </View>
 );
 
-App.propTypes = { showSpinner: PropTypes.bool.isRequired };
+App.propTypes = {
+  showSpinner: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps)(App);
 

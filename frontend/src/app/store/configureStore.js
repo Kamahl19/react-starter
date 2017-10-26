@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { autoRehydrate, persistStore } from 'redux-persist';
+import { applyMiddleware, createStore, compose } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
@@ -10,6 +10,16 @@ import rootSaga from './rootSaga';
 export default function configureStore(history) {
   const sagaMiddleware = createSagaMiddleware();
 
+  const persistedReducer = persistReducer(
+    {
+      key: 'root',
+      storage: localForage,
+      whitelist: ['auth'],
+      debug: process.env.NODE_ENV === 'development',
+    },
+    rootReducer
+  );
+
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   if (process.env.NODE_ENV === 'development') {
@@ -17,27 +27,11 @@ export default function configureStore(history) {
     middlewares.push(logger);
   }
 
-  return new Promise((resolve, reject) => {
-    const store = createStore(
-      rootReducer,
-      compose(autoRehydrate(), applyMiddleware(...middlewares))
-    );
+  const store = createStore(persistedReducer, compose(applyMiddleware(...middlewares)));
 
-    sagaMiddleware.run(rootSaga);
+  const persistor = persistStore(store);
 
-    try {
-      persistStore(
-        store,
-        {
-          storage: localForage,
-          whitelist: ['auth'],
-        },
-        () => {
-          resolve(store);
-        }
-      );
-    } catch (e) {
-      reject(e);
-    }
-  });
+  sagaMiddleware.run(rootSaga);
+
+  return { store, persistor };
 }
