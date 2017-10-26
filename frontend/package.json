@@ -30,7 +30,7 @@
   "devDependencies": {
     "copyfiles": "^1.2.0",
     "i18next-parser": "^0.12.0",
-    "less": "^2.7.2",
+    "less": "^2.7.3",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.7.4",
@@ -39,7 +39,7 @@
     "source-map-explorer": "^1.5.0"
   },
   "dependencies": {
-    "antd": "^2.13.6",
+    "antd": "^2.13.7",
     "axios": "^0.17.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
