@@ -147,9 +147,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^2.13.7:
-  version "2.13.7"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.7.tgz#9b50249b1909facc2af7f7e8d1bea88e4af68db2"
+antd@^2.13.8:
+  version "2.13.8"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.8.tgz#8aa3e8562a91e775a908dc303cd689d178dc0c07"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -188,8 +188,8 @@ antd@^2.13.7:
     rc-tree-select "~1.10.2"
     rc-upload "~2.4.0"
     rc-util "^4.0.4"
-    react-lazy-load "^3.0.10"
-    react-slick "~0.15.0"
+    react-lazy-load "^3.0.12"
+    react-slick "~0.15.4"
     shallowequal "^1.0.1"
     warning "~3.0.0"
 
@@ -6222,7 +6222,7 @@ react-i18next@^6.0.6:
     hoist-non-react-statics "2.3.1"
     html-parse-stringify2 "2.0.1"
 
-react-lazy-load@^3.0.10:
+react-lazy-load@^3.0.12:
   version "3.0.12"
   resolved "https://registry.yarnpkg.com/react-lazy-load/-/react-lazy-load-3.0.12.tgz#2b841dfc3227e8119d033189d2c960ce384d0cb9"
   dependencies:
@@ -6323,7 +6323,7 @@ react-scripts@^1.0.14:
   optionalDependencies:
     fsevents "1.1.2"
 
-react-slick@~0.15.0:
+react-slick@~0.15.4:
   version "0.15.4"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.15.4.tgz#6709c87b06e7640feeacc06711be42cc2066aabe"
   dependencies:
@@ -6482,9 +6482,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.0.1.tgz#452e75f51632218574ea994064ba4b26c7380f88"
+redux-persist@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.1.0.tgz#38f43fe7a3e0dad7e3240c00f737ccd2682b6cd9"
 
 redux-saga@^0.16.0:
   version "0.16.0"

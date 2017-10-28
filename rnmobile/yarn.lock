@@ -1903,9 +1903,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.9.0.tgz#76879d274068261b191fe0f2f56c74c2f4208e8b"
+eslint@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.10.0.tgz#f25d0d7955c81968c2309aa5c9a229e045176bb7"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -4587,9 +4587,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.0.1.tgz#452e75f51632218574ea994064ba4b26c7380f88"
+redux-persist@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.1.0.tgz#38f43fe7a3e0dad7e3240c00f737ccd2682b6cd9"
 
 redux-saga@^0.15.3:
   version "0.15.6"
