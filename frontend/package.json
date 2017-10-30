@@ -34,7 +34,7 @@
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.7.4",
-    "react-scripts": "^1.0.14",
+    "react-scripts": "^1.0.15",
     "redux-logger": "^3.0.6",
     "source-map-explorer": "^1.5.0"
   },
@@ -43,8 +43,8 @@
     "axios": "^0.17.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
-    "i18next": "^10.0.3",
-    "localforage": "^1.5.2",
+    "i18next": "^10.0.6",
+    "localforage": "^1.5.3",
     "lodash.flattendeep": "^4.4.0",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.6.0",
@@ -57,7 +57,7 @@
     "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.2",
-    "redux-persist": "^5.1.0",
+    "redux-persist": "^5.2.0",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1"
   }
