@@ -4,17 +4,6 @@ Simple starter for React, React Native and Express API server
 
 ## What’s Inside?
 
-* Rest API Express Server
-    * Mongo DB
-    * DB Seeding
-    * Migrations
-    * Auth using JWT
-    * Logging (bunyan & morgan)
-    * Env variables using .env
-    * Cors, Compression, Helmet
-    * E-mail service
-    * Request validation (joi)
-    * Basic user functionality (signup, login, logout, reset password, activate user)
 * React Web App Starter
     * Auth using JWT
     * Ant.Design
@@ -32,6 +21,17 @@ Simple starter for React, React Native and Express API server
     * Form validation
     * Alert service
     * Basic user functionality (signup, login, logout, reset password)
+* Rest API Express Server
+    * Mongo DB
+    * DB Seeding
+    * Migrations
+    * Auth using JWT
+    * Logging (bunyan & morgan)
+    * Env variables using .env
+    * Cors, Compression, Helmet
+    * E-mail service
+    * Request validation (joi)
+    * Basic user functionality (signup, login, logout, reset password, activate user)
 
 ## Getting Started
 
