@@ -1311,9 +1311,9 @@ hoek@5.x.x:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-5.0.0.tgz#b88953e0fec8e58082e4abd223ed20915d535831"
 
-hooks-fixed@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/hooks-fixed/-/hooks-fixed-2.0.0.tgz#a01d894d52ac7f6599bbb1f63dfc9c411df70cba"
+hooks-fixed@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hooks-fixed/-/hooks-fixed-2.0.2.tgz#20076daa07e77d8a6106883ce3f1722e051140b0"
 
 hpkp@2.0.0:
   version "2.0.0"
@@ -1999,13 +1999,13 @@ mongoose-seed@^0.4.0:
     lodash "~3.9.3"
     path "~0.11.14"
 
-mongoose@^4.12.4:
-  version "4.12.4"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.12.4.tgz#502a2c037376a6c6356eee89128e75653612127c"
+mongoose@^4.12.5:
+  version "4.12.5"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.12.5.tgz#c5fecc40a48402120e9a2cf5bd27a674da9ce331"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
-    hooks-fixed "2.0.0"
+    hooks-fixed "2.0.2"
     kareem "1.5.0"
     mongodb "2.2.33"
     mpath "0.3.0"
