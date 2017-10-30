@@ -4350,9 +4350,9 @@ react-native-keyboard-manager@^4.0.13-4:
   version "4.0.13-4"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-manager/-/react-native-keyboard-manager-4.0.13-4.tgz#00ec1ab0b1960737a85be614c3fe175c0581cdd8"
 
-react-native-material-textfield@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.10.0.tgz#ee4bd429ea921bde1243d4bf13fb5106e33a0c99"
+react-native-material-textfield@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.10.1.tgz#612ef7d4e8cc13a76b5941a3a9e4a2d560209aa3"
   dependencies:
     prop-types "^15.5.9"
 
@@ -4370,9 +4370,9 @@ react-native-vector-icons@^4.4.2:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
-react-native@^0.49.2:
-  version "0.49.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.49.2.tgz#d40503cee172ad4c74f91a9115a1b11c54c21888"
+react-native@^0.49.5:
+  version "0.49.5"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.49.5.tgz#89f0fe93a8da4db2670c4bd0d81131a2ff617f27"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
@@ -4587,9 +4587,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.1.0.tgz#38f43fe7a3e0dad7e3240c00f737ccd2682b6cd9"
+redux-persist@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.0.tgz#fee5b2beeac7b70c40351bcde44ab27bf9083d1e"
 
 redux-saga@^0.15.3:
   version "0.15.6"
