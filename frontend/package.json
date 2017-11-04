@@ -23,7 +23,6 @@
     "build-less": "lessc --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow",
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
     "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
@@ -43,7 +42,6 @@
     "antd": "^2.13.8",
     "axios": "^0.17.0",
     "classnames": "^2.2.5",
-    "flow-bin": "^0.58.0",
     "history": "^4.7.2",
     "i18next": "^10.0.7",
     "localforage": "^1.5.3",
