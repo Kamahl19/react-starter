@@ -369,13 +369,13 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
-celebrate@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/celebrate/-/celebrate-5.0.1.tgz#63e2b706f74ca4edfde6b41024e6e05186bbf972"
+celebrate@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/celebrate/-/celebrate-6.0.0.tgz#60258d879e9d819988a5923b4c0e9ab03a444282"
   dependencies:
     escape-html "1.0.3"
     fastseries "1.7.2"
-    joi "11.x.x"
+    joi "12.x.x"
 
 chalk@^1.0.0, chalk@~1.0.0:
   version "1.0.0"
@@ -1592,17 +1592,12 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-items@2.x.x:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
-
-joi@11.x.x:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-11.0.1.tgz#a97bafd15b4cea708462f862a4e8e8b4072c5985"
+joi@12.x.x:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-12.0.0.tgz#46f55e68f4d9628f01bbb695902c8b307ad8d33a"
   dependencies:
     hoek "4.x.x"
     isemail "3.x.x"
-    items "2.x.x"
     topo "2.x.x"
 
 joi@^13.0.1:
@@ -1775,6 +1770,10 @@ lodash.defaults@^3.1.2:
   dependencies:
     lodash.assign "^3.0.0"
     lodash.restparam "^3.0.0"
+
+lodash.get@4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
 lodash.includes@^4.3.0:
   version "4.3.0"
@@ -1999,14 +1998,15 @@ mongoose-seed@^0.4.0:
     lodash "~3.9.3"
     path "~0.11.14"
 
-mongoose@^4.12.5:
-  version "4.12.5"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.12.5.tgz#c5fecc40a48402120e9a2cf5bd27a674da9ce331"
+mongoose@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.13.0.tgz#81bb266e045d66ac8dfdd84fc6749c873d7a6ac4"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
     hooks-fixed "2.0.2"
     kareem "1.5.0"
+    lodash.get "4.4.2"
     mongodb "2.2.33"
     mpath "0.3.0"
     mpromise "0.5.5"

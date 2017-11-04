@@ -4270,9 +4270,9 @@ raw-body@~2.1.2:
     iconv-lite "0.4.13"
     unpipe "1.0.0"
 
-rc-form@^1.4.8:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/rc-form/-/rc-form-1.4.8.tgz#e26c2cd86137d943c2e2996407d73e9fa073b1c6"
+rc-form@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/rc-form/-/rc-form-1.5.0.tgz#9c78ab93e998e66af02921b99eea12296c68205c"
   dependencies:
     async-validator "1.x"
     babel-runtime "6.x"
@@ -4350,17 +4350,17 @@ react-native-keyboard-manager@^4.0.13-4:
   version "4.0.13-4"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-manager/-/react-native-keyboard-manager-4.0.13-4.tgz#00ec1ab0b1960737a85be614c3fe175c0581cdd8"
 
-react-native-material-textfield@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.10.1.tgz#612ef7d4e8cc13a76b5941a3a9e4a2d560209aa3"
+react-native-material-textfield@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.10.2.tgz#30ec430b2a261ab694141199fbbaae465417f43a"
   dependencies:
     prop-types "^15.5.9"
 
-react-native-tab-view@^0.0.69:
-  version "0.0.69"
-  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.69.tgz#f52d4354a98a382f10eb5fcf61db5216c91dc7e7"
+react-native-tab-view@^0.0.70:
+  version "0.0.70"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.70.tgz#1dd2ded32acd0cb6bfef38d26e53675db733b37b"
   dependencies:
-    prop-types "^15.5.8"
+    prop-types "^15.5.10"
 
 react-native-vector-icons@^4.4.2:
   version "4.4.2"
@@ -4426,9 +4426,9 @@ react-native@^0.49.5:
     xmldoc "^0.4.0"
     yargs "^6.4.0"
 
-react-navigation@^1.0.0-beta.15:
-  version "1.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.0-beta.15.tgz#b3d09ce522435cac4d40ac52df64d6dea25df705"
+react-navigation@^1.0.0-beta.19:
+  version "1.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.0-beta.19.tgz#96e159c4b6760f51fc92d5c1c3690790cff4dbcf"
   dependencies:
     babel-plugin-transform-define "^1.3.0"
     clamp "^1.0.1"
@@ -4436,7 +4436,7 @@ react-navigation@^1.0.0-beta.15:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.10"
     react-native-drawer-layout-polyfill "^1.3.2"
-    react-native-tab-view "^0.0.69"
+    react-native-tab-view "^0.0.70"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -4587,9 +4587,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-persist@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.0.tgz#fee5b2beeac7b70c40351bcde44ab27bf9083d1e"
+redux-persist@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.2.tgz#bf932164008e275d9e1fec38909a94168761e818"
 
 redux-saga@^0.15.3:
   version "0.15.6"
