@@ -65,5 +65,5 @@ export default combineReducers({
 export const selectSpinner = state => state.spinner;
 export const selectShowSpinner = state => !!selectSpinner(state).globalCounter;
 export const selectApiCalls = state => selectSpinner(state).apiCalls;
-export const selectApiCallById = (state, apiCallId) => selectApiCalls(state)[apiCallId] || 0;
+export const selectApiCallById = (state, apiCallId) => selectApiCalls(state)[apiCallId];
 export const selectIsInProgress = (state, apiCallId) => !!selectApiCallById(state, apiCallId);
