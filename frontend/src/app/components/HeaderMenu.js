@@ -102,7 +102,8 @@ class HeaderMenu extends Component {
             >
               {this.renderMenuContent()}
             </Menu>
-          )}
+          )
+        }
       </MediaQuery>
     );
   }

@@ -10,7 +10,9 @@ If you did not request this, please ignore this email and your password will rem
 
 const resetPasswordMail = ({ email }) => ({
   subject: 'Your password has been changed',
-  text: `Hello,\n\nThis is a confirmation that the password for your account ${email} has just been changed.\n`,
+  text: `Hello,\n\nThis is a confirmation that the password for your account ${
+    email
+  } has just been changed.\n`,
 });
 
 const activationMail = ({ origin, userId, activationToken }) => ({
