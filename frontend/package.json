@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "antd": "^2.13.10",
-    "axios": "^0.17.0",
+    "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
     "i18next": "^10.0.7",
@@ -50,8 +50,8 @@
     "lodash.flattendeep": "^4.4.0",
     "lodash.reduce": "^4.6.0",
     "prop-types": "^15.6.0",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-i18next": "^6.1.0",
     "react-redux": "^5.0.6",
     "react-responsive": "^3.0.0",
@@ -59,7 +59,7 @@
     "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-auth-wrapper": "^2.0.2",
-    "redux-persist": "^5.3.4",
+    "redux-persist": "^5.3.5",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1"
   }
