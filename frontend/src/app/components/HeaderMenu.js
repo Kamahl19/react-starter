@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import Menu from 'antd/lib/menu';
 
@@ -12,7 +11,7 @@ class HeaderMenu extends Component {
     email: PropTypes.string,
     history: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
-    location: PropTypes.object.isRequired,
+    activePathname: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
@@ -76,7 +75,7 @@ class HeaderMenu extends Component {
   }
 
   render() {
-    const { location } = this.props;
+    const { activePathname } = this.props;
     const { responsiveMenuVisible } = this.state;
 
     return (
@@ -86,7 +85,7 @@ class HeaderMenu extends Component {
             <MobileMenu
               hideResponsiveMenu={this.hideResponsiveMenu}
               onClick={this.onClick}
-              selectedKeys={[location.pathname]}
+              selectedKeys={[activePathname]}
               showResponsiveMenu={this.showResponsiveMenu}
               toggleResponsiveMenu={this.toggleResponsiveMenu}
               visible={responsiveMenuVisible}
@@ -97,7 +96,7 @@ class HeaderMenu extends Component {
             <Menu
               mode="horizontal"
               onClick={this.onClick}
-              selectedKeys={[location.pathname]}
+              selectedKeys={[activePathname]}
               theme="dark"
             >
               {this.renderMenuContent()}
@@ -109,4 +108,4 @@ class HeaderMenu extends Component {
   }
 }
 
-export default translate()(withRouter(HeaderMenu));
+export default translate()(HeaderMenu);
