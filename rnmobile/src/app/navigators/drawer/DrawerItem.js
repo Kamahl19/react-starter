@@ -17,7 +17,7 @@ const DrawerItem = ({ label, onPress }) => (
 
 DrawerItem.propTypes = {
   label: PropTypes.node.isRequired,
-  onPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func,
 };
 
 export default DrawerItem;
