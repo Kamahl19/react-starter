@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Platform } from 'react-native';
 
 import { Text, TouchableItem, View } from '../../../common/components';
-import { getColor } from '../../../common/utils/color';
 
 const DrawerItem = ({ label, onPress }) => (
   <View style={styles.component}>
@@ -16,7 +15,7 @@ const DrawerItem = ({ label, onPress }) => (
   </View>
 );
 
-DrawerItem.PropTypes = {
+DrawerItem.propTypes = {
   label: PropTypes.node.isRequired,
   onPress: PropTypes.func.isRequired,
 };
@@ -29,7 +28,7 @@ const ItemContent = ({ label }) => (
   </View>
 );
 
-ItemContent.PropTypes = {
+ItemContent.propTypes = {
   label: PropTypes.node.isRequired,
 };
 
