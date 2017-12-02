@@ -22,7 +22,7 @@
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.js\""
   },
   "devDependencies": {
-    "eslint": "^4.11.0",
+    "eslint": "^4.12.1",
     "eslint-plugin-node": "^5.2.1",
     "nodemon": "^1.12.1",
     "prettier": "^1.8.2"
