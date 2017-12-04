@@ -24,7 +24,7 @@
   "devDependencies": {
     "eslint": "^4.12.1",
     "eslint-plugin-node": "^5.2.1",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.12.2",
     "prettier": "^1.8.2"
   },
   "dependencies": {
@@ -43,7 +43,7 @@
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
     "middleware-flow": "^0.8.0",
-    "mongoose": "^4.13.5",
+    "mongoose": "^4.13.6",
     "mongoose-seed": "^0.4.0",
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.0",

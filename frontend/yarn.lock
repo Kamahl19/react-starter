@@ -139,9 +139,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.0.0-rc.4:
-  version "3.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.0.0-rc.4.tgz#959703db212f636d2617cc371e780163c04eb71f"
+antd@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.0.0.tgz#53e16832b787ca59ba97a3627bbb1b1e2df3bb2e"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -151,7 +151,7 @@ antd@^3.0.0-rc.4:
     dom-closest "^0.2.0"
     enquire.js "^2.1.1"
     lodash.debounce "^4.0.8"
-    moment "^2.18.1"
+    moment "^2.19.3"
     omit.js "^1.0.0"
     prop-types "^15.5.7"
     rc-animate "^2.4.1"
@@ -159,7 +159,7 @@ antd@^3.0.0-rc.4:
     rc-cascader "~0.12.0"
     rc-checkbox "~2.1.1"
     rc-collapse "~1.7.5"
-    rc-dialog "~7.0.0"
+    rc-dialog "~7.0.3"
     rc-dropdown "~2.1.0"
     rc-editor-mention "^1.0.2"
     rc-form "^2.1.0"
@@ -170,7 +170,7 @@ antd@^3.0.0-rc.4:
     rc-progress "~2.2.2"
     rc-rate "~2.3.0"
     rc-select "~7.3.2"
-    rc-slider "~8.4.0"
+    rc-slider "~8.5.0"
     rc-steps "~3.0.0"
     rc-switch "~1.6.0"
     rc-table "~6.1.0"
@@ -4859,7 +4859,7 @@ moment@2.x:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
 
-moment@^2.18.1:
+moment@^2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
 
@@ -4984,9 +4984,9 @@ node-status-codes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-status-codes/-/node-status-codes-1.0.0.tgz#5ae5541d024645d32a58fcddc9ceecea7ae3ac2f"
 
-nodemon@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.12.1.tgz#996a56dc49d9f16bbf1b78a4de08f13634b3878d"
+nodemon@^1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.12.2.tgz#edc51e1589a172429ee30353b6435bfa8e7468e5"
   dependencies:
     chokidar "^1.7.0"
     debug "^2.6.8"
@@ -5959,7 +5959,7 @@ rc-collapse@~1.7.5:
     prop-types "^15.5.6"
     rc-animate "2.x"
 
-rc-dialog@~7.0.0:
+rc-dialog@~7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/rc-dialog/-/rc-dialog-7.0.3.tgz#d2ea73bb9cc8c8ef864c7c037d997178d735101e"
   dependencies:
@@ -6090,9 +6090,9 @@ rc-select@~7.3.2:
     rc-util "^4.0.4"
     warning "^3.0.0"
 
-rc-slider@~8.4.0:
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/rc-slider/-/rc-slider-8.4.1.tgz#ad754b6ff86f820b5c338f3ed83f6ff92816ebef"
+rc-slider@~8.5.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/rc-slider/-/rc-slider-8.5.0.tgz#6fae97d8ba59a012af69a00409f21925b8954cf5"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
@@ -6283,9 +6283,9 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
-react-i18next@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.0.2.tgz#b942407841d96cb3dcc317c1d1267f6f1d5d1ab2"
+react-i18next@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.1.1.tgz#4fb5cb4ef7f7ad4fc77cc298e92967d07d6dee75"
   dependencies:
     hoist-non-react-statics "2.3.1"
     html-parse-stringify2 "2.0.1"
