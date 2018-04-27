@@ -19,15 +19,12 @@
     "start": "npm-run-all -p watch-less start-js",
     "start-js": "react-scripts start",
     "watch-less": "yarn build-less && nodemon -e less -x \"yarn build-less\"",
-    "build":
-      "yarn build-less && react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
-    "build-less":
-      "lessc --js --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
+    "build": "yarn build-less && react-scripts build && copyfiles -u 1 \"build/**/*\" ../backend/public",
+    "build-less": "lessc --js --relative-urls --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
-    "extract-translations":
-      "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
+    "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
@@ -60,6 +57,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0",
     "redux-auth-wrapper": "^2.0.2",
+    "redux-modal": "^1.7.3",
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1"

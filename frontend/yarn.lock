@@ -6955,6 +6955,13 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
+redux-modal@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/redux-modal/-/redux-modal-1.7.3.tgz#24ee7d6abb6f9644aff918dc65d5683b7609122f"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    prop-types "^15.5.10"
+
 redux-persist@^5.9.1:
   version "5.9.1"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.9.1.tgz#83bd4abd526ef768f63fceee338fa9d8ed6552d6"
