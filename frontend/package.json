@@ -26,14 +26,12 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
-    "flow": "flow",
     "extract-translations":
       "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
     "copyfiles": "^2.0.0",
-    "flow-bin": "^0.70.0",
     "i18next-parser": "^0.13.0",
     "less": "^3.0.2",
     "nodemon": "^1.17.3",
