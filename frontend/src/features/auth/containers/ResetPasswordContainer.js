@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
 
 import { selectIsInProgress } from '../../../features/spinner/ducks';
+
 import { apiCallIds } from '../api';
 import { resetPasswordRequest } from '../ducks';
-import { ResetPassword } from '../components';
+import ResetPassword from '../components/ResetPassword';
 
 const mapStateToProps = (state, props) => ({
   isLoading: selectIsInProgress(state, apiCallIds.RESET_PASSWORD),

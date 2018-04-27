@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
 
 import { selectIsInProgress } from '../../../features/spinner/ducks';
+
 import { apiCallIds } from '../api';
 import { signUpRequest } from '../ducks';
-import { SignUp } from '../components';
+import SignUp from '../components/SignUp';
 
 const mapStateToProps = state => ({
   isLoading: selectIsInProgress(state, apiCallIds.SIGN_UP),

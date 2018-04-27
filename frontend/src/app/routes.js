@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { IsLoggedIn } from '../features/auth/utils';
 import AuthRoutes from '../features/auth/routes';
-import { NotFound } from './components';
+import { NotFound } from '../common/components';
 
 export default (
   <Switch>

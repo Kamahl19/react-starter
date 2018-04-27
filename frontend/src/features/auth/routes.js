@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { NotFound } from '../../app/components';
+import { NotFound } from '../../common/components';
+
 import { IsAnonymous, LoginWrapper } from './utils';
 import {
   ForgottenPasswordContainer,

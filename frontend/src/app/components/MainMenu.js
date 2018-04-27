@@ -6,7 +6,9 @@ import Menu from 'antd/lib/menu';
 
 import MobileMenu from './MobileMenu';
 
-class HeaderMenu extends Component {
+const LOGOUT_KEY = 'logout';
+
+class MainMenu extends Component {
   static propTypes = {
     email: PropTypes.string,
     history: PropTypes.object.isRequired,
@@ -43,7 +45,7 @@ class HeaderMenu extends Component {
   onClick = e => {
     const { history, logout } = this.props;
 
-    if (e.key === 'logout') {
+    if (e.key === LOGOUT_KEY) {
       logout();
       return;
     }
@@ -64,7 +66,7 @@ class HeaderMenu extends Component {
       >
         <Menu.Item key="/me">{t('Profile')}</Menu.Item>
         <Menu.Divider key="divider" />
-        <Menu.Item key="logout">{t('Log Out')}</Menu.Item>
+        <Menu.Item key={LOGOUT_KEY}>{t('Log Out')}</Menu.Item>
       </Menu.SubMenu>
     ) : (
       [
@@ -108,4 +110,4 @@ class HeaderMenu extends Component {
   }
 }
 
-export default translate()(HeaderMenu);
+export default translate()(MainMenu);

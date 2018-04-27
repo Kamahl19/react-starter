@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import Spin from 'antd/lib/spin';
 
 import { selectIsInProgress } from '../../../features/spinner/ducks';
+
 import { apiCallIds } from '../api';
 import { forgottenPasswordRequest } from '../ducks';
-import { ForgottenPassword } from '../components';
+import ForgottenPassword from '../components/ForgottenPassword';
 
 const mapStateToProps = state => ({
   isLoading: selectIsInProgress(state, apiCallIds.FORGOTTEN_PASSWORD),

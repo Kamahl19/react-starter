@@ -7,14 +7,15 @@ import { I18nextProvider } from 'react-i18next';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
 
-import i18n from '../i18n';
-import routes from '../routes';
-import configureStore from '../store/configureStore';
 import {
   prepareRequestInterceptor,
   handleResponsesInterceptor,
 } from '../../common/services/apiClient';
 import { reloginRequest } from '../../features/auth/ducks';
+
+import i18n from '../i18n';
+import routes from '../routes';
+import configureStore from '../store/configureStore';
 import App from './App';
 import ScrollToTop from './ScrollToTop';
 
