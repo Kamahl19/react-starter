@@ -22,14 +22,6 @@ class MainMenu extends Component {
     responsiveMenuVisible: false,
   };
 
-  componentDidMount() {
-    this.unlisten = this.props.history.listen(this.hideResponsiveMenu);
-  }
-
-  componentWillUnmount() {
-    this.unlisten();
-  }
-
   showResponsiveMenu = () => {
     this.setState({ responsiveMenuVisible: true });
   };
@@ -77,7 +69,7 @@ class MainMenu extends Component {
   }
 
   render() {
-    const { activePathname } = this.props;
+    const { activePathname, history } = this.props;
     const { responsiveMenuVisible } = this.state;
 
     return (
@@ -91,6 +83,7 @@ class MainMenu extends Component {
               showResponsiveMenu={this.showResponsiveMenu}
               toggleResponsiveMenu={this.toggleResponsiveMenu}
               visible={responsiveMenuVisible}
+              history={history}
             >
               {this.renderMenuContent()}
             </MobileMenu>
