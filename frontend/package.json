@@ -24,6 +24,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/",
     "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
