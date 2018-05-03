@@ -26,9 +26,17 @@
     "prettify": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,less}\"",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/",
     "extract-translations": "i18next ./src/ --output ./src/app/i18n/locales/ --fileFilter \"*.js\" --locales en --recursive --ignore-variables --key-separator false --namespace-separator false --write-old false",
+    "storybook": "start-storybook -p 9001 -s public -c .storybook",
+    "storybook:build": "build-storybook -s public -c .storybook",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.3",
+    "@storybook/addon-knobs": "^3.4.3",
+    "@storybook/addon-links": "^3.4.3",
+    "@storybook/addons": "^3.4.3",
+    "@storybook/react": "^3.4.3",
+    "babel-core": "^6.26.3",
     "copyfiles": "^2.0.0",
     "i18next-parser": "^0.13.0",
     "less": "^3.0.2",
