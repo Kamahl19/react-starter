@@ -15,14 +15,10 @@ const passwordWithLimit = [
 const repeatPassword = form => [
   ...passwordWithLimit,
   {
-    validator: function comparePasswords(form) {
-      return (rule, value, cb) => {
-        cb(
-          value && value !== form.getFieldValue('password')
-            ? t('Passwords do not match')
-            : undefined
-        );
-      };
+    validator: (rule, value, cb) => {
+      cb(
+        value && value !== form.getFieldValue('password') ? t('Passwords do not match') : undefined
+      );
     },
   },
 ];
