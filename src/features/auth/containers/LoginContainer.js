@@ -34,4 +34,7 @@ LoginContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginContainer);

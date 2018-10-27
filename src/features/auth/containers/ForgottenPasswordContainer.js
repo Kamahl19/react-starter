@@ -34,4 +34,7 @@ ForgottenPasswordContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForgottenPasswordContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgottenPasswordContainer);

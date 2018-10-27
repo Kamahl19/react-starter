@@ -1,37 +1,46 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import createHistory from 'history/createBrowserHistory';
 import { persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 
+import { isDev } from '../../config';
+
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-export default function configureStore(history) {
-  const sagaMiddleware = createSagaMiddleware();
+const history = createHistory();
 
-  const persistedReducer = persistReducer(
-    {
-      key: 'root',
-      storage: localForage,
-      whitelist: ['auth'],
-      debug: process.env.NODE_ENV === 'development',
-    },
-    rootReducer
-  );
+const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares = [sagaMiddleware, routerMiddleware(history)];
+const persistedReducer = persistReducer(
+  {
+    key: 'root',
+    version: 0,
+    storage: localForage,
+    whitelist: ['user'],
+    debug: isDev,
+  },
+  rootReducer
+);
 
-  if (process.env.NODE_ENV === 'development') {
-    const { logger } = require('redux-logger');
-    middlewares.push(logger);
-  }
+const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
-  const store = createStore(persistedReducer, compose(applyMiddleware(...middlewares)));
-
-  const persistor = persistStore(store);
-
-  sagaMiddleware.run(rootSaga);
-
-  return { store, persistor };
+if (isDev) {
+  const { createLogger } = require('redux-logger');
+  middlewares.push(createLogger());
 }
+
+const composeEnhancers =
+  isDev && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+    : compose;
+
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(...middlewares)));
+
+const persistor = persistStore(store);
+
+sagaMiddleware.run(rootSaga);
+
+export { store, persistor, history };

@@ -39,4 +39,7 @@ ResetPasswordContainer.propTypes = {
   passwordResetToken: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ResetPasswordContainer);

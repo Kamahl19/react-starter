@@ -29,4 +29,7 @@ SignUpContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUpContainer);

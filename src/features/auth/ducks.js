@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
-import { t } from '../../app/i18n';
+import { t } from '../../common/services/i18n';
 import AlertService from '../../common/services/alert';
 import {
   createActionCreator,

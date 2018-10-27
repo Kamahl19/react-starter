@@ -1,0 +1,172 @@
+.ant-layout-header {
+  .ant-menu {
+    padding: @layout-header-menu-padding;
+
+    &-overflowed-submenu {
+      display: none;
+    }
+
+    .ant-menu-item {
+      font-size: @font-size-nav;
+      // ant menu overflowIndicator adds visible: hidden to last items (logout, language select)
+      visibility: visible !important;
+
+      a {
+        &.active {
+          color: @white;
+        }
+      }
+
+      &.btn-item {
+        padding-left: @padding-sm;
+        padding-right: @padding-sm;
+      }
+
+      &.ant-menu-item-selected,
+      &:active {
+        background: transparent;
+      }
+
+      &.primary a {
+        color: @primary-color;
+
+        &:hover {
+          color: @blue;
+        }
+      }
+
+      &.trader {
+        padding: 0;
+
+        a {
+          padding: 0 20px;
+        }
+      }
+
+      &.logout {
+        padding-right: 0;
+
+        .anticon {
+          margin: 0;
+          font-size: 18px;
+          vertical-align: sub;
+        }
+      }
+
+      @media (max-width: @screen-lg) {
+        padding: 0 14px;
+      }
+    }
+  }
+
+  .nav-toggle {
+    .icons-sprite;
+    width: 30px;
+    height: 30px;
+    background-position: -70px -35px;
+    vertical-align: middle;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}
+
+.responsive-menu {
+  @item-active-color: fade(@text-color, 80%);
+
+  width: 100%;
+  top: 0 !important;
+  padding-top: 0;
+  animation-duration: 0s;
+
+  .ant-popover-content {
+    .ant-popover-arrow {
+      display: none;
+    }
+
+    .ant-popover-inner {
+      height: 100vh;
+      border-radius: 0;
+
+      .ant-popover-title {
+        padding: 0;
+        line-height: @layout-header-height;
+        border: 0;
+
+        .container {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .logo {
+          img {
+            height: @logo-height;
+            width: @logo-width;
+          }
+        }
+
+        .anticon-close-circle-o {
+          vertical-align: middle;
+          font-size: 28px;
+          color: @gray;
+          opacity: 0.8;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.6;
+          }
+        }
+      }
+
+      .ant-popover-inner-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 295px;
+        margin: 0 auto;
+        padding: 0;
+
+        .ant-menu-inline {
+          border-right: 0;
+
+          .ant-menu-item {
+            margin: 0;
+            height: 45px;
+            line-height: 45px;
+            font-size: 18px;
+
+            &.trader {
+              height: auto !important;
+            }
+
+            a {
+              &:hover {
+                color: @item-active-color;
+              }
+            }
+
+            &.ant-menu-item-selected,
+            &:focus,
+            &:active {
+              background: transparent;
+              color: @item-active-color;
+
+              a.active {
+                color: @item-active-color;
+              }
+
+              &:after {
+                display: none;
+              }
+            }
+
+            &:hover {
+              color: @item-active-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
