@@ -1,35 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Spin from 'antd/lib/spin';
 
-import { selectIsInProgress } from '../../../features/spinner/ducks';
+import { connectSpinner } from '../../../common/services/spinner';
 
-import { apiCallIds } from '../api';
 import { signUpRequest } from '../ducks';
+import { apiCallIds } from '../api';
 import SignUp from '../components/SignUp';
 
-const mapStateToProps = state => ({
-  isLoading: selectIsInProgress(state, apiCallIds.SIGN_UP),
-});
+const EnhancedSignUp = connectSpinner({
+  isLoading: apiCallIds.SIGN_UP,
+})(SignUp);
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ signUp: signUpRequest }, dispatch),
-});
-
-const SignUpContainer = ({ actions, isLoading }) => (
-  <Spin spinning={isLoading}>
-    <SignUp onSubmit={actions.signUp} />
-  </Spin>
-);
-
-SignUpContainer.propTypes = {
-  actions: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+const mapDispatchToProps = {
+  signUp: signUpRequest,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUpContainer);
+const SignUpContainer = ({ signUp }) => <EnhancedSignUp onSubmit={signUp} />;
+
+SignUpContainer.propTypes = {
+  signUp: PropTypes.func.isRequired,
+};
+
+export default withRouter(
+  connect(
+    undefined,
+    mapDispatchToProps
+  )(SignUpContainer)
+);

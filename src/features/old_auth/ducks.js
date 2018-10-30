@@ -12,21 +12,25 @@ import api from './api';
  * ACTION TYPES
  */
 export const SIGN_UP_REQUEST = 'auth/SIGN_UP_REQUEST';
+export const RELOGIN_REQUEST = 'auth/RELOGIN_REQUEST';
+export const LOGOUT = 'auth/LOGOUT';
 export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
 export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
 
 /**
  * ACTIONS
  */
-export const signUpRequest = createActionCreator(SIGN_UP_REQUEST);
+export const reloginRequest = createActionCreator(RELOGIN_REQUEST);
+export const logout = createActionCreator(LOGOUT);
 export const forgottenPasswordRequest = createActionCreator(FORGOTTEN_PASSWORD);
 export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
 
 /**
  * SAGAS
  */
-function* signUp({ payload }) {
-  const resp = yield call(api.signUp, payload);
+
+function* relogin() {
+  const resp = yield call(api.relogin);
 
   yield call(receiveLogin, resp);
 }
@@ -37,6 +41,10 @@ function* receiveLogin(resp) {
   } else {
     yield put(loginActions.failure(resp.error));
   }
+}
+
+function* logoutRedirect() {
+  yield put(push('/auth/login'));
 }
 
 function* forgottenPassword({ payload }) {
@@ -83,7 +91,8 @@ function* activateUser(userId, activationToken) {
 }
 
 export function* authSaga() {
-  yield takeLatest(SIGN_UP_REQUEST, signUp);
+  yield takeLatest(RELOGIN_REQUEST, relogin);
+  yield takeLatest(LOGOUT, logoutRedirect);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
   yield takeLatest(RESET_PASSWORD, resetPassword);
   yield takeEvery('@@router/LOCATION_CHANGE', locationChanged);

@@ -25,9 +25,9 @@ export const LOGOUT = 'user/LOGOUT';
 /**
  * ACTIONS
  */
-export const reloginAction = createActionCreator(RELOGIN);
 export const loginActions = createApiActionCreators(LOGIN);
 export const logoutAction = createActionCreator(LOGOUT);
+export const reloginAction = createActionCreator(RELOGIN);
 
 /**
  * REDUCERS
@@ -43,6 +43,7 @@ const profile = createReducer(initialState.profile, {
     [SUCCESS]: (state, { user: profile }) => profile,
     [FAILURE]: () => initialState.profile,
   },
+  [LOGOUT]: state => initialState.profile,
 });
 
 const token = createReducer(initialState.token, {
@@ -50,6 +51,7 @@ const token = createReducer(initialState.token, {
     [SUCCESS]: (state, { token }) => token,
     [FAILURE]: () => initialState.token,
   },
+  [LOGOUT]: state => initialState.token,
 });
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
@@ -76,6 +78,7 @@ export const selectProfile = state => selectUser(state).profile;
 export const selectToken = state => selectUser(state).token;
 export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
 
+export const selectUserEmail = createSelector(selectProfile, profile => profile && profile.email);
 export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
 
 /**

@@ -4,7 +4,6 @@ import Icon from 'antd/lib/icon';
 import Popover from 'antd/lib/popover';
 import Menu from 'antd/lib/menu';
 
-import Container from '../../Container';
 import Logo from '../../Logo';
 
 export default class ResponsiveMenu extends Component {
@@ -45,12 +44,12 @@ export default class ResponsiveMenu extends Component {
         placement="bottom"
         overlayClassName="responsive-menu"
         title={
-          <Container>
+          <div className="container">
             <Logo dark />
             <span>
               <Icon type="close-circle-o" onClick={hideResponsiveMenu} />
             </span>
-          </Container>
+          </div>
         }
         content={
           <Menu mode="inline" selectedKeys={selectedKeys}>

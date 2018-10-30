@@ -1,18 +1,11 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import { call, put, fork, take, takeLatest, select } from 'redux-saga/effects';
+import { call, put, take, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { Auth } from 'aws-amplify';
 import i18next from 'i18next';
 
-import {
-  LOGIN,
-  LOGOUT,
-  loginActions,
-  relogin,
-  fetchProfile,
-  acceptTerms,
-} from '../../common/services/user';
+import { LOGIN, LOGOUT, loginActions, relogin, fetchProfile } from '../../common/services/user';
 import { t } from '../../common/services/i18n';
 import { AMPLIFY_ERROR_CODES, AMPLIFY_CHALLENGE_TYPES } from '../../common/enums';
 import AlertService from '../../common/services/alert';
@@ -143,8 +136,6 @@ export const signUp = withApiCall(apiCallIds.SIGN_UP, function*({ payload }) {
         locale: i18next.language,
       },
     });
-
-    yield fork(acceptTerms, resp.userSub);
 
     if (resp.userConfirmed) {
       yield put(loginActions.request({ email, password }));

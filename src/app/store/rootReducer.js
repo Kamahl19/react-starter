@@ -5,10 +5,9 @@ import { reducer as modal } from 'redux-modal';
 import user, { LOGOUT } from '../../common/services/user';
 import spinner from '../../common/services/spinner';
 
-import auth from '../../features/auth/ducks';
+console.log(LOGOUT);
 
 const rootReducer = combineReducers({
-  auth,
   user,
   spinner,
   modal,
