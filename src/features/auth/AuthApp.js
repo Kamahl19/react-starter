@@ -1,11 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import { Layout, NotFound, Footer } from '../../common/components';
-import { selectIsLoggedIn } from '../../common/services/user';
-import { IsLoggedIn } from '../../common/services/user/guards';
+import IsLoggedIn from '../../common/services/user/guards/IsLoggedIn';
 
 import IsAnonymous from './utils/IsAnonymous';
 import LoginWrapper from './utils/LoginWrapper';
@@ -19,11 +16,7 @@ import SignUpContainer from './containers/SignUpContainer';
 // import VerifyEmailContainer from './containers/VerifyEmailContainer';
 import Header from './components/Header';
 
-const mapStateToProps = state => ({
-  isLoggedIn: selectIsLoggedIn(state),
-});
-
-const AccountApp = ({ isLoggedIn }) => (
+const AccountApp = () => (
   <Layout>
     <Header />
     <Layout.Content>
@@ -43,12 +36,8 @@ const AccountApp = ({ isLoggedIn }) => (
         <Route component={NotFound} />
       </Switch>
     </Layout.Content>
-    <Footer isLoggedIn={isLoggedIn} />
+    <Footer />
   </Layout>
 );
 
-AccountApp.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
-
-export default connect(mapStateToProps)(AccountApp);
+export default AccountApp;

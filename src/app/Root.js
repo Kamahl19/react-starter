@@ -7,39 +7,42 @@ import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { Route, Switch } from 'react-router-dom';
 
-// import { reloginAction } from '../common/services/user';
-import i18n from '../common/services/i18n';
-// import { IsLoggedIn } from '../common/services/user/guards';
-
+// must be first
 import { store, persistor, history } from './store/configureStore';
+
+// order matters
+import i18n from '../common/services/i18n';
+import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
+import { reloginAction } from '../common/services/user';
+
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ScrollToTop';
 
 import AuthApp from '../features/auth/AuthApp';
-// import AccountApp from '../features/account/AccountApp';
+import AccountApp from '../features/account/AccountApp';
 
-// function relogin() {
-//   if (history.location.pathname !== '/auth/logout') {
-//     const state = store.getState();
+function relogin() {
+  if (history.location.pathname !== '/auth/logout') {
+    const state = store.getState();
 
-//     // TODO is check this necessary ?
-//     if (state && state.auth && state.auth.token) {
-//       store.dispatch(reloginAction());
-//     }
-//   }
-// }
+    // TODO is check this necessary ?
+    if (state && state.auth && state.auth.token) {
+      store.dispatch(reloginAction());
+    }
+  }
+}
 
 const Root = () => (
   <ErrorBoundary>
     <I18nextProvider i18n={i18n}>
       <LocaleProvider locale={enUS}>
         <Provider store={store}>
-          <PersistGate loading={<div />} persistor={persistor} onBeforeLift={() => {}}>
+          <PersistGate loading={<div />} persistor={persistor} onBeforeLift={relogin}>
             <ConnectedRouter history={history}>
               <ScrollToTop>
                 <Switch>
                   <Route path="/auth" component={AuthApp} />
-                  {/* <Route exact path="/" component={IsLoggedIn(AccountApp)} /> */}
+                  <Route exact path="/" component={IsLoggedIn(AccountApp)} />
                 </Switch>
               </ScrollToTop>
             </ConnectedRouter>

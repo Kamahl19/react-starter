@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 import Popover from 'antd/lib/popover';
+import Menu from 'antd/lib/menu';
 
-export default class MobileMenu extends Component {
+export default class ResponsiveMenu extends Component {
   static propTypes = {
-    hideResponsiveMenu: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
-    onClick: PropTypes.func.isRequired,
-    selectedKeys: PropTypes.array.isRequired,
-    showResponsiveMenu: PropTypes.func.isRequired,
-    toggleResponsiveMenu: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired,
+    selectedKeys: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
+    showResponsiveMenu: PropTypes.func.isRequired,
+    hideResponsiveMenu: PropTypes.func.isRequired,
+    toggleResponsiveMenu: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -28,30 +27,33 @@ export default class MobileMenu extends Component {
 
   render() {
     const {
-      hideResponsiveMenu,
       children,
-      onClick,
+      visible,
       selectedKeys,
       showResponsiveMenu,
+      hideResponsiveMenu,
       toggleResponsiveMenu,
-      visible,
     } = this.props;
 
     return (
       <Popover
+        visible={visible}
+        trigger="click"
+        placement="bottom"
+        overlayClassName="responsive-menu"
         content={[
           <Icon type="close" onClick={hideResponsiveMenu} key="close" />,
-          <Menu mode="inline" key="menu" onClick={onClick} selectedKeys={selectedKeys}>
+          <Menu mode="inline" selectedKeys={selectedKeys}>
             {children}
           </Menu>,
         ]}
         onVisibleChange={toggleResponsiveMenu}
-        overlayClassName="mobile-menu"
-        placement="bottomLeft"
-        trigger="click"
-        visible={visible}
       >
-        <Icon onClick={showResponsiveMenu} type="bars" />
+        <nav>
+          <div className="nav-toggle" onClick={showResponsiveMenu}>
+            <Icon type="bars" theme="outlined" />
+          </div>
+        </nav>
       </Popover>
     );
   }
