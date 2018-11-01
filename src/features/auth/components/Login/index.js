@@ -34,7 +34,7 @@ const LoginForm = ({ form, t, isLoading, onSubmit }) => (
             <Trans i18nKey="logIn.forgotPassword">Forgot password?</Trans>
           </Link>
         </Form.Item>
-        <Button loading={isLoading} disabled={hasErrors} block type="primary" htmlType="submit">
+        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
           <Trans i18nKey="logIn.logIn">Log In</Trans>
         </Button>
       </Form>

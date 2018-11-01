@@ -19,7 +19,7 @@ const ForgottenPasswordForm = ({ form, t, isLoading, onSubmit }) => (
             placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
           />
         </FormItem>
-        <Button loading={isLoading} disabled={hasErrors} block type="primary" htmlType="submit">
+        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
           <Trans i18nKey="fields.submit">Submit</Trans>
         </Button>
       </Form>

@@ -31,7 +31,7 @@ const SignUpForm = ({ form, t, isLoading, onSubmit }) => (
             })}
           />
         </FormItem>
-        <Button loading={isLoading} disabled={hasErrors} block type="primary" htmlType="submit">
+        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
           <Trans i18nKey="signUp.signUp">Sign Up</Trans>
         </Button>
       </Form>

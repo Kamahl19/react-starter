@@ -39,7 +39,7 @@ const VerifyEmail = ({
             </FormItem>
           )}
           <Form.Item>
-            <Button loading={isLoading} disabled={hasErrors} block type="primary" htmlType="submit">
+            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
               <Trans i18nKey="verifyEmail.continue">Continue</Trans>
             </Button>
           </Form.Item>

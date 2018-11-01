@@ -4,7 +4,7 @@ import { routerActions } from 'react-router-redux';
 import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 
 export default connectedReduxRedirect({
-  authenticatedSelector: state => selectIsLoggedIn(state) === false,
+  authenticatedSelector: state => !selectIsLoggedIn(state),
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
   redirectPath: '/',
