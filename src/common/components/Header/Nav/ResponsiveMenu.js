@@ -41,12 +41,14 @@ export default class ResponsiveMenu extends Component {
         trigger="click"
         placement="bottom"
         overlayClassName="responsive-menu"
-        content={[
-          <Icon type="close" onClick={hideResponsiveMenu} key="close" />,
-          <Menu mode="inline" selectedKeys={selectedKeys}>
-            {children}
-          </Menu>,
-        ]}
+        content={
+          <>
+            <Icon type="close" onClick={hideResponsiveMenu} key="close" />
+            <Menu mode="inline" selectedKeys={selectedKeys}>
+              {children}
+            </Menu>
+          </>
+        }
         onVisibleChange={toggleResponsiveMenu}
       >
         <nav>
