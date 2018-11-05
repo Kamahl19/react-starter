@@ -10,15 +10,15 @@ export default class ResponsiveMenu extends Component {
     visible: PropTypes.bool.isRequired,
     selectedKeys: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
-    showResponsiveMenu: PropTypes.func.isRequired,
-    hideResponsiveMenu: PropTypes.func.isRequired,
-    toggleResponsiveMenu: PropTypes.func.isRequired,
+    onShow: PropTypes.func.isRequired,
+    onHide: PropTypes.func.isRequired,
+    onVisibleChange: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    const { history, hideResponsiveMenu } = this.props;
+    const { history, onHide } = this.props;
 
-    this.unlisten = history.listen(hideResponsiveMenu);
+    this.unlisten = history.listen(onHide);
   }
 
   componentWillUnmount() {
@@ -26,14 +26,7 @@ export default class ResponsiveMenu extends Component {
   }
 
   render() {
-    const {
-      children,
-      visible,
-      selectedKeys,
-      showResponsiveMenu,
-      hideResponsiveMenu,
-      toggleResponsiveMenu,
-    } = this.props;
+    const { children, visible, selectedKeys, onShow, onHide, onVisibleChange } = this.props;
 
     return (
       <Popover
@@ -43,16 +36,16 @@ export default class ResponsiveMenu extends Component {
         overlayClassName="responsive-menu"
         content={
           <>
-            <Icon type="close" onClick={hideResponsiveMenu} key="close" />
+            <Icon type="close" onClick={onHide} />
             <Menu mode="inline" selectedKeys={selectedKeys}>
               {children}
             </Menu>
           </>
         }
-        onVisibleChange={toggleResponsiveMenu}
+        onVisibleChange={onVisibleChange}
       >
         <nav>
-          <div className="nav-toggle" onClick={showResponsiveMenu}>
+          <div className="nav-toggle" onClick={onShow}>
             <Icon type="bars" theme="outlined" />
           </div>
         </nav>

@@ -25,6 +25,7 @@ class Nav extends Component {
 
   render() {
     const { children, activePathname, history } = this.props;
+    const { responsiveMenuVisible } = this.state;
 
     return (
       <MediaQuery maxWidth={`${MOBILE_WIDTH}px`}>
@@ -32,11 +33,11 @@ class Nav extends Component {
           isMobile ? (
             <ResponsiveMenu
               selectedKeys={[activePathname]}
-              visible={this.state.responsiveMenuVisible}
+              visible={responsiveMenuVisible}
               history={history}
-              showResponsiveMenu={() => this.handleResponsiveMenuVisibleChange(true)}
-              hideResponsiveMenu={() => this.handleResponsiveMenuVisibleChange(false)}
-              toggleResponsiveMenu={this.handleResponsiveMenuVisibleChange}
+              onShow={() => this.handleResponsiveMenuVisibleChange(true)}
+              onHide={() => this.handleResponsiveMenuVisibleChange(false)}
+              onVisibleChange={this.handleResponsiveMenuVisibleChange}
             >
               {children({ isMobile })}
             </ResponsiveMenu>
