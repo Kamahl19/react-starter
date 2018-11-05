@@ -1,100 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import MediaQuery from 'react-responsive';
-import Menu from 'antd/lib/menu';
 
-import MobileMenu from './MobileMenu';
+import { Menu } from '../../';
 
-const LOGOUT_KEY = 'logout';
+import ResponsiveMenu from './ResponsiveMenu';
 
-class MainMenu extends Component {
+const MOBILE_WIDTH = 991;
+
+class Nav extends Component {
   static propTypes = {
-    email: PropTypes.string,
-    history: PropTypes.object.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
+    children: PropTypes.func.isRequired,
     activePathname: PropTypes.string.isRequired,
-    logout: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   state = {
     responsiveMenuVisible: false,
   };
 
-  showResponsiveMenu = () => {
-    this.setState({ responsiveMenuVisible: true });
-  };
-
-  hideResponsiveMenu = () => {
-    this.setState({ responsiveMenuVisible: false });
-  };
-
-  toggleResponsiveMenu = responsiveMenuVisible => {
+  handleResponsiveMenuVisibleChange = responsiveMenuVisible => {
     this.setState({ responsiveMenuVisible });
   };
 
-  onClick = e => {
-    const { history, logout } = this.props;
-
-    if (e.key === LOGOUT_KEY) {
-      logout();
-      return;
-    }
-
-    history.push(e.key);
-  };
-
-  renderMenuContent() {
-    const { email, isLoggedIn, t } = this.props;
-
-    return isLoggedIn ? (
-      <Menu.SubMenu
-        title={
-          <span>
-            {t('Hi')} {email}
-          </span>
-        }
-      >
-        <Menu.Item key="/me">{t('Profile')}</Menu.Item>
-        <Menu.Divider key="divider" />
-        <Menu.Item key={LOGOUT_KEY}>{t('Log Out')}</Menu.Item>
-      </Menu.SubMenu>
-    ) : (
-      [
-        <Menu.Item key="/auth/sign-up">{t('Sign Up')}</Menu.Item>,
-        <Menu.Item key="/auth/login">{t('Log In')}</Menu.Item>,
-      ]
-    );
-  }
-
   render() {
-    const { activePathname, history } = this.props;
-    const { responsiveMenuVisible } = this.state;
+    const { children, activePathname, history } = this.props;
 
     return (
-      <MediaQuery maxWidth="767px">
-        {matches =>
-          matches ? (
-            <MobileMenu
-              hideResponsiveMenu={this.hideResponsiveMenu}
-              onClick={this.onClick}
+      <MediaQuery maxWidth={`${MOBILE_WIDTH}px`}>
+        {isMobile =>
+          isMobile ? (
+            <ResponsiveMenu
               selectedKeys={[activePathname]}
-              showResponsiveMenu={this.showResponsiveMenu}
-              toggleResponsiveMenu={this.toggleResponsiveMenu}
-              visible={responsiveMenuVisible}
+              visible={this.state.responsiveMenuVisible}
               history={history}
+              showResponsiveMenu={() => this.handleResponsiveMenuVisibleChange(true)}
+              hideResponsiveMenu={() => this.handleResponsiveMenuVisibleChange(false)}
+              toggleResponsiveMenu={this.handleResponsiveMenuVisibleChange}
             >
-              {this.renderMenuContent()}
-            </MobileMenu>
+              {children({ isMobile })}
+            </ResponsiveMenu>
           ) : (
-            <Menu
-              mode="horizontal"
-              onClick={this.onClick}
-              selectedKeys={[activePathname]}
-              theme="dark"
-            >
-              {this.renderMenuContent()}
+            <Menu theme="dark" mode="horizontal" selectedKeys={[activePathname]}>
+              {children({ isMobile })}
             </Menu>
           )
         }
@@ -103,4 +51,4 @@ class MainMenu extends Component {
   }
 }
 
-export default translate()(MainMenu);
+export default Nav;

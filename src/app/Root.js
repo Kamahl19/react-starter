@@ -5,15 +5,21 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { I18nextProvider } from 'react-i18next';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
+import { Route, Switch } from 'react-router-dom';
 
-import { reloginAction } from '../common/services/user';
-import i18n from '../common/services/i18n';
-
+// must be first
 import { store, persistor, history } from './store/configureStore';
+
+// order matters
+import i18n from '../common/services/i18n';
+import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
+import { reloginAction } from '../common/services/user';
+
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ScrollToTop';
-import Routes from './Routes';
-import App from './App';
+
+import AuthApp from '../features/auth/AuthApp';
+import AccountApp from '../features/account/AccountApp';
 
 function relogin() {
   if (history.location.pathname !== '/auth/logout') {
@@ -34,7 +40,10 @@ const Root = () => (
           <PersistGate loading={<div />} persistor={persistor} onBeforeLift={relogin}>
             <ConnectedRouter history={history}>
               <ScrollToTop>
-                <App>{Routes}</App>
+                <Switch>
+                  <Route path="/auth" component={AuthApp} />
+                  <Route exact path="/" component={IsLoggedIn(AccountApp)} />
+                </Switch>
               </ScrollToTop>
             </ConnectedRouter>
           </PersistGate>

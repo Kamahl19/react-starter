@@ -1,13 +1,16 @@
 import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
+import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { routerActions } from 'react-router-redux';
 
 import { selectIsLoggedIn, selectIsAuthenticating } from '../';
+
+const locationHelper = locationHelperBuilder({});
 
 export default connectedReduxRedirect({
   authenticatedSelector: state => !selectIsLoggedIn(state),
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
-  redirectPath: '/',
+  redirectPath: (state, props) => locationHelper.getRedirectQueryParam(props) || '/',
   allowRedirectBack: false,
-  wrapperDisplayName: 'IsAnonymous',
+  wrapperDisplayName: 'LoginGuard',
 });

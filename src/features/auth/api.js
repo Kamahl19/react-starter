@@ -2,9 +2,10 @@ import apiClient from '../../common/services/apiClient';
 
 export const apiCallIds = {
   SIGN_UP: 'SIGN_UP',
-  LOGIN: 'LOGIN',
   FORGOTTEN_PASSWORD: 'FORGOTTEN_PASSWORD',
   RESET_PASSWORD: 'RESET_PASSWORD',
+  // VERIFY_EMAIL: 'VERIFY_EMAIL', // TODO
+  // RESEND_EMAIL_VERIFICATION: 'RESEND_EMAIL_VERIFICATION', // TODO
 };
 
 export default {
@@ -14,14 +15,6 @@ export default {
     return apiClient.post('/users', userData, {
       apiCallId: apiCallIds.SIGN_UP,
     });
-  },
-
-  login: credentials => {
-    return apiClient.post('/auth/login', credentials, { apiCallId: apiCallIds.LOGIN });
-  },
-
-  relogin: () => {
-    return apiClient.get('/auth/relogin');
   },
 
   forgottenPassword: email => {
@@ -43,4 +36,16 @@ export default {
   activateUser: (userId, activationToken) => {
     return apiClient.get(`/users/${userId}/activate/${activationToken}`);
   },
+
+  // verifyEmail: data => {
+  //   return apiClient.post(`/auth/verify-email/`, data, {
+  //     apiCallId: apiCallIds.VERIFY_EMAIL,
+  //   });
+  // },
+
+  // resendEmailVerification: data => {
+  //   return apiClient.post(`/auth/resend-verify-email/`, data, {
+  //     apiCallId: apiCallIds.RESEND_EMAIL_VERIFICATION,
+  //   });
+  // },
 };

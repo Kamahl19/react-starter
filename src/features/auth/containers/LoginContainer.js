@@ -1,40 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Spin from 'antd/lib/spin';
 
-import { selectIsInProgress } from '../../../features/spinner/ducks';
+import { connectSpinner } from '../../../common/services/spinner';
+import { loginActions } from '../../../common/services/user';
 
 import { apiCallIds } from '../api';
-import { loginActions } from '../ducks';
 import Login from '../components/Login';
 
-const mapStateToProps = state => ({
-  isLoading: selectIsInProgress(state, apiCallIds.LOGIN),
-});
+const EnhancedLogin = connectSpinner({
+  isLoading: apiCallIds.LOGIN,
+})(Login);
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      login: loginActions.request,
-    },
-    dispatch
-  ),
-});
+const mapDispatchToProps = {
+  login: loginActions.request,
+};
 
-const LoginContainer = ({ actions, isLoading }) => (
-  <Spin spinning={isLoading}>
-    <Login onSubmit={actions.login} />
-  </Spin>
-);
+const LoginContainer = ({ login }) => <EnhancedLogin onSubmit={login} />;
 
 LoginContainer.propTypes = {
-  actions: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 export default connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 )(LoginContainer);
