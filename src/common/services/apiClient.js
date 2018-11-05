@@ -30,37 +30,35 @@ apiClient.interceptors.request.use(async config => {
   return config;
 });
 
-export function handleResponsesInterceptor(store) {
-  apiClient.interceptors.response.use(
-    response => {
+apiClient.interceptors.response.use(
+  response => {
+    store.dispatch(
+      finishApiCallAction({
+        apiCallId: response.config.apiCallId,
+      })
+    );
+
+    return normalizeSuccessResponse(response);
+  },
+  error => {
+    if (!axios.isCancel(error)) {
       store.dispatch(
         finishApiCallAction({
-          apiCallId: response.config.apiCallId,
+          apiCallId: error.config.apiCallId,
+          error,
         })
       );
 
-      return normalizeSuccessResponse(response);
-    },
-    error => {
-      if (!axios.isCancel(error)) {
-        store.dispatch(
-          finishApiCallAction({
-            apiCallId: error.config.apiCallId,
-            error,
-          })
-        );
-
-        if (error.response && error.response.status === 401) {
-          store.dispatch(logoutAction());
-        }
-
-        showErrorMessage(error);
+      if (error.response && error.response.status === 401) {
+        store.dispatch(logoutAction());
       }
 
-      return normalizeErrorResponse(error);
+      showErrorMessage(error);
     }
-  );
-}
+
+    return normalizeErrorResponse(error);
+  }
+);
 
 function normalizeSuccessResponse(response) {
   return {
