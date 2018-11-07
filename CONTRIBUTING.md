@@ -6,6 +6,40 @@ We believe that using these conventions keep your project healthy & maintanable 
 
 This is a live document, updatated on the fly.
 
+# JavaScript
+
+## Good practice
+
+### Const without comma operator
+
+❌
+
+```jsx
+const response = {
+    Close: 'Close',
+    Delete: 'Delete',
+    Cancel: 'Cancel',
+  },
+  options = Object.entries(response);
+```
+
+Avoid multiple declarations in a single `const` expression. When skimming the source code, it's easy to miss the `options` assignment.
+
+✅
+
+```diff
+const response = {
+    Close: 'Close',
+    Delete: 'Delete',
+    Cancel: 'Cancel',
+-   },
+-  options = Object.entries(response);
++  };
++  const options = Object.entries(response);
+```
+
+Now it's clear, that there are two separate entities instead of one.
+
 # React
 
 ## Common Bugs
