@@ -10,6 +10,28 @@ This is a live document, updatated on the fly.
 
 ## Good practice
 
+### Passing functions
+
+Save a call by passing a function as argument, instead of calling it in new anonymous function.
+
+❌
+
+```js
+const isAdmin = user => user.role === 'admin';
+const admins = users.filter(user => isAdmin(user));
+```
+
+✅
+
+```diff
+- const admins = users.filter(user => isAdmin(user));
++ const admins = users.filter(isAdmin);
+```
+
+Exceptions:
+
+- mind arity
+
 ### Const without comma operator
 
 ❌
