@@ -14,7 +14,7 @@ This is a live document, updatated on the fly.
 
 ❌
 
-```jsx
+```js
 const response = {
     Close: 'Close',
     Delete: 'Delete',
@@ -41,6 +41,59 @@ const response = {
 Now it's clear, that there are two separate entities instead of one.
 
 # React
+
+## Patterns
+
+### Event handler naming
+
+The names of handlers should always start with `on` and end with event type e.g. `Change`.
+For each `onEvent` we should have `handleEvent` method on the class.
+
+❌
+
+```jsx
+<Select onChange={this.selectvalue}>
+  <Option>Foo</Option>
+  <Option>Bar</Option>
+</Select>
+```
+
+✅
+
+```diff
+- <Select onChange={this.selectvalue}>
++ <Select onChange={this.handleChange}>
+```
+
+When having multiple specific events, indicate the specificity at the begining of the event name, not at the end.
+
+❌
+
+```js
+<Profile user={user} onClickAvatar={this.handleClickAvatar} onClickBio={this.handleClickBio} />
+```
+
+✅
+
+```diff
+<Profile
+  user={user}
+- onClickAvatar={this.handleClickAvatar}
++ onAvatarClick={this.handleAvatarClick}
+- onClickBio={this.handleClickBio}
++ onBioClick={this.handleBioClick}
+/>
+```
+
+In the profile, then those events are easily consumed - concrete components should accepts props named like
+`on + componentName + eventName`.
+
+```js
+<div className="profile">
+  <Avatar onClick={this.props.onAvatarClick} />
+  <Bio onClick={this.props.onBioClick />
+</div>
+```
 
 ## Common Bugs
 
