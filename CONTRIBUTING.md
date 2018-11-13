@@ -134,6 +134,45 @@ Hello.propTypes = {
 + };
 ```
 
+### Render
+
+#### Props Ordering
+
+Props passed to components should be ordered as:
+
+1. Constant Props
+2. Variable Props
+3. Event Handlers
+
+```js
+render() {
+  const { isLoading, onSubmit } = this.props;
+
+  return (
+    <Button block type="submit" loading={isLoading} onClick={onSubmit}>
+      Save
+    </Button>
+  );
+}
+```
+
+The first props are close to the component name, which allows us to get a picture of how the component looks like or what's its role. If we have multiple instances of such components, it's easy to spot a pattern and then 'curry' the component - take away the degree of freedom and fix the props under new name:
+
+```js
+const SubmitButton = props => <Button {...props} block type="submit" />;
+```
+
+This SubmitButton represents a subset of all buttons. Ordering props helped us to find it. It would be much harder, if the
+props would be ordered ad-hoc.
+
+❌
+
+```js
+<Button loading={isLoading} block onClick={onSubmit} type="submit">
+  Save
+</Button>
+```
+
 ### Event handler naming
 
 The names of handlers should always start with `on` and end with event type e.g. `Change`.
