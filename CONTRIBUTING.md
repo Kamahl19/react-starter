@@ -103,6 +103,37 @@ class Date extends Component {
 render(<Date />); // Renders without warning
 ```
 
+#### Should not use default value syntax in function component
+
+Default value won't be checked as defaultProps and treated as missing value.
+
+❌
+
+```js
+const Hello = ({ to = 'world' }) => <h1>Hello {to}!</h1>;
+
+Hello.propTypes = {
+  to: PropTypes.string.isRequired,
+};
+
+render(<Hello />); // Warning: missing required prop!
+```
+
+✅
+
+```diff
+- const Hello = ({ to = 'world'  }) => <h1>Hello {to}!</h1>;
++ const Hello = ({ to }) => <h1>Hello {to}!</h1>;
+
+Hello.propTypes = {
+  to: PropTypes.string.isRequired,
+};
+
++ Hello.defaultProps = {
++  to: 'world',
++ };
+```
+
 ### Event handler naming
 
 The names of handlers should always start with `on` and end with event type e.g. `Change`.
