@@ -73,7 +73,7 @@ Now it's clear, that there are two separate entities instead of one.
 In a class component, define the propTypes as a static property on the class.
 This way it's close to the name of the class, which is analogous to arguments of a function.
 
-```jsx
+```js
 class Status extends Component {
   static propTypes = {
     isOnline: PropTypes.bool.isRequired,
