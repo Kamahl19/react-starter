@@ -87,6 +87,22 @@ function Status({ isOnline }) {
 }
 ```
 
+#### Should have defaultProps marked as required
+
+```js
+class Date extends Component {
+  static propTypes = {
+    format: PropTypes.oneOf(['hour', 'day', 'week']).isRequired,
+  };
+
+  static defaultProps = {
+    format: 'day',
+  };
+}
+
+render(<Date />); // Renders without warning
+```
+
 ### Event handler naming
 
 The names of handlers should always start with `on` and end with event type e.g. `Change`.
