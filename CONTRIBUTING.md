@@ -66,6 +66,27 @@ Now it's clear, that there are two separate entities instead of one.
 
 ## Patterns
 
+### PropTypes
+
+#### Should be a static property on a class component
+
+In a class component, define the propTypes as a static property on the class.
+This way it's close to the name of the class, which is analogous to arguments of a function.
+
+```js
+class Status extends Component {
+  static propTypes = {
+    isOnline: PropTypes.bool.isRequired,
+  };
+
+  // ...
+}
+
+function Status({ isOnline }) {
+  //....
+}
+```
+
 ### Event handler naming
 
 The names of handlers should always start with `on` and end with event type e.g. `Change`.
