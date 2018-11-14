@@ -173,6 +173,54 @@ props would be ordered ad-hoc.
 </Button>
 ```
 
+#### Avoid costly renders
+
+Render is the most-called method of a component. We should avoid building arrays, objects or other structures there.
+Instead move them to instance memebers (in a class component) or to module scope.
+
+Example: Ant table columns
+
+❌
+
+```js
+const UserTable = ({ dataSource }) => {
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={[
+        {
+          title: 'Name',
+          dataIndex: 'user',
+        },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+        },
+      ]}
+    />
+  );
+};
+```
+
+✅
+
+```js
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+  },
+];
+
+const UserTable = ({ dataSource }) => {
+  return <Table dataSource={dataSource} columns={columns} />;
+};
+```
+
 ### Event handler naming
 
 The names of handlers should always start with `on` and end with event type e.g. `Change`.
