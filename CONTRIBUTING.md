@@ -10,6 +10,36 @@ This is a live document, updatated on the fly.
 
 ## Good practice
 
+### Ordering imports
+
+Order imports of dependencies by their reusability level.
+
+1. External libraries
+2. Common utilities
+3. Local components
+
+Remember to put an empty line between two categories.
+
+❌
+
+```js
+import { alertSuccess } from '../common/atoms/alert';
+import axios from 'axios';
+import constants from './constants';
+import { removeFromArray } from '../common/reduxHelpers';
+```
+
+✅
+
+```js
+import axios from 'axios';
+
+import { alertSuccess } from '../common/atoms/alert';
+import { removeFromArray } from '../common/reduxHelpers';
+
+import constants from './constants';
+```
+
 ### Use implicit return
 
 Utilize expressive features like destructuring, to reduce boilerplate in code with implicit returns.
