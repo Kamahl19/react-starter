@@ -10,6 +10,28 @@ This is a live document, updatated on the fly.
 
 ## Good practice
 
+### Use implicit return
+
+Utilize expressive features like destructuring, to reduce boilerplate in code with implicit returns.
+
+❌
+
+```js
+reservations.map(reservation => {
+  const { beginTime, endTime } = reservation;
+
+  return <Text style={sheet.headerDateText}>{formatDate(beginTime, endTime)}</Text>;
+});
+```
+
+✅
+
+```js
+reservations.map(({ beginTime, endTime }) => (
+  <Text style={sheet.headerDateText}>{formatDate(beginTime, endTime)}</Text>
+));
+```
+
 ### Passing functions
 
 Save a call by passing a function as argument, instead of calling it in new anonymous function.
