@@ -10,6 +10,50 @@ This is a live document, updatated on the fly.
 
 ## Good practice
 
+### Function naming
+
+In functional programming we have simple functions like `create`, `select` or `render`. When having a specific version of those,
+always keep the base name as prefix of the function. Avoid anthropomorphic names which are common in object oriented programming.
+
+❌
+
+```js
+const actionsRendered = user => (
+  <>
+    <DeleteButton user={user} />
+    <EditButton user={user} />
+  </>
+);
+
+const usernameSelector = state => state.user.name;
+```
+
+✅
+
+```diff
+- const actionsRendered = user => (
++ const renderActions = user => (
+
+  <>
+    <DeleteButton user={user} />
+    <EditButton user={user} />
+  </>
+);
+
+- const usernameSelector = state => state.user.name;
++ const selectUsername = state => state.user.name;
+```
+
+It follows, that when you call a function, you can name the result (more or less) as the function name without the base name:
+
+✅
+
+```js
+const userName = selectUsername(state); // returns string
+const userActions = renderUserActions(this.props.user); // returns react element
+const reloginAction = createActionCreator(RELOGIN); // returns object
+```
+
 ### Ordering imports
 
 Order imports of dependencies by their reusability level.
