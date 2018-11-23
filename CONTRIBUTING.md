@@ -50,7 +50,7 @@ It follows, that when you call a function, you can name the result (more or less
 
 ```js
 const userName = selectUsername(state); // returns string
-const userActions = renderUserActions(this.props.user); // returns JSX
+const userActions = renderUserActions(this.props.user); // returns react element
 const reloginAction = createActionCreator(RELOGIN); // returns object
 ```
 
