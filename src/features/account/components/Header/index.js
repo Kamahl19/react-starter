@@ -4,16 +4,14 @@ import { NavLink } from 'react-router-dom';
 
 import { Menu, Header } from '../../../../common/components';
 
-const { Item: MenuItem } = Menu;
-
 const AccountHeader = () => (
   <Header>
     {({ isMobile }) => (
-      <MenuItem key="logout">
+      <Menu.Item key="logout">
         <NavLink to="/auth/logout">
           <Trans i18nKey="logout">Logout</Trans>
         </NavLink>
-      </MenuItem>
+      </Menu.Item>
     )}
   </Header>
 );

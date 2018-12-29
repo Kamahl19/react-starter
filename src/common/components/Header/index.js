@@ -4,15 +4,14 @@ import { withRouter } from 'react-router-dom';
 
 import Layout from '../Layout';
 import Logo from '../Logo';
-
-import Nav from './Nav';
+import Navbar from '../Navbar';
 
 const Header = ({ children, history, location }) => (
   <Layout.Header>
     <Logo />
-    <Nav activePathname={location.pathname} history={history}>
+    <Navbar activePathname={location.pathname} history={history}>
       {children}
-    </Nav>
+    </Navbar>
   </Layout.Header>
 );
 

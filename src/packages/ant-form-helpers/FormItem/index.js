@@ -70,7 +70,7 @@ function FormItemHOC(WrappedComponent) {
               <WrappedComponent
                 {...pickFormItemProps(bag)}
                 help={fieldError ? fieldError[0] : ''}
-                validateStatus={fieldError ? 'error' : ''}
+                validateStatus={fieldError ? 'error' : undefined}
               >
                 {field}
               </WrappedComponent>

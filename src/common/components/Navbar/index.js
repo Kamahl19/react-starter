@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-
-import { Menu } from '../../';
+import Menu from 'antd/lib/menu';
 
 import ResponsiveMenu from './ResponsiveMenu';
 
 const MOBILE_WIDTH = 991;
 
-class Nav extends Component {
+export default class Navbar extends Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     activePathname: PropTypes.string.isRequired,
@@ -51,5 +50,3 @@ class Nav extends Component {
     );
   }
 }
-
-export default Nav;
