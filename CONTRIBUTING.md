@@ -18,7 +18,7 @@ Names of constants should be UPPERCASE so we can easily distinguish them from lo
 
 ```js
 export const tabs = {
-  Todo: 'To Do',
+  Pending: 'Pending',
   Resolved: 'Resolved',
 };
 ```
@@ -28,8 +28,8 @@ export const tabs = {
 ```diff
 - export const tabs = {
 + export const TABS = {
--  Todo: 'To Do',
-+  TODO: 'To Do',
+-  Pending: 'Pending',
++  PENDING: 'Pending',
 -  Resolved: 'Resolved',
 +  RESOLVED: 'Resolved',
 };
