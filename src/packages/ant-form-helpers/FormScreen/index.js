@@ -4,7 +4,7 @@ import flattenObject from 'flat';
 
 export const FormContext = React.createContext();
 
-class FormScreen extends Component {
+export default class FormScreen extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -52,5 +52,3 @@ class FormScreen extends Component {
     );
   }
 }
-
-export default FormScreen;

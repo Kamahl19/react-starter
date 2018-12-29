@@ -4,7 +4,7 @@ import pick from 'lodash.pick';
 import omit from 'lodash.omit';
 import Form from 'antd/lib/form';
 
-import { FormContext } from './FormScreen';
+import { FormContext } from '../FormScreen';
 
 const fieldOptionsPropTypes = {
   getValueFromEvent: PropTypes.func,
@@ -17,25 +17,23 @@ const fieldOptionsPropTypes = {
   valuePropName: PropTypes.string,
 };
 
-export const propTypes = {
-  id: PropTypes.string.isRequired,
-  ...fieldOptionsPropTypes,
-  children: PropTypes.node.isRequired,
-};
-
 const fieldOptionsKeys = Object.keys(fieldOptionsPropTypes);
 
-export function pickFieldOptions(props) {
+function pickFieldOptions(props) {
   return pick(props, fieldOptionsKeys);
 }
 
-export function pickFormItemProps(props) {
+function pickFormItemProps(props) {
   return omit(props, fieldOptionsKeys);
 }
 
-export function FormItemHOC(WrappedComponent) {
+function FormItemHOC(WrappedComponent) {
   return class extends Component {
-    static propTypes = propTypes;
+    static propTypes = {
+      id: PropTypes.string.isRequired,
+      ...fieldOptionsPropTypes,
+      children: PropTypes.node.isRequired,
+    };
 
     state = {
       didBlur: false,
@@ -48,9 +46,9 @@ export function FormItemHOC(WrappedComponent) {
     };
 
     renderField(form) {
-      const { id, children, ...props } = this.props;
+      const { id, children, ...bag } = this.props;
 
-      return form.getFieldDecorator(id, pickFieldOptions(props))(
+      return form.getFieldDecorator(id, pickFieldOptions(bag))(
         React.cloneElement(React.Children.only(children), {
           onBlur: this.handleBlur,
         })
@@ -58,7 +56,7 @@ export function FormItemHOC(WrappedComponent) {
     }
 
     render() {
-      const { id, ...props } = this.props;
+      const { id, ...bag } = this.props;
       const { didBlur } = this.state;
 
       return (
@@ -70,7 +68,7 @@ export function FormItemHOC(WrappedComponent) {
 
             return (
               <WrappedComponent
-                {...pickFormItemProps(props)}
+                {...pickFormItemProps(bag)}
                 help={fieldError ? fieldError[0] : ''}
                 validateStatus={fieldError ? 'error' : ''}
               >

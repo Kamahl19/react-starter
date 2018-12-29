@@ -9,8 +9,6 @@ export { default as Row } from 'antd/lib/row';
 export { default as Spin } from 'antd/lib/spin';
 
 export { default as Footer } from './Footer';
-export { default as FormItem } from './Form/FormItem';
-export { default as FormScreen } from './Form/FormScreen';
 export { default as GlobalSpinner } from './GlobalSpinner';
 export { default as Header } from './Header';
 export { default as Layout } from './Layout';
