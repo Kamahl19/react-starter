@@ -7,10 +7,10 @@ import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 const locationHelper = locationHelperBuilder({});
 
 export default connectedReduxRedirect({
+  allowRedirectBack: false,
   authenticatedSelector: state => !selectIsLoggedIn(state),
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
   redirectPath: (state, props) => locationHelper.getRedirectQueryParam(props) || '/',
-  allowRedirectBack: false,
   wrapperDisplayName: 'LoginGuard',
 });

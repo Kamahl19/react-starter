@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createHistory from 'history/createBrowserHistory';
-import { persistReducer, persistStore } from 'redux-persist';
+import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
@@ -14,6 +14,10 @@ const history = createHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
+const migrations = {
+  // Add redux migrations here
+};
+
 const persistedReducer = persistReducer(
   {
     key: 'root',
@@ -21,6 +25,7 @@ const persistedReducer = persistReducer(
     storage: localForage,
     whitelist: ['user'],
     debug: isDev,
+    migrate: createMigrate(migrations, { debug: isDev }),
   },
   rootReducer
 );
@@ -34,7 +39,7 @@ if (isDev) {
 
 const composeEnhancers =
   isDev && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
 const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(...middlewares)));

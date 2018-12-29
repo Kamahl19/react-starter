@@ -33,25 +33,9 @@ const passwordWithLimit = [
   },
 ];
 
-const repeatPassword = form => [
-  ...passwordWithLimit,
-  {
-    validator: (rule, value, cb) => {
-      cb(
-        value && value !== form.getFieldValue('password')
-          ? t('validation.password.noMatch', {
-              defaultValue: 'Passwords do not match',
-            })
-          : undefined
-      );
-    },
-  },
-];
-
 export default {
   required,
   email,
   password,
   passwordWithLimit,
-  repeatPassword,
 };

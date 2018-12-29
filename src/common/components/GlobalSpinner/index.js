@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connectSpinner } from '../../services/spinner';
+import { connectSpinner } from '../../../packages/spinner';
 
 import { Spin } from '../';
 

@@ -11,48 +11,32 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
-} from '../../utils/reduxHelpers';
+} from '../../../packages/redux-helpers';
 
 import api from './api';
 
 /**
  * ACTION TYPES
  */
-export const RELOGIN = 'user/RELOGIN';
 export const LOGIN = 'user/LOGIN';
+export const RELOGIN = 'user/RELOGIN';
 export const LOGOUT = 'user/LOGOUT';
 
 /**
  * ACTIONS
  */
 export const loginActions = createApiActionCreators(LOGIN);
-export const logoutAction = createActionCreator(LOGOUT);
 export const reloginAction = createActionCreator(RELOGIN);
+export const logoutAction = createActionCreator(LOGOUT);
 
 /**
  * REDUCERS
  */
 const initialState = {
+  isAuthenticating: false,
   profile: null,
   token: null,
-  isAuthenticating: false,
 };
-
-const profile = createReducer(initialState.profile, {
-  [LOGIN]: {
-    [SUCCESS]: (state, { user: profile }) => profile,
-    [FAILURE]: () => initialState.profile,
-  },
-  [LOGOUT]: state => initialState.profile,
-});
-
-const token = createReducer(initialState.token, {
-  [LOGIN]: {
-    [SUCCESS]: (state, { token }) => token,
-    [FAILURE]: () => initialState.token,
-  },
-  [LOGOUT]: state => initialState.token,
-});
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
   [RELOGIN]: () => true,
@@ -63,10 +47,24 @@ const isAuthenticating = createReducer(initialState.isAuthenticating, {
   },
 });
 
+const profile = createReducer(initialState.profile, {
+  [LOGIN]: {
+    [SUCCESS]: (state, { user: profile }) => profile,
+    [FAILURE]: () => initialState.profile,
+  },
+});
+
+const token = createReducer(initialState.token, {
+  [LOGIN]: {
+    [SUCCESS]: (state, { token }) => token,
+    [FAILURE]: () => initialState.token,
+  },
+});
+
 export default combineReducers({
+  isAuthenticating,
   profile,
   token,
-  isAuthenticating,
 });
 
 /**
@@ -74,11 +72,10 @@ export default combineReducers({
  */
 export const selectUser = state => state.user;
 
+export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
 export const selectProfile = state => selectUser(state).profile;
 export const selectToken = state => selectUser(state).token;
-export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
 
-export const selectUserEmail = createSelector(selectProfile, profile => profile && profile.email);
 export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
 
 /**

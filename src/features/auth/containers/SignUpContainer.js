@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { connectSpinner } from '../../../common/services/spinner';
+import { connectSpinner } from '../../../packages/spinner';
 
 import { signUpRequest } from '../ducks';
 import { apiCallIds } from '../api';

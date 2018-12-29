@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import { t } from '../../common/services/i18n';
 import AlertService from '../../common/services/alert';
 import { loginActions } from '../../common/services/user';
-import { createActionCreator } from '../../common/utils/reduxHelpers';
+import { createActionCreator } from '../../packages/redux-helpers';
 
 import api from './api';
 

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { connect } from 'react-redux';
 import { put } from 'redux-saga/effects';
 
-import { createActionCreator, createReducer } from '../utils/reduxHelpers';
+import { createActionCreator, createReducer } from '../redux-helpers';
 
 /**
  * ACTION TYPES
@@ -71,18 +71,25 @@ export function withApiCall(apiCallId, saga) {
   };
 }
 
-export const connectSpinner = apiCallIds => Component =>
-  connect(
-    state =>
-      apiCallIds
-        ? Object.entries(apiCallIds).reduce(
-            (acc, [propName, apiCallId]) => ({
-              ...acc,
-              [propName]: selectIsInProgress(state, apiCallId),
-            }),
-            {}
-          )
-        : {
-            isLoading: selectGlobalCounter(state),
-          }
+export const connectSpinner = apiCallIds => Component => {
+  const createMapStateToProps = apiCallIds => {
+    const entries = Object.entries(apiCallIds);
+
+    return state =>
+      entries.reduce(
+        (acc, [propName, apiCallId]) => ({
+          ...acc,
+          [propName]: selectIsInProgress(state, apiCallId),
+        }),
+        {}
+      );
+  };
+
+  return connect(
+    apiCallIds
+      ? createMapStateToProps(apiCallIds)
+      : state => ({
+          isLoading: selectGlobalCounter(state),
+        })
   )(Component);
+};

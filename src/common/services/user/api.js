@@ -5,11 +5,7 @@ export const apiCallIds = {
 };
 
 export default {
-  login: credentials => {
-    return apiClient.post('/auth/login', credentials, { apiCallId: apiCallIds.LOGIN });
-  },
+  login: credentials => apiClient.post('/auth/login', credentials, { apiCallId: apiCallIds.LOGIN }),
 
-  relogin: () => {
-    return apiClient.get('/auth/relogin');
-  },
+  relogin: () => apiClient.get('/auth/relogin'),
 };

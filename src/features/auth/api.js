@@ -7,31 +7,23 @@ export const apiCallIds = {
 };
 
 export default {
-  signUp: userData => {
-    delete userData.repeatPassword;
-
-    return apiClient.post('/users', userData, {
+  signUp: userData =>
+    apiClient.post('/users', userData, {
       apiCallId: apiCallIds.SIGN_UP,
-    });
-  },
+    }),
 
-  forgottenPassword: email => {
-    return apiClient.post(
+  forgottenPassword: email =>
+    apiClient.post(
       '/auth/forgotten-password',
       { email },
       { apiCallId: apiCallIds.FORGOTTEN_PASSWORD }
-    );
-  },
+    ),
 
-  resetPassword: resetData => {
-    delete resetData.repeatPassword;
-
-    return apiClient.post('/auth/reset-password', resetData, {
+  resetPassword: resetData =>
+    apiClient.post('/auth/reset-password', resetData, {
       apiCallId: apiCallIds.RESET_PASSWORD,
-    });
-  },
+    }),
 
-  activateUser: (userId, activationToken) => {
-    return apiClient.get(`/users/${userId}/activate/${activationToken}`);
-  },
+  activateUser: (userId, activationToken) =>
+    apiClient.get(`/users/${userId}/activate/${activationToken}`),
 };

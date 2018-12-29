@@ -7,20 +7,19 @@ import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { Route, Switch } from 'react-router-dom';
 
+import RouterScrollToTop from '../packages/router-scroll-to-top';
+
 // must be first
 import { store, persistor, history } from './store/configureStore';
-
 // order matters
 import i18n from '../common/services/i18n';
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
 import { reloginAction } from '../common/services/user';
-
 import ErrorBoundary from './components/ErrorBoundary';
-import ScrollToTop from './components/ScrollToTop';
-
 import AuthApp from '../features/auth/AuthApp';
 import AccountApp from '../features/account/AccountApp';
 
+// TODO this shouldnt be in Root.js, move elsewhere
 function relogin() {
   if (history.location.pathname !== '/auth/logout') {
     const state = store.getState();
@@ -39,12 +38,12 @@ const Root = () => (
         <Provider store={store}>
           <PersistGate loading={<div />} persistor={persistor} onBeforeLift={relogin}>
             <ConnectedRouter history={history}>
-              <ScrollToTop>
+              <RouterScrollToTop>
                 <Switch>
                   <Route path="/auth" component={AuthApp} />
                   <Route exact path="/" component={IsLoggedIn(AccountApp)} />
                 </Switch>
-              </ScrollToTop>
+              </RouterScrollToTop>
             </ConnectedRouter>
           </PersistGate>
         </Provider>

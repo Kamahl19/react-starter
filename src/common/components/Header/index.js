@@ -8,14 +8,12 @@ import Logo from '../Logo';
 import Nav from './Nav';
 
 const Header = ({ children, history, location }) => (
-  <div className="container">
-    <Layout.Header>
-      <Logo />
-      <Nav activePathname={location.pathname} history={history}>
-        {children}
-      </Nav>
-    </Layout.Header>
-  </div>
+  <Layout.Header>
+    <Logo />
+    <Nav activePathname={location.pathname} history={history}>
+      {children}
+    </Nav>
+  </Layout.Header>
 );
 
 Header.propTypes = {

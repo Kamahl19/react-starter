@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { connectSpinner } from '../../../common/services/spinner';
+import { connectSpinner } from '../../../packages/spinner';
 
 import { forgottenPasswordRequest } from '../ducks';
 import { apiCallIds } from '../api';

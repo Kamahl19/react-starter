@@ -22,12 +22,13 @@ export const createReducer = (initialState, reducerMap) => {
   const iterator = (reducers, initial = {}, prefix = []) =>
     reduce(
       reducers,
-      (acc, reducer, type) => {
-        if (typeof reducer === 'function') {
-          return { ...acc, [createActionType(prefix, type)]: reducer };
-        }
-        return iterator(reducer, acc, [createActionType(prefix, type)]);
-      },
+      (acc, reducer, type) =>
+        typeof reducer === 'function'
+          ? {
+              ...acc,
+              [createActionType(prefix, type)]: reducer,
+            }
+          : iterator(reducer, acc, [createActionType(prefix, type)]),
       initial
     );
 

@@ -1,6 +1,9 @@
 import React from 'react';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { store } from '../../src/app/store/configureStore';
+const createReduxDecorator = reducers => story => (
+  <Provider store={createStore(combineReducers(reducers))}>{story()}</Provider>
+);
 
-export default story => <Provider store={store}>{story()}</Provider>;
+export default createReduxDecorator;

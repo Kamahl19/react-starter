@@ -5,8 +5,8 @@ export default class ErrorBoundary extends Component {
     hasError: false,
   };
 
-  componentDidCatch(error) {
-    this.setState({ hasError: true });
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
   }
 
   render() {
@@ -14,12 +14,13 @@ export default class ErrorBoundary extends Component {
     const { hasError } = this.state;
 
     return hasError ? (
-      <div className="container">
+      <>
         <h1>Unexpected Error</h1>
+        <p>This is a problem on our side, not yours.</p>
         <p>
           <a href="/">Reload</a>
         </p>
-      </div>
+      </>
     ) : (
       children
     );

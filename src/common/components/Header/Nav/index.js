@@ -42,7 +42,7 @@ class Nav extends Component {
               {children({ isMobile })}
             </ResponsiveMenu>
           ) : (
-            <Menu theme="dark" mode="horizontal" selectedKeys={[activePathname]}>
+            <Menu mode="horizontal" theme="dark" selectedKeys={[activePathname]}>
               {children({ isMobile })}
             </Menu>
           )

@@ -1,8 +1,6 @@
 import i18next from 'i18next';
 import { reactI18nextModule } from 'react-i18next';
 
-import moment from 'moment';
-
 import locales from '../../resources/locales';
 
 const COMMON_NAMESPACE = 'common';
@@ -16,21 +14,16 @@ const i18nInstance = i18next.use(reactI18nextModule).init({
   nsSeparator: false,
   returnEmptyString: false,
   whitelist: [ENGLISH],
-  // allows en-US if en is in whitelist, etc.
   nonExplicitWhitelist: true,
-  // if the user language doesn't match anything in the whitelist, use this
   fallbackLng: ENGLISH,
   react: {
     wait: true,
+    defaultTransParent: 'span', // TODO remove when https://bugs.chromium.org/p/chromium/issues/detail?id=872770 is fixed
   },
 });
 
 Object.keys(locales).forEach(locale => {
   i18next.addResourceBundle(locale, COMMON_NAMESPACE, locales[locale]);
-});
-
-i18next.on('languageChanged', lng => {
-  moment.locale(LANGUAGES[lng].momentLocale);
 });
 
 export default i18nInstance;
@@ -42,6 +35,5 @@ export function t(...args) {
 export const LANGUAGES = {
   [ENGLISH]: {
     text: t('lang.english', { defaultValue: 'English' }),
-    momentLocale: ENGLISH,
   },
 };

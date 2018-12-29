@@ -1,8 +1,8 @@
 export { default as Button } from 'antd/lib/button';
 export { default as Col } from 'antd/lib/col';
+export { default as Form } from 'antd/lib/form';
 export { default as Icon } from 'antd/lib/icon';
 export { default as Input } from 'antd/lib/input';
-export { default as Form } from 'antd/lib/form';
 export { default as Menu } from 'antd/lib/menu';
 export { default as Modal } from 'antd/lib/modal';
 export { default as Row } from 'antd/lib/row';

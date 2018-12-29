@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { store } from '../../app/store/configureStore';
 
-import { startApiCallAction, finishApiCallAction } from './spinner';
+import { startApiCallAction, finishApiCallAction } from '../../packages/spinner';
+
 import { selectToken, logoutAction } from './user';
 import AlertService from './alert';
 

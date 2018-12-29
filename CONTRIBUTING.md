@@ -70,7 +70,6 @@ Remember to put an empty line between two categories.
 import { alertSuccess } from '../common/atoms/alert';
 import axios from 'axios';
 import constants from './constants';
-import { removeFromArray } from '../common/reduxHelpers';
 ```
 
 ✅
@@ -79,7 +78,6 @@ import { removeFromArray } from '../common/reduxHelpers';
 import axios from 'axios';
 
 import { alertSuccess } from '../common/atoms/alert';
-import { removeFromArray } from '../common/reduxHelpers';
 
 import constants from './constants';
 ```
