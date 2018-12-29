@@ -10,6 +10,31 @@ This is a live document, updatated on the fly.
 
 ## Good practice
 
+### Uppercase constants
+
+Names of constants should be UPPERCASE so we can easily distinguish them from local variables.
+
+❌
+
+```js
+export const tabs = {
+  Todo: 'To Do',
+  Resolved: 'Resolved',
+};
+```
+
+✅
+
+```diff
+- export const tabs = {
++ export const TABS = {
+-  Todo: 'To Do',
++  TODO: 'To Do',
+-  Resolved: 'Resolved',
++  RESOLVED: 'Resolved',
+};
+```
+
 ### Function naming
 
 In functional programming we have simple functions like `create`, `select` or `render`. When having a specific version of those,
