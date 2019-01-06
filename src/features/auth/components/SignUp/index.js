@@ -43,8 +43,8 @@ const SignUpForm = ({ form, t, isLoading, onSubmit }) => (
 
 SignUpForm.propTypes = {
   form: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

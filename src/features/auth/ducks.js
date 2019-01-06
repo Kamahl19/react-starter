@@ -25,8 +25,8 @@ export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
 /**
  * SAGAS
  */
-function* signUp({ payload }) {
-  const resp = yield call(api.signUp, payload);
+function* signUp({ payload: { email, password } }) {
+  const resp = yield call(api.signUp, email, password);
 
   yield call(receiveLogin, resp);
 }

@@ -7,10 +7,14 @@ export const apiCallIds = {
 };
 
 export default {
-  signUp: userData =>
-    apiClient.post('/users', userData, {
-      apiCallId: apiCallIds.SIGN_UP,
-    }),
+  signUp: (email, password) =>
+    apiClient.post(
+      '/users',
+      { email, password },
+      {
+        apiCallId: apiCallIds.SIGN_UP,
+      }
+    ),
 
   forgottenPassword: email =>
     apiClient.post(
