@@ -19,10 +19,14 @@ export default {
       { apiCallId: apiCallIds.FORGOTTEN_PASSWORD }
     ),
 
-  resetPassword: resetData =>
-    apiClient.post('/auth/reset-password', resetData, {
-      apiCallId: apiCallIds.RESET_PASSWORD,
-    }),
+  resetPassword: (email, password, passwordResetToken) =>
+    apiClient.post(
+      '/auth/reset-password',
+      { email, password, passwordResetToken },
+      {
+        apiCallId: apiCallIds.RESET_PASSWORD,
+      }
+    ),
 
   activateUser: (userId, activationToken) =>
     apiClient.get(`/users/${userId}/activate/${activationToken}`),

@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Layout, Footer } from '../../common/components';
 
 import Header from './components/Header';
 
-const AccountApp = ({ children }) => (
+const AccountApp = () => (
   <Layout>
     <Header />
     <Layout.Content>
@@ -14,9 +13,5 @@ const AccountApp = ({ children }) => (
     <Footer />
   </Layout>
 );
-
-AccountApp.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default AccountApp;

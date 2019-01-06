@@ -7,16 +7,16 @@ import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
 import { Button, Form, Input } from '../../../../common/components';
 import rules from '../../../../common/rules';
 
-const ResetPasswordForm = ({ form, t, isLoading, onSubmit }) => (
+const ResetPasswordForm = ({ form, isLoading, t, onSubmit }) => (
   <FormScreen form={form} onSubmit={onSubmit}>
     {({ hasErrors, handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
         <FormItem
-          id="code"
-          rules={[rules.required, rules.code]}
-          label={<Trans i18nKey="fields.code.label">Code</Trans>}
+          id="email"
+          rules={[rules.required, rules.email]}
+          label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
         >
-          <Input placeholder={t('fields.code.placeholder', { defaultValue: 'Code' })} />
+          <Input placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })} />
         </FormItem>
         <FormItem
           id="password"
@@ -30,13 +30,6 @@ const ResetPasswordForm = ({ form, t, isLoading, onSubmit }) => (
             })}
           />
         </FormItem>
-        <FormItem
-          id="email"
-          rules={[rules.required, rules.email]}
-          label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
-        >
-          <Input placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })} />
-        </FormItem>
         <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
           <Trans i18nKey="fields.submit">Submit</Trans>
         </Button>
@@ -47,8 +40,8 @@ const ResetPasswordForm = ({ form, t, isLoading, onSubmit }) => (
 
 ResetPasswordForm.propTypes = {
   form: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

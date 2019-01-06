@@ -16,12 +16,20 @@ const mapDispatchToProps = {
   resetPassword: resetPasswordRequest,
 };
 
-const ResetPasswordContainer = ({ resetPassword }) => (
-  <EnhancedResetPassword onSubmit={resetPassword} />
-);
+const ResetPasswordContainer = ({
+  resetPassword,
+  match: {
+    params: { passwordResetToken },
+  },
+}) => <EnhancedResetPassword onSubmit={data => resetPassword({ ...data, passwordResetToken })} />;
 
 ResetPasswordContainer.propTypes = {
   resetPassword: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      passwordResetToken: PropTypes.string.isRequired,
+    }),
+  }),
 };
 
 export default connect(

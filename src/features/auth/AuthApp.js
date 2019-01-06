@@ -13,7 +13,7 @@ import ResetPasswordContainer from './containers/ResetPasswordContainer';
 import SignUpContainer from './containers/SignUpContainer';
 import Header from './components/Header';
 
-const AccountApp = () => (
+const AuthApp = () => (
   <Layout>
     <Header />
     <Layout.Content>
@@ -27,7 +27,11 @@ const AccountApp = () => (
           path="/auth/forgotten-password"
           component={IsAnonymous(ForgottenPasswordContainer)}
         />
-        <Route exact path="/auth/reset-password" component={IsAnonymous(ResetPasswordContainer)} />
+        <Route
+          exact
+          path="/auth/reset-password/:passwordResetToken"
+          component={IsAnonymous(ResetPasswordContainer)}
+        />
         <Route component={NotFound} />
       </Switch>
     </Layout.Content>
@@ -35,4 +39,4 @@ const AccountApp = () => (
   </Layout>
 );
 
-export default AccountApp;
+export default AuthApp;

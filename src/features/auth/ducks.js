@@ -51,8 +51,8 @@ function* forgottenPassword({ payload }) {
   }
 }
 
-function* resetPassword({ payload }) {
-  const resp = yield call(api.resetPassword, payload);
+function* resetPassword({ payload: { email, password, passwordResetToken } }) {
+  const resp = yield call(api.resetPassword, email, password, passwordResetToken);
 
   yield call(receiveLogin, resp);
 }
