@@ -24,7 +24,7 @@
 ## Start app
 
 To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server at `http://localhost:3000` (or first next free port).
-All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Express Starter](https://github.com/Kamahl19/express-starter) which works with `React Starter` out of the box.
+All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with `React Starter` out of the box.
 
 ## Build app
 
