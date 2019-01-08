@@ -12,15 +12,14 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=10.14.2",
-    "yarn": ">=1.12.3"
+    "node": ">=10.14.2"
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
     "build": "yarn build-less && react-scripts build",
     "build-less": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"{src,tests,__{tests,mocks}__}/**/*.{js,less}\"",
+    "format": "prettier --write **/*.{js,json,less,md}",
     "extract-translations": "i18next-scanner --config i18next-scanner.config.js 'src/**/*.js'",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/",
     "start": "npm-run-all -p watch-less start-js",

@@ -1,1 +1,5 @@
+# IDE
+.vscode
+
+# NPM files
 package.json
