@@ -8,21 +8,24 @@ import { signUpRequest } from '../ducks';
 import { apiCallIds } from '../api';
 import SignUp from '../components/SignUp';
 
-const EnhancedSignUp = connectSpinner({
-  isLoading: apiCallIds.SIGN_UP,
-})(SignUp);
-
 const mapDispatchToProps = {
   signUp: signUpRequest,
 };
 
-const SignUpContainer = ({ signUp }) => <EnhancedSignUp onSubmit={signUp} />;
+const SignUpContainer = ({ isLoading, signUp }) => (
+  <SignUp isLoading={isLoading} onSubmit={signUp} />
+);
 
 SignUpContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
 };
 
 export default connect(
   undefined,
   mapDispatchToProps
-)(SignUpContainer);
+)(
+  connectSpinner({
+    isLoading: apiCallIds.SIGN_UP,
+  })(SignUpContainer)
+);

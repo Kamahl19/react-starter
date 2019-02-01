@@ -8,23 +8,24 @@ import { forgottenPasswordRequest } from '../ducks';
 import { apiCallIds } from '../api';
 import ForgottenPassword from '../components/ForgottenPassword';
 
-const EnhancedForgottenPassword = connectSpinner({
-  isLoading: apiCallIds.FORGOTTEN_PASSWORD,
-})(ForgottenPassword);
-
 const mapDispatchToProps = {
   forgottenPassword: forgottenPasswordRequest,
 };
 
-const ForgottenPasswordContainer = ({ forgottenPassword }) => (
-  <EnhancedForgottenPassword onSubmit={forgottenPassword} />
+const ForgottenPasswordContainer = ({ forgottenPassword, isLoading }) => (
+  <ForgottenPassword isLoading={isLoading} onSubmit={forgottenPassword} />
 );
 
 ForgottenPasswordContainer.propTypes = {
   forgottenPassword: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(
   undefined,
   mapDispatchToProps
-)(ForgottenPasswordContainer);
+)(
+  connectSpinner({
+    isLoading: apiCallIds.FORGOTTEN_PASSWORD,
+  })(ForgottenPasswordContainer)
+);
