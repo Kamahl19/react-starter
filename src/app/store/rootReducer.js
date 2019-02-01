@@ -10,7 +10,6 @@ export default function createRootReducer(history) {
   const rootReducer = combineReducers({
     user,
     spinner,
-    modal,
     router: connectRouter(history),
   });
 
