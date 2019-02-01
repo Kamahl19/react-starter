@@ -1,50 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans, withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 
-import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
+import { connectSpinner } from '../../../../packages/spinner';
+import { signUpRequest } from '../../ducks';
+import { apiCallIds } from '../../api';
 
-import { Button, Form, Input } from '../../../../common/components';
-import rules from '../../../../common/rules';
+import SignUp from './component';
 
-const SignUpForm = ({ form, isLoading, t, onSubmit }) => (
-  <FormScreen form={form} onSubmit={onSubmit}>
-    {({ hasErrors, handleSubmit }) => (
-      <Form onSubmit={handleSubmit}>
-        <FormItem
-          id="email"
-          rules={[rules.required, rules.email]}
-          label={<Trans i18nKey="signUp.email.label">E-mail</Trans>}
-        >
-          <Input
-            placeholder={t('signUp.email.placeholder', { defaultValue: 'E-mail' })}
-            autoFocus
-          />
-        </FormItem>
-        <FormItem
-          id="password"
-          rules={rules.passwordWithLimit}
-          label={<Trans i18nKey="fields.password.label">Password</Trans>}
-        >
-          <Input.Password
-            placeholder={t('signUp.password.placeholder', {
-              defaultValue: 'Choose Password',
-            })}
-          />
-        </FormItem>
-        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-          <Trans i18nKey="signUp.signUp">Sign Up</Trans>
-        </Button>
-      </Form>
-    )}
-  </FormScreen>
-);
-
-SignUpForm.propTypes = {
-  form: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  t: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+const mapDispatchToProps = {
+  signUp: signUpRequest,
 };
 
-export default withTranslation()(Form.create()(SignUpForm));
+const SignUpContainer = ({ isLoading, signUp }) => (
+  <SignUp isLoading={isLoading} onSubmit={signUp} />
+);
+
+SignUpContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  signUp: PropTypes.func.isRequired,
+};
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(
+  connectSpinner({
+    isLoading: apiCallIds.SIGN_UP,
+  })(SignUpContainer)
+);

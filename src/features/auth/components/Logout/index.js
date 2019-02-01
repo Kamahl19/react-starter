@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logoutAction } from '../../../common/services/user';
-
-import AuthSpinner from '../components/AuthSpinner';
+import { logoutAction } from '../../../../common/services/user';
 
 const mapDispatchToProps = {
   logout: logoutAction,
@@ -20,7 +18,7 @@ class LogoutContainer extends Component {
   }
 
   render() {
-    return <AuthSpinner />;
+    return <h1>Logging you out...</h1>;
   }
 }
 

@@ -1,12 +1,14 @@
 import { addDecorator, configure } from '@storybook/react';
+import StoryRouter from 'storybook-react-router';
 
 import LocaleDecorator from './addons/LocaleDecorator';
-import Row from './addons/Row';
+import SuspenseDecorator from './addons/SuspenseDecorator';
 
 import '../src/app/styles/main.css';
 
+addDecorator(SuspenseDecorator);
 addDecorator(LocaleDecorator);
-addDecorator(Row.Decorator);
+addDecorator(StoryRouter());
 
 function loadStories() {
   const req = require.context('../src', true, /.stories.js$/);
