@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { reducer as modal } from 'redux-modal';
 
 import spinner from '../../packages/spinner';
 
@@ -9,7 +8,6 @@ import user, { LOGOUT } from '../../common/services/user';
 const rootReducer = combineReducers({
   user,
   spinner,
-  modal,
   router: routerReducer,
 });
 

@@ -11659,14 +11659,6 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-modal@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/redux-modal/-/redux-modal-3.0.1.tgz#6cfd8e9a1248d12370a57b0489faa2cdd0bb4435"
-  integrity sha512-izaqtq7T8wbPQoYdKOOGmFsCgId9DJ0Wt+RO5FR9E9pmt7CpG2HY4t/n7akgCIQX6ShqDYNd7iI5jeSTLbdbTA==
-  dependencies:
-    hoist-non-react-statics "^3.0.0"
-    prop-types "^15.5.10"
-
 redux-persist@^5.10.0:
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"

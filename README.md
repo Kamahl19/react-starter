@@ -12,7 +12,6 @@
 - `redux` - s state container
   - `redux-saga` - a side effect model for redux apps
   - `redux-persist` - persist and rehydrate a redux store
-  - `redux-modal` - redux based modal solution
   - `redux-logger` - logger for redux
   - `reselect` - selector library for redux
 - `create-react-app` - create react apps with no build configuration
