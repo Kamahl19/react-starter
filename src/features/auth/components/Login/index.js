@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans, translate } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
@@ -51,4 +51,4 @@ LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default translate()(Form.create()(LoginForm));
+export default withTranslation()(Form.create()(LoginForm));

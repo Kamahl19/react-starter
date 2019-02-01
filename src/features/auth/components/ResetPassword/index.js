@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans, translate } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 
 import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
 
@@ -45,4 +45,4 @@ ResetPasswordForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default translate()(Form.create()(ResetPasswordForm));
+export default withTranslation()(Form.create()(ResetPasswordForm));

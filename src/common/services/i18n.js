@@ -1,5 +1,5 @@
-import i18next from 'i18next';
-import { reactI18nextModule } from 'react-i18next';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 import locales from '../../resources/locales';
 
@@ -8,7 +8,7 @@ const COMMON_NAMESPACE = 'common';
 export const ENGLISH = 'en';
 
 // see: https://www.i18next.com/overview/configuration-options
-const i18nInstance = i18next.use(reactI18nextModule).init({
+i18n.use(initReactI18next).init({
   ns: COMMON_NAMESPACE,
   defaultNS: COMMON_NAMESPACE,
   nsSeparator: false,
@@ -22,14 +22,14 @@ const i18nInstance = i18next.use(reactI18nextModule).init({
   },
 });
 
+export default i18n;
+
 Object.keys(locales).forEach(locale => {
-  i18next.addResourceBundle(locale, COMMON_NAMESPACE, locales[locale]);
+  i18n.addResourceBundle(locale, COMMON_NAMESPACE, locales[locale]);
 });
 
-export default i18nInstance;
-
 export function t(...args) {
-  return i18nInstance.t(...args);
+  return i18n.t(...args);
 }
 
 export const LANGUAGES = {
