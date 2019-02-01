@@ -26,8 +26,7 @@ const SignUpForm = ({ form, t, isLoading, onSubmit }) => (
           rules={rules.passwordWithLimit}
           label={<Trans i18nKey="fields.password.label">Password</Trans>}
         >
-          <Input
-            type="password"
+          <Input.Password
             placeholder={t('signUp.password.placeholder', {
               defaultValue: 'Choose Password',
             })}
