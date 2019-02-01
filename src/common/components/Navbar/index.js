@@ -5,7 +5,7 @@ import Menu from 'antd/lib/menu';
 
 import ResponsiveMenu from './ResponsiveMenu';
 
-const MOBILE_WIDTH = 991;
+const MOBILE_MAX_WIDTH = 767;
 
 export default class Navbar extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ export default class Navbar extends Component {
     const { responsiveMenuVisible } = this.state;
 
     return (
-      <MediaQuery maxWidth={`${MOBILE_WIDTH}px`}>
+      <MediaQuery maxWidth={MOBILE_MAX_WIDTH}>
         {isMobile =>
           isMobile ? (
             <ResponsiveMenu
