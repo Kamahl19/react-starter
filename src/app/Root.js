@@ -14,7 +14,7 @@ import { store, persistor, history } from './store/configureStore';
 // order matters
 import i18n from '../common/services/i18n';
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
-import { reloginAction } from '../common/services/user';
+import { reloginAction, selectToken } from '../common/services/user';
 import ErrorBoundary from './components/ErrorBoundary';
 import AuthApp from '../features/auth/AuthApp';
 import AccountApp from '../features/account/AccountApp';
@@ -22,10 +22,8 @@ import AccountApp from '../features/account/AccountApp';
 // TODO this shouldnt be in Root.js, move elsewhere
 function relogin() {
   if (history.location.pathname !== '/auth/logout') {
-    const state = store.getState();
-
     // TODO is check this necessary ?
-    if (state && state.auth && state.auth.token) {
+    if (selectToken(store.getState())) {
       store.dispatch(reloginAction());
     }
   }

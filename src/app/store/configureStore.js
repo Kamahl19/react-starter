@@ -34,7 +34,9 @@ const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
 if (isDev) {
   const { createLogger } = require('redux-logger');
-  middlewares.push(createLogger());
+  const ImmutableStateInvariant = require('redux-immutable-state-invariant').default;
+
+  middlewares.push(createLogger(), ImmutableStateInvariant());
 }
 
 const composeEnhancers =
