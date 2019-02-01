@@ -1,103 +1,79 @@
 # React Starter
 
-Simple starter for React, React Native and Express API server
-
 ## What’s Inside?
 
-* React Web App Starter
-  * Auth using JWT
-  * Ant.Design
-  * Axios
-  * i18n (i18next)
-  * Redux (saga, persist, logger, Reselect)
-  * react-router
-  * [create-react-app](https://github.com/facebookincubator/create-react-app)
-  * Basic user functionality (signup, login, logout, reset password, activate user)
-  * redux-modal
-  * Storyboard
-* React Native Starter
-  * Auth using JWT
-  * Axios
-  * Redux (saga, persist, logger, Reselect)
-  * React Navigation
-  * Form validation
-  * Alert service
-  * Basic user functionality (signup, login, logout, reset password)
-* Rest API Express Server
-  * Mongo DB
-  * DB Seeding
-  * Migrations
-  * Auth using JWT
-  * Logging (bunyan & morgan)
-  * Env variables using .env
-  * Cors, Compression, Helmet
-  * E-mail service
-  * Request validation (joi)
-  * Basic user functionality (signup, login, logout, reset password, activate user)
+- `JWT` Authorization - including all the common features such as Sign-up, Login, Logout, Reset password, Email verification
+- `redux-auth-wrapper` - a HOC for handling Authentication and Authorization
+- `Ant.Design` - a UI library
+- `axios` - promise based HTTP client
+- `i18next` - an internationalization framework
+- `less` - dynamic stylesheet language
+- `react-router` - declarative routing
+- `redux` - s state container
+  - `redux-saga` - a side effect model for redux apps
+  - `redux-persist` - persist and rehydrate a redux store
+  - `redux-modal` - redux based modal solution
+  - `redux-logger` - logger for redux
+  - `reselect` - selector library for redux
+- `create-react-app` - create react apps with no build configuration
+- `prettier` - opinionated code formatter
+- `source-map-explorer` - analyze and debug space usage through source maps
+- `@storybook/react` - a development environment for UI components
+- `dotenv` - loads environment variables from an `.env` file
 
-## Getting Started
+## Start app
 
-Clone this repository:
+To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server at `http://localhost:3000` (or first next free port).
+All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with `React Starter` out of the box.
 
-```sh
-git clone https://github.com/Kamahl19/react-starter my-app
-cd my-app
-rm -rf .git
-git init
+## Build app
+
+To build app, run `yarn build` in app root directory.
+
+## Project structure
+
+```
+-| public/: Public assets
+-| src/
+ |--| app/: Main application (framework) files.
+ |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
+ |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
+ |--| resources/: locales, files etc.
+ |--| index.js: application entry file
+-| stories/: Storybook stories used to component development and demos.
 ```
 
-This project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example` in both `/backend` and `/frontend`, rename it to `.env` and add your env vars as you see fit.
+## Prettier
 
-Seed DB & Start the backend
+This project uses [Prettier](https://prettier.io/), an opinionated code formatter. It also comes with Prettier configuration for [Visual Studio Code](https://code.visualstudio.com/). In order to format code manually, run `yarn format` in app root directory.
 
-```sh
-cd backend
-yarn install
-yarn seed
-yarn start
-```
+## ESLint
 
-Start the frontend
+Project comes with ESLint configured. It helps you prevent common errors.
 
-```sh
-cd frontend
-yarn install
-yarn start
-```
+There are multiple ways how to run ESLint.
 
-Start the React native
+- CLI: `yarn lint`
+- in browser console while developing (after running `yarn start`)
+- in IDE if supported (Visual Studio Code supports reports)
 
-```sh
-cd rnmobile
-yarn install
-react-native run-ios
-```
+## Storybook
 
-## Deployment
+We suggest developing component in isolation. For this reason, project comes with **Storybook** pre-configured.
 
-Build frontend
+To run separated development environment, run `yarn storybook` which will start dedicated web server at `http://localhost:9001`.
 
-```sh
-cd frontend
-yarn build
-```
+More information about supported features can be found in [Storybook's Github repository](https://github.com/storybooks/storybook)
 
-Deploy app to Heroku
+## i18n
 
-```sh
-cd backend
-heroku login
-heroku create my-app
-git init
-heroku git:remote -a my-app
-git add .
-git commit -am "initial commit"
-git push heroku master
-```
+There are two ways how to define a translation string:
 
-## Login credentials
+- Using i18next's `Trans` component - this is preferred option whenever possible, virtually always in `jsx` except when we need to translate HTML attributes such as `alt`, `placeholder`, `title`, etc. Usage of component brings together benefits of having unique keys while keeping texts in markups. The content of component is used as a default message, when no explicit translation resource is defined.
+- Using i18next's `t` function - this is the option outside of `jsx` files and for HTML attributes.
 
-### After running `yarn seed` you can login with these credentials
+Running `yarn extract-translations` will update alphabetically sorted JSON files with key-translations pairs. It will use default messages for keys without explicit translations.
 
-* username: `user@example.com`
-* password: `password`
+## Analysing JS bundle
+
+Project comes with the `source-map-explorer` which analyze and debug JS bundle. To use it just run `yarn analyze`

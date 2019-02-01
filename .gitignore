@@ -1,7 +1,5 @@
-# OSX
+# OS
 .DS_Store
-
-# Windows
 Thumbs.db
 
 # node.js
@@ -9,3 +7,12 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# build
+build
+
+# env variables
+.env
+
+# compiled styles
+src/**/main.css

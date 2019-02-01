@@ -1,8 +1,0 @@
-# build
-build
-
-# env variables
-.env
-
-# compiled styles
-src/**/main.css

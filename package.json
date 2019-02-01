@@ -1,0 +1,82 @@
+{
+  "name": "react-starter",
+  "version": "2.0.0",
+  "description": "Simple starter for React",
+  "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kamahl19/react-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kamahl19/react-starter/issues"
+  },
+  "engines": {
+    "node": ">=10.14.2"
+  },
+  "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "build": "yarn build-less && react-scripts build",
+    "build-less": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
+    "eject": "react-scripts eject",
+    "format": "prettier --write **/*.{js,json,less,md}",
+    "extract-translations": "i18next-scanner --config i18next-scanner.config.js 'src/**/*.js'",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/",
+    "start": "npm-run-all -p watch-less start-js",
+    "start-js": "react-scripts start",
+    "storybook": "npm-run-all -p storybook:start watch-less",
+    "storybook:start": "start-storybook -p 9001 -s public -c .storybook",
+    "storybook:build": "build-storybook -s public -c .storybook",
+    "test": "react-scripts test --env=jsdom",
+    "watch-less": "yarn build-less && nodemon -e less -x \"yarn build-less\""
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^4.1.4",
+    "@storybook/addon-knobs": "^4.1.4",
+    "@storybook/addon-links": "^4.1.4",
+    "@storybook/addons": "^4.1.4",
+    "@storybook/react": "^4.1.4",
+    "babel-core": "^6.26.3",
+    "i18next-scanner": "2.4.6",
+    "less": "^3.9.0",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.15.3",
+    "react-scripts": "^2.1.2",
+    "redux-logger": "^3.0.6",
+    "source-map-explorer": "^1.6.0"
+  },
+  "dependencies": {
+    "antd": "^3.11.6",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "flat": "^4.1.0",
+    "history": "^4.7.2",
+    "i18next": "^11.9.1",
+    "localforage": "^1.7.2",
+    "lodash.flattendeep": "^4.4.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "lodash.reduce": "^4.6.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-i18next": "^7.12.0",
+    "react-redux": "^5.0.7",
+    "react-responsive": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^4.0.0",
+    "redux-auth-wrapper": "^2.0.3",
+    "redux-modal": "^3.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^0.16.2",
+    "reselect": "^4.0.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
