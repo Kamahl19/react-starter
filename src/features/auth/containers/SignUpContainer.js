@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { connectSpinner } from '../../../packages/spinner';
@@ -23,9 +22,7 @@ SignUpContainer.propTypes = {
   signUp: PropTypes.func.isRequired,
 };
 
-export default withRouter(
-  connect(
-    undefined,
-    mapDispatchToProps
-  )(SignUpContainer)
-);
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(SignUpContainer);
