@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 
 import {
   createActionCreator,
@@ -76,7 +76,10 @@ export const selectIsAuthenticating = state => selectUser(state).isAuthenticatin
 export const selectProfile = state => selectUser(state).profile;
 export const selectToken = state => selectUser(state).token;
 
-export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
+export const selectIsLoggedIn = createSelector(
+  selectToken,
+  token => !!token
+);
 
 /**
  * SAGAS
