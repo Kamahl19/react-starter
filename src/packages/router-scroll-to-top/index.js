@@ -1,22 +1,16 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-class RouterScrollToTop extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    location: PropTypes.object.isRequired,
-  };
+const RouterScrollToTop = ({ children, location }) => {
+  useEffect(() => window.scrollTo(0, 0), [location]);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
-    }
-  }
+  return children;
+};
 
-  render() {
-    return this.props.children;
-  }
-}
+RouterScrollToTop.propTypes = {
+  children: PropTypes.node.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
 export default withRouter(RouterScrollToTop);
