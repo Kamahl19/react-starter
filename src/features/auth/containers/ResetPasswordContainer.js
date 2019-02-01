@@ -8,31 +8,38 @@ import { resetPasswordRequest } from '../ducks';
 import { apiCallIds } from '../api';
 import ResetPassword from '../components/ResetPassword';
 
-const EnhancedResetPassword = connectSpinner({
-  isLoading: apiCallIds.RESET_PASSWORD,
-})(ResetPassword);
-
 const mapDispatchToProps = {
   resetPassword: resetPasswordRequest,
 };
 
 const ResetPasswordContainer = ({
-  resetPassword,
+  isLoading,
   match: {
     params: { passwordResetToken },
   },
-}) => <EnhancedResetPassword onSubmit={data => resetPassword({ ...data, passwordResetToken })} />;
+  resetPassword,
+}) => (
+  <ResetPassword
+    isLoading={isLoading}
+    onSubmit={data => resetPassword({ ...data, passwordResetToken })}
+  />
+);
 
 ResetPasswordContainer.propTypes = {
-  resetPassword: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       passwordResetToken: PropTypes.string.isRequired,
     }),
   }),
+  resetPassword: PropTypes.func.isRequired,
 };
 
 export default connect(
   undefined,
   mapDispatchToProps
-)(ResetPasswordContainer);
+)(
+  connectSpinner({
+    isLoading: apiCallIds.RESET_PASSWORD,
+  })(ResetPasswordContainer)
+);

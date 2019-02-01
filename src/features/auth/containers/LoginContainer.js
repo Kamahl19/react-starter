@@ -9,21 +9,22 @@ import { loginActions } from '../../../common/services/user';
 import { apiCallIds } from '../api';
 import Login from '../components/Login';
 
-const EnhancedLogin = connectSpinner({
-  isLoading: apiCallIds.LOGIN,
-})(Login);
-
 const mapDispatchToProps = {
   login: loginActions.request,
 };
 
-const LoginContainer = ({ login }) => <EnhancedLogin onSubmit={login} />;
+const LoginContainer = ({ isLoading, login }) => <Login isLoading={isLoading} onSubmit={login} />;
 
 LoginContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
 };
 
 export default connect(
   undefined,
   mapDispatchToProps
-)(LoginContainer);
+)(
+  connectSpinner({
+    isLoading: apiCallIds.LOGIN,
+  })(LoginContainer)
+);

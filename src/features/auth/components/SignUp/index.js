@@ -7,7 +7,7 @@ import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
 import { Button, Form, Input } from '../../../../common/components';
 import rules from '../../../../common/rules';
 
-const SignUpForm = ({ form, t, isLoading, onSubmit }) => (
+const SignUpForm = ({ form, isLoading, t, onSubmit }) => (
   <FormScreen form={form} onSubmit={onSubmit}>
     {({ hasErrors, handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
