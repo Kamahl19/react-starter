@@ -1,7 +1,7 @@
 .responsive-menu {
   width: 100%;
-  top: 0 !important;
   padding-top: 0;
+  z-index: 3;
 
   .ant-popover-content {
     .ant-popover-arrow {
@@ -16,12 +16,19 @@
       .ant-popover-inner-content {
         display: flex;
         flex-direction: column;
+      }
 
+      .ant-popover-title {
+        text-align: right;
         .anticon-close {
           font-size: @layout-header-height / 2;
           line-height: @layout-header-height;
-          align-self: flex-end;
         }
+      }
+
+      .ant-popover-inner-content {
+        display: flex;
+        flex-direction: column;
 
         .ant-menu-inline {
           border-right: 0;

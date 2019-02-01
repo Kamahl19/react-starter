@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import Menu from 'antd/lib/menu';
@@ -7,46 +7,26 @@ import ResponsiveMenu from './ResponsiveMenu';
 
 const MOBILE_MAX_WIDTH = 767;
 
-export default class Navbar extends Component {
-  static propTypes = {
-    children: PropTypes.func.isRequired,
-    activePathname: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
-  };
+const Navbar = ({ activePathname, children, history }) => (
+  <MediaQuery maxWidth={MOBILE_MAX_WIDTH}>
+    {isMobile =>
+      isMobile ? (
+        <ResponsiveMenu selectedKeys={[activePathname]} history={history}>
+          {children({ isMobile })}
+        </ResponsiveMenu>
+      ) : (
+        <Menu mode="horizontal" theme="dark" selectedKeys={[activePathname]}>
+          {children({ isMobile })}
+        </Menu>
+      )
+    }
+  </MediaQuery>
+);
 
-  state = {
-    responsiveMenuVisible: false,
-  };
+Navbar.propTypes = {
+  activePathname: PropTypes.string.isRequired,
+  children: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
-  handleResponsiveMenuVisibleChange = responsiveMenuVisible => {
-    this.setState({ responsiveMenuVisible });
-  };
-
-  render() {
-    const { children, activePathname, history } = this.props;
-    const { responsiveMenuVisible } = this.state;
-
-    return (
-      <MediaQuery maxWidth={MOBILE_MAX_WIDTH}>
-        {isMobile =>
-          isMobile ? (
-            <ResponsiveMenu
-              selectedKeys={[activePathname]}
-              visible={responsiveMenuVisible}
-              history={history}
-              onShow={() => this.handleResponsiveMenuVisibleChange(true)}
-              onHide={() => this.handleResponsiveMenuVisibleChange(false)}
-              onVisibleChange={this.handleResponsiveMenuVisibleChange}
-            >
-              {children({ isMobile })}
-            </ResponsiveMenu>
-          ) : (
-            <Menu mode="horizontal" theme="dark" selectedKeys={[activePathname]}>
-              {children({ isMobile })}
-            </Menu>
-          )
-        }
-      </MediaQuery>
-    );
-  }
-}
+export default Navbar;
