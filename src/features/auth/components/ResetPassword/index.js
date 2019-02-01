@@ -23,8 +23,7 @@ const ResetPasswordForm = ({ form, isLoading, t, onSubmit }) => (
           rules={rules.passwordWithLimit}
           label={<Trans i18nKey="resetPassword.newPassword.label">New Password</Trans>}
         >
-          <Input
-            type="password"
+          <Input.Password
             placeholder={t('resetPassword.password.placeholder', {
               defaultValue: 'Enter New Password',
             })}

@@ -24,8 +24,7 @@ const LoginForm = ({ form, t, isLoading, onSubmit }) => (
           rules={[rules.required, rules.password]}
           label={<Trans i18nKey="fields.password.label">Password</Trans>}
         >
-          <Input
-            type="password"
+          <Input.Password
             placeholder={t('logIn.password.placeholder', {
               defaultValue: 'Enter Password',
             })}
