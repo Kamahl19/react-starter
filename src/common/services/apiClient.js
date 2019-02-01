@@ -1,4 +1,3 @@
-// TODO extract to /packages like factory
 import axios from 'axios';
 
 import { store } from '../../app/store/configureStore';

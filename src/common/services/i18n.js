@@ -18,7 +18,7 @@ const i18nInstance = i18next.use(reactI18nextModule).init({
   fallbackLng: ENGLISH,
   react: {
     wait: true,
-    defaultTransParent: 'span', // TODO remove when https://bugs.chromium.org/p/chromium/issues/detail?id=872770 is fixed
+    defaultTransParent: 'span',
   },
 });
 
