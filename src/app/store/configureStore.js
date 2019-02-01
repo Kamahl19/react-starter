@@ -1,16 +1,16 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import createHistory from 'history/createBrowserHistory';
+import createBrowserHistory from 'history/createBrowserHistory';
 import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware } from 'connected-react-router';
 
 import { isDev } from '../../config';
 
-import rootReducer from './rootReducer';
+import createRootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -27,7 +27,7 @@ const persistedReducer = persistReducer(
     debug: isDev,
     migrate: createMigrate(migrations, { debug: isDev }),
   },
-  rootReducer
+  createRootReducer(history)
 );
 
 const middlewares = [sagaMiddleware, routerMiddleware(history)];

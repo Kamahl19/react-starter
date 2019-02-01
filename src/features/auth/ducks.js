@@ -1,5 +1,5 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 
 import { t } from '../../common/services/i18n';
 import AlertService from '../../common/services/alert';
@@ -60,9 +60,9 @@ function* resetPassword({ payload: { email, password, passwordResetToken } }) {
 function* locationChanged({ payload }) {
   const activatePath = '/auth/activate/';
 
-  if (payload.pathname.includes(activatePath)) {
+  if (payload.location.pathname.includes(activatePath)) {
     const exclude = activatePath.split('/');
-    const [userId, activationToken] = payload.pathname
+    const [userId, activationToken] = payload.location.pathname
       .split('/')
       .filter(part => !exclude.includes(part));
 
