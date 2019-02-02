@@ -5,7 +5,7 @@ import { Layout, Footer } from '../../../../common/components';
 
 import Header from '../Header';
 
-const Screen = ({ children }) => (
+const PageLayout = ({ children }) => (
   <Layout>
     <Header />
     <Layout.Content>{children}</Layout.Content>
@@ -13,8 +13,8 @@ const Screen = ({ children }) => (
   </Layout>
 );
 
-Screen.propTypes = {
+PageLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Screen;
+export default PageLayout;
