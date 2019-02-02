@@ -6,7 +6,7 @@ import { connectSpinner } from '../../../../packages/spinner';
 import { loginActions } from '../../../../common/services/user';
 import { apiCallIds } from '../../api';
 
-import Login from './component';
+import Login from './view';
 
 const mapDispatchToProps = {
   login: loginActions.request,

@@ -6,7 +6,7 @@ import { connectSpinner } from '../../../../packages/spinner';
 import { signUpRequest } from '../../ducks';
 import { apiCallIds } from '../../api';
 
-import SignUp from './component';
+import SignUp from './view';
 
 const mapDispatchToProps = {
   signUp: signUpRequest,

@@ -6,7 +6,7 @@ import { connectSpinner } from '../../../../packages/spinner';
 import { resetPasswordRequest } from '../../ducks';
 import { apiCallIds } from '../../api';
 
-import ResetPassword from './component';
+import ResetPassword from './view';
 
 const mapDispatchToProps = {
   resetPassword: resetPasswordRequest,

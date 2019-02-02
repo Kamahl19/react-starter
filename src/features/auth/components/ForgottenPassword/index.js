@@ -6,7 +6,7 @@ import { connectSpinner } from '../../../../packages/spinner';
 import { forgottenPasswordRequest } from '../../ducks';
 import { apiCallIds } from '../../api';
 
-import ForgottenPassword from './component';
+import ForgottenPassword from './view';
 
 const mapDispatchToProps = {
   forgottenPassword: forgottenPasswordRequest,
