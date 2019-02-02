@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Trans } from 'react-i18next';
 
 import { logoutAction } from '../../../../common/services/user';
 
@@ -18,7 +19,11 @@ class LogoutContainer extends Component {
   }
 
   render() {
-    return <h1>Logging you out...</h1>;
+    return (
+      <h1>
+        <Trans i18nKey="logout.title">Logging you out...</Trans>
+      </h1>
+    );
   }
 }
 

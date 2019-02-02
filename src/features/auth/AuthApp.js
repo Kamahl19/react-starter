@@ -7,11 +7,11 @@ import IsAnonymous from '../../common/services/user/guards/IsAnonymous';
 import LoginGuard from '../../common/services/user/guards/LoginGuard';
 
 import Header from './components/Header';
-import ForgottenPassword from './components/ForgottenPassword/';
-import Login from './components/Login/';
-import Logout from './components/Logout/';
-import ResetPassword from './components/ResetPassword/';
-import SignUp from './components/SignUp/';
+import ForgottenPassword from './components/ForgottenPassword';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import ResetPassword from './components/ResetPassword';
+import SignUp from './components/SignUp';
 
 const AuthApp = () => (
   <Layout>
