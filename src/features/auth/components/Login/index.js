@@ -1,53 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans, withTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
+import { connectSpinner } from '../../../../packages/spinner';
+import { loginActions } from '../../../../common/services/user';
+import { apiCallIds } from '../../api';
 
-import { Button, Form, Input } from '../../../../common/components';
-import rules from '../../../../common/rules';
+import Login from './view';
 
-const LoginForm = ({ form, t, isLoading, onSubmit }) => (
-  <FormScreen form={form} onSubmit={onSubmit}>
-    {({ hasErrors, handleSubmit }) => (
-      <Form onSubmit={handleSubmit}>
-        <FormItem
-          id="email"
-          rules={[rules.required, rules.email]}
-          label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
-        >
-          <Input placeholder={t('logIn.email.placeholder', { defaultValue: 'E-mail' })} autoFocus />
-        </FormItem>
-        <FormItem
-          id="password"
-          rules={[rules.required, rules.password]}
-          label={<Trans i18nKey="fields.password.label">Password</Trans>}
-        >
-          <Input.Password
-            placeholder={t('logIn.password.placeholder', {
-              defaultValue: 'Enter Password',
-            })}
-          />
-        </FormItem>
-        <Form.Item>
-          <Link to="/auth/forgotten-password">
-            <Trans i18nKey="logIn.forgotPassword">Forgot password?</Trans>
-          </Link>
-        </Form.Item>
-        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-          <Trans i18nKey="logIn.logIn">Log In</Trans>
-        </Button>
-      </Form>
-    )}
-  </FormScreen>
-);
-
-LoginForm.propTypes = {
-  form: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+const mapDispatchToProps = {
+  login: loginActions.request,
 };
 
-export default withTranslation()(Form.create()(LoginForm));
+const LoginContainer = ({ isLoading, login }) => <Login isLoading={isLoading} onSubmit={login} />;
+
+LoginContainer.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+};
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(
+  connectSpinner({
+    isLoading: apiCallIds.LOGIN,
+  })(LoginContainer)
+);

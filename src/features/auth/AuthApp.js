@@ -6,12 +6,12 @@ import IsLoggedIn from '../../common/services/user/guards/IsLoggedIn';
 import IsAnonymous from '../../common/services/user/guards/IsAnonymous';
 import LoginGuard from '../../common/services/user/guards/LoginGuard';
 
-import ForgottenPasswordContainer from './containers/ForgottenPasswordContainer';
-import LoginContainer from './containers/LoginContainer';
-import LogoutContainer from './containers/LogoutContainer';
-import ResetPasswordContainer from './containers/ResetPasswordContainer';
-import SignUpContainer from './containers/SignUpContainer';
 import Header from './components/Header';
+import ForgottenPassword from './components/ForgottenPassword';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import ResetPassword from './components/ResetPassword';
+import SignUp from './components/SignUp';
 
 const AuthApp = () => (
   <Layout>
@@ -19,18 +19,14 @@ const AuthApp = () => (
     <Layout.Content>
       <Switch>
         <Route exact path="/auth" render={() => <Redirect to="/auth/login" />} />
-        <Route exact path="/auth/login" component={LoginGuard(LoginContainer)} />
-        <Route exact path="/auth/logout" component={IsLoggedIn(LogoutContainer)} />
-        <Route exact path="/auth/sign-up" component={IsAnonymous(SignUpContainer)} />
-        <Route
-          exact
-          path="/auth/forgotten-password"
-          component={IsAnonymous(ForgottenPasswordContainer)}
-        />
+        <Route exact path="/auth/login" component={LoginGuard(Login)} />
+        <Route exact path="/auth/logout" component={IsLoggedIn(Logout)} />
+        <Route exact path="/auth/sign-up" component={IsAnonymous(SignUp)} />
+        <Route exact path="/auth/forgotten-password" component={IsAnonymous(ForgottenPassword)} />
         <Route
           exact
           path="/auth/reset-password/:passwordResetToken"
-          component={IsAnonymous(ResetPasswordContainer)}
+          component={IsAnonymous(ResetPassword)}
         />
         <Route component={NotFound} />
       </Switch>

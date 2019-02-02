@@ -1,39 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans, withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 
-import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
+import { connectSpinner } from '../../../../packages/spinner';
+import { forgottenPasswordRequest } from '../../ducks';
+import { apiCallIds } from '../../api';
 
-import { Button, Form, Input } from '../../../../common/components/';
-import rules from '../../../../common/rules';
+import ForgottenPassword from './view';
 
-const ForgottenPasswordForm = ({ form, t, isLoading, onSubmit }) => (
-  <FormScreen form={form} onSubmit={onSubmit}>
-    {({ hasErrors, handleSubmit }) => (
-      <Form onSubmit={handleSubmit}>
-        <FormItem
-          id="email"
-          rules={[rules.required, rules.email]}
-          label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
-        >
-          <Input
-            autoFocus
-            placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
-          />
-        </FormItem>
-        <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-          <Trans i18nKey="fields.submit">Submit</Trans>
-        </Button>
-      </Form>
-    )}
-  </FormScreen>
-);
-
-ForgottenPasswordForm.propTypes = {
-  form: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+const mapDispatchToProps = {
+  forgottenPassword: forgottenPasswordRequest,
 };
 
-export default withTranslation()(Form.create()(ForgottenPasswordForm));
+const ForgottenPasswordContainer = ({ forgottenPassword, isLoading }) => (
+  <ForgottenPassword isLoading={isLoading} onSubmit={forgottenPassword} />
+);
+
+ForgottenPasswordContainer.propTypes = {
+  forgottenPassword: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(
+  connectSpinner({
+    isLoading: apiCallIds.FORGOTTEN_PASSWORD,
+  })(ForgottenPasswordContainer)
+);
