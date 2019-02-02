@@ -8,13 +8,13 @@ const { Item: MenuItem } = Menu;
 
 const AuthHeader = () => (
   <Header>
-    {({ isMobile }) => [
-      <MenuItem key="signup" className="btn-item btn-item-auth">
+    {() => [
+      <MenuItem key="signup">
         <Link to="/auth/sign-up">
           <Trans i18nKey="nav.signup">Sign Up</Trans>
         </Link>
       </MenuItem>,
-      <MenuItem key="login" className="btn-item btn-item-auth">
+      <MenuItem key="login">
         <Link to="/auth/login">
           <Trans i18nKey="nav.login">Log In</Trans>
         </Link>
