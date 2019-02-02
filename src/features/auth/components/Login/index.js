@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { connectSpinner } from '../../../../packages/spinner';
 import { loginActions } from '../../../../common/services/user';
-import { apiCallIds } from '../../api';
+import { apiCallIds } from '../../../../common/services/user/api';
 
 import Login from './view';
 
