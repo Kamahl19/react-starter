@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from 'antd/lib/layout';
 
-import GlobalSpinner from '../GlobalSpinner';
+import { GlobalSpinner } from '../';
 
 const Content = ({ children }) => (
   <Layout.Content>
