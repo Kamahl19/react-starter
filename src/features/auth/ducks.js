@@ -26,35 +26,34 @@ export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
  * SAGAS
  */
 function* signUp({ payload: { email, password } }) {
-  const resp = yield call(api.signUp, email, password);
+  try {
+    const resp = yield call(api.signUp, email, password);
 
-  yield call(receiveLogin, resp);
-}
-
-function* receiveLogin(resp) {
-  if (resp.ok) {
     yield put(loginActions.success(resp.data));
-  } else {
-    yield put(loginActions.failure(resp.error));
+  } catch {
+    yield put(loginActions.failure());
   }
 }
 
 function* forgottenPassword({ payload }) {
-  const resp = yield call(api.forgottenPassword, payload.email);
+  try {
+    yield call(api.forgottenPassword, payload.email);
 
-  if (resp.ok) {
     AlertService.success(
       t('An e-mail with further instructions has been sent to your e-mail address.')
     );
-
     yield put(push('/'));
-  }
+  } catch {}
 }
 
 function* resetPassword({ payload: { email, password, passwordResetToken } }) {
-  const resp = yield call(api.resetPassword, email, password, passwordResetToken);
+  try {
+    const resp = yield call(api.resetPassword, email, password, passwordResetToken);
 
-  yield call(receiveLogin, resp);
+    yield put(loginActions.success(resp.data));
+  } catch {
+    yield put(loginActions.failure());
+  }
 }
 
 function* locationChanged({ payload }) {
@@ -71,12 +70,14 @@ function* locationChanged({ payload }) {
 }
 
 function* activateUser(userId, activationToken) {
-  const resp = yield call(api.activateUser, userId, activationToken);
+  try {
+    const resp = yield call(api.activateUser, userId, activationToken);
 
-  if (resp.ok) {
     AlertService.success(t('Your account has been activated successfully'));
 
-    yield call(receiveLogin, resp);
+    yield put(loginActions.success(resp.data));
+  } catch {
+    yield put(loginActions.failure());
   }
 
   yield put(push('/'));
