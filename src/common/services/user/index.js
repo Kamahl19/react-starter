@@ -85,21 +85,20 @@ export const selectIsLoggedIn = createSelector(
  * SAGAS
  */
 function* login({ payload }) {
-  const resp = yield call(api.login, payload);
+  try {
+    const resp = yield call(api.login, payload);
 
-  if (resp.ok) {
     yield put(loginActions.success(resp.data));
-  } else {
+  } catch {
     yield put(loginActions.failure());
   }
 }
 
 function* relogin() {
-  const resp = yield call(api.relogin);
-
-  if (resp.ok) {
+  try {
+    const resp = yield call(api.relogin);
     yield put(loginActions.success(resp.data));
-  } else {
+  } catch {
     yield put(loginActions.failure());
   }
 }
