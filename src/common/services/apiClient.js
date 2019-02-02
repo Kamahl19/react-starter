@@ -7,6 +7,9 @@ import { selectToken, logoutAction } from './user';
 import AlertService from './alert';
 
 export default createApiClient({
+  axiosConfig: {
+    baseURL: process.env.REACT_APP_API_URL,
+  },
   selectToken: () => selectToken(store.getState()),
   onApiCallStart: apiCallId =>
     store.dispatch(

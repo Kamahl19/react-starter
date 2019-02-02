@@ -1,15 +1,14 @@
 import axios from 'axios';
 
 export default function createApiClient({
+  axiosConfig = {},
   selectToken,
   onApiCallStart,
   onApiCallFinish,
   onError,
-  axiosConfig = {},
 }) {
   const apiClient = axios.create({
     responseType: 'json',
-    baseURL: process.env.REACT_APP_API_URL,
     ...axiosConfig,
   });
 
