@@ -16,9 +16,12 @@ i18n.use(initReactI18next).init({
   lng: LANGUAGE_CODES.EN,
   fallbackLng: LANGUAGE_CODES.EN,
   nonExplicitWhitelist: true,
+  interpolation: {
+    escapeValue: false,
+  },
   react: {
     wait: true,
-    defaultTransParent: 'span',
+    defaultTransParent: 'span', // fixes Google Translate issue https://github.com/facebook/react/issues/11538
   },
 });
 
