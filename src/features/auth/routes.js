@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import IsAnonymous from '../../common/services/user/guards/IsAnonymous';
 import IsLoggedIn from '../../common/services/user/guards/IsLoggedIn';
 import LoginGuard from '../../common/services/user/guards/LoginGuard';
+import { NotFound } from '../../common/components';
 
 import ForgottenPassword from './components/ForgottenPassword';
 import Login from './components/Login';
@@ -25,6 +26,7 @@ const AuthRoutes = () => (
         path="/auth/reset-password/:passwordResetToken"
         component={IsAnonymous(ResetPassword)}
       />
+      <Route component={NotFound} />
     </Switch>
   </PageLayout>
 );

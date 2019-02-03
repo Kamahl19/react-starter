@@ -47,7 +47,6 @@ const Root = () => (
                     </Link>
                   ))}
                 />
-
                 <Route component={NotFound} />
               </Switch>
             </RouterScrollToTop>
