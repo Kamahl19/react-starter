@@ -28,7 +28,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
   }
 
   return (
-    <FormContext.Provider value={{ form }}>
+    <FormContext.Provider value={form}>
       {children({
         hasErrors: isMounted ? hasErrors() : true,
         handleSubmit,

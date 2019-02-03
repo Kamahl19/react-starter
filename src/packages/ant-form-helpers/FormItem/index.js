@@ -19,7 +19,7 @@ export default function EnhancedFormItem({ id, children, ...bag }) {
 
   return (
     <FormContext.Consumer>
-      {({ form }) => {
+      {form => {
         const field = renderField(form); // must be rendered first, so form model exists
         const fieldError = didBlur && form.isFieldTouched(id) && form.getFieldError(id);
 
