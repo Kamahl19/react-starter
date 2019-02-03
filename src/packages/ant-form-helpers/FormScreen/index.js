@@ -39,7 +39,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
 
 FormScreen.propTypes = {
   form: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
