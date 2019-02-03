@@ -1,53 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Icon, Menu, Popover } from '../../';
 
-export default class ResponsiveMenu extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    selectedKeys: PropTypes.array.isRequired,
-    history: PropTypes.object.isRequired,
-  };
+const ResponsiveMenu = ({ children, history, selectedKeys }) => {
+  const [visible, setVisible] = useState(false);
 
-  state = {
-    visible: false,
-  };
-
-  componentDidMount() {
-    this.unlisten = this.props.history.listen(this.handleHide);
+  function handleHide() {
+    setVisible(false);
   }
 
-  componentWillUnmount() {
-    this.unlisten();
-  }
+  useEffect(() => history.listen(handleHide), []);
 
-  handleHide = () => this.setState({ visible: false });
+  return (
+    <Popover
+      placement="bottom"
+      trigger="click"
+      overlayClassName="responsive-menu"
+      visible={visible}
+      onVisibleChange={setVisible}
+      title={<Icon type="close" onClick={handleHide} />}
+      content={
+        <Menu mode="inline" selectedKeys={selectedKeys}>
+          {children}
+        </Menu>
+      }
+    >
+      <nav>
+        <Icon type="bars" theme="outlined" />
+      </nav>
+    </Popover>
+  );
+};
 
-  handleVisibleChange = visible => this.setState({ visible });
+ResponsiveMenu.propTypes = {
+  children: PropTypes.node.isRequired,
+  history: PropTypes.object.isRequired,
+  selectedKeys: PropTypes.array.isRequired,
+};
 
-  render() {
-    const { children, selectedKeys } = this.props;
-    const { visible } = this.state;
-
-    return (
-      <Popover
-        placement="bottom"
-        trigger="click"
-        overlayClassName="responsive-menu"
-        visible={visible}
-        onVisibleChange={this.handleVisibleChange}
-        title={<Icon type="close" onClick={this.handleHide} />}
-        content={
-          <Menu mode="inline" selectedKeys={selectedKeys}>
-            {children}
-          </Menu>
-        }
-      >
-        <nav>
-          <Icon type="bars" theme="outlined" />
-        </nav>
-      </Popover>
-    );
-  }
-}
+export default ResponsiveMenu;
