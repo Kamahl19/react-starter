@@ -4,18 +4,20 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
+import { Trans } from 'react-i18next';
 
 import RouterScrollToTop from '../packages/router-scroll-to-top';
 
 // must be first
 import { store, persistor, history } from './store/configureStore';
 // order matters
-import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
 import { reloginAction, selectToken } from '../common/services/user';
+import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
+import NotFound from '../common/components/NotFound';
+import AuthRoutes from '../features/auth/routes';
+
 import ErrorBoundary from './components/ErrorBoundary';
-import AuthApp from '../features/auth/AuthApp';
-import AccountApp from '../features/account/AccountApp';
 
 // TODO this shouldnt be in Root.js, move elsewhere
 function relogin() {
@@ -35,8 +37,17 @@ const Root = () => (
           <ConnectedRouter history={history}>
             <RouterScrollToTop>
               <Switch>
-                <Route path="/auth" component={AuthApp} />
-                <Route exact path="/" component={IsLoggedIn(AccountApp)} />
+                <Route path="/auth" component={AuthRoutes} />
+                <Route
+                  exact
+                  path="/"
+                  component={IsLoggedIn(() => (
+                    <Link to="/auth/logout">
+                      <Trans i18nKey="logout">Logout</Trans>
+                    </Link>
+                  ))}
+                />
+                <Route component={NotFound} />
               </Switch>
             </RouterScrollToTop>
           </ConnectedRouter>
