@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'antd/lib/icon';
-import Menu from 'antd/lib/menu';
-import Popover from 'antd/lib/popover';
+
+import { Icon, Menu, Popover } from '../../';
 
 export default class ResponsiveMenu extends Component {
   static propTypes = {
@@ -16,9 +15,7 @@ export default class ResponsiveMenu extends Component {
   };
 
   componentDidMount() {
-    const { history } = this.props;
-
-    this.unlisten = history.listen(this.handleHide);
+    this.unlisten = this.props.history.listen(this.handleHide);
   }
 
   componentWillUnmount() {
