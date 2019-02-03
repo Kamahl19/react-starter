@@ -1,53 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'antd/lib/icon';
-import Popover from 'antd/lib/popover';
-import Menu from 'antd/lib/menu';
+
+import { Icon, Menu, Popover } from '../../';
 
 export default class ResponsiveMenu extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    visible: PropTypes.bool.isRequired,
     selectedKeys: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
-    onShow: PropTypes.func.isRequired,
-    onHide: PropTypes.func.isRequired,
-    onVisibleChange: PropTypes.func.isRequired,
+  };
+
+  state = {
+    visible: false,
   };
 
   componentDidMount() {
-    const { history, onHide } = this.props;
-
-    this.unlisten = history.listen(onHide);
+    this.unlisten = this.props.history.listen(this.handleHide);
   }
 
   componentWillUnmount() {
     this.unlisten();
   }
 
+  handleHide = () => this.setState({ visible: false });
+
+  handleVisibleChange = visible => this.setState({ visible });
+
   render() {
-    const { children, visible, selectedKeys, onShow, onHide, onVisibleChange } = this.props;
+    const { children, selectedKeys } = this.props;
+    const { visible } = this.state;
 
     return (
       <Popover
-        visible={visible}
-        trigger="click"
         placement="bottom"
+        trigger="click"
         overlayClassName="responsive-menu"
+        visible={visible}
+        onVisibleChange={this.handleVisibleChange}
+        title={<Icon type="close" onClick={this.handleHide} />}
         content={
-          <>
-            <Icon type="close" onClick={onHide} />
-            <Menu mode="inline" selectedKeys={selectedKeys}>
-              {children}
-            </Menu>
-          </>
+          <Menu mode="inline" selectedKeys={selectedKeys}>
+            {children}
+          </Menu>
         }
-        onVisibleChange={onVisibleChange}
       >
         <nav>
-          <div className="nav-toggle" onClick={onShow}>
-            <Icon type="bars" theme="outlined" />
-          </div>
+          <Icon type="bars" theme="outlined" />
         </nav>
       </Popover>
     );
