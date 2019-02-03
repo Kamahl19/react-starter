@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import {
@@ -75,6 +75,7 @@ export const selectUser = state => state.user;
 export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
 export const selectProfile = state => selectUser(state).profile;
 export const selectToken = state => selectUser(state).token;
+export const selectIsLoggingOut = state => state.router.location.pathname === '/auth/logout';
 
 export const selectIsLoggedIn = createSelector(
   selectToken,
@@ -95,10 +96,14 @@ function* login({ payload }) {
 }
 
 function* relogin() {
-  try {
-    const resp = yield call(api.relogin);
-    yield put(loginActions.success(resp.data));
-  } catch {
+  if (!(yield select(selectIsLoggingOut)) && (yield select(selectIsLoggedIn))) {
+    try {
+      const resp = yield call(api.relogin);
+      yield put(loginActions.success(resp.data));
+    } catch {
+      yield put(loginActions.failure());
+    }
+  } else {
     yield put(loginActions.failure());
   }
 }

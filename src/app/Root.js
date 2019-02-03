@@ -1,7 +1,6 @@
 import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/es/integration/react';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { Route, Switch, Link } from 'react-router-dom';
@@ -10,30 +9,19 @@ import { Trans } from 'react-i18next';
 import RouterScrollToTop from '../packages/router-scroll-to-top';
 
 // must be first
-import { store, persistor, history } from './store/configureStore';
+import { store, history } from './store/configureStore';
+import StorePersistGate from './store/StorePersistGate';
 // order matters
-import { reloginAction, selectToken } from '../common/services/user';
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
-import NotFound from '../common/components/NotFound';
-import AuthRoutes from '../features/auth/routes';
-
+import { NotFound } from '../common/components';
 import ErrorBoundary from './components/ErrorBoundary';
-
-// TODO this shouldnt be in Root.js, move elsewhere
-function relogin() {
-  if (history.location.pathname !== '/auth/logout') {
-    // TODO is check this necessary ?
-    if (selectToken(store.getState())) {
-      store.dispatch(reloginAction());
-    }
-  }
-}
+import AuthRoutes from '../features/auth/routes';
 
 const Root = () => (
   <ErrorBoundary>
     <LocaleProvider locale={enUS}>
       <Provider store={store}>
-        <PersistGate loading={<div />} persistor={persistor} onBeforeLift={relogin}>
+        <StorePersistGate>
           <ConnectedRouter history={history}>
             <RouterScrollToTop>
               <Switch>
@@ -51,7 +39,7 @@ const Root = () => (
               </Switch>
             </RouterScrollToTop>
           </ConnectedRouter>
-        </PersistGate>
+        </StorePersistGate>
       </Provider>
     </LocaleProvider>
   </ErrorBoundary>
