@@ -10,7 +10,9 @@ const mapDispatchToProps = {
 };
 
 const LogoutContainer = ({ logout }) => {
-  useEffect(logout, []);
+  useEffect(() => {
+    logout();
+  }, []);
 
   return (
     <h1>
