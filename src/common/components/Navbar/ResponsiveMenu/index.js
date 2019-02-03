@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Icon, Menu, Popover } from '../../';
 
 const ResponsiveMenu = ({ children, history, selectedKeys }) => {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   function handleHide() {
-    setVisible(false);
+    setIsVisible(false);
   }
 
   useEffect(() => history.listen(handleHide), []);
@@ -17,8 +17,8 @@ const ResponsiveMenu = ({ children, history, selectedKeys }) => {
       placement="bottom"
       trigger="click"
       overlayClassName="responsive-menu"
-      visible={visible}
-      onVisibleChange={setVisible}
+      visible={isVisible}
+      onVisibleChange={setIsVisible}
       title={<Icon type="close" onClick={handleHide} />}
       content={
         <Menu mode="inline" selectedKeys={selectedKeys}>

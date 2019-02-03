@@ -5,10 +5,10 @@ import flattenObject from 'flat';
 export const FormContext = React.createContext();
 
 const FormScreen = ({ form, children, onSubmit }) => {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
     form.validateFields();
   }, []);
 
@@ -30,7 +30,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
   return (
     <FormContext.Provider value={{ form }}>
       {children({
-        hasErrors: mounted ? hasErrors() : true,
+        hasErrors: isMounted ? hasErrors() : true,
         handleSubmit,
       })}
     </FormContext.Provider>
