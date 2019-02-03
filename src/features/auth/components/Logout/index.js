@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Trans } from 'react-i18next';
@@ -9,23 +9,21 @@ const mapDispatchToProps = {
   logout: logoutAction,
 };
 
-class LogoutContainer extends Component {
-  static propTypes = {
-    logout: PropTypes.func.isRequired,
-  };
+const LogoutContainer = ({ logout }) => {
+  useEffect(() => {
+    logout();
+  }, []);
 
-  componentDidMount() {
-    this.props.logout();
-  }
+  return (
+    <h1>
+      <Trans i18nKey="logout.title">Logging you out...</Trans>
+    </h1>
+  );
+};
 
-  render() {
-    return (
-      <h1>
-        <Trans i18nKey="logout.title">Logging you out...</Trans>
-      </h1>
-    );
-  }
-}
+LogoutContainer.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
 
 export default connect(
   undefined,

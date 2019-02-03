@@ -1,54 +1,46 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import flattenObject from 'flat';
 
 export const FormContext = React.createContext();
 
-export default class FormScreen extends Component {
-  static propTypes = {
-    form: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-  };
+const FormScreen = ({ form, children, onSubmit }) => {
+  const [isMounted, setIsMounted] = useState(false);
 
-  state = {
-    mounted: false,
-  };
+  useEffect(() => {
+    setIsMounted(true);
+    form.validateFields();
+  }, []);
 
-  componentDidMount() {
-    this.setState({ mounted: true });
-
-    this.props.form.validateFields();
-  }
-
-  handleSubmit = (e, additionalData) => {
+  function handleSubmit(e, additionalData) {
     e && e.preventDefault();
-
-    const { form, onSubmit } = this.props;
 
     form.validateFields((err, values) => {
       if (!err) {
         onSubmit(values, additionalData);
       }
     });
-  };
-
-  hasErrors = () => {
-    const errors = flattenObject(this.props.form.getFieldsError());
-
-    return Object.keys(errors).some(field => errors[field]);
-  };
-
-  render() {
-    const { form, children } = this.props;
-    const { mounted } = this.state;
-
-    return (
-      <FormContext.Provider value={{ form }}>
-        {children({
-          hasErrors: mounted ? this.hasErrors() : true,
-          handleSubmit: this.handleSubmit,
-        })}
-      </FormContext.Provider>
-    );
   }
-}
+
+  function hasErrors() {
+    const errors = flattenObject(form.getFieldsError());
+    return Object.keys(errors).some(field => errors[field]);
+  }
+
+  return (
+    <FormContext.Provider value={form}>
+      {children({
+        hasErrors: isMounted ? hasErrors() : true,
+        handleSubmit,
+      })}
+    </FormContext.Provider>
+  );
+};
+
+FormScreen.propTypes = {
+  form: PropTypes.object.isRequired,
+  children: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default FormScreen;
