@@ -6,11 +6,11 @@ import { Icon, Menu, Popover } from '../../';
 const ResponsiveMenu = ({ children, history, selectedKeys }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  function handleHide() {
+  function hide() {
     setIsVisible(false);
   }
 
-  useEffect(() => history.listen(handleHide), []);
+  useEffect(() => history.listen(hide), []);
 
   return (
     <Popover
@@ -19,7 +19,7 @@ const ResponsiveMenu = ({ children, history, selectedKeys }) => {
       overlayClassName="responsive-menu"
       visible={isVisible}
       onVisibleChange={setIsVisible}
-      title={<Icon type="close" onClick={handleHide} />}
+      title={<Icon type="close" onClick={hide} />}
       content={
         <Menu mode="inline" selectedKeys={selectedKeys}>
           {children}
