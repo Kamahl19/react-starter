@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 
-import Layout from '../Layout';
+import { Layout } from '../';
 
 const Footer = () => (
   <Layout.Footer>

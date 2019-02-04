@@ -1,34 +1,30 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import IsAnonymous from '../../common/services/user/guards/IsAnonymous';
 import IsLoggedIn from '../../common/services/user/guards/IsLoggedIn';
 import LoginGuard from '../../common/services/user/guards/LoginGuard';
 import { NotFound } from '../../common/components';
 
-import ForgottenPassword from './components/ForgottenPassword';
-import Login from './components/Login';
-import Logout from './components/Logout';
-import PageLayout from './components/PageLayout';
-import ResetPassword from './components/ResetPassword';
-import SignUp from './components/SignUp';
+import ForgottenPassword from './features/ForgottenPassword';
+import Login from './features/Login';
+import Logout from './features/Logout';
+import ResetPassword from './features/ResetPassword';
+import SignUp from './features/SignUp';
 
 const AuthRoutes = () => (
-  <PageLayout>
-    <Switch>
-      <Route exact path="/auth" render={() => <Redirect to="/auth/login" />} />
-      <Route exact path="/auth/login" component={LoginGuard(Login)} />
-      <Route exact path="/auth/logout" component={IsLoggedIn(Logout)} />
-      <Route exact path="/auth/sign-up" component={IsAnonymous(SignUp)} />
-      <Route exact path="/auth/forgotten-password" component={IsAnonymous(ForgottenPassword)} />
-      <Route
-        exact
-        path="/auth/reset-password/:passwordResetToken"
-        component={IsAnonymous(ResetPassword)}
-      />
-      <Route component={NotFound} />
-    </Switch>
-  </PageLayout>
+  <Switch>
+    <Route exact path="/login" component={LoginGuard(Login)} />
+    <Route exact path="/logout" component={IsLoggedIn(Logout)} />
+    <Route exact path="/sign-up" component={IsAnonymous(SignUp)} />
+    <Route exact path="/forgotten-password" component={IsAnonymous(ForgottenPassword)} />
+    <Route
+      exact
+      path="/reset-password/:passwordResetToken"
+      component={IsAnonymous(ResetPassword)}
+    />
+    <Route component={NotFound} />
+  </Switch>
 );
 
 export default AuthRoutes;

@@ -104,7 +104,7 @@ function* relogin() {
 }
 
 function* logout() {
-  yield put(push('/auth/login'));
+  yield put(push('/login'));
 }
 
 export function* userSaga() {

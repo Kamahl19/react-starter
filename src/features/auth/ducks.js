@@ -57,7 +57,7 @@ function* resetPassword({ payload: { email, password, passwordResetToken } }) {
 }
 
 function* locationChanged({ payload }) {
-  const activatePath = '/auth/activate/';
+  const activatePath = '/activate/';
 
   if (payload.location.pathname.includes(activatePath)) {
     const exclude = activatePath.split('/');

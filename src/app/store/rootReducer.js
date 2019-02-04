@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import spinner from '../../packages/spinner';
+import { spinnerReducer } from '../../packages/spinner';
 
 import user, { LOGOUT } from '../../common/services/user';
 
 export default function createRootReducer(history) {
   const rootReducer = combineReducers({
     user,
-    spinner,
+    spinner: spinnerReducer,
     router: connectRouter(history),
   });
 
