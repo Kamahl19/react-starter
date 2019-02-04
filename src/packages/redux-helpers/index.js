@@ -1,5 +1,4 @@
 import flattenDeep from 'lodash.flattendeep';
-import reduce from 'lodash.reduce';
 
 export const REQUEST = 'REQUEST';
 export const SUCCESS = 'SUCCESS';
@@ -19,16 +18,15 @@ export const createApiActionCreators = (...type) => ({
 });
 
 export const createReducer = (initialState, reducerMap) => {
-  const iterator = (reducers, initial = {}, prefix = []) =>
-    reduce(
-      reducers,
-      (acc, reducer, type) =>
-        typeof reducer === 'function'
+  const iterator = (reducersObj, initial = {}, prefix = []) =>
+    Object.entries(reducersObj).reduce(
+      (acc, [actionType, reducerFn]) =>
+        typeof reducerFn === 'function'
           ? {
               ...acc,
-              [createActionType(prefix, type)]: reducer,
+              [createActionType(prefix, actionType)]: reducerFn,
             }
-          : iterator(reducer, acc, [createActionType(prefix, type)]),
+          : iterator(reducerFn, acc, [createActionType(prefix, actionType)]),
       initial
     );
 
