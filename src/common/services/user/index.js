@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import {
@@ -96,14 +96,10 @@ function* login({ payload }) {
 }
 
 function* relogin() {
-  if (!(yield select(selectIsLoggingOut)) && (yield select(selectIsLoggedIn))) {
-    try {
-      const resp = yield call(api.relogin);
-      yield put(loginActions.success(resp.data));
-    } catch {
-      yield put(loginActions.failure());
-    }
-  } else {
+  try {
+    const resp = yield call(api.relogin);
+    yield put(loginActions.success(resp.data));
+  } catch {
     yield put(loginActions.failure());
   }
 }

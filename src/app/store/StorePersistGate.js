@@ -3,26 +3,39 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-import { reloginAction } from '../../common/services/user';
+import { reloginAction, selectIsLoggedIn } from '../../common/services/user';
 
-import { persistor } from './configureStore';
+import { history, persistor } from './configureStore';
+
+const mapStateToProps = state => ({
+  isLoggedIn: selectIsLoggedIn(state),
+});
 
 const mapDispatchToProps = {
   relogin: reloginAction,
 };
 
-const StorePersistGate = ({ children, relogin }) => (
-  <PersistGate loading={<></>} onBeforeLift={relogin} persistor={persistor}>
+const StorePersistGate = ({ children, isLoggedIn, relogin }) => (
+  <PersistGate
+    loading={<></>}
+    onBeforeLift={() => {
+      if (isLoggedIn && history.location.pathname !== '/auth/logout') {
+        relogin();
+      }
+    }}
+    persistor={persistor}
+  >
     {children}
   </PersistGate>
 );
 
 StorePersistGate.propTypes = {
   children: PropTypes.node.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
   relogin: PropTypes.func.isRequired,
 };
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(StorePersistGate);
