@@ -75,7 +75,6 @@ export const selectUser = state => state.user;
 export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
 export const selectProfile = state => selectUser(state).profile;
 export const selectToken = state => selectUser(state).token;
-export const selectIsLoggingOut = state => state.router.location.pathname === '/auth/logout';
 
 export const selectIsLoggedIn = createSelector(
   selectToken,
