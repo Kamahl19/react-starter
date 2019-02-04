@@ -19,7 +19,7 @@ const StorePersistGate = ({ children, isLoggedIn, relogin }) => (
   <PersistGate
     loading={<></>}
     onBeforeLift={() => {
-      if (isLoggedIn && history.location.pathname !== '/auth/logout') {
+      if (isLoggedIn && history.location.pathname !== '/logout') {
         relogin();
       }
     }}

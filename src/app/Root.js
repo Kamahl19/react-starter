@@ -7,13 +7,14 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import RouterScrollToTop from '../packages/router-scroll-to-top';
+import { GlobalSpinnerProvider } from '../packages/spinner';
 
 // must be first
 import { store, history } from './store/configureStore';
 import StorePersistGate from './store/StorePersistGate';
 // order matters
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
-import { ErrorBoundary, NotFound } from '../common/components';
+import { ErrorBoundary, NotFound, Spin } from '../common/components';
 import AuthRoutes from '../features/auth/routes';
 
 const Root = () => (
@@ -23,19 +24,25 @@ const Root = () => (
         <StorePersistGate>
           <ConnectedRouter history={history}>
             <RouterScrollToTop>
-              <Switch>
-                <Route path="/auth" component={AuthRoutes} />
-                <Route
-                  exact
-                  path="/"
-                  component={IsLoggedIn(() => (
-                    <Link to="/auth/logout">
-                      <Trans i18nKey="logout">Logout</Trans>
-                    </Link>
-                  ))}
-                />
-                <Route component={NotFound} />
-              </Switch>
+              <GlobalSpinnerProvider>
+                {({ isVisible }) => (
+                  <Spin spinning={isVisible} size="large">
+                    <Switch>
+                      <Route
+                        exact
+                        path="/"
+                        component={IsLoggedIn(() => (
+                          <Link to="/logout">
+                            <Trans i18nKey="logout">Logout</Trans>
+                          </Link>
+                        ))}
+                      />
+                      <AuthRoutes />
+                      <Route component={NotFound} />
+                    </Switch>
+                  </Spin>
+                )}
+              </GlobalSpinnerProvider>
             </RouterScrollToTop>
           </ConnectedRouter>
         </StorePersistGate>

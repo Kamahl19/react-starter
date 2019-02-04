@@ -4,10 +4,10 @@ import { routerActions } from 'connected-react-router';
 import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 
 export default connectedReduxRedirect({
-  allowRedirectBack: ({ location }) => location.pathname !== '/auth/logout',
+  allowRedirectBack: ({ location }) => location.pathname !== '/logout',
   authenticatedSelector: selectIsLoggedIn,
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
-  redirectPath: '/auth/login',
+  redirectPath: '/login',
   wrapperDisplayName: 'IsLoggedIn',
 });
