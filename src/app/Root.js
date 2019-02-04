@@ -13,8 +13,7 @@ import { store, history } from './store/configureStore';
 import StorePersistGate from './store/StorePersistGate';
 // order matters
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
-import { NotFound } from '../common/components';
-import ErrorBoundary from './components/ErrorBoundary';
+import { ErrorBoundary, NotFound } from '../common/components';
 import AuthRoutes from '../features/auth/routes';
 
 const Root = () => (

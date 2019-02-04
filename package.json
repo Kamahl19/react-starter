@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "format": "prettier --write **/*.{js,json,less,md}",
     "extract-translations": "i18next-scanner --config i18next-scanner.config.js 'src/**/*.js'",
-    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .js src/ storybook/",
     "start": "npm-run-all -p watch-less start-js",
     "start-js": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start watch-less",

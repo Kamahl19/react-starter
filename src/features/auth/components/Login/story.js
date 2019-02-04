@@ -4,6 +4,6 @@ import { action } from '@storybook/addon-actions';
 
 import Login from './view';
 
-storiesOf('Login', module).add('default', () => (
+storiesOf('auth/Login', module).add('default', () => (
   <Login isLoading={false} onSubmit={action('submit')} />
 ));

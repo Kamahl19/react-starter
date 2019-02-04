@@ -4,6 +4,6 @@ import { action } from '@storybook/addon-actions';
 
 import ForgottenPassword from './view';
 
-storiesOf('ForgottenPassword', module).add('default', () => (
+storiesOf('auth/ForgottenPassword', module).add('default', () => (
   <ForgottenPassword isLoading={false} onSubmit={action('submit')} />
 ));
