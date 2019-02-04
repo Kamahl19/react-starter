@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 
-const ResponsiveMenuContainer = ({
+const ResponsiveNavigationContainer = ({
   location: { pathname: activePath },
   children,
   history,
@@ -12,9 +12,9 @@ const ResponsiveMenuContainer = ({
   <MediaQuery maxWidth={maxWidth}>
     {isMobile =>
       isMobile ? (
-        <MobileMenu history={history} activePath={activePath}>
+        <MobileNavigation history={history} activePath={activePath}>
           {children}
-        </MobileMenu>
+        </MobileNavigation>
       ) : (
         children({ isMobile, activePath })
       )
@@ -22,43 +22,43 @@ const ResponsiveMenuContainer = ({
   </MediaQuery>
 );
 
-ResponsiveMenuContainer.propTypes = {
+ResponsiveNavigationContainer.propTypes = {
   children: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   maxWidth: PropTypes.number,
 };
 
-ResponsiveMenuContainer.defaultProps = {
+ResponsiveNavigationContainer.defaultProps = {
   maxWidth: 767,
 };
 
-const MobileMenu = ({ activePath, children, history }) => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
+const MobileNavigation = ({ activePath, children, history }) => {
+  const [isNavigationVisible, setIsNavigationVisible] = useState(false);
 
-  function hideMenu() {
-    setIsMenuVisible(false);
+  function hideNavigation() {
+    setIsNavigationVisible(false);
   }
 
-  function showMenu() {
-    setIsMenuVisible(true);
+  function showNavigation() {
+    setIsNavigationVisible(true);
   }
 
-  useEffect(() => history.listen(hideMenu), []);
+  useEffect(() => history.listen(hideNavigation), []);
 
   return children({
     activePath,
-    hideMenu,
-    showMenu,
+    hideNavigation,
+    showNavigation,
     isMobile: true,
-    isMenuVisible,
+    isNavigationVisible,
   });
 };
 
-MobileMenu.propTypes = {
+MobileNavigation.propTypes = {
   activePath: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   maxWidth: PropTypes.number,
 };
 
-export default withRouter(ResponsiveMenuContainer);
+export default withRouter(ResponsiveNavigationContainer);

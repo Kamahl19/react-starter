@@ -8,7 +8,7 @@ import { Footer, Header, Icon, Layout, Menu, Popover } from '../../../../common/
 const PageLayout = ({ children }) => (
   <Layout>
     <Header>
-      {({ activePath, hideMenu, showMenu, isMenuVisible, isMobile }) => {
+      {({ activePath, hideNavigation, showNavigation, isNavigationVisible, isMobile }) => {
         const menu = (
           <Menu
             mode={isMobile ? 'inline' : 'horizontal'}
@@ -31,10 +31,10 @@ const PageLayout = ({ children }) => (
         return isMobile ? (
           <Popover
             content={menu}
-            onVisibleChange={visible => (visible ? showMenu() : hideMenu())}
-            title={<Icon type="close" onClick={hideMenu} />}
+            onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
+            title={<Icon type="close" onClick={hideNavigation} />}
             trigger="click"
-            visible={isMenuVisible}
+            visible={isNavigationVisible}
           >
             <Icon type="bars" />
           </Popover>

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ResponsiveNavMenu from '../../../packages/responsive-nav-menu';
+import ResponsiveNavigation from '../../../packages/responsive-navigation';
 
 import { Layout } from '../';
 
 const Header = ({ children }) => (
   <Layout.Header>
-    <ResponsiveNavMenu>{children}</ResponsiveNavMenu>
+    <ResponsiveNavigation>{children}</ResponsiveNavigation>
   </Layout.Header>
 );
 
