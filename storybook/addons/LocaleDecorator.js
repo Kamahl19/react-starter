@@ -5,6 +5,6 @@ import i18n from '../../src/common/services/i18n';
 
 export default storyFn => (
   <I18nextProvider i18n={i18n}>
-    <Suspense fallback={<></>}>{storyFn()}</Suspense>;
+    <Suspense fallback={<></>}>{storyFn()}</Suspense>
   </I18nextProvider>
 );

@@ -2,16 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from 'antd/lib/layout';
 
-import { GlobalSpinner } from '../';
+import { connectSpinner } from '../../../packages/spinner';
 
-const Content = ({ children }) => (
+import { Spin } from '../';
+
+const Content = ({ children, isLoading }) => (
   <Layout.Content>
-    <GlobalSpinner>{children}</GlobalSpinner>
+    <Spin spinning={isLoading} size="large">
+      {children}
+    </Spin>
   </Layout.Content>
 );
 
 Content.propTypes = {
   children: PropTypes.node.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-export default Content;
+export default connectSpinner()(Content);
