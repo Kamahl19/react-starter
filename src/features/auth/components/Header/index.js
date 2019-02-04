@@ -6,19 +6,19 @@ import { Header, Icon, Menu, Popover } from '../../../../common/components';
 
 const AuthHeader = () => (
   <Header>
-    {({ activePathname, hide, show, isVisible, isMobile }) => {
+    {({ activePath, hideMenu, showMenu, isMenuVisible, isMobile }) => {
       const menu = (
         <Menu
           mode={isMobile ? 'inline' : 'horizontal'}
           theme={isMobile ? undefined : 'dark'}
-          selectedKeys={[activePathname]}
+          selectedKeys={[activePath]}
         >
-          <Menu.Item key="signup">
+          <Menu.Item>
             <Link to="/sign-up">
               <Trans i18nKey="nav.signup">Sign Up</Trans>
             </Link>
           </Menu.Item>
-          <Menu.Item key="login">
+          <Menu.Item>
             <Link to="/login">
               <Trans i18nKey="nav.login">Log In</Trans>
             </Link>
@@ -28,12 +28,11 @@ const AuthHeader = () => (
 
       return isMobile ? (
         <Popover
-          placement="bottom"
-          trigger="click"
-          visible={isVisible}
-          onVisibleChange={visible => (visible ? show() : hide())}
-          title={<Icon type="close" onClick={hide} />}
           content={menu}
+          onVisibleChange={visible => (visible ? showMenu() : hideMenu())}
+          title={<Icon type="close" onClick={hideMenu} />}
+          trigger="click"
+          visible={isMenuVisible}
         >
           <Icon type="bars" theme="outlined" />
         </Popover>

@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 
 const ResponsiveMenuContainer = ({
-  location: { pathname: activePathname },
+  location: { pathname: activePath },
   children,
   history,
   maxWidth,
@@ -12,11 +12,11 @@ const ResponsiveMenuContainer = ({
   <MediaQuery maxWidth={maxWidth}>
     {isMobile =>
       isMobile ? (
-        <MobileMenu history={history} activePathname={activePathname}>
+        <MobileMenu history={history} activePath={activePath}>
           {children}
         </MobileMenu>
       ) : (
-        children({ isMobile, activePathname })
+        children({ isMobile, activePath })
       )
     }
   </MediaQuery>
@@ -32,30 +32,30 @@ ResponsiveMenuContainer.defaultProps = {
   maxWidth: 767,
 };
 
-const MobileMenu = ({ activePathname, children, history }) => {
-  const [isVisible, setIsVisible] = useState(false);
+const MobileMenu = ({ activePath, children, history }) => {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  function hide() {
-    setIsVisible(false);
+  function hideMenu() {
+    setIsMenuVisible(false);
   }
 
-  function show() {
-    setIsVisible(true);
+  function showMenu() {
+    setIsMenuVisible(true);
   }
 
-  useEffect(() => history.listen(hide), []);
+  useEffect(() => history.listen(hideMenu), []);
 
   return children({
-    activePathname,
-    hide,
-    show,
+    activePath,
+    hideMenu,
+    showMenu,
     isMobile: true,
-    isVisible,
+    isMenuVisible,
   });
 };
 
 MobileMenu.propTypes = {
-  activePathname: PropTypes.string.isRequired,
+  activePath: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   maxWidth: PropTypes.number,
