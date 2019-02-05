@@ -1,10 +1,11 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
-import { t } from '../../common/services/i18n';
-import AlertService from '../../common/services/alert';
-import { loginActions } from '../../common/services/user';
 import { createActionCreator } from '../../packages/redux-helpers';
+
+import { t } from '../../common/services/i18n';
+import { loginActions } from '../../common/services/user';
+import { message } from '../../common/components';
 
 import { ROUTE_PATHS } from '../../app/Root';
 
@@ -41,9 +42,7 @@ function* forgottenPassword({ payload }) {
   try {
     yield call(api.forgottenPassword, payload.email);
 
-    AlertService.success(
-      t('An e-mail with further instructions has been sent to your e-mail address.')
-    );
+    message.success(t('An e-mail with further instructions has been sent to your e-mail address.'));
     yield put(push(ROUTE_PATHS.root));
   } catch {}
 }
@@ -75,7 +74,7 @@ function* activateUser(userId, activationToken) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
 
-    AlertService.success(t('Your account has been activated successfully'));
+    message.success(t('Your account has been activated successfully'));
 
     yield put(loginActions.success(resp.data));
   } catch {

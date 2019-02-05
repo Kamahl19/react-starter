@@ -4,6 +4,7 @@ import { Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import ResponsiveNavigation from '../../../../packages/responsive-navigation';
+
 import { Footer, Icon, Layout, Menu, Popover } from '../../../../common/components';
 
 import { ROUTE_PATHS } from '../../routes';

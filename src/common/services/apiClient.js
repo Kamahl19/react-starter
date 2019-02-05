@@ -2,9 +2,9 @@ import createApiClient from '../../packages/api-client';
 import { startApiCallAction, finishApiCallAction } from '../../packages/spinner';
 
 import { store } from '../../app/store/configureStore';
+import { message } from '../../common/components';
 
 import { selectToken, logoutAction } from './user';
-import AlertService from './alert';
 
 export default createApiClient({
   axiosConfig: {
@@ -36,9 +36,9 @@ function showErrorMessage(error) {
   const errorMsg = extractErrorMsg(error);
 
   if (Array.isArray(errorMsg)) {
-    errorMsg.forEach(err => AlertService.error(`${err}`, 5));
+    errorMsg.forEach(err => message.error(`${err}`, 5));
   } else {
-    AlertService.error(`${errorMsg}`);
+    message.error(`${errorMsg}`);
   }
 }
 
