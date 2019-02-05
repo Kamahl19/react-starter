@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 
+import MobileNavigation from './MobileNavigation';
+
 const ResponsiveNavigationContainer = ({
-  location: { pathname: activePath },
   children,
   history,
+  location: { pathname: activePath },
   maxWidth,
 }) => (
   <MediaQuery maxWidth={maxWidth}>
@@ -25,40 +27,12 @@ const ResponsiveNavigationContainer = ({
 ResponsiveNavigationContainer.propTypes = {
   children: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  maxWidth: PropTypes.number,
+  location: PropTypes.object.isRequired,
+  maxWidth: PropTypes.number.isRequired,
 };
 
 ResponsiveNavigationContainer.defaultProps = {
   maxWidth: 767,
-};
-
-const MobileNavigation = ({ activePath, children, history }) => {
-  const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-
-  function hideNavigation() {
-    setIsNavigationVisible(false);
-  }
-
-  function showNavigation() {
-    setIsNavigationVisible(true);
-  }
-
-  useEffect(() => history.listen(hideNavigation), []);
-
-  return children({
-    activePath,
-    hideNavigation,
-    showNavigation,
-    isMobile: true,
-    isNavigationVisible,
-  });
-};
-
-MobileNavigation.propTypes = {
-  activePath: PropTypes.string.isRequired,
-  children: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  maxWidth: PropTypes.number,
 };
 
 export default withRouter(ResponsiveNavigationContainer);
