@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import ResponsiveNavigation from '../../../../packages/responsive-navigation';
 import { Footer, Icon, Layout, Menu, Popover } from '../../../../common/components';
 
+import { ROUTE_PATHS } from '../../routes';
+
 const PageLayout = ({ children }) => (
   <Layout>
     <Layout.Header>
@@ -18,12 +20,12 @@ const PageLayout = ({ children }) => (
               selectedKeys={[activePath]}
             >
               <Menu.Item>
-                <Link to="/sign-up">
+                <Link to={ROUTE_PATHS.signUp}>
                   <Trans i18nKey="nav.signup">Sign Up</Trans>
                 </Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to="/login">
+                <Link to={ROUTE_PATHS.login}>
                   <Trans i18nKey="nav.login">Log In</Trans>
                 </Link>
               </Menu.Item>

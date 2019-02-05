@@ -13,6 +13,8 @@ import {
   FAILURE,
 } from '../../../packages/redux-helpers';
 
+import { ROUTE_PATHS } from '../../../features/auth/routes';
+
 import api from './api';
 
 /**
@@ -104,7 +106,7 @@ function* relogin() {
 }
 
 function* logout() {
-  yield put(push('/login'));
+  yield put(push(ROUTE_PATHS.login));
 }
 
 export function* userSaga() {
