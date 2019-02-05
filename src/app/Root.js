@@ -15,9 +15,9 @@ import StorePersistGate from './store/StorePersistGate';
 // order matters
 import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
 import { ErrorBoundary, NotFound, Spin } from '../common/components';
-import AuthRoutes, { ROUTE_PATHS as AUTH_ROUTE_PATHS } from '../features/auth/routes';
+import AuthRoutes, { AUTH_ROUTER_PATHS } from '../features/auth/routes';
 
-export const ROUTE_PATHS = {
+export const APP_ROUTER_PATHS = {
   root: '/',
 };
 
@@ -34,9 +34,9 @@ const Root = () => (
                     <Switch>
                       <Route
                         exact
-                        path={ROUTE_PATHS.root}
+                        path={APP_ROUTER_PATHS.root}
                         component={IsLoggedIn(() => (
-                          <Link to={AUTH_ROUTE_PATHS.logout}>
+                          <Link to={AUTH_ROUTER_PATHS.logout}>
                             <Trans i18nKey="logout">Logout</Trans>
                           </Link>
                         ))}

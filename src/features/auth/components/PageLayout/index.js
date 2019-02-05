@@ -7,7 +7,7 @@ import ResponsiveNavigation from '../../../../packages/responsive-navigation';
 
 import { Footer, Icon, Layout, Menu, Popover } from '../../../../common/components';
 
-import { ROUTE_PATHS } from '../../routes';
+import { AUTH_ROUTER_PATHS } from '../../routes';
 
 const PageLayout = ({ children }) => (
   <Layout>
@@ -21,12 +21,12 @@ const PageLayout = ({ children }) => (
               selectedKeys={[activePath]}
             >
               <Menu.Item>
-                <Link to={ROUTE_PATHS.signUp}>
+                <Link to={AUTH_ROUTER_PATHS.signUp}>
                   <Trans i18nKey="nav.signup">Sign Up</Trans>
                 </Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to={ROUTE_PATHS.login}>
+                <Link to={AUTH_ROUTER_PATHS.login}>
                   <Trans i18nKey="nav.login">Log In</Trans>
                 </Link>
               </Menu.Item>

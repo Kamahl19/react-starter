@@ -12,7 +12,7 @@ import Logout from './features/Logout';
 import ResetPassword from './features/ResetPassword';
 import SignUp from './features/SignUp';
 
-export const ROUTE_PATHS = {
+export const AUTH_ROUTER_PATHS = {
   login: '/login',
   logout: '/logout',
   signUp: '/sign-up',
@@ -22,11 +22,15 @@ export const ROUTE_PATHS = {
 
 const AuthRoutes = () => (
   <Switch>
-    <Route exact path={ROUTE_PATHS.login} component={LoginGuard(Login)} />
-    <Route exact path={ROUTE_PATHS.logout} component={IsLoggedIn(Logout)} />
-    <Route exact path={ROUTE_PATHS.signUp} component={IsAnonymous(SignUp)} />
-    <Route exact path={ROUTE_PATHS.forgottenPassword} component={IsAnonymous(ForgottenPassword)} />
-    <Route exact path={ROUTE_PATHS.resetPassword} component={IsAnonymous(ResetPassword)} />
+    <Route exact path={AUTH_ROUTER_PATHS.login} component={LoginGuard(Login)} />
+    <Route exact path={AUTH_ROUTER_PATHS.logout} component={IsLoggedIn(Logout)} />
+    <Route exact path={AUTH_ROUTER_PATHS.signUp} component={IsAnonymous(SignUp)} />
+    <Route
+      exact
+      path={AUTH_ROUTER_PATHS.forgottenPassword}
+      component={IsAnonymous(ForgottenPassword)}
+    />
+    <Route exact path={AUTH_ROUTER_PATHS.resetPassword} component={IsAnonymous(ResetPassword)} />
     <Route component={NotFound} />
   </Switch>
 );
