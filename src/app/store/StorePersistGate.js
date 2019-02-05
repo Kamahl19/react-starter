@@ -7,6 +7,8 @@ import { reloginAction, selectIsLoggedIn } from '../../common/services/user';
 
 import { history, persistor } from './configureStore';
 
+import { ROUTE_PATHS } from '../../features/auth/routes';
+
 const mapStateToProps = state => ({
   isLoggedIn: selectIsLoggedIn(state),
 });
@@ -19,7 +21,7 @@ const StorePersistGate = ({ children, isLoggedIn, relogin }) => (
   <PersistGate
     loading={<></>}
     onBeforeLift={() => {
-      if (isLoggedIn && history.location.pathname !== '/logout') {
+      if (isLoggedIn && history.location.pathname !== ROUTE_PATHS.logout) {
         relogin();
       }
     }}

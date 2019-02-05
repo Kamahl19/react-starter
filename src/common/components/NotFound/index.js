@@ -2,6 +2,8 @@ import React from 'react';
 import { Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { ROUTE_PATHS } from '../../../app/Root';
+
 import { Button } from '../';
 
 const NotFound = () => (
@@ -15,7 +17,7 @@ const NotFound = () => (
       </Trans>
     </p>
     <Button type="primary">
-      <Link to="/">
+      <Link to={ROUTE_PATHS.root}>
         <Trans i18nKey="notFound.back">Go back</Trans>
       </Link>
     </Button>

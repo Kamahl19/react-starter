@@ -8,6 +8,7 @@ import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
 import { Button, Form, Input } from '../../../../common/components';
 import rules from '../../../../common/rules';
 
+import { ROUTE_PATHS } from '../../routes';
 import PageLayout from '../../components/PageLayout';
 
 const LoginForm = ({ form, isLoading, t, onSubmit }) => (
@@ -37,7 +38,7 @@ const LoginForm = ({ form, isLoading, t, onSubmit }) => (
             />
           </FormItem>
           <Form.Item>
-            <Link to="/forgotten-password">
+            <Link to={ROUTE_PATHS.forgottenPassword}>
               <Trans i18nKey="logIn.forgotPassword">Forgot password?</Trans>
             </Link>
           </Form.Item>
