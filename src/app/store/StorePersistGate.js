@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import { reloginAction, selectIsLoggedIn } from '../../common/services/user';
+import { AUTH_ROUTER_PATHS } from '../../features/auth/constants';
 
 import { history, persistor } from './configureStore';
-
-import { ROUTE_PATHS } from '../../features/auth/routes';
 
 const mapStateToProps = state => ({
   isLoggedIn: selectIsLoggedIn(state),
@@ -21,7 +20,7 @@ const StorePersistGate = ({ children, isLoggedIn, relogin }) => (
   <PersistGate
     loading={<></>}
     onBeforeLift={() => {
-      if (isLoggedIn && history.location.pathname !== ROUTE_PATHS.logout) {
+      if (isLoggedIn && history.location.pathname !== AUTH_ROUTER_PATHS.logout) {
         relogin();
       }
     }}

@@ -3,11 +3,10 @@ import { push } from 'connected-react-router';
 
 import { createActionCreator } from '../../packages/redux-helpers';
 
+import { rootPath } from '../../config';
 import { t } from '../../common/services/i18n';
 import { loginActions } from '../../common/services/user';
 import { message } from '../../common/components';
-
-import { ROUTE_PATHS } from '../../app/Root';
 
 import api from './api';
 
@@ -43,7 +42,7 @@ function* forgottenPassword({ payload }) {
     yield call(api.forgottenPassword, payload.email);
 
     message.success(t('An e-mail with further instructions has been sent to your e-mail address.'));
-    yield put(push(ROUTE_PATHS.root));
+    yield put(push(rootPath));
   } catch {}
 }
 
@@ -81,7 +80,7 @@ function* activateUser(userId, activationToken) {
     yield put(loginActions.failure());
   }
 
-  yield put(push(ROUTE_PATHS.root));
+  yield put(push(rootPath));
 }
 
 export function* authSaga() {

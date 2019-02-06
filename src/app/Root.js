@@ -13,13 +13,11 @@ import { GlobalSpinnerProvider } from '../packages/spinner';
 import { store, history } from './store/configureStore';
 import StorePersistGate from './store/StorePersistGate';
 // order matters
-import IsLoggedIn from '../common/services/user/guards/IsLoggedIn';
+import { rootPath } from '../config';
 import { ErrorBoundary, NotFound, Spin } from '../common/components';
-import AuthRoutes, { ROUTE_PATHS as AUTH_ROUTE_PATHS } from '../features/auth/routes';
-
-export const ROUTE_PATHS = {
-  root: '/',
-};
+import AuthRoutes from '../features/auth/routes';
+import { AUTH_ROUTER_PATHS } from '../features/auth/constants';
+import IsLoggedIn from '../features/auth/guards/IsLoggedIn';
 
 const Root = () => (
   <ErrorBoundary>
@@ -34,9 +32,9 @@ const Root = () => (
                     <Switch>
                       <Route
                         exact
-                        path={ROUTE_PATHS.root}
+                        path={rootPath}
                         component={IsLoggedIn(() => (
-                          <Link to={AUTH_ROUTE_PATHS.logout}>
+                          <Link to={AUTH_ROUTER_PATHS.logout}>
                             <Trans i18nKey="logout">Logout</Trans>
                           </Link>
                         ))}

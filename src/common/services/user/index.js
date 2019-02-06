@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 
 import {
   createActionCreator,
@@ -12,8 +11,6 @@ import {
   SUCCESS,
   FAILURE,
 } from '../../../packages/redux-helpers';
-
-import { ROUTE_PATHS } from '../../../features/auth/routes';
 
 import api from './api';
 
@@ -105,12 +102,7 @@ function* relogin() {
   }
 }
 
-function* logout() {
-  yield put(push(ROUTE_PATHS.login));
-}
-
 export function* userSaga() {
   yield takeLatest(createActionType(LOGIN, REQUEST), login);
   yield takeLatest(RELOGIN, relogin);
-  yield takeLatest(LOGOUT, logout);
 }
