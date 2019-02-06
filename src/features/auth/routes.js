@@ -1,24 +1,17 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import IsAnonymous from '../../common/services/user/guards/IsAnonymous';
-import IsLoggedIn from '../../common/services/user/guards/IsLoggedIn';
-import LoginGuard from '../../common/services/user/guards/LoginGuard';
 import { NotFound } from '../../common/components';
 
+import { AUTH_ROUTER_PATHS } from './constants';
+import IsAnonymous from './guards/IsAnonymous';
+import IsLoggedIn from './guards/IsLoggedIn';
+import LoginGuard from './guards/LoginGuard';
 import ForgottenPassword from './features/ForgottenPassword';
 import Login from './features/Login';
 import Logout from './features/Logout';
 import ResetPassword from './features/ResetPassword';
 import SignUp from './features/SignUp';
-
-export const AUTH_ROUTER_PATHS = {
-  login: '/login',
-  logout: '/logout',
-  signUp: '/sign-up',
-  forgottenPassword: '/forgotten-password',
-  resetPassword: '/reset-password/:passwordResetToken',
-};
 
 const AuthRoutes = () => (
   <Switch>

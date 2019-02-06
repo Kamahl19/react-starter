@@ -8,7 +8,7 @@ import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
 import { Button, Form, Input } from '../../../../common/components';
 import rules from '../../../../common/rules';
 
-import { AUTH_ROUTER_PATHS } from '../../routes';
+import { AUTH_ROUTER_PATHS } from '../../constants';
 import PageLayout from '../../components/PageLayout';
 
 const LoginForm = ({ form, isLoading, t, onSubmit }) => (

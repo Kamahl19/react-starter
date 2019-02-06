@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 
 import ResponsiveNavigation from '../../../../packages/responsive-navigation';
 
-import { AUTH_ROUTER_PATHS } from '../../routes';
 import { Footer, Icon, Layout, Menu, Popover } from '../../../../common/components';
+
+import { AUTH_ROUTER_PATHS } from '../../constants';
 
 const PageLayout = ({ children }) => (
   <Layout>

@@ -1,9 +1,9 @@
 import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
 import { routerActions } from 'connected-react-router';
 
-import { AUTH_ROUTER_PATHS } from '../../../../features/auth/routes';
+import { selectIsLoggedIn, selectIsAuthenticating } from '../../../common/services/user';
 
-import { selectIsLoggedIn, selectIsAuthenticating } from '../';
+import { AUTH_ROUTER_PATHS } from '../constants';
 
 export default connectedReduxRedirect({
   allowRedirectBack: ({ location }) => location.pathname !== AUTH_ROUTER_PATHS.logout,
