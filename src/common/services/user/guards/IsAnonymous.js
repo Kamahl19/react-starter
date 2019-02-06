@@ -1,7 +1,7 @@
 import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
 import { routerActions } from 'connected-react-router';
 
-import { APP_ROUTER_PATHS } from '../../../../app/Root';
+import { rootPath } from '../../../../config';
 
 import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 
@@ -10,6 +10,6 @@ export default connectedReduxRedirect({
   authenticatedSelector: state => !selectIsLoggedIn(state),
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
-  redirectPath: APP_ROUTER_PATHS.root,
+  redirectPath: rootPath,
   wrapperDisplayName: 'IsAnonymous',
 });
