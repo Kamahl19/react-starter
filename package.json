@@ -47,7 +47,7 @@
     "storybook-react-router": "1.0.2"
   },
   "dependencies": {
-    "antd": "3.13.1",
+    "antd": "3.13.2",
     "axios": "0.18.0",
     "connected-react-router": "6.2.2",
     "flat": "4.1.0",
