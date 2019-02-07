@@ -52,7 +52,7 @@
     "connected-react-router": "6.2.2",
     "flat": "4.1.0",
     "history": "4.7.2",
-    "i18next": "14.0.1",
+    "i18next": "14.1.1",
     "localforage": "1.7.3",
     "lodash.flattendeep": "4.4.0",
     "lodash.omit": "4.5.0",
