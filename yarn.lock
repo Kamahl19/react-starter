@@ -6814,10 +6814,10 @@ i18next-scanner@2.9.1:
     vinyl "^2.2.0"
     vinyl-fs "^3.0.1"
 
-i18next@14.0.1:
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-14.0.1.tgz#c5f0292ea6389394b6056f597b75f1f9aa03124f"
-  integrity sha512-wsKfQuYsy4RdCaqqN71eDjWMhizhTfQSIBGttEA7vcboQrUfpQlCezrSzrtmoW9F9tmVyNs38iBgLYLMhRSeIQ==
+i18next@14.1.1:
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-14.1.1.tgz#d569aff68c088151f09fcb0cb6f44b36d62731d3"
+  integrity sha512-HItn9RHLyrDqe6pw6qXMYHGPHNc3y1FZndJfBlD6k4sRS0FAlYLvqCDVIWFc1XultBgsv348TtvL/lleG6JgBg==
 
 i18next@^11.10.1:
   version "11.10.2"
