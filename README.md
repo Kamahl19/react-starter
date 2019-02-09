@@ -3,21 +3,23 @@
 ## What’s Inside?
 
 - `JWT` Authorization - including all the common features such as Sign-up, Login, Logout, Reset password, Email verification
-- `redux-auth-wrapper` - a HOC for handling Authentication and Authorization
 - `Ant.Design` - a UI library
 - `axios` - promise based HTTP client
 - `i18next` - an internationalization framework
 - `less` - dynamic stylesheet language
 - `react-router` - declarative routing
-- `redux` - s state container
-  - `redux-saga` - a side effect model for redux apps
-  - `redux-persist` - persist and rehydrate a redux store
-  - `redux-logger` - logger for redux
-  - `reselect` - selector library for redux
-- `create-react-app` - create react apps with no build configuration
+  - `connected-react-router` - Redux binding for React Router
+- `redux` - a state container
+  - `redux-saga` - a side effect model for Redux apps
+  - `redux-auth-wrapper` - a HOC for handling Authentication and Authorization
+  - `redux-persist` - persist and rehydrate a Redux store
+  - `redux-logger` - logger for Redux
+  - `reselect` - selector library for Redux
+  - `redux-immutable-state-invariant` - detects mutations in Redux store
+- `create-react-app` - create React apps with no build configuration
 - `prettier` - opinionated code formatter
 - `source-map-explorer` - analyze and debug space usage through source maps
-- `@storybook/react` - a development environment for UI components
+- `storybook` - a development environment for UI components
 - `dotenv` - loads environment variables from an `.env` file
 
 ## Start app
@@ -39,7 +41,7 @@ To build app, run `yarn build` in app root directory.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
  |--| resources/: locales, files etc.
  |--| index.js: application entry file
--| stories/: Storybook stories used to component development and demos.
+-| storybook/: Storybook configuration and addons.
 ```
 
 ## Prettier
@@ -76,3 +78,7 @@ Running `yarn extract-translations` will update alphabetically sorted JSON files
 ## Analysing JS bundle
 
 Project comes with the `source-map-explorer` which analyze and debug JS bundle. To use it just run `yarn analyze`
+
+## Updating dependencies
+
+Project comes with the default [Renovate](https://renovatebot.com) config `renovate.json`. It takes care of automated dependency updates and it's free of charge for open-source projects. More about how to [configure here](https://renovatebot.com/docs).
