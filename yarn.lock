@@ -6629,17 +6629,17 @@ hoist-non-react-statics@1.x.x, hoist-non-react-statics@^1.2.0:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
   integrity sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=
 
-hoist-non-react-statics@3.3.0, hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+  integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
+
+hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
   dependencies:
     react-is "^16.7.0"
-
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
-  integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -11281,13 +11281,12 @@ react-fuzzy@^0.5.2:
     fuse.js "^3.0.1"
     prop-types "^15.5.9"
 
-react-i18next@10.0.2:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.0.2.tgz#3649c0abd909874d57bd039306676e44c6916a51"
-  integrity sha512-J8iKjJhdoeKFugf7oZU0w43MZ43LFjDUj0bYVPmz4I1nZlQZXTpvxMZaR3bzFQT7Uprmwv9av4OYkSunv/mDrA==
+react-i18next@10.0.4:
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.0.4.tgz#a50cd79e44897e595e492c82ea722b25a69e2cf4"
+  integrity sha512-jwlll/+ntPATCIodcrZGxt7LD52Cldts4+kxw2omtm2sDhA649H78/nvG/z36WTeH+rpZdIfypAUR362E9tHKg==
   dependencies:
     "@babel/runtime" "^7.3.1"
-    hoist-non-react-statics "3.3.0"
     html-parse-stringify2 "2.0.1"
 
 react-inspector@^2.3.0:
