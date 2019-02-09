@@ -60,7 +60,7 @@
     "prop-types": "15.6.2",
     "react": "16.8.1",
     "react-dom": "16.8.1",
-    "react-i18next": "10.0.2",
+    "react-i18next": "10.0.4",
     "react-redux": "6.0.0",
     "react-responsive": "6.1.1",
     "react-router-dom": "4.3.1",
