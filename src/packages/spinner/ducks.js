@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux';
-import { connect } from 'react-redux';
-import { put } from 'redux-saga/effects';
 
 import { createActionCreator, createReducer } from '../redux-helpers';
 
@@ -57,39 +55,5 @@ export default combineReducers({
  * SELECTORS
  */
 const selectSpinner = state => state.spinner;
-const selectIsInProgress = (state, apiCallId) => !!selectSpinner(state).apiCalls[apiCallId];
-const selectGlobalCounter = state => !!selectSpinner(state).globalCounter;
-
-/**
- * DECORATORS
- */
-export function withApiCall(apiCallId, saga) {
-  return function*(...args) {
-    yield put(startApiCallAction({ apiCallId }));
-    yield* saga.apply(saga, args);
-    yield put(finishApiCallAction({ apiCallId }));
-  };
-}
-
-export const connectSpinner = apiCallIds => Component => {
-  const createMapStateToProps = apiCallIds => {
-    const entries = Object.entries(apiCallIds);
-
-    return state =>
-      entries.reduce(
-        (acc, [propName, apiCallId]) => ({
-          ...acc,
-          [propName]: selectIsInProgress(state, apiCallId),
-        }),
-        {}
-      );
-  };
-
-  return connect(
-    apiCallIds
-      ? createMapStateToProps(apiCallIds)
-      : state => ({
-          isVisible: selectGlobalCounter(state),
-        })
-  )(Component);
-};
+export const selectIsInProgress = (state, apiCallId) => !!selectSpinner(state).apiCalls[apiCallId];
+export const selectGlobalCounter = state => !!selectSpinner(state).globalCounter;

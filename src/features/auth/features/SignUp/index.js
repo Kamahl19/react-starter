@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { connectSpinner } from '../../../../packages/spinner';
+import { useSpinner } from '../../../../packages/spinner';
 
 import { signUpRequest } from '../../ducks';
 import { apiCallIds } from '../../api';
@@ -13,20 +13,17 @@ const mapDispatchToProps = {
   signUp: signUpRequest,
 };
 
-const SignUpContainer = ({ isLoading, signUp }) => (
-  <SignUp isLoading={isLoading} onSubmit={signUp} />
-);
+const SignUpContainer = ({ signUp }) => {
+  const isLoading = useSpinner(apiCallIds.SIGN_UP);
+
+  return <SignUp isLoading={isLoading} onSubmit={signUp} />;
+};
 
 SignUpContainer.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
 };
 
 export default connect(
   undefined,
   mapDispatchToProps
-)(
-  connectSpinner({
-    isLoading: apiCallIds.SIGN_UP,
-  })(SignUpContainer)
-);
+)(SignUpContainer);

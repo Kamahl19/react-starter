@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { connectSpinner } from '../../../../packages/spinner';
+import { useSpinner } from '../../../../packages/spinner';
 
 import { resetPasswordRequest } from '../../ducks';
 import { apiCallIds } from '../../api';
@@ -14,20 +14,22 @@ const mapDispatchToProps = {
 };
 
 const ResetPasswordContainer = ({
-  isLoading,
   match: {
     params: { passwordResetToken },
   },
   resetPassword,
-}) => (
-  <ResetPassword
-    isLoading={isLoading}
-    onSubmit={data => resetPassword({ ...data, passwordResetToken })}
-  />
-);
+}) => {
+  const isLoading = useSpinner(apiCallIds.RESET_PASSWORD);
+
+  return (
+    <ResetPassword
+      isLoading={isLoading}
+      onSubmit={data => resetPassword({ ...data, passwordResetToken })}
+    />
+  );
+};
 
 ResetPasswordContainer.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       passwordResetToken: PropTypes.string.isRequired,
@@ -39,8 +41,4 @@ ResetPasswordContainer.propTypes = {
 export default connect(
   undefined,
   mapDispatchToProps
-)(
-  connectSpinner({
-    isLoading: apiCallIds.RESET_PASSWORD,
-  })(ResetPasswordContainer)
-);
+)(ResetPasswordContainer);
