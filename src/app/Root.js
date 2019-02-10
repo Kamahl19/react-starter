@@ -7,7 +7,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import RouterScrollToTop from '../packages/router-scroll-to-top';
-import { GlobalSpinnerProvider } from '../packages/spinner';
+import { useSpinner } from '../packages/spinner';
 
 // must be first
 import { store, history } from './store/configureStore';
@@ -27,23 +27,19 @@ const Root = () => (
           <ConnectedRouter history={history}>
             <RouterScrollToTop>
               <GlobalSpinnerProvider>
-                {({ isVisible }) => (
-                  <Spin spinning={isVisible} size="large">
-                    <Switch>
-                      <Route
-                        exact
-                        path={rootPath}
-                        component={IsLoggedIn(() => (
-                          <Link to={AUTH_ROUTER_PATHS.logout}>
-                            <Trans i18nKey="logout">Logout</Trans>
-                          </Link>
-                        ))}
-                      />
-                      <AuthRoutes />
-                      <Route component={NotFound} />
-                    </Switch>
-                  </Spin>
-                )}
+                <Switch>
+                  <Route
+                    exact
+                    path={rootPath}
+                    component={IsLoggedIn(() => (
+                      <Link to={AUTH_ROUTER_PATHS.logout}>
+                        <Trans i18nKey="logout">Logout</Trans>
+                      </Link>
+                    ))}
+                  />
+                  <AuthRoutes />
+                  <Route component={NotFound} />
+                </Switch>
               </GlobalSpinnerProvider>
             </RouterScrollToTop>
           </ConnectedRouter>
@@ -54,3 +50,13 @@ const Root = () => (
 );
 
 export default Root;
+
+const GlobalSpinnerProvider = ({ children }) => {
+  const isVisible = useSpinner();
+
+  return (
+    <Spin spinning={isVisible} size="large">
+      {children}
+    </Spin>
+  );
+};
