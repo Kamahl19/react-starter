@@ -3,10 +3,10 @@ import { ReactReduxContext } from 'react-redux';
 
 import { selectIsInProgress, selectGlobalCounter } from './ducks';
 
-const useSpinner = apiCallId => {
+const useSpinner = id => {
   const { storeState } = useContext(ReactReduxContext);
 
-  return apiCallId ? selectIsInProgress(storeState, apiCallId) : selectGlobalCounter(storeState);
+  return id ? selectIsInProgress(storeState, id) : selectGlobalCounter(storeState);
 };
 
 export default useSpinner;

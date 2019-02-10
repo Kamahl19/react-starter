@@ -52,10 +52,10 @@ const Root = () => (
 export default Root;
 
 const GlobalSpinnerProvider = ({ children }) => {
-  const isVisible = useSpinner();
+  const isLoading = useSpinner();
 
   return (
-    <Spin spinning={isVisible} size="large">
+    <Spin spinning={isLoading} size="large">
       {children}
     </Spin>
   );

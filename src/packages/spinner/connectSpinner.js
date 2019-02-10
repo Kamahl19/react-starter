@@ -2,23 +2,23 @@ import { connect } from 'react-redux';
 
 import { selectIsInProgress, selectGlobalCounter } from './ducks';
 
-const connectSpinner = apiCallIds => Component => {
-  const createMapStateToProps = apiCallIds => {
-    const entries = Object.entries(apiCallIds);
+const connectSpinner = ids => Component => {
+  const createMapStateToProps = ids => {
+    const entries = Object.entries(ids);
 
     return state =>
       entries.reduce(
-        (acc, [propName, apiCallId]) => ({
+        (acc, [propName, id]) => ({
           ...acc,
-          [propName]: selectIsInProgress(state, apiCallId),
+          [propName]: selectIsInProgress(state, id),
         }),
         {}
       );
   };
 
   return connect(
-    apiCallIds
-      ? createMapStateToProps(apiCallIds)
+    ids
+      ? createMapStateToProps(ids)
       : state => ({
           isVisible: selectGlobalCounter(state),
         })
