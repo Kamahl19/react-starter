@@ -1,5 +1,5 @@
 import createApiClient from '../../packages/api-client';
-import { startApiCallAction, finishApiCallAction } from '../../packages/spinner';
+import { startSpinnerAction, finishSpinnerAction } from '../../packages/spinner';
 
 import { store } from '../../app/store/configureStore';
 import { message } from '../../common/components';
@@ -11,18 +11,8 @@ export default createApiClient({
     baseURL: process.env.REACT_APP_API_URL,
   },
   selectToken: () => selectToken(store.getState()),
-  onApiCallStart: apiCallId =>
-    store.dispatch(
-      startApiCallAction({
-        apiCallId,
-      })
-    ),
-  onApiCallFinish: apiCallId =>
-    store.dispatch(
-      finishApiCallAction({
-        apiCallId,
-      })
-    ),
+  onApiCallStart: apiCallId => store.dispatch(startSpinnerAction(apiCallId)),
+  onApiCallFinish: apiCallId => store.dispatch(finishSpinnerAction(apiCallId)),
   onError: error => {
     if (error.response && error.response.status === 401) {
       store.dispatch(logoutAction());
