@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { selectIsInProgress, selectGlobalCounter } from './ducks';
+import { selectIsInProgress } from './ducks';
 
 const connectSpinner = ids => Component => {
   const createMapStateToProps = ids => {
@@ -20,7 +20,7 @@ const connectSpinner = ids => Component => {
     ids
       ? createMapStateToProps(ids)
       : state => ({
-          isVisible: selectGlobalCounter(state),
+          isVisible: selectIsInProgress(state),
         })
   )(Component);
 };
