@@ -6865,10 +6865,10 @@ i18next-scanner@2.9.1:
     vinyl "^2.2.0"
     vinyl-fs "^3.0.1"
 
-i18next@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.2.tgz#1dfaef19b525578064b8137b7c38dd21a7dbe046"
-  integrity sha512-u+XzxPOpg99VJBVxUp5Ko3fXX2+ivXnAJ4N/zHCjfV60wmuVLM1gwgaS2MEtvSve8rnM27ezt2aF3g3tgBj8CQ==
+i18next@15.0.3:
+  version "15.0.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.3.tgz#ec2f465abf7ea6843ac738e64e07b920c81c6624"
+  integrity sha512-os+NIaTOGUdZZ+XwnKwnNPbWeYzu+cexGkYoCy+WPuUBt6G+zerNiWSMkTZFibvPBHO4UF7R/uN5F4yegFgqPQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
