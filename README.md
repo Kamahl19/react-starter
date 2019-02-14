@@ -77,8 +77,12 @@ Running `yarn extract-translations` will update alphabetically sorted JSON files
 
 ## Analysing JS bundle
 
-Project comes with the `source-map-explorer` which analyze and debug JS bundle. To use it just run `yarn analyze`
+Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `yarn build` and then `yarn analyze` for the `/src` code or `yarn analyze-deps` for the 3rd party dependencies bundle.
 
 ## Updating dependencies
 
 Project comes with the default [Renovate](https://renovatebot.com) config `renovate.json`. It takes care of automated dependency updates and it's free of charge for open-source projects. More about how to [configure here](https://renovatebot.com/docs).
+
+## More Docs & Guides
+
+This project is built on top of `create-react-app` with many [more usefull guides](https://facebook.github.io/create-react-app/docs/getting-started).
