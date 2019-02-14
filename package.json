@@ -17,6 +17,7 @@
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
+    "analyze-deps": "source-map-explorer 'build/static/js/!(*main*)'",
     "build": "yarn build-less && react-scripts build",
     "build-less": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "eject": "react-scripts eject",
