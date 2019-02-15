@@ -11492,10 +11492,10 @@ react-fuzzy@^0.5.2:
     fuse.js "^3.0.1"
     prop-types "^15.5.9"
 
-react-i18next@10.1.1:
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.1.1.tgz#15142648de90d8a4eddc2d24550090b33c150d20"
-  integrity sha512-GNwbdbrOef2Xj5pJ7ELDQ14AMBo5xKpxFT2wA21dAC6SSqr1EjNET6uNzeDQS3nBJrnbCVcHdRg9nTnwt7pPgQ==
+react-i18next@10.1.2:
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.1.2.tgz#29d0b7a6e8e2df62d9f3f412c01796902a9e9b3f"
+  integrity sha512-0YGaZE7E9i+ZKsFXV8T1dSlUj3xim8Jn4dfn0fcpJxrkTlhLNZCPqc+zouroUku+CUKasupoek4rosUUq5VdeQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
