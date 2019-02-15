@@ -16,8 +16,7 @@
     "yarn": ">=1.13.0"
   },
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/main.*",
-    "analyze-deps": "source-map-explorer 'build/static/js/!(*main*)'",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "build": "yarn build-less && react-scripts build",
     "build-less": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "eject": "react-scripts eject",
@@ -62,7 +61,7 @@
     "react-scripts": "2.1.5",
     "redux-immutable-state-invariant": "2.1.0",
     "redux-logger": "3.0.6",
-    "source-map-explorer": "1.6.0",
+    "source-map-explorer": "1.7.0",
     "storybook-react-router": "1.0.2"
   },
   "dependencies": {
