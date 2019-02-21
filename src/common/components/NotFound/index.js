@@ -8,7 +8,7 @@ const NotFound = () => (
     </h1>
     <p>
       <Trans i18nKey="notFound.subtitle">
-        Ooops! Looks like the page you have requested doesn't exist.
+        Oops! Looks like the page you have requested doesn't exist.
       </Trans>
     </p>
   </>
