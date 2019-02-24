@@ -64,6 +64,8 @@ We suggest developing component in isolation. For this reason, project comes wit
 
 To run separated development environment, run `yarn storybook` which will start dedicated web server at `http://localhost:9001`.
 
+To build static storybook, run `yarn storybook:build`. This creates a static webpage which you can deploy and showcase your components to others.
+
 More information about supported features can be found in [Storybook's Github repository](https://github.com/storybooks/storybook)
 
 ## i18n
