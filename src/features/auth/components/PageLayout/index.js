@@ -26,9 +26,6 @@ const PageLayout = ({ children }) => (
       </Navbar>
     </Layout.Header>
     <Layout.Content>{children}</Layout.Content>
-    <Layout.Footer>
-      <Trans i18nKey="footer.copyright">Copyright</Trans>
-    </Layout.Footer>
   </Layout>
 );
 

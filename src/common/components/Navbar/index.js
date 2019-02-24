@@ -1,24 +1,28 @@
-import React, { cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
 import ResponsiveNavigation from '../../../packages/responsive-navigation';
 
 import { Icon, Popover, Menu } from '../';
 
-const Navbar = ({ children }) => (
+const Navbar = ({ children, trigger }) => (
   <ResponsiveNavigation>
-    {({ activePath, isMobile, hideNavigation, showNavigation, isNavigationVisible }) => {
+    {({ activePath, hideNavigation, isMobile, isNavigationVisible, showNavigation }) => {
+      if (children.type !== Navbar.Menu || !isValidElement(Children.only(children))) {
+        return null;
+      }
+
       const Menu = cloneElement(children, { activePath, isMobile });
 
       return isMobile ? (
         <Popover
           content={Menu}
-          onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
           title={<Icon type="close" onClick={hideNavigation} />}
           trigger="click"
           visible={isNavigationVisible}
+          onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
         >
-          <Icon type="bars" style={{ color: '#fff' }} />
+          {trigger}
         </Popover>
       ) : (
         Menu
@@ -29,14 +33,19 @@ const Navbar = ({ children }) => (
 
 Navbar.propTypes = {
   children: PropTypes.node.isRequired,
+  trigger: PropTypes.node.isRequired,
+};
+
+Navbar.defaultProps = {
+  trigger: <Icon type="bars" style={{ color: '#fff' }} />,
 };
 
 Navbar.Menu = ({ activePath, isMobile, ...props }) => (
   <Menu
-    mode={isMobile ? 'inline' : 'horizontal'}
-    selectedKeys={[activePath]}
     theme={isMobile ? undefined : 'dark'}
     {...props}
+    mode={isMobile ? 'inline' : 'horizontal'}
+    selectedKeys={[activePath]}
   />
 );
 
