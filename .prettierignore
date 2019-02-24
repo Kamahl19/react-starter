@@ -1,8 +1,10 @@
+# Node
+node_modules/
+
 # IDE
-.vscode
+.vscode/
 
 # Build
-build
+build/
 
-# NPM files
 package.json
