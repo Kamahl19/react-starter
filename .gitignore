@@ -2,17 +2,17 @@
 .DS_Store
 Thumbs.db
 
-# node.js
+# Node
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# build
-build
+# Build
+build/
 
-# env variables
+# ENV variables
 .env
 
-# compiled styles
+# Compiled styles
 src/**/main.css
