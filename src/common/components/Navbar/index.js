@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement } from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import ResponsiveNavigation from '../../../packages/responsive-navigation';
@@ -8,11 +8,7 @@ import { Icon, Popover, Menu } from '../';
 const Navbar = ({ children, trigger }) => (
   <ResponsiveNavigation>
     {({ activePath, hideNavigation, isMobile, isNavigationVisible, showNavigation }) => {
-      if (children.type !== Navbar.Menu || !isValidElement(Children.only(children))) {
-        return null;
-      }
-
-      const Menu = cloneElement(children, { activePath, isMobile });
+      const Menu = cloneElement(Children.only(children), { activePath, isMobile });
 
       return isMobile ? (
         <Popover
