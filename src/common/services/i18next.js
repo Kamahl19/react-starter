@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import translations from '../../resources/translations';
@@ -9,7 +9,7 @@ export const LANGUAGE_CODES = {
 };
 
 // see: https://www.i18next.com/overview/configuration-options
-i18n.use(initReactI18next).init({
+i18next.use(initReactI18next).init({
   nsSeparator: false,
   returnEmptyString: false,
   whitelist: [LANGUAGE_CODES.EN],
@@ -25,14 +25,14 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const [DEFAULT_NAMESPACE] = i18n.options.defaultNS;
+const [DEFAULT_NAMESPACE] = i18next.options.defaultNS;
 
 Object.keys(translations).forEach(languageCode =>
-  i18n.addResourceBundle(languageCode, DEFAULT_NAMESPACE, translations[languageCode])
+  i18next.addResourceBundle(languageCode, DEFAULT_NAMESPACE, translations[languageCode])
 );
 
 export function t(...args) {
-  return i18n.t(...args);
+  return i18next.t(...args);
 }
 
-export default i18n;
+export default i18next;

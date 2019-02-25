@@ -1,4 +1,4 @@
-import { t } from './services/i18n';
+import { t } from './services/i18next';
 
 const MIN_PASSWORD_LENGTH = 6;
 
