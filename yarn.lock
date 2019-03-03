@@ -6886,10 +6886,10 @@ hyphenate-style-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
   integrity sha1-MRYKNpMK2vH8BMYHT360FGXU7Es=
 
-i18next-scanner@2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/i18next-scanner/-/i18next-scanner-2.9.1.tgz#4584694e4da50e59a65589813eb98eddef3afc57"
-  integrity sha512-zGbIuMGH7gRQ8CiZCTmLXeol5KC4Xvz68rmWNwp9SVgJdXBMTWOKhGJaf4JAge2/nUeUEK2pOvJQs9Ec5xRKUg==
+i18next-scanner@2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/i18next-scanner/-/i18next-scanner-2.9.2.tgz#85e246b9d36eeb14e8d4813b826986890be4cbda"
+  integrity sha512-jZZ/wtMdeqC9VbAGfC/ySKj6aCcXLSJxvaI+eNEkkBBm8YPo4y0dO/EyH6ZfL07EKwm9svwGbE9j1p3TF8H2vw==
   dependencies:
     acorn "^6.0.4"
     acorn-jsx "^5.0.1"
