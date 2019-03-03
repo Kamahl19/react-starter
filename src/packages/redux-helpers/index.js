@@ -1,5 +1,5 @@
-import flattenDeep from 'lodash.flattendeep';
 import deepFreeze from 'deep-freeze';
+import flattenDeep from 'lodash.flattendeep';
 
 export const REQUEST = 'REQUEST';
 export const SUCCESS = 'SUCCESS';
