@@ -31,11 +31,11 @@ export const logoutAction = createActionCreator(LOGOUT);
 /**
  * REDUCERS
  */
-const initialState = {
+const initialState = Object.freeze({
   isAuthenticating: false,
   profile: null,
   token: null,
-};
+});
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
   [RELOGIN]: () => true,

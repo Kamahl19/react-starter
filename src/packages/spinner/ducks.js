@@ -17,7 +17,7 @@ export const finishSpinnerAction = createActionCreator(FINISH);
 /**
  * REDUCERS
  */
-const initialState = {};
+const initialState = Object.freeze({});
 
 export default createReducer(initialState, {
   [START]: (state, id = GLOBAL) =>
