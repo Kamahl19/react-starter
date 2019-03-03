@@ -5,6 +5,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   createActionCreator,
   createApiActionCreators,
+  createInitialState,
   createReducer,
   createActionType,
   REQUEST,
@@ -31,7 +32,7 @@ export const logoutAction = createActionCreator(LOGOUT);
 /**
  * REDUCERS
  */
-const initialState = Object.freeze({
+const initialState = createInitialState({
   isAuthenticating: false,
   profile: null,
   token: null,
