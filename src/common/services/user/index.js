@@ -5,6 +5,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   createActionCreator,
   createApiActionCreators,
+  createInitialState,
   createReducer,
   createActionType,
   REQUEST,
@@ -31,11 +32,11 @@ export const logoutAction = createActionCreator(LOGOUT);
 /**
  * REDUCERS
  */
-const initialState = {
+const initialState = createInitialState({
   isAuthenticating: false,
   profile: null,
   token: null,
-};
+});
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
   [RELOGIN]: () => true,

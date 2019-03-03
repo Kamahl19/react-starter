@@ -1,3 +1,4 @@
+import deepFreeze from 'deep-freeze';
 import flattenDeep from 'lodash.flattendeep';
 
 export const REQUEST = 'REQUEST';
@@ -16,6 +17,8 @@ export const createApiActionCreators = (...type) => ({
   success: createActionCreator(type, SUCCESS),
   failure: createActionCreator(type, FAILURE),
 });
+
+export const createInitialState = deepFreeze;
 
 export const createReducer = (initialState, reducerMap) => {
   const iterator = (reducersObj, initial = {}, prefix = []) =>

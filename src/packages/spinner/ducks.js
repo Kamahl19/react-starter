@@ -1,4 +1,4 @@
-import { createActionCreator, createReducer } from '../redux-helpers';
+import { createActionCreator, createInitialState, createReducer } from '../redux-helpers';
 
 const GLOBAL = Symbol('globalSpinner');
 
@@ -17,7 +17,7 @@ export const finishSpinnerAction = createActionCreator(FINISH);
 /**
  * REDUCERS
  */
-const initialState = {};
+const initialState = createInitialState({});
 
 export default createReducer(initialState, {
   [START]: (state, id = GLOBAL) =>
