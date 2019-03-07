@@ -41,7 +41,12 @@ function* forgottenPassword({ payload }) {
   try {
     yield call(api.forgottenPassword, payload.email);
 
-    message.success(t('An e-mail with further instructions has been sent to your e-mail address.'));
+    message.success(
+      t('auth.forgottenPasswordSent', {
+        defaultValue: 'An e-mail with further instructions has been sent to your e-mail address.',
+      })
+    );
+
     yield put(push(rootPath));
   } catch {}
 }
@@ -73,7 +78,9 @@ function* activateUser(userId, activationToken) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
 
-    message.success(t('Your account has been activated successfully'));
+    message.success(
+      t('auth.accountActivated', { defaultValue: 'Your account has been activated successfully.' })
+    );
 
     yield put(loginActions.success(resp.data));
   } catch {

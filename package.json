@@ -20,7 +20,7 @@
     "build": "yarn less:build && react-scripts build",
     "eject": "react-scripts eject",
     "format": "prettier --write '**/*.{js,json,less,md}'",
-    "extract-translations": "i18next-scanner --config i18next-scanner.config.js 'src/**/*.js'",
+    "extract-translations": "i18next-scanner --config i18next-scanner.config.js",
     "less:build": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "less:watch": "yarn less:build && nodemon -e less -x \"yarn less:build\"",
     "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.js'",
