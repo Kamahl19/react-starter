@@ -81,7 +81,7 @@
     "prop-types": "15.7.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
-    "react-i18next": "10.2.1",
+    "react-i18next": "10.3.0",
     "react-redux": "6.0.1",
     "react-responsive": "6.1.1",
     "react-router-dom": "4.3.1",
