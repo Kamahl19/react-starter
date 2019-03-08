@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^5.0.0",
     "@storybook/addon-actions": "5.0.0",
     "@storybook/addon-knobs": "5.0.0",
     "@storybook/addon-viewport": "5.0.0",
