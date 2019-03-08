@@ -1339,7 +1339,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@storybook/addon-a11y@^5.0.0":
+"@storybook/addon-a11y@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.0.0.tgz#53e96d8651af8e9a52b581004ce4e80f3c6a9821"
   integrity sha512-QY/FEoLAYOM37Ay3Z5/IFqVPuMIAuP7V+C/5GazZ3c6vY22KdYWG3W7YYPBQPug/kf+wU9edMG3UFQbv3lcIhA==
