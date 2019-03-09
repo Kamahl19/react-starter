@@ -1,4 +1,5 @@
 module.exports = {
+  input: ['src/**/*.js', '!src/**/*.test.js'],
   options: {
     debug: true,
     sort: true,
