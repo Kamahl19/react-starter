@@ -13527,10 +13527,10 @@ stealthy-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-storybook-react-router@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/storybook-react-router/-/storybook-react-router-1.0.3.tgz#86c76f092ab524d5129ad48f196c1aa691d542d5"
-  integrity sha512-F7dbKQ7SjYjkKDrBl+E3uSZ3tuizSI13O0yXPwAmOghv+CyZY3ahg8o2rwvi+7nCl0Sy/Q5CJzQTRt0FTwqGgA==
+storybook-react-router@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/storybook-react-router/-/storybook-react-router-1.0.4.tgz#c7f4ec2c182c6917e5b5c720a846ba10abd81e86"
+  integrity sha512-e6sPykZiyHGvvJehKqlGjlpFT8WRUE0qUj9ohL7Ipc0CQmzWlIp/KXVrgNkwm3/IuesYVEs25prp49sh+UzI5w==
   dependencies:
     prop-types "^15.7.2"
 
