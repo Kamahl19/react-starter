@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
