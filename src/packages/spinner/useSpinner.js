@@ -4,7 +4,7 @@ import { ReactReduxContext } from 'react-redux';
 import { selectIsInProgress } from './ducks';
 
 export default function useSpinner(id) {
-  const { storeState } = useContext(ReactReduxContext);
+  const { store } = useContext(ReactReduxContext);
 
-  return selectIsInProgress(storeState, id);
+  return selectIsInProgress(store.getState(), id);
 }
