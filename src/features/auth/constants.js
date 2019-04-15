@@ -1,7 +1,9 @@
+export const AUTH_ROUTE_PREFIX = '/auth';
+
 export const AUTH_ROUTER_PATHS = {
-  login: '/login',
-  logout: '/logout',
-  signUp: '/sign-up',
-  forgottenPassword: '/forgotten-password',
-  resetPassword: '/reset-password/:passwordResetToken',
+  login: `${AUTH_ROUTE_PREFIX}/login`,
+  logout: `${AUTH_ROUTE_PREFIX}/logout`,
+  signUp: `${AUTH_ROUTE_PREFIX}/sign-up`,
+  forgottenPassword: `${AUTH_ROUTE_PREFIX}/forgotten-password`,
+  resetPassword: `${AUTH_ROUTE_PREFIX}/reset-password/:passwordResetToken`,
 };

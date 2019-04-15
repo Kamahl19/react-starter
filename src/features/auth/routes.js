@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { NotFound } from '../../common/components';
 
-import { AUTH_ROUTER_PATHS } from './constants';
+import { AUTH_ROUTE_PREFIX, AUTH_ROUTER_PATHS } from './constants';
 import IsAnonymous from './guards/IsAnonymous';
 import IsLoggedIn from './guards/IsLoggedIn';
 import LoginGuard from './guards/LoginGuard';
@@ -15,6 +15,11 @@ import SignUp from './features/SignUp';
 
 const AuthRoutes = () => (
   <Switch>
+    <Route
+      exact
+      path={AUTH_ROUTE_PREFIX}
+      render={() => <Redirect to={AUTH_ROUTER_PATHS.login} />}
+    />
     <Route exact path={AUTH_ROUTER_PATHS.login} component={LoginGuard(Login)} />
     <Route exact path={AUTH_ROUTER_PATHS.logout} component={IsLoggedIn(Logout)} />
     <Route exact path={AUTH_ROUTER_PATHS.signUp} component={IsAnonymous(SignUp)} />

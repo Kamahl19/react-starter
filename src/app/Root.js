@@ -16,7 +16,7 @@ import StorePersistGate from './store/StorePersistGate';
 import { rootPath } from '../config';
 import { ErrorBoundary, NotFound, Spin } from '../common/components';
 import AuthRoutes from '../features/auth/routes';
-import { AUTH_ROUTER_PATHS } from '../features/auth/constants';
+import { AUTH_ROUTER_PATHS, AUTH_ROUTE_PREFIX } from '../features/auth/constants';
 import IsLoggedIn from '../features/auth/guards/IsLoggedIn';
 
 const Root = () => (
@@ -37,7 +37,7 @@ const Root = () => (
                       </Link>
                     ))}
                   />
-                  <AuthRoutes />
+                  <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
                   <Route component={NotFound} />
                 </Switch>
               </GlobalSpinnerProvider>
