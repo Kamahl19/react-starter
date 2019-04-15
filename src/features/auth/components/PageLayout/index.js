@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Layout, Navbar } from '../../../../common/components';
 
-import { AUTH_ROUTER_PATHS } from '../../routes';
+import { AUTH_ROUTER_PATHS } from '../../constants';
 
 const PageLayout = ({ children }) => (
   <Layout>

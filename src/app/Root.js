@@ -15,7 +15,8 @@ import StorePersistGate from './store/StorePersistGate';
 // order matters
 import { rootPath } from '../config';
 import { ErrorBoundary, NotFound, Spin } from '../common/components';
-import AuthRoutes, { AUTH_ROUTER_PATHS, AUTH_ROUTE_PREFIX } from '../features/auth/routes';
+import AuthRoutes from '../features/auth/routes';
+import { AUTH_ROUTER_PATHS, AUTH_ROUTE_PREFIX } from '../features/auth/constants';
 import IsLoggedIn from '../features/auth/guards/IsLoggedIn';
 
 const Root = () => (
