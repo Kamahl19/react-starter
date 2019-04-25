@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { FormScreen, FormItem } from '../../../../packages/ant-form-helpers';
+import { FormScreen, FormItem } from 'packages/ant-form-helpers';
 
-import { Button, Form, Input } from '../../../../common/components';
-import rules from '../../../../common/rules';
+import { Button, Form, Input } from 'common/components';
+import rules from 'common/rules';
 
 import PageLayout from '../../components/PageLayout';
 

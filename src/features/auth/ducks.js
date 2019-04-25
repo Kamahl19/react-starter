@@ -1,12 +1,12 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
-import { createActionCreator } from '../../packages/redux-helpers';
+import { createActionCreator } from 'packages/redux-helpers';
 
-import { rootPath } from '../../config';
-import { t } from '../../common/services/i18next';
-import { loginActions } from '../../common/services/user';
-import { message } from '../../common/components';
+import { rootPath } from 'config';
+import { t } from 'common/services/i18next';
+import { loginActions } from 'common/services/user';
+import { message } from 'common/components';
 
 import api from './api';
 

@@ -12,7 +12,7 @@ const MobileNavigation = ({ activePath, children, history }) => {
     setIsNavigationVisible(true);
   }
 
-  useEffect(() => history.listen(hideNavigation), []);
+  useEffect(() => history.listen(hideNavigation), [history]);
 
   return children({
     activePath,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { Layout, Navbar } from '../../../../common/components';
+import { Layout, Navbar } from 'common/components';
 
 import { AUTH_ROUTER_PATHS } from '../../constants';
 

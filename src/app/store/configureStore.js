@@ -5,7 +5,7 @@ import localForage from 'localforage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 
-import { isDev } from '../../config';
+import { isDev } from 'config';
 
 import createRootReducer from './rootReducer';
 import rootSaga from './rootSaga';

@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import translations from '../../resources/translations';
+import translations from 'resources/translations';
 
 // Maps to /src/resources/translations/:language_code
 export const LANGUAGE_CODES = {

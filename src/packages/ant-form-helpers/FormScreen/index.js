@@ -7,15 +7,17 @@ export const FormContext = React.createContext();
 const FormScreen = ({ form, children, onSubmit }) => {
   const [isMounted, setIsMounted] = useState(false);
 
+  const { getFieldsError, validateFields } = form;
+
   useEffect(() => {
     setIsMounted(true);
-    form.validateFields();
-  }, []);
+    validateFields();
+  }, [validateFields]);
 
   function handleSubmit(e, additionalData) {
     e && e.preventDefault();
 
-    form.validateFields((err, values) => {
+    validateFields((err, values) => {
       if (!err) {
         onSubmit(values, additionalData);
       }
@@ -23,7 +25,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
   }
 
   function hasErrors() {
-    const errors = flattenObject(form.getFieldsError());
+    const errors = flattenObject(getFieldsError());
     return Object.keys(errors).some(field => errors[field]);
   }
 
