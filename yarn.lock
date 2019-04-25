@@ -7304,10 +7304,10 @@ i18next@*:
   dependencies:
     "@babel/runtime" "^7.3.1"
 
-i18next@15.0.9:
-  version "15.0.9"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.9.tgz#42536407a921bb5a8535a4c090a26f16827a1884"
-  integrity sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==
+i18next@15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.1.0.tgz#4c2749a8158a6bf7b67da129b61c60e2d60e0d72"
+  integrity sha512-7cCrVn/BcoSOGJwTilAjGgWWzUDg4scTLX1sIBMWq6QjYYBrT+ChSAvmgVyQxkHinaIcswC04XK6l15RxM4Dkg==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
