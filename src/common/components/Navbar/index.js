@@ -1,7 +1,7 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import ResponsiveNavigation from '../../../packages/responsive-navigation';
+import ResponsiveNavigation from 'packages/responsive-navigation';
 
 import { Icon, Popover, Menu } from '../';
 

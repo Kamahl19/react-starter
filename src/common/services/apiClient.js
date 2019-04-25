@@ -1,8 +1,8 @@
-import createApiClient from '../../packages/api-client';
-import { startSpinnerAction, finishSpinnerAction } from '../../packages/spinner';
+import createApiClient from 'packages/api-client';
+import { startSpinnerAction, finishSpinnerAction } from 'packages/spinner';
 
-import { store } from '../../app/store/configureStore';
-import { message } from '../../common/components';
+import { store } from 'app/store/configureStore';
+import { message } from 'common/components';
 
 import { selectToken, logoutAction } from './user';
 

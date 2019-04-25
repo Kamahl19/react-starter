@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { useSpinner } from '../../../../packages/spinner';
+import { useSpinner } from 'packages/spinner';
 
-import { loginActions } from '../../../../common/services/user';
-import { apiCallIds } from '../../../../common/services/user/api';
+import { loginActions } from 'common/services/user';
+import { apiCallIds } from 'common/services/user/api';
 
 import Login from './view';
 

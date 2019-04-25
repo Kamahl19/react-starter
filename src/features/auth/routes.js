@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { NotFound } from '../../common/components';
+import { NotFound } from 'common/components';
 
 import { AUTH_ROUTE_PREFIX, AUTH_ROUTER_PATHS } from './constants';
 import IsAnonymous from './guards/IsAnonymous';

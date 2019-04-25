@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-import { reloginAction, selectIsLoggedIn } from '../../common/services/user';
-import { AUTH_ROUTER_PATHS } from '../../features/auth/constants';
+import { reloginAction, selectIsLoggedIn } from 'common/services/user';
+import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import { history, persistor } from './configureStore';
 

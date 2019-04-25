@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logoutAction } from '../../../../common/services/user';
+import { logoutAction } from 'common/services/user';
 
 const mapDispatchToProps = {
   logout: logoutAction,

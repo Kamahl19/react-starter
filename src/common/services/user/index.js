@@ -11,7 +11,7 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
-} from '../../../packages/redux-helpers';
+} from 'packages/redux-helpers';
 
 import api from './api';
 
