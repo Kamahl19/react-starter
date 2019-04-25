@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "ES6"
   },
-  "include": ["src/**/*", "storybook/**/*"]
+  "include": ["src", "storybook"]
 }
