@@ -10,7 +10,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
   useEffect(() => {
     setIsMounted(true);
     form.validateFields();
-  }, []);
+  }, [form]);
 
   function handleSubmit(e, additionalData) {
     e && e.preventDefault();
