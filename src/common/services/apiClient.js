@@ -11,8 +11,8 @@ export default createApiClient({
     baseURL: process.env.REACT_APP_API_URL,
   },
   selectToken: () => selectToken(store.getState()),
-  onApiCallStart: apiCallId => store.dispatch(startSpinnerAction(apiCallId)),
-  onApiCallFinish: apiCallId => store.dispatch(finishSpinnerAction(apiCallId)),
+  onApiCallStart: ({ apiCallId }) => store.dispatch(startSpinnerAction(apiCallId)),
+  onApiCallFinish: ({ apiCallId }) => store.dispatch(finishSpinnerAction(apiCallId)),
   onError: error => {
     if (error.response && error.response.status === 401) {
       store.dispatch(logoutAction());

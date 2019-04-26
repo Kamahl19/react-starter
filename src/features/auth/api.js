@@ -10,7 +10,10 @@ export default {
   signUp: (email, password) =>
     apiClient.post(
       '/users',
-      { email, password },
+      {
+        email,
+        password,
+      },
       {
         apiCallId: apiCallIds.SIGN_UP,
       }
@@ -19,14 +22,22 @@ export default {
   forgottenPassword: email =>
     apiClient.post(
       '/auth/forgotten-password',
-      { email },
-      { apiCallId: apiCallIds.FORGOTTEN_PASSWORD }
+      {
+        email,
+      },
+      {
+        apiCallId: apiCallIds.FORGOTTEN_PASSWORD,
+      }
     ),
 
   resetPassword: (email, password, passwordResetToken) =>
     apiClient.post(
       '/auth/reset-password',
-      { email, password, passwordResetToken },
+      {
+        email,
+        password,
+        passwordResetToken,
+      },
       {
         apiCallId: apiCallIds.RESET_PASSWORD,
       }

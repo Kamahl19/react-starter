@@ -20,19 +20,19 @@ export default function createApiClient({
       config.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
-    onApiCallStart(config.apiCallId);
+    onApiCallStart(config);
 
     return config;
   });
 
   apiClient.interceptors.response.use(
     response => {
-      onApiCallFinish(response.config.apiCallId);
+      onApiCallFinish(response.config);
 
       return response;
     },
     error => {
-      onApiCallFinish(error.config.apiCallId);
+      onApiCallFinish(error.config);
 
       if (!axios.isCancel(error)) {
         onError(error);
