@@ -12,8 +12,8 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=10.15.1",
-    "yarn": ">=1.13.0"
+    "node": ">=10.15.3",
+    "yarn": ">=1.15.2"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
@@ -29,7 +29,7 @@
     "storybook": "npm-run-all -p storybook:start less:watch",
     "storybook:start": "start-storybook -p 9001 -s public -c storybook",
     "storybook:build": "build-storybook -s public -c storybook",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-scripts test"
   },
   "husky": {
     "hooks": {
@@ -91,6 +91,14 @@
     "redux-persist": "5.10.0",
     "redux-saga": "1.0.2",
     "reselect": "4.0.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "browserslist": {
     "production": [
