@@ -24,10 +24,7 @@ const FormScreen = ({ form, children, onSubmit }) => {
     });
   }
 
-  function hasErrors() {
-    const errors = flattenObject(getFieldsError());
-    return Object.keys(errors).some(field => errors[field]);
-  }
+  const hasErrors = () => Object.values(flattenObject(getFieldsError())).some(error => error);
 
   return (
     <FormContext.Provider value={form}>
