@@ -1,10 +1,10 @@
 # Node
-node_modules/
+/node_modules
 
 # IDE
-.vscode/
+/.vscode
 
-# Build
-build/
+# Production
+/build
 
 package.json
