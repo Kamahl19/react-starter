@@ -1,6 +1,6 @@
 import { createActionCreator, createInitialState, createReducer } from '../redux-helpers';
 
-const GLOBAL = Symbol('globalSpinner');
+const GLOBAL = Symbol('GLOBAL');
 
 /**
  * ACTION TYPES

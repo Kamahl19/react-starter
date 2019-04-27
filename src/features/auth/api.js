@@ -1,9 +1,9 @@
 import apiClient from 'common/services/apiClient';
 
 export const apiCallIds = {
-  SIGN_UP: 'SIGN_UP',
-  FORGOTTEN_PASSWORD: 'FORGOTTEN_PASSWORD',
-  RESET_PASSWORD: 'RESET_PASSWORD',
+  SIGN_UP: Symbol('SIGN_UP'),
+  FORGOTTEN_PASSWORD: Symbol('FORGOTTEN_PASSWORD'),
+  RESET_PASSWORD: Symbol('RESET_PASSWORD'),
 };
 
 export default {
