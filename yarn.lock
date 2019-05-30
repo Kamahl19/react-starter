@@ -12732,10 +12732,10 @@ react-hotkeys@2.0.0-pre4:
   dependencies:
     prop-types "^15.6.1"
 
-react-i18next@10.10.0:
-  version "10.10.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.10.0.tgz#b341fb6a8deb046e430eb922a55627400d2c77b9"
-  integrity sha512-ZoaWZ4JVfZBzvBQrlFQIvxnnSleZKNTlBl8n2pvxLVxvtNgQVoKDQ6cJjYrjZcnvIGcreJn2ZTyKEYivqgqxPA==
+react-i18next@10.11.0:
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.11.0.tgz#a6854e556d3aff9f5f161b4aa871d43cfff6bd9b"
+  integrity sha512-jmxLZK8mf+KxG3RUIiu/COperTq1c7+iHNsna7LODOYEYaoj6EXFuchOytnB80GoUOb0JC1csT37Zp+U5nPQqQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
