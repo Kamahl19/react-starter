@@ -42,7 +42,7 @@
       "git add"
     ],
     "*.{js,json,less,md}": [
-      "yarn format",
+      "prettier --write",
       "git add"
     ]
   },

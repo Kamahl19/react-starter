@@ -1,9 +1,3 @@
-# Node
-/node_modules
-
-# IDE
-/.vscode
-
 # Production
 /build
 
