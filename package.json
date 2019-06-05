@@ -85,7 +85,7 @@
     "react-i18next": "10.11.0",
     "react-redux": "7.0.3",
     "react-responsive": "6.1.2",
-    "react-router-dom": "5.0.0",
+    "react-router-dom": "5.0.1",
     "redux": "4.0.1",
     "redux-auth-wrapper": "2.1.0",
     "redux-persist": "5.10.0",
