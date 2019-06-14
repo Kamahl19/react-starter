@@ -34,6 +34,7 @@ const EnhancedFormItem = (props: Props) => {
         return (
           <Form.Item
             {...formItemProps}
+            htmlFor={id}
             help={fieldError ? fieldError[0] : ''}
             validateStatus={fieldError ? 'error' : ''}
           >
@@ -49,16 +50,16 @@ export default EnhancedFormItem;
 
 function pickFieldDecoratorOptions(props: Props): GetFieldDecoratorOptions {
   return pick(props, [
-    'getValueFromEvent',
-    'initialValue',
-    'normalize',
-    'rules',
-    'trigger',
-    'validateFirst',
-    'validateTrigger',
     'valuePropName',
+    'initialValue',
+    'trigger',
+    'getValueFromEvent',
     'getValueProps',
+    'validateTrigger',
+    'rules',
     'exclusive',
+    'normalize',
+    'validateFirst',
     'preserve',
   ]);
 }
@@ -67,7 +68,7 @@ function pickFormItemProps(props: Props): FormItemProps {
   return pick(props, [
     'prefixCls',
     'className',
-    'id',
+    'htmlFor',
     'label',
     'labelAlign',
     'labelCol',
