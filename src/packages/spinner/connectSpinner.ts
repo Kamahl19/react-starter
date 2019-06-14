@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 
 import { selectIsInProgress, GLOBAL } from './ducks';
 
-type ids = Record<string, symbol>;
+type IDMap = Record<string, symbol>;
 
-const createMapStateToProps = (ids: ids) => {
+const createMapStateToProps = (ids: IDMap) => {
   const entries = Object.entries(ids);
 
-  return state =>
+  return (
+    state: any // TODO
+  ) =>
     entries.reduce(
       (acc, [propName, id]) => ({
         ...acc,
@@ -19,7 +21,7 @@ const createMapStateToProps = (ids: ids) => {
 };
 
 // TODO
-const connectSpinner = (ids?: ids) => <P extends {}>(Component: ComponentType<P>) =>
+const connectSpinner = (ids?: IDMap) => (Component: ComponentType) =>
   connect(
     ids
       ? createMapStateToProps(ids)

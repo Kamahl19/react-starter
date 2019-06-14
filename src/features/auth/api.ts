@@ -2,6 +2,8 @@ import apiClient from 'common/services/apiClient';
 
 // TODO
 
+type TODO = any;
+
 export const apiCallIds = {
   SIGN_UP: Symbol('SIGN_UP'),
   FORGOTTEN_PASSWORD: Symbol('FORGOTTEN_PASSWORD'),
@@ -9,7 +11,7 @@ export const apiCallIds = {
 };
 
 export default {
-  signUp: (email, password) =>
+  signUp: (email: TODO, password: TODO) =>
     apiClient.post(
       '/users',
       {
@@ -21,7 +23,7 @@ export default {
       }
     ),
 
-  forgottenPassword: email =>
+  forgottenPassword: (email: TODO) =>
     apiClient.post(
       '/auth/forgotten-password',
       {
@@ -32,7 +34,7 @@ export default {
       }
     ),
 
-  resetPassword: (email, password, passwordResetToken) =>
+  resetPassword: (email: TODO, password: TODO, passwordResetToken: TODO) =>
     apiClient.post(
       '/auth/reset-password',
       {
@@ -45,6 +47,6 @@ export default {
       }
     ),
 
-  activateUser: (userId, activationToken) =>
+  activateUser: (userId: TODO, activationToken: TODO) =>
     apiClient.get(`/users/${userId}/activate/${activationToken}`),
 };

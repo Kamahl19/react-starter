@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
+import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect'; // TODO remove
 
 import { useSpinner } from 'packages/spinner';
 
@@ -9,11 +10,12 @@ import { apiCallIds } from '../../api';
 
 import ResetPassword from './view';
 
-type Props = RouteComponentProps<{
-  passwordResetToken: string;
-}> & {
-  resetPassword: (...args: any[]) => any; // TODO
-};
+type Props = InjectedAuthReduxProps &
+  RouteComponentProps<{
+    passwordResetToken: string;
+  }> & {
+    resetPassword: (...args: any[]) => any; // TODO
+  };
 
 const mapDispatchToProps = {
   resetPassword: resetPasswordRequest,
@@ -25,9 +27,9 @@ const ResetPasswordContainer = ({ match, resetPassword }: Props) => {
   return (
     <ResetPassword
       isLoading={isLoading}
-      onSubmit={data =>
-        resetPassword({ ...data, passwordResetToken: match.params.passwordResetToken })
-      }
+      onSubmit={(
+        data: any // TODO
+      ) => resetPassword({ ...data, passwordResetToken: match.params.passwordResetToken })}
     />
   );
 };

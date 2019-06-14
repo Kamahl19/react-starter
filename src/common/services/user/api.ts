@@ -7,7 +7,9 @@ export const apiCallIds = {
 };
 
 export default {
-  login: credentials =>
+  login: (
+    credentials: any // TODO
+  ) =>
     apiClient.post('/auth/login', credentials, {
       apiCallId: apiCallIds.LOGIN,
     }),

@@ -2,6 +2,8 @@ import { createActionCreator, createInitialState, createReducer } from '../redux
 
 // TODO
 
+type TODO = any;
+
 export const GLOBAL = Symbol('GLOBAL');
 export const NO_SPINNER = Symbol('NO_SPINNER');
 
@@ -23,14 +25,14 @@ export const finishSpinnerAction = createActionCreator(FINISH);
 const initialState = createInitialState({});
 
 export default createReducer(initialState, {
-  [START]: (state, id = GLOBAL) =>
+  [START]: (state: TODO, id = GLOBAL) =>
     id === NO_SPINNER
       ? state
       : {
           ...state,
           [id]: state[id] ? state[id] + 1 : 1,
         },
-  [FINISH]: (state, id = GLOBAL) =>
+  [FINISH]: (state: TODO, id = GLOBAL) =>
     id === NO_SPINNER
       ? state
       : {
@@ -42,6 +44,6 @@ export default createReducer(initialState, {
 /**
  * SELECTORS
  */
-const selectSpinner = state => state.spinner;
+const selectSpinner = (state: TODO) => state.spinner;
 
-export const selectIsInProgress = (state, id = GLOBAL) => !!selectSpinner(state)[id];
+export const selectIsInProgress = (state: TODO, id = GLOBAL) => !!selectSpinner(state)[id];

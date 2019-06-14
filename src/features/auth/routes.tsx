@@ -28,7 +28,11 @@ const AuthRoutes = () => (
       path={AUTH_ROUTER_PATHS.forgottenPassword}
       component={IsAnonymous(ForgottenPassword)}
     />
-    <Route exact path={AUTH_ROUTER_PATHS.resetPassword} component={IsAnonymous(ResetPassword)} />
+    <Route
+      exact
+      path={AUTH_ROUTER_PATHS.resetPassword}
+      component={IsAnonymous(ResetPassword as any)} // TODO
+    />
     <Route component={NotFound} />
   </Switch>
 );

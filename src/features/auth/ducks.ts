@@ -12,6 +12,8 @@ import api from './api';
 
 // TODO
 
+type TODO = any;
+
 /**
  * ACTION TYPES
  */
@@ -29,7 +31,7 @@ export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
 /**
  * SAGAS
  */
-function* signUp({ payload: { email, password } }) {
+function* signUp({ payload: { email, password } }: TODO) {
   try {
     const resp = yield call(api.signUp, email, password);
 
@@ -39,7 +41,7 @@ function* signUp({ payload: { email, password } }) {
   }
 }
 
-function* forgottenPassword({ payload }) {
+function* forgottenPassword({ payload }: TODO) {
   try {
     yield call(api.forgottenPassword, payload.email);
 
@@ -53,7 +55,7 @@ function* forgottenPassword({ payload }) {
   } catch {}
 }
 
-function* resetPassword({ payload: { email, password, passwordResetToken } }) {
+function* resetPassword({ payload: { email, password, passwordResetToken } }: TODO) {
   try {
     const resp = yield call(api.resetPassword, email, password, passwordResetToken);
 
@@ -63,20 +65,20 @@ function* resetPassword({ payload: { email, password, passwordResetToken } }) {
   }
 }
 
-function* locationChanged({ payload }) {
+function* locationChanged({ payload }: TODO) {
   const activatePath = '/activate/';
 
   if (payload.location.pathname.includes(activatePath)) {
     const exclude = activatePath.split('/');
     const [userId, activationToken] = payload.location.pathname
       .split('/')
-      .filter(part => !exclude.includes(part));
+      .filter((part: TODO) => !exclude.includes(part)); // TODO
 
     yield call(activateUser, userId, activationToken);
   }
 }
 
-function* activateUser(userId, activationToken) {
+function* activateUser(userId: TODO, activationToken: TODO) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
 

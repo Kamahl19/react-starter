@@ -15,6 +15,8 @@ import {
 
 import api from './api';
 
+type TODO = any;
+
 // TODO
 
 /**
@@ -51,14 +53,14 @@ const isAuthenticating = createReducer(initialState.isAuthenticating, {
 
 const profile = createReducer(initialState.profile, {
   [LOGIN]: {
-    [SUCCESS]: (_, { user: profile }) => profile,
+    [SUCCESS]: (_: TODO, { user: profile }: TODO) => profile,
     [FAILURE]: () => initialState.profile,
   },
 });
 
 const token = createReducer(initialState.token, {
   [LOGIN]: {
-    [SUCCESS]: (_, { token }) => token,
+    [SUCCESS]: (_: TODO, { token }: TODO) => token,
     [FAILURE]: () => initialState.token,
   },
 });
@@ -72,11 +74,11 @@ export default combineReducers({
 /**
  * SELECTORS
  */
-export const selectUser = state => state.user;
+export const selectUser = (state: TODO) => state.user;
 
-export const selectIsAuthenticating = state => selectUser(state).isAuthenticating;
-export const selectProfile = state => selectUser(state).profile;
-export const selectToken = state => selectUser(state).token;
+export const selectIsAuthenticating = (state: TODO) => selectUser(state).isAuthenticating;
+export const selectProfile = (state: TODO) => selectUser(state).profile;
+export const selectToken = (state: TODO) => selectUser(state).token;
 
 export const selectIsLoggedIn = createSelector(
   selectToken,
@@ -86,7 +88,7 @@ export const selectIsLoggedIn = createSelector(
 /**
  * SAGAS
  */
-function* login({ payload }) {
+function* login({ payload }: TODO) {
   try {
     const resp = yield call(api.login, payload);
 

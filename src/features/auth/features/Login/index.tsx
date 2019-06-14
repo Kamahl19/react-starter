@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect'; // TODO remove
 
 import { useSpinner } from 'packages/spinner';
 
@@ -12,7 +13,7 @@ const mapDispatchToProps = {
   login: loginActions.request,
 };
 
-type Props = {
+type Props = InjectedAuthReduxProps & {
   login: (...args: any[]) => any; // TODO
 };
 

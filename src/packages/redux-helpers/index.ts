@@ -3,18 +3,20 @@ import flattenDeep from 'lodash.flattendeep';
 
 // TODO
 
+type TODO = any;
+
 export const REQUEST = 'REQUEST';
 export const SUCCESS = 'SUCCESS';
 export const FAILURE = 'FAILURE';
 
-export const createActionType = (...parts) => flattenDeep(parts).join('_');
+export const createActionType = (...parts: TODO) => flattenDeep(parts).join('_');
 
-export const createActionCreator = (...type) => (payload?: unknown) => ({
+export const createActionCreator = (...type: TODO) => (payload?: unknown) => ({
   type: createActionType(type),
   payload,
 });
 
-export const createApiActionCreators = (...type) => ({
+export const createApiActionCreators = (...type: TODO) => ({
   request: createActionCreator(type, REQUEST),
   success: createActionCreator(type, SUCCESS),
   failure: createActionCreator(type, FAILURE),
@@ -22,8 +24,8 @@ export const createApiActionCreators = (...type) => ({
 
 export const createInitialState = deepFreeze;
 
-export const createReducer = (initialState, reducerMap) => {
-  const iterator = (reducersObj, initial = {}, prefix = []) =>
+export const createReducer = (initialState: TODO, reducerMap: TODO) => {
+  const iterator = (reducersObj: TODO, initial = {}, prefix: TODO[] = []): TODO =>
     Object.entries(reducersObj).reduce(
       (acc, [actionType, reducerFn]) =>
         typeof reducerFn === 'function'
@@ -35,9 +37,9 @@ export const createReducer = (initialState, reducerMap) => {
       initial
     );
 
-  const flattened = iterator(reducerMap);
+  const flattened: TODO = iterator(reducerMap);
 
-  return (state = initialState, action) => {
+  return (state = initialState, action: TODO) => {
     const reducer = flattened[action.type];
     return reducer ? reducer(state, action.payload) : state;
   };
