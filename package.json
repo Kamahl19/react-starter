@@ -54,7 +54,7 @@
     "@storybook/addons": "5.1.8",
     "@storybook/react": "5.1.8",
     "babel-core": "6.26.3",
-    "husky": "2.4.0",
+    "husky": "2.4.1",
     "i18next-scanner": "2.10.2",
     "less": "3.9.0",
     "lint-staged": "8.2.1",
