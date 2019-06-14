@@ -26,6 +26,6 @@ i18next.use(initReactI18next).init({
   },
 });
 
-export const t = i18next.t;
+export const t = i18next.t.bind(i18next);
 
 export default i18next;
