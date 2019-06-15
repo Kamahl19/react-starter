@@ -8,3 +8,6 @@ export default function useSpinner(id = GLOBAL) {
 
   return selectIsInProgress(store.getState(), id);
 }
+
+// TODO useSelector
+// const useSpinner = (id = GLOBAL) => useSelector(state => selectIsInProgress(state, id));
