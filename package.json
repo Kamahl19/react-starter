@@ -19,13 +19,13 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "build": "yarn less:build && react-scripts build",
     "eject": "react-scripts eject",
-    "format": "prettier --write '**/*.{js,ts,tsx,json,less,md}'",
+    "format": "prettier --write '**/*.{ts,tsx,json,less,md}'",
     "extract-translations": "i18next-scanner",
     "less:build": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "less:watch": "yarn less:build && nodemon -e less -x \"yarn less:build\"",
-    "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.js'",
-    "start": "npm-run-all -p less:watch start-js",
-    "start-js": "react-scripts start",
+    "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.{ts,tsx}'",
+    "start": "npm-run-all -p less:watch start-cra",
+    "start-cra": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start less:watch",
     "storybook:start": "start-storybook -p 9001 -s public -c storybook",
     "storybook:build": "build-storybook -s public -c storybook",
@@ -37,11 +37,11 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{ts,tsx}": [
       "yarn lint --fix",
       "git add"
     ],
-    "*.{js,json,less,md}": [
+    "*.{ts,tsx,json,less,md}": [
       "prettier --write",
       "git add"
     ]

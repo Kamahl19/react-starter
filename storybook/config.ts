@@ -2,11 +2,11 @@ import { addDecorator, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import StoryRouter from 'storybook-react-router';
 
-import i18NextDecorator from '../src/packages/storybook-addon-i18next';
+import i18NextDecorator from 'packages/storybook-addon-i18next';
 
-import i18next from '../src/common/services/i18next';
+import i18next from 'common/services/i18next';
 
-import '../src/app/styles/main.css';
+import 'app/styles/main.css';
 
 addDecorator(withA11y);
 addDecorator(i18NextDecorator(i18next));
