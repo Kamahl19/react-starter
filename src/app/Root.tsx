@@ -31,9 +31,7 @@ const Root = () => (
                     exact
                     path={rootPath}
                     component={IsLoggedIn(() => (
-                      <Link to={AUTH_ROUTER_PATHS.logout}>
-                        <Trans i18nKey="auth.logout">Logout</Trans>
-                      </Link>
+                      <LoggedInScreen />
                     ))}
                   />
                   <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
@@ -63,3 +61,10 @@ const GlobalSpinnerProvider = ({ children }: Props) => {
     </Spin>
   );
 };
+
+// Throw-away component, just for demo purposes
+const LoggedInScreen = () => (
+  <Link to={AUTH_ROUTER_PATHS.logout}>
+    <Trans i18nKey="auth.logout">Logout</Trans>
+  </Link>
+);

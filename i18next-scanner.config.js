@@ -1,4 +1,4 @@
-const typescriptTransform = require('./src/packages/i18next-scanner-typescript');
+const typescriptTransform = require('i18next-scanner-typescript');
 
 module.exports = {
   input: ['src/**/*.{ts,tsx}', '!src/**/*.test.{ts,tsx}'],

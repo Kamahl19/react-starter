@@ -6857,6 +6857,13 @@ hyphenate-style-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
+i18next-scanner-typescript@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/i18next-scanner-typescript/-/i18next-scanner-typescript-1.0.3.tgz#fa5135b0a801aa5fc18f73bbcd74d65d7e5cb9cb"
+  integrity sha512-XY5ydrLGcfDdzn4qLadNcKgpl4W4IttHv+LfU59UdCfk6tzyB5zsSWqwjmcsP+/h0f1k/S1CtT9InnZs4kz3sA==
+  dependencies:
+    typescript "^3.0.0"
+
 i18next-scanner@2.10.2:
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/i18next-scanner/-/i18next-scanner-2.10.2.tgz#3552aceee56584775a78fecb0f4ba7189b1ecf32"
@@ -13763,7 +13770,7 @@ typescript-tuple@^2.1.0:
   dependencies:
     typescript-compare "^0.0.2"
 
-typescript@3.5.2:
+typescript@3.5.2, typescript@^3.0.0:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
