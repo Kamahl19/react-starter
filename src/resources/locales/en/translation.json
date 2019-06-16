@@ -1,0 +1,63 @@
+{
+  "auth": {
+    "accountActivated": "Your account has been activated successfully.",
+    "forgottenPasswordSent": "An e-mail with further instructions has been sent to your e-mail address.",
+    "logout": "Logout"
+  },
+  "fields": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "E-mail"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "submit": "Submit"
+  },
+  "logIn": {
+    "email": {
+      "placeholder": "E-mail"
+    },
+    "forgotPassword": "Forgot password?",
+    "logIn": "Log In",
+    "password": {
+      "placeholder": "Enter Password"
+    }
+  },
+  "nav": {
+    "login": "Log In",
+    "signup": "Sign Up"
+  },
+  "notFound": {
+    "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
+    "title": "Page not found"
+  },
+  "resetPassword": {
+    "newPassword": {
+      "label": "New Password"
+    },
+    "password": {
+      "placeholder": "Enter New Password"
+    }
+  },
+  "signUp": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "E-mail"
+    },
+    "password": {
+      "placeholder": "Choose Password"
+    },
+    "signUp": "Sign Up"
+  },
+  "validation": {
+    "email": {
+      "invalid": "E-mail is not valid"
+    },
+    "password": {
+      "invalid": "Password is not valid",
+      "length": "Password must contain at least {{minLength}} characters"
+    },
+    "required": "Field is required"
+  }
+}

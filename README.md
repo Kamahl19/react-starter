@@ -41,7 +41,7 @@ To build app, run `yarn build` in app root directory.
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
- |--| resources/: translations, files etc.
+ |--| resources/: locales etc.
  |--| index.ts: application entry file
 -| storybook/: Storybook configuration and addons.
 ```

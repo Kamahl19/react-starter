@@ -1,19 +1,19 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import translations from 'resources/translations';
+import locales from 'resources/locales';
 
 import { isDev } from 'config';
 
-// Maps to /src/resources/translations/:language_code
-export enum LANGUAGE_CODES {
-  EN = 'en',
-}
+// Maps to src/resources/locales/:language_code
+export const LANGUAGE_CODES = {
+  EN: 'en',
+};
 
 // see: https://www.i18next.com/overview/configuration-options
 i18next.use(initReactI18next).init({
   debug: isDev,
-  resources: translations,
+  resources: locales,
   lng: LANGUAGE_CODES.EN,
   fallbackLng: LANGUAGE_CODES.EN,
   whitelist: [LANGUAGE_CODES.EN],

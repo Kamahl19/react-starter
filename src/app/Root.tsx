@@ -32,7 +32,7 @@ const Root = () => (
                     path={rootPath}
                     component={IsLoggedIn(() => (
                       <Link to={AUTH_ROUTER_PATHS.logout}>
-                        <Trans i18nKey="logout">Logout</Trans>
+                        <Trans i18nKey="auth.logout">Logout</Trans>
                       </Link>
                     ))}
                   />

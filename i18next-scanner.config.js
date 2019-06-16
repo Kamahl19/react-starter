@@ -1,3 +1,5 @@
+const typescriptTransform = require('./src/packages/i18next-scanner-typescript');
+
 module.exports = {
   input: ['src/**/*.{ts,tsx}', '!src/**/*.test.{ts,tsx}'],
   options: {
@@ -8,12 +10,13 @@ module.exports = {
       extensions: ['.ts', '.tsx'],
     },
     trans: {
-      extensions: ['.ts', '.tsx'],
+      extensions: [], // Parse Trans only in custom transformer
     },
     lngs: ['en'],
     resource: {
-      loadPath: 'src/resources/translations/{{lng}}/{{ns}}.json',
-      savePath: 'src/resources/translations/{{lng}}/{{ns}}.json',
+      loadPath: 'src/resources/locales/{{lng}}/{{ns}}.json',
+      savePath: 'src/resources/locales/{{lng}}/{{ns}}.json',
     },
   },
+  transform: typescriptTransform(),
 };
