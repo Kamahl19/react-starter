@@ -4,12 +4,11 @@ import StoryRouter from 'storybook-react-router';
 
 import i18NextDecorator from 'packages/storybook-addon-i18next';
 
-import i18next from 'common/services/i18next';
-
+import 'common/services/i18next';
 import 'app/styles/main.css';
 
 addDecorator(withA11y);
-addDecorator(i18NextDecorator(i18next));
+addDecorator(i18NextDecorator());
 addDecorator(StoryRouter());
 
 function loadStories() {

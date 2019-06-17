@@ -1,8 +1,7 @@
 {
   "auth": {
     "accountActivated": "Your account has been activated successfully.",
-    "forgottenPasswordSent": "An e-mail with further instructions has been sent to your e-mail address.",
-    "logout": "Logout"
+    "forgottenPasswordSent": "An e-mail with further instructions has been sent to your e-mail address."
   },
   "fields": {
     "email": {

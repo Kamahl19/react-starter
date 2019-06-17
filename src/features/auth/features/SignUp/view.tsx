@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { FormScreen, FormItem } from 'packages/ant-form-helpers';
@@ -24,8 +24,8 @@ const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
           <Form onSubmit={handleSubmit}>
             <FormItem
               id="email"
-              rules={[rules.required, rules.email]}
-              label={<Trans i18nKey="signUp.email.label">E-mail</Trans>}
+              rules={[rules.required(t), rules.email(t)]}
+              label={t('signUp.email.label', { defaultValue: 'E-mail' })}
             >
               <Input
                 placeholder={t('signUp.email.placeholder', { defaultValue: 'E-mail' })}
@@ -34,8 +34,8 @@ const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
             </FormItem>
             <FormItem
               id="password"
-              rules={rules.passwordWithLimit}
-              label={<Trans i18nKey="fields.password.label">Password</Trans>}
+              rules={rules.passwordWithLimit(t)}
+              label={t('fields.password.label', { defaultValue: 'Password' })}
             >
               <Input.Password
                 placeholder={t('signUp.password.placeholder', {
@@ -44,7 +44,7 @@ const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
               />
             </FormItem>
             <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              <Trans i18nKey="signUp.signUp">Sign Up</Trans>
+              {t('signUp.signUp', { defaultValue: 'Sign Up' })}
             </Button>
           </Form>
         )}

@@ -55,6 +55,7 @@
     "@storybook/react": "5.1.8",
     "@types/deep-freeze": "^0.1.1",
     "@types/flat": "0.0.28",
+    "@types/i18next-xhr-backend": "^1.4.2",
     "@types/jest": "24.0.15",
     "@types/lodash.flattendeep": "^4.4.6",
     "@types/lodash.pick": "4.4.6",
@@ -88,13 +89,14 @@
     "typescript": "3.5.2"
   },
   "dependencies": {
-    "antd": "3.19.4",
+    "antd": "3.19.5",
     "axios": "0.19.0",
     "connected-react-router": "6.4.0",
     "deep-freeze": "0.0.1",
     "flat": "4.1.0",
     "history": "4.9.0",
     "i18next": "17.0.3",
+    "i18next-xhr-backend": "^3.0.0",
     "localforage": "1.7.3",
     "lodash.flattendeep": "4.4.0",
     "lodash.pick": "4.4.0",

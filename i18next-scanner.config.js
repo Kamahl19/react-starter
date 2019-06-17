@@ -14,8 +14,8 @@ module.exports = {
     },
     lngs: ['en'],
     resource: {
-      loadPath: 'src/resources/locales/{{lng}}/{{ns}}.json',
-      savePath: 'src/resources/locales/{{lng}}/{{ns}}.json',
+      loadPath: 'public/locales/{{lng}}/{{ns}}.json',
+      savePath: 'public/locales/{{lng}}/{{ns}}.json',
     },
   },
   transform: typescriptTransform(),

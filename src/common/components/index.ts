@@ -9,5 +9,6 @@ export { default as Popover } from 'antd/lib/popover';
 export { default as Spin } from 'antd/lib/spin';
 
 export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as LoadingScreen } from './LoadingScreen';
 export { default as Navbar } from './Navbar';
 export { default as NotFound } from './NotFound';

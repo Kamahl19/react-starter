@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FormComponentProps } from 'antd/lib/form';
 
@@ -26,8 +26,8 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
           <Form onSubmit={handleSubmit}>
             <FormItem
               id="email"
-              rules={[rules.required, rules.email]}
-              label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
+              rules={[rules.required(t), rules.email(t)]}
+              label={t('fields.email.label', { defaultValue: 'E-mail' })}
             >
               <Input
                 placeholder={t('logIn.email.placeholder', { defaultValue: 'E-mail' })}
@@ -36,8 +36,8 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
             </FormItem>
             <FormItem
               id="password"
-              rules={[rules.required, rules.password]}
-              label={<Trans i18nKey="fields.password.label">Password</Trans>}
+              rules={[rules.required(t), rules.password(t)]}
+              label={t('fields.password.label', { defaultValue: 'Password' })}
             >
               <Input.Password
                 placeholder={t('logIn.password.placeholder', {
@@ -47,11 +47,11 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
             </FormItem>
             <Form.Item>
               <Link to={AUTH_ROUTER_PATHS.forgottenPassword}>
-                <Trans i18nKey="logIn.forgotPassword">Forgot password?</Trans>
+                {t('logIn.forgotPassword', { defaultValue: 'Forgot password?' })}
               </Link>
             </Form.Item>
             <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              <Trans i18nKey="logIn.logIn">Log In</Trans>
+              {t('logIn.logIn', { defaultValue: 'Log In' })}
             </Button>
           </Form>
         )}

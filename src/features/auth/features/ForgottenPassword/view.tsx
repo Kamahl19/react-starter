@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { FormScreen, FormItem } from 'packages/ant-form-helpers';
@@ -24,8 +24,8 @@ const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
           <Form onSubmit={handleSubmit}>
             <FormItem
               id="email"
-              rules={[rules.required, rules.email]}
-              label={<Trans i18nKey="fields.email.label">E-mail</Trans>}
+              rules={[rules.required(t), rules.email(t)]}
+              label={t('fields.email.label', { defaultValue: 'E-mail' })}
             >
               <Input
                 autoFocus
@@ -33,7 +33,7 @@ const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
               />
             </FormItem>
             <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              <Trans i18nKey="fields.submit">Submit</Trans>
+              {t('fields.submit', { defaultValue: 'Submit' })}
             </Button>
           </Form>
         )}

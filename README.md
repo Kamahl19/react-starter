@@ -41,7 +41,6 @@ To build app, run `yarn build` in app root directory.
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
- |--| resources/: locales etc.
  |--| index.ts: application entry file
 -| storybook/: Storybook configuration and addons.
 ```
@@ -71,11 +70,6 @@ To build static storybook, run `yarn storybook:build`. This creates a static web
 More information about supported features can be found in [Storybook's Github repository](https://github.com/storybooks/storybook)
 
 ## i18n
-
-There are two ways how to define a translation string:
-
-- Using i18next's `Trans` component - this is preferred option whenever possible, virtually always in `tsx` except when we need to translate HTML attributes such as `alt`, `placeholder`, `title`, etc. Usage of component brings together benefits of having unique keys while keeping texts in markups. The content of component is used as a default message, when no explicit translation resource is defined.
-- Using i18next's `t` function - this is the option outside of `tsx` files and for HTML attributes.
 
 Running `yarn extract-translations` will update alphabetically sorted JSON files with key-translations pairs. It will use default messages for keys without explicit translations.
 
