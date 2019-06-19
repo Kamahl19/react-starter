@@ -19,12 +19,12 @@ type Props = FormComponentProps & {
 const FormScreen = ({ children, form, onSubmit }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
 
-  const { getFieldsError, validateFieldsAndScroll } = form;
+  const { getFieldsError, validateFields, validateFieldsAndScroll } = form;
 
   useEffect(() => {
     setIsMounted(true);
-    validateFieldsAndScroll();
-  }, [validateFieldsAndScroll]);
+    validateFields(() => {});
+  }, [validateFields]);
 
   function handleSubmit(e: FormSubmitEvent) {
     e && e.preventDefault();
