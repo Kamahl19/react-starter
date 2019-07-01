@@ -62,7 +62,7 @@
     "@types/node": "12.0.10",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
-    "@types/react-redux": "7.1.0",
+    "@types/react-redux": "7.1.1",
     "@types/react-responsive": "3.0.3",
     "@types/react-router-dom": "4.3.4",
     "@types/redux-auth-wrapper": "^2.0.9",
@@ -73,7 +73,7 @@
     "@types/storybook__addon-viewport": "^4.1.1",
     "@types/storybook__react": "4.0.2",
     "babel-core": "6.26.3",
-    "husky": "2.4.1",
+    "husky": "2.7.0",
     "i18next-scanner": "2.10.2",
     "i18next-scanner-typescript": "^1.0.3",
     "less": "3.9.0",
@@ -89,7 +89,7 @@
     "typescript": "3.5.2"
   },
   "dependencies": {
-    "antd": "3.19.8",
+    "antd": "3.20.0",
     "axios": "0.18.1",
     "connected-react-router": "6.4.0",
     "deep-freeze": "0.0.1",
@@ -110,7 +110,7 @@
     "redux-auth-wrapper": "2.1.0",
     "redux-devtools-extension": "2.13.8",
     "redux-persist": "5.10.0",
-    "redux-saga": "1.0.3",
+    "redux-saga": "1.0.4",
     "reselect": "4.0.0",
     "use-react-router": "^1.0.7"
   },

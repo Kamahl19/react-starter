@@ -25,10 +25,10 @@
     "@ant-design/colors" "^3.1.0"
     babel-runtime "^6.26.0"
 
-"@ant-design/icons@~2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-2.0.1.tgz#021c3f5c1df8b1d01c25b705366c597e7cbb3ca5"
-  integrity sha512-SqiNhgoivKczEqIJc/9hntgtvmq4R3Ef73ehibqDPAT059IjsXXM7nze0S5P8F4HP76jgPiv5od+2JUhQl/nig==
+"@ant-design/icons@~2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-2.1.0.tgz#06b8ea9a02cbe331d523a20453fa5ee224328b11"
+  integrity sha512-o2q2GeamZ99dQEIsuls3zGkeAlUH/z9pJt9Kt3zrTdbFQlJtyFH2NjPXobcExINsg/2cYd8zvLcoSQ69UBvOeg==
 
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0":
   version "7.0.0"
@@ -2002,10 +2002,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.0.tgz#ed2c90ff192433251bd8a264195529f3613d53e2"
-  integrity sha512-SBJd6oNACDU/taMcDzFfj0mbVa+OI42L8WNvgPsCWiWUNIavPLeX5oA22V64tYIDUc7cGmJjDyLlWeCrqpZu1w==
+"@types/react-redux@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.1.tgz#eb01e89cf71cad77df9f442b819d5db692b997cb"
+  integrity sha512-owqNahzE8en/jR4NtrUJDJya3tKru7CIEGSRL/pVS84LtSCdSoT7qZTkrbBd3S4Lp11sAp+7LsvxIeONJVKMnw==
   dependencies:
     "@types/hoist-non-react-statics" "^3.3.0"
     "@types/react" "*"
@@ -2560,13 +2560,13 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@3.19.8:
-  version "3.19.8"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.19.8.tgz#64c4fa7596dbb1fa390bb7da5b3f63e226d84e53"
-  integrity sha512-sGBJHuzr/7Vm3VJpzt5vjOWjtth8Ld38FneIQeX5OKHudWYH8j+Xt0j4q2sYwOiV9lYFuh4tlZv7/7NFyCO2vw==
+antd@3.20.0:
+  version "3.20.0"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.20.0.tgz#da8b9b537dd27d2b8bea6b0b1518ed602e58783e"
+  integrity sha512-PnYXyCzB9S9SkWixYGi2D0u+FzAeDO2YJTD0x+/8zGZvcCrPahNuvZkLkjMxLd7eJnbfsg6yWHRB2ZRs6tJRZg==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
-    "@ant-design/icons" "~2.0.0"
+    "@ant-design/icons" "~2.1.0"
     "@ant-design/icons-react" "~2.0.1"
     "@types/react-slick" "^0.23.4"
     array-tree-filter "^2.1.0"
@@ -2587,7 +2587,7 @@ antd@3.19.8:
     rc-checkbox "~2.1.6"
     rc-collapse "~1.11.3"
     rc-dialog "~7.4.0"
-    rc-drawer "~1.9.8"
+    rc-drawer "~1.10.1"
     rc-dropdown "~2.4.1"
     rc-editor-mention "^1.1.13"
     rc-form "^2.4.5"
@@ -2596,7 +2596,7 @@ antd@3.19.8:
     rc-menu "~7.4.23"
     rc-notification "~3.3.1"
     rc-pagination "~1.20.1"
-    rc-progress "~2.3.0"
+    rc-progress "~2.5.0"
     rc-rate "~2.5.0"
     rc-select "~9.1.4"
     rc-slider "~8.6.11"
@@ -2604,7 +2604,7 @@ antd@3.19.8:
     rc-switch "~1.9.0"
     rc-table "~6.6.0"
     rc-tabs "~9.6.4"
-    rc-time-picker "~3.6.6"
+    rc-time-picker "~3.7.1"
     rc-tooltip "~3.7.3"
     rc-tree "~2.1.0"
     rc-tree-select "~2.9.1"
@@ -6881,10 +6881,10 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-husky@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-2.4.1.tgz#dd00f9646f8693b93f7b3a12ba4be00be0eff7ab"
-  integrity sha512-ZRwMWHr7QruR22dQ5l3rEGXQ7rAQYsJYqaeCd+NyOsIFczAtqaApZQP3P4HwLZjCtFbm3SUNYoKuoBXX3AYYfw==
+husky@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-2.7.0.tgz#c0a9a6a3b51146224e11bba0b46bba546e461d05"
+  integrity sha512-LIi8zzT6PyFpcYKdvWRCn/8X+6SuG2TgYYMrM6ckEYhlp44UcEduVymZGIZNLiwOUjrEud+78w/AsAiqJA/kRg==
   dependencies:
     cosmiconfig "^5.2.0"
     execa "^1.0.0"
@@ -11172,10 +11172,10 @@ rc-dialog@~7.4.0:
     rc-animate "2.x"
     rc-util "^4.4.0"
 
-rc-drawer@~1.9.8:
-  version "1.9.8"
-  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-1.9.8.tgz#241dae399d6fc3d8ea117e768b27088d97cb5946"
-  integrity sha512-LUOsMdax6yFhCbHpzpPBpf4GlQaLQ1OoBrpyImREghynfVoCs8WT6WUfE3FWWG1PM0Fs8f+yY4uiR7rMFQxl5A==
+rc-drawer@~1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-1.10.1.tgz#9a74242cf37f5709f83483a987e15d68277afe44"
+  integrity sha512-2KufXkWK9N19eGYmUldIe6sYaC6IIVrts6v8WXnPuIoI9zVPGnwXnK/of+lQEBhidEPBBMBXnvTdGwvTpl60vQ==
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
@@ -11304,10 +11304,10 @@ rc-pagination@~1.20.1:
     prop-types "^15.5.7"
     react-lifecycles-compat "^3.0.4"
 
-rc-progress@~2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/rc-progress/-/rc-progress-2.3.0.tgz#cfbd07ff9026c450100980de209a92650e24f313"
-  integrity sha512-hYBKFSsNgD7jsF8j+ZC1J8y5UIC2X/ktCYI/OQhQNSX6mGV1IXnUCjAd9gbLmzmpChPvKyymRNfckScUNiTpFQ==
+rc-progress@~2.5.0:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/rc-progress/-/rc-progress-2.5.1.tgz#ed5b573c0c8277a11e5a128ce5f5ca16f2e4dd6b"
+  integrity sha512-jIoCYAktSG1SvA7gu2jM7hYwb2JiBrqOexY80TBiIIznhMDHh1Mb7rvtfIoEF3WS5evoqoKa3A+szGMyv3J9Cw==
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.8"
@@ -11404,10 +11404,10 @@ rc-tabs@~9.6.4:
     resize-observer-polyfill "^1.5.1"
     warning "^3.0.0"
 
-rc-time-picker@~3.6.6:
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/rc-time-picker/-/rc-time-picker-3.6.6.tgz#343390ad1a3a06b49848c266d8311b3c572ca0d1"
-  integrity sha512-NVeJuxWjg9eJ0+jcCCT2dxVY2OBYxOrjsgu8ly0lk9IUJ8lwjS6JU+OibHRPJPew3Smfz88dz7GQRdBE7BcnRA==
+rc-time-picker@~3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/rc-time-picker/-/rc-time-picker-3.7.1.tgz#35a2c9cbd9758827c1ce57b8817db49472c95cc3"
+  integrity sha512-ULiLnal/0erk9LrPLcDMroPnqL/LBDT4gz9MzQgtc2QN6KBAOgGihHXZempSQTYCg575oAl+BNX5e1teKWOrjw==
   dependencies:
     classnames "2.x"
     moment "2.x"
@@ -12082,10 +12082,10 @@ redux-persist@5.10.0:
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
   integrity sha512-sSJAzNq7zka3qVHKce1hbvqf0Vf5DuTVm7dr4GtsqQVOexnrvbV47RWFiPxQ8fscnyiuWyD2O92DOxPl0tGCRg==
 
-redux-saga@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-1.0.3.tgz#23e1c71fca6752ce52db3aaba4ecca657d7a9a1f"
-  integrity sha512-ORo16st4cvrS+tpthMi6mJz1mMIuM//0EKFPAZjKTvDglRDebc7vTOJa0oeqT0iAZeYupusAstprFb0+3YDw/w==
+redux-saga@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-1.0.4.tgz#ddeb13683d0decb04e49adb6dee785b67a219191"
+  integrity sha512-KrT7jg1TKf4raTwH2L4d6WMEqHTuScTHOkbLL25e9Az0DQC4Y5ciCOK8rh3NSRDiJ8DZUBwc784CXNRbGyU9qQ==
   dependencies:
     "@redux-saga/core" "^1.0.3"
 
