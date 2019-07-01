@@ -6,7 +6,7 @@ import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
 import { AUTH_ROUTER_PATHS } from '../constants';
 
 export default connectedReduxRedirect({
-  allowRedirectBack: ({ location }) => location.pathname !== AUTH_ROUTER_PATHS.logout,
+  allowRedirectBack: state => state.router.location.pathname !== AUTH_ROUTER_PATHS.logout,
   authenticatedSelector: selectIsLoggedIn,
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
