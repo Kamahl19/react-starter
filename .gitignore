@@ -19,3 +19,6 @@ yarn-error.log*
 
 # Compiled styles
 src/**/main.css
+
+# IntelliJ IDEA
+.idea
