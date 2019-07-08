@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectIsInProgress, GLOBAL } from './ducks';
 // import useSpinner from './useSpinner';
 
-type IDMap = Record<string, symbol>;
+type IDMap = Record<string, string>;
 
 type TODO = any;
 

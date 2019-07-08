@@ -3,7 +3,7 @@ import apiClient from '../apiClient';
 // TODO
 
 export const apiCallIds = {
-  LOGIN: Symbol('LOGIN'),
+  LOGIN: 'LOGIN',
 };
 
 export default {

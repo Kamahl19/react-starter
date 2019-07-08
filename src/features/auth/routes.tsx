@@ -5,13 +5,19 @@ import { NotFound } from 'common/components';
 
 import { AUTH_ROUTE_PREFIX, AUTH_ROUTER_PATHS } from './constants';
 import IsAnonymous from './guards/IsAnonymous';
-import IsLoggedIn from './guards/IsLoggedIn';
 import LoginGuard from './guards/LoginGuard';
+import LogoutGuard from './guards/LogoutGuard';
 import ForgottenPassword from './features/ForgottenPassword';
 import Login from './features/Login';
 import Logout from './features/Logout';
 import ResetPassword from './features/ResetPassword';
 import SignUp from './features/SignUp';
+
+const LoginPage = LoginGuard(Login);
+const LogoutPage = LogoutGuard(Logout);
+const SignUpPage = IsAnonymous(SignUp);
+const ForgottenPasswordPage = IsAnonymous(ForgottenPassword);
+const ResetPasswordPage = IsAnonymous(ResetPassword as any); // TODO
 
 const AuthRoutes = () => (
   <Switch>
@@ -20,19 +26,11 @@ const AuthRoutes = () => (
       path={AUTH_ROUTE_PREFIX}
       render={() => <Redirect to={AUTH_ROUTER_PATHS.login} />}
     />
-    <Route exact path={AUTH_ROUTER_PATHS.login} component={LoginGuard(Login)} />
-    <Route exact path={AUTH_ROUTER_PATHS.logout} component={IsLoggedIn(Logout)} />
-    <Route exact path={AUTH_ROUTER_PATHS.signUp} component={IsAnonymous(SignUp)} />
-    <Route
-      exact
-      path={AUTH_ROUTER_PATHS.forgottenPassword}
-      component={IsAnonymous(ForgottenPassword)}
-    />
-    <Route
-      exact
-      path={AUTH_ROUTER_PATHS.resetPassword}
-      component={IsAnonymous(ResetPassword as any)} // TODO
-    />
+    <Route exact path={AUTH_ROUTER_PATHS.login} component={LoginPage} />
+    <Route exact path={AUTH_ROUTER_PATHS.logout} component={LogoutPage} />
+    <Route exact path={AUTH_ROUTER_PATHS.signUp} component={SignUpPage} />
+    <Route exact path={AUTH_ROUTER_PATHS.forgottenPassword} component={ForgottenPasswordPage} />
+    <Route exact path={AUTH_ROUTER_PATHS.resetPassword} component={ResetPasswordPage} />
     <Route component={NotFound} />
   </Switch>
 );

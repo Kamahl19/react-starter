@@ -6,9 +6,10 @@ import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
 import { AUTH_ROUTER_PATHS } from '../constants';
 
 export default connectedReduxRedirect({
+  allowRedirectBack: false,
   authenticatedSelector: selectIsLoggedIn,
   authenticatingSelector: selectIsAuthenticating,
   redirectAction: routerActions.replace,
   redirectPath: AUTH_ROUTER_PATHS.login,
-  wrapperDisplayName: 'IsLoggedIn',
+  wrapperDisplayName: 'LogoutGuard',
 });

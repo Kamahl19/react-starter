@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosError } from 'axios';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    apiCallId?: symbol;
+    apiCallId?: string;
   }
 }
 

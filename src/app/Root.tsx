@@ -27,13 +27,7 @@ const Root = () => (
               <RouterScrollToTop>
                 <GlobalSpinnerProvider>
                   <Switch>
-                    <Route
-                      exact
-                      path={rootPath}
-                      component={IsLoggedIn(() => (
-                        <LoggedInScreen />
-                      ))}
-                    />
+                    <Route exact path={rootPath} component={LoggedInScreen} />
                     <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
                     <Route component={NotFound} />
                   </Switch>
@@ -60,4 +54,4 @@ const GlobalSpinnerProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Throw-away component, just for demo purposes
-const LoggedInScreen = () => <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>;
+const LoggedInScreen = IsLoggedIn(() => <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>);

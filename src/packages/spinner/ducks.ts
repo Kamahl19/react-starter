@@ -4,8 +4,8 @@ import { createActionCreator, createInitialState, createReducer } from '../redux
 
 type TODO = any;
 
-export const GLOBAL = Symbol('GLOBAL');
-export const NO_SPINNER = Symbol('NO_SPINNER');
+export const GLOBAL = 'GLOBAL';
+export const NO_SPINNER = 'NO_SPINNER';
 
 /**
  * ACTION TYPES
