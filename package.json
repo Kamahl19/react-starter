@@ -86,7 +86,7 @@
     "react-redux": "7.0.3",
     "react-responsive": "7.0.0",
     "react-router-dom": "5.0.1",
-    "redux": "4.0.1",
+    "redux": "4.0.4",
     "redux-auth-wrapper": "2.1.0",
     "redux-persist": "5.10.0",
     "redux-saga": "1.0.3",
