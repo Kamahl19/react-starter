@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect'; // TODO remove
+import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 

@@ -17,7 +17,7 @@ const LoginPage = LoginGuard(Login);
 const LogoutPage = LogoutGuard(Logout);
 const SignUpPage = IsAnonymous(SignUp);
 const ForgottenPasswordPage = IsAnonymous(ForgottenPassword);
-const ResetPasswordPage = IsAnonymous(ResetPassword as any); // TODO
+const ResetPasswordPage = IsAnonymous(ResetPassword);
 
 const AuthRoutes = () => (
   <Switch>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect'; // TODO remove
+import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { logoutAction } from 'common/services/user';
 

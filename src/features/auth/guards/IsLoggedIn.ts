@@ -1,14 +1,22 @@
-import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
+import { ComponentType } from 'react';
+import {
+  connectedReduxRedirect,
+  InjectedAuthReduxProps,
+} from 'redux-auth-wrapper/history4/redirect';
 import { routerActions } from 'connected-react-router';
 
+import { AppState } from 'app/store';
 import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
 
 import { AUTH_ROUTER_PATHS } from '../constants';
 
-export default connectedReduxRedirect({
-  authenticatedSelector: selectIsLoggedIn,
-  authenticatingSelector: selectIsAuthenticating,
-  redirectAction: routerActions.replace,
-  redirectPath: AUTH_ROUTER_PATHS.login,
-  wrapperDisplayName: 'IsLoggedIn',
-});
+const IsLoggedIn = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthReduxProps>) =>
+  connectedReduxRedirect<OwnProps, AppState>({
+    authenticatedSelector: selectIsLoggedIn,
+    authenticatingSelector: selectIsAuthenticating,
+    redirectAction: routerActions.replace,
+    redirectPath: AUTH_ROUTER_PATHS.login,
+    wrapperDisplayName: 'IsLoggedIn',
+  })(Component);
+
+export default IsLoggedIn;
