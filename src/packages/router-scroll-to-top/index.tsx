@@ -2,15 +2,17 @@ import { useEffect, ReactElement } from 'react';
 import useReactRouter from 'use-react-router';
 
 type Props = {
-  children: ReactElement;
+  children?: ReactElement;
 };
 
 const RouterScrollToTop = ({ children }: Props) => {
-  const { location } = useReactRouter();
+  const {
+    location: { pathname },
+  } = useReactRouter();
 
-  useEffect(() => window.scrollTo(0, 0), [location]);
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
 
-  return children;
+  return children || null;
 };
 
 export default RouterScrollToTop;

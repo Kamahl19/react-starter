@@ -4,13 +4,13 @@ import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
-import { forgottenPasswordRequest } from '../../ducks';
+import { forgottenPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
 
 import ForgottenPassword from './view';
 
 const mapDispatchToProps = {
-  forgottenPassword: forgottenPasswordRequest,
+  forgottenPassword: forgottenPasswordAction,
 };
 
 type Props = InjectedAuthReduxProps & {

@@ -1,4 +1,4 @@
-import { createActionCreator, createInitialState, createReducer } from '../redux-helpers';
+import { createActionCreator, createReducer } from '../redux-helpers';
 
 // TODO
 
@@ -22,7 +22,7 @@ export const finishSpinnerAction = createActionCreator(FINISH);
 /**
  * REDUCERS
  */
-const initialState = createInitialState({});
+const initialState = {};
 
 export default createReducer(initialState, {
   [START]: (state: TODO, id = GLOBAL) =>

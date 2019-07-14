@@ -2,16 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import {
-  createActionCreator,
-  createApiActionCreators,
-  createInitialState,
-  createReducer,
-  createActionType,
-  REQUEST,
-  SUCCESS,
-  FAILURE,
-} from 'packages/redux-helpers';
+import { createActionCreator, createReducer } from 'packages/redux-helpers';
 
 import { AppState } from '../../../app/store';
 
@@ -24,47 +15,45 @@ type TODO = any;
 /**
  * ACTION TYPES
  */
-export const LOGIN = 'user/LOGIN';
+export const LOGIN_REQUEST = 'user/LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'user/LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'user/LOGIN_FAILURE';
 export const RELOGIN = 'user/RELOGIN';
 export const LOGOUT = 'user/LOGOUT';
 
 /**
  * ACTIONS
  */
-export const loginActions = createApiActionCreators(LOGIN);
+export const loginRequestAction = createActionCreator(LOGIN_REQUEST);
+export const loginSuccessAction = createActionCreator(LOGIN_SUCCESS);
+export const loginFailureAction = createActionCreator(LOGIN_FAILURE);
 export const reloginAction = createActionCreator(RELOGIN);
 export const logoutAction = createActionCreator(LOGOUT);
 
 /**
  * REDUCERS
  */
-const initialState = createInitialState({
+const initialState = {
   isAuthenticating: false,
   profile: null,
   token: null,
-});
+};
 
 const isAuthenticating = createReducer(initialState.isAuthenticating, {
   [RELOGIN]: () => true,
-  [LOGIN]: {
-    [REQUEST]: () => true,
-    [SUCCESS]: () => false,
-    [FAILURE]: () => false,
-  },
+  [LOGIN_REQUEST]: () => true,
+  [LOGIN_SUCCESS]: () => false,
+  [LOGIN_FAILURE]: () => false,
 });
 
 const profile = createReducer(initialState.profile, {
-  [LOGIN]: {
-    [SUCCESS]: (_: AppState, { user: profile }: TODO) => profile,
-    [FAILURE]: () => initialState.profile,
-  },
+  [LOGIN_SUCCESS]: (_: AppState, { user: profile }: TODO) => profile,
+  [LOGIN_FAILURE]: () => initialState.profile,
 });
 
 const token = createReducer(initialState.token, {
-  [LOGIN]: {
-    [SUCCESS]: (_: AppState, { token }: TODO) => token,
-    [FAILURE]: () => initialState.token,
-  },
+  [LOGIN_SUCCESS]: (_: AppState, { token }: TODO) => token,
+  [LOGIN_FAILURE]: () => initialState.token,
 });
 
 export default combineReducers({
@@ -94,22 +83,22 @@ function* login({ payload }: TODO) {
   try {
     const resp = yield call(api.login, payload);
 
-    yield put(loginActions.success(resp.data));
+    yield put(loginSuccessAction(resp.data));
   } catch {
-    yield put(loginActions.failure());
+    yield put(loginFailureAction());
   }
 }
 
 function* relogin() {
   try {
     const resp = yield call(api.relogin);
-    yield put(loginActions.success(resp.data));
+    yield put(loginSuccessAction(resp.data));
   } catch {
-    yield put(loginActions.failure());
+    yield put(loginFailureAction());
   }
 }
 
 export function* userSaga() {
-  yield takeLatest(createActionType(LOGIN, REQUEST), login);
+  yield takeLatest(LOGIN_REQUEST, login);
   yield takeLatest(RELOGIN, relogin);
 }

@@ -1,47 +1,16 @@
-import deepFreeze from 'deep-freeze';
-
 // TODO
-
-type TODO = any;
-
-export const REQUEST = 'REQUEST';
-export const SUCCESS = 'SUCCESS';
-export const FAILURE = 'FAILURE';
-
-export const createActionType = (...parts: TODO) => parts.join('_');
-
-export const createActionCreator = (...type: TODO) => (payload?: unknown) => ({
-  type: createActionType(type),
+export const createActionCreator = (type: string) => (payload?: unknown) => ({
+  type,
   payload,
 });
 
-export const createApiActionCreators = (...type: TODO) => ({
-  request: createActionCreator(type, REQUEST),
-  success: createActionCreator(type, SUCCESS),
-  failure: createActionCreator(type, FAILURE),
-});
-
-export const createInitialState = deepFreeze;
-
-export const createReducer = (initialState: TODO, reducerMap: TODO) => {
-  const iterator = (reducersObj: TODO, initial = {}, prefix: TODO[] = []): TODO =>
-    Object.entries(reducersObj).reduce(
-      (acc, [actionType, reducerFn]) =>
-        typeof reducerFn === 'function'
-          ? {
-              ...acc,
-              [createActionType(prefix, actionType)]: reducerFn,
-            }
-          : iterator(reducerFn, acc, [createActionType(prefix, actionType)]),
-      initial
-    );
-
-  const flattened: TODO = iterator(reducerMap);
-
-  return (state = initialState, action: TODO) => {
-    const reducer = flattened[action.type];
-    return reducer ? reducer(state, action.payload) : state;
-  };
+// TODO
+export const createReducer = (initialState: any, handlers: any) => (
+  state = initialState,
+  action: any
+) => {
+  const reducer = handlers[action.type];
+  return reducer ? reducer(state, action.payload) : state;
 };
 
 type Predicate<T> = (elem: T) => boolean;

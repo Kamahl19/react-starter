@@ -1,8 +1,6 @@
 import React, { Suspense } from 'react';
-import { RenderFunction } from '@storybook/react';
+import { StoryDecorator } from '@storybook/react';
 
-const i18NextDecorator = () => (storyFn: RenderFunction) => (
-  <Suspense fallback={<></>}>{storyFn()}</Suspense>
-);
+const withI18Next: StoryDecorator = story => <Suspense fallback={<></>}>{story()}</Suspense>;
 
-export default i18NextDecorator;
+export default withI18Next;

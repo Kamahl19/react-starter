@@ -5,7 +5,7 @@ import { createActionCreator } from 'packages/redux-helpers';
 
 import { rootPath } from 'config';
 import { t } from 'common/services/i18next';
-import { loginActions } from 'common/services/user';
+import { loginSuccessAction, loginFailureAction } from 'common/services/user';
 import { message } from 'common/components';
 
 import api from './api';
@@ -17,16 +17,16 @@ type TODO = any;
 /**
  * ACTION TYPES
  */
-export const SIGN_UP_REQUEST = 'auth/SIGN_UP_REQUEST';
+export const SIGN_UP = 'auth/SIGN_UP';
 export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
 export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
 
 /**
  * ACTIONS
  */
-export const signUpRequest = createActionCreator(SIGN_UP_REQUEST);
-export const forgottenPasswordRequest = createActionCreator(FORGOTTEN_PASSWORD);
-export const resetPasswordRequest = createActionCreator(RESET_PASSWORD);
+export const signUpAction = createActionCreator(SIGN_UP);
+export const forgottenPasswordAction = createActionCreator(FORGOTTEN_PASSWORD);
+export const resetPasswordAction = createActionCreator(RESET_PASSWORD);
 
 /**
  * SAGAS
@@ -35,9 +35,9 @@ function* signUp({ payload: { email, password } }: TODO) {
   try {
     const resp = yield call(api.signUp, email, password);
 
-    yield put(loginActions.success(resp.data));
+    yield put(loginSuccessAction(resp.data));
   } catch {
-    yield put(loginActions.failure());
+    yield put(loginFailureAction());
   }
 }
 
@@ -59,9 +59,9 @@ function* resetPassword({ payload: { email, password, passwordResetToken } }: TO
   try {
     const resp = yield call(api.resetPassword, email, password, passwordResetToken);
 
-    yield put(loginActions.success(resp.data));
+    yield put(loginSuccessAction(resp.data));
   } catch {
-    yield put(loginActions.failure());
+    yield put(loginFailureAction());
   }
 }
 
@@ -86,16 +86,16 @@ function* activateUser(userId: TODO, activationToken: TODO) {
       t('auth.accountActivated', { defaultValue: 'Your account has been activated successfully.' })
     );
 
-    yield put(loginActions.success(resp.data));
+    yield put(loginSuccessAction(resp.data));
   } catch {
-    yield put(loginActions.failure());
+    yield put(loginFailureAction());
   }
 
   yield put(push(rootPath));
 }
 
 export function* authSaga() {
-  yield takeLatest(SIGN_UP_REQUEST, signUp);
+  yield takeLatest(SIGN_UP, signUp);
   yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
   yield takeLatest(RESET_PASSWORD, resetPassword);
   yield takeEvery('@@router/LOCATION_CHANGE', locationChanged);

@@ -4,13 +4,13 @@ import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
-import { signUpRequest } from '../../ducks';
+import { signUpAction } from '../../ducks';
 import { apiCallIds } from '../../api';
 
 import SignUp from './view';
 
 const mapDispatchToProps = {
-  signUp: signUpRequest,
+  signUp: signUpAction,
 };
 
 type Props = InjectedAuthReduxProps & {

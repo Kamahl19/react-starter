@@ -5,7 +5,7 @@ import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
-import { resetPasswordRequest } from '../../ducks';
+import { resetPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
 
 import ResetPassword from './view';
@@ -18,7 +18,7 @@ type Props = InjectedAuthReduxProps &
   };
 
 const mapDispatchToProps = {
-  resetPassword: resetPasswordRequest,
+  resetPassword: resetPasswordAction,
 };
 
 const ResetPasswordContainer = ({ match, resetPassword }: Props) => {
