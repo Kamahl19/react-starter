@@ -7,7 +7,8 @@ import { LoadingScreen } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import { AppState } from './';
-import { history, persistor } from './configureStore';
+import { persistor } from './configureStore';
+import history from '../history';
 
 const mapStateToProps = (state: AppState) => ({
   isLoggedIn: selectIsLoggedIn(state),
