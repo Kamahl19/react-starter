@@ -1,60 +1,78 @@
+import { AxiosResponse } from 'axios';
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
-
-import { createActionCreator, createReducer } from 'packages/redux-helpers';
+import {
+  ActionType,
+  createStandardAction,
+  createAsyncAction,
+  createReducer,
+} from 'typesafe-actions';
 
 import { AppState } from '../../../app/store';
 
 import api from './api';
 
-type TODO = any;
-
-// TODO
-
 /**
- * ACTION TYPES
+ * MODEL
  */
-export const LOGIN_REQUEST = 'user/LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'user/LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'user/LOGIN_FAILURE';
-export const RELOGIN = 'user/RELOGIN';
-export const LOGOUT = 'user/LOGOUT';
+type Credentials = {
+  password: string;
+  email: string;
+};
+
+type Profile = {
+  id: number;
+  // TODO add fields
+};
+
+type LoginResponse = {
+  user: Profile;
+  token: string;
+};
+
+type UserState = {
+  profile?: Profile;
+  token?: string;
+  isAuthenticating: boolean;
+};
 
 /**
  * ACTIONS
  */
-export const loginRequestAction = createActionCreator(LOGIN_REQUEST);
-export const loginSuccessAction = createActionCreator(LOGIN_SUCCESS);
-export const loginFailureAction = createActionCreator(LOGIN_FAILURE);
-export const reloginAction = createActionCreator(RELOGIN);
-export const logoutAction = createActionCreator(LOGOUT);
+export const loginActions = createAsyncAction(
+  'user/LOGIN_REQUEST',
+  'user/LOGIN_SUCCESS',
+  'user/LOGIN_FAILURE'
+)<Credentials, LoginResponse, undefined>();
+export const reloginAction = createStandardAction('user/RELOGIN')();
+export const logoutAction = createStandardAction('user/LOGOUT')();
+
+const actions = { loginActions, reloginAction, logoutAction };
+export type UserAction = ActionType<typeof actions>;
 
 /**
  * REDUCERS
  */
-const initialState = {
+const initialState: UserState = {
   isAuthenticating: false,
-  profile: null,
-  token: null,
+  profile: undefined,
+  token: undefined,
 };
 
-const isAuthenticating = createReducer(initialState.isAuthenticating, {
-  [RELOGIN]: () => true,
-  [LOGIN_REQUEST]: () => true,
-  [LOGIN_SUCCESS]: () => false,
-  [LOGIN_FAILURE]: () => false,
-});
+const isAuthenticating = createReducer(initialState.isAuthenticating)
+  .handleAction(reloginAction, () => true)
+  .handleAction(loginActions.request, () => true)
+  .handleAction(loginActions.success, () => false)
+  .handleAction(loginActions.failure, () => false);
 
-const profile = createReducer(initialState.profile, {
-  [LOGIN_SUCCESS]: (_: AppState, { user: profile }: TODO) => profile,
-  [LOGIN_FAILURE]: () => initialState.profile,
-});
+const profile = createReducer(initialState.profile)
+  .handleAction(loginActions.success, (_, { payload: { user } }) => user)
+  .handleAction(loginActions.failure, () => undefined);
 
-const token = createReducer(initialState.token, {
-  [LOGIN_SUCCESS]: (_: AppState, { token }: TODO) => token,
-  [LOGIN_FAILURE]: () => initialState.token,
-});
+const token = createReducer(initialState.token)
+  .handleAction(loginActions.success, (_, { payload: { token } }) => token)
+  .handleAction(loginActions.failure, () => initialState.token);
 
 export default combineReducers({
   isAuthenticating,
@@ -79,26 +97,26 @@ export const selectIsLoggedIn = createSelector(
 /**
  * SAGAS
  */
-function* login({ payload }: TODO) {
+const login = takeLatest(loginActions.request, function*({ payload }) {
   try {
-    const resp = yield call(api.login, payload);
+    const resp: AxiosResponse<LoginResponse> = yield call(api.login, payload);
 
-    yield put(loginSuccessAction(resp.data));
+    yield put(loginActions.success(resp.data));
   } catch {
-    yield put(loginFailureAction());
+    yield put(loginActions.failure());
   }
-}
+});
 
-function* relogin() {
+const relogin = takeLatest(reloginAction, function*() {
   try {
     const resp = yield call(api.relogin);
-    yield put(loginSuccessAction(resp.data));
+    yield put(loginActions.success(resp.data));
   } catch {
-    yield put(loginFailureAction());
+    yield put(loginActions.failure());
   }
-}
+});
 
 export function* userSaga() {
-  yield takeLatest(LOGIN_REQUEST, login);
-  yield takeLatest(RELOGIN, relogin);
+  yield login;
+  yield relogin;
 }

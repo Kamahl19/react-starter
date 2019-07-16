@@ -14,7 +14,7 @@ const mapDispatchToProps = {
 };
 
 type Props = InjectedAuthReduxProps & {
-  signUp: (...args: any[]) => any; // TODO
+  signUp: typeof signUpAction;
 };
 
 const SignUpContainer = ({ signUp }: Props) => {

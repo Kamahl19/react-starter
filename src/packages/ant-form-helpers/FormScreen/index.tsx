@@ -11,12 +11,12 @@ type InjectedProps = {
   handleSubmit: (e: FormSubmitEvent) => void;
 };
 
-type Props = FormComponentProps & {
+type Props<V> = FormComponentProps<V> & {
   children: (props: InjectedProps) => ReactNode;
-  onSubmit: (values: {}) => void;
+  onSubmit: (values: V) => void;
 };
 
-const FormScreen = ({ children, form, onSubmit }: Props) => {
+const FormScreen = <V extends {}>({ children, form, onSubmit }: Props<V>) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const { getFieldsError, validateFields, validateFieldsAndScroll } = form;

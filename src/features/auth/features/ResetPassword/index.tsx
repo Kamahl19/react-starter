@@ -14,7 +14,7 @@ type Props = InjectedAuthReduxProps &
   RouteComponentProps<{
     passwordResetToken: string;
   }> & {
-    resetPassword: (...args: any[]) => any; // TODO
+    resetPassword: typeof resetPasswordAction;
   };
 
 const mapDispatchToProps = {
@@ -27,9 +27,9 @@ const ResetPasswordContainer = ({ match, resetPassword }: Props) => {
   return (
     <ResetPassword
       isLoading={isLoading}
-      onSubmit={(
-        data: any // TODO
-      ) => resetPassword({ ...data, passwordResetToken: match.params.passwordResetToken })}
+      onSubmit={values =>
+        resetPassword({ ...values, passwordResetToken: match.params.passwordResetToken })
+      }
     />
   );
 };

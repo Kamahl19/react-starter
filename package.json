@@ -110,6 +110,7 @@
     "redux-persist": "5.10.0",
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
+    "typesafe-actions": "^4.4.2",
     "use-react-router": "1.0.7"
   },
   "eslintConfig": {

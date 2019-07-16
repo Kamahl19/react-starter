@@ -1,49 +1,48 @@
-import { createActionCreator, createReducer } from '../redux-helpers';
-
-// TODO
-
-type TODO = any;
+import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
+import { AppState } from '../../app/store';
 
 export const GLOBAL = 'GLOBAL';
 export const NO_SPINNER = 'NO_SPINNER';
 
 /**
- * ACTION TYPES
- */
-const START = 'spinner/START';
-const FINISH = 'spinner/FINISH';
-
-/**
  * ACTIONS
  */
-export const startSpinnerAction = createActionCreator(START);
-export const finishSpinnerAction = createActionCreator(FINISH);
+export const startSpinnerAction = createStandardAction('spinner/START')<string>();
+export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string>();
+
+const actions = { startSpinnerAction, finishSpinnerAction };
+export type SpinnerActions = ActionType<typeof actions>;
+
+type SpinnerState = {
+  [key: string]: number;
+};
 
 /**
  * REDUCERS
  */
-const initialState = {};
+const initialState: SpinnerState = {};
 
-export default createReducer(initialState, {
-  [START]: (state: TODO, id = GLOBAL) =>
+export default createReducer(initialState)
+  .handleAction(startSpinnerAction, (state, { payload: id }) =>
     id === NO_SPINNER
       ? state
       : {
           ...state,
           [id]: state[id] ? state[id] + 1 : 1,
-        },
-  [FINISH]: (state: TODO, id = GLOBAL) =>
+        }
+  )
+  .handleAction(finishSpinnerAction, (state, { payload: id }) =>
     id === NO_SPINNER
       ? state
       : {
           ...state,
           [id]: state[id] > 0 ? state[id] - 1 : 0,
-        },
-});
+        }
+  );
 
 /**
  * SELECTORS
  */
-const selectSpinner = (state: TODO) => state.spinner;
+const selectSpinner = (state: AppState) => state.spinner;
 
-export const selectIsInProgress = (state: TODO, id = GLOBAL) => !!selectSpinner(state)[id];
+export const selectIsInProgress = (state: AppState, id = GLOBAL) => !!selectSpinner(state)[id];

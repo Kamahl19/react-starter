@@ -9,9 +9,14 @@ import rules from 'common/rules';
 
 import PageLayout from '../../components/PageLayout';
 
-type Props = FormComponentProps & {
+type Values = {
+  email: string;
+  password: string;
+};
+
+type Props = FormComponentProps<Values> & {
   isLoading: boolean;
-  onSubmit: (...args: any[]) => any; // TODO
+  onSubmit: (values: Values) => any;
 };
 
 const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
@@ -19,7 +24,7 @@ const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
 
   return (
     <PageLayout>
-      <FormScreen form={form} onSubmit={onSubmit}>
+      <FormScreen<Values> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
             <FormItem

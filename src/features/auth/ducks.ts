@@ -1,47 +1,57 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
-
-import { createActionCreator } from 'packages/redux-helpers';
+import { push, LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
+import { createStandardAction } from 'typesafe-actions';
 
 import { rootPath } from 'config';
 import { t } from 'common/services/i18next';
-import { loginSuccessAction, loginFailureAction } from 'common/services/user';
+import { loginActions } from 'common/services/user';
 import { message } from 'common/components';
 
 import api from './api';
 
-// TODO
-
-type TODO = any;
-
 /**
- * ACTION TYPES
+ * MODEL
  */
-export const SIGN_UP = 'auth/SIGN_UP';
-export const FORGOTTEN_PASSWORD = 'auth/FORGOTTEN_PASSWORD';
-export const RESET_PASSWORD = 'auth/RESET_PASSWORD';
+type SignupPayload = {
+  email: string;
+  password: string;
+};
+
+type ForgottenPasswordPayload = {
+  email: string;
+};
+
+type ResetPasswordPayload = {
+  email: string;
+  password: string;
+  passwordResetToken: string;
+};
 
 /**
  * ACTIONS
  */
-export const signUpAction = createActionCreator(SIGN_UP);
-export const forgottenPasswordAction = createActionCreator(FORGOTTEN_PASSWORD);
-export const resetPasswordAction = createActionCreator(RESET_PASSWORD);
+export const signUpAction = createStandardAction('auth/SIGN_UP')<SignupPayload>();
+export const forgottenPasswordAction = createStandardAction('auth/FORGOTTEN_PASSWORD')<
+  ForgottenPasswordPayload
+>();
+export const resetPasswordAction = createStandardAction('auth/RESET_PASSWORD')<
+  ResetPasswordPayload
+>();
 
 /**
  * SAGAS
  */
-function* signUp({ payload: { email, password } }: TODO) {
+function* signUp({ payload: { email, password } }: ReturnType<typeof signUpAction>) {
   try {
     const resp = yield call(api.signUp, email, password);
 
-    yield put(loginSuccessAction(resp.data));
+    yield put(loginActions.success(resp.data));
   } catch {
-    yield put(loginFailureAction());
+    yield put(loginActions.failure());
   }
 }
 
-function* forgottenPassword({ payload }: TODO) {
+function* forgottenPassword({ payload }: ReturnType<typeof forgottenPasswordAction>) {
   try {
     yield call(api.forgottenPassword, payload.email);
 
@@ -55,29 +65,31 @@ function* forgottenPassword({ payload }: TODO) {
   } catch {}
 }
 
-function* resetPassword({ payload: { email, password, passwordResetToken } }: TODO) {
+function* resetPassword({
+  payload: { email, password, passwordResetToken },
+}: ReturnType<typeof resetPasswordAction>) {
   try {
     const resp = yield call(api.resetPassword, email, password, passwordResetToken);
 
-    yield put(loginSuccessAction(resp.data));
+    yield put(loginActions.success(resp.data));
   } catch {
-    yield put(loginFailureAction());
+    yield put(loginActions.failure());
   }
 }
 
-function* locationChanged({ payload }: TODO) {
+function* locationChanged({ payload }: LocationChangeAction) {
   const activatePath = '/activate/';
 
   if (payload.location.pathname.includes(activatePath)) {
     const exclude = activatePath.split('/');
     const [userId, activationToken] = payload.location.pathname
       .split('/')
-      .filter((part: TODO) => !exclude.includes(part)); // TODO
+      .filter(part => !exclude.includes(part));
 
     yield call(activateUser, userId, activationToken);
   }
 }
-
+type TODO = any; // TODO
 function* activateUser(userId: TODO, activationToken: TODO) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
@@ -86,17 +98,17 @@ function* activateUser(userId: TODO, activationToken: TODO) {
       t('auth.accountActivated', { defaultValue: 'Your account has been activated successfully.' })
     );
 
-    yield put(loginSuccessAction(resp.data));
+    yield put(loginActions.success(resp.data));
   } catch {
-    yield put(loginFailureAction());
+    yield put(loginActions.failure());
   }
 
   yield put(push(rootPath));
 }
 
 export function* authSaga() {
-  yield takeLatest(SIGN_UP, signUp);
-  yield takeLatest(FORGOTTEN_PASSWORD, forgottenPassword);
-  yield takeLatest(RESET_PASSWORD, resetPassword);
-  yield takeEvery('@@router/LOCATION_CHANGE', locationChanged);
+  yield takeLatest(signUpAction, signUp);
+  yield takeLatest(forgottenPasswordAction, forgottenPassword);
+  yield takeLatest(resetPasswordAction, resetPassword);
+  yield takeEvery(LOCATION_CHANGE, locationChanged);
 }

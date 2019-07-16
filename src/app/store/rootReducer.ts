@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
+import { isActionOf } from 'typesafe-actions';
 
 import { spinnerReducer as spinner } from 'packages/spinner';
 
-import user, { LOGOUT } from 'common/services/user';
+import user, { logoutAction } from 'common/services/user';
 
 export default function createRootReducer(history: History) {
   const rootReducer = combineReducers({
@@ -14,7 +15,7 @@ export default function createRootReducer(history: History) {
   });
 
   return ((state, action) =>
-    action.type === LOGOUT // TODO use typeof
+    isActionOf(logoutAction, action)
       ? rootReducer(undefined, action)
       : rootReducer(state, action)) as typeof rootReducer;
 }

@@ -4,17 +4,17 @@ import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
-import { loginRequestAction } from 'common/services/user';
+import { loginActions } from 'common/services/user';
 import { apiCallIds } from 'common/services/user/api';
 
 import Login from './view';
 
 const mapDispatchToProps = {
-  login: loginRequestAction,
+  login: loginActions.request,
 };
 
 type Props = InjectedAuthReduxProps & {
-  login: (...args: any[]) => any; // TODO
+  login: typeof loginActions.request;
 };
 
 const LoginContainer = ({ login }: Props) => {

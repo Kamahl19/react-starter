@@ -8,7 +8,7 @@ declare module 'axios' {
 
 type ApiClientParams = {
   axiosConfig: AxiosRequestConfig;
-  selectToken: () => string;
+  selectToken: () => string | undefined;
   onApiCallStart: (config: AxiosRequestConfig) => void;
   onApiCallFinish: (config: AxiosRequestConfig) => void;
   onError: (error: AxiosError) => void;

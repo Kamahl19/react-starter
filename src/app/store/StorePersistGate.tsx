@@ -21,7 +21,7 @@ const mapDispatchToProps = {
 type Props = {
   children: ReactNode;
   isLoggedIn: boolean;
-  relogin: (...args: any[]) => any; // TODO action
+  relogin: typeof reloginAction;
 };
 
 const StorePersistGate = ({ children, isLoggedIn, relogin }: Props) => (

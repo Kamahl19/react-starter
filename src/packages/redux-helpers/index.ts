@@ -1,18 +1,3 @@
-// TODO
-export const createActionCreator = (type: string) => (payload?: unknown) => ({
-  type,
-  payload,
-});
-
-// TODO
-export const createReducer = (initialState: any, handlers: any) => (
-  state = initialState,
-  action: any
-) => {
-  const reducer = handlers[action.type];
-  return reducer ? reducer(state, action.payload) : state;
-};
-
 type Predicate<T> = (elem: T) => boolean;
 
 export const replaceInArray = <T>(array: T[], predicate: Predicate<T>, value: T) => {

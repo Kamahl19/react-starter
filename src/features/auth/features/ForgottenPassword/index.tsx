@@ -14,7 +14,7 @@ const mapDispatchToProps = {
 };
 
 type Props = InjectedAuthReduxProps & {
-  forgottenPassword: (...args: any[]) => any; // TODO
+  forgottenPassword: typeof forgottenPasswordAction;
 };
 
 const ForgottenPasswordContainer = ({ forgottenPassword }: Props) => {

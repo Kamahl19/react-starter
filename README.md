@@ -18,6 +18,7 @@
   - `redux-logger` - logger for Redux
   - `reselect` - selector library for Redux
   - `redux-immutable-state-invariant` - detects mutations in Redux store
+  - `typesafe-actions` - action creators with type-free code
 - `create-react-app` - create React apps with no build configuration
 - `prettier` - opinionated code formatter
 - `source-map-explorer` - analyze and debug space usage through source maps

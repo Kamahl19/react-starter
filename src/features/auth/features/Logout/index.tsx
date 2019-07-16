@@ -9,7 +9,7 @@ const mapDispatchToProps = {
 };
 
 type Props = InjectedAuthReduxProps & {
-  logout: (...args: any[]) => any; // TODO
+  logout: typeof logoutAction;
 };
 
 const LogoutContainer = ({ logout }: Props) => {
