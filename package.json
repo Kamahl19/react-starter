@@ -51,7 +51,7 @@
     "@storybook/addon-actions": "5.1.8",
     "@storybook/addon-knobs": "5.1.8",
     "@storybook/addon-viewport": "5.1.8",
-    "@storybook/addons": "5.1.8",
+    "@storybook/addons": "5.1.9",
     "@storybook/react": "5.1.8",
     "babel-core": "6.26.3",
     "husky": "2.4.1",
