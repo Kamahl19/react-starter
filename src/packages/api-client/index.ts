@@ -12,6 +12,7 @@ type ApiClientParams = {
   onApiCallStart: (apiCallId: string) => void;
   onApiCallFinish: (apiCallId: string) => void;
   onError: (error: AxiosError) => void;
+  defaultApiCallId: string;
 };
 
 export default function createApiClient({
@@ -20,6 +21,7 @@ export default function createApiClient({
   onApiCallStart,
   onApiCallFinish,
   onError,
+  defaultApiCallId,
 }: ApiClientParams) {
   const apiClient = axios.create({
     responseType: 'json',
@@ -34,23 +36,19 @@ export default function createApiClient({
       config.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
-    if (config.apiCallId) {
-      onApiCallStart(config.apiCallId);
-    }
+    onApiCallStart(config.apiCallId || defaultApiCallId);
 
     return config;
   });
 
   apiClient.interceptors.response.use(
     response => {
-      if (response.config.apiCallId) {
-        onApiCallFinish(response.config.apiCallId);
-      }
+      onApiCallFinish(response.config.apiCallId || defaultApiCallId);
 
       return response;
     },
     error => {
-      onApiCallFinish(error.config.apiCallId);
+      onApiCallFinish(error.config.apiCallId || defaultApiCallId);
 
       if (!axios.isCancel(error)) {
         onError(error);
