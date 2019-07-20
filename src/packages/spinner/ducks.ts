@@ -2,7 +2,6 @@ import { createStandardAction, createReducer, ActionType } from 'typesafe-action
 import { AppState } from '../../app/store';
 
 export const GLOBAL = 'GLOBAL';
-export const NO_SPINNER = 'NO_SPINNER';
 
 /**
  * ACTIONS
@@ -23,22 +22,14 @@ type SpinnerState = {
 const initialState: SpinnerState = {};
 
 export default createReducer(initialState)
-  .handleAction(startSpinnerAction, (state, { payload: id }) =>
-    id === NO_SPINNER
-      ? state
-      : {
-          ...state,
-          [id]: state[id] ? state[id] + 1 : 1,
-        }
-  )
-  .handleAction(finishSpinnerAction, (state, { payload: id }) =>
-    id === NO_SPINNER
-      ? state
-      : {
-          ...state,
-          [id]: state[id] > 0 ? state[id] - 1 : 0,
-        }
-  );
+  .handleAction(startSpinnerAction, (state, { payload: id }) => ({
+    ...state,
+    [id]: state[id] ? state[id] + 1 : 1,
+  }))
+  .handleAction(finishSpinnerAction, (state, { payload: id }) => ({
+    ...state,
+    [id]: state[id] > 0 ? state[id] - 1 : 0,
+  }));
 
 /**
  * SELECTORS

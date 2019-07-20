@@ -6,15 +6,13 @@ import enUS from 'antd/lib/locale-provider/en_US';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import { useSpinner } from 'packages/spinner';
-
-// TODO Importing Store must be first
-import { store, StorePersistGate } from './store';
-
 import { rootPath } from 'config';
 import { ErrorBoundary, NotFound, Spin, LoadingScreen } from 'common/components';
 import AuthRoutes from 'features/auth/routes';
 import { AUTH_ROUTER_PATHS, AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
+
+import { store, StorePersistGate } from './store';
 
 import history from './history';
 

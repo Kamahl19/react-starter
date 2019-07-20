@@ -89,8 +89,7 @@ function* locationChanged({ payload }: LocationChangeAction) {
     yield call(activateUser, userId, activationToken);
   }
 }
-type TODO = any; // TODO
-function* activateUser(userId: TODO, activationToken: TODO) {
+function* activateUser(userId: string, activationToken: string) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
 

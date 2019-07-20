@@ -22,8 +22,8 @@ type Credentials = {
 };
 
 type Profile = {
-  id: number;
-  // TODO add fields
+  id: string;
+  email: string;
 };
 
 type LoginResponse = {
@@ -32,8 +32,8 @@ type LoginResponse = {
 };
 
 type UserState = {
-  profile?: Profile;
-  token?: string;
+  profile: Profile | null;
+  token: string | null;
   isAuthenticating: boolean;
 };
 
@@ -56,8 +56,8 @@ export type UserAction = ActionType<typeof actions>;
  */
 const initialState: UserState = {
   isAuthenticating: false,
-  profile: undefined,
-  token: undefined,
+  profile: null,
+  token: null,
 };
 
 const isAuthenticating = createReducer(initialState.isAuthenticating)
@@ -68,7 +68,7 @@ const isAuthenticating = createReducer(initialState.isAuthenticating)
 
 const profile = createReducer(initialState.profile)
   .handleAction(loginActions.success, (_, { payload: { user } }) => user)
-  .handleAction(loginActions.failure, () => undefined);
+  .handleAction(loginActions.failure, () => null);
 
 const token = createReducer(initialState.token)
   .handleAction(loginActions.success, (_, { payload: { token } }) => token)
@@ -97,26 +97,30 @@ export const selectIsLoggedIn = createSelector(
 /**
  * SAGAS
  */
-const login = takeLatest(loginActions.request, function*({ payload }) {
+function* login({ payload }: ReturnType<typeof loginActions.request>) {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(api.login, payload);
+    const resp: AxiosResponse<LoginResponse> = yield call(
+      api.login,
+      payload.email,
+      payload.password
+    );
 
     yield put(loginActions.success(resp.data));
   } catch {
     yield put(loginActions.failure());
   }
-});
+}
 
-const relogin = takeLatest(reloginAction, function*() {
+function* relogin() {
   try {
     const resp = yield call(api.relogin);
     yield put(loginActions.success(resp.data));
   } catch {
     yield put(loginActions.failure());
   }
-});
+}
 
 export function* userSaga() {
-  yield login;
-  yield relogin;
+  yield takeLatest(loginActions.request, login);
+  yield takeLatest(reloginAction, relogin);
 }

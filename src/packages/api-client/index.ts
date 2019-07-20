@@ -8,9 +8,9 @@ declare module 'axios' {
 
 type ApiClientParams = {
   axiosConfig: AxiosRequestConfig;
-  selectToken: () => string | undefined;
-  onApiCallStart: (config: AxiosRequestConfig) => void;
-  onApiCallFinish: (config: AxiosRequestConfig) => void;
+  selectToken: () => string | null;
+  onApiCallStart: (apiCallId: string) => void;
+  onApiCallFinish: (apiCallId: string) => void;
   onError: (error: AxiosError) => void;
 };
 
@@ -34,19 +34,23 @@ export default function createApiClient({
       config.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
-    onApiCallStart(config);
+    if (config.apiCallId) {
+      onApiCallStart(config.apiCallId);
+    }
 
     return config;
   });
 
   apiClient.interceptors.response.use(
     response => {
-      onApiCallFinish(response.config);
+      if (response.config.apiCallId) {
+        onApiCallFinish(response.config.apiCallId);
+      }
 
       return response;
     },
     error => {
-      onApiCallFinish(error.config);
+      onApiCallFinish(error.config.apiCallId);
 
       if (!axios.isCancel(error)) {
         onError(error);
