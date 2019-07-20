@@ -97,7 +97,7 @@
     "i18next-xhr-backend": "3.0.0",
     "localforage": "1.7.3",
     "lodash.pick": "4.4.0",
-    "oaf-react-router": "^2.0.0",
+    "oaf-react-router": "2.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-i18next": "10.11.4",
@@ -110,7 +110,7 @@
     "redux-persist": "5.10.0",
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
-    "typesafe-actions": "^4.4.2",
+    "typesafe-actions": "4.4.2",
     "use-react-router": "1.0.7"
   },
   "eslintConfig": {
