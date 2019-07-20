@@ -13,7 +13,7 @@ const actions = { startSpinnerAction, finishSpinnerAction };
 export type SpinnerActions = ActionType<typeof actions>;
 
 type SpinnerState = {
-  [key: string]: number;
+  readonly [key: string]: number;
 };
 
 /**
