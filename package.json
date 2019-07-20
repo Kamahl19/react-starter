@@ -1,6 +1,6 @@
 {
   "name": "react-starter",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Full-featured typescript starter for React application",
   "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "license": "MIT",
@@ -58,7 +58,7 @@
     "@types/jest": "24.0.15",
     "@types/lodash.flattendeep": "4.4.6",
     "@types/lodash.pick": "4.4.6",
-    "@types/node": "12.6.2",
+    "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "7.1.1",
@@ -68,11 +68,11 @@
     "@types/storybook-react-router": "1.0.0",
     "@types/storybook__addon-a11y": "5.0.0",
     "@types/storybook__addon-actions": "3.4.3",
-    "@types/storybook__addon-knobs": "5.0.2",
+    "@types/storybook__addon-knobs": "5.0.3",
     "@types/storybook__addon-viewport": "4.1.1",
     "@types/storybook__react": "4.0.2",
     "babel-core": "6.26.3",
-    "husky": "3.0.0",
+    "husky": "3.0.1",
     "i18next-scanner": "2.10.2",
     "i18next-scanner-typescript": "1.0.3",
     "less": "3.9.0",
@@ -88,7 +88,7 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "antd": "3.20.2",
+    "antd": "3.20.5",
     "axios": "0.18.1",
     "connected-react-router": "6.5.2",
     "flat": "4.1.0",
@@ -97,7 +97,7 @@
     "i18next-xhr-backend": "3.0.0",
     "localforage": "1.7.3",
     "lodash.pick": "4.4.0",
-    "oaf-react-router": "^2.0.0",
+    "oaf-react-router": "2.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-i18next": "10.11.4",
@@ -110,7 +110,7 @@
     "redux-persist": "5.10.0",
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
-    "typesafe-actions": "^4.4.2",
+    "typesafe-actions": "4.4.2",
     "use-react-router": "1.0.7"
   },
   "eslintConfig": {
