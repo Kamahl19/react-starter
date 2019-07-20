@@ -72,7 +72,7 @@
     "@types/storybook__addon-viewport": "4.1.1",
     "@types/storybook__react": "4.0.2",
     "babel-core": "6.26.3",
-    "husky": "3.0.0",
+    "husky": "3.0.1",
     "i18next-scanner": "2.10.2",
     "i18next-scanner-typescript": "1.0.3",
     "less": "3.9.0",
