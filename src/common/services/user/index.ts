@@ -32,9 +32,9 @@ type LoginResponse = {
 };
 
 type UserState = {
-  profile: Profile | null;
-  token: string | null;
-  isAuthenticating: boolean;
+  readonly profile: Profile | null;
+  readonly token: string | null;
+  readonly isAuthenticating: boolean;
 };
 
 /**
