@@ -2,6 +2,7 @@
 
 ## What’s Inside?
 
+- `TypeScript` - a typed superset of JavaScript
 - `JWT` Authorization - including all the common features such as Sign-up, Login, Logout, Reset password, Email verification
 - `Ant.Design` - a UI library
 - `axios` - promise based HTTP client
@@ -9,6 +10,7 @@
 - `less` - dynamic stylesheet language
 - `react-router` - declarative routing
   - `connected-react-router` - Redux binding for React Router
+  - `use-react-router` - Hooks for working with React Router
 - `redux` - a state container
   - `redux-saga` - a side effect model for Redux apps
   - `redux-auth-wrapper` - a HOC for handling Authentication and Authorization
@@ -16,6 +18,7 @@
   - `redux-logger` - logger for Redux
   - `reselect` - selector library for Redux
   - `redux-immutable-state-invariant` - detects mutations in Redux store
+  - `typesafe-actions` - action creators with type-free code
 - `create-react-app` - create React apps with no build configuration
 - `prettier` - opinionated code formatter
 - `source-map-explorer` - analyze and debug space usage through source maps
@@ -39,8 +42,7 @@ To build app, run `yarn build` in app root directory.
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
- |--| resources/: locales, files etc.
- |--| index.js: application entry file
+ |--| index.ts: application entry file
 -| storybook/: Storybook configuration and addons.
 ```
 
@@ -69,11 +71,6 @@ To build static storybook, run `yarn storybook:build`. This creates a static web
 More information about supported features can be found in [Storybook's Github repository](https://github.com/storybooks/storybook)
 
 ## i18n
-
-There are two ways how to define a translation string:
-
-- Using i18next's `Trans` component - this is preferred option whenever possible, virtually always in `jsx` except when we need to translate HTML attributes such as `alt`, `placeholder`, `title`, etc. Usage of component brings together benefits of having unique keys while keeping texts in markups. The content of component is used as a default message, when no explicit translation resource is defined.
-- Using i18next's `t` function - this is the option outside of `jsx` files and for HTML attributes.
 
 Running `yarn extract-translations` will update alphabetically sorted JSON files with key-translations pairs. It will use default messages for keys without explicit translations.
 

@@ -1,11 +1,11 @@
 {
   "editor.formatOnSave": true,
-  "javascript.validate.enable": false,
-  "prettier.requireConfig": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
-  ]
+  ],
+  "prettier.requireConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

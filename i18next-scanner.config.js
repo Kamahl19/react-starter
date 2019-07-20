@@ -1,22 +1,22 @@
+const typescriptTransform = require('i18next-scanner-typescript');
+
 module.exports = {
-  input: ['src/**/*.js', '!src/**/*.test.js'],
+  input: ['src/**/*.{ts,tsx}', '!src/**/*.test.{ts,tsx}'],
   options: {
     debug: true,
     sort: true,
     func: {
-      list: ['t'],
-      extensions: ['.js'],
+      list: ['i18next.t', 'i18n.t', 't'],
+      extensions: ['.ts', '.tsx'],
     },
     trans: {
-      extensions: ['.js'],
+      extensions: [], // Parse Trans only in custom transformer
     },
     lngs: ['en'],
-    ns: ['resource'],
-    defaultNs: 'resource',
     resource: {
-      loadPath: 'src/resources/locales/{{lng}}/{{ns}}.json',
-      savePath: 'src/resources/locales/{{lng}}/{{ns}}.json',
+      loadPath: 'public/locales/{{lng}}/{{ns}}.json',
+      savePath: 'public/locales/{{lng}}/{{ns}}.json',
     },
-    nsSeparator: false,
   },
+  transform: typescriptTransform(),
 };

@@ -1,261 +1,168 @@
-# Coding styleguide
+# Coding Styleguide
 
-Here we list number coding guidelines which you should keep.
-Easily refer to them in coding review.
-We believe that using these conventions keep your project healthy & maintanable by having a readable codebase.
+Here we suggest several best-practices which you should follow.
+We believe that using these conventions you keep your project healthy & maintanable by having a readable codebase.
 
-This is a live document, updatated on the fly.
+This document is written on the fly, it's far from being a complete coding styleguide.
 
-# JavaScript
+# TypeScript
 
-## Good practice
-
-### Uppercase constants
+## Uppercase constants
 
 Names of constants should be UPPERCASE so we can easily distinguish them from local variables.
 
+✅
+
+```ts
+export const TABS = {
+  PENDING: 'Pending',
+  RESOLVED: 'Resolved',
+};
+```
+
 ❌
 
-```js
+```ts
 export const tabs = {
   Pending: 'Pending',
   Resolved: 'Resolved',
 };
 ```
 
+## Function naming
+
+In functional programming we use simple functions such as `create`, `select` or `render`. When having a specific version of those,
+always keep the base name as a prefix of the function. Avoid anthropomorphic names which are common in object-oriented programming.
+
 ✅
 
-```diff
-- export const tabs = {
-+ export const TABS = {
--  Pending: 'Pending',
-+  PENDING: 'Pending',
--  Resolved: 'Resolved',
-+  RESOLVED: 'Resolved',
-};
+```tsx
+const renderActions = () => (
+  <>
+    <DeleteButton />
+    <EditButton />
+  </>
+);
+
+const selectUsername = state => state.user.name;
 ```
-
-### Function naming
-
-In functional programming we have simple functions like `create`, `select` or `render`. When having a specific version of those,
-always keep the base name as prefix of the function. Avoid anthropomorphic names which are common in object oriented programming.
 
 ❌
 
-```js
-const actionsRendered = user => (
+```tsx
+const actionsRendered = () => (
   <>
-    <DeleteButton user={user} />
-    <EditButton user={user} />
+    <DeleteButton />
+    <EditButton />
   </>
 );
 
 const usernameSelector = state => state.user.name;
 ```
 
-✅
-
-```diff
-- const actionsRendered = user => (
-+ const renderActions = user => (
-
-  <>
-    <DeleteButton user={user} />
-    <EditButton user={user} />
-  </>
-);
-
-- const usernameSelector = state => state.user.name;
-+ const selectUsername = state => state.user.name;
-```
-
 It follows, that when you call a function, you can name the result (more or less) as the function name without the base name:
 
 ✅
 
-```js
+```ts
 const userName = selectUsername(state); // returns string
 const userActions = renderUserActions(this.props.user); // returns react element
 const reloginAction = createActionCreator(RELOGIN); // returns object
 ```
 
-### Ordering imports
+## Imports ordering
 
 Order imports of dependencies by their reusability level.
 
-1. External libraries
-2. Common utilities
+1. External (npm) libraries
+2. Common (project-wide) utilities
 3. Local components
 
-Remember to put an empty line between two categories.
-
-❌
-
-```js
-import { alertSuccess } from '../common/atoms/alert';
-import axios from 'axios';
-import constants from './constants';
-```
+Remember to put an empty line between the categories.
 
 ✅
 
-```js
+```ts
 import axios from 'axios';
 
-import { alertSuccess } from '../common/atoms/alert';
+import { alertSuccess } from 'common/atoms/alert';
 
 import constants from './constants';
 ```
 
-### Use implicit return
+❌
 
-Utilize expressive features like destructuring, to reduce boilerplate in code with implicit returns.
+```ts
+import { alertSuccess } from 'common/atoms/alert';
+import axios from 'axios';
+import constants from './constants';
+```
+
+## Implicit return
+
+Utilize expressive features like destructuring to reduce boilerplate in code with implicit returns.
+
+✅
+
+```ts
+reservations.map(({ beginTime, endTime }) => formatDate(beginTime, endTime));
+```
 
 ❌
 
-```js
+```ts
 reservations.map(reservation => {
   const { beginTime, endTime } = reservation;
 
-  return <Text style={sheet.headerDateText}>{formatDate(beginTime, endTime)}</Text>;
+  return formatDate(beginTime, endTime);
 });
 ```
 
+## Passing functions
+
+Save a call by passing a function as an argument instead of calling it in new anonymous function.
+
 ✅
 
-```js
-reservations.map(({ beginTime, endTime }) => (
-  <Text style={sheet.headerDateText}>{formatDate(beginTime, endTime)}</Text>
-));
+```ts
+const admins = users.filter(isAdmin);
 ```
-
-### Passing functions
-
-Save a call by passing a function as argument, instead of calling it in new anonymous function.
 
 ❌
 
-```js
-const isAdmin = user => user.role === 'admin';
+```ts
 const admins = users.filter(user => isAdmin(user));
 ```
 
+## Single `const` / `let` declaration
+
+Avoid multiple declarations in a single `const` / `let` expression. When skimming the source code, it's easy to miss the second assignment.
+
 ✅
 
-```diff
-- const admins = users.filter(user => isAdmin(user));
-+ const admins = users.filter(isAdmin);
+```ts
+const constants = {
+  CLOSE: 'Close',
+  DELETE: 'Delete',
+  CANCEL: 'Cancel',
+};
+const options = Object.entries(constants);
 ```
-
-Exceptions:
-
-- mind arity
-
-### Const without comma operator
 
 ❌
 
-```js
-const response = {
-    Close: 'Close',
-    Delete: 'Delete',
-    Cancel: 'Cancel',
+```ts
+const constants = {
+    CLOSE: 'Close',
+    DELETE: 'Delete',
+    CANCEL: 'Cancel',
   },
-  options = Object.entries(response);
+  options = Object.entries(constants);
 ```
-
-Avoid multiple declarations in a single `const` expression. When skimming the source code, it's easy to miss the `options` assignment.
-
-✅
-
-```diff
-const response = {
-    Close: 'Close',
-    Delete: 'Delete',
-    Cancel: 'Cancel',
--   },
--  options = Object.entries(response);
-+  };
-+  const options = Object.entries(response);
-```
-
-Now it's clear, that there are two separate entities instead of one.
 
 # React
 
-## Patterns
-
-### PropTypes
-
-#### Should be a static property on a class component
-
-In a class component, define the propTypes as a static property on the class.
-This way it's close to the name of the class, which is analogous to arguments of a function.
-
-```js
-class Status extends Component {
-  static propTypes = {
-    isOnline: PropTypes.bool.isRequired,
-  };
-
-  // ...
-}
-
-function Status({ isOnline }) {
-  //....
-}
-```
-
-#### Should have defaultProps marked as required
-
-```js
-class Date extends Component {
-  static propTypes = {
-    format: PropTypes.oneOf(['hour', 'day', 'week']).isRequired,
-  };
-
-  static defaultProps = {
-    format: 'day',
-  };
-}
-
-render(<Date />); // Renders without warning
-```
-
-#### Should not use default value syntax in function component
-
-Default value won't be checked as defaultProps and treated as missing value.
-
-❌
-
-```js
-const Hello = ({ to = 'world' }) => <h1>Hello {to}!</h1>;
-
-Hello.propTypes = {
-  to: PropTypes.string.isRequired,
-};
-
-render(<Hello />); // Warning: missing required prop!
-```
-
-✅
-
-```diff
-- const Hello = ({ to = 'world'  }) => <h1>Hello {to}!</h1>;
-+ const Hello = ({ to }) => <h1>Hello {to}!</h1>;
-
-Hello.propTypes = {
-  to: PropTypes.string.isRequired,
-};
-
-+ Hello.defaultProps = {
-+  to: 'world',
-+ };
-```
-
-### Render
-
-#### Props Ordering
+## Props Ordering
 
 Props passed to components should be ordered as:
 
@@ -263,67 +170,38 @@ Props passed to components should be ordered as:
 2. Variable Props
 3. Event Handlers
 
-```js
-render() {
-  const { isLoading, onSubmit } = this.props;
+✅
 
-  return (
-    <Button block type="submit" loading={isLoading} onClick={onSubmit}>
-      Save
-    </Button>
-  );
-}
+```tsx
+<Button block type="submit" loading={isLoading} onClick={onSubmit}>
+  Save
+</Button>
 ```
-
-The first props are close to the component name, which allows us to get a picture of how the component looks like or what's its role. If we have multiple instances of such components, it's easy to spot a pattern and then 'curry' the component - take away the degree of freedom and fix the props under new name:
-
-```js
-const SubmitButton = props => <Button {...props} block type="submit" />;
-```
-
-This SubmitButton represents a subset of all buttons. Ordering props helped us to find it. It would be much harder, if the
-props would be ordered ad-hoc.
 
 ❌
 
-```js
+```tsx
 <Button loading={isLoading} block onClick={onSubmit} type="submit">
   Save
 </Button>
 ```
 
-#### Avoid costly renders
+The first props are close to the component name, which allows us to get a picture of how the component looks like or what's its role. If we have multiple instances of such components, it's easy to spot a pattern and then 'curry' the component - take away the degree of freedom and fix the props under new name `SubmitButton`.
+
+```tsx
+const SubmitButton = props => <Button {...props} block type="submit" />;
+```
+
+## Avoid costly renders
 
 Render is the most-called method of a component. We should avoid building arrays, objects or other structures there.
 Instead move them to instance memebers (in a class component) or to module scope.
 
-Example: Ant table columns
-
-❌
-
-```js
-const UserTable = ({ dataSource }) => {
-  return (
-    <Table
-      dataSource={dataSource}
-      columns={[
-        {
-          title: 'Name',
-          dataIndex: 'user',
-        },
-        {
-          title: 'Age',
-          dataIndex: 'age',
-        },
-      ]}
-    />
-  );
-};
-```
+Example: `Ant` table columns
 
 ✅
 
-```js
+```tsx
 const columns = [
   {
     title: 'Name',
@@ -335,77 +213,88 @@ const columns = [
   },
 ];
 
-const UserTable = ({ dataSource }) => {
-  return <Table dataSource={dataSource} columns={columns} />;
-};
+const UserTable = ({ dataSource }) => <Table dataSource={dataSource} columns={columns} />;
 ```
-
-### Event handler naming
-
-The names of handlers should always start with `on` and end with event type e.g. `Change`.
-For each `onEvent` we should have `handleEvent` method on the class.
 
 ❌
 
-```jsx
-<Select onChange={this.selectvalue}>
+```tsx
+const UserTable = ({ dataSource }) => (
+  <Table
+    dataSource={dataSource}
+    columns={[
+      {
+        title: 'Name',
+        dataIndex: 'user',
+      },
+      {
+        title: 'Age',
+        dataIndex: 'age',
+      },
+    ]}
+  />
+);
+```
+
+## Event handler naming
+
+The names of handlers should always start with an `on` and end with an event type e.g. `Change`.
+For each `onEvent` we should also have a `handleEvent` method on the class.
+
+✅
+
+```tsx
+<Select onChange={this.handleChange}>
   <Option>Foo</Option>
   <Option>Bar</Option>
 </Select>
 ```
 
+❌
+
+```tsx
+<Select onChange={this.selectValue}>
+  <Option>Foo</Option>
+  <Option>Bar</Option>
+</Select>
+```
+
+When having multiple specific events, indicate their specificity at the begining of the event name, not at the end.
+
 ✅
 
 ```diff
-- <Select onChange={this.selectvalue}>
-+ <Select onChange={this.handleChange}>
+<Profile user={user} onAvatarClick={this.handleAvatarClick} onBioClick={this.handleBioClick} />
 ```
-
-When having multiple specific events, indicate the specificity at the begining of the event name, not at the end.
 
 ❌
 
-```js
+```ts
 <Profile user={user} onClickAvatar={this.handleClickAvatar} onClickBio={this.handleClickBio} />
 ```
 
-✅
+If we follow this rule, event handlers are easily consumed by the `Profile` component
+because of their `on${componentName}${eventName}` names.
 
-```diff
-<Profile
-  user={user}
-- onClickAvatar={this.handleClickAvatar}
-+ onAvatarClick={this.handleAvatarClick}
-- onClickBio={this.handleClickBio}
-+ onBioClick={this.handleBioClick}
-/>
-```
-
-In the profile, then those events are easily consumed - concrete components should accepts props named like
-`on + componentName + eventName`.
-
-```js
+```tsx
 <div className="profile">
   <Avatar onClick={this.props.onAvatarClick} />
   <Bio onClick={this.props.onBioClick />
 </div>
 ```
 
-## Common Bugs
+## Passing event handler properly
 
-### Calling handler in `onClick`
-
-❌
-
-```jsx
-<Button onClick={isAdmin ? approveUsers() : () => approveUser(user.id)} />
-```
-
-The `approveUsers` function will be called on the render which is a bug. Instead, you should pass a reference in.
+Event handler must be passed as a function instead of being called inline. This is a common bug.
 
 ✅
 
-```diff
-- <Button onClick={isAdmin ? approveUsers() : () => approveUser(user.id)} />
-+ <Button onClick={isAdmin ? approveUsers : () => approveUser(user.id)} />
+```tsx
+<Button onClick={submit} />
+```
+
+❌
+
+```tsx
+<Button onClick={submit()} />
 ```
