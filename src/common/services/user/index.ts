@@ -9,7 +9,7 @@ import {
   createReducer,
 } from 'typesafe-actions';
 
-import { AppState } from '../../../app/store';
+import { AppState } from 'app/store';
 
 import api from './api';
 
@@ -83,7 +83,7 @@ export default combineReducers({
 /**
  * SELECTORS
  */
-export const selectUser = (state: AppState) => state.user;
+export const selectUser = (state: AppState): UserState => state.user;
 
 export const selectIsAuthenticating = (state: AppState) => selectUser(state).isAuthenticating;
 export const selectProfile = (state: AppState) => selectUser(state).profile;

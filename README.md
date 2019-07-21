@@ -2,28 +2,28 @@
 
 ## What’s Inside?
 
-- `TypeScript` - a typed superset of JavaScript
-- `JWT` Authorization - including all the common features such as Sign-up, Login, Logout, Reset password, Email verification
-- `Ant.Design` - a UI library
-- `axios` - promise based HTTP client
-- `i18next` - an internationalization framework
-- `less` - dynamic stylesheet language
-- `react-router` - declarative routing
-  - `connected-react-router` - Redux binding for React Router
-  - `use-react-router` - Hooks for working with React Router
-- `redux` - a state container
-  - `redux-saga` - a side effect model for Redux apps
-  - `redux-auth-wrapper` - a HOC for handling Authentication and Authorization
-  - `redux-persist` - persist and rehydrate a Redux store
-  - `redux-logger` - logger for Redux
-  - `reselect` - selector library for Redux
-  - `redux-immutable-state-invariant` - detects mutations in Redux store
-  - `typesafe-actions` - action creators with type-free code
-- `create-react-app` - create React apps with no build configuration
-- `prettier` - opinionated code formatter
-- `source-map-explorer` - analyze and debug space usage through source maps
-- `storybook` - a development environment for UI components
-- `dotenv` - loads environment variables from an `.env` file
+- [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
+- [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Reset password, Email verification
+- [Ant.Design](https://ant.design/) - a UI library
+- [axios](https://github.com/axios/axios) - promise based HTTP client
+- [i18next](https://www.i18next.com/) - an internationalization framework
+- [less](http://lesscss.org/) - dynamic stylesheet language
+- [react-router](https://reacttraining.com/react-router/web/guides/quick-start) - declarative routing
+  - [connected-react-router](https://github.com/supasate/connected-react-router) - Redux binding for React Router
+  - [use-react-router](https://github.com/CharlesStover/use-react-router) - hooks for working with React Router
+- [redux](https://redux.js.org/) - a state container
+  - [redux-saga](https://github.com/redux-saga/redux-saga) - a side effect model for Redux apps
+  - [redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper) - a HOC for handling Authentication and Authorization
+  - [redux-persist](https://github.com/rt2zz/redux-persist) - persist and rehydrate a Redux store
+  - [redux-logger](https://github.com/LogRocket/redux-logger) - logger for Redux
+  - [reselect](https://github.com/reduxjs/reselect) - selector library for Redux
+  - [redux-immutable-state-invariant](https://github.com/leoasis/redux-immutable-state-invariant) - detects mutations in Redux store
+  - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions) - action creators with type-free code
+- [create-react-app](https://facebook.github.io/create-react-app/) - create React apps with no build configuration
+- [prettier](https://prettier.io/) - opinionated code formatter
+- [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
+- [storybook](https://storybook.js.org/) - a development environment for UI components
+- [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
 
 ## Start app
 
@@ -42,7 +42,7 @@ To build app, run `yarn build` in app root directory.
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
- |--| index.ts: application entry file
+ |--| index.tsx: application entry file
 -| storybook/: Storybook configuration and addons.
 ```
 
@@ -62,7 +62,7 @@ There are multiple ways how to run ESLint.
 
 ## Storybook
 
-We suggest developing component in isolation. For this reason, project comes with **Storybook** pre-configured.
+We suggest developing component in isolation. For this reason, project comes with [Storybook](https://storybook.js.org/) pre-configured.
 
 To run separated development environment, run `yarn storybook` which will start dedicated web server at `http://localhost:9001`.
 
