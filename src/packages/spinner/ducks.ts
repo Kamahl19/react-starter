@@ -1,5 +1,4 @@
 import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
-import { AppState } from '../../app/store';
 
 export const GLOBAL = 'GLOBAL';
 
@@ -34,6 +33,7 @@ export default createReducer(initialState)
 /**
  * SELECTORS
  */
-const selectSpinner = (state: AppState) => state.spinner;
+type TODO = any;
+const selectSpinner = (state: TODO): SpinnerState => state.spinner;
 
-export const selectIsInProgress = (state: AppState, id = GLOBAL) => !!selectSpinner(state)[id];
+export const selectIsInProgress = (state: TODO, id = GLOBAL) => !!selectSpinner(state)[id];
