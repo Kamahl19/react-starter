@@ -10,16 +10,15 @@ import { apiCallIds } from '../../api';
 
 import ResetPassword from './view';
 
-type Props = InjectedAuthReduxProps &
-  RouteComponentProps<{
-    passwordResetToken: string;
-  }> & {
-    resetPassword: typeof resetPasswordAction;
-  };
-
 const mapDispatchToProps = {
   resetPassword: resetPasswordAction,
 };
+
+type Props = InjectedAuthReduxProps &
+  RouteComponentProps<{
+    passwordResetToken: string;
+  }> &
+  typeof mapDispatchToProps;
 
 const ResetPasswordContainer = ({ match, resetPassword }: Props) => {
   const isLoading = useSpinner(apiCallIds.RESET_PASSWORD);

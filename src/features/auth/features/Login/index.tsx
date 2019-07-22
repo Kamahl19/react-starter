@@ -13,9 +13,7 @@ const mapDispatchToProps = {
   login: loginActions.request,
 };
 
-type Props = InjectedAuthReduxProps & {
-  login: typeof loginActions.request;
-};
+type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
 
 const LoginContainer = ({ login }: Props) => {
   const isLoading = useSpinner(apiCallIds.LOGIN);

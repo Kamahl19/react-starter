@@ -6,9 +6,10 @@ import { reloginAction, selectIsLoggedIn } from 'common/services/user';
 import { LoadingScreen } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
-import { AppState } from './';
-import { persistor } from './configureStore';
 import history from '../history';
+
+import { persistor } from './configureStore';
+import { AppState } from './';
 
 const mapStateToProps = (state: AppState) => ({
   isLoggedIn: selectIsLoggedIn(state),
@@ -18,11 +19,10 @@ const mapDispatchToProps = {
   relogin: reloginAction,
 };
 
-type Props = {
-  children: ReactNode;
-  isLoggedIn: boolean;
-  relogin: typeof reloginAction;
-};
+type Props = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps & {
+    children: ReactNode;
+  };
 
 const StorePersistGate = ({ children, isLoggedIn, relogin }: Props) => (
   <PersistGate

@@ -13,9 +13,7 @@ const mapDispatchToProps = {
   forgottenPassword: forgottenPasswordAction,
 };
 
-type Props = InjectedAuthReduxProps & {
-  forgottenPassword: typeof forgottenPasswordAction;
-};
+type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
 
 const ForgottenPasswordContainer = ({ forgottenPassword }: Props) => {
   const isLoading = useSpinner(apiCallIds.FORGOTTEN_PASSWORD);

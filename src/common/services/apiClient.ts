@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 import createApiClient from 'packages/api-client';
-import { startSpinnerAction, finishSpinnerAction, GLOBAL } from 'packages/spinner';
+import { startSpinnerAction, finishSpinnerAction } from 'packages/spinner';
 
 import { store } from 'app/store';
 import { message } from 'common/components';
@@ -22,7 +22,6 @@ export default createApiClient({
 
     showErrorMessage(error);
   },
-  defaultApiCallId: GLOBAL,
 });
 
 function showErrorMessage(error: AxiosError) {

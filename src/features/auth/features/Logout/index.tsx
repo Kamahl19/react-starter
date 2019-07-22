@@ -8,9 +8,7 @@ const mapDispatchToProps = {
   logout: logoutAction,
 };
 
-type Props = InjectedAuthReduxProps & {
-  logout: typeof logoutAction;
-};
+type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
 
 const LogoutContainer = ({ logout }: Props) => {
   useEffect(() => {
