@@ -1,40 +1,45 @@
-import React, { ReactElement } from 'react';
+import React, { Component, ReactNode } from 'react';
 import MediaQuery from 'react-responsive';
 
 import MobileNavigation from './MobileNavigation';
 
-export type InjectedProps = {
-  hideNavigation: VoidFunction;
-  isMobile: boolean;
-  isNavigationVisible?: boolean;
-  showNavigation: VoidFunction;
-};
-
 type Props = {
-  children: (props: InjectedProps) => ReactElement;
+  children: (state: State) => ReactNode;
   maxWidth: number;
 };
 
-const noop = () => {};
-
-const ResponsiveNavigationContainer = ({ children, maxWidth }: Props) => (
-  <MediaQuery maxWidth={maxWidth}>
-    {isMobile =>
-      isMobile ? (
-        <MobileNavigation>{children}</MobileNavigation>
-      ) : (
-        children({
-          isMobile: false,
-          hideNavigation: noop,
-          showNavigation: noop,
-        })
-      )
-    }
-  </MediaQuery>
-);
-
-ResponsiveNavigationContainer.defaultProps = {
-  maxWidth: 767,
+export type State = {
+  readonly isMobile: boolean;
+  readonly isNavigationVisible: boolean;
+  readonly hideNavigation: VoidFunction;
+  readonly showNavigation: VoidFunction;
 };
+
+function noop() {}
+
+class ResponsiveNavigationContainer extends Component<Props, State> {
+  static defaultProps = {
+    maxWidth: 767,
+  };
+
+  readonly state: State = {
+    isMobile: false,
+    isNavigationVisible: false,
+    hideNavigation: noop,
+    showNavigation: noop,
+  };
+
+  render() {
+    const { children, maxWidth } = this.props;
+
+    return (
+      <MediaQuery maxWidth={maxWidth}>
+        {isMobile =>
+          isMobile ? <MobileNavigation>{children}</MobileNavigation> : children(this.state)
+        }
+      </MediaQuery>
+    );
+  }
+}
 
 export default ResponsiveNavigationContainer;

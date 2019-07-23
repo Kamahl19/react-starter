@@ -1,33 +1,38 @@
-import { useEffect, useState, ReactElement } from 'react';
-import useReactRouter from 'use-react-router';
+import { Component, ReactNode } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { withRouter } from 'react-router-dom';
+import { UnregisterCallback } from 'history';
 
-import { InjectedProps } from './';
+import { State } from './';
 
-type Props = {
-  children: (props: InjectedProps) => ReactElement;
+type Props = RouteComponentProps & {
+  children: (state: State) => ReactNode;
 };
 
-const MobileNavigation = ({ children }: Props) => {
-  const { history } = useReactRouter();
-
-  const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-
-  function hideNavigation() {
-    setIsNavigationVisible(false);
-  }
-
-  function showNavigation() {
-    setIsNavigationVisible(true);
-  }
-
-  useEffect(() => history.listen(hideNavigation), [history]);
-
-  return children({
-    hideNavigation,
+class MobileNavigation extends Component<Props, State> {
+  readonly state: State = {
     isMobile: true,
-    isNavigationVisible,
-    showNavigation,
-  });
-};
+    isNavigationVisible: false,
+    hideNavigation: () => this.setState({ isNavigationVisible: false }),
+    showNavigation: () => this.setState({ isNavigationVisible: true }),
+  };
 
-export default MobileNavigation;
+  unlisten?: UnregisterCallback;
+
+  componentDidMount() {
+    const { history } = this.props;
+    const { hideNavigation } = this.state;
+
+    this.unlisten = history.listen(hideNavigation);
+  }
+
+  componentWillUnmount() {
+    this.unlisten && this.unlisten();
+  }
+
+  render() {
+    return this.props.children(this.state);
+  }
+}
+
+export default withRouter(MobileNavigation);

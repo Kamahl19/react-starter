@@ -22,4 +22,4 @@ import 'app/store';
 /**
  * All actions types for typesafe-actions
  */
-import './actions';
+import 'actions';

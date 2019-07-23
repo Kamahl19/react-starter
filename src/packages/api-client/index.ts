@@ -9,10 +9,9 @@ declare module 'axios' {
 type ApiClientParams = {
   axiosConfig: AxiosRequestConfig;
   selectToken: () => string | null;
-  onApiCallStart: (apiCallId: string) => void;
-  onApiCallFinish: (apiCallId: string) => void;
+  onApiCallStart: (apiCallId?: string) => void;
+  onApiCallFinish: (apiCallId?: string) => void;
   onError: (error: AxiosError) => void;
-  defaultApiCallId: string;
 };
 
 export default function createApiClient({
@@ -21,7 +20,6 @@ export default function createApiClient({
   onApiCallStart,
   onApiCallFinish,
   onError,
-  defaultApiCallId,
 }: ApiClientParams) {
   const apiClient = axios.create({
     responseType: 'json',
@@ -36,19 +34,19 @@ export default function createApiClient({
       config.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
-    onApiCallStart(config.apiCallId || defaultApiCallId);
+    onApiCallStart(config.apiCallId);
 
     return config;
   });
 
   apiClient.interceptors.response.use(
     response => {
-      onApiCallFinish(response.config.apiCallId || defaultApiCallId);
+      onApiCallFinish(response.config.apiCallId);
 
       return response;
     },
-    error => {
-      onApiCallFinish(error.config.apiCallId || defaultApiCallId);
+    (error: AxiosError) => {
+      onApiCallFinish(error.config.apiCallId);
 
       if (!axios.isCancel(error)) {
         onError(error);

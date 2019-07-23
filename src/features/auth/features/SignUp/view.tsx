@@ -16,7 +16,7 @@ type Values = {
 
 type Props = FormComponentProps<Values> & {
   isLoading: boolean;
-  onSubmit: (values: Values) => any;
+  onSubmit: (values: Values) => void;
 };
 
 const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {

@@ -1,20 +1,21 @@
 import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
-import { AppState } from '../../app/store';
 
 export const GLOBAL = 'GLOBAL';
 
 /**
  * ACTIONS
  */
-export const startSpinnerAction = createStandardAction('spinner/START')<string>();
-export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string>();
+export const startSpinnerAction = createStandardAction('spinner/START')<string | undefined>();
+export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string | undefined>();
 
 const actions = { startSpinnerAction, finishSpinnerAction };
 export type SpinnerActions = ActionType<typeof actions>;
 
-type SpinnerState = {
-  readonly [key: string]: number;
-};
+type SpinnerState = Record<string, number>;
+
+export interface SpinnerKeyInState {
+  spinner: SpinnerState;
+}
 
 /**
  * REDUCERS
@@ -22,11 +23,11 @@ type SpinnerState = {
 const initialState: SpinnerState = {};
 
 export default createReducer(initialState)
-  .handleAction(startSpinnerAction, (state, { payload: id }) => ({
+  .handleAction(startSpinnerAction, (state, { payload: id = GLOBAL }) => ({
     ...state,
     [id]: state[id] ? state[id] + 1 : 1,
   }))
-  .handleAction(finishSpinnerAction, (state, { payload: id }) => ({
+  .handleAction(finishSpinnerAction, (state, { payload: id = GLOBAL }) => ({
     ...state,
     [id]: state[id] > 0 ? state[id] - 1 : 0,
   }));
@@ -34,6 +35,7 @@ export default createReducer(initialState)
 /**
  * SELECTORS
  */
-const selectSpinner = (state: AppState) => state.spinner;
+const selectSpinner = <S extends SpinnerKeyInState>(state: S) => state.spinner;
 
-export const selectIsInProgress = (state: AppState, id = GLOBAL) => !!selectSpinner(state)[id];
+export const selectIsInProgress = <S extends SpinnerKeyInState>(state: S, id: string) =>
+  !!selectSpinner(state)[id];

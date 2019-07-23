@@ -3,18 +3,18 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import LocaleProvider from 'antd/lib/locale-provider';
 import enUS from 'antd/lib/locale-provider/en_US';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { useSpinner } from 'packages/spinner';
+
 import { rootPath } from 'config';
 import { ErrorBoundary, NotFound, Spin, LoadingScreen } from 'common/components';
 import AuthRoutes from 'features/auth/routes';
-import { AUTH_ROUTER_PATHS, AUTH_ROUTE_PREFIX } from 'features/auth/constants';
-import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
+import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 
 import { store, StorePersistGate } from './store';
-
 import history from './history';
+import DemoScreen from './DemoScreen';
 
 const Root = () => (
   <ErrorBoundary>
@@ -23,13 +23,13 @@ const Root = () => (
         <Provider store={store}>
           <StorePersistGate>
             <ConnectedRouter history={history}>
-              <GlobalSpinnerProvider>
+              <GlobalSpinner>
                 <Switch>
-                  <Route exact path={rootPath} component={LoggedInScreen} />
+                  <Route exact path={rootPath} component={DemoScreen} />
                   <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
                   <Route component={NotFound} />
                 </Switch>
-              </GlobalSpinnerProvider>
+              </GlobalSpinner>
             </ConnectedRouter>
           </StorePersistGate>
         </Provider>
@@ -40,7 +40,7 @@ const Root = () => (
 
 export default Root;
 
-const GlobalSpinnerProvider = ({ children }: { children: ReactNode }) => {
+const GlobalSpinner = ({ children }: { children: ReactNode }) => {
   const isLoading = useSpinner();
 
   return (
@@ -49,6 +49,3 @@ const GlobalSpinnerProvider = ({ children }: { children: ReactNode }) => {
     </Spin>
   );
 };
-
-// Throw-away component, just for demo purposes
-const LoggedInScreen = IsLoggedIn(() => <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>);

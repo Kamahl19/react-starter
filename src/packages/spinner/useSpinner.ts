@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import { AppState } from '../../app/store';
-import { selectIsInProgress, GLOBAL } from './ducks';
+import { selectIsInProgress, GLOBAL, SpinnerKeyInState } from './ducks';
 
-const useSpinner = (id = GLOBAL) => useSelector((state: AppState) => selectIsInProgress(state, id));
+const useSpinner = <S extends SpinnerKeyInState>(id = GLOBAL) =>
+  useSelector((state: S) => selectIsInProgress(state, id));
 
 export default useSpinner;

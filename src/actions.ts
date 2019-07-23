@@ -1,5 +1,6 @@
-import { UserAction } from './common/services/user';
-import { SpinnerActions } from './packages/spinner/ducks';
+import { SpinnerActions } from 'packages/spinner/ducks';
+
+import { UserAction } from 'common/services/user';
 
 type RootAction = UserAction | SpinnerActions;
 

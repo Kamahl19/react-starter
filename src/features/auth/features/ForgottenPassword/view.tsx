@@ -15,7 +15,7 @@ type Values = {
 
 type Props = FormComponentProps<Values> & {
   isLoading: boolean;
-  onSubmit: (values: Values) => any;
+  onSubmit: (values: Values) => void;
 };
 
 const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import useReactRouter from 'use-react-router';
+import { MenuProps } from 'antd/lib/menu';
 
 import ResponsiveNavigation from 'packages/responsive-navigation';
-import { MenuProps } from 'antd/lib/menu';
 
 import { Icon, Popover, Menu } from '../';
 
@@ -13,10 +13,10 @@ type Props = {
 
 const Navbar = ({ children, trigger }: Props) => (
   <ResponsiveNavigation>
-    {({ hideNavigation, isMobile, isNavigationVisible, showNavigation }) =>
+    {({ isMobile, isNavigationVisible, hideNavigation, showNavigation }) =>
       isMobile ? (
         <Popover
-          content={<EnhancedMenu isMobile children={children} />}
+          content={<EnhancedMenu isMobile>{children}</EnhancedMenu>}
           title={<Icon type="close" onClick={hideNavigation} />}
           trigger="click"
           visible={isNavigationVisible}
@@ -25,7 +25,7 @@ const Navbar = ({ children, trigger }: Props) => (
           {trigger}
         </Popover>
       ) : (
-        <EnhancedMenu children={children} />
+        <EnhancedMenu>{children}</EnhancedMenu>
       )
     }
   </ResponsiveNavigation>
@@ -45,14 +45,16 @@ type EnhancedMenuProps = MenuProps & {
 };
 
 const EnhancedMenu = ({ children, isMobile, ...props }: EnhancedMenuProps) => {
-  const { location } = useReactRouter();
+  const {
+    location: { pathname },
+  } = useReactRouter();
 
   return (
     <Menu
       theme={isMobile ? undefined : 'dark'}
       {...props}
       mode={isMobile ? 'inline' : 'horizontal'}
-      selectedKeys={[location.pathname]}
+      selectedKeys={[pathname]}
     >
       {children}
     </Menu>

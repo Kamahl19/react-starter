@@ -13,9 +13,7 @@ const mapDispatchToProps = {
   signUp: signUpAction,
 };
 
-type Props = InjectedAuthReduxProps & {
-  signUp: typeof signUpAction;
-};
+type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
 
 const SignUpContainer = ({ signUp }: Props) => {
   const isLoading = useSpinner(apiCallIds.SIGN_UP);
