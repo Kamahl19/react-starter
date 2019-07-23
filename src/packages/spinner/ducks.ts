@@ -11,9 +11,7 @@ export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string
 const actions = { startSpinnerAction, finishSpinnerAction };
 export type SpinnerActions = ActionType<typeof actions>;
 
-type SpinnerState = {
-  readonly [key: string]: number;
-};
+type SpinnerState = Record<string, number>;
 
 export interface SpinnerKeyInState {
   spinner: SpinnerState;
@@ -37,7 +35,7 @@ export default createReducer(initialState)
 /**
  * SELECTORS
  */
-const selectSpinner = <S extends SpinnerKeyInState>(state: S): SpinnerState => state.spinner;
+const selectSpinner = <S extends SpinnerKeyInState>(state: S) => state.spinner;
 
 export const selectIsInProgress = <S extends SpinnerKeyInState>(state: S, id: string) =>
   !!selectSpinner(state)[id];

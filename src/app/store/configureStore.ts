@@ -23,7 +23,7 @@ const persistedReducer = persistReducer(
     key: 'root',
     version: 0,
     storage: localForage,
-    whitelist: ['user'],
+    whitelist: ['user'], // TODO check if exists on RootState
     debug: isDev,
     migrate: createMigrate(migrations, { debug: isDev }),
   },

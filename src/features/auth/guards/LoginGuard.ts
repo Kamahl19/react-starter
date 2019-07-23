@@ -7,13 +7,13 @@ import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { routerActions } from 'connected-react-router';
 
 import { rootPath } from 'config';
-import { AppState } from 'app/store';
+import { RootState } from 'app/store';
 import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
 
 const locationHelper = locationHelperBuilder({});
 
 const LoginGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthReduxProps>) =>
-  connectedReduxRedirect<OwnProps, AppState>({
+  connectedReduxRedirect<OwnProps, RootState>({
     allowRedirectBack: false,
     authenticatedSelector: state => !selectIsLoggedIn(state),
     authenticatingSelector: selectIsAuthenticating,

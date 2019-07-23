@@ -9,9 +9,9 @@ import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import history from '../history';
 
 import { persistor } from './configureStore';
-import { AppState } from './';
+import { RootState } from './';
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: RootState) => ({
   isLoggedIn: selectIsLoggedIn(state),
 });
 

@@ -5,7 +5,7 @@ type Props = {
 };
 
 type State = {
-  hasError: boolean;
+  readonly hasError: boolean;
 };
 
 export default class ErrorBoundary extends Component<Props, State> {
@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true };
   }
 
-  state = {
+  readonly state = {
     hasError: false,
   };
 

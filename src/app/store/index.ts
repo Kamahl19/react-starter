@@ -7,6 +7,6 @@ export { store } from './configureStore';
 export { default as StorePersistGate } from './StorePersistGate';
 
 /**
- * AppState - type representing root state-tree
+ * RootState - type representing root state-tree
  */
-export type AppState = ReturnType<ReturnType<typeof createRootReducer>>;
+export type RootState = ReturnType<ReturnType<typeof createRootReducer>>;

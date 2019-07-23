@@ -5,13 +5,13 @@ import {
 } from 'redux-auth-wrapper/history4/redirect';
 import { routerActions } from 'connected-react-router';
 
-import { AppState } from 'app/store';
+import { RootState } from 'app/store';
 import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
 
 import { AUTH_ROUTER_PATHS } from '../constants';
 
 const IsLoggedIn = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthReduxProps>) =>
-  connectedReduxRedirect<OwnProps, AppState>({
+  connectedReduxRedirect<OwnProps, RootState>({
     authenticatedSelector: selectIsLoggedIn,
     authenticatingSelector: selectIsAuthenticating,
     redirectAction: routerActions.replace,
