@@ -10,7 +10,7 @@ type Props = RouteComponentProps & {
 };
 
 class MobileNavigation extends Component<Props, State> {
-  readonly state = {
+  readonly state: State = {
     isMobile: true,
     isNavigationVisible: false,
     hideNavigation: () => this.setState({ isNavigationVisible: false }),

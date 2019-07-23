@@ -22,7 +22,7 @@ class ResponsiveNavigationContainer extends Component<Props, State> {
     maxWidth: 767,
   };
 
-  readonly state = {
+  readonly state: State = {
     isMobile: false,
     isNavigationVisible: false,
     hideNavigation: noop,
