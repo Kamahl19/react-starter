@@ -4,9 +4,9 @@ type Props = {
   children: ReactNode;
 };
 
-type State = {
-  readonly hasError: boolean;
-};
+type State = Readonly<{
+  hasError: boolean;
+}>;
 
 export default class ErrorBoundary extends Component<Props, State> {
   static getDerivedStateFromError() {

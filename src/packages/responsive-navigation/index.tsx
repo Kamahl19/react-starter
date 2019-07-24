@@ -8,12 +8,12 @@ type Props = {
   maxWidth: number;
 };
 
-export type State = {
-  readonly isMobile: boolean;
-  readonly isNavigationVisible: boolean;
-  readonly hideNavigation: VoidFunction;
-  readonly showNavigation: VoidFunction;
-};
+export type State = Readonly<{
+  isMobile: boolean;
+  isNavigationVisible: boolean;
+  hideNavigation: VoidFunction;
+  showNavigation: VoidFunction;
+}>;
 
 function noop() {}
 
