@@ -31,11 +31,11 @@ type LoginResponse = {
   token: string;
 };
 
-type UserState = {
-  readonly profile: Profile | null;
-  readonly token: string | null;
-  readonly isAuthenticating: boolean;
-};
+type UserState = Readonly<{
+  profile: Profile | null;
+  token: string | null;
+  isAuthenticating: boolean;
+}>;
 
 /**
  * ACTIONS
@@ -61,10 +61,8 @@ const initialState: UserState = {
 };
 
 const isAuthenticating = createReducer(initialState.isAuthenticating)
-  .handleAction(reloginAction, () => true)
-  .handleAction(loginActions.request, () => true)
-  .handleAction(loginActions.success, () => false)
-  .handleAction(loginActions.failure, () => false);
+  .handleAction([reloginAction, loginActions.request], () => true)
+  .handleAction([loginActions.success, loginActions.failure], () => false);
 
 const profile = createReducer(initialState.profile)
   .handleAction(loginActions.success, (_, { payload: { user } }) => user)

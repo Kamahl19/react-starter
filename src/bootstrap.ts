@@ -18,8 +18,3 @@ import 'common/services/i18next';
  * Initialise store
  */
 import 'app/store';
-
-/**
- * All actions types for typesafe-actions
- */
-import 'actions';

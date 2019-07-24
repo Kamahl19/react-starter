@@ -9,7 +9,7 @@ export const startSpinnerAction = createStandardAction('spinner/START')<string |
 export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string | undefined>();
 
 const actions = { startSpinnerAction, finishSpinnerAction };
-export type SpinnerActions = ActionType<typeof actions>;
+export type SpinnerAction = ActionType<typeof actions>;
 
 type SpinnerState = Record<string, number>;
 
