@@ -28,6 +28,7 @@
     "signup": "Sign Up"
   },
   "notFound": {
+    "goBack": "Back Home",
     "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
     "title": "Page not found"
   },

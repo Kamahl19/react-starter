@@ -1,7 +1,8 @@
 import React, { Children, cloneElement, useState, ReactElement } from 'react';
 import pick from 'lodash.pick';
-import Form, { FormItemProps } from 'antd/lib/form';
+import { Form } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
+import { FormItemProps } from 'antd/lib/form/FormItem';
 
 import { FormContext } from '../FormScreen';
 

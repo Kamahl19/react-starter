@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormComponentProps } from 'antd/lib/form';
 
-import { FormScreen, FormItem } from 'packages/ant-form-helpers';
+import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
 
 import { Button, Form, Input } from 'common/components';
 import rules from 'common/rules';

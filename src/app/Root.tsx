@@ -1,7 +1,7 @@
 import React, { Suspense, ReactNode } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import LocaleProvider from 'antd/lib/locale-provider';
+import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { Route, Switch } from 'react-router-dom';
 
