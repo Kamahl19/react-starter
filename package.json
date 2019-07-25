@@ -27,7 +27,7 @@
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start less:watch",
-    "storybook:start": "start-storybook -p 9001 -s public -c storybook",
+    "storybook:start": "start-storybook -p 9009 -s public -c storybook",
     "storybook:build": "build-storybook -s public -c storybook",
     "test": "react-scripts test"
   },
@@ -71,7 +71,6 @@
     "@types/storybook__addon-knobs": "5.0.3",
     "@types/storybook__addon-viewport": "4.1.1",
     "@types/storybook__react": "4.0.2",
-    "babel-core": "6.26.3",
     "husky": "3.0.1",
     "i18next-scanner": "2.10.2",
     "i18next-scanner-typescript": "1.0.3",
