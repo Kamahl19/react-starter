@@ -6,13 +6,13 @@ import { FormItemProps } from 'antd/lib/form/FormItem';
 
 import { FormContext } from '../FormScreen';
 
-type Props = GetFieldDecoratorOptions &
+type Props<V> = GetFieldDecoratorOptions &
   FormItemProps & {
     children: ReactElement;
-    id: string;
+    id: keyof V;
   };
 
-const EnhancedFormItem = (props: Props) => {
+const EnhancedFormItem = <V extends {}>(props: Props<V>) => {
   const { children, id } = props;
   const fieldDecoratorOptions = pickFieldDecoratorOptions(props);
   const formItemProps = pickFormItemProps(props);
@@ -20,7 +20,7 @@ const EnhancedFormItem = (props: Props) => {
   const [didBlur, setDidBlur] = useState(false);
 
   const renderField = (form: WrappedFormUtils) =>
-    form.getFieldDecorator(id, fieldDecoratorOptions)(
+    form.getFieldDecorator<V>(id, fieldDecoratorOptions)(
       cloneElement(Children.only(children), {
         onBlur: () => setDidBlur(true),
       })
@@ -49,7 +49,7 @@ const EnhancedFormItem = (props: Props) => {
 
 export default EnhancedFormItem;
 
-function pickFieldDecoratorOptions(props: Props): GetFieldDecoratorOptions {
+function pickFieldDecoratorOptions<P>(props: P): GetFieldDecoratorOptions {
   return pick(props, [
     'valuePropName',
     'initialValue',
@@ -65,7 +65,7 @@ function pickFieldDecoratorOptions(props: Props): GetFieldDecoratorOptions {
   ]);
 }
 
-function pickFormItemProps(props: Props): FormItemProps {
+function pickFormItemProps<P>(props: P): FormItemProps {
   return pick(props, [
     'prefixCls',
     'className',

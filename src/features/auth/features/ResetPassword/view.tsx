@@ -23,17 +23,17 @@ const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
 
   return (
     <PageLayout>
-      <FormScreen<Values> form={form} onSubmit={onSubmit}>
+      <FormScreen form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <FormItem
+            <FormItem<Values>
               id="email"
               rules={[rules.required(t), rules.email(t)]}
               label={t('fields.email.label', { defaultValue: 'E-mail' })}
             >
               <Input placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })} />
             </FormItem>
-            <FormItem
+            <FormItem<Values>
               id="password"
               rules={rules.passwordWithLimit(t)}
               label={t('resetPassword.newPassword.label', { defaultValue: 'New Password' })}
