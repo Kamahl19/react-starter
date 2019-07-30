@@ -55,7 +55,7 @@
     "@storybook/react": "5.1.9",
     "@types/flat": "0.0.28",
     "@types/i18next-xhr-backend": "1.4.2",
-    "@types/jest": "24.0.15",
+    "@types/jest": "24.0.16",
     "@types/lodash.flattendeep": "4.4.6",
     "@types/lodash.pick": "4.4.6",
     "@types/node": "12.6.8",
