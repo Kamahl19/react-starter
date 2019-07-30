@@ -22,7 +22,7 @@ const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
 
   return (
     <PageLayout>
-      <FormScreen form={form} onSubmit={onSubmit}>
+      <FormScreen<Values> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
             <FormItem<Values>

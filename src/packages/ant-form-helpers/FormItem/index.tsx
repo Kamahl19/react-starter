@@ -19,7 +19,7 @@ const EnhancedFormItem = <V extends {}>(props: Props<V>) => {
 
   const [didBlur, setDidBlur] = useState(false);
 
-  const renderField = (form: WrappedFormUtils) =>
+  const renderField = (form: WrappedFormUtils<V>) =>
     form.getFieldDecorator<V>(id, fieldDecoratorOptions)(
       cloneElement(Children.only(children), {
         onBlur: () => setDidBlur(true),
@@ -28,7 +28,7 @@ const EnhancedFormItem = <V extends {}>(props: Props<V>) => {
 
   return (
     <FormContext.Consumer>
-      {form => {
+      {(form: WrappedFormUtils<V>) => {
         const field = renderField(form); // must be rendered first, so form model exists
         const fieldError = didBlur && form.isFieldTouched(id) && form.getFieldError(id);
 
