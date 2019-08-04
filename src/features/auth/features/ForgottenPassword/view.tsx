@@ -25,7 +25,7 @@ const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
       <FormScreen<Values> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <FormItem
+            <FormItem<Values>
               id="email"
               rules={[rules.required(t), rules.email(t)]}
               label={t('fields.email.label', { defaultValue: 'E-mail' })}
