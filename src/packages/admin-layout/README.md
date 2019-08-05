@@ -32,6 +32,12 @@ const Page = () => (
 );
 ```
 
+Dont forget to import `less` styles
+
+```less
+@import 'packages/admin-layout/style.less';
+```
+
 Advanced Usage can be found in the Storybook's [story](story.tsx)
 
 ## API
