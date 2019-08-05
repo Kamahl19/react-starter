@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Result, Button } from 'antd';
 
 import { rootPath } from 'config';
+import { Result, Button } from 'common/components';
 
 const NotFound = () => {
   const { t } = useTranslation();

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { AdminLayout, AdminLayoutContext, SidebarState } from 'packages/admin-layout';
+
+import { selectProfile } from 'common/services/user';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
-import { selectProfile } from 'common/services/user';
+
 import { RootState } from './store';
 
 /**
@@ -19,17 +22,41 @@ const mapStateToProps = (state: RootState) => ({
 type Props = ReturnType<typeof mapStateToProps>;
 
 const DemoScreen = IsLoggedIn(({ profile }: Props) => (
-  <div>
+  <AdminLayout
+    logo={<Logo />}
+    headerContent={
+      <div style={{ flex: 1, textAlign: 'right', paddingRight: 22 }}>
+        <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>
+      </div>
+    }
+  >
     {profile && (
       <>
-        ID: {profile.id}
-        <br />
-        Email: {profile.email}
-        <br />
+        <p>ID: {profile.id}</p>
+        <p>Email: {profile.email}</p>
       </>
     )}
-    <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>
-  </div>
+  </AdminLayout>
 ));
 
 export default connect(mapStateToProps)(DemoScreen);
+
+const Logo = () => {
+  const { sidebarState } = useContext(AdminLayoutContext);
+
+  return (
+    <h1
+      style={{
+        color: sidebarState === SidebarState.CLOSED_DRAWER ? 'black' : 'white',
+        margin: 0,
+        padding: sidebarState === SidebarState.CLOSED_DRAWER ? '0 20px' : '20px 0',
+        textAlign: 'center',
+      }}
+    >
+      {sidebarState === SidebarState.CLOSED_DRAWER ||
+      sidebarState === SidebarState.COLLAPSED_SIDEBAR
+        ? 'Starter'
+        : 'React Starter'}
+    </h1>
+  );
+};
