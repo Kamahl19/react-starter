@@ -53,7 +53,7 @@
     "@storybook/addon-viewport": "5.1.10",
     "@storybook/addons": "5.1.10",
     "@storybook/react": "5.1.10",
-    "@types/classnames": "^2.2.9",
+    "@types/classnames": "2.2.9",
     "@types/flat": "0.0.28",
     "@types/jest": "24.0.17",
     "@types/lodash.pick": "4.4.6",
@@ -87,7 +87,7 @@
   "dependencies": {
     "antd": "3.21.2",
     "axios": "0.18.1",
-    "classnames": "^2.2.6",
+    "classnames": "2.2.6",
     "connected-react-router": "6.5.2",
     "flat": "4.1.0",
     "history": "4.9.0",
