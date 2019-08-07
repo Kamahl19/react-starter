@@ -8,7 +8,7 @@ import { Button, Form, Input } from 'common/components';
 import rules from 'common/rules';
 
 import { AUTH_ROUTER_PATHS } from '../../constants';
-import PageLayout from '../../components/PageLayout';
+import AuthLayout from '../../components/AuthLayout';
 
 type Values = {
   email: string;
@@ -24,7 +24,7 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <PageLayout>
+    <AuthLayout>
       <FormScreen<Values> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
           </Form>
         )}
       </FormScreen>
-    </PageLayout>
+    </AuthLayout>
   );
 };
 

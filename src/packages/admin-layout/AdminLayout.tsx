@@ -1,6 +1,7 @@
 import React, { ReactNode, useState, useCallback, useEffect } from 'react';
 import { Layout, Icon, Drawer } from 'antd';
 import { SiderProps } from 'antd/lib/layout/Sider';
+import cn from 'classnames';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
@@ -16,6 +17,7 @@ const MAX_WIDTH_MAP = {
 };
 
 type AdminLayoutProps = {
+  className?: string;
   logo?: ReactNode;
   children?: ReactNode;
   headerContent?: ReactNode;
@@ -27,6 +29,7 @@ type AdminLayoutProps = {
 };
 
 const AdminLayout = ({
+  className,
   logo,
   children,
   headerContent,
@@ -67,7 +70,7 @@ const AdminLayout = ({
     <AdminLayoutContext.Provider
       value={{ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState }}
     >
-      <Layout className="admin-layout">
+      <Layout className={cn('admin-layout', className)}>
         {useDrawer ? (
           <Drawer
             className="admin-layout-drawer"

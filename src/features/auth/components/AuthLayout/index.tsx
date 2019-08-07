@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 };
 
-const PageLayout = ({ children }: Props) => {
+const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -32,4 +32,4 @@ const PageLayout = ({ children }: Props) => {
   );
 };
 
-export default PageLayout;
+export default AuthLayout;

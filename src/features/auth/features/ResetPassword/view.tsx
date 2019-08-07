@@ -6,7 +6,7 @@ import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-help
 import { Button, Form, Input } from 'common/components';
 import rules from 'common/rules';
 
-import PageLayout from '../../components/PageLayout';
+import AuthLayout from '../../components/AuthLayout';
 
 type Values = {
   email: string;
@@ -22,7 +22,7 @@ const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <PageLayout>
+    <AuthLayout>
       <FormScreen<Values> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
@@ -50,7 +50,7 @@ const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
           </Form>
         )}
       </FormScreen>
-    </PageLayout>
+    </AuthLayout>
   );
 };
 

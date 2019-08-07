@@ -1,6 +1,7 @@
 import React, { ReactNode, useContext } from 'react';
 import { Menu } from 'antd';
 import { MenuProps } from 'antd/lib/menu';
+import cn from 'classnames';
 
 import AdminLayoutContext from './AdminLayoutContext';
 
@@ -13,7 +14,7 @@ const SidebarMenu = ({ className, ...props }: SidebarMenuProps) => {
 
   return (
     <Menu
-      className={`admin-layout-sidebar-menu ${className}`}
+      className={cn('admin-layout-sidebar-menu', className)}
       mode={isCollapsed ? 'vertical' : 'inline'}
       theme={sidebarTheme}
       {...props}
