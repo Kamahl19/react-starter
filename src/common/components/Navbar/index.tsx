@@ -8,21 +8,23 @@ import { Icon, Popover, Menu } from '../';
 
 type Props = {
   children: ReactNode;
-  trigger: ReactNode;
 };
 
-const Navbar = ({ children, trigger }: Props) => (
+const Navbar = ({ children }: Props) => (
   <ResponsiveNavigation>
     {({ isMobile, isNavigationVisible, hideNavigation, showNavigation }) =>
       isMobile ? (
         <Popover
           content={<EnhancedMenu isMobile>{children}</EnhancedMenu>}
+          overlayClassName="navbar-popover"
           title={<Icon type="close" onClick={hideNavigation} />}
           trigger="click"
           visible={isNavigationVisible}
           onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
         >
-          {trigger}
+          <span className="navbar-trigger">
+            <Icon type="bars" />
+          </span>
         </Popover>
       ) : (
         <EnhancedMenu>{children}</EnhancedMenu>
@@ -30,10 +32,6 @@ const Navbar = ({ children, trigger }: Props) => (
     }
   </ResponsiveNavigation>
 );
-
-Navbar.defaultProps = {
-  trigger: <Icon type="bars" style={{ color: '#fff' }} />,
-};
 
 Navbar.MenuItem = Menu.Item;
 
@@ -53,6 +51,7 @@ const EnhancedMenu = ({ children, isMobile, ...props }: EnhancedMenuProps) => {
     <Menu
       theme={isMobile ? undefined : 'dark'}
       {...props}
+      className={isMobile ? 'navbar-popover-menu' : 'navbar-menu'}
       mode={isMobile ? 'inline' : 'horizontal'}
       selectedKeys={[pathname]}
     >

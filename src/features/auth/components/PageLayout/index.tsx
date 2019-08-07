@@ -17,12 +17,12 @@ const PageLayout = ({ children }: Props) => {
     <Layout>
       <Layout.Header>
         <Navbar>
-          <Navbar.MenuItem>
+          <Navbar.MenuItem key={AUTH_ROUTER_PATHS.signUp}>
             <Link to={AUTH_ROUTER_PATHS.signUp}>
               {t('nav.signup', { defaultValue: 'Sign Up' })}
             </Link>
           </Navbar.MenuItem>
-          <Navbar.MenuItem>
+          <Navbar.MenuItem key={AUTH_ROUTER_PATHS.login}>
             <Link to={AUTH_ROUTER_PATHS.login}>{t('nav.login', { defaultValue: 'Log In' })}</Link>
           </Navbar.MenuItem>
         </Navbar>

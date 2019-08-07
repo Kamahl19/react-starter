@@ -1,0 +1,42 @@
+.navbar {
+  &-menu {
+    .ant-menu-item {
+      line-height: 64px;
+    }
+  }
+
+  &-popover {
+    padding-bottom: 0;
+    transition: none;
+    animation: none;
+
+    .ant-popover {
+      &-inner {
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+      }
+
+      &-title {
+        border-bottom: 0;
+        text-align: right;
+        font-size: 22px;
+      }
+
+      &-arrow {
+        display: none;
+      }
+    }
+
+    &-menu {
+      border-right: 0;
+    }
+  }
+
+  &-trigger {
+    float: right;
+    font-size: 24px;
+    color: @white;
+    cursor: pointer;
+  }
+}
