@@ -7470,10 +7470,10 @@ i18next-scanner@2.10.2:
     vinyl "^2.2.0"
     vinyl-fs "^3.0.1"
 
-i18next-xhr-backend@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.1.1.tgz#9221ba6911d466c38693fd43eb8ff10b48d3438a"
-  integrity sha512-Fui5puKb1pD+Z1+biwzA9jPQTvwOgz8SOkwu7yGRorCQraOgKxp86T310HoUM2CR9VV0MM2pJdntEQrgC45+RA==
+i18next-xhr-backend@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.1.2.tgz#f9da86c81981ac245325cb2dbfd4232a5b183676"
+  integrity sha512-zN+x85W5R2ezGfmRh8F7+lsXoQgCNNb1jjSfm0325VuSIZ4ewvsnq3uHFrZaXmSJ8qTwPibO9rRb3mIzncEF9g==
   dependencies:
     "@babel/runtime" "^7.5.5"
 
