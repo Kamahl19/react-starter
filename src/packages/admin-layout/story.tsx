@@ -21,7 +21,7 @@ storiesOf('packages/AdminLayout', module)
       headerContent={<HeaderContent />}
       sidebarContent={<SidebarContent long />}
     >
-      <MainContent />
+      <MainContent long />
     </AdminLayout>
   ))
   .add('customized sidebar', () => (
