@@ -10073,17 +10073,17 @@ nwsapi@^2.0.7, nwsapi@^2.1.3:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.1.4.tgz#e006a878db23636f8e8a67d33ca0e4edf61a842f"
   integrity sha512-iGfd9Y6SFdTNldEy2L0GUhcarIutFmk+MPWIn9dmj8NMIup03G08uUF2KGbbmv/Ux4RT0VZJoP/sVbWA6d/VIw==
 
-oaf-react-router@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.0.0.tgz#b991f3f6c0f4377c310f1b769a8bda3e81ba0694"
-  integrity sha512-iO1/eSZHpyNNeeTvZt1KzWbl6KHJNr5EuI+pC106EshN3mqRVtYj2Gdssik4NXrKU6McYpXALqpWWzPDTjYleQ==
+oaf-react-router@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.0.1.tgz#80174fd0fd7b1f3eaf8ea4f7e9b674e0d44d99a4"
+  integrity sha512-S/a/Y0w0l4Q017PhGHRVsvO51/Tn7iuHXsYuGtTVR+BTzshP1jr85VmnUNuNv0lGYsvrGyKen948hlKxDMOGAQ==
   dependencies:
-    oaf-routing "^2.0.0"
+    oaf-routing "^3.0.0"
 
-oaf-routing@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/oaf-routing/-/oaf-routing-2.0.0.tgz#2867efeacc3669a4e7571397133f3b3770f4fc0b"
-  integrity sha512-Ra0JNL879DFpEyzCEPxJ3yQvLKLPVWnVBsv2OBuH7X3wkW/n1oxO31kvdbs2iCb+FxwGc0uqORE1G2CXf3FOyQ==
+oaf-routing@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/oaf-routing/-/oaf-routing-3.0.0.tgz#a0325149fd3f9f8b20685183438e682312638888"
+  integrity sha512-BcATXD1jW8KsANxHuggYTFTuaShiTAWsu91Rcu3H57izR9b9yQe8LHut4d8eSIw6OzQf06VslW5P0bREyVjCZQ==
   dependencies:
     oaf-side-effects "^1.0.3"
     unique-selector "^0.4.1"
