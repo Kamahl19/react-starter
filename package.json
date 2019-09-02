@@ -81,7 +81,7 @@
     "redux-immutable-state-invariant": "2.1.0",
     "redux-logger": "3.0.6",
     "source-map-explorer": "2.0.1",
-    "storybook-react-router": "1.0.5",
+    "storybook-react-router": "1.0.7",
     "typescript": "3.6.2"
   },
   "dependencies": {
