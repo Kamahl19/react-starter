@@ -91,7 +91,7 @@
     "connected-react-router": "6.5.2",
     "flat": "4.1.0",
     "history": "4.9.0",
-    "i18next": "17.0.13",
+    "i18next": "17.0.14",
     "i18next-xhr-backend": "3.1.2",
     "localforage": "1.7.3",
     "lodash.pick": "4.4.0",
