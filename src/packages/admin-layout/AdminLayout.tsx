@@ -1,7 +1,8 @@
-import React, { ReactNode, useState, useCallback, useEffect } from 'react';
+import React, { ReactNode, useState, useCallback } from 'react';
 import { Layout, Icon, Drawer } from 'antd';
 import { SiderProps } from 'antd/lib/layout/Sider';
 import cn from 'classnames';
+import { useMediaQuery } from 'react-responsive';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
@@ -39,7 +40,7 @@ const AdminLayout = ({
   sidebarWidth = 256,
   sidebarTheme = 'dark',
 }: AdminLayoutProps) => {
-  const useDrawer = useMediaQuery(`(max-width: ${MAX_WIDTH_MAP[sidebarBreakpoint]}px)`);
+  const useDrawer = useMediaQuery({ maxWidth: MAX_WIDTH_MAP[sidebarBreakpoint] });
 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleIsCollapsed = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);
@@ -108,23 +109,6 @@ const AdminLayout = ({
 };
 
 export default AdminLayout;
-
-// TODO remove when react-responsive v8 is released
-const useMediaQuery = (query: string) => {
-  const [match, setMatch] = useState(false);
-
-  useEffect(() => {
-    const updateMatch = () => setMatch(window.matchMedia(query).matches);
-
-    updateMatch();
-    window.matchMedia(query).addEventListener('change', updateMatch);
-    return () => {
-      window.matchMedia(query).removeEventListener('change', updateMatch);
-    };
-  }, [query]);
-
-  return match;
-};
 
 const getSidebarState = ({
   useDrawer,
