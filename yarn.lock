@@ -9415,10 +9415,10 @@ nwsapi@^2.0.7, nwsapi@^2.1.3:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.1.4.tgz#e006a878db23636f8e8a67d33ca0e4edf61a842f"
   integrity sha512-iGfd9Y6SFdTNldEy2L0GUhcarIutFmk+MPWIn9dmj8NMIup03G08uUF2KGbbmv/Ux4RT0VZJoP/sVbWA6d/VIw==
 
-oaf-react-router@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.0.1.tgz#80174fd0fd7b1f3eaf8ea4f7e9b674e0d44d99a4"
-  integrity sha512-S/a/Y0w0l4Q017PhGHRVsvO51/Tn7iuHXsYuGtTVR+BTzshP1jr85VmnUNuNv0lGYsvrGyKen948hlKxDMOGAQ==
+oaf-react-router@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.1.1.tgz#0216edddedb820ec7c67eda8fcaac2a471893b83"
+  integrity sha512-l3EAdh8b6DRvbbP6sC9uY4Iek1TZq4nxIrWzeZXiN6aCiiZ8NKcmKJqkuej8VbdX0lBCyVp7AgS/HWbXD6wp6A==
   dependencies:
     oaf-routing "^3.0.0"
 
