@@ -18,12 +18,3 @@ import 'common/services/i18next';
  * Initialise store
  */
 import 'app/store';
-
-// TODO remove when new @types/react-responsive is released
-declare module 'react-responsive' {
-  interface UseMediaQueryParams extends MediaQueryFeatures {
-    query?: string;
-  }
-
-  function useMediaQuery(param: UseMediaQueryParams): boolean;
-}
