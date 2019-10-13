@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import useReactRouter from 'use-react-router';
+import { useLocation } from 'react-router-dom';
 import { MenuProps } from 'antd/lib/menu';
 
 import ResponsiveNavigation from 'packages/responsive-navigation';
@@ -43,9 +43,7 @@ type EnhancedMenuProps = MenuProps & {
 };
 
 const EnhancedMenu = ({ children, isMobile, ...props }: EnhancedMenuProps) => {
-  const {
-    location: { pathname },
-  } = useReactRouter();
+  const { pathname } = useLocation();
 
   return (
     <Menu

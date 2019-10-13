@@ -22,7 +22,6 @@
   - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions) - action creators with type-free code
 - [react-router](https://reacttraining.com/react-router/web/guides/quick-start) - declarative routing
   - [connected-react-router](https://github.com/supasate/connected-react-router) - Redux binding for React Router
-  - [use-react-router](https://github.com/CharlesStover/use-react-router) - hooks for working with React Router
   - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - an accessible wrapper for React Router to set proper scroll position & focus
 - [prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
