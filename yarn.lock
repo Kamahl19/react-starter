@@ -13691,10 +13691,10 @@ store2@^2.7.1:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.7.1.tgz#22070b7dc04748a792fc6912a58ab99d3a21d788"
   integrity sha512-zzzP5ZY6QWumnAFV6kBRbS44pUMcpZBNER5DWUe1HETlaKXqLcCQxbNu6IHaKr1pUsjuhUGBdOy8sWKmMkL6pQ==
 
-storybook-react-router@1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/storybook-react-router/-/storybook-react-router-1.0.7.tgz#c83a8dbf8a9e5115a3f21c04a23f4ff013b1675f"
-  integrity sha512-O8eR1TRBqEFjCg0YxSc917sM318IAiYJTactFd0A99mFGzakPpQWM7H/xMSC9DC+lZZJfpodkRWGTFAInAsTRw==
+storybook-react-router@1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/storybook-react-router/-/storybook-react-router-1.0.8.tgz#8d174eba1c38fff2c7e459c3d0c2463bc0cd9c6a"
+  integrity sha512-3PvuTu6cJHtF72WC3aKdIrUY1eUYsdVYEmW74nZiJoLCn0C/6iDx73w94jgI6lXq75aEJsri+lEDyhcokfP6YA==
   dependencies:
     prop-types "^15.7.2"
 
