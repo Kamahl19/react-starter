@@ -2236,10 +2236,10 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
-"@types/react-responsive@3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-3.0.3.tgz#a31b599c7cfe4135c5cc2f45d0b71df64803b23f"
-  integrity sha512-paTAvXIFgv/jG60d7WSV0+yWCjqJ05cG+KOV48SiqYGjGi9kFdss9QnVTTLnFJmbUwWnoM+VD1Iyay1JBy/HPQ==
+"@types/react-responsive@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-8.0.1.tgz#3005c4182ebca5316ecb035a139ce891fce9a137"
+  integrity sha512-c4rWRZT0n90RwoK3MUZgkEfdfLClXNnUExZeKx5aUqqGcT4sJ4vV7OB5X59xxCtmN3vMMR72SiMXDGSYZOMqmA==
   dependencies:
     "@types/react" "*"
 
