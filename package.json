@@ -92,7 +92,7 @@
     "flat": "4.1.0",
     "history": "4.10.1",
     "i18next": "17.2.0",
-    "i18next-xhr-backend": "3.1.2",
+    "i18next-xhr-backend": "3.2.0",
     "localforage": "1.7.3",
     "lodash.pick": "4.4.0",
     "oaf-react-router": "2.1.1",
