@@ -92,6 +92,7 @@ function* locationChanged({ payload }: LocationChangeAction) {
     yield call(activateUser, userId, activationToken);
   }
 }
+
 function* activateUser(userId: string, activationToken: string) {
   try {
     const resp = yield call(api.activateUser, userId, activationToken);
