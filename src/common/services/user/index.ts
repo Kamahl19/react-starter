@@ -2,12 +2,7 @@ import { AxiosResponse } from 'axios';
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {
-  ActionType,
-  createStandardAction,
-  createAsyncAction,
-  createReducer,
-} from 'typesafe-actions';
+import { ActionType, createAction, createAsyncAction, createReducer } from 'typesafe-actions';
 
 import { RootState } from 'app/store';
 
@@ -45,8 +40,8 @@ export const loginActions = createAsyncAction(
   'user/LOGIN_SUCCESS',
   'user/LOGIN_FAILURE'
 )<Credentials, LoginResponse, undefined>();
-export const reloginAction = createStandardAction('user/RELOGIN')();
-export const logoutAction = createStandardAction('user/LOGOUT')();
+export const reloginAction = createAction('user/RELOGIN')();
+export const logoutAction = createAction('user/LOGOUT')();
 
 const actions = { loginActions, reloginAction, logoutAction };
 export type UserAction = ActionType<typeof actions>;

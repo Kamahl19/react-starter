@@ -1,12 +1,12 @@
-import { createStandardAction, createReducer, ActionType } from 'typesafe-actions';
+import { createAction, createReducer, ActionType } from 'typesafe-actions';
 
 export const GLOBAL = 'GLOBAL';
 
 /**
  * ACTIONS
  */
-export const startSpinnerAction = createStandardAction('spinner/START')<string | undefined>();
-export const finishSpinnerAction = createStandardAction('spinner/FINISH')<string | undefined>();
+export const startSpinnerAction = createAction('spinner/START')<string | undefined>();
+export const finishSpinnerAction = createAction('spinner/FINISH')<string | undefined>();
 
 const actions = { startSpinnerAction, finishSpinnerAction };
 export type SpinnerAction = ActionType<typeof actions>;

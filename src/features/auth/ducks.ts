@@ -1,6 +1,6 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push, LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
-import { createStandardAction, ActionType } from 'typesafe-actions';
+import { createAction, ActionType } from 'typesafe-actions';
 
 import { rootPath } from 'config';
 import { t } from 'common/services/i18next';
@@ -30,13 +30,11 @@ type ResetPasswordPayload = {
 /**
  * ACTIONS
  */
-export const signUpAction = createStandardAction('auth/SIGN_UP')<SignupPayload>();
-export const forgottenPasswordAction = createStandardAction('auth/FORGOTTEN_PASSWORD')<
+export const signUpAction = createAction('auth/SIGN_UP')<SignupPayload>();
+export const forgottenPasswordAction = createAction('auth/FORGOTTEN_PASSWORD')<
   ForgottenPasswordPayload
 >();
-export const resetPasswordAction = createStandardAction('auth/RESET_PASSWORD')<
-  ResetPasswordPayload
->();
+export const resetPasswordAction = createAction('auth/RESET_PASSWORD')<ResetPasswordPayload>();
 
 const actions = { signUpAction, forgottenPasswordAction, resetPasswordAction };
 export type AuthAction = ActionType<typeof actions>;
