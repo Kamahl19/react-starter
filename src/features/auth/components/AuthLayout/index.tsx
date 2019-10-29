@@ -14,7 +14,7 @@ const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Layout>
+    <Layout className="auth-page-layout">
       <Layout.Header>
         <Navbar>
           <Navbar.MenuItem key={AUTH_ROUTER_PATHS.signUp}>

@@ -47,7 +47,6 @@ const EnhancedMenu = ({ children, isMobile, ...props }: EnhancedMenuProps) => {
 
   return (
     <Menu
-      theme={isMobile ? undefined : 'dark'}
       {...props}
       className={isMobile ? 'navbar-popover-menu' : 'navbar-menu'}
       mode={isMobile ? 'inline' : 'horizontal'}

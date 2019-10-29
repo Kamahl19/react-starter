@@ -1,0 +1,29 @@
+.auth-page-layout {
+  height: 100vh;
+
+  .ant-layout {
+    &-header {
+      background: @menu-bg;
+    }
+
+    &-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 @padding-lg;
+
+      .ant-form {
+        width: 100%;
+        max-width: 400px;
+
+        &-item {
+          margin-bottom: 0;
+        }
+
+        button[type='submit'] {
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+}
