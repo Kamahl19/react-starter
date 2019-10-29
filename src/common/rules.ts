@@ -1,27 +1,27 @@
-import i18next from 'i18next';
+import { TFunction } from 'i18next';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-const required = (t: i18next.TFunction) => ({
+const required = (t: TFunction) => ({
   required: true,
   message: t('validation.required', { defaultValue: 'Field is required' }),
 });
 
-const email = (t: i18next.TFunction) => ({
+const email = (t: TFunction) => ({
   type: 'email',
   message: t('validation.email.invalid', {
     defaultValue: 'E-mail is not valid',
   }),
 });
 
-const password = (t: i18next.TFunction) => ({
+const password = (t: TFunction) => ({
   type: 'string',
   message: t('validation.password.invalid', {
     defaultValue: 'Password is not valid',
   }),
 });
 
-const passwordWithLimit = (t: i18next.TFunction) => [
+const passwordWithLimit = (t: TFunction) => [
   required(t),
   password(t),
   {
