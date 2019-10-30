@@ -53,10 +53,7 @@ const Logo = () => {
         textAlign: 'center',
       }}
     >
-      {sidebarState === SidebarState.CLOSED_DRAWER ||
-      sidebarState === SidebarState.COLLAPSED_SIDEBAR
-        ? 'Starter'
-        : 'React Starter'}
+      Logo
     </h1>
   );
 };
