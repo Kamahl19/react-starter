@@ -19,16 +19,30 @@ Light Theme
 ## Usage
 
 ```tsx
-import { AdminLayout } from 'packages/admin-layout';
+import { AdminLayout, SidebarMenu, AdminLayoutContext, SidebarState } from 'packages/admin-layout';
 
 const Page = () => (
   <AdminLayout
     logo={<Logo />}
-    headerContent={<HeaderContent />}
+    headerContent="Header navigation menu"
     sidebarContent={<SidebarContent />}
   >
-    <MainContent />
+    Main content
   </AdminLayout>
+);
+
+const Logo = () => {
+  const { sidebarState } = useContext(AdminLayoutContext);
+
+  return (
+    <h1 style={{ color: sidebarState === SidebarState.CLOSED_DRAWER ? 'black' : 'white' }}>Logo</h1>
+  );
+};
+
+const SidebarContent = () => (
+  <SidebarMenu>
+    <Item key="1">Menu item 1</Item>
+  </SidebarMenu>
 );
 ```
 
@@ -38,7 +52,7 @@ Dont forget to import `less` styles
 @import 'packages/admin-layout/style.less';
 ```
 
-Advanced Usage can be found in the Storybook's [story](story.tsx)
+More examples can be found in the Storybook's [story](story.tsx)
 
 ## API
 
