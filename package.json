@@ -79,7 +79,7 @@
     "redux-logger": "3.0.6",
     "source-map-explorer": "2.1.0",
     "storybook-react-router": "1.0.8",
-    "typescript": "3.6.4"
+    "typescript": "3.7.2"
   },
   "dependencies": {
     "antd": "3.25.0",
