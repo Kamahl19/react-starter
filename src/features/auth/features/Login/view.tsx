@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
+import { FormScreen, FormItem, FormProps } from 'packages/ant-form-helpers';
 
 import { Button, Form, Input } from 'common/components';
 import rules from 'common/rules';
@@ -15,7 +15,7 @@ type Values = {
   password: string;
 };
 
-type Props = FormComponentProps<Values> & {
+type Props = FormProps<Values> & {
   isLoading: boolean;
   onSubmit: (values: Values) => void;
 };
