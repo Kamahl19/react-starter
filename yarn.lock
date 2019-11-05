@@ -1298,10 +1298,10 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@redux-saga/core@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@redux-saga/core/-/core-1.1.2.tgz#6c8d53812db58e73a6db5d3e3e6f04f7cc1ba85f"
-  integrity sha512-Q7Dqf8APqXmz+Px+JFRHtR/QAFVlA3Jwx4e3tBv6hcPDKVABW6cLGlKgHi9mV1sYHAODPEuAJy8cueXMvlj0eQ==
+"@redux-saga/core@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@redux-saga/core/-/core-1.1.3.tgz#3085097b57a4ea8db5528d58673f20ce0950f6a4"
+  integrity sha512-8tInBftak8TPzE6X13ABmEtRJGjtK17w7VUs7qV17S8hCO5S3+aUTWZ/DBsBJPdE8Z5jOPwYALyvofgq1Ws+kg==
   dependencies:
     "@babel/runtime" "^7.6.3"
     "@redux-saga/deferred" "^1.1.2"
@@ -12286,12 +12286,12 @@ redux-persist@6.0.0:
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
   integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
-redux-saga@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-1.1.2.tgz#e9cece254dd8516ea1e711263d838adfd2e049fc"
-  integrity sha512-cMidf5lFOzgFr9SKy0+pXej093FUpQJktDUG3exac+LkJM9AuPuJRBAVjpYuXgPXgF78mYTmVkAdm5d0LZf4zw==
+redux-saga@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-1.1.3.tgz#9f3e6aebd3c994bbc0f6901a625f9a42b51d1112"
+  integrity sha512-RkSn/z0mwaSa5/xH/hQLo8gNf4tlvT18qXDNvedihLcfzh+jMchDgaariQoehCpgRltEm4zHKJyINEz6aqswTw==
   dependencies:
-    "@redux-saga/core" "^1.1.2"
+    "@redux-saga/core" "^1.1.3"
 
 redux@4.0.4, redux@^4.0.0, redux@^4.0.1, redux@^4.0.4:
   version "4.0.4"
