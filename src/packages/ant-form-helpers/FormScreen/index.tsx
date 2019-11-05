@@ -27,6 +27,7 @@ const FormScreen = <V extends {}>({ children, form, onSubmit }: Props<V>) => {
   }, [validateFields]);
 
   function handleSubmit(e: FormSubmitEvent) {
+    // TODO use optional chaining once supported
     e && e.preventDefault();
 
     validateFieldsAndScroll((err, values) => {
