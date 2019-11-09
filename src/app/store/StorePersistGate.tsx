@@ -38,7 +38,4 @@ const StorePersistGate = ({ children, isLoggedIn, relogin }: Props) => (
   </PersistGate>
 );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StorePersistGate);
+export default connect(mapStateToProps, mapDispatchToProps)(StorePersistGate);

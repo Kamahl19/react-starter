@@ -21,7 +21,4 @@ const SignUpContainer = ({ signUp }: Props) => {
   return <SignUp isLoading={isLoading} onSubmit={signUp} />;
 };
 
-export default connect(
-  undefined,
-  mapDispatchToProps
-)(SignUpContainer);
+export default connect(null, mapDispatchToProps)(SignUpContainer);

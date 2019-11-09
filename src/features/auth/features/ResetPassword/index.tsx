@@ -28,7 +28,4 @@ const ResetPasswordContainer = ({ resetPassword }: Props) => {
   return <ResetPassword isLoading={isLoading} onSubmit={onSubmit} />;
 };
 
-export default connect(
-  undefined,
-  mapDispatchToProps
-)(ResetPasswordContainer);
+export default connect(null, mapDispatchToProps)(ResetPasswordContainer);

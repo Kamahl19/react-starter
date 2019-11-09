@@ -21,7 +21,4 @@ const ForgottenPasswordContainer = ({ forgottenPassword }: Props) => {
   return <ForgottenPassword isLoading={isLoading} onSubmit={forgottenPassword} />;
 };
 
-export default connect(
-  undefined,
-  mapDispatchToProps
-)(ForgottenPasswordContainer);
+export default connect(null, mapDispatchToProps)(ForgottenPasswordContainer);

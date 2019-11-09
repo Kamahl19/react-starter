@@ -20,7 +20,10 @@ const EnhancedFormItem = <V extends {}>(props: Props<V>) => {
   const [didBlur, setDidBlur] = useState(false);
 
   const renderField = (form: WrappedFormUtils<V>) =>
-    form.getFieldDecorator<V>(id, fieldDecoratorOptions)(
+    form.getFieldDecorator<V>(
+      id,
+      fieldDecoratorOptions
+    )(
       cloneElement(Children.only(children), {
         onBlur: () => setDidBlur(true),
       })

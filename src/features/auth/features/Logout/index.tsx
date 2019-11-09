@@ -18,7 +18,4 @@ const LogoutContainer = ({ logout }: Props) => {
   return null;
 };
 
-export default connect(
-  undefined,
-  mapDispatchToProps
-)(LogoutContainer);
+export default connect(null, mapDispatchToProps)(LogoutContainer);

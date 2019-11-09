@@ -82,10 +82,7 @@ export const selectIsAuthenticating = (state: RootState) => selectUser(state).is
 export const selectProfile = (state: RootState) => selectUser(state).profile;
 export const selectToken = (state: RootState) => selectUser(state).token;
 
-export const selectIsLoggedIn = createSelector(
-  selectToken,
-  token => !!token
-);
+export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
 
 /**
  * SAGAS
