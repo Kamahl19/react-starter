@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
@@ -13,7 +12,7 @@ const mapDispatchToProps = {
   forgottenPassword: forgottenPasswordAction,
 };
 
-type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
+type Props = typeof mapDispatchToProps;
 
 const ForgottenPasswordContainer = ({ forgottenPassword }: Props) => {
   const isLoading = useSpinner(apiCallIds.FORGOTTEN_PASSWORD);

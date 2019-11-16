@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
@@ -14,7 +13,7 @@ const mapDispatchToProps = {
   resetPassword: resetPasswordAction,
 };
 
-type Props = InjectedAuthReduxProps & typeof mapDispatchToProps;
+type Props = typeof mapDispatchToProps;
 
 const ResetPasswordContainer = ({ resetPassword }: Props) => {
   const { passwordResetToken } = useParams();
