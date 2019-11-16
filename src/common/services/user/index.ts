@@ -21,7 +21,7 @@ type Profile = {
   email: string;
 };
 
-type LoginResponse = {
+export type LoginResponse = {
   user: Profile;
   token: string;
 };
@@ -103,7 +103,8 @@ function* login({ payload }: ReturnType<typeof loginActions.request>) {
 
 function* relogin() {
   try {
-    const resp = yield call(api.relogin);
+    const resp: AxiosResponse<LoginResponse> = yield call(api.relogin);
+
     yield put(loginActions.success(resp.data));
   } catch {
     yield put(loginActions.failure());

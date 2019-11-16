@@ -5,10 +5,10 @@ import { InjectedAuthReduxProps } from 'redux-auth-wrapper/history4/redirect';
 
 import { useSpinner } from 'packages/spinner';
 
-import { resetPasswordAction } from '../../ducks';
+import { resetPasswordAction, ResetPasswordPayload } from '../../ducks';
 import { apiCallIds } from '../../api';
 
-import ResetPassword from './view';
+import ResetPassword, { Values } from './view';
 
 const mapDispatchToProps = {
   resetPassword: resetPasswordAction,
@@ -20,10 +20,10 @@ const ResetPasswordContainer = ({ resetPassword }: Props) => {
   const { passwordResetToken } = useParams();
   const isLoading = useSpinner(apiCallIds.RESET_PASSWORD);
 
-  const onSubmit = useCallback(values => resetPassword({ ...values, passwordResetToken }), [
-    resetPassword,
-    passwordResetToken,
-  ]);
+  const onSubmit = useCallback(
+    (values: Values) => resetPassword({ ...values, passwordResetToken } as ResetPasswordPayload),
+    [resetPassword, passwordResetToken]
+  );
 
   return <ResetPassword isLoading={isLoading} onSubmit={onSubmit} />;
 };

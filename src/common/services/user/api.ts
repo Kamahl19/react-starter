@@ -1,12 +1,14 @@
 import apiClient from '../apiClient';
 
+import { LoginResponse } from './index';
+
 export const apiCallIds = {
   LOGIN: 'LOGIN',
 };
 
 export default {
   login: (email: string, password: string) =>
-    apiClient.post(
+    apiClient.post<LoginResponse>(
       '/auth/login',
       { email, password },
       {
@@ -14,5 +16,5 @@ export default {
       }
     ),
 
-  relogin: () => apiClient.get('/auth/relogin'),
+  relogin: () => apiClient.get<LoginResponse>('/auth/relogin'),
 };

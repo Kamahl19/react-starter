@@ -8,7 +8,7 @@ import rules from 'common/rules';
 
 import AuthLayout from '../../components/AuthLayout';
 
-type Values = {
+export type Values = {
   email: string;
   password: string;
 };

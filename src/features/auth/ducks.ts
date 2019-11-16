@@ -4,7 +4,7 @@ import { createAction, ActionType } from 'typesafe-actions';
 
 import { rootPath } from 'config';
 import { t } from 'common/services/i18next';
-import { loginActions } from 'common/services/user';
+import { loginActions, LoginResponse } from 'common/services/user';
 import { message } from 'common/components';
 
 import api from './api';
@@ -21,7 +21,7 @@ type ForgottenPasswordPayload = {
   email: string;
 };
 
-type ResetPasswordPayload = {
+export type ResetPasswordPayload = {
   email: string;
   password: string;
   passwordResetToken: string;
@@ -44,7 +44,7 @@ export type AuthAction = ActionType<typeof actions>;
  */
 function* signUp({ payload: { email, password } }: ReturnType<typeof signUpAction>) {
   try {
-    const resp = yield call(api.signUp, email, password);
+    const resp: AxiosResponse<LoginResponse> = yield call(api.signUp, email, password);
 
     yield put(loginActions.success(resp.data));
   } catch {
@@ -70,7 +70,12 @@ function* resetPassword({
   payload: { email, password, passwordResetToken },
 }: ReturnType<typeof resetPasswordAction>) {
   try {
-    const resp = yield call(api.resetPassword, email, password, passwordResetToken);
+    const resp: AxiosResponse<LoginResponse> = yield call(
+      api.resetPassword,
+      email,
+      password,
+      passwordResetToken
+    );
 
     yield put(loginActions.success(resp.data));
   } catch {
