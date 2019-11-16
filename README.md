@@ -32,7 +32,6 @@
 - our own libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
   - [ant-form-helpers](src/packages/ant-form-helpers/README.md) - useful wrapper over Ant's Form
-  - [api-client](src/packages/api-client/README.md) - useful wraper over Axios
   - [array-helpers](src/packages/array-helpers/README.md) - immutable Array modifiers for redux reducers
   - [react-google-translate-fix](src/packages/react-google-translate-fix/README.md) - fixes [React & Chrome Translate bug](https://github.com/facebook/react/issues/11538)
   - [responsive-navigation](src/packages/responsive-navigation/README.md) - simple wrapper for creating responsive menu
