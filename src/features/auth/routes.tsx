@@ -11,6 +11,7 @@ import ForgottenPassword from './features/ForgottenPassword';
 import Login from './features/Login';
 import Logout from './features/Logout';
 import ResetPassword from './features/ResetPassword';
+import ActivateUser from './features/ActivateUser';
 import SignUp from './features/SignUp';
 
 const LoginPage = LoginGuard(Login);
@@ -31,6 +32,7 @@ const AuthRoutes = () => (
     <Route exact path={AUTH_ROUTER_PATHS.signUp} component={SignUpPage} />
     <Route exact path={AUTH_ROUTER_PATHS.forgottenPassword} component={ForgottenPasswordPage} />
     <Route exact path={AUTH_ROUTER_PATHS.resetPassword} component={ResetPasswordPage} />
+    <Route exact path={AUTH_ROUTER_PATHS.activateUser} component={ActivateUser} />
     <Route component={NotFound} />
   </Switch>
 );

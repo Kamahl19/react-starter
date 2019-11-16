@@ -1,5 +1,6 @@
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-import { push, LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
+import { AxiosResponse } from 'axios';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { createAction, ActionType } from 'typesafe-actions';
 
 import { rootPath } from 'config';
@@ -27,6 +28,11 @@ export type ResetPasswordPayload = {
   passwordResetToken: string;
 };
 
+export type ActivateUserPayload = {
+  userId: string;
+  activationToken: string;
+};
+
 /**
  * ACTIONS
  */
@@ -35,6 +41,7 @@ export const forgottenPasswordAction = createAction('auth/FORGOTTEN_PASSWORD')<
   ForgottenPasswordPayload
 >();
 export const resetPasswordAction = createAction('auth/RESET_PASSWORD')<ResetPasswordPayload>();
+export const activateUserAction = createAction('auth/ACTIVATE_USER')<ActivateUserPayload>();
 
 const actions = { signUpAction, forgottenPasswordAction, resetPasswordAction };
 export type AuthAction = ActionType<typeof actions>;
@@ -83,22 +90,15 @@ function* resetPassword({
   }
 }
 
-function* locationChanged({ payload }: LocationChangeAction) {
-  const activatePath = '/activate/';
-
-  if (payload.location.pathname.includes(activatePath)) {
-    const exclude = activatePath.split('/');
-    const [userId, activationToken] = payload.location.pathname
-      .split('/')
-      .filter(part => !exclude.includes(part));
-
-    yield call(activateUser, userId, activationToken);
-  }
-}
-
-function* activateUser(userId: string, activationToken: string) {
+function* activateUser({
+  payload: { userId, activationToken },
+}: ReturnType<typeof activateUserAction>) {
   try {
-    const resp = yield call(api.activateUser, userId, activationToken);
+    const resp: AxiosResponse<LoginResponse> = yield call(
+      api.activateUser,
+      userId,
+      activationToken
+    );
 
     message.success(
       t('auth.accountActivated', { defaultValue: 'Your account has been activated successfully.' })
@@ -116,5 +116,5 @@ export function* authSaga() {
   yield takeLatest(signUpAction, signUp);
   yield takeLatest(forgottenPasswordAction, forgottenPassword);
   yield takeLatest(resetPasswordAction, resetPassword);
-  yield takeEvery(LOCATION_CHANGE, locationChanged);
+  yield takeLatest(activateUserAction, activateUser);
 }
