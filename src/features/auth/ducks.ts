@@ -43,7 +43,7 @@ export const forgottenPasswordAction = createAction('auth/FORGOTTEN_PASSWORD')<
 export const resetPasswordAction = createAction('auth/RESET_PASSWORD')<ResetPasswordPayload>();
 export const activateUserAction = createAction('auth/ACTIVATE_USER')<ActivateUserPayload>();
 
-const actions = { signUpAction, forgottenPasswordAction, resetPasswordAction };
+const actions = { signUpAction, forgottenPasswordAction, resetPasswordAction, activateUserAction };
 export type AuthAction = ActionType<typeof actions>;
 
 /**
