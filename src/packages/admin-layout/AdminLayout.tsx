@@ -50,6 +50,12 @@ const AdminLayout = ({
     isDrawerVisible,
   ]);
 
+  const toggle = useCallback(() => (useDrawer ? toggleIsDrawerVisible() : toggleIsCollapsed()), [
+    useDrawer,
+    toggleIsDrawerVisible,
+    toggleIsCollapsed,
+  ]);
+
   const sidebarState = getSidebarState({ useDrawer, isCollapsed, isDrawerVisible });
 
   const Sidebar = (
@@ -69,7 +75,7 @@ const AdminLayout = ({
 
   return (
     <AdminLayoutContext.Provider
-      value={{ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState }}
+      value={{ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }}
     >
       <Layout className={cn('admin-layout', className)}>
         {useDrawer ? (

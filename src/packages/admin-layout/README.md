@@ -87,3 +87,4 @@ AdminLayoutContext stores the current state of the `AdminLayout`. These values a
 | `useDrawer`       | boolean                                                                                                                                           | indicates whether `Drawer` is used instead of `Sider` |
 | `sidebarState`    | `Enum { 'openSidebar' | 'collapsedSidebar' | 'openDrawer' | 'closedDrawer'` }` | based on previous 3 values, indicates one of 4 states of sidebar |
 | `sidebarTheme`    | 'light' \| 'dark'                                                                                                                                 | color theme of the sidebar                            |
+| `toggle`          | VoidFunction                                                                                                                                      | toggle sidebar from outside                           |

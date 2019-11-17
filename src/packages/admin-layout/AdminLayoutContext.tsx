@@ -14,6 +14,7 @@ type AdminLayoutContextProps = {
   isDrawerVisible: boolean;
   useDrawer: boolean;
   sidebarState: SidebarState;
+  toggle: VoidFunction;
 };
 
 const AdminLayoutContext = createContext({} as AdminLayoutContextProps);

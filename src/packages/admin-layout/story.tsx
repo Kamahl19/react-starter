@@ -96,8 +96,10 @@ const SidebarContent = ({ long }: { long?: boolean }) => (
   </SidebarMenu>
 );
 
-const MainContent = ({ long }: { long?: boolean }) =>
-  long ? (
+const MainContent = ({ long }: { long?: boolean }) => {
+  const { toggle } = useContext(AdminLayoutContext);
+
+  return long ? (
     <>
       Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very
       Very Very Very Very Very Very Very Very Very Very Very
@@ -114,8 +116,13 @@ const MainContent = ({ long }: { long?: boolean }) =>
       ))}
     </>
   ) : (
-    <>Content</>
+    <>
+      <button onClick={toggle}>Custom Toggle</button>
+      <br />
+      Content
+    </>
   );
+};
 
 const Logo = () => {
   const { sidebarTheme, sidebarState } = useContext(AdminLayoutContext);
