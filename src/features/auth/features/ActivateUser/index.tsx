@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { activateUserAction, ActivateUserPayload } from '../../ducks';
+import { ActivateUserPayload } from 'common/ApiTypes';
+
+import { activateUserAction } from '../../ducks';
 
 const mapDispatchToProps = {
   activateUser: activateUserAction,

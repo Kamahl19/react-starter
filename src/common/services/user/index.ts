@@ -5,32 +5,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionType, createAction, createAsyncAction, createReducer } from 'typesafe-actions';
 
 import { RootState } from 'app/store';
+import { User, Token, LoginPayload, AuthResponse } from 'common/ApiTypes';
 
 import api from './api';
-
-/**
- * MODEL
- */
-type Credentials = {
-  password: string;
-  email: string;
-};
-
-type Profile = {
-  id: string;
-  email: string;
-};
-
-export type LoginResponse = {
-  user: Profile;
-  token: string;
-};
-
-type UserState = Readonly<{
-  profile: Profile | null;
-  token: string | null;
-  isAuthenticating: boolean;
-}>;
 
 /**
  * ACTIONS
@@ -39,7 +16,7 @@ export const loginActions = createAsyncAction(
   'user/LOGIN_REQUEST',
   'user/LOGIN_SUCCESS',
   'user/LOGIN_FAILURE'
-)<Credentials, LoginResponse, undefined>();
+)<LoginPayload, AuthResponse, undefined>();
 export const reloginAction = createAction('user/RELOGIN')();
 export const logoutAction = createAction('user/LOGOUT')();
 
@@ -49,9 +26,15 @@ export type UserAction = ActionType<typeof actions>;
 /**
  * REDUCERS
  */
+type UserState = Readonly<{
+  user: User | null;
+  token: Token | null;
+  isAuthenticating: boolean;
+}>;
+
 const initialState: UserState = {
   isAuthenticating: false,
-  profile: null,
+  user: null,
   token: null,
 };
 
@@ -59,7 +42,7 @@ const isAuthenticating = createReducer(initialState.isAuthenticating)
   .handleAction([reloginAction, loginActions.request], () => true)
   .handleAction([loginActions.success, loginActions.failure], () => false);
 
-const profile = createReducer(initialState.profile)
+const user = createReducer(initialState.user)
   .handleAction(loginActions.success, (_, { payload: { user } }) => user)
   .handleAction(loginActions.failure, () => null);
 
@@ -69,18 +52,18 @@ const token = createReducer(initialState.token)
 
 export default combineReducers({
   isAuthenticating,
-  profile,
+  user,
   token,
 });
 
 /**
  * SELECTORS
  */
-export const selectUser = (state: RootState) => state.user;
+export const selectUserState = (state: RootState) => state.user;
 
-export const selectIsAuthenticating = (state: RootState) => selectUser(state).isAuthenticating;
-export const selectProfile = (state: RootState) => selectUser(state).profile;
-export const selectToken = (state: RootState) => selectUser(state).token;
+export const selectIsAuthenticating = (state: RootState) => selectUserState(state).isAuthenticating;
+export const selectUser = (state: RootState) => selectUserState(state).user;
+export const selectToken = (state: RootState) => selectUserState(state).token;
 
 export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
 
@@ -89,11 +72,7 @@ export const selectIsLoggedIn = createSelector(selectToken, token => !!token);
  */
 function* login({ payload }: ReturnType<typeof loginActions.request>) {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(
-      api.login,
-      payload.email,
-      payload.password
-    );
+    const resp: AxiosResponse<AuthResponse> = yield call(api.login, payload);
 
     yield put(loginActions.success(resp.data));
   } catch {
@@ -103,7 +82,7 @@ function* login({ payload }: ReturnType<typeof loginActions.request>) {
 
 function* relogin() {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(api.relogin);
+    const resp: AxiosResponse<AuthResponse> = yield call(api.relogin);
 
     yield put(loginActions.success(resp.data));
   } catch {

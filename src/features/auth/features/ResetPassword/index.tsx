@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 
 import { useSpinner } from 'packages/spinner';
 
-import { resetPasswordAction, ResetPasswordPayload } from '../../ducks';
+import { ResetPasswordPayload } from 'common/ApiTypes';
+
+import { resetPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
 
-import ResetPassword, { Values } from './view';
+import ResetPassword from './view';
 
 const mapDispatchToProps = {
   resetPassword: resetPasswordAction,
@@ -20,7 +22,8 @@ const ResetPasswordContainer = ({ resetPassword }: Props) => {
   const isLoading = useSpinner(apiCallIds.RESET_PASSWORD);
 
   const onSubmit = useCallback(
-    (values: Values) => resetPassword({ ...values, passwordResetToken } as ResetPasswordPayload),
+    (values: ResetPasswordPayload) =>
+      resetPassword({ ...values, passwordResetToken } as ResetPasswordPayload),
     [resetPassword, passwordResetToken]
   );
 

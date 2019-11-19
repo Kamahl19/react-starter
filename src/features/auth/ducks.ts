@@ -4,39 +4,23 @@ import { push } from 'connected-react-router';
 import { createAction, ActionType } from 'typesafe-actions';
 
 import { rootPath } from 'config';
+import {
+  SignUpPayload,
+  ForgottenPasswordPayload,
+  ResetPasswordPayload,
+  ActivateUserPayload,
+  AuthResponse,
+} from 'common/ApiTypes';
 import { t } from 'common/services/i18next';
-import { loginActions, LoginResponse } from 'common/services/user';
+import { loginActions } from 'common/services/user';
 import { message } from 'common/components';
 
 import api from './api';
 
 /**
- * MODEL
- */
-type SignupPayload = {
-  email: string;
-  password: string;
-};
-
-type ForgottenPasswordPayload = {
-  email: string;
-};
-
-export type ResetPasswordPayload = {
-  email: string;
-  password: string;
-  passwordResetToken: string;
-};
-
-export type ActivateUserPayload = {
-  userId: string;
-  activationToken: string;
-};
-
-/**
  * ACTIONS
  */
-export const signUpAction = createAction('auth/SIGN_UP')<SignupPayload>();
+export const signUpAction = createAction('auth/SIGN_UP')<SignUpPayload>();
 export const forgottenPasswordAction = createAction('auth/FORGOTTEN_PASSWORD')<
   ForgottenPasswordPayload
 >();
@@ -49,9 +33,9 @@ export type AuthAction = ActionType<typeof actions>;
 /**
  * SAGAS
  */
-function* signUp({ payload: { email, password } }: ReturnType<typeof signUpAction>) {
+function* signUp({ payload }: ReturnType<typeof signUpAction>) {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(api.signUp, email, password);
+    const resp: AxiosResponse<AuthResponse> = yield call(api.signUp, payload);
 
     yield put(loginActions.success(resp.data));
   } catch {
@@ -61,7 +45,7 @@ function* signUp({ payload: { email, password } }: ReturnType<typeof signUpActio
 
 function* forgottenPassword({ payload }: ReturnType<typeof forgottenPasswordAction>) {
   try {
-    yield call(api.forgottenPassword, payload.email);
+    yield call(api.forgottenPassword, payload);
 
     message.success(
       t('auth.forgottenPasswordSent', {
@@ -73,16 +57,9 @@ function* forgottenPassword({ payload }: ReturnType<typeof forgottenPasswordActi
   } catch {}
 }
 
-function* resetPassword({
-  payload: { email, password, passwordResetToken },
-}: ReturnType<typeof resetPasswordAction>) {
+function* resetPassword({ payload }: ReturnType<typeof resetPasswordAction>) {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(
-      api.resetPassword,
-      email,
-      password,
-      passwordResetToken
-    );
+    const resp: AxiosResponse<AuthResponse> = yield call(api.resetPassword, payload);
 
     yield put(loginActions.success(resp.data));
   } catch {
@@ -90,15 +67,9 @@ function* resetPassword({
   }
 }
 
-function* activateUser({
-  payload: { userId, activationToken },
-}: ReturnType<typeof activateUserAction>) {
+function* activateUser({ payload }: ReturnType<typeof activateUserAction>) {
   try {
-    const resp: AxiosResponse<LoginResponse> = yield call(
-      api.activateUser,
-      userId,
-      activationToken
-    );
+    const resp: AxiosResponse<AuthResponse> = yield call(api.activateUser, payload);
 
     message.success(
       t('auth.accountActivated', { defaultValue: 'Your account has been activated successfully.' })

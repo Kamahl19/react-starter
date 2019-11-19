@@ -3,18 +3,15 @@ import { useTranslation } from 'react-i18next';
 
 import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
 
+import { ForgottenPasswordPayload } from 'common/ApiTypes';
 import { Button, Form, Input } from 'common/components/';
 import rules from 'common/rules';
 
 import AuthLayout from '../../components/AuthLayout';
 
-type Values = {
-  email: string;
-};
-
-type Props = FormComponentProps<Values> & {
+type Props = FormComponentProps<ForgottenPasswordPayload> & {
   isLoading: boolean;
-  onSubmit: (values: Values) => void;
+  onSubmit: (values: ForgottenPasswordPayload) => void;
 };
 
 const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
@@ -22,10 +19,10 @@ const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
 
   return (
     <AuthLayout>
-      <FormScreen<Values> form={form} onSubmit={onSubmit}>
+      <FormScreen<ForgottenPasswordPayload> form={form} onSubmit={onSubmit}>
         {({ hasErrors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <FormItem<Values>
+            <FormItem<ForgottenPasswordPayload>
               id="email"
               rules={[rules.required(t), rules.email(t)]}
               label={t('fields.email.label', { defaultValue: 'E-mail' })}

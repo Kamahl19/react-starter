@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from 'packages/admin-layout';
 
-import { selectProfile } from 'common/services/user';
+import { selectUser } from 'common/services/user';
 import { Icon, Widget } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
@@ -17,12 +17,12 @@ import { RootState } from './store';
  */
 
 const mapStateToProps = (state: RootState) => ({
-  profile: selectProfile(state),
+  user: selectUser(state),
 });
 
 type Props = ReturnType<typeof mapStateToProps>;
 
-const DemoScreen = IsLoggedIn(({ profile }: Props) => (
+const DemoScreen = IsLoggedIn(({ user }: Props) => (
   <AdminLayout
     logo={<Logo />}
     headerContent={
@@ -33,10 +33,10 @@ const DemoScreen = IsLoggedIn(({ profile }: Props) => (
     sidebarContent={<Sidebar />}
   >
     <Widget title="My profile" extra={<a href="/">More</a>} style={{ maxWidth: 400 }}>
-      {profile && (
+      {user && (
         <>
-          <p>ID: {profile.id}</p>
-          <p>Email: {profile.email}</p>
+          <p>ID: {user.id}</p>
+          <p>Email: {user.email}</p>
         </>
       )}
     </Widget>

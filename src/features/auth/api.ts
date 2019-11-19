@@ -1,6 +1,11 @@
 import apiClient from 'common/services/apiClient';
-
-import { LoginResponse } from 'common/services/user';
+import {
+  AuthResponse,
+  SignUpPayload,
+  ForgottenPasswordPayload,
+  ResetPasswordPayload,
+  ActivateUserPayload,
+} from 'common/ApiTypes';
 
 export const apiCallIds = {
   SIGN_UP: 'SIGN_UP',
@@ -9,42 +14,21 @@ export const apiCallIds = {
 };
 
 export default {
-  signUp: (email: string, password: string) =>
-    apiClient.post<LoginResponse>(
-      '/users',
-      {
-        email,
-        password,
-      },
-      {
-        apiCallId: apiCallIds.SIGN_UP,
-      }
-    ),
+  signUp: (data: SignUpPayload) =>
+    apiClient.post<AuthResponse>('/users', data, {
+      apiCallId: apiCallIds.SIGN_UP,
+    }),
 
-  forgottenPassword: (email: string) =>
-    apiClient.post(
-      '/auth/forgotten-password',
-      {
-        email,
-      },
-      {
-        apiCallId: apiCallIds.FORGOTTEN_PASSWORD,
-      }
-    ),
+  forgottenPassword: (data: ForgottenPasswordPayload) =>
+    apiClient.post('/auth/forgotten-password', data, {
+      apiCallId: apiCallIds.FORGOTTEN_PASSWORD,
+    }),
 
-  resetPassword: (email: string, password: string, passwordResetToken: string) =>
-    apiClient.post<LoginResponse>(
-      '/auth/reset-password',
-      {
-        email,
-        password,
-        passwordResetToken,
-      },
-      {
-        apiCallId: apiCallIds.RESET_PASSWORD,
-      }
-    ),
+  resetPassword: (data: ResetPasswordPayload) =>
+    apiClient.post<AuthResponse>('/auth/reset-password', data, {
+      apiCallId: apiCallIds.RESET_PASSWORD,
+    }),
 
-  activateUser: (userId: string, activationToken: string) =>
-    apiClient.get<LoginResponse>(`/users/${userId}/activate/${activationToken}`),
+  activateUser: ({ userId, activationToken }: ActivateUserPayload) =>
+    apiClient.get<AuthResponse>(`/users/${userId}/activate/${activationToken}`),
 };

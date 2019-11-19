@@ -1,20 +1,15 @@
-import apiClient from '../apiClient';
-
-import { LoginResponse } from './index';
+import { LoginPayload, AuthResponse } from 'common/ApiTypes';
+import apiClient from 'common/services/apiClient';
 
 export const apiCallIds = {
   LOGIN: 'LOGIN',
 };
 
 export default {
-  login: (email: string, password: string) =>
-    apiClient.post<LoginResponse>(
-      '/auth/login',
-      { email, password },
-      {
-        apiCallId: apiCallIds.LOGIN,
-      }
-    ),
+  login: (data: LoginPayload) =>
+    apiClient.post<AuthResponse>('/auth/login', data, {
+      apiCallId: apiCallIds.LOGIN,
+    }),
 
-  relogin: () => apiClient.get<LoginResponse>('/auth/relogin'),
+  relogin: () => apiClient.get<AuthResponse>('/auth/relogin'),
 };
