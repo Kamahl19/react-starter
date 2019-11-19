@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-import { AdminLayout, AdminLayoutContext, SidebarState } from 'packages/admin-layout';
+import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from 'packages/admin-layout';
 
 import { selectProfile } from 'common/services/user';
-import { Widget } from 'common/components';
+import { Icon, Widget } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
 
@@ -30,6 +30,7 @@ const DemoScreen = IsLoggedIn(({ profile }: Props) => (
         <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>
       </div>
     }
+    sidebarContent={<Sidebar />}
   >
     <Widget title="My profile" extra={<a href="/">More</a>} style={{ maxWidth: 400 }}>
       {profile && (
@@ -58,5 +59,25 @@ const Logo = () => {
     >
       Logo
     </h1>
+  );
+};
+
+const Sidebar = () => {
+  const { pathname } = useLocation();
+  const { toggle, sidebarState } = useContext(AdminLayoutContext);
+
+  const onClick = useCallback(
+    () => (sidebarState === SidebarState.OPEN_DRAWER ? toggle() : undefined),
+    [sidebarState, toggle]
+  );
+
+  return (
+    <SidebarMenu onClick={onClick} selectedKeys={[pathname]}>
+      <SidebarMenu.Item key="/">
+        <Link to="/">
+          <Icon type="home" /> Home
+        </Link>
+      </SidebarMenu.Item>
+    </SidebarMenu>
   );
 };
