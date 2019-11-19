@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AdminLayout, AdminLayoutContext, SidebarState } from 'packages/admin-layout';
 
 import { selectProfile } from 'common/services/user';
+import { Widget } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
 
@@ -30,12 +31,14 @@ const DemoScreen = IsLoggedIn(({ profile }: Props) => (
       </div>
     }
   >
-    {profile && (
-      <>
-        <p>ID: {profile.id}</p>
-        <p>Email: {profile.email}</p>
-      </>
-    )}
+    <Widget title="My profile" extra={<a href="/">More</a>} style={{ maxWidth: 400 }}>
+      {profile && (
+        <>
+          <p>ID: {profile.id}</p>
+          <p>Email: {profile.email}</p>
+        </>
+      )}
+    </Widget>
   </AdminLayout>
 ));
 
