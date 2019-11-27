@@ -22,7 +22,7 @@ const mapStateToProps = (state: RootState) => ({
 
 type Props = ReturnType<typeof mapStateToProps>;
 
-const DemoScreen = IsLoggedIn(({ user }: Props) => (
+const DemoScreen = ({ user }: Props) => (
   <AdminLayout
     logo={<Logo />}
     headerContent={
@@ -41,9 +41,9 @@ const DemoScreen = IsLoggedIn(({ user }: Props) => (
       )}
     </Widget>
   </AdminLayout>
-));
+);
 
-export default connect(mapStateToProps)(DemoScreen);
+export default connect(mapStateToProps)(IsLoggedIn(DemoScreen));
 
 const Logo = () => {
   const { sidebarState } = useContext(AdminLayoutContext);
