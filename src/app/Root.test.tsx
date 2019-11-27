@@ -1,11 +1,12 @@
-import '../bootstrap';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, waitForElement } from '@testing-library/react';
 
 import Root from './Root';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Root />, div);
-  ReactDOM.unmountComponentAtNode(div);
+it('renders without crashing', async () => {
+  const { getByRole } = render(<Root />);
+
+  const loginButton = await waitForElement(() => getByRole('button'));
+
+  expect(loginButton).toBeInTheDocument();
 });
