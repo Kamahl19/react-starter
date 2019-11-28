@@ -25,8 +25,7 @@ const Root = () => (
             <ConnectedRouter history={history}>
               <GlobalSpinner>
                 <Switch>
-                  <Map />
-                  <Route exact path={rootPath} component={DemoScreen} />
+                      <Route exact path={rootPath} component={DemoScreen} />
                   <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
                   <Route component={NotFound} />
                 </Switch>
