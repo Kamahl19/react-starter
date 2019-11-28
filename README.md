@@ -29,7 +29,7 @@
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 - [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
-- our own libraries that will soon be released as a separate npm packages:
+- our own self-contained libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
   - [ant-form-helpers](src/packages/ant-form-helpers/README.md) - useful wrapper over Ant's Form
   - [array-helpers](src/packages/array-helpers/README.md) - immutable Array modifiers for redux reducers
@@ -49,11 +49,13 @@ To build app, run `yarn build` in app root directory.
 ## Project structure
 
 ```
+-| .github/: GitHub workflows for CI/CD
 -| public/: Public assets
 -| src/
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
+ |--| packages/: Our own self-contained libraries that will soon be released as a separate npm packages
  |--| index.tsx: application entry file
 -| storybook/: Storybook configuration and addons.
 ```
@@ -94,6 +96,10 @@ Project comes with the `source-map-explorer` which analyzes the production JS bu
 ## Updating dependencies
 
 Project comes with the default [Renovate](https://renovatebot.com) config `renovate.json`. It takes care of automated dependency updates and it's free of charge for open-source projects. More about how to [configure here](https://renovatebot.com/docs).
+
+## CI/CD
+
+We are using [GitHub's Actions](https://github.com/features/actions) to run integration checks on each PR. We plan to add deployment of master branch to GH pages as well as deploying the Storybook.
 
 ## More Docs & Guides
 
