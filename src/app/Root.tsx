@@ -26,7 +26,7 @@ const Root = () => (
               <GlobalSpinner>
                 <Switch>
                       <Route exact path={rootPath} component={DemoScreen} />
-                  <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
+                    <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
                   <Route component={NotFound} />
                 </Switch>
               </GlobalSpinner>
