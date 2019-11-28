@@ -15,6 +15,7 @@ import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 import { store, StorePersistGate } from './store';
 import history from './history';
 import DemoScreen from './DemoScreen';
+import DemoScreen2 from './DemoScreen';
 
 const Root = () => (
   <ErrorBoundary>
