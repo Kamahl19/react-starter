@@ -15,7 +15,7 @@ import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 import { store, StorePersistGate } from './store';
 import history from './history';
 import DemoScreen from './DemoScreen';
-import DemoScreen2 from './DemoScreen';
+// import DemoScreen2 from './DemoScreen';
 
 const Root = () => (
   <ErrorBoundary>
@@ -25,6 +25,7 @@ const Root = () => (
           <StorePersistGate>
             <ConnectedRouter history={history}>
               <GlobalSpinner>
+                <Map />
                 <Switch>
                   <Route exact path={rootPath} component={DemoScreen} />
                   <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
