@@ -26,6 +26,7 @@
 - [prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
+- [CI/CD](https://github.com/features/actions) - Continuous Integration & Continuous Deployment based on Github Acions
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 - [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
