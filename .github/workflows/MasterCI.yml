@@ -1,6 +1,9 @@
-name: PR CI
+name: Master CI
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
