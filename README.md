@@ -1,5 +1,7 @@
 # React Starter
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-ts/deploys)
+
 ## What’s Inside?
 
 - [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
