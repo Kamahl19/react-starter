@@ -48,12 +48,12 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "5.2.7",
-    "@storybook/addon-actions": "5.2.7",
-    "@storybook/addon-knobs": "5.2.7",
-    "@storybook/addon-viewport": "5.2.7",
-    "@storybook/addons": "5.2.7",
-    "@storybook/react": "5.2.7",
+    "@storybook/addon-a11y": "5.2.8",
+    "@storybook/addon-actions": "5.2.8",
+    "@storybook/addon-knobs": "5.2.8",
+    "@storybook/addon-viewport": "5.2.8",
+    "@storybook/addons": "5.2.8",
+    "@storybook/react": "5.2.8",
     "@types/classnames": "2.2.9",
     "@types/flat": "0.0.28",
     "@types/jest": "24.0.23",
