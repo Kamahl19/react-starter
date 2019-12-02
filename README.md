@@ -29,7 +29,7 @@
 - [prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
-- [CI/CD](https://github.com/features/actions) - Continuous Integration & Continuous Deployment based on Github Acions
+- [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch and Netlify to deploy each PR & Master branch automatically
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 - [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
@@ -66,7 +66,7 @@ To build app, run `yarn build` in app root directory.
 
 ## Prettier
 
-This project uses [Prettier](https://prettier.io/), an opinionated code formatter. In order to format code manually, run `yarn format` in app root directory. All the code is also formatted automatically on `pre-commit` hook.
+This project uses [Prettier](https://prettier.io/), an opinionated code formatter. In order to format code manually, run `yarn format` in app root directory. All the code is also formatted automatically on `pre-commit` hook. There is also `yarn format-check` for CI purposes to check if code is formatted properly.
 
 ## ESLint
 
@@ -81,7 +81,7 @@ There are multiple ways how to run ESLint.
 
 ## Storybook
 
-We suggest developing component in isolation. For this reason, project comes with [Storybook](https://storybook.js.org/) pre-configured.
+We suggest developing components in isolation. For this reason, project comes with [Storybook](https://storybook.js.org/) pre-configured.
 
 To run separated development environment, run `yarn storybook` which will start dedicated web server at `http://localhost:9009`.
 
@@ -99,11 +99,22 @@ Project comes with the `source-map-explorer` which analyzes the production JS bu
 
 ## Updating dependencies
 
-Project comes with the default [Renovate](https://renovatebot.com) config `renovate.json`. It takes care of automated dependency updates and it's free of charge for open-source projects. More about how to [configure here](https://renovatebot.com/docs).
+Project comes with the default [Renovate](https://renovatebot.com) config `renovate.json`. It takes care of automated dependency updates and it's free for open-source projects. More about how to [configure here](https://renovatebot.com/docs).
 
 ## CI/CD
 
-We are using [GitHub's Actions](https://github.com/features/actions) to run integration checks on each PR. We plan to add deployment of master branch to GH pages as well as deploying the Storybook.
+This project is using [GitHub's Actions](https://github.com/features/actions) to run [integration tests](.github/workflows/CI.yml) on each PR and Master branch. It includes running eslint, prettier, tests and building the app. PR becomes mergable only if it passes. We also show badge on top of `README.md` to show Master branch status. If you don't use GitHub you can remove the `.github` folder, otherwise follow these steps to configure your GitHub repository:
+
+1. Go to Settings -> Branches -> Add rule
+   - Apply to your master branch
+   - Require status checks to pass before merging
+   - Select build checks being run in CI.yml
+2. Update path to your repository (eg. `Kamahl19/react-starter`) and name of the branch for CI badge in `README.md`
+
+This project is using [Netlify](https://www.netlify.com/) to deploy each PR and Master branch automatically. If you don't use Netlify you can remove the `netlify.toml` file, otherwise follow these steps to setup Netlify:
+
+1. Follow [Netlify's instructions](https://docs.netlify.com/)
+2. Update Netlify status badge in `README.md` according to [these instructions](https://docs.netlify.com/monitor-sites/status-badges/)
 
 ## More Docs & Guides
 
