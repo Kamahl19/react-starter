@@ -1,6 +1,6 @@
 # React Starter
 
-[![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/Master%20CI/badge.svg)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3A%22Master+CI%22)
+[![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3A%CI%22)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-ts/deploys)
 
 ## What’s Inside?

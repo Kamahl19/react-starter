@@ -1,6 +1,7 @@
-name: Master CI
+name: CI
 
 on:
+  pull_request:
   push:
     branches:
       - master
@@ -28,7 +29,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, lint, format-check, build and test
+      - name: yarn install, lint, format-check, test and build
         run: |
           yarn install
           yarn lint
