@@ -22,7 +22,7 @@ apiClient.interceptors.request.use(async config => {
   const token = selectToken(store.getState());
 
   if (token) {
-    config.headers.common = config.headers.common || {}; // TODO use Nullish Coalescing once supported
+    config.headers.common = config.headers.common ?? {};
     config.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
@@ -41,8 +41,7 @@ apiClient.interceptors.response.use(
     store.dispatch(finishSpinnerAction(error.config.apiCallId));
 
     if (!axios.isCancel(error)) {
-      // TODO use optional chaining once supported
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         store.dispatch(logoutAction());
       }
 
@@ -69,25 +68,23 @@ function extractErrorMsg(error: AxiosError): string | string[] {
   const { response, message } = error;
   const request: XMLHttpRequest | undefined = error.request;
 
+  // Server responded with a status code that falls out of the range of 2xx
   if (response) {
-    // Server responded with a status code that falls out of the range of 2xx
-    // TODO use optional chaining once supported
-    if (response.data) {
-      if (response.data.message) {
-        return response.data.message;
-      }
-
-      if (response.data.error && (response.data.error.message || response.data.error.inner)) {
-        return response.data.error.message || response.data.error.inner;
-      }
+    if (response.data?.message) {
+      return response.data.message;
+    } else if (response.data?.error?.message) {
+      return response.data.error.message;
+    } else if (response.data?.error?.inner) {
+      return response.data.error.inner;
     }
 
     return response.statusText;
-  } else if (request) {
-    // The request was made but no response was received
-    return t('api.unexpectedError', { defaultValue: 'Unexpected error occured' });
-  } else {
-    // Something happened in setting up the request that triggered an Error
-    return message;
   }
+  // The request was made but no response was received
+  else if (request) {
+    return t('api.unexpectedError', { defaultValue: 'Unexpected error occured' });
+  }
+
+  // Something happened in setting up the request that triggered an Error
+  return message;
 }

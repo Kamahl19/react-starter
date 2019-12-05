@@ -27,8 +27,7 @@ class MobileNavigation extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    // TODO use optional chaining once supported
-    this.unlisten && this.unlisten();
+    this.unlisten?.();
   }
 
   render() {

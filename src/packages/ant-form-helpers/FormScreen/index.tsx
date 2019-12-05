@@ -4,11 +4,9 @@ import { FormComponentProps, WrappedFormUtils } from 'antd/lib/form/Form';
 
 export const FormContext = createContext({} as WrappedFormUtils);
 
-type FormSubmitEvent = FormEvent<HTMLFormElement>;
-
 type InjectedProps = {
   hasErrors: boolean;
-  handleSubmit: (e: FormSubmitEvent) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 };
 
 type Props<V> = FormComponentProps<V> & {
@@ -26,9 +24,8 @@ const FormScreen = <V extends {}>({ children, form, onSubmit }: Props<V>) => {
     validateFields(() => {});
   }, [validateFields]);
 
-  function handleSubmit(e: FormSubmitEvent) {
-    // TODO use optional chaining once supported
-    e && e.preventDefault();
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
     validateFieldsAndScroll((err, values) => {
       if (!err) {

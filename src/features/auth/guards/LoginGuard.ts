@@ -18,7 +18,7 @@ const LoginGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthRe
     authenticatedSelector: state => !selectIsLoggedIn(state),
     authenticatingSelector: selectIsAuthenticating,
     redirectAction: routerActions.replace,
-    redirectPath: (_, props) => locationHelper.getRedirectQueryParam(props) || rootPath, // TODO use Nullish Coalescing once supported
+    redirectPath: (_, props) => locationHelper.getRedirectQueryParam(props) || rootPath,
     wrapperDisplayName: 'LoginGuard',
   })(Component);
 

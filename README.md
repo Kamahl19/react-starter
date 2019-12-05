@@ -43,12 +43,17 @@
 
 ## Start app
 
-To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server at `http://localhost:3000` (or first next free port).
+To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server in the development mode at `http://localhost:3000` (or first next free port).
+
 All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with `React Starter` out of the box.
 
 ## Build app
 
-To build app, run `yarn build` in app root directory.
+To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed! See the [create-react-app Deployment docs](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Test app
+
+Run `yarn test` to launch the test runner in the interactive watch mode. See [create-react-app Tests docs](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## Project structure
 
