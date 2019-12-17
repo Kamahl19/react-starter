@@ -124,3 +124,11 @@ This project is using [Netlify](https://www.netlify.com/) to deploy each PR and 
 ## More Docs & Guides
 
 This project is built on top of `create-react-app` with many [more usefull guides](https://facebook.github.io/create-react-app/docs/getting-started).
+
+## License
+
+This is open source software [licensed as MIT](https://github.com/Kamahl19/react-starter/blob/master/LICENSE).
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+</a>
