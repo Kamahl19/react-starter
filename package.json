@@ -61,7 +61,7 @@
     "@types/flat": "0.0.28",
     "@types/jest": "24.0.24",
     "@types/lodash.pick": "4.4.6",
-    "@types/node": "12.12.21",
+    "@types/node": "12.12.22",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
     "@types/react-redux": "7.1.5",
