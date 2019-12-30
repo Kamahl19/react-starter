@@ -28,6 +28,10 @@ const AuthLayout = ({ children }: Props) => {
         </Navbar>
       </Layout.Header>
       <Layout.Content>{children}</Layout.Content>
+      {/* You can remove the Netlify link. It's here only to conform with Netlify's Open Source Plan Policy (https://www.netlify.com/legal/open-source-policy/) */}
+      <Layout.Footer style={{ textAlign: 'center' }}>
+        <a href="https://www.netlify.com">This site is powered by Netlify</a>
+      </Layout.Footer>
     </Layout>
   );
 };
