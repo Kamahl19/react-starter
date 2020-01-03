@@ -3,7 +3,7 @@ import {
   connectedReduxRedirect,
   InjectedAuthReduxProps,
 } from 'redux-auth-wrapper/history4/redirect';
-import { routerActions } from 'connected-react-router';
+import { replace } from 'connected-react-router';
 
 import { rootPath } from 'config';
 import { RootState } from 'app/store';
@@ -14,7 +14,7 @@ const IsAnonymous = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthR
     allowRedirectBack: false,
     authenticatedSelector: state => !selectIsLoggedIn(state),
     authenticatingSelector: selectIsAuthenticating,
-    redirectAction: routerActions.replace,
+    redirectAction: replace,
     redirectPath: rootPath,
     wrapperDisplayName: 'IsAnonymous',
   })(Component);

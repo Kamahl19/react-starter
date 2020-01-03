@@ -3,7 +3,7 @@ import {
   connectedReduxRedirect,
   InjectedAuthReduxProps,
 } from 'redux-auth-wrapper/history4/redirect';
-import { routerActions } from 'connected-react-router';
+import { replace } from 'connected-react-router';
 
 import { RootState } from 'app/store';
 import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
@@ -15,7 +15,7 @@ const LogoutGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthR
     allowRedirectBack: false,
     authenticatedSelector: selectIsLoggedIn,
     authenticatingSelector: selectIsAuthenticating,
-    redirectAction: routerActions.replace,
+    redirectAction: replace,
     redirectPath: AUTH_ROUTER_PATHS.login,
     wrapperDisplayName: 'LogoutGuard',
   })(Component);
