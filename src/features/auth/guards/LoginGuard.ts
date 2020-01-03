@@ -4,7 +4,7 @@ import {
   InjectedAuthReduxProps,
 } from 'redux-auth-wrapper/history4/redirect';
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
-import { routerActions } from 'connected-react-router';
+import { replace } from 'connected-react-router';
 
 import { rootPath } from 'config';
 import { RootState } from 'app/store';
@@ -17,7 +17,7 @@ const LoginGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthRe
     allowRedirectBack: false,
     authenticatedSelector: state => !selectIsLoggedIn(state),
     authenticatingSelector: selectIsAuthenticating,
-    redirectAction: routerActions.replace,
+    redirectAction: replace,
     redirectPath: (_, props) => locationHelper.getRedirectQueryParam(props) || rootPath,
     wrapperDisplayName: 'LoginGuard',
   })(Component);
