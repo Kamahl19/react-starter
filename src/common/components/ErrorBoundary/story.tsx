@@ -1,13 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import ErrorBoundary from './';
 
-storiesOf('common/ErrorBoundary', module).add('default', () => (
+export default {
+  title: 'common/ErrorBoundary',
+};
+
+export const Basic = () => (
   <ErrorBoundary>
     <Throw />
   </ErrorBoundary>
-));
+);
 
 function Throw() {
   throw new Error();

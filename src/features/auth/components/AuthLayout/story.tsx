@@ -1,10 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import AuthLayout from './';
 
-storiesOf('auth/AuthLayout', module).add('default', () => (
+export default {
+  title: 'auth/AuthLayout',
+};
+
+export const Basic = () => (
   <AuthLayout>
     <></>
   </AuthLayout>
-));
+);
