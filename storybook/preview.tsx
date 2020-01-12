@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { makeDecorator } from '@storybook/addons';
-import { addDecorator, configure } from '@storybook/react';
+import { addDecorator } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import StoryRouter from 'storybook-react-router';
 
@@ -16,5 +16,3 @@ addDecorator(
   })
 );
 addDecorator(StoryRouter());
-
-configure(require.context('../src', true, /.story.tsx$/), module);

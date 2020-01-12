@@ -8,40 +8,6 @@ export default {
   title: 'packages/AdminLayout',
 };
 
-export const Basic = () => (
-  <AdminLayout
-    logo={<Logo />}
-    headerContent={<HeaderContent />}
-    sidebarContent={<SidebarContent />}
-  >
-    <MainContent />
-  </AdminLayout>
-);
-
-export const LongContent = () => (
-  <AdminLayout
-    logo={<Logo />}
-    headerContent={<HeaderContent />}
-    sidebarContent={<SidebarContent long />}
-  >
-    <MainContent long />
-  </AdminLayout>
-);
-
-export const CustomizedSidebar = () => (
-  <AdminLayout
-    logo={<Logo />}
-    headerContent={<HeaderContent />}
-    sidebarContent={<SidebarContent />}
-    sidebarBreakpoint="lg"
-    sidebarCollapsedWidth={120}
-    sidebarWidth={300}
-    sidebarTheme="light"
-  >
-    <MainContent />
-  </AdminLayout>
-);
-
 const HeaderContent = () => (
   <div style={{ flex: 1, textAlign: 'right', paddingRight: 22 }}>Header content</div>
 );
@@ -151,3 +117,37 @@ const Logo = () => {
     </div>
   );
 };
+
+export const Basic = () => (
+  <AdminLayout
+    logo={<Logo />}
+    headerContent={<HeaderContent />}
+    sidebarContent={<SidebarContent />}
+  >
+    <MainContent />
+  </AdminLayout>
+);
+
+export const LongContent = () => (
+  <AdminLayout
+    logo={<Logo />}
+    headerContent={<HeaderContent />}
+    sidebarContent={<SidebarContent long />}
+  >
+    <MainContent long />
+  </AdminLayout>
+);
+
+export const CustomizedSidebar = () => (
+  <AdminLayout
+    logo={<Logo />}
+    headerContent={<HeaderContent />}
+    sidebarContent={<SidebarContent />}
+    sidebarBreakpoint="lg"
+    sidebarCollapsedWidth={120}
+    sidebarWidth={300}
+    sidebarTheme="light"
+  >
+    <MainContent />
+  </AdminLayout>
+);
