@@ -2014,10 +2014,10 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/preset-create-react-app@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-1.5.1.tgz#bca5743e2db565b292cf0bced98be1c3094a4183"
-  integrity sha512-aL+GYBjQ6KXEydA/+++oHOtiCWUsj0ZRMFJl6SmN6DbhNUAGPSTJ81c0Wrq58h8n/r3zDHfklcsyp42rR2ehZQ==
+"@storybook/preset-create-react-app@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-1.5.2.tgz#9bbdb599623031155f866b738bab8f4b2d41ca1c"
+  integrity sha512-SHbuOjll6NvtTb+lHOk2/pra6jju4SgRB3M0auvvvJfpYkXaixlsuX5Q/Sv4uZ+LgQgsBBBaZcPxyZz+R9lf0A==
   dependencies:
     "@storybook/node-logger" "^5.2.0"
     "@types/webpack" "^4.41.2"
