@@ -55,7 +55,7 @@
     "@storybook/addons": "5.3.6",
     "@storybook/preset-create-react-app": "1.5.2",
     "@storybook/react": "5.3.6",
-    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/jest-dom": "5.0.0",
     "@testing-library/react": "9.4.0",
     "@testing-library/user-event": "8.0.3",
     "@types/classnames": "2.2.9",
