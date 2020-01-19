@@ -39,12 +39,10 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint --fix",
-      "git add"
+      "yarn lint --fix"
     ],
     "*.{ts,tsx,json,less,md,html,yml,yaml}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "devDependencies": {
