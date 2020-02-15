@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { TFunction } from 'i18next';
 import { ValidationRule } from 'antd/lib/form';
+import { useTranslation } from 'react-i18next';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -22,21 +24,26 @@ const password = (t: TFunction): ValidationRule => ({
   }),
 });
 
-const passwordWithLimit = (t: TFunction) => [
-  required(t),
-  password(t),
-  {
-    min: MIN_PASSWORD_LENGTH,
-    message: t('validation.password.length', {
-      minLength: MIN_PASSWORD_LENGTH,
-      defaultValue: 'Password must contain at least {{minLength}} characters',
-    }),
-  },
-];
+const passwordMinLength = (t: TFunction): ValidationRule => ({
+  min: MIN_PASSWORD_LENGTH,
+  message: t('validation.password.length', {
+    minLength: MIN_PASSWORD_LENGTH,
+    defaultValue: 'Password must contain at least {{minLength}} characters',
+  }),
+});
 
-export default {
-  required,
-  email,
-  password,
-  passwordWithLimit,
+const useRules = () => {
+  const { t } = useTranslation();
+
+  return useMemo(
+    () => ({
+      required: required(t),
+      email: email(t),
+      password: password(t),
+      passwordMinLength: passwordMinLength(t),
+    }),
+    [t]
+  );
 };
+
+export default useRules;

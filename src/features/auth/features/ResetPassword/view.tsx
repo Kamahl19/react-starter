@@ -5,7 +5,7 @@ import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-help
 
 import { ResetPasswordPayload } from 'common/ApiTypes';
 import { Button, Form, Input } from 'common/components';
-import rules from 'common/rules';
+import { useRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
@@ -16,6 +16,7 @@ type Props = FormComponentProps<ResetPasswordPayload> & {
 
 const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+  const { required, email, password, passwordMinLength } = useRules();
 
   return (
     <AuthLayout>
@@ -24,14 +25,14 @@ const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
           <Form onSubmit={handleSubmit}>
             <FormItem<ResetPasswordPayload>
               id="email"
-              rules={[rules.required(t), rules.email(t)]}
+              rules={[required, email]}
               label={t('fields.email.label', { defaultValue: 'E-mail' })}
             >
               <Input placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })} />
             </FormItem>
             <FormItem<ResetPasswordPayload>
               id="password"
-              rules={rules.passwordWithLimit(t)}
+              rules={[required, password, passwordMinLength]}
               label={t('resetPassword.newPassword.label', { defaultValue: 'New Password' })}
             >
               <Input.Password

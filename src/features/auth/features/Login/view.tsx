@@ -6,7 +6,7 @@ import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-help
 
 import { LoginPayload } from 'common/ApiTypes';
 import { Button, Form, Input } from 'common/components';
-import rules from 'common/rules';
+import { useRules } from 'common/hooks';
 
 import { AUTH_ROUTER_PATHS } from '../../constants';
 import AuthLayout from '../../components/AuthLayout';
@@ -18,6 +18,7 @@ type Props = FormComponentProps<LoginPayload> & {
 
 const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+  const { required, email, password } = useRules();
 
   return (
     <AuthLayout>
@@ -26,7 +27,7 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
           <Form onSubmit={handleSubmit}>
             <FormItem<LoginPayload>
               id="email"
-              rules={[rules.required(t), rules.email(t)]}
+              rules={[required, email]}
               label={t('fields.email.label', { defaultValue: 'E-mail' })}
             >
               <Input
@@ -36,7 +37,7 @@ const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
             </FormItem>
             <FormItem<LoginPayload>
               id="password"
-              rules={[rules.required(t), rules.password(t)]}
+              rules={[required, password]}
               label={t('fields.password.label', { defaultValue: 'Password' })}
             >
               <Input.Password
