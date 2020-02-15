@@ -1,20 +1,21 @@
 import { TFunction } from 'i18next';
+import { ValidationRule } from 'antd/lib/form';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-const required = (t: TFunction) => ({
+const required = (t: TFunction): ValidationRule => ({
   required: true,
   message: t('validation.required', { defaultValue: 'Field is required' }),
 });
 
-const email = (t: TFunction) => ({
+const email = (t: TFunction): ValidationRule => ({
   type: 'email',
   message: t('validation.email.invalid', {
     defaultValue: 'E-mail is not valid',
   }),
 });
 
-const password = (t: TFunction) => ({
+const password = (t: TFunction): ValidationRule => ({
   type: 'string',
   message: t('validation.password.invalid', {
     defaultValue: 'Password is not valid',
