@@ -1,11 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
+import { FormComponentProps } from 'antd/lib/form';
 
 import { ForgottenPasswordPayload } from 'common/ApiTypes';
 import { Button, Form, Input } from 'common/components/';
-import { useRules } from 'common/hooks';
+import { useFormRules, useFormSubmit } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
@@ -16,29 +15,24 @@ type Props = FormComponentProps<ForgottenPasswordPayload> & {
 
 const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
-  const { required, email } = useRules();
+  const { required, email } = useFormRules();
+  const handleSubmit = useFormSubmit(form, onSubmit);
 
   return (
     <AuthLayout>
-      <FormScreen<ForgottenPasswordPayload> form={form} onSubmit={onSubmit}>
-        {({ hasErrors, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <FormItem<ForgottenPasswordPayload>
-              id="email"
-              rules={[required, email]}
-              label={t('fields.email.label', { defaultValue: 'E-mail' })}
-            >
-              <Input
-                autoFocus
-                placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
-              />
-            </FormItem>
-            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              {t('fields.submit', { defaultValue: 'Submit' })}
-            </Button>
-          </Form>
-        )}
-      </FormScreen>
+      <Form onSubmit={handleSubmit}>
+        <Form.Item label={t('fields.email.label', { defaultValue: 'E-mail' })} htmlFor="email">
+          {form.getFieldDecorator('email', { rules: [required, email] })(
+            <Input
+              autoFocus
+              placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
+            />
+          )}
+        </Form.Item>
+        <Button block type="primary" htmlType="submit" loading={isLoading}>
+          {t('fields.submit', { defaultValue: 'Submit' })}
+        </Button>
+      </Form>
     </AuthLayout>
   );
 };

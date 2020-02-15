@@ -17,6 +17,7 @@ export type State = Readonly<{
 
 function noop() {}
 
+// TODO refactor with hook
 class ResponsiveNavigationContainer extends Component<Props, State> {
   static defaultProps = {
     maxWidth: 767,

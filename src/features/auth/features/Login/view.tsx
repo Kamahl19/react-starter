@@ -1,12 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
+import { FormComponentProps } from 'antd/lib/form';
 
 import { LoginPayload } from 'common/ApiTypes';
 import { Button, Form, Input } from 'common/components';
-import { useRules } from 'common/hooks';
+import { useFormRules, useFormSubmit } from 'common/hooks';
 
 import { AUTH_ROUTER_PATHS } from '../../constants';
 import AuthLayout from '../../components/AuthLayout';
@@ -18,45 +17,41 @@ type Props = FormComponentProps<LoginPayload> & {
 
 const LoginForm = ({ form, isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
-  const { required, email, password } = useRules();
+  const { required, email, password } = useFormRules();
+  const handleSubmit = useFormSubmit(form, onSubmit);
 
   return (
     <AuthLayout>
-      <FormScreen<LoginPayload> form={form} onSubmit={onSubmit}>
-        {({ hasErrors, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <FormItem<LoginPayload>
-              id="email"
-              rules={[required, email]}
-              label={t('fields.email.label', { defaultValue: 'E-mail' })}
-            >
-              <Input
-                placeholder={t('logIn.email.placeholder', { defaultValue: 'E-mail' })}
-                autoFocus
-              />
-            </FormItem>
-            <FormItem<LoginPayload>
-              id="password"
-              rules={[required, password]}
-              label={t('fields.password.label', { defaultValue: 'Password' })}
-            >
-              <Input.Password
-                placeholder={t('logIn.password.placeholder', {
-                  defaultValue: 'Enter Password',
-                })}
-              />
-            </FormItem>
-            <Form.Item>
-              <Link to={AUTH_ROUTER_PATHS.forgottenPassword}>
-                {t('logIn.forgotPassword', { defaultValue: 'Forgot password?' })}
-              </Link>
-            </Form.Item>
-            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              {t('logIn.logIn', { defaultValue: 'Log In' })}
-            </Button>
-          </Form>
-        )}
-      </FormScreen>
+      <Form onSubmit={handleSubmit}>
+        <Form.Item label={t('fields.email.label', { defaultValue: 'E-mail' })} htmlFor="email">
+          {form.getFieldDecorator('email', { rules: [required, email] })(
+            <Input
+              autoFocus
+              placeholder={t('logIn.email.placeholder', { defaultValue: 'E-mail' })}
+            />
+          )}
+        </Form.Item>
+        <Form.Item
+          label={t('fields.password.label', { defaultValue: 'Password' })}
+          htmlFor="password"
+        >
+          {form.getFieldDecorator('password', { rules: [required, password] })(
+            <Input.Password
+              placeholder={t('logIn.password.placeholder', {
+                defaultValue: 'Enter Password',
+              })}
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          <Link to={AUTH_ROUTER_PATHS.forgottenPassword}>
+            {t('logIn.forgotPassword', { defaultValue: 'Forgot password?' })}
+          </Link>
+        </Form.Item>
+        <Button block type="primary" htmlType="submit" loading={isLoading}>
+          {t('logIn.logIn', { defaultValue: 'Log In' })}
+        </Button>
+      </Form>
     </AuthLayout>
   );
 };

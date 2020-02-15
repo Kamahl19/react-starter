@@ -35,7 +35,6 @@
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
 - our own self-contained libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
-  - [ant-form-helpers](src/packages/ant-form-helpers/README.md) - useful wrapper over Ant's Form
   - [array-helpers](src/packages/array-helpers/README.md) - immutable Array modifiers for redux reducers
   - [react-google-translate-fix](src/packages/react-google-translate-fix/README.md) - fixes [React & Chrome Translate bug](https://github.com/facebook/react/issues/11538)
   - [responsive-navigation](src/packages/responsive-navigation/README.md) - simple wrapper for creating responsive menu

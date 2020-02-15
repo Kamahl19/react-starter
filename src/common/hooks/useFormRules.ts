@@ -32,7 +32,7 @@ const passwordMinLength = (t: TFunction): ValidationRule => ({
   }),
 });
 
-const useRules = () => {
+const useFormRules = () => {
   const { t } = useTranslation();
 
   return useMemo(
@@ -46,4 +46,4 @@ const useRules = () => {
   );
 };
 
-export default useRules;
+export default useFormRules;
