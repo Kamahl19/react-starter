@@ -82,7 +82,7 @@
     "typescript": "3.7.5"
   },
   "dependencies": {
-    "antd": "3.26.9",
+    "antd": "3.26.11",
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "connected-react-router": "6.7.0",
