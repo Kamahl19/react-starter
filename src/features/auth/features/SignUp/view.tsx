@@ -1,56 +1,52 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button, Form, Input } from 'antd';
 
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
-
-import { SignUpPayload } from 'common/ApiTypes';
-import { Button, Form, Input } from 'common/components';
-import rules from 'common/rules';
+// import { SignUpPayload } from 'common/ApiTypes';
+import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-type Props = FormComponentProps<SignUpPayload> & {
+// TODO
+type Props = {
   isLoading: boolean;
-  onSubmit: (values: SignUpPayload) => void;
+  onSubmit: (values: any) => void;
 };
 
-const SignUpForm = ({ form, isLoading, onSubmit }: Props) => {
+const SignUpForm = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+  const { required, email, password, passwordMinLength } = useFormRules();
 
   return (
     <AuthLayout>
-      <FormScreen<SignUpPayload> form={form} onSubmit={onSubmit}>
-        {({ hasErrors, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <FormItem<SignUpPayload>
-              id="email"
-              rules={[rules.required(t), rules.email(t)]}
-              label={t('signUp.email.label', { defaultValue: 'E-mail' })}
-            >
-              <Input
-                placeholder={t('signUp.email.placeholder', { defaultValue: 'E-mail' })}
-                autoFocus
-              />
-            </FormItem>
-            <FormItem<SignUpPayload>
-              id="password"
-              rules={rules.passwordWithLimit(t)}
-              label={t('fields.password.label', { defaultValue: 'Password' })}
-            >
-              <Input.Password
-                placeholder={t('signUp.password.placeholder', {
-                  defaultValue: 'Choose Password',
-                })}
-              />
-            </FormItem>
-            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              {t('signUp.signUp', { defaultValue: 'Sign Up' })}
-            </Button>
-          </Form>
-        )}
-      </FormScreen>
+      <Form onFinish={onSubmit} layout="vertical">
+        <Form.Item
+          label={t('signUp.email.label', { defaultValue: 'E-mail' })}
+          name="email"
+          rules={[required, email]}
+        >
+          <Input
+            autoFocus
+            placeholder={t('signUp.email.placeholder', { defaultValue: 'E-mail' })}
+          />
+        </Form.Item>
+        <Form.Item
+          label={t('fields.password.label', { defaultValue: 'Password' })}
+          name="password"
+          rules={[required, password, passwordMinLength]}
+        >
+          <Input.Password
+            placeholder={t('signUp.password.placeholder', {
+              defaultValue: 'Choose Password',
+            })}
+          />
+        </Form.Item>
+        <Button block type="primary" htmlType="submit" loading={isLoading}>
+          {t('signUp.signUp', { defaultValue: 'Sign Up' })}
+        </Button>
+      </Form>
     </AuthLayout>
   );
 };
 
-export default Form.create<Props>()(SignUpForm);
+export default SignUpForm;

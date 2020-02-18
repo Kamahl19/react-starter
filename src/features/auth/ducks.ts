@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { createAction, ActionType } from 'typesafe-actions';
+import { message } from 'antd';
 
 import { rootPath } from 'config';
 import {
@@ -13,7 +14,6 @@ import {
 } from 'common/ApiTypes';
 import { t } from 'common/services/i18next';
 import { loginActions } from 'common/services/user';
-import { message } from 'common/components';
 
 import api from './api';
 

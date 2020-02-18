@@ -1,45 +1,41 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button, Form, Input } from 'antd';
 
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
-
-import { ForgottenPasswordPayload } from 'common/ApiTypes';
-import { Button, Form, Input } from 'common/components/';
-import rules from 'common/rules';
+// import { ForgottenPasswordPayload } from 'common/ApiTypes';
+import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-type Props = FormComponentProps<ForgottenPasswordPayload> & {
+// TODO
+type Props = {
   isLoading: boolean;
-  onSubmit: (values: ForgottenPasswordPayload) => void;
+  onSubmit: (values: any) => void;
 };
 
-const ForgottenPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
+const ForgottenPasswordForm = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+  const { required, email } = useFormRules();
 
   return (
     <AuthLayout>
-      <FormScreen<ForgottenPasswordPayload> form={form} onSubmit={onSubmit}>
-        {({ hasErrors, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <FormItem<ForgottenPasswordPayload>
-              id="email"
-              rules={[rules.required(t), rules.email(t)]}
-              label={t('fields.email.label', { defaultValue: 'E-mail' })}
-            >
-              <Input
-                autoFocus
-                placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
-              />
-            </FormItem>
-            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              {t('fields.submit', { defaultValue: 'Submit' })}
-            </Button>
-          </Form>
-        )}
-      </FormScreen>
+      <Form onFinish={onSubmit} layout="vertical">
+        <Form.Item
+          label={t('fields.email.label', { defaultValue: 'E-mail' })}
+          name="email"
+          rules={[required, email]}
+        >
+          <Input
+            autoFocus
+            placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
+          />
+        </Form.Item>
+        <Button block type="primary" htmlType="submit" loading={isLoading}>
+          {t('fields.submit', { defaultValue: 'Submit' })}
+        </Button>
+      </Form>
     </AuthLayout>
   );
 };
 
-export default Form.create<Props>()(ForgottenPasswordForm);
+export default ForgottenPasswordForm;

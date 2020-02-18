@@ -1,10 +1,9 @@
 import React from 'react';
-
-import { Spin } from '../';
+import { Spin } from 'antd';
 
 const LoadingScreen = () => (
   <div className="loading-screen">
-    <Spin spinning size="large" />
+    <Spin size="large" />
   </div>
 );
 

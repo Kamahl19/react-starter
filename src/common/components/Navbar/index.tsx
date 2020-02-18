@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Popover, Menu } from 'antd';
 import { MenuProps } from 'antd/lib/menu';
+import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 import ResponsiveNavigation from 'packages/responsive-navigation';
-
-import { Icon, Popover, Menu } from '../';
 
 type Props = {
   children: ReactNode;
@@ -17,13 +17,13 @@ const Navbar = ({ children }: Props) => (
         <Popover
           content={<EnhancedMenu isMobile>{children}</EnhancedMenu>}
           overlayClassName="navbar-popover"
-          title={<Icon type="close" onClick={hideNavigation} />}
+          title={<CloseOutlined onClick={hideNavigation} />}
           trigger="click"
           visible={isNavigationVisible}
           onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
         >
           <span className="navbar-trigger">
-            <Icon type="bars" />
+            <MenuOutlined />
           </span>
         </Popover>
       ) : (

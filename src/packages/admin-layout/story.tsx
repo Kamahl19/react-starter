@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Icon } from 'antd';
 
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from './';
 const { SubMenu, Item } = SidebarMenu;
@@ -14,27 +13,13 @@ const HeaderContent = () => (
 
 const SidebarContent = ({ long }: { long?: boolean }) => (
   <SidebarMenu>
-    <SubMenu
-      key="sub1"
-      title={
-        <>
-          <Icon type="mail" /> Navigation One
-        </>
-      }
-    >
+    <SubMenu key="sub1" title="Navigation One">
       <Item key="1">Option 1</Item>
       <Item key="2">Option 2</Item>
       <Item key="3">Option 3</Item>
       <Item key="4">Option 4</Item>
     </SubMenu>
-    <SubMenu
-      key="sub2"
-      title={
-        <>
-          <Icon type="appstore" /> Navigation Two
-        </>
-      }
-    >
+    <SubMenu key="sub2" title="Navigation Two">
       <Item key="5">Option 5</Item>
       <Item key="6">Option 6</Item>
       <SubMenu key="sub3" title="Submenu">
@@ -42,27 +27,13 @@ const SidebarContent = ({ long }: { long?: boolean }) => (
         <Item key="8">Option 8</Item>
       </SubMenu>
     </SubMenu>
-    <SubMenu
-      key="sub4"
-      title={
-        <>
-          <Icon type="setting" /> Navigation Three
-        </>
-      }
-    >
+    <SubMenu key="sub4" title="Navigation Three">
       <Item key="9">Option 9</Item>
       <Item key="10">Option 10</Item>
       <Item key="11">Option 11</Item>
       <Item key="12">Option 12</Item>
     </SubMenu>
-    {long &&
-      Array.from(Array(30)).map((_, idx) => (
-        <Item key={`long${idx}`}>
-          <>
-            <Icon type="setting" /> Option {12 + 1}
-          </>{' '}
-        </Item>
-      ))}
+    {long && Array.from(Array(30)).map((_, idx) => <Item key={`long${idx}`}>Option {12 + 1}</Item>)}
   </SidebarMenu>
 );
 

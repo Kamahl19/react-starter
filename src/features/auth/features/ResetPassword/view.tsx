@@ -1,53 +1,52 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button, Form, Input } from 'antd';
 
-import { FormScreen, FormItem, FormComponentProps } from 'packages/ant-form-helpers';
-
-import { ResetPasswordPayload } from 'common/ApiTypes';
-import { Button, Form, Input } from 'common/components';
-import rules from 'common/rules';
+// import { ResetPasswordPayload } from 'common/ApiTypes';
+import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-type Props = FormComponentProps<ResetPasswordPayload> & {
+// TODO
+type Props = {
   isLoading: boolean;
-  onSubmit: (values: ResetPasswordPayload) => void;
+  onSubmit: (values: any) => void;
 };
 
-const ResetPasswordForm = ({ form, isLoading, onSubmit }: Props) => {
+const ResetPasswordForm = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+  const { required, email, password, passwordMinLength } = useFormRules();
 
   return (
     <AuthLayout>
-      <FormScreen<ResetPasswordPayload> form={form} onSubmit={onSubmit}>
-        {({ hasErrors, handleSubmit }) => (
-          <Form onSubmit={handleSubmit}>
-            <FormItem<ResetPasswordPayload>
-              id="email"
-              rules={[rules.required(t), rules.email(t)]}
-              label={t('fields.email.label', { defaultValue: 'E-mail' })}
-            >
-              <Input placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })} />
-            </FormItem>
-            <FormItem<ResetPasswordPayload>
-              id="password"
-              rules={rules.passwordWithLimit(t)}
-              label={t('resetPassword.newPassword.label', { defaultValue: 'New Password' })}
-            >
-              <Input.Password
-                placeholder={t('resetPassword.password.placeholder', {
-                  defaultValue: 'Enter New Password',
-                })}
-              />
-            </FormItem>
-            <Button block type="primary" htmlType="submit" loading={isLoading} disabled={hasErrors}>
-              {t('fields.submit', { defaultValue: 'Submit' })}
-            </Button>
-          </Form>
-        )}
-      </FormScreen>
+      <Form onFinish={onSubmit} layout="vertical">
+        <Form.Item
+          label={t('fields.email.label', { defaultValue: 'E-mail' })}
+          name="email"
+          rules={[required, email]}
+        >
+          <Input
+            autoFocus
+            placeholder={t('fields.email.placeholder', { defaultValue: 'E-mail' })}
+          />
+        </Form.Item>
+        <Form.Item
+          label={t('resetPassword.newPassword.label', { defaultValue: 'New Password' })}
+          name="password"
+          rules={[required, password, passwordMinLength]}
+        >
+          <Input.Password
+            placeholder={t('resetPassword.password.placeholder', {
+              defaultValue: 'Enter New Password',
+            })}
+          />
+        </Form.Item>
+        <Button block type="primary" htmlType="submit" loading={isLoading}>
+          {t('fields.submit', { defaultValue: 'Submit' })}
+        </Button>
+      </Form>
     </AuthLayout>
   );
 };
 
-export default Form.create<Props>()(ResetPasswordForm);
+export default ResetPasswordForm;

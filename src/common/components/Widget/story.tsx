@@ -7,8 +7,8 @@ export default {
 };
 
 export const Basic = () => (
-  <div style={{ padding: 100, background: '#f0f2f5' }}>
-    <Widget title="Title" extra={<a href="/">More</a>} style={{ width: 300 }}>
+  <div style={{ padding: 20, background: '#f0f2f5' }}>
+    <Widget title="Title" extra={<a href="/">More</a>}>
       Content
     </Widget>
   </div>

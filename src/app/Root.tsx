@@ -1,14 +1,14 @@
 import React, { Suspense, ReactNode } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Spin } from 'antd';
 import en_US from 'antd/lib/locale/en_US';
 import { Route, Switch } from 'react-router-dom';
 
 import { useSpinner } from 'packages/spinner';
 
 import { rootPath } from 'config';
-import { ErrorBoundary, NotFound, Spin, LoadingScreen } from 'common/components';
+import { ErrorBoundary, NotFound, LoadingScreen } from 'common/components';
 import AuthRoutes from 'features/auth/routes';
 import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 

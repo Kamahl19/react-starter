@@ -1,11 +1,12 @@
 import React, { useContext, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from 'packages/admin-layout';
 
 import { selectUser } from 'common/services/user';
-import { Icon, Widget } from 'common/components';
+import { Widget } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
 
@@ -32,7 +33,7 @@ const DemoScreen = ({ user }: Props) => (
     }
     sidebarContent={<Sidebar />}
   >
-    <Widget title="My profile" extra={<a href="/">More</a>} style={{ maxWidth: 400 }}>
+    <Widget title="My profile" style={{ maxWidth: 400 }}>
       {user && (
         <>
           <p>ID: {user.id}</p>
@@ -75,7 +76,7 @@ const Sidebar = () => {
     <SidebarMenu onClick={onClick} selectedKeys={[pathname]}>
       <SidebarMenu.Item key="/">
         <Link to="/">
-          <Icon type="home" /> Home
+          <HomeOutlined /> Home
         </Link>
       </SidebarMenu.Item>
     </SidebarMenu>

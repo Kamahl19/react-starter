@@ -1,10 +1,10 @@
 import axios, { AxiosError } from 'axios';
+import { message } from 'antd';
 
 import { startSpinnerAction, finishSpinnerAction } from 'packages/spinner';
 
 import { store } from 'app/store';
 import { t } from 'common/services/i18next';
-import { message } from 'common/components';
 
 import { selectToken, logoutAction } from './user';
 

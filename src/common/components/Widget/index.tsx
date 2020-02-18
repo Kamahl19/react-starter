@@ -1,7 +1,6 @@
 import React from 'react';
+import { Card } from 'antd';
 import { CardProps } from 'antd/lib/card';
-
-import { Card } from 'common/components';
 
 interface WidgetProps extends CardProps {}
 

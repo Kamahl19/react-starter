@@ -1,12 +1,4 @@
-@import 'antd/lib/drawer/style/index.less';
-@import 'antd/lib/icon/style/index.less';
-@import 'antd/lib/layout/style/index.less';
-@import 'antd/lib/menu/style/index.less';
-
 .admin-layout {
-  @layout-content-padding: 24px;
-  @layout-shadow-color: rgba(0, 0, 0, 0.08);
-
   &-sidebar,
   &-main {
     height: 100vh;
@@ -17,7 +9,7 @@
   }
 
   &-sidebar {
-    box-shadow: 1px 0 4px 0 @layout-shadow-color;
+    box-shadow: 1px 0 4px 0 @shadow-color;
 
     .ant-layout-sider-children {
       display: flex;
@@ -47,7 +39,7 @@
     }
 
     &-menu {
-      padding: 16px 0;
+      padding: @padding-md 0;
       width: 100%;
 
       &.ant-menu-light {
@@ -61,11 +53,11 @@
       display: flex;
       padding: 0;
       background: @white;
-      box-shadow: 0 1px 4px @layout-shadow-color;
+      box-shadow: 0 1px 4px @shadow-color;
     }
 
     &-content {
-      padding: @layout-content-padding;
+      padding: @padding-lg;
     }
   }
 

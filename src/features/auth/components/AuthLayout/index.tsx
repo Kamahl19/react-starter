@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { Layout } from 'antd';
 
-import { Layout, Navbar } from 'common/components';
+import { Navbar } from 'common/components';
 
 import { AUTH_ROUTER_PATHS } from '../../constants';
 
