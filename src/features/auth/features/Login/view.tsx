@@ -9,7 +9,7 @@ import { useFormRules } from 'common/hooks';
 import { AUTH_ROUTER_PATHS } from '../../constants';
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO
+// TODO type onSubmit arg as LoginPayload
 type Props = {
   isLoading: boolean;
   onSubmit: (values: any) => void;

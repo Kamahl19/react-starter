@@ -7,7 +7,7 @@ import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO
+// TODO type onSubmit arg as SignUpPayload
 type Props = {
   isLoading: boolean;
   onSubmit: (values: any) => void;

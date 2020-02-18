@@ -1,58 +1,53 @@
-import React, { ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Popover, Menu } from 'antd';
-import { MenuProps } from 'antd/lib/menu';
+import { responsiveMap } from 'antd/lib/_util/responsiveObserve';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
-
-import ResponsiveNavigation from 'packages/responsive-navigation';
+import { useMediaQuery } from 'react-responsive';
 
 type Props = {
   children: ReactNode;
 };
 
-const Navbar = ({ children }: Props) => (
-  <ResponsiveNavigation>
-    {({ isMobile, isNavigationVisible, hideNavigation, showNavigation }) =>
-      isMobile ? (
-        <Popover
-          content={<EnhancedMenu isMobile>{children}</EnhancedMenu>}
-          overlayClassName="navbar-popover"
-          title={<CloseOutlined onClick={hideNavigation} />}
-          trigger="click"
-          visible={isNavigationVisible}
-          onVisibleChange={visible => (visible ? showNavigation() : hideNavigation())}
-        >
-          <span className="navbar-trigger">
-            <MenuOutlined />
-          </span>
-        </Popover>
-      ) : (
-        <EnhancedMenu>{children}</EnhancedMenu>
-      )
-    }
-  </ResponsiveNavigation>
-);
+const Navbar = ({ children }: Props) => {
+  const { pathname } = useLocation();
 
-Navbar.MenuItem = Menu.Item;
+  return useMediaQuery({ query: responsiveMap.md }) ? (
+    <Menu className="navbar-menu" mode="horizontal" selectedKeys={[pathname]}>
+      {children}
+    </Menu>
+  ) : (
+    <HamburgerMenu>{children}</HamburgerMenu>
+  );
+};
 
 export default Navbar;
 
-type EnhancedMenuProps = MenuProps & {
-  children: ReactNode;
-  isMobile?: boolean;
-};
-
-const EnhancedMenu = ({ children, isMobile, ...props }: EnhancedMenuProps) => {
+const HamburgerMenu = ({ children }: Props) => {
   const { pathname } = useLocation();
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(false);
+  }, [pathname]);
+
   return (
-    <Menu
-      {...props}
-      className={isMobile ? 'navbar-popover-menu' : 'navbar-menu'}
-      mode={isMobile ? 'inline' : 'horizontal'}
-      selectedKeys={[pathname]}
+    <Popover
+      content={
+        <Menu className="navbar-popover-menu" mode="inline" selectedKeys={[pathname]}>
+          {children}
+        </Menu>
+      }
+      overlayClassName="navbar-popover"
+      title={<CloseOutlined onClick={() => setIsVisible(false)} />}
+      trigger="click"
+      visible={isVisible}
+      onVisibleChange={setIsVisible}
     >
-      {children}
-    </Menu>
+      <span className="navbar-trigger">
+        <MenuOutlined />
+      </span>
+    </Popover>
   );
 };
