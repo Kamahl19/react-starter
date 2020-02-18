@@ -35,7 +35,6 @@
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
 - our own self-contained libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
-  - [array-helpers](src/packages/array-helpers/README.md) - immutable Array modifiers for redux reducers
   - [spinner](src/packages/spinner/README.md) - management of Spinners for async calls
 
 ## Start app
