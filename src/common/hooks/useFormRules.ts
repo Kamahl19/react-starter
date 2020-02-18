@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { Rule } from 'rc-field-form/lib/interface'; // TODO
-
-// TODO i18n via ConfigProvider https://next.ant.design/components/form/#validateMessages
+import { Rule } from 'rc-field-form/lib/interface'; // TODO import from antd/lib/form
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -16,13 +14,6 @@ const email = (t: TFunction): Rule => ({
   type: 'email',
   message: t('validation.email.invalid', {
     defaultValue: 'E-mail is not valid',
-  }),
-});
-
-const password = (t: TFunction): Rule => ({
-  type: 'string',
-  message: t('validation.password.invalid', {
-    defaultValue: 'Password is not valid',
   }),
 });
 
@@ -41,7 +32,6 @@ const useFormRules = () => {
     () => ({
       required: required(t),
       email: email(t),
-      password: password(t),
       passwordMinLength: passwordMinLength(t),
     }),
     [t]

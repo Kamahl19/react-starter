@@ -17,7 +17,7 @@ type Props = {
 
 const LoginForm = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
-  const { required, email, password } = useFormRules();
+  const { required, email } = useFormRules();
 
   return (
     <AuthLayout>
@@ -32,7 +32,7 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
         <Form.Item
           label={t('fields.password.label', { defaultValue: 'Password' })}
           name="password"
-          rules={[required, password]}
+          rules={[required]}
         >
           <Input.Password
             placeholder={t('logIn.password.placeholder', {

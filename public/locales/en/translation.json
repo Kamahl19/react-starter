@@ -55,7 +55,6 @@
       "invalid": "E-mail is not valid"
     },
     "password": {
-      "invalid": "Password is not valid",
       "length": "Password must contain at least {{minLength}} characters"
     },
     "required": "Field is required"
