@@ -36,7 +36,6 @@
 - our own self-contained libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
   - [array-helpers](src/packages/array-helpers/README.md) - immutable Array modifiers for redux reducers
-  - [react-google-translate-fix](src/packages/react-google-translate-fix/README.md) - fixes [React & Chrome Translate bug](https://github.com/facebook/react/issues/11538)
   - [spinner](src/packages/spinner/README.md) - management of Spinners for async calls
 
 ## Start app
