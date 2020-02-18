@@ -25,9 +25,6 @@ i18next
     interpolation: {
       escapeValue: false,
     },
-    react: {
-      defaultTransParent: 'span', // fixes Google Translate issue https://github.com/facebook/react/issues/11538
-    },
   });
 
 export const t = i18next.t.bind(i18next);
