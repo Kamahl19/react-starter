@@ -76,7 +76,7 @@
     "react-scripts": "3.4.0",
     "redux-immutable-state-invariant": "2.1.0",
     "redux-logger": "3.0.6",
-    "source-map-explorer": "2.2.2",
+    "source-map-explorer": "2.3.0",
     "storybook-react-router": "1.0.8",
     "typescript": "3.7.5"
   },
