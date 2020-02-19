@@ -2,9 +2,8 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useSpinner } from 'packages/spinner';
-
 import { ResetPasswordPayload } from 'common/ApiTypes';
+import { useTrackProgress } from 'common/services/trackProgress';
 
 import { resetPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
@@ -19,7 +18,7 @@ type Props = typeof mapDispatchToProps;
 
 const ResetPasswordContainer = ({ resetPassword }: Props) => {
   const { passwordResetToken } = useParams();
-  const isLoading = useSpinner(apiCallIds.RESET_PASSWORD);
+  const isInProgress = useTrackProgress(apiCallIds.RESET_PASSWORD);
 
   const onSubmit = useCallback(
     (values: ResetPasswordPayload) =>
@@ -27,7 +26,7 @@ const ResetPasswordContainer = ({ resetPassword }: Props) => {
     [resetPassword, passwordResetToken]
   );
 
-  return <ResetPassword isLoading={isLoading} onSubmit={onSubmit} />;
+  return <ResetPassword isLoading={isInProgress} onSubmit={onSubmit} />;
 };
 
 export default connect(null, mapDispatchToProps)(ResetPasswordContainer);

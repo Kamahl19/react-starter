@@ -3,15 +3,13 @@ import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { isActionOf } from 'typesafe-actions';
 
-import { spinnerReducer as spinner } from 'packages/spinner';
+import user, { logoutAction } from 'common/services/user';
 
 import { RootState } from './';
-import user, { logoutAction } from 'common/services/user';
 
 export default function createRootReducer(history: History): typeof rootReducer {
   const rootReducer = combineReducers({
     user,
-    spinner,
     router: connectRouter(history),
   });
 

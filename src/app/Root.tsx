@@ -5,10 +5,9 @@ import { ConfigProvider, Spin } from 'antd';
 import en_US from 'antd/lib/locale/en_US';
 import { Route, Switch } from 'react-router-dom';
 
-import { useSpinner } from 'packages/spinner';
-
 import { rootPath } from 'config';
 import { ErrorBoundary, NotFound, LoadingScreen } from 'common/components';
+import { useTrackProgress } from 'common/services/trackProgress';
 import AuthRoutes from 'features/auth/routes';
 import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 
@@ -41,10 +40,10 @@ const Root = () => (
 export default Root;
 
 const GlobalSpinner = ({ children }: { children: ReactNode }) => {
-  const isLoading = useSpinner();
+  const isInProgress = useTrackProgress();
 
   return (
-    <Spin spinning={isLoading} size="large">
+    <Spin spinning={isInProgress} size="large">
       {children}
     </Spin>
   );

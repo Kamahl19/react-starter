@@ -26,6 +26,7 @@
 - [react-router](https://reacttraining.com/react-router/web/guides/quick-start) - declarative routing
   - [connected-react-router](https://github.com/supasate/connected-react-router) - Redux binding for React Router
   - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - an accessible wrapper for React Router to set proper scroll position & focus
+- [react-promise-tracker](https://github.com/Lemoncode/react-promise-tracker) - tracking of in-progress promises
 - [prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
@@ -35,7 +36,6 @@
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
 - our own self-contained libraries that will soon be released as a separate npm packages:
   - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
-  - [spinner](src/packages/spinner/README.md) - management of Spinners for async calls
 
 ## Start app
 

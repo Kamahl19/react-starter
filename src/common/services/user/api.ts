@@ -1,4 +1,5 @@
 import { LoginPayload, AuthResponse } from 'common/ApiTypes';
+import { trackProgress } from 'common/services/trackProgress';
 import apiClient from 'common/services/apiClient';
 
 export const apiCallIds = {
@@ -7,9 +8,7 @@ export const apiCallIds = {
 
 export default {
   login: (data: LoginPayload) =>
-    apiClient.post<AuthResponse>('/auth/login', data, {
-      apiCallId: apiCallIds.LOGIN,
-    }),
+    trackProgress(apiClient.post<AuthResponse>('/auth/login', data), apiCallIds.LOGIN),
 
-  relogin: () => apiClient.get<AuthResponse>('/auth/relogin'),
+  relogin: () => trackProgress(apiClient.get<AuthResponse>('/auth/relogin')),
 };

@@ -1,18 +1,10 @@
 import axios, { AxiosError } from 'axios';
 import { message } from 'antd';
 
-import { startSpinnerAction, finishSpinnerAction } from 'packages/spinner';
-
 import { store } from 'app/store';
 import { t } from 'common/services/i18next';
 
 import { selectToken, logoutAction } from './user';
-
-declare module 'axios' {
-  interface AxiosRequestConfig {
-    apiCallId?: string;
-  }
-}
 
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -26,20 +18,12 @@ apiClient.interceptors.request.use(async config => {
     config.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
-  store.dispatch(startSpinnerAction(config.apiCallId));
-
   return config;
 });
 
 apiClient.interceptors.response.use(
-  response => {
-    store.dispatch(finishSpinnerAction(response.config.apiCallId));
-
-    return response;
-  },
+  response => response,
   (error: AxiosError) => {
-    store.dispatch(finishSpinnerAction(error.config.apiCallId));
-
     if (!axios.isCancel(error)) {
       if (error.response?.status === 401) {
         store.dispatch(logoutAction());

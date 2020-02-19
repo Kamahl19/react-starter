@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { useSpinner } from 'packages/spinner';
+import { useTrackProgress } from 'common/services/trackProgress';
 
 import { signUpAction } from '../../ducks';
 import { apiCallIds } from '../../api';
@@ -15,9 +15,9 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps;
 
 const SignUpContainer = ({ signUp }: Props) => {
-  const isLoading = useSpinner(apiCallIds.SIGN_UP);
+  const isInProgress = useTrackProgress(apiCallIds.SIGN_UP);
 
-  return <SignUp isLoading={isLoading} onSubmit={signUp} />;
+  return <SignUp isLoading={isInProgress} onSubmit={signUp} />;
 };
 
 export default connect(null, mapDispatchToProps)(SignUpContainer);

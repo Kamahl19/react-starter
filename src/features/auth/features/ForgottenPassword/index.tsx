@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { useSpinner } from 'packages/spinner';
+import { useTrackProgress } from 'common/services/trackProgress';
 
 import { forgottenPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
@@ -15,9 +15,9 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps;
 
 const ForgottenPasswordContainer = ({ forgottenPassword }: Props) => {
-  const isLoading = useSpinner(apiCallIds.FORGOTTEN_PASSWORD);
+  const isInProgress = useTrackProgress(apiCallIds.FORGOTTEN_PASSWORD);
 
-  return <ForgottenPassword isLoading={isLoading} onSubmit={forgottenPassword} />;
+  return <ForgottenPassword isLoading={isInProgress} onSubmit={forgottenPassword} />;
 };
 
 export default connect(null, mapDispatchToProps)(ForgottenPasswordContainer);
