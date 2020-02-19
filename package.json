@@ -23,7 +23,7 @@
     "format-check": "prettier --check '**/*.{ts,tsx,json,less,md,html,yml,yaml}'",
     "extract-translations": "i18next-scanner",
     "less:build": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
-    "less:watch": "yarn less:build && nodemon -e less -x \"yarn less:build\"",
+    "less:watch": "yarn less:build && nodemon --ext less --exec 'yarn less:build'",
     "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.{ts,tsx}'",
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
