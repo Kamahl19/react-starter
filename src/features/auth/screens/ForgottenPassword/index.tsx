@@ -5,7 +5,6 @@ import { useTrackProgress } from 'common/services/trackProgress';
 
 import { forgottenPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
-
 import ForgottenPassword from './view';
 
 const mapDispatchToProps = {

@@ -6,7 +6,7 @@ import { Button, Form, Input } from 'antd';
 // import { LoginPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
-import { AUTH_ROUTER_PATHS } from '../../constants';
+import { AUTH_ROUTER_PATHS } from '../../routes';
 import AuthLayout from '../../components/AuthLayout';
 
 // TODO type onSubmit arg as LoginPayload

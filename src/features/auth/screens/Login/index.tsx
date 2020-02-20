@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loginActions } from 'common/services/user';
-import { apiCallIds } from 'common/services/user/api';
+import { loginActions } from 'common/services/auth';
 import { useTrackProgress } from 'common/services/trackProgress';
 
+import { apiCallIds } from '../../api';
 import Login from './view';
 
 const mapDispatchToProps = {

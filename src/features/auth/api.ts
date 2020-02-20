@@ -1,20 +1,27 @@
 import { trackProgress } from 'common/services/trackProgress';
 import apiClient from 'common/services/apiClient';
 import {
+  LoginPayload,
   AuthResponse,
   SignUpPayload,
   ForgottenPasswordPayload,
   ResetPasswordPayload,
-  ActivateUserPayload,
+  ActivateAccountPayload,
 } from 'common/ApiTypes';
 
 export const apiCallIds = {
+  LOGIN: 'LOGIN',
   SIGN_UP: 'SIGN_UP',
   FORGOTTEN_PASSWORD: 'FORGOTTEN_PASSWORD',
   RESET_PASSWORD: 'RESET_PASSWORD',
 };
 
 export default {
+  login: (data: LoginPayload) =>
+    trackProgress(apiClient.post<AuthResponse>('/auth/login', data), apiCallIds.LOGIN),
+
+  relogin: () => trackProgress(apiClient.get<AuthResponse>('/auth/relogin')),
+
   signUp: (data: SignUpPayload) =>
     trackProgress(apiClient.post<AuthResponse>('/users', data), apiCallIds.SIGN_UP),
 
@@ -27,6 +34,6 @@ export default {
       apiCallIds.RESET_PASSWORD
     ),
 
-  activateUser: ({ userId, activationToken }: ActivateUserPayload) =>
+  activateAccount: ({ userId, activationToken }: ActivateAccountPayload) =>
     trackProgress(apiClient.get<AuthResponse>(`/users/${userId}/activate/${activationToken}`)),
 };

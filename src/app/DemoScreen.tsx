@@ -5,10 +5,10 @@ import { HomeOutlined } from '@ant-design/icons';
 
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from 'packages/admin-layout';
 
-import { selectUser } from 'common/services/user';
+import { selectUser } from 'common/services/auth';
+import IsLoggedIn from 'common/services/auth/guards/IsLoggedIn';
 import { Widget } from 'common/components';
-import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
-import IsLoggedIn from 'features/auth/guards/IsLoggedIn';
+import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
 
 import { RootState } from './store';
 

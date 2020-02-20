@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { logoutAction } from 'common/services/user';
+import { logoutAction } from 'common/services/auth';
 
 const mapDispatchToProps = {
   logout: logoutAction,

@@ -5,7 +5,6 @@ import { useTrackProgress } from 'common/services/trackProgress';
 
 import { signUpAction } from '../../ducks';
 import { apiCallIds } from '../../api';
-
 import SignUp from './view';
 
 const mapDispatchToProps = {

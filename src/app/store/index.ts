@@ -1,6 +1,6 @@
 import { RouterAction } from 'connected-react-router';
 
-import { UserAction } from 'common/services/user';
+import { AuthServiceAction } from 'common/services/auth';
 import { AuthAction } from 'features/auth/ducks';
 
 import createRootReducer from './rootReducer';
@@ -19,7 +19,7 @@ export type RootState = ReturnType<ReturnType<typeof createRootReducer>>;
 /**
  * RootAction - type representing union type of all action objects
  */
-type RootAction = RouterAction | UserAction | AuthAction;
+type RootAction = RouterAction | AuthServiceAction | AuthAction;
 
 declare module 'typesafe-actions' {
   interface Types {

@@ -59,7 +59,7 @@ Run `yarn test` to launch the test runner in the interactive watch mode. See [cr
 -| src/
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
- |--| features/: Features bundled into separate modules including containers, components, ducks, apis etc.
+ |--| features/: Features bundled into separate modules including components, screens, ducks, apis etc.
  |--| packages/: Our own self-contained libraries that will soon be released as a separate npm packages
  |--| index.tsx: application entry file
 -| storybook/: Storybook configuration and addons.

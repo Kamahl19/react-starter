@@ -2,17 +2,27 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { NotFound } from 'common/components';
+import IsAnonymous from 'common/services/auth/guards/IsAnonymous';
+import LoginGuard from 'common/services/auth/guards/LoginGuard';
+import LogoutGuard from 'common/services/auth/guards/LogoutGuard';
 
-import { AUTH_ROUTE_PREFIX, AUTH_ROUTER_PATHS } from './constants';
-import IsAnonymous from './guards/IsAnonymous';
-import LoginGuard from './guards/LoginGuard';
-import LogoutGuard from './guards/LogoutGuard';
-import ForgottenPassword from './features/ForgottenPassword';
-import Login from './features/Login';
-import Logout from './features/Logout';
-import ResetPassword from './features/ResetPassword';
-import ActivateUser from './features/ActivateUser';
-import SignUp from './features/SignUp';
+import ForgottenPassword from './screens/ForgottenPassword';
+import Login from './screens/Login';
+import Logout from './screens/Logout';
+import ResetPassword from './screens/ResetPassword';
+import ActivateAccount from './screens/ActivateAccount';
+import SignUp from './screens/SignUp';
+
+export const AUTH_ROUTE_PREFIX = '/auth';
+
+export const AUTH_ROUTER_PATHS = {
+  login: `${AUTH_ROUTE_PREFIX}/login`,
+  logout: `${AUTH_ROUTE_PREFIX}/logout`,
+  signUp: `${AUTH_ROUTE_PREFIX}/sign-up`,
+  forgottenPassword: `${AUTH_ROUTE_PREFIX}/forgotten-password`,
+  resetPassword: `${AUTH_ROUTE_PREFIX}/reset-password/:passwordResetToken`,
+  activateAccount: `${AUTH_ROUTE_PREFIX}/activate/:userId/:activationToken`,
+};
 
 const LoginPage = LoginGuard(Login);
 const LogoutPage = LogoutGuard(Logout);
@@ -32,7 +42,7 @@ const AuthRoutes = () => (
     <Route exact path={AUTH_ROUTER_PATHS.signUp} component={SignUpPage} />
     <Route exact path={AUTH_ROUTER_PATHS.forgottenPassword} component={ForgottenPasswordPage} />
     <Route exact path={AUTH_ROUTER_PATHS.resetPassword} component={ResetPasswordPage} />
-    <Route exact path={AUTH_ROUTER_PATHS.activateUser} component={ActivateUser} />
+    <Route exact path={AUTH_ROUTER_PATHS.activateAccount} component={ActivateAccount} />
     <Route component={NotFound} />
   </Switch>
 );
