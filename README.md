@@ -3,6 +3,21 @@
 [![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=master)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amaster)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-ts/deploys)
 
+## Getting Started
+
+Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
+
+Master branch is always passing CI build and it's deployed online at https://react-starter-ts.netlify.com
+
+## Keeping up with updates
+
+Once you start building your own app on top of React Starter you will probably want to keep up-to-date with the new updates of React Starter. This can be easily achieved by tracking the latest commit hash of React Starter you use. We suggest this process:
+
+1. When you clone the React Starter repo, don't forget to write down the hash of [latest master's commit](https://github.com/Kamahl19/react-starter/commits/master)
+2. Every once in a while, compare the version of React Starter you used with the current version of React Starter like this `https://github.com/Kamahl19/react-starter/compare/{YOUR_LATEST_REACT_STARTER_COMMIT_HASH}...master`
+3. Go through the diff and apply the changes in your own app
+4. Commit these changes into your own repo with this commit message: `Updating to React Starter hash: {LATEST_REACT_STARTER_COMMIT_HASH}`. This way you always keep the hash of the React Starter's version you currently use in your app
+
 ## What’s Inside?
 
 - [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
@@ -41,7 +56,7 @@
 
 To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server in the development mode at `http://localhost:3000` (or first next free port).
 
-All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with `React Starter` out of the box.
+All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with React Starter out of the box.
 
 ## Build app
 
