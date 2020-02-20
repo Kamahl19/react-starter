@@ -5,7 +5,7 @@ import { Layout, Menu } from 'antd';
 
 import { Navbar } from 'common/components';
 
-import { AUTH_ROUTER_PATHS } from '../../constants';
+import { AUTH_ROUTER_PATHS } from '../../routes';
 
 type Props = {
   children: ReactNode;

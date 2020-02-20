@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { store } from 'app/store';
 import { t } from 'common/services/i18next';
 
-import { selectToken, logoutAction } from './user';
+import { selectToken, logoutAction } from './auth';
 
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

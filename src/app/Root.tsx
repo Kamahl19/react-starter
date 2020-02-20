@@ -8,8 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import { rootPath } from 'config';
 import { ErrorBoundary, NotFound, LoadingScreen } from 'common/components';
 import { useTrackProgress } from 'common/services/trackProgress';
-import AuthRoutes from 'features/auth/routes';
-import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
+import AuthRoutes, { AUTH_ROUTE_PREFIX } from 'features/auth/routes';
 
 import { store, StorePersistGate } from './store';
 import history from './history';

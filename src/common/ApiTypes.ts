@@ -1,7 +1,7 @@
 export type Id = string;
 
 /**
- * User
+ * Auth
  */
 export type User = {
   id: Id;
@@ -28,7 +28,7 @@ export type LoginPayload = {
   password: string;
 };
 
-export type ActivateUserPayload = {
+export type ActivateAccountPayload = {
   userId: Id;
   activationToken: string;
 };

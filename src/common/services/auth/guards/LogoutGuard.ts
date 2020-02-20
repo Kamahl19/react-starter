@@ -6,9 +6,9 @@ import {
 import { replace } from 'connected-react-router';
 
 import { RootState } from 'app/store';
-import { selectIsLoggedIn, selectIsAuthenticating } from 'common/services/user';
+import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
 
-import { AUTH_ROUTER_PATHS } from '../constants';
+import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 
 const LogoutGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthReduxProps>) =>
   connectedReduxRedirect<OwnProps, RootState>({
