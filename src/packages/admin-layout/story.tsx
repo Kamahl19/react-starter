@@ -1,4 +1,10 @@
 import React, { useContext } from 'react';
+import {
+  DashboardOutlined,
+  UserOutlined,
+  EditOutlined,
+  LineChartOutlined,
+} from '@ant-design/icons';
 
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from './';
 const { SubMenu, Item } = SidebarMenu;
@@ -12,26 +18,67 @@ const HeaderContent = () => (
 );
 
 const SidebarContent = ({ long }: { long?: boolean }) => (
-  <SidebarMenu>
-    <SubMenu key="sub1" title="Navigation One">
-      <Item key="1">Option 1</Item>
-      <Item key="2">Option 2</Item>
-      <Item key="3">Option 3</Item>
-      <Item key="4">Option 4</Item>
+  <SidebarMenu defaultSelectedKeys={['1']}>
+    <Item key="1">
+      <DashboardOutlined />
+      Dashboard
+    </Item>
+    <SubMenu
+      key="sub1"
+      title={
+        <>
+          <UserOutlined />
+          Users
+        </>
+      }
+    >
+      <Item key="2">
+        <LineChartOutlined />
+        Option 1
+      </Item>
+      <Item key="3">
+        <LineChartOutlined />
+        Option 2
+      </Item>
+      <Item key="4">
+        <LineChartOutlined />
+        Option 3
+      </Item>
     </SubMenu>
-    <SubMenu key="sub2" title="Navigation Two">
-      <Item key="5">Option 5</Item>
-      <Item key="6">Option 6</Item>
-      <SubMenu key="sub3" title="Submenu">
-        <Item key="7">Option 7</Item>
-        <Item key="8">Option 8</Item>
+    <SubMenu
+      key="sub2"
+      title={
+        <>
+          <EditOutlined />
+          Posts
+        </>
+      }
+    >
+      <Item key="5">
+        <LineChartOutlined />
+        Option 1
+      </Item>
+      <Item key="6">
+        <LineChartOutlined />
+        Option 2
+      </Item>
+      <SubMenu
+        key="sub3"
+        title={
+          <>
+            <LineChartOutlined /> Submenu
+          </>
+        }
+      >
+        <Item key="7">
+          <LineChartOutlined />
+          Option 3
+        </Item>
+        <Item key="8">
+          <LineChartOutlined />
+          Option 4
+        </Item>
       </SubMenu>
-    </SubMenu>
-    <SubMenu key="sub4" title="Navigation Three">
-      <Item key="9">Option 9</Item>
-      <Item key="10">Option 10</Item>
-      <Item key="11">Option 11</Item>
-      <Item key="12">Option 12</Item>
     </SubMenu>
     {long && Array.from(Array(30)).map((_, idx) => <Item key={`long${idx}`}>Option {12 + 1}</Item>)}
   </SidebarMenu>
