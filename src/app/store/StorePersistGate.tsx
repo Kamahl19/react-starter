@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react';
 import { connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { reloginAction, selectIsLoggedIn } from 'common/services/user';
+import { reloginAction, selectIsLoggedIn } from 'common/services/auth';
 import { LoadingScreen } from 'common/components';
-import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
+import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
 
 import history from '../history';
 

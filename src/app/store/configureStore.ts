@@ -23,7 +23,7 @@ const persistedReducer = persistReducer(
     key: 'root',
     version: 0,
     storage: localForage,
-    whitelist: ['user'],
+    whitelist: ['authService'],
     debug: isDev,
     migrate: createMigrate(migrations, { debug: isDev }),
   },

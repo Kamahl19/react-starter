@@ -7,7 +7,6 @@ import { useTrackProgress } from 'common/services/trackProgress';
 
 import { resetPasswordAction } from '../../ducks';
 import { apiCallIds } from '../../api';
-
 import ResetPassword from './view';
 
 const mapDispatchToProps = {
