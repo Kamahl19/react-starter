@@ -49,8 +49,6 @@ Once you start building your own app on top of React Starter you will probably w
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 - [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
 - [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
-- our own self-contained libraries that will soon be released as a separate npm packages:
-  - [admin-layout](src/packages/admin-layout/README.md) - simple Admin Layout component
 
 ## Start app
 
@@ -75,7 +73,6 @@ Run `yarn test` to launch the test runner in the interactive watch mode. See [cr
  |--| app/: Main application (framework) files.
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including components, screens, ducks, apis etc.
- |--| packages/: Our own self-contained libraries that will soon be released as a separate npm packages
  |--| index.tsx: application entry file
 -| storybook/: Storybook configuration and addons.
 ```

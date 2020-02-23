@@ -10,7 +10,7 @@ import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from './';
 const { SubMenu, Item } = SidebarMenu;
 
 export default {
-  title: 'packages/AdminLayout',
+  title: 'common/AdminLayout',
 };
 
 const HeaderContent = () => (

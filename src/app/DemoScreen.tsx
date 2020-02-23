@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
 
-import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from 'packages/admin-layout';
-
 import { selectUser } from 'common/services/auth';
 import IsLoggedIn from 'common/services/auth/guards/IsLoggedIn';
 import { Widget } from 'common/components';
+import {
+  AdminLayout,
+  AdminLayoutContext,
+  SidebarMenu,
+  SidebarState,
+} from 'common/components/AdminLayout';
 import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
 
 import { RootState } from './store';

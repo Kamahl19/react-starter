@@ -1,26 +1,8 @@
 # Admin Layout
 
-This package provides a simple Admin Layout component with:
-
-- fixed header
-- fixed sidebar
-- collapsable sidebar
-- responsive drawer on small screens
-- simple API for customisation
-
-## Screenshots
-
-Dark Theme
-![dark](https://user-images.githubusercontent.com/1591293/62430524-f68ed080-b71d-11e9-8f88-b63cb1c147ca.png)
-
-Light Theme
-![light](https://user-images.githubusercontent.com/1591293/62430518-d3fcb780-b71d-11e9-9c7a-51f74253d0b3.png)
-
 ## Usage
 
 ```tsx
-import { AdminLayout, SidebarMenu, AdminLayoutContext, SidebarState } from 'packages/admin-layout';
-
 const Page = () => (
   <AdminLayout
     logo={<Logo />}
@@ -45,14 +27,6 @@ const SidebarContent = () => (
   </SidebarMenu>
 );
 ```
-
-Dont forget to import `less` styles
-
-```less
-@import 'packages/admin-layout/style.less';
-```
-
-More examples can be found in the Storybook's [story](story.tsx)
 
 ## API
 
