@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { Rule } from 'rc-field-form/lib/interface'; // TODO import from antd/lib/form
+import { Rule } from 'antd/lib/form';
 
 const MIN_PASSWORD_LENGTH = 6;
 
