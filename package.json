@@ -79,7 +79,7 @@
     "typescript": "3.8.2"
   },
   "dependencies": {
-    "@ant-design/icons": "4.0.0-rc.0",
+    "@ant-design/icons": "4.0.0",
     "antd": "4.0.0",
     "axios": "0.19.2",
     "classnames": "2.2.6",
