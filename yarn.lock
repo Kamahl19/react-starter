@@ -12572,10 +12572,10 @@ react-popper@^1.3.6:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-promise-tracker@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/react-promise-tracker/-/react-promise-tracker-2.0.6.tgz#301a90f77b7a640c518e0e39fa2a2146d8217f5e"
-  integrity sha512-OvkP9+zrANKBu5NcqXmJTyoJ7ZdyVyXhSHE/KzGoQecBqpXXtNd9GN7qWlQdDhP0S2pgmIhpNLvAI8wcErFDIw==
+react-promise-tracker@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-promise-tracker/-/react-promise-tracker-2.1.0.tgz#a8ac2ca5322ca60f83fa7a00ad9d99bfbbdb8434"
+  integrity sha512-1LQSGAnFF4o++iPFgeBrMpS+ZHQg8ZGl9Zuf70v+OoLxuOnUeLCP7ugma+InBCUZzPnSLyWTLt/jyW+FAy5ELQ==
 
 react-redux@7.2.0, react-redux@^7.0.2:
   version "7.2.0"
