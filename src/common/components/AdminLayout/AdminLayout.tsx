@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useCallback } from 'react';
 import { Layout, Drawer } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, MenuOutlined } from '@ant-design/icons';
 import { SiderProps } from 'antd/lib/layout/Sider';
 import cn from 'classnames';
 import { useMediaQuery } from 'react-responsive';
@@ -100,7 +100,11 @@ const AdminLayout = ({
               className="admin-layout-sidebar-trigger"
               onClick={useDrawer ? toggleIsDrawerVisible : toggleIsCollapsed}
             >
-              {(useDrawer && !isDrawerVisible) || (!useDrawer && isCollapsed) ? (
+              {useDrawer ? (
+                !isDrawerVisible ? (
+                  <MenuOutlined />
+                ) : null
+              ) : !useDrawer && isCollapsed ? (
                 <MenuUnfoldOutlined />
               ) : (
                 <MenuFoldOutlined />
