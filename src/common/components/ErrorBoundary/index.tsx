@@ -22,13 +22,15 @@ export default class ErrorBoundary extends Component<Props, State> {
     const { hasError } = this.state;
 
     return hasError ? (
-      <>
-        <h1>Unexpected Error</h1>
-        <p>This is a problem on our side, not yours.</p>
-        <p>
-          <span onClick={() => window.location.reload()}>Reload</span>
-        </p>
-      </>
+      <div className="error-boundary-screen">
+        <div>
+          <h1>Unexpected Error</h1>
+          <p>This is a problem on our side, not yours.</p>
+          <p>
+            <button onClick={() => window.location.reload()}>Reload</button>
+          </p>
+        </div>
+      </div>
     ) : (
       children
     );
