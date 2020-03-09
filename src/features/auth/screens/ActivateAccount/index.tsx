@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { ActivateAccountPayload } from 'common/ApiTypes';
-
 import { activateAccountAction } from '../../ducks';
+import { ActivateAccountParams } from '../../routes';
 
 const mapDispatchToProps = {
   activateAccount: activateAccountAction,
@@ -13,10 +12,10 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps;
 
 const ActivateAccountContainer = ({ activateAccount }: Props) => {
-  const { userId, activationToken } = useParams();
+  const { userId, activationToken } = useParams<ActivateAccountParams>();
 
   useEffect(() => {
-    activateAccount({ userId, activationToken } as ActivateAccountPayload);
+    activateAccount({ userId, activationToken });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null;

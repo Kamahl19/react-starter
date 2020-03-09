@@ -108,7 +108,7 @@ Running `yarn extract-translations` will update alphabetically sorted JSON files
 
 ## Analysing production JS bundle
 
-Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `yarn build` and then `yarn analyze`.
+Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `yarn analyze`.
 
 ## Updating dependencies
 

@@ -24,6 +24,15 @@ export const AUTH_ROUTER_PATHS = {
   activateAccount: `${AUTH_ROUTE_PREFIX}/activate/:userId/:activationToken`,
 };
 
+export type ResetPasswordParams = {
+  passwordResetToken: string;
+};
+
+export type ActivateAccountParams = {
+  userId: string;
+  activationToken: string;
+};
+
 const LoginPage = LoginGuard(Login);
 const LogoutPage = LogoutGuard(Logout);
 const SignUpPage = IsAnonymous(SignUp);
