@@ -16,7 +16,7 @@ const locationHelper = locationHelperBuilder({});
 const LoginGuard = <OwnProps>(Component: ComponentType<OwnProps & InjectedAuthReduxProps>) =>
   connectedReduxRedirect<OwnProps, RootState>({
     allowRedirectBack: false,
-    authenticatedSelector: state => !selectIsLoggedIn(state),
+    authenticatedSelector: (state) => !selectIsLoggedIn(state),
     authenticatingSelector: selectIsAuthenticating,
     redirectAction: replace,
     redirectPath: (_, props) => locationHelper.getRedirectQueryParam(props) || rootPath,

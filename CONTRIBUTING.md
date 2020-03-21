@@ -44,7 +44,7 @@ const renderActions = () => (
   </>
 );
 
-const selectUsername = state => state.user.name;
+const selectUsername = (state) => state.user.name;
 ```
 
 ❌
@@ -57,7 +57,7 @@ const actionsRendered = () => (
   </>
 );
 
-const usernameSelector = state => state.user.name;
+const usernameSelector = (state) => state.user.name;
 ```
 
 It follows, that when you call a function, you can name the result (more or less) as the function name without the base name:
@@ -111,7 +111,7 @@ reservations.map(({ beginTime, endTime }) => formatDate(beginTime, endTime));
 ❌
 
 ```ts
-reservations.map(reservation => {
+reservations.map((reservation) => {
   const { beginTime, endTime } = reservation;
 
   return formatDate(beginTime, endTime);
@@ -131,7 +131,7 @@ const admins = users.filter(isAdmin);
 ❌
 
 ```ts
-const admins = users.filter(user => isAdmin(user));
+const admins = users.filter((user) => isAdmin(user));
 ```
 
 ## Single `const` / `let` declaration
@@ -189,7 +189,7 @@ Props passed to components should be ordered as:
 The first props are close to the component name, which allows us to get a picture of how the component looks like or what's its role. If we have multiple instances of such components, it's easy to spot a pattern and then 'curry' the component - take away the degree of freedom and fix the props under new name `SubmitButton`.
 
 ```tsx
-const SubmitButton = props => <Button {...props} block type="submit" />;
+const SubmitButton = (props) => <Button {...props} block type="submit" />;
 ```
 
 ## Avoid costly renders

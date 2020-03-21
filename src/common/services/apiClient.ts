@@ -10,7 +10,7 @@ const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-apiClient.interceptors.request.use(async config => {
+apiClient.interceptors.request.use(async (config) => {
   const token = selectToken(store.getState());
 
   if (token) {
@@ -22,7 +22,7 @@ apiClient.interceptors.request.use(async config => {
 });
 
 apiClient.interceptors.response.use(
-  response => response,
+  (response) => response,
   (error: AxiosError) => {
     if (!axios.isCancel(error)) {
       if (error.response?.status === 401) {
@@ -42,7 +42,7 @@ function showErrorMessage(error: AxiosError) {
   const errorMsg = extractErrorMsg(error);
 
   if (Array.isArray(errorMsg)) {
-    errorMsg.forEach(err => message.error(`${err}`, 5));
+    errorMsg.forEach((err) => message.error(`${err}`, 5));
   } else {
     message.error(`${errorMsg}`);
   }
