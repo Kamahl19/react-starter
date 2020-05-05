@@ -60,7 +60,7 @@
     "@types/node": "13.13.4",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.7",
-    "@types/react-redux": "7.1.7",
+    "@types/react-redux": "7.1.8",
     "@types/react-responsive": "8.0.2",
     "@types/react-router-dom": "5.1.5",
     "@types/redux-auth-wrapper": "2.0.9",
