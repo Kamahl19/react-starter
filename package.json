@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.1.0",
-    "antd": "4.2.4",
+    "antd": "4.2.5",
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
