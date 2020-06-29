@@ -51,7 +51,7 @@
     "@storybook/addon-knobs": "5.3.19",
     "@storybook/addon-viewport": "5.3.19",
     "@storybook/addons": "5.3.19",
-    "@storybook/preset-create-react-app": "3.1.1",
+    "@storybook/preset-create-react-app": "3.1.2",
     "@storybook/react": "5.3.19",
     "@testing-library/jest-dom": "5.10.1",
     "@testing-library/react": "9.5.0",
@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.2.1",
-    "antd": "4.3.4",
+    "antd": "4.3.5",
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
