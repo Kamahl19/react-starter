@@ -76,7 +76,7 @@
     "react-scripts": "3.4.1",
     "source-map-explorer": "2.4.2",
     "storybook-react-router": "1.0.8",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "dependencies": {
     "@ant-design/icons": "4.2.1",
