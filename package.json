@@ -67,7 +67,7 @@
     "@types/storybook-react-router": "1.0.1",
     "husky": "4.2.5",
     "i18next-scanner": "2.11.0",
-    "i18next-scanner-typescript": "1.0.3",
+    "i18next-scanner-typescript": "1.0.6",
     "less": "3.12.2",
     "lint-staged": "10.2.11",
     "nodemon": "2.0.4",
