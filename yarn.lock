@@ -4654,7 +4654,7 @@ clone-stats@^1.0.0:
   resolved "https://registry.yarnpkg.com/clone-stats/-/clone-stats-1.0.0.tgz#b3782dff8bb5474e18b9b6bf0fdfe782f8777680"
   integrity sha1-s3gt/4u1R04Yuba/D9/ngvh3doA=
 
-clone@^2.1.1, clone@^2.1.2:
+clone@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
   integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
@@ -9258,12 +9258,11 @@ left-pad@^1.3.0:
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
   integrity sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA==
 
-less@3.11.3:
-  version "3.11.3"
-  resolved "https://registry.yarnpkg.com/less/-/less-3.11.3.tgz#2d853954fcfe0169a8af869620bcaa16563dcc1c"
-  integrity sha512-VkZiTDdtNEzXA3LgjQiC3D7/ejleBPFVvq+aRI9mIj+Zhmif5TvFPM244bT4rzkvOCvJ9q4zAztok1M7Nygagw==
+less@3.12.2:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/less/-/less-3.12.2.tgz#157e6dd32a68869df8859314ad38e70211af3ab4"
+  integrity sha512-+1V2PCMFkL+OIj2/HrtrvZw0BC0sYLMICJfbQjuj/K8CEnlrFX6R5cKKgzzttsZDHyxQNL1jqMREjKN3ja/E3Q==
   dependencies:
-    clone "^2.1.2"
     tslib "^1.10.0"
   optionalDependencies:
     errno "^0.1.1"
@@ -9271,8 +9270,7 @@ less@3.11.3:
     image-size "~0.5.0"
     make-dir "^2.1.0"
     mime "^1.4.1"
-    promise "^7.1.1"
-    request "^2.83.0"
+    native-request "^1.0.5"
     source-map "~0.6.0"
 
 leven@^3.1.0:
@@ -10072,6 +10070,11 @@ nanomatch@^1.2.9:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+native-request@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/native-request/-/native-request-1.0.5.tgz#da67637c0a0ed0758243d1a688d647612f2d5a0a"
+  integrity sha512-7wU3DvBGAJQxWuMR3F62zrhB7hxNj2DdlC/eBVrCgavc6+ZpFZOqS/PsR7QyUPLMkFk0GvvzoeeOAZGLLnObnA==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -13354,7 +13357,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-"request@>=2.76.0 <3.0.0", request@^2.83.0, request@^2.87.0, request@^2.88.0:
+"request@>=2.76.0 <3.0.0", request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
