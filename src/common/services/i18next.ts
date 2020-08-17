@@ -20,8 +20,8 @@ i18next
     },
     lng: LANGUAGE_CODES.EN,
     fallbackLng: LANGUAGE_CODES.EN,
-    whitelist: [LANGUAGE_CODES.EN],
-    nonExplicitWhitelist: true,
+    supportedLngs: [LANGUAGE_CODES.EN],
+    nonExplicitSupportedLngs: true,
     interpolation: {
       escapeValue: false,
     },
