@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true };
   }
 
-  readonly state: State = {
+  state = {
     hasError: false,
   };
 
