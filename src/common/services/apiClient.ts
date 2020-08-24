@@ -15,7 +15,7 @@ apiClient.interceptors.request.use(async (config) => {
 
   if (token) {
     config.headers.common = config.headers.common ?? {};
-    config.headers.common['Authorization'] = `Bearer ${token}`;
+    config.headers.common.Authorization = `Bearer ${token}`;
   }
 
   return config;
