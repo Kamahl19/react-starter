@@ -54,11 +54,11 @@ SidebarMenu is a simple wrapper over [Ant's Menu](https://ant.design/components/
 
 AdminLayoutContext stores the current state of the `AdminLayout`. These values are provided:
 
-| name              | type                                                                                                                                              | description                                           |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `isCollapsed`     | boolean                                                                                                                                           | indicates whether sidebar is collapsed                |
-| `isDrawerVisible` | boolean                                                                                                                                           | indicates whether `Drawer` is visibile                |
-| `useDrawer`       | boolean                                                                                                                                           | indicates whether `Drawer` is used instead of `Sider` |
-| `sidebarState`    | `Enum { 'openSidebar' | 'collapsedSidebar' | 'openDrawer' | 'closedDrawer'` }` | based on previous 3 values, indicates one of 4 states of sidebar |
-| `sidebarTheme`    | 'light' \| 'dark'                                                                                                                                 | color theme of the sidebar                            |
-| `toggle`          | VoidFunction                                                                                                                                      | toggle sidebar from outside                           |
+| name              | type              | description                                                                                                                        |
+| ----------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `isCollapsed`     | boolean           | indicates whether sidebar is collapsed                                                                                             |
+| `isDrawerVisible` | boolean           | indicates whether `Drawer` is visibile                                                                                             |
+| `useDrawer`       | boolean           | indicates whether `Drawer` is used instead of `Sider`                                                                              |
+| `sidebarState`    | Enum              | based on previous 3 values, indicates one of 4 states of sidebar (`openSidebar`, `collapsedSidebar`, `openDrawer`, `closedDrawer`) |
+| `sidebarTheme`    | 'light' \| 'dark' | color theme of the sidebar                                                                                                         |
+| `toggle`          | VoidFunction      | toggle sidebar from outside                                                                                                        |
