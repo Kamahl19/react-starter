@@ -47,8 +47,8 @@ const SidebarContent = () => (
 
 SidebarMenu is a simple wrapper over [Ant's Menu](https://ant.design/components/menu/) with the same API with 2 differences:
 
-- `theme` is set automatically according to the AdminLayout's `sidebarTheme`
-- `mode` is set automatically. Default is `inline` but when sidebar is collapsed it uses `vertical` mode
+- `theme` defaults to the value of `sidebarTheme`
+- `mode` defaults to `inline` when open but when sidebar is collapsed it defaults to `vertical`
 
 ### `AdminLayoutContext`
 

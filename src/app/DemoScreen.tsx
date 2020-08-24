@@ -1,6 +1,6 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, ReactNode } from 'react';
 import { connect } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
 
 import { selectUser } from 'common/services/auth';
@@ -14,6 +14,7 @@ import {
 } from 'common/components/AdminLayout';
 import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
 
+import { rootPath } from 'config';
 import { RootState } from './store';
 
 /**
@@ -31,7 +32,7 @@ const DemoScreen = ({ user }: Props) => (
   <AdminLayout
     logo={<Logo />}
     headerContent={
-      <div style={{ flex: 1, textAlign: 'right', paddingRight: 22 }}>
+      <div style={{ flex: 1, textAlign: 'right', paddingRight: 24 }}>
         <Link to={AUTH_ROUTER_PATHS.logout}>Logout</Link>
       </div>
     }
@@ -50,39 +51,39 @@ const DemoScreen = ({ user }: Props) => (
 
 export default connect(mapStateToProps)(IsLoggedIn(DemoScreen));
 
-const Logo = () => {
+const Logo = () => (
+  <h1 style={{ color: 'white', margin: 0, padding: '20px 0', textAlign: 'center' }}>Logo</h1>
+);
+
+const Label = ({ icon, text }: { icon: ReactNode; text: ReactNode }) => {
   const { sidebarState } = useContext(AdminLayoutContext);
 
-  return (
-    <h1
-      style={{
-        color: sidebarState === SidebarState.CLOSED_DRAWER ? 'black' : 'white',
-        margin: 0,
-        padding: sidebarState === SidebarState.CLOSED_DRAWER ? '0 20px' : '20px 0',
-        textAlign: 'center',
-      }}
-    >
-      Logo
-    </h1>
+  return sidebarState === SidebarState.COLLAPSED_SIDEBAR ? (
+    <>{icon}</>
+  ) : (
+    <>
+      {icon} {text}
+    </>
   );
 };
 
-const Sidebar = () => {
+function useSelectedKeys() {
   const { pathname } = useLocation();
-  const { toggle, sidebarState } = useContext(AdminLayoutContext);
+  const matchRootPath = useRouteMatch(rootPath);
 
-  const onClick = useCallback(
-    () => (sidebarState === SidebarState.OPEN_DRAWER ? toggle() : undefined),
-    [sidebarState, toggle]
-  );
+  if (matchRootPath) {
+    return [rootPath];
+  }
 
-  return (
-    <SidebarMenu onClick={onClick} selectedKeys={[pathname]}>
-      <SidebarMenu.Item key="/">
-        <Link to="/">
-          <HomeOutlined /> Home
-        </Link>
-      </SidebarMenu.Item>
-    </SidebarMenu>
-  );
-};
+  return [pathname];
+}
+
+const Sidebar = () => (
+  <SidebarMenu selectedKeys={useSelectedKeys()}>
+    <SidebarMenu.Item key={rootPath}>
+      <Link to={rootPath}>
+        <Label icon={<HomeOutlined />} text="Home" />
+      </Link>
+    </SidebarMenu.Item>
+  </SidebarMenu>
+);

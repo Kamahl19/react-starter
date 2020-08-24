@@ -95,7 +95,6 @@ const AdminLayout = ({
         )}
         <Layout className="admin-layout-main">
           <Header className="admin-layout-main-header">
-            {useDrawer && logo}
             <span
               className="admin-layout-sidebar-trigger"
               onClick={useDrawer ? toggleIsDrawerVisible : toggleIsCollapsed}
