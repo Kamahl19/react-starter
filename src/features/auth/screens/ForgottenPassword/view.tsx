@@ -2,15 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 
-// import { ForgottenPasswordPayload } from 'common/ApiTypes';
+import { ForgottenPasswordPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO type onSubmit arg as ForgottenPasswordPayload
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: ForgottenPasswordPayload) => void;
 };
 
 const ForgottenPasswordForm = ({ isLoading, onSubmit }: Props) => {

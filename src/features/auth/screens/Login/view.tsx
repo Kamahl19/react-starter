@@ -3,16 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Form, Input } from 'antd';
 
-// import { LoginPayload } from 'common/ApiTypes';
+import { LoginPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
 import { AUTH_ROUTER_PATHS } from '../../routes';
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO type onSubmit arg as LoginPayload
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: LoginPayload) => void;
 };
 
 const LoginForm = ({ isLoading, onSubmit }: Props) => {

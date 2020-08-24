@@ -2,15 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 
-// import { ResetPasswordPayload } from 'common/ApiTypes';
+import { ResetPasswordPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO type onSubmit arg as ResetPasswordPayload
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: Omit<ResetPasswordPayload, 'passwordResetToken'>) => void;
 };
 
 const ResetPasswordForm = ({ isLoading, onSubmit }: Props) => {

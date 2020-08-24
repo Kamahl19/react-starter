@@ -2,15 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 
-// import { SignUpPayload } from 'common/ApiTypes';
+import { SignUpPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
 import AuthLayout from '../../components/AuthLayout';
 
-// TODO type onSubmit arg as SignUpPayload
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: any) => void;
+  onSubmit: (values: SignUpPayload) => void;
 };
 
 const SignUpForm = ({ isLoading, onSubmit }: Props) => {
