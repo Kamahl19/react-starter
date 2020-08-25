@@ -12,7 +12,7 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=10",
+    "node": ">=12",
     "yarn": "1.x"
   },
   "scripts": {
