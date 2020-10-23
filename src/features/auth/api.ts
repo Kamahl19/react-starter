@@ -16,7 +16,7 @@ export const apiCallIds = {
   RESET_PASSWORD: 'RESET_PASSWORD',
 };
 
-export default {
+const api = {
   login: (data: LoginPayload) =>
     trackProgress(apiClient.post<AuthResponse>('/auth/login', data), apiCallIds.LOGIN),
 
@@ -37,3 +37,5 @@ export default {
   activateAccount: ({ userId, activationToken }: ActivateAccountPayload) =>
     trackProgress(apiClient.get<AuthResponse>(`/users/${userId}/activate/${activationToken}`)),
 };
+
+export default api;

@@ -5,11 +5,12 @@ import { render } from 'react-dom';
 import 'app/styles/main.css';
 import Root from 'app/Root';
 
-import * as serviceWorker from './serviceWorker';
+import reportWebVitals from './reportWebVitals';
 
-render(<Root />, document.getElementById('root'));
+render(
+  <Root />, // TODO replace with <React.StrictMode><Root /></React.StrictMode> once Antd supports it
+  document.getElementById('root')
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Learn more https://bit.ly/CRA-vitals
+reportWebVitals(console.log);

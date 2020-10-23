@@ -12,7 +12,6 @@ export const Basic = () => (
   </ErrorBoundary>
 );
 
-function Throw() {
+function Throw(): JSX.Element {
   throw new Error();
-  return <></>; // eslint-disable-line
 }
