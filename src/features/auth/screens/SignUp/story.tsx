@@ -4,10 +4,12 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import SignUp from './view';
 
-export default {
+const conf = {
   title: 'auth/SignUp',
   decorators: [withKnobs],
 };
+
+export default conf;
 
 export const Basic = () => (
   <SignUp isLoading={boolean('isLoading', false)} onSubmit={action('submit')} />

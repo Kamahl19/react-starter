@@ -2,9 +2,11 @@ import React from 'react';
 
 import AuthLayout from './';
 
-export default {
+const conf = {
   title: 'auth/AuthLayout',
 };
+
+export default conf;
 
 export const Basic = () => (
   <AuthLayout>

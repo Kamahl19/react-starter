@@ -2,9 +2,11 @@ import React from 'react';
 
 import Widget from './';
 
-export default {
+const conf = {
   title: 'common/Widget',
 };
+
+export default conf;
 
 export const Basic = () => (
   <Widget title="Title" extra={<a href="/">More</a>}>

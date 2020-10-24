@@ -9,9 +9,11 @@ import {
 import { AdminLayout, AdminLayoutContext, SidebarMenu, SidebarState } from './';
 const { SubMenu, Item } = SidebarMenu;
 
-export default {
+const conf = {
   title: 'common/AdminLayout',
 };
+
+export default conf;
 
 const HeaderContent = () => (
   <div style={{ flex: 1, textAlign: 'right', paddingRight: 22 }}>Header content</div>

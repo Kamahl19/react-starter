@@ -2,9 +2,11 @@ import React from 'react';
 
 import ErrorBoundary from './';
 
-export default {
+const conf = {
   title: 'common/ErrorBoundary',
 };
+
+export default conf;
 
 export const Basic = () => (
   <ErrorBoundary>

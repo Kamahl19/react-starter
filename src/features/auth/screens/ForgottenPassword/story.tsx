@@ -4,10 +4,12 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import ForgottenPassword from './view';
 
-export default {
+const conf = {
   title: 'auth/ForgottenPassword',
   decorators: [withKnobs],
 };
+
+export default conf;
 
 export const Basic = () => (
   <ForgottenPassword isLoading={boolean('isLoading', false)} onSubmit={action('submit')} />
