@@ -6,7 +6,7 @@ import { Button, Form, Input } from 'antd';
 import { LoginPayload } from 'common/ApiTypes';
 import { useFormRules } from 'common/hooks';
 
-import { AUTH_ROUTER_PATHS } from '../../routes';
+import { AUTH_ROUTER_PATHS } from '../../constants';
 import AuthLayout from '../../components/AuthLayout';
 
 type Props = {

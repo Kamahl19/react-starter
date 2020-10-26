@@ -6,7 +6,7 @@ import {
 import { replace } from 'connected-react-router';
 
 import { RootState } from 'app/store';
-import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
+import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import { selectIsLoggedIn, selectIsAuthenticating } from '../';
 

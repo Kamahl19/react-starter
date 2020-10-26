@@ -12,7 +12,7 @@ import {
   SidebarMenu,
   SidebarState,
 } from 'common/components/AdminLayout';
-import { AUTH_ROUTER_PATHS } from 'features/auth/routes';
+import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import { rootPath } from 'config';
 import { RootState } from './store';

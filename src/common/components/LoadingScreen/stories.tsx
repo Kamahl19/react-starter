@@ -1,11 +1,11 @@
 import React from 'react';
+import { Meta } from '@storybook/react';
 
 import LoadingScreen from './';
 
-const conf = {
+export default {
   title: 'common/LoadingScreen',
-};
-
-export default conf;
+  component: LoadingScreen,
+} as Meta;
 
 export const Basic = () => <LoadingScreen />;

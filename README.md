@@ -23,7 +23,7 @@ Once you start building your own app on top of React Starter you will probably w
 - [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
 - [create-react-app](https://facebook.github.io/create-react-app/) - create React apps with no build configuration
 - [Ant.Design](https://ant.design/) - a UI library
-- [Storybook](https://storybook.js.org/) - a development environment for UI components with [a11y](https://github.com/storybookjs/storybook/tree/master/addons/a11y), [actions](https://github.com/storybookjs/storybook/tree/master/addons/actions), [knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs), [viewport](https://github.com/storybookjs/storybook/tree/master/addons/viewport) and [router](https://github.com/gvaldambrini/storybook-router) addons
+- [Storybook](https://storybook.js.org/) - a development environment for UI components with several usefull addons
 - [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [axios](https://github.com/axios/axios) - promise based HTTP client
 - [i18next](https://www.i18next.com/) - an internationalization framework

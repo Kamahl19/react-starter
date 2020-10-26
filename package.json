@@ -28,8 +28,8 @@
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start less:watch",
-    "storybook:start": "start-storybook -p 9009 -s public -c storybook",
-    "storybook:build": "build-storybook -s public -c storybook",
+    "storybook:start": "start-storybook -p 9009 -s public -c storybook --no-dll",
+    "storybook:build": "build-storybook -s public -c storybook --no-dll",
     "test": "react-scripts test"
   },
   "husky": {
@@ -46,13 +46,10 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "5.3.21",
-    "@storybook/addon-actions": "5.3.21",
-    "@storybook/addon-knobs": "5.3.21",
-    "@storybook/addon-viewport": "5.3.21",
-    "@storybook/addons": "5.3.21",
+    "@storybook/addon-a11y": "6.0.27",
+    "@storybook/addon-essentials": "6.0.27",
     "@storybook/preset-create-react-app": "3.1.4",
-    "@storybook/react": "5.3.21",
+    "@storybook/react": "6.0.27",
     "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "11.1.0",
     "@types/classnames": "2.2.10",
@@ -64,7 +61,6 @@
     "@types/react-responsive": "8.0.2",
     "@types/react-router-dom": "5.1.6",
     "@types/redux-auth-wrapper": "2.0.9",
-    "@types/storybook-react-router": "1.0.1",
     "husky": "4.3.0",
     "i18next-scanner": "2.11.0",
     "i18next-scanner-typescript": "1.0.6",
@@ -75,7 +71,6 @@
     "prettier": "2.1.2",
     "react-scripts": "4.0.0",
     "source-map-explorer": "2.5.0",
-    "storybook-react-router": "1.0.8",
     "typescript": "4.0.3",
     "web-vitals": "0.2.4"
   },
@@ -111,6 +106,16 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/stories.tsx"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "prettier": {

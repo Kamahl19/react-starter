@@ -1,11 +1,11 @@
 import React from 'react';
+import { Meta } from '@storybook/react';
 
 import NotFound from './';
 
-const conf = {
+export default {
   title: 'common/NotFound',
-};
-
-export default conf;
+  component: NotFound,
+} as Meta;
 
 export const Basic = () => <NotFound />;
