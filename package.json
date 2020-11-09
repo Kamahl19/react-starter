@@ -48,7 +48,7 @@
   "devDependencies": {
     "@storybook/addon-a11y": "6.0.28",
     "@storybook/addon-essentials": "6.0.28",
-    "@storybook/preset-create-react-app": "3.1.4",
+    "@storybook/preset-create-react-app": "3.1.5",
     "@storybook/react": "6.0.28",
     "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "11.1.1",
