@@ -21,13 +21,13 @@ import api from './api';
  * ACTIONS
  */
 export const signUpAction = createAction('auth/SIGN_UP')<SignUpPayload>();
-export const forgottenPasswordAction = createAction('auth/FORGOTTEN_PASSWORD')<
-  ForgottenPasswordPayload
->();
+export const forgottenPasswordAction = createAction(
+  'auth/FORGOTTEN_PASSWORD'
+)<ForgottenPasswordPayload>();
 export const resetPasswordAction = createAction('auth/RESET_PASSWORD')<ResetPasswordPayload>();
-export const activateAccountAction = createAction('auth/ACTIVATE_ACCOUNT')<
-  ActivateAccountPayload
->();
+export const activateAccountAction = createAction(
+  'auth/ACTIVATE_ACCOUNT'
+)<ActivateAccountPayload>();
 
 const actions = {
   signUpAction,
