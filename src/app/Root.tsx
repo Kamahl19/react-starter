@@ -1,4 +1,4 @@
-import React, { Suspense, ReactNode } from 'react';
+import { Suspense, ReactNode } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { ConfigProvider, Spin } from 'antd';

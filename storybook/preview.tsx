@@ -1,4 +1,4 @@
-import React, { Suspense, FC } from 'react';
+import { Suspense, FC } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 import 'common/services/i18next';

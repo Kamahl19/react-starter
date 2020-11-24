@@ -1,4 +1,4 @@
-import React, { useContext, ComponentProps } from 'react';
+import { useContext, ComponentProps } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { DashboardOutlined, UserOutlined, LineChartOutlined } from '@ant-design/icons';
 

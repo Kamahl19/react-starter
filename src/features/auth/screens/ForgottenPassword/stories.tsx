@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import { Meta, Story } from '@storybook/react';
 
 import ForgottenPassword from './view';
