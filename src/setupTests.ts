@@ -2,17 +2,14 @@ import '@testing-library/jest-dom';
 
 import './bootstrap';
 
-// Mock window.matchMedia https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
+// Suppress oaf-react-router warning about missing Title
+document.title = 'React App';
+
+// Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
+  value: () => ({
     matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+  }),
 });

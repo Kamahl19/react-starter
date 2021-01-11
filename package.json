@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.3.0",
-    "antd": "4.10.0",
+    "antd": "4.10.1",
     "axios": "0.21.1",
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
@@ -132,6 +132,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
     ]
   }
 }
