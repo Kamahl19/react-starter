@@ -8,7 +8,7 @@ import AuthLayout from '../../components/AuthLayout';
 
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: Omit<ResetPasswordPayload, 'passwordResetToken'>) => void;
+  onSubmit: (values: Omit<ResetPasswordPayload, 'token'>) => void;
 };
 
 const ResetPasswordForm = ({ isLoading, onSubmit }: Props) => {

@@ -14,12 +14,12 @@ import SignUp from './screens/SignUp';
 import { AUTH_ROUTE_PREFIX, AUTH_ROUTER_PATHS } from './constants';
 
 export type ResetPasswordParams = {
-  passwordResetToken: string;
+  token: string;
 };
 
 export type ActivateAccountParams = {
   userId: string;
-  activationToken: string;
+  token: string;
 };
 
 const LoginPage = LoginGuard(Login);

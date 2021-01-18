@@ -12,10 +12,10 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps;
 
 const ActivateAccountContainer = ({ activateAccount }: Props) => {
-  const { userId, activationToken } = useParams<ActivateAccountParams>();
+  const { userId, token } = useParams<ActivateAccountParams>();
 
   useEffect(() => {
-    activateAccount({ userId, activationToken });
+    activateAccount({ userId, token });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null;

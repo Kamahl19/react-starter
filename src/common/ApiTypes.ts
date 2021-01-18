@@ -30,7 +30,7 @@ export type LoginPayload = {
 
 export type ActivateAccountPayload = {
   userId: Id;
-  activationToken: string;
+  token: Token;
 };
 
 export type ForgottenPasswordPayload = {
@@ -40,5 +40,5 @@ export type ForgottenPasswordPayload = {
 export type ResetPasswordPayload = {
   email: string;
   password: string;
-  passwordResetToken: string;
+  token: Token;
 };

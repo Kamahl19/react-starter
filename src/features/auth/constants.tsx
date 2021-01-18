@@ -5,6 +5,6 @@ export const AUTH_ROUTER_PATHS = {
   logout: `${AUTH_ROUTE_PREFIX}/logout`,
   signUp: `${AUTH_ROUTE_PREFIX}/sign-up`,
   forgottenPassword: `${AUTH_ROUTE_PREFIX}/forgotten-password`,
-  resetPassword: `${AUTH_ROUTE_PREFIX}/reset-password/:passwordResetToken`,
-  activateAccount: `${AUTH_ROUTE_PREFIX}/activate/:userId/:activationToken`,
+  resetPassword: `${AUTH_ROUTE_PREFIX}/reset-password/:token`,
+  activateAccount: `${AUTH_ROUTE_PREFIX}/activate/:userId/:token`,
 };

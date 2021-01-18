@@ -34,8 +34,8 @@ const api = {
       apiCallIds.RESET_PASSWORD
     ),
 
-  activateAccount: ({ userId, activationToken }: ActivateAccountPayload) =>
-    trackProgress(apiClient.get<AuthResponse>(`/users/${userId}/activate/${activationToken}`)),
+  activateAccount: ({ userId, token }: ActivateAccountPayload) =>
+    trackProgress(apiClient.get<AuthResponse>(`/users/${userId}/activate/${token}`)),
 };
 
 export default api;

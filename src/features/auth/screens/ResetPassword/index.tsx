@@ -16,12 +16,12 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps;
 
 const ResetPasswordContainer = ({ resetPassword }: Props) => {
-  const { passwordResetToken } = useParams<ResetPasswordParams>();
+  const { token } = useParams<ResetPasswordParams>();
   const isInProgress = useTrackProgress(apiCallIds.RESET_PASSWORD);
 
-  const onSubmit = useCallback((values) => resetPassword({ ...values, passwordResetToken }), [
+  const onSubmit = useCallback((values) => resetPassword({ ...values, token }), [
     resetPassword,
-    passwordResetToken,
+    token,
   ]);
 
   return <ResetPassword isLoading={isInProgress} onSubmit={onSubmit} />;
