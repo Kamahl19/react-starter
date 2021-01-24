@@ -1,5 +1,4 @@
-import { Card } from 'antd';
-import { CardProps } from 'antd/lib/card';
+import { Card, CardProps } from 'antd';
 
 interface WidgetProps extends CardProps {}
 

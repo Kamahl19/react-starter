@@ -1,6 +1,5 @@
 import { ReactNode, useContext, useCallback } from 'react';
-import { Menu } from 'antd';
-import { MenuProps } from 'antd/lib/menu';
+import { Menu, MenuProps } from 'antd';
 import cn from 'classnames';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';

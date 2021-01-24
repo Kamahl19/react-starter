@@ -1,7 +1,7 @@
 import { ReactNode, useState, useCallback } from 'react';
 import { Layout, Drawer } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, MenuOutlined } from '@ant-design/icons';
-import { SiderProps } from 'antd/lib/layout/Sider';
+import { SiderProps } from 'antd/lib/layout';
 import cn from 'classnames';
 import { useMediaQuery } from 'react-responsive';
 
