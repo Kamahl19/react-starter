@@ -19,12 +19,12 @@
     "analyze": "yarn build && source-map-explorer 'build/static/js/*.js'",
     "build": "yarn less:build && react-scripts build",
     "eject": "react-scripts eject",
-    "format": "prettier --write '**/*.{ts,tsx,json,less,md,html,yml,yaml}'",
-    "format-check": "prettier --check '**/*.{ts,tsx,json,less,md,html,yml,yaml}'",
+    "format": "prettier --write . --ignore-unknown",
+    "format-check": "prettier --check . --ignore-unknown",
     "extract-translations": "i18next-scanner",
     "less:build": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "less:watch": "yarn less:build && nodemon --ext less --exec 'yarn less:build'",
-    "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.{ts,tsx}'",
+    "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.{js,ts,tsx}'",
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start less:watch",
@@ -38,11 +38,11 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{js,ts,tsx}": [
       "yarn lint --fix"
     ],
-    "*.{ts,tsx,json,less,md,html,yml,yaml}": [
-      "prettier --write"
+    "**/*": [
+      "prettier --write --ignore-unknown"
     ]
   },
   "devDependencies": {
