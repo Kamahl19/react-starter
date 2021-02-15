@@ -24,7 +24,7 @@
     "extract-translations": "i18next-scanner",
     "less:build": "lessc --js --rewrite-urls=all --include-path=node_modules src/app/styles/main.less src/app/styles/main.css",
     "less:watch": "yarn less:build && nodemon --ext less --exec 'yarn less:build'",
-    "lint": "node ./node_modules/eslint/bin/eslint.js '**/*.{js,ts,tsx}'",
+    "lint": "eslint . --ext .js,.ts,.tsx",
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
     "storybook": "npm-run-all -p storybook:start less:watch",
@@ -39,7 +39,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "yarn lint --fix"
+      "elint --fix"
     ],
     "**/*": [
       "prettier --write --ignore-unknown"
