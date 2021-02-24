@@ -79,7 +79,7 @@
     "antd": "4.12.3",
     "axios": "0.21.1",
     "classnames": "2.2.6",
-    "connected-react-router": "6.8.0",
+    "connected-react-router": "6.9.1",
     "history": "4.10.1",
     "i18next": "19.9.0",
     "i18next-xhr-backend": "3.2.2",
