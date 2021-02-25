@@ -1,4 +1,4 @@
-import 'bootstrap';
+import './bootstrap';
 import { render } from 'react-dom';
 
 import 'app/styles/main.css';
