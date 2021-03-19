@@ -75,7 +75,7 @@
     "web-vitals": "1.1.1"
   },
   "dependencies": {
-    "@ant-design/icons": "4.5.0",
+    "@ant-design/icons": "4.6.1",
     "antd": "4.14.0",
     "axios": "0.21.1",
     "classnames": "2.2.6",
