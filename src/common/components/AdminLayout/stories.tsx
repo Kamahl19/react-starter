@@ -28,29 +28,17 @@ function SidebarContent() {
 
   return (
     <SidebarMenu defaultSelectedKeys={['1']}>
-      <Item key="1">
-        <DashboardOutlined />
+      <Item key="1" icon={<DashboardOutlined />}>
         Dashboard
       </Item>
-      <SubMenu
-        key="sub1"
-        title={
-          <>
-            <UserOutlined />
-            Users
-          </>
-        }
-      >
-        <Item key="2">
-          <LineChartOutlined />
+      <SubMenu key="sub1" icon={<UserOutlined />} title="Users">
+        <Item key="2" icon={<LineChartOutlined />}>
           Option 1
         </Item>
-        <Item key="3">
-          <LineChartOutlined />
+        <Item key="3" icon={<LineChartOutlined />}>
           Option 2
         </Item>
-        <Item key="4">
-          <LineChartOutlined />
+        <Item key="4" icon={<LineChartOutlined />}>
           Option 3
         </Item>
       </SubMenu>

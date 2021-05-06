@@ -1,4 +1,3 @@
-import { useContext, ReactNode } from 'react';
 import { connect } from 'react-redux';
 import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
@@ -6,12 +5,7 @@ import { HomeOutlined } from '@ant-design/icons';
 import { selectUser } from 'common/services/auth';
 import IsLoggedIn from 'common/services/auth/guards/IsLoggedIn';
 import { Widget } from 'common/components';
-import {
-  AdminLayout,
-  AdminLayoutContext,
-  SidebarMenu,
-  SidebarState,
-} from 'common/components/AdminLayout';
+import { AdminLayout, SidebarMenu } from 'common/components/AdminLayout';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import { rootPath } from 'config';
@@ -55,18 +49,6 @@ const Logo = () => (
   <h1 style={{ color: 'white', margin: 0, padding: '20px 0', textAlign: 'center' }}>Logo</h1>
 );
 
-const Label = ({ icon, text }: { icon: ReactNode; text: ReactNode }) => {
-  const { sidebarState } = useContext(AdminLayoutContext);
-
-  return sidebarState === SidebarState.COLLAPSED_SIDEBAR ? (
-    <>{icon}</>
-  ) : (
-    <>
-      {icon} {text}
-    </>
-  );
-};
-
 function useSelectedKeys() {
   const { pathname } = useLocation();
   const matchRootPath = useRouteMatch(rootPath);
@@ -80,10 +62,8 @@ function useSelectedKeys() {
 
 const Sidebar = () => (
   <SidebarMenu selectedKeys={useSelectedKeys()}>
-    <SidebarMenu.Item key={rootPath}>
-      <Link to={rootPath}>
-        <Label icon={<HomeOutlined />} text="Home" />
-      </Link>
+    <SidebarMenu.Item key={rootPath} icon={<HomeOutlined />}>
+      <Link to={rootPath}>Home</Link>
     </SidebarMenu.Item>
   </SidebarMenu>
 );

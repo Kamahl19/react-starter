@@ -23,7 +23,9 @@ const Logo = () => {
 
 const SidebarContent = () => (
   <SidebarMenu>
-    <Item key="1">Menu item 1</Item>
+    <Item key="1" icon={<HomeOutlined />}>
+      Menu item 1
+    </Item>
   </SidebarMenu>
 );
 ```
@@ -45,10 +47,11 @@ const SidebarContent = () => (
 
 ### `SidebarMenu`
 
-SidebarMenu is a simple wrapper over [Ant's Menu](https://ant.design/components/menu/) with the same API with 2 differences:
+SidebarMenu is a simple wrapper over [Ant's Menu](https://ant.design/components/menu/) with the same API with these differences:
 
+- `mode` is set to `inline`
 - `theme` defaults to the value of `sidebarTheme`
-- `mode` defaults to `inline` when open but when sidebar is collapsed it defaults to `vertical`
+- `Menu.Item`'s `onClick` closes drawer on mobile
 
 ### `AdminLayoutContext`
 

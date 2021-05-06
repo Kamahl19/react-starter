@@ -1,6 +1,5 @@
 import { ReactNode, useContext, useCallback } from 'react';
 import { Menu, MenuProps } from 'antd';
-import cn from 'classnames';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
@@ -8,8 +7,8 @@ interface SidebarMenuProps extends MenuProps {
   children: ReactNode;
 }
 
-const SidebarMenu = ({ className, onClick, ...props }: SidebarMenuProps) => {
-  const { sidebarTheme, isCollapsed, toggle, sidebarState } = useContext(AdminLayoutContext);
+const SidebarMenu = ({ onClick, ...props }: SidebarMenuProps) => {
+  const { sidebarTheme, toggle, sidebarState } = useContext(AdminLayoutContext);
 
   const menuOnClick: SidebarMenuProps['onClick'] = useCallback(
     (info) => {
@@ -24,15 +23,7 @@ const SidebarMenu = ({ className, onClick, ...props }: SidebarMenuProps) => {
     [onClick, toggle, sidebarState]
   );
 
-  return (
-    <Menu
-      className={cn('admin-layout-sidebar-menu', className)}
-      mode={isCollapsed ? 'vertical' : 'inline'}
-      theme={sidebarTheme}
-      onClick={menuOnClick}
-      {...props}
-    />
-  );
+  return <Menu mode="inline" theme={sidebarTheme} onClick={menuOnClick} {...props} />;
 };
 
 SidebarMenu.Divider = Menu.Divider;

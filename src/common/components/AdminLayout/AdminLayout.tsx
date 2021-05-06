@@ -1,6 +1,6 @@
 import { ReactNode, useState, useCallback } from 'react';
 import { Layout, Drawer } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { SiderProps } from 'antd/lib/layout';
 import cn from 'classnames';
 import { useMediaQuery } from 'react-responsive';
@@ -62,11 +62,11 @@ const AdminLayout = ({
   const Sidebar = (
     <Sider
       className="admin-layout-sidebar"
-      collapsible
-      collapsed={useDrawer ? false : isCollapsed}
+      collapsible={!useDrawer}
+      collapsed={isCollapsed}
+      onCollapse={setIsCollapsed}
       collapsedWidth={sidebarCollapsedWidth}
       theme={sidebarTheme}
-      trigger={null}
       width={sidebarWidth}
     >
       <div className="admin-layout-sidebar-logo">{logo}</div>
@@ -95,20 +95,11 @@ const AdminLayout = ({
         )}
         <Layout className="admin-layout-main">
           <Header className="admin-layout-main-header">
-            <span
-              className="admin-layout-sidebar-trigger"
-              onClick={useDrawer ? toggleIsDrawerVisible : toggleIsCollapsed}
-            >
-              {useDrawer ? (
-                !isDrawerVisible ? (
-                  <MenuOutlined />
-                ) : null
-              ) : !useDrawer && isCollapsed ? (
-                <MenuUnfoldOutlined />
-              ) : (
-                <MenuFoldOutlined />
-              )}
-            </span>
+            {useDrawer && (
+              <span className="admin-layout-drawer-trigger" onClick={toggleIsDrawerVisible}>
+                <MenuOutlined />
+              </span>
+            )}
             {headerContent}
           </Header>
           <Content className="admin-layout-main-content">{children}</Content>
