@@ -34,7 +34,7 @@ const LoginForm = ({ isLoading, onSubmit }: Props) => {
         >
           <Input.Password
             placeholder={t('logIn.password.placeholder', {
-              defaultValue: 'Enter Password',
+              defaultValue: 'Password',
             })}
           />
         </Form.Item>

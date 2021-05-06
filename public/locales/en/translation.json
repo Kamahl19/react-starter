@@ -23,7 +23,7 @@
     "forgotPassword": "Forgot password?",
     "logIn": "Log In",
     "password": {
-      "placeholder": "Enter Password"
+      "placeholder": "Password"
     }
   },
   "nav": {
@@ -40,7 +40,7 @@
       "label": "New Password"
     },
     "password": {
-      "placeholder": "Enter New Password"
+      "placeholder": "New Password"
     }
   },
   "signUp": {

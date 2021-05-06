@@ -35,7 +35,7 @@ const ResetPasswordForm = ({ isLoading, onSubmit }: Props) => {
         >
           <Input.Password
             placeholder={t('resetPassword.password.placeholder', {
-              defaultValue: 'Enter New Password',
+              defaultValue: 'New Password',
             })}
           />
         </Form.Item>
