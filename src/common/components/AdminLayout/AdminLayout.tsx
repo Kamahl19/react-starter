@@ -47,15 +47,15 @@ const AdminLayout = ({
   const toggleIsCollapsed = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);
 
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const toggleIsDrawerVisible = useCallback(() => setIsDrawerVisible(!isDrawerVisible), [
-    isDrawerVisible,
-  ]);
+  const toggleIsDrawerVisible = useCallback(
+    () => setIsDrawerVisible(!isDrawerVisible),
+    [isDrawerVisible]
+  );
 
-  const toggle = useCallback(() => (useDrawer ? toggleIsDrawerVisible() : toggleIsCollapsed()), [
-    useDrawer,
-    toggleIsDrawerVisible,
-    toggleIsCollapsed,
-  ]);
+  const toggle = useCallback(
+    () => (useDrawer ? toggleIsDrawerVisible() : toggleIsCollapsed()),
+    [useDrawer, toggleIsDrawerVisible, toggleIsCollapsed]
+  );
 
   const sidebarState = getSidebarState({ useDrawer, isCollapsed, isDrawerVisible });
 

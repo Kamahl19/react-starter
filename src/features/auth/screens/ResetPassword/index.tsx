@@ -19,10 +19,10 @@ const ResetPasswordContainer = ({ resetPassword }: Props) => {
   const { token } = useParams<ResetPasswordParams>();
   const isInProgress = useTrackProgress(apiCallIds.RESET_PASSWORD);
 
-  const onSubmit = useCallback((values) => resetPassword({ ...values, token }), [
-    resetPassword,
-    token,
-  ]);
+  const onSubmit = useCallback(
+    (values) => resetPassword({ ...values, token }),
+    [resetPassword, token]
+  );
 
   return <ResetPassword isLoading={isInProgress} onSubmit={onSubmit} />;
 };
