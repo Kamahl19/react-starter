@@ -1,22 +1,12 @@
 import { ReactNode, useState, useCallback } from 'react';
-import { Layout, Drawer } from 'antd';
+import { Layout, Drawer, Grid } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { SiderProps } from 'antd/lib/layout';
 import cn from 'classnames';
-import { useMediaQuery } from 'react-responsive';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
 const { Sider, Header, Content } = Layout;
-
-const MAX_WIDTH_MAP = {
-  xs: 575,
-  sm: 767,
-  md: 991,
-  lg: 1199,
-  xl: 1599,
-  xxl: Infinity,
-};
 
 type AdminLayoutProps = {
   className?: string;
@@ -24,7 +14,7 @@ type AdminLayoutProps = {
   children?: ReactNode;
   headerContent?: ReactNode;
   sidebarContent?: ReactNode;
-  sidebarBreakpoint?: SiderProps['breakpoint'];
+  sidebarBreakpoint?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   sidebarCollapsedWidth?: SiderProps['collapsedWidth'];
   sidebarWidth?: SiderProps['width'];
   sidebarTheme?: SiderProps['theme'];
@@ -36,12 +26,14 @@ const AdminLayout = ({
   children,
   headerContent,
   sidebarContent,
-  sidebarBreakpoint = 'md',
+  sidebarBreakpoint = 'lg',
   sidebarCollapsedWidth = 80,
   sidebarWidth = 256,
   sidebarTheme = 'dark',
 }: AdminLayoutProps) => {
-  const useDrawer = useMediaQuery({ maxWidth: MAX_WIDTH_MAP[sidebarBreakpoint] });
+  const { [sidebarBreakpoint]: isBreakpoint } = Grid.useBreakpoint();
+
+  const useDrawer = !isBreakpoint;
 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleIsCollapsed = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);

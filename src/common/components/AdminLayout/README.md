@@ -34,16 +34,16 @@ const SidebarContent = () => (
 
 ### `AdminLayout` props
 
-| name                    | type                                          | default | description                                   |
-| ----------------------- | --------------------------------------------- | ------- | --------------------------------------------- |
-| `logo`                  | ReactNode                                     |         | custom logo                                   |
-| `children`              | ReactNode                                     |         | main content                                  |
-| `headerContent`         | ReactNode                                     |         | header content eg. search & user dropdown     |
-| `sidebarContent`        | ReactNode                                     |         | sidebar content eg. `SidebarMenu`             |
-| `sidebarBreakpoint`     | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' | 'md'    | breakpoint to use `Drawer` instead of `Sider` |
-| `sidebarCollapsedWidth` | number \| string                              | 80      | width of the collapsed sidebar                |
-| `sidebarWidth`          | number \| string                              | 256     | width of the sidebar                          |
-| `sidebarTheme`          | 'light' \| 'dark'                             | 'dark'  | color theme of the sidebar                    |
+| name                    | type                                  | default | description                                   |
+| ----------------------- | ------------------------------------- | ------- | --------------------------------------------- |
+| `logo`                  | ReactNode                             |         | custom logo                                   |
+| `children`              | ReactNode                             |         | main content                                  |
+| `headerContent`         | ReactNode                             |         | header content eg. search & user dropdown     |
+| `sidebarContent`        | ReactNode                             |         | sidebar content eg. `SidebarMenu`             |
+| `sidebarBreakpoint`     | 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' | 'lg'    | breakpoint to use `Drawer` instead of `Sider` |
+| `sidebarCollapsedWidth` | number \| string                      | 80      | width of the collapsed sidebar                |
+| `sidebarWidth`          | number \| string                      | 256     | width of the sidebar                          |
+| `sidebarTheme`          | 'light' \| 'dark'                     | 'dark'  | color theme of the sidebar                    |
 
 ### `SidebarMenu`
 

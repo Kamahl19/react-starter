@@ -1,9 +1,7 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Popover, Menu } from 'antd';
-import { responsiveMap } from 'antd/lib/_util/responsiveObserve';
+import { Popover, Menu, Grid } from 'antd';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
-import { useMediaQuery } from 'react-responsive';
 
 type Props = {
   children: ReactNode;
@@ -12,7 +10,9 @@ type Props = {
 const Navbar = ({ children }: Props) => {
   const { pathname } = useLocation();
 
-  return useMediaQuery({ query: responsiveMap.md }) ? (
+  const { md } = Grid.useBreakpoint();
+
+  return md ? (
     <Menu className="navbar-menu" mode="horizontal" selectedKeys={[pathname]}>
       {children}
     </Menu>
