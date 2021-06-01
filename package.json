@@ -78,7 +78,7 @@
     "classnames": "2.3.1",
     "connected-react-router": "6.9.1",
     "history": "4.10.1",
-    "i18next": "20.3.0",
+    "i18next": "20.3.1",
     "i18next-xhr-backend": "3.2.2",
     "localforage": "1.9.0",
     "oaf-react-router": "2.1.1",
