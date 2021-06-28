@@ -58,7 +58,7 @@
     "@types/react-dom": "17.0.8",
     "@types/react-router-dom": "5.1.7",
     "@types/redux-auth-wrapper": "2.0.9",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "i18next-scanner": "3.0.0",
     "i18next-scanner-typescript": "1.0.6",
     "less": "4.1.1",
