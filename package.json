@@ -77,7 +77,7 @@
     "axios": "0.21.1",
     "classnames": "2.3.1",
     "connected-react-router": "6.9.1",
-    "history": "4.10.1",
+    "history": "5.0.0",
     "i18next": "20.3.2",
     "i18next-xhr-backend": "3.2.2",
     "localforage": "1.9.0",
