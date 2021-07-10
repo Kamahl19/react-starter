@@ -2763,10 +2763,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/redux-auth-wrapper@2.0.9":
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/@types/redux-auth-wrapper/-/redux-auth-wrapper-2.0.9.tgz#8a1beb8e171605adc4e0b2a7b0840b896358f8d1"
-  integrity sha512-LrsE5X1aV/d4ZqUjFTifopEvGbFC4jNjbOGd/UgoYsZ43AsQu6JKy3Y4W5OZX5BrslifdwTSVSrADYdOmthveA==
+"@types/redux-auth-wrapper@2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@types/redux-auth-wrapper/-/redux-auth-wrapper-2.0.10.tgz#6047a51bc3ff892d41656b72f6e5ab6e3696ccc2"
+  integrity sha512-BPA2LOupyZ+KgYARBJtaaRV8AlLXd5UMMQnZelnOkDjSKIbb+X24Uxe4kHX5gMATvSj09wzM/aZ+iSaA8XGMRQ==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
