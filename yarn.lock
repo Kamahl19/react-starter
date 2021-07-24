@@ -3378,10 +3378,10 @@ ansi-to-html@^0.6.11:
   dependencies:
     entities "^1.1.2"
 
-antd@4.16.6:
-  version "4.16.6"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.16.6.tgz#5f79fa103bbd8be30fac74142ef1bbf8bc872491"
-  integrity sha512-E7T+GClZPGjPUfmiuTbQK4+OfvsQ/Ksi5C71Bm4dwz1wlbJ4CqfxhIlpBypod9fe8mCI+bVAjtBoUpR1q/6Sow==
+antd@4.16.8:
+  version "4.16.8"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.16.8.tgz#0a81f846eb6b356159839d18247b713d04b526d6"
+  integrity sha512-xM1zheIYvS/0x05sM3Yj5cwBu6TjzS7RdwQug1bgbtDAk94dacuFvdLa4PjsvEiG6kz0uNzaaIaDBis7LRH5hA==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.6.2"
