@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.6.2",
-    "antd": "4.16.8",
+    "antd": "4.16.9",
     "axios": "0.21.1",
     "classnames": "2.3.1",
     "connected-react-router": "6.9.1",
