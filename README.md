@@ -27,7 +27,7 @@ Once you start building your own app on top of React Starter you will probably w
 - [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [axios](https://github.com/axios/axios) - promise based HTTP client
 - [i18next](https://www.i18next.com/) - an internationalization framework
-  - [i18next scanner](https://github.com/i18next/i18next-scanner) - scans the code, extracts translation keys/values and produces i18n resource file
+  - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys/values and produces i18n resource file
 - [LESS](http://lesscss.org/) - dynamic stylesheet language
 - [redux](https://redux.js.org/) - a state container
   - [redux-saga](https://github.com/redux-saga/redux-saga) - a side effect model for Redux apps
