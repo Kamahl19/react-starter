@@ -12,7 +12,7 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=12.13",
+    "node": ">=14.14",
     "yarn": "1.x"
   },
   "scripts": {
@@ -53,8 +53,8 @@
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
     "@types/jest": "26.0.24",
-    "@types/node": "15.12.0",
-    "@types/react": "17.0.18",
+    "@types/node": "16.7.4",
+    "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
     "@types/react-router-dom": "5.1.8",
     "@types/redux-auth-wrapper": "2.0.10",
@@ -68,26 +68,26 @@
     "prettier": "2.3.2",
     "react-scripts": "4.0.3",
     "source-map-explorer": "2.5.2",
-    "typescript": "4.3.5",
-    "web-vitals": "1.1.2"
+    "typescript": "4.4.2",
+    "web-vitals": "2.1.0"
   },
   "dependencies": {
-    "@ant-design/icons": "4.6.3",
-    "antd": "4.16.12",
+    "@ant-design/icons": "4.6.4",
+    "antd": "4.16.13",
     "axios": "0.21.1",
     "classnames": "2.3.1",
     "connected-react-router": "6.9.1",
     "history": "4.10.1",
     "i18next": "20.4.0",
     "i18next-xhr-backend": "3.2.2",
-    "localforage": "1.9.0",
+    "localforage": "1.10.0",
     "oaf-react-router": "2.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-i18next": "11.11.4",
     "react-promise-tracker": "2.1.0",
     "react-redux": "7.2.4",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "5.2.1",
     "redux": "4.1.1",
     "redux-auth-wrapper": "3.0.0",
     "redux-devtools-extension": "2.13.9",

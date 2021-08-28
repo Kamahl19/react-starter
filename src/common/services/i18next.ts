@@ -25,6 +25,9 @@ i18next
     interpolation: {
       escapeValue: false,
     },
+    react: {
+      transWrapTextNodes: 'span',
+    },
   });
 
 export const t = i18next.t.bind(i18next);
