@@ -4994,10 +4994,10 @@ commander@^7.2.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
-commander@~8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-8.1.0.tgz#db36e3e66edf24ff591d639862c6ab2c52664362"
-  integrity sha512-mf45ldcuHSYShkplHHGKWb4TrmwQadxOn7v4WuhDJy0ZVoY5JFajaRDKD0PNe5qXzBX0rhovjTnP6Kz9LETcuA==
+commander@~8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-8.2.0.tgz#37fe2bde301d87d47a53adeff8b5915db1381ca8"
+  integrity sha512-LLKxDvHeL91/8MIyTAD5BFMNtoIwztGPMiM/7Bl8rIPmHCZXRxmSWr91h57dpOpnQ6jIUqEWdXE/uBYMfiVZDA==
 
 common-tags@^1.8.0:
   version "1.8.0"
@@ -8131,15 +8131,15 @@ husky@4.3.8:
     slash "^3.0.0"
     which-pm-runs "^1.0.0"
 
-i18next-parser@4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/i18next-parser/-/i18next-parser-4.4.0.tgz#5c1166c7b1154784cc65977a31689184b175a7a0"
-  integrity sha512-+fuvFFtEB3wQZPxkxpNXJtvg8EyKIQz4VwT/6UILjTqQkv8SHjkFG18DGAdqOdtLo098k3vkYAc9OTSyGlKJfg==
+i18next-parser@4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/i18next-parser/-/i18next-parser-4.7.0.tgz#18471cc92074a31bdc132044d0a6084b02b22cd7"
+  integrity sha512-oRPNf68ibfrheEdbcT7Vp769Es/qKPR20Eg3hPcGesOn/XSJ3faMCtyy0FBSdmiof16/jD535UxAobERW2HreQ==
   dependencies:
     broccoli-plugin "^4.0.5"
     cheerio "^1.0.0-rc.2"
     colors "~1.4.0"
-    commander "~8.1.0"
+    commander "~8.2.0"
     concat-stream "~2.0.0"
     eol "^0.9.1"
     fs-extra "^10.0.0"
