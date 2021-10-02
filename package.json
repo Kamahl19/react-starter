@@ -59,7 +59,7 @@
     "@types/react-router-dom": "5.1.8",
     "@types/redux-auth-wrapper": "2.0.10",
     "husky": "4.3.8",
-    "i18next-parser": "4.4.0",
+    "i18next-parser": "5.0.0",
     "less": "4.1.1",
     "lint-staged": "11.1.2",
     "nodemon": "2.0.12",
