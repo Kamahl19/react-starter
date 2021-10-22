@@ -20,5 +20,5 @@
     "strict": true,
     "target": "es5"
   },
-  "include": ["src", "storybook"]
+  "include": ["src"]
 }

@@ -23,7 +23,6 @@ Once you start building your own app on top of React Starter you will probably w
 - [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
 - [create-react-app](https://facebook.github.io/create-react-app/) - create React apps with no build configuration
 - [Ant.Design](https://ant.design/) - a UI library
-- [Storybook](https://storybook.js.org/) - a development environment for UI components with several usefull addons
 - [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [axios](https://github.com/axios/axios) - promise based HTTP client
 - [i18next](https://www.i18next.com/) - an internationalization framework
@@ -74,7 +73,6 @@ Run `yarn test` to launch the test runner in the interactive watch mode. See [cr
  |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
  |--| features/: Features bundled into separate modules including components, screens, ducks, apis etc.
  |--| index.tsx: application entry file
--| storybook/: Storybook configuration and addons.
 ```
 
 ## Prettier
@@ -91,16 +89,6 @@ There are multiple ways how to run ESLint.
 - in browser console while developing (after running `yarn start`)
 - it runs automatically on `pre-commit` hook
 - in IDE if supported (Visual Studio Code supports reports)
-
-## Storybook
-
-We suggest developing components in isolation. For this reason, project comes with [Storybook](https://storybook.js.org/) pre-configured.
-
-To run separated development environment, run `yarn storybook` which will start dedicated web server at `http://localhost:9009`.
-
-To build static storybook, run `yarn storybook:build`. This creates a static webpage which you can deploy and showcase your components to others.
-
-More information about supported features can be found in [Storybook's Github repository](https://github.com/storybooks/storybook)
 
 ## i18n
 

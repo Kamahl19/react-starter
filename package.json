@@ -27,9 +27,6 @@
     "lint": "eslint . --ext .js,.ts,.tsx",
     "start": "npm-run-all -p less:watch start-cra",
     "start-cra": "react-scripts start",
-    "storybook": "npm-run-all -p storybook:start less:watch",
-    "storybook:start": "start-storybook -p 9009 -s public -c storybook",
-    "storybook:build": "build-storybook -s public -c storybook",
     "test": "react-scripts test"
   },
   "husky": {
@@ -46,10 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "6.3.12",
-    "@storybook/addon-essentials": "6.3.12",
-    "@storybook/preset-create-react-app": "3.2.0",
-    "@storybook/react": "6.3.12",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.1.2",
     "@types/jest": "26.0.24",
