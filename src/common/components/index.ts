@@ -1,4 +1,5 @@
 export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as GlobalSpinner } from './GlobalSpinner';
 export { default as LoadingScreen } from './LoadingScreen';
 export { default as Navbar } from './Navbar';
 export { default as NotFound } from './NotFound';

@@ -17,6 +17,7 @@ const AuthLayout = ({ children }: Props) => {
   return (
     <Layout className="auth-page-layout">
       <Layout.Header>
+        <Logo />
         <Navbar>
           <Menu.Item key={AUTH_ROUTER_PATHS.signUp}>
             <Link to={AUTH_ROUTER_PATHS.signUp}>
@@ -38,3 +39,5 @@ const AuthLayout = ({ children }: Props) => {
 };
 
 export default AuthLayout;
+
+const Logo = () => <h1 style={{ margin: 0 }}>Logo</h1>;

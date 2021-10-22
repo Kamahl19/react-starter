@@ -26,7 +26,7 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 const StorePersistGate = ({ children, isLoggedIn, relogin }: Props) => (
   <PersistGate
-    loading={<LoadingScreen />}
+    loading={<LoadingScreen fullVPHeight />}
     onBeforeLift={() => {
       if (isLoggedIn && history.location.pathname !== AUTH_ROUTER_PATHS.logout) {
         relogin();
