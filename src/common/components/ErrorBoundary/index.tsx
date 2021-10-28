@@ -22,7 +22,14 @@ export default class ErrorBoundary extends Component<Props, State> {
     const { hasError } = this.state;
 
     return hasError ? (
-      <div className="error-boundary-screen">
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
         <div>
           <h1>Unexpected Error</h1>
           <p>This is a problem on our side, not yours.</p>

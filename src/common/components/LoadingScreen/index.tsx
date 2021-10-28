@@ -1,25 +1,27 @@
 import { Spin } from 'antd';
-import cn from 'classnames';
 
 import { useTrackProgress } from 'common/services/trackProgress';
 
 type Props = {
   fullVPHeight?: boolean;
+  isGlobal?: boolean;
 };
 
-const LoadingScreen = ({ fullVPHeight }: Props) => {
-  const isGlobalSpinnerShown = useTrackProgress();
+const LoadingScreen = ({ fullVPHeight, isGlobal }: Props) => {
+  const isGlobalSpinnerInProgress = useTrackProgress();
 
-  return isGlobalSpinnerShown ? null : (
+  return (isGlobal && isGlobalSpinnerInProgress) || (!isGlobal && !isGlobalSpinnerInProgress) ? (
     <div
-      className={cn('loading-screen', {
-        'full-height': !fullVPHeight,
-        'full-vp-height': fullVPHeight,
-      })}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: fullVPHeight ? '100vh' : '100%',
+      }}
     >
       <Spin size="large" />
     </div>
-  );
+  ) : null;
 };
 
 export default LoadingScreen;

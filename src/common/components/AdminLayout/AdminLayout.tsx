@@ -1,4 +1,4 @@
-import { ReactNode, useState, useCallback } from 'react';
+import { ReactNode, useState, useCallback, useMemo } from 'react';
 import { Layout, Drawer, Grid } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { SiderProps } from 'antd/lib/layout';
@@ -11,6 +11,7 @@ const { Sider, Header, Content } = Layout;
 type AdminLayoutProps = {
   className?: string;
   logo?: ReactNode;
+  smallLogo?: ReactNode;
   children?: ReactNode;
   headerContent?: ReactNode;
   sidebarContent?: ReactNode;
@@ -23,6 +24,7 @@ type AdminLayoutProps = {
 const AdminLayout = ({
   className,
   logo,
+  smallLogo,
   children,
   headerContent,
   sidebarContent,
@@ -66,10 +68,13 @@ const AdminLayout = ({
     </Sider>
   );
 
+  const value = useMemo(
+    () => ({ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),
+    [sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle]
+  );
+
   return (
-    <AdminLayoutContext.Provider
-      value={{ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }}
-    >
+    <AdminLayoutContext.Provider value={value}>
       <Layout className={cn('admin-layout', className)}>
         {useDrawer ? (
           <Drawer
@@ -88,9 +93,12 @@ const AdminLayout = ({
         <Layout className="admin-layout-main">
           <Header className="admin-layout-main-header">
             {useDrawer && (
-              <span className="admin-layout-drawer-trigger" onClick={toggleIsDrawerVisible}>
-                <MenuOutlined />
-              </span>
+              <>
+                {smallLogo}
+                <span className="admin-layout-drawer-trigger" onClick={toggleIsDrawerVisible}>
+                  <MenuOutlined />
+                </span>
+              </>
             )}
             {headerContent}
           </Header>

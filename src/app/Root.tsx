@@ -6,7 +6,7 @@ import { ConfigProvider, message } from 'antd';
 import en_US from 'antd/lib/locale/en_US';
 
 import { rootPath } from 'config';
-import { ErrorBoundary, NotFound, LoadingScreen, GlobalSpinner } from 'common/components';
+import { ErrorBoundary, NotFound, LoadingScreen } from 'common/components';
 import AuthRoutes from 'features/auth/routes';
 import { AUTH_ROUTE_PREFIX } from 'features/auth/constants';
 
@@ -16,20 +16,23 @@ import DemoScreen from './DemoScreen';
 
 message.config({ duration: 5 });
 
+const antdConfig = {
+  locale: en_US,
+};
+
 const Root = () => (
   <ErrorBoundary>
-    <ConfigProvider locale={en_US}>
+    <ConfigProvider {...antdConfig}>
       <Suspense fallback={<LoadingScreen fullVPHeight />}>
         <Provider store={store}>
-          <StorePersistGate>
+          <StorePersistGate loading={<LoadingScreen fullVPHeight />}>
             <ConnectedRouter history={history}>
-              <GlobalSpinner>
-                <Switch>
-                  <Route exact path={rootPath} component={DemoScreen} />
-                  <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
-                  <Route component={NotFound} />
-                </Switch>
-              </GlobalSpinner>
+              <LoadingScreen fullVPHeight isGlobal />
+              <Switch>
+                <Route exact path={rootPath} component={DemoScreen} />
+                <Route path={AUTH_ROUTE_PREFIX} component={AuthRoutes} />
+                <Route component={NotFound} />
+              </Switch>
             </ConnectedRouter>
           </StorePersistGate>
         </Provider>

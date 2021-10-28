@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { reloginAction, selectIsLoggedIn } from 'common/services/auth';
-import { LoadingScreen } from 'common/components';
 import { AUTH_ROUTER_PATHS } from 'features/auth/constants';
 
 import history from '../history';
@@ -22,11 +21,12 @@ const mapDispatchToProps = {
 type Props = ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps & {
     children: ReactNode;
+    loading: ReactNode;
   };
 
-const StorePersistGate = ({ children, isLoggedIn, relogin }: Props) => (
+const StorePersistGate = ({ children, isLoggedIn, relogin, loading }: Props) => (
   <PersistGate
-    loading={<LoadingScreen fullVPHeight />}
+    loading={loading}
     onBeforeLift={() => {
       if (isLoggedIn && history.location.pathname !== AUTH_ROUTER_PATHS.logout) {
         relogin();
