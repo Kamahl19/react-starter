@@ -3185,7 +3185,7 @@ broccoli-output-wrapper@^3.2.5:
     heimdalljs-logger "^0.1.10"
     symlink-or-copy "^1.2.0"
 
-broccoli-plugin@^4.0.5:
+broccoli-plugin@^4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/broccoli-plugin/-/broccoli-plugin-4.0.7.tgz#dd176a85efe915ed557d913744b181abe05047db"
   integrity sha512-a4zUsWtA1uns1K7p9rExYVYG99rdKeGRymW0qOCNkvDPHQxVi3yVyJHhQbM3EZwdt2E0mnhr5e0c/bPpJ7p3Wg==
@@ -3830,15 +3830,10 @@ commander@^4.0.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.0.tgz#545983a0603fe425bc672d66c9e3c89c42121a83"
   integrity sha512-NIQrwvv9V39FHgGFm36+U9SMQzbiHvU79k+iADraJTpmrFFfx7Ds0IvDoAdZsDrknlkRk14OYoWXb57uTh7/sw==
 
-commander@^8.2.0:
+commander@^8.2.0, commander@~8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
-
-commander@~8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-8.2.0.tgz#37fe2bde301d87d47a53adeff8b5915db1381ca8"
-  integrity sha512-LLKxDvHeL91/8MIyTAD5BFMNtoIwztGPMiM/7Bl8rIPmHCZXRxmSWr91h57dpOpnQ6jIUqEWdXE/uBYMfiVZDA==
 
 common-tags@^1.8.0:
   version "1.8.0"
@@ -6495,15 +6490,16 @@ husky@4.3.8:
     slash "^3.0.0"
     which-pm-runs "^1.0.0"
 
-i18next-parser@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/i18next-parser/-/i18next-parser-5.0.0.tgz#c6ea2a5876e91478ff6411c48959f9603e833f34"
-  integrity sha512-6TU4p9mqX0mtqwx23PXrk9WpAwdWh5hQKAhzYBn9yXMv+azd4P7A9+E0/mOkIMx1x9fPZhc1sr48WOohFS0Log==
+i18next-parser@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/i18next-parser/-/i18next-parser-5.3.0.tgz#48072152a3335c2545b973e9b915f2d047cf0d34"
+  integrity sha512-1INLQqrHBJKH9l3V7rBv+KmmqvdDtwjrzD/8gta4Gb3X8MImwM3G4g0OeywPt0TQDINiz9d6j5EHxCWrDvjg9Q==
   dependencies:
-    broccoli-plugin "^4.0.5"
+    "@babel/runtime" "^7.15.4"
+    broccoli-plugin "^4.0.7"
     cheerio "^1.0.0-rc.2"
     colors "~1.4.0"
-    commander "~8.2.0"
+    commander "~8.3.0"
     concat-stream "~2.0.0"
     eol "^0.9.1"
     fs-extra "^10.0.0"
