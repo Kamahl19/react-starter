@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
-import { createMigrate, persistReducer, persistStore, MigrationManifest } from 'redux-persist';
-import localForage from 'localforage';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
@@ -14,18 +14,13 @@ import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const migrations: MigrationManifest = {
-  // Add redux migrations here
-};
-
 const persistedReducer = persistReducer(
   {
     key: 'root',
-    version: 0,
-    storage: localForage,
+    storage,
+    version: 1,
     whitelist: ['authService'],
     debug: isDev,
-    migrate: createMigrate(migrations, { debug: isDev }),
   },
   createRootReducer(history)
 );
@@ -39,10 +34,11 @@ if (isDev) {
   middlewares.push(createLogger(), ImmutableStateInvariant());
 }
 
-const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+export const store = createStore(
+  persistedReducer,
+  composeWithDevTools(applyMiddleware(...middlewares))
+);
 
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
-
-export { store, persistor };
