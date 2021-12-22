@@ -7083,25 +7083,25 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
 
-oaf-react-router@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.1.1.tgz#0216edddedb820ec7c67eda8fcaac2a471893b83"
-  integrity sha512-l3EAdh8b6DRvbbP6sC9uY4Iek1TZq4nxIrWzeZXiN6aCiiZ8NKcmKJqkuej8VbdX0lBCyVp7AgS/HWbXD6wp6A==
+oaf-react-router@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-3.0.0.tgz#d7ad2c6e44d5af2489237aa507c53210c80c0ecc"
+  integrity sha512-fT2x9dyZOCw6fIA2g9eyBBsRlCjG9hiyFvanbWZR2Z8XqmCaW4FmKNp7LRWw3gdJ5wWYzuN/2ga5isfI+VmPfw==
   dependencies:
-    oaf-routing "^3.0.0"
+    oaf-routing "^4.0.1"
 
-oaf-routing@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/oaf-routing/-/oaf-routing-3.0.1.tgz#86b1170d6310583730fddcd3d0e34a4517bf61d4"
-  integrity sha512-1BiJObNkwQHTUZ5vBm0Yb1aB2oTe+SK2Oqr/p1zNCrm0c/oAHaZSRvYZhSYjvVa2q2B+O14v3e3LLIhHn0t+QQ==
+oaf-routing@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/oaf-routing/-/oaf-routing-4.0.1.tgz#401f8549bfbc5fe2be9d17307cfcb786bfbd0816"
+  integrity sha512-2HrBt2/lCe3LJm96DHFu5j5SKpUav4Utb7gYrktoHWwgyH/oUSBdGFwQ3gWrhtHmP72K5LiGzhPutn94YmchLw==
   dependencies:
-    oaf-side-effects "^2.0.0"
+    oaf-side-effects "^3.1.0"
     unique-selector "^0.4.1"
 
-oaf-side-effects@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/oaf-side-effects/-/oaf-side-effects-2.1.0.tgz#04c84c700d35b2785dce729fcc749aa450e53196"
-  integrity sha512-NE3hDKy+ZY6zTqCv7DgXbjpOAYbixZl59WPWFx0UWoyCfYcsqmSMjnR53xCOjPAWZD8pOFi2UCg8qAQfinickg==
+oaf-side-effects@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/oaf-side-effects/-/oaf-side-effects-3.1.0.tgz#0ca91b2f956411c1caaed0cb748878bb7b7fe728"
+  integrity sha512-o8zCSRtSFA5/mMisxEOgOzPOAwczmi9E1vCpj7Kp87+MWx8cxEgV6VGm91Tv5Hn3NDBtRNUicZkjP52r7fVMpQ==
 
 object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
