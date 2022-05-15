@@ -66,7 +66,7 @@
   "dependencies": {
     "@ant-design/icons": "4.7.0",
     "antd": "4.17.3",
-    "axios": "0.21.2",
+    "axios": "0.27.2",
     "classnames": "2.3.1",
     "connected-react-router": "6.9.2",
     "history": "4.10.1",
