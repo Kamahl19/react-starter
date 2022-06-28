@@ -1,5 +1,1 @@
-# Production
-/build
-
-# Compiled styles
-src/app/styles/main.css
+/dist

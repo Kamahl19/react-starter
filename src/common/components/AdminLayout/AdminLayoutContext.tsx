@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { SiderProps } from 'antd/lib/layout';
+import { type SiderProps } from 'antd';
 
 export enum SidebarState {
   OPEN_SIDEBAR = 'openSidebar',

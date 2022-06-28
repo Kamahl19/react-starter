@@ -22,11 +22,7 @@ const Logo = () => {
 };
 
 const SidebarContent = () => (
-  <SidebarMenu>
-    <Item key="1" icon={<HomeOutlined />}>
-      Menu item 1
-    </Item>
-  </SidebarMenu>
+  <SidebarMenu items={[{ key: '1', label: 'Menu item 1', icon: <HomeOutlined /> }]} />
 );
 ```
 
@@ -51,7 +47,7 @@ SidebarMenu is a simple wrapper over [Ant's Menu](https://ant.design/components/
 
 - `mode` is set to `inline`
 - `theme` defaults to the value of `sidebarTheme`
-- `Menu.Item`'s `onClick` closes drawer on mobile
+- `MenuItem`'s `onClick` closes drawer on mobile
 
 ### `AdminLayoutContext`
 

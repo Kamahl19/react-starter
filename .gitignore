@@ -5,19 +5,16 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
 # production
-/build
-
-# compiled styles
-src/**/main.css
+/dist
 
 # misc
 .DS_Store
-.env
+*.local
 
+# logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -25,4 +22,5 @@ yarn-error.log*
 # IDE
 .idea
 
+# eslint
 .eslintcache

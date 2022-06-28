@@ -1,14 +1,32 @@
-.auth-page-layout {
-  height: 100vh;
+.auth-layout {
+  min-height: 100vh;
 
-  .ant-layout {
+  > .ant-layout {
+    &-header,
+    &-content {
+      padding: 0 @padding-lg;
+
+      @media (max-width: @screen-sm-max) {
+        padding: 0 @padding-sm;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        padding: 0 @padding-xs;
+      }
+    }
+
     &-header {
+      position: fixed;
+      z-index: 19;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       background: @menu-bg;
+      box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
-      @media (max-width: @screen-xs-max) {
-        padding-left: 0;
+      .navbar-menu {
+        width: 100%;
+        justify-content: flex-end;
       }
     }
 
@@ -16,7 +34,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 @padding-lg;
+      padding-top: @padding-lg;
+      margin-top: @layout-header-height;
 
       .ant-form {
         width: 100%;

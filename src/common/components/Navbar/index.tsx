@@ -1,29 +1,27 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Popover, Menu, Grid } from 'antd';
+import { Popover, Grid, type MenuProps } from 'antd';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
+import { Menu } from 'common/components';
+
 type Props = {
-  children: ReactNode;
+  items: Required<MenuProps>['items'];
 };
 
-const Navbar = ({ children }: Props) => {
-  const { pathname } = useLocation();
-
+const Navbar = ({ items }: Props) => {
   const { md } = Grid.useBreakpoint();
 
   return md ? (
-    <Menu className="navbar-menu" mode="horizontal" selectedKeys={[pathname]}>
-      {children}
-    </Menu>
+    <Menu className="navbar-menu" mode="horizontal" items={items} />
   ) : (
-    <HamburgerMenu>{children}</HamburgerMenu>
+    <HamburgerMenu items={items} />
   );
 };
 
 export default Navbar;
 
-const HamburgerMenu = ({ children }: Props) => {
+const HamburgerMenu = ({ items }: Props) => {
   const { pathname } = useLocation();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -34,11 +32,7 @@ const HamburgerMenu = ({ children }: Props) => {
 
   return (
     <Popover
-      content={
-        <Menu className="navbar-popover-menu" mode="inline" selectedKeys={[pathname]}>
-          {children}
-        </Menu>
-      }
+      content={<Menu className="navbar-popover-menu" mode="inline" items={items} />}
       overlayClassName="navbar-popover"
       title={<CloseOutlined onClick={() => setIsVisible(false)} />}
       trigger="click"

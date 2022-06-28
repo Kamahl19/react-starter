@@ -3,13 +3,18 @@
 // Overriding AntD theme variables
 @import './theme-variables.less';
 
+// Fix vertical scrollbar added by oaf-react-router
+#announcements {
+  position: fixed !important;
+}
+
+#root {
+  height: 100%;
+}
+
 // Import Common components styles
 @import '../../common/components/style.less';
 
 // Import Feature styles
 @import '../../features/auth/components/AuthLayout/style.less';
-
-// Fix vertical scrollbar added by oaf-react-router
-#announcements {
-  position: fixed !important;
-}
+@import '../../features/dashboard/components/DashboardLayout/style.less';

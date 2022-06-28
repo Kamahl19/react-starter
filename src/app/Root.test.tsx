@@ -1,11 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Root from './Root';
 
 it('renders without crashing', async () => {
   render(<Root />);
 
-  const loginButton = await waitFor(() => screen.getByRole('button'));
+  const loginButton = await screen.findByRole('button');
 
   expect(loginButton).toBeInTheDocument();
 });

@@ -1,7 +1,6 @@
-import { ReactNode, useState, useCallback, useMemo } from 'react';
-import { Layout, Drawer, Grid } from 'antd';
+import { type ReactNode, useState, useCallback, useMemo } from 'react';
+import { Layout, Drawer, Grid, type SiderProps } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import { SiderProps } from 'antd/lib/layout';
 import cn from 'classnames';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';

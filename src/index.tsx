@@ -1,15 +1,9 @@
 import './bootstrap';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-import 'app/styles/main.css';
+import 'app/styles/main.less';
 import Root from 'app/Root';
 
-import reportWebVitals from './reportWebVitals';
+const root = createRoot(document.querySelector('#root') as HTMLElement);
 
-render(
-  <Root />, // TODO replace with <React.StrictMode><Root /></React.StrictMode> once Antd supports it
-  document.getElementById('root')
-);
-
-// Learn more https://bit.ly/CRA-vitals
-reportWebVitals(console.log);
+root.render(<Root />);

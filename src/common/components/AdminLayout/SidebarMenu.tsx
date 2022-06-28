@@ -1,16 +1,19 @@
-import { ReactNode, useContext, useCallback } from 'react';
-import { Menu, MenuProps } from 'antd';
+import { useContext, useCallback } from 'react';
+import { type MenuProps } from 'antd';
+import { type MenuClickEventHandler } from 'rc-menu/lib/interface'; // eslint-disable-line import/no-extraneous-dependencies
+
+import { Menu } from 'common/components';
 
 import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
-interface SidebarMenuProps extends MenuProps {
-  children: ReactNode;
-}
+type Props = MenuProps & {
+  items: Required<MenuProps>['items'];
+};
 
-const SidebarMenu = ({ onClick, ...props }: SidebarMenuProps) => {
+const SidebarMenu = ({ onClick, items, ...props }: Props) => {
   const { sidebarTheme, toggle, sidebarState } = useContext(AdminLayoutContext);
 
-  const menuOnClick: SidebarMenuProps['onClick'] = useCallback(
+  const menuOnClick = useCallback<MenuClickEventHandler>(
     (info) => {
       if (onClick) {
         onClick(info);
@@ -23,12 +26,7 @@ const SidebarMenu = ({ onClick, ...props }: SidebarMenuProps) => {
     [onClick, toggle, sidebarState]
   );
 
-  return <Menu mode="inline" theme={sidebarTheme} onClick={menuOnClick} {...props} />;
+  return <Menu mode="inline" theme={sidebarTheme} onClick={menuOnClick} items={items} {...props} />;
 };
-
-SidebarMenu.Divider = Menu.Divider;
-SidebarMenu.Item = Menu.Item;
-SidebarMenu.SubMenu = Menu.SubMenu;
-SidebarMenu.ItemGroup = Menu.ItemGroup;
 
 export default SidebarMenu;

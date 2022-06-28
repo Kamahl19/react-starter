@@ -11,7 +11,7 @@ Master branch is always passing CI build and it's deployed online at https://rea
 
 ## Keeping up with updates
 
-Once you start building your own app on top of React Starter you will probably want to keep up-to-date with the new updates of React Starter. This can be easily achieved by tracking the latest commit hash of React Starter you use. We suggest this process:
+Once you start building your own app on top of React Starter you will probably want to keep up-to-date with the new updates of React Starter. This can be easily achieved using GitHub's compare feature. We suggest this process:
 
 1. When you clone the React Starter repo, don't forget to write down the hash of [latest master's commit](https://github.com/Kamahl19/react-starter/commits/master)
 2. Every once in a while, compare the version of React Starter you used with the current version of React Starter like this `https://github.com/Kamahl19/react-starter/compare/{YOUR_LATEST_REACT_STARTER_COMMIT_HASH}...master`
@@ -20,58 +20,57 @@ Once you start building your own app on top of React Starter you will probably w
 
 ## What’s Inside?
 
-- [TypeScript](https://www.typescriptlang.org/) - a typed superset of JavaScript
-- [create-react-app](https://facebook.github.io/create-react-app/) - create React apps with no build configuration
-- [Ant.Design](https://ant.design/) - a UI library
+- [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
+- [Vite](https://vitejs.dev/) - next generation frontend tooling
+- [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
+  - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
+- [Ant.Design](https://ant.design/) - UI library
 - [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
-- [axios](https://github.com/axios/axios) - promise based HTTP client
-- [i18next](https://www.i18next.com/) - an internationalization framework
+- [SWR](https://swr.vercel.app/) - hooks for data fetching with stale-while-revalidate strategy
+- [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys/values and produces i18n resource file
 - [LESS](http://lesscss.org/) - dynamic stylesheet language
-- [redux](https://redux.js.org/) - a state container
-  - [redux-saga](https://github.com/redux-saga/redux-saga) - a side effect model for Redux apps
-  - [reselect](https://github.com/reduxjs/reselect) - selector library for Redux
-  - [redux-persist](https://github.com/rt2zz/redux-persist) - persist and rehydrate a Redux store
-  - [redux-logger](https://github.com/LogRocket/redux-logger) - logger for Redux
-  - [redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper) - a HOC for handling Authentication and Authorization
-  - [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension) - DevTools extension for browser
-  - [redux-immutable-state-invariant](https://github.com/leoasis/redux-immutable-state-invariant) - detects mutations in Redux store
-  - [typesafe-actions](https://github.com/piotrwitek/typesafe-actions) - action creators with type-free code
-- [react-router](https://reacttraining.com/react-router/web/guides/quick-start) - declarative routing
-  - [connected-react-router](https://github.com/supasate/connected-react-router) - Redux binding for React Router
-  - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - an accessible wrapper for React Router to set proper scroll position & focus
-- [react-promise-tracker](https://github.com/Lemoncode/react-promise-tracker) - tracking of in-progress promises
-- [prettier](https://prettier.io/) - opinionated code formatter
+- [Recoil](https://recoiljs.org/) - state management library
+  - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
+  - [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) - allows accessing Recoil store from outside components
+- [React Router](https://reactrouter.com/) - declarative routing
+  - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - accessible wrapper for React Router to set proper scroll position & focus
+- [react-error-boundary](https://github.com/bvaughn/react-error-boundary) - simple reusable React error boundary component
+- [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
-- [husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
+- [Husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
 - [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch and Netlify to deploy each PR & Master branch automatically
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
-- [dotenv](https://github.com/motdotla/dotenv) - loads environment variables from an `.env` file
-- [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) - polyfill for IE11 and stable browsers defined with `browserslist`
+
+## Prerequisites
+
+Edit the `.env.development` file according to your needs.
 
 ## Start app
 
-To run app locally, run `yarn start` in app root directory. `react-scripts` will start web server in the development mode at `http://localhost:3000` (or first next free port).
+To run the app locally, run `yarn start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
 
 All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with React Starter out of the box.
 
 ## Build app
 
-To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed! See the [create-react-app Deployment docs](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed! See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
 
 ## Test app
 
-Run `yarn test` to launch the test runner in the interactive watch mode. See [create-react-app Tests docs](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run `yarn test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
 
 ## Project structure
 
 ```
 -| .github/: GitHub workflows for CI/CD
+-| .husky/: pre-commit hook
 -| public/: Public assets
 -| src/
+ |--| api/: Communication with API server.
  |--| app/: Main application (framework) files.
- |--| common/: Base components, services, utils, rules, enums etc. used in the whole app.
- |--| features/: Features bundled into separate modules including components, screens, ducks, apis etc.
+ |--| common/: Base components, services, hooks, utils etc.
+ |--| features/: Features bundled into separate modules including components, containers, routes etc.
  |--| index.tsx: application entry file
 ```
 
@@ -86,7 +85,7 @@ Project comes with ESLint configured. It helps you prevent common errors.
 There are multiple ways how to run ESLint.
 
 - CLI: `yarn lint`
-- in browser console while developing (after running `yarn start`)
+- in terminal while developing (after running `yarn start`)
 - it runs automatically on `pre-commit` hook
 - in IDE if supported (Visual Studio Code supports reports)
 
@@ -119,7 +118,7 @@ This project is using [Netlify](https://www.netlify.com/) to deploy each PR and 
 
 ## More Docs & Guides
 
-This project is built on top of `create-react-app` with many [more usefull guides](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is built on top of `Vite` with many [more usefull guides](https://vitejs.dev/guide/).
 
 ## License
 

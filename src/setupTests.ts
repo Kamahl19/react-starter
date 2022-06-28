@@ -1,15 +1,27 @@
+import createFetchMock from 'vitest-fetch-mock';
+
 import '@testing-library/jest-dom';
 
-import './bootstrap';
-
 // Suppress oaf-react-router warning about missing Title
-document.title = 'React App';
+document.title = 'React Starter';
 
-// Mock window.matchMedia
+// Mock fetch
+createFetchMock(vi).enableMocks();
+
+// Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
-  value: () => ({
+  writable: true,
+  value: vi.fn().mockImplementation((query) => ({
     matches: false,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-  }),
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
 });
+
+// eslint-disable-next-line import/first
+import './bootstrap';

@@ -1,7 +1,41 @@
-import { Card, CardProps } from 'antd';
+import { useMemo } from 'react';
+import { Card, type CardProps } from 'antd';
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
-interface WidgetProps extends CardProps {}
+import { Menu } from 'common/components';
 
-const Widget = (props: WidgetProps) => <Card bordered={false} {...props} />;
+type WidgetProps = CardProps & {
+  menuItems?: Array<{
+    to: string;
+    label: string;
+  }>;
+};
+
+const Widget = ({ className, menuItems, children, ...props }: WidgetProps) => {
+  const items = useMemo(
+    () =>
+      menuItems?.map(({ to, label }) => ({
+        key: to,
+        label: <Link to={to}>{label}</Link>,
+      })),
+    [menuItems]
+  );
+
+  return (
+    <Card bordered={false} className={cn('widget', className)} {...props}>
+      {items ? (
+        <div className="widget-with-menu">
+          <div className="widget-menu">
+            <Menu mode="inline" items={items} />
+          </div>
+          <div className="widget-content">{children}</div>
+        </div>
+      ) : (
+        children
+      )}
+    </Card>
+  );
+};
 
 export default Widget;
