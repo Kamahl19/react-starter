@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'common/components';
 
 type WidgetProps = CardProps & {
-  menuItems?: Array<{
+  menuItems?: {
     to: string;
     label: string;
-  }>;
+  }[];
 };
 
 const Widget = ({ className, menuItems, children, ...props }: WidgetProps) => {

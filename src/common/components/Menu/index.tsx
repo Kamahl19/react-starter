@@ -14,7 +14,7 @@ const Menu = (props: Props) => {
   const selectedKeys = useMemo(
     () =>
       getSelectedKeys(
-        props.items.map((i) => `${i?.key}`),
+        props.items.map((i) => String(i?.key)),
         pathname
       ),
     [props.items, pathname]

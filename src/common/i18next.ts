@@ -8,7 +8,7 @@ export const LANGUAGE_CODES = {
 };
 
 // see: https://www.i18next.com/overview/configuration-options
-i18next // eslint-disable-line import/no-named-as-default-member
+i18next
   .use(Backend)
   .use(initReactI18next)
   .init({
@@ -28,4 +28,4 @@ i18next // eslint-disable-line import/no-named-as-default-member
     },
   });
 
-export const t = i18next.t.bind(i18next); // eslint-disable-line import/no-named-as-default-member
+export const t = i18next.t.bind(i18next);

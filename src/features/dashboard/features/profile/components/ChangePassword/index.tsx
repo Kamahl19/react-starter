@@ -9,7 +9,7 @@ const { Title } = Typography;
 
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: ChangePasswordPayload) => Promise<unknown>;
+  onSubmit: (values: ChangePasswordPayload) => Promise<void>;
 };
 
 const ChangePassword = ({ isLoading, onSubmit }: Props) => {
@@ -17,7 +17,7 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
 
   const { password, passwordNoCheck } = useValidationRules();
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<ChangePasswordPayload>();
 
   const handleSubmit = useCallback(
     async (values: ChangePasswordPayload) => {

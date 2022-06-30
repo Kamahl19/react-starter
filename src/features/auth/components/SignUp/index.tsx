@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
+import { useDebounce } from 'use-debounce';
 
 import { type CreateUserPayload, useFetchUserEmailAvailability } from 'api';
 import { useValidationRules } from 'common/validations';
-import { useWatchForm } from 'common/hooks';
+
+const DEBOUNCE_MS = 500;
 
 type Props = {
   isLoading: boolean;
@@ -15,9 +17,9 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
 
   const { email, password } = useValidationRules();
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<CreateUserPayload>();
 
-  const emailValue = useWatchForm({ form, fieldName: 'email' });
+  const [emailValue] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
 
   const isUserEmailAvailable = useFetchUserEmailAvailability(emailValue);
 

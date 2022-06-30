@@ -34,7 +34,7 @@ const Header = ({ email, logout }: Props) => {
       {
         key: 'logout',
         label: (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
           <a onClick={logout}>{t('dashboardLayout.header.logout', { defaultValue: 'Logout' })}</a>
         ),
         icon: <LogoutOutlined />,

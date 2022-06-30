@@ -1,103 +1,185 @@
-const typeScriptRules = {
-  'spaced-comment': ['error', 'always', { markers: ['/'] }], // TODO remove
-  '@typescript-eslint/no-floating-promises': 'off',
-  '@typescript-eslint/no-shadow': 'off',
-  '@typescript-eslint/no-throw-literal': 'off',
-  '@typescript-eslint/no-use-before-define': 'off',
-  '@typescript-eslint/return-await': 'off',
-  '@typescript-eslint/sort-type-union-intersection-members': 'off',
-  '@typescript-eslint/triple-slash-reference': 'off',
-  'typescript-sort-keys/interface': 'off',
-  'typescript-sort-keys/string-enum': 'off',
-};
+'use strict';
 
 module.exports = {
   root: true,
-  extends: ['canonical', 'canonical/browser', 'canonical/module', 'canonical/prettier'],
-  rules: {
-    'arrow-body-style': 'off',
-    'canonical/destructuring-property-newline': 'off', // TODO remove
-    'canonical/export-specifier-newline': 'off', // TODO remove
-    'canonical/filename-match-exported': 'off',
-    'canonical/filename-match-regex': 'off',
-    'canonical/id-match': 'off',
-    'canonical/import-specifier-newline': 'off', // TODO remove
-    'canonical/sort-keys': 'off',
-    'id-length': 'off',
-    'import/no-unassigned-import': 'off',
-    'import/order': 'off',
-    'line-comment-position': 'off',
-    'no-console': 'off',
-    'no-empty': 'off',
-    'no-implicit-coercion': 'off',
-    'no-inline-comments': 'off',
-    'no-warning-comments': 'off',
-    'unicorn/prevent-abbreviations': 'off',
-    'import/extensions': [
-      2,
-      'never',
-      {
-        ignorePackages: true,
-        pattern: {
-          less: 'always',
-          json: 'always',
-          svg: 'always',
-        },
+  extends: [
+    // https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js
+    'eslint:recommended',
+    // https://github.com/mysticatea/eslint-plugin-eslint-comments/blob/master/lib/configs/recommended.js
+    'plugin:eslint-comments/recommended',
+    // https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
+    'plugin:import/recommended',
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js
+    'plugin:unicorn/recommended',
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L126
+    'plugin:react/recommended',
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L171
+    'plugin:react/jsx-runtime',
+    // https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js#L14
+    'plugin:react-hooks/recommended',
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js#L43
+    'plugin:jsx-a11y/recommended',
+    // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
+    'prettier',
+  ],
+  plugins: ['eslint-comments', 'import', 'unicorn', 'react', 'react-hooks', 'jsx-a11y'],
+  env: {
+    browser: true,
+    es2022: true,
+  },
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/extensions': ['.js', '.jsx'],
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
       },
+    },
+  },
+  rules: {
+    /**
+     * Turn-off recommended rules
+     */
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-autofocus': 'off',
+    'react/display-name': 'off',
+    'react/prop-types': 'off',
+    'unicorn/filename-case': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+
+    /**
+     * Adjust recommended rules
+     */
+    'no-empty': ['error', { allowEmptyCatch: true }],
+    'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+    'react-hooks/exhaustive-deps': [
+      'error',
+      { additionalHooks: '(useRecoilCallback|useRecoilTransaction)' },
     ],
+
+    /**
+     * Use additional rules
+     */
+    'array-callback-return': 'error',
+    'default-case': 'error',
+    eqeqeq: ['error', 'smart'],
+    'no-array-constructor': 'error',
+    'no-caller': 'error',
+    'no-eval': 'error',
+    'no-extend-native': 'error',
+    'no-extra-bind': 'error',
+    'no-extra-label': 'error',
+    'no-implied-eval': 'error',
+    'no-label-var': 'error',
+    'no-labels': 'error',
+    'no-lone-blocks': 'error',
+    'no-loop-func': 'error',
+    'no-multi-str': 'error',
+    'no-new-func': 'error',
+    'no-new-object': 'error',
+    'no-new-wrappers': 'error',
+    'no-restricted-globals': ['error'].concat(require('confusing-browser-globals')),
+    'no-script-url': 'error',
+    'no-self-compare': 'error',
+    'no-sequences': 'error',
+    'no-template-curly-in-string': 'error',
+    'no-throw-literal': 'error',
+    'no-unused-expressions': [
+      'error',
+      { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
+    ],
+    'no-useless-computed-key': 'error',
+    'no-useless-concat': 'error',
+    'no-useless-constructor': 'error',
+    'no-useless-rename': 'error',
+    strict: ['error', 'never'],
+    'react/jsx-pascal-case': ['error', { allowAllCaps: true }],
+    'react/no-array-index-key': 'error',
+    'react/no-typos': 'error',
+    'react/style-prop-object': 'error',
   },
   overrides: [
     {
-      files: '*.ts',
-      extends: ['canonical/typescript', 'canonical/prettier'],
-      parserOptions: {
-        project: './tsconfig.json',
-      },
-      rules: {
-        ...typeScriptRules,
-      },
-      overrides: [
-        {
-          files: 'vite.config.ts',
-          parserOptions: {
-            project: './tsconfig.vite.json',
-          },
-          rules: {
-            '@typescript-eslint/no-require-imports': 'off',
-            '@typescript-eslint/no-unnecessary-condition': 'off',
-            'unicorn/prefer-module': 'off',
-          },
-        },
-      ],
+      files: ['**/*.{spec,test}.*'],
+      extends: ['plugin:testing-library/react'],
     },
     {
-      files: '*.tsx',
+      files: ['**/*.ts?(x)'],
       extends: [
-        'canonical/react',
-        'canonical/jsx-a11y',
-        'canonical/typescript',
-        'canonical/prettier',
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
+        'plugin:@typescript-eslint/recommended',
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts
+        'plugin:@typescript-eslint/strict',
+        // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
+        'plugin:import/typescript',
+        // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
+        'prettier',
       ],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         project: './tsconfig.json',
+        jsxPragma: null,
       },
+      plugins: ['@typescript-eslint'],
       rules: {
-        ...typeScriptRules,
-        'jsx-a11y/click-events-have-key-events': 'off',
-        'jsx-a11y/no-static-element-interactions': 'off',
-        'react/forbid-component-props': 'off',
-        'react/jsx-sort-props': 'off',
-        'react-hooks/exhaustive-deps': [
+        /**
+         * Turn-off recommended rules
+         */
+        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+
+        // 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
+        'import/default': 'off',
+        'import/namespace': 'off',
+        'import/no-named-as-default-member': 'off',
+
+        /**
+         * Adjust recommended rules
+         */
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        '@typescript-eslint/no-misused-promises': [
           'error',
-          { additionalHooks: '(useRecoilCallback|useRecoilTransaction)' },
+          { checksVoidReturn: { arguments: false, attributes: false } },
         ],
-      },
-    },
-    {
-      files: ['.eslintrc.js', 'i18next-parser.config.js'],
-      extends: ['canonical/node'],
-      rules: {
-        'unicorn/prefer-module': 'off',
+        '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+
+        /**
+         * Use additional rules
+         */
+        'import/first': 'error',
+        'import/no-anonymous-default-export': 'error',
+
+        /**
+         * Replace additional rules
+         */
+        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
+        'no-array-constructor': 'off',
+        '@typescript-eslint/no-array-constructor': 'error',
+        'no-implied-eval': 'off',
+        '@typescript-eslint/no-implied-eval': 'error',
+        'no-loop-func': 'off',
+        '@typescript-eslint/no-loop-func': 'error',
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': [
+          'error',
+          { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
+        ],
+        'no-throw-literal': 'off',
+        '@typescript-eslint/no-throw-literal': 'error',
+        'no-useless-constructor': 'off',
+        '@typescript-eslint/no-useless-constructor': 'error',
       },
     },
   ],

@@ -33,33 +33,33 @@ const apiClient = async <R>(
 
   const resp = await fetch(url, init);
 
-  const data = await resp.json();
+  const data = (await resp.json()) as R | ErrorResponse;
 
   if (!resp.ok) {
     const { error } = data as ErrorResponse;
 
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw error;
   }
 
-  return data;
+  return data as R;
 };
 
 export const buildURL = (path: string, params?: Record<string, unknown>) =>
   import.meta.env.VITE_API_URL +
   path +
-  (params && Object.keys(params).length ? `?${qs.stringify(params)}` : '');
+  (params && Object.keys(params).length > 0 ? `?${qs.stringify(params)}` : '');
 
-export const get = <R = unknown>(path: string, init?: Init) =>
-  apiClient<R>(path, { ...init, method: 'GET' });
+export const get = <R>(path: string, init?: Init) => apiClient<R>(path, { ...init, method: 'GET' });
 
-export const post = <R = unknown>(path: string, body?: unknown, init?: Init) =>
+export const post = <R>(path: string, body?: unknown, init?: Init) =>
   apiClient<R>(path, { ...init, method: 'POST', body });
 
-export const put = <R = unknown>(path: string, body?: unknown, init?: Init) =>
+export const put = <R>(path: string, body?: unknown, init?: Init) =>
   apiClient<R>(path, { ...init, method: 'PUT', body });
 
-export const patch = <R = unknown>(path: string, body?: unknown, init?: Init) =>
+export const patch = <R>(path: string, body?: unknown, init?: Init) =>
   apiClient<R>(path, { ...init, method: 'PATCH', body });
 
-export const del = <R = unknown>(path: string, init?: Init) =>
+export const del = <R>(path: string, init?: Init) =>
   apiClient<R>(path, { ...init, method: 'DELETE' });

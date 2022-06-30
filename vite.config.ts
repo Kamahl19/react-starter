@@ -37,7 +37,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
-    chunkSizeWarningLimit: 1_000,
+    chunkSizeWarningLimit: 1000,
   },
   test: {
     globals: true,

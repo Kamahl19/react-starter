@@ -18,7 +18,7 @@ export default Recoil;
 
 const RecoilDebugObserver = () => {
   useRecoilTransactionObserver_UNSTABLE(({ snapshot }) => {
-    for (const node of Array.from(snapshot.getNodes_UNSTABLE({ isModified: true }))) {
+    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
       console.log('Recoil change', node.key, snapshot.getLoadable(node));
     }
   });

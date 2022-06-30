@@ -1,6 +1,6 @@
 import { useContext, useCallback } from 'react';
 import { type MenuProps } from 'antd';
-import { type MenuClickEventHandler } from 'rc-menu/lib/interface'; // eslint-disable-line import/no-extraneous-dependencies
+import { type MenuClickEventHandler } from 'rc-menu/lib/interface';
 
 import { Menu } from 'common/components';
 

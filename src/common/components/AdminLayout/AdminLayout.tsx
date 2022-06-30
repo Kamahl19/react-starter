@@ -94,6 +94,7 @@ const AdminLayout = ({
             {useDrawer && (
               <>
                 {smallLogo}
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                 <span className="admin-layout-drawer-trigger" onClick={toggleIsDrawerVisible}>
                   <MenuOutlined />
                 </span>
