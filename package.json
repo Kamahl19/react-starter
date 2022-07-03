@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
-    "antd": "4.21.4",
+    "antd": "4.21.5",
     "classnames": "2.3.1",
     "history": "5.3.0",
     "i18next": "21.8.11",
