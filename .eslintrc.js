@@ -22,7 +22,6 @@ module.exports = {
     // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
     'prettier',
   ],
-  plugins: ['eslint-comments', 'import', 'unicorn', 'react', 'react-hooks', 'jsx-a11y'],
   env: {
     browser: true,
     es2022: true,
@@ -111,7 +110,12 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.{spec,test}.*'],
-      extends: ['plugin:testing-library/react'],
+      extends: [
+        // https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts
+        'plugin:testing-library/react',
+        // https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38
+        'plugin:jest-dom/recommended',
+      ],
     },
     {
       files: ['**/*.ts?(x)'],
@@ -132,7 +136,6 @@ module.exports = {
         project: './tsconfig.json',
         jsxPragma: null,
       },
-      plugins: ['@typescript-eslint'],
       rules: {
         /**
          * Turn-off recommended rules
