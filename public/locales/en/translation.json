@@ -1,22 +1,9 @@
 {
-  "auth": {
-    "confirmEmail": {
-      "success": "Your e-mail has been confirmed successfully. You can log in now."
-    },
-    "forgottenPassword": {
-      "success": "An e-mail with further instructions has been sent to your e-mail address."
-    },
-    "loginFailed": "Login has failed",
-    "resetPassword": {
-      "success": "Your password was changed successfully. You can log in now."
-    },
-    "signUp": {
-      "success": "Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address."
-    }
-  },
   "authLayout": {
-    "login": "Log In",
-    "signUp": "Sign Up"
+    "menu": {
+      "login": "Log In",
+      "signUp": "Sign Up"
+    }
   },
   "changePassword": {
     "currentPassword": {
@@ -30,6 +17,9 @@
     "submit": "Submit",
     "success": "Your password has been changed successfully.",
     "title": "Change Password"
+  },
+  "confirmEmail": {
+    "success": "Your e-mail has been confirmed successfully. You can log in now."
   },
   "dashboardLayout": {
     "header": {
@@ -45,13 +35,15 @@
       "label": "E-mail",
       "placeholder": "E-mail"
     },
-    "submit": "Submit"
+    "submit": "Submit",
+    "success": "An e-mail with further instructions has been sent to your e-mail address."
   },
   "logIn": {
     "email": {
       "label": "E-mail",
       "placeholder": "E-mail"
     },
+    "failed": "Login has failed",
     "forgotPassword": "Forgot password?",
     "logIn": "Log In",
     "password": {
@@ -76,7 +68,8 @@
       "label": "New Password",
       "placeholder": "New Password"
     },
-    "submit": "Submit"
+    "submit": "Submit",
+    "success": "Your password was changed successfully. You can log in now."
   },
   "signUp": {
     "email": {
@@ -88,7 +81,8 @@
       "label": "Password",
       "placeholder": "Password"
     },
-    "submit": "Sign Up"
+    "submit": "Sign Up",
+    "success": "Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address."
   },
   "validation": {
     "email": "E-mail is not valid",

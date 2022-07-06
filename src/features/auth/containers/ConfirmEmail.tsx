@@ -23,7 +23,7 @@ const ConfirmEmailContainer = () => {
       try {
         await confirmEmail();
 
-        message.success(t('auth.confirmEmail.success'));
+        message.success(t('confirmEmail.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {

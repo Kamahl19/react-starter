@@ -20,7 +20,7 @@ const SignUpContainer = () => {
       try {
         await createUser(payload);
 
-        message.success(t('auth.signUp.success'));
+        message.success(t('signUp.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {

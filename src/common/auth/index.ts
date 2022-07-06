@@ -36,7 +36,7 @@ export const useLogin = () => {
 
           setAuthState(data);
         } catch {
-          message.error(t('auth.loginFailed'));
+          message.error(t('logIn.failed'));
 
           resetAuthState();
         } finally {

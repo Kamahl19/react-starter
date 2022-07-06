@@ -20,7 +20,7 @@ const ForgottenPasswordContainer = () => {
       try {
         await forgottenPassword(payload);
 
-        message.success(t('auth.forgottenPassword.success'));
+        message.success(t('forgottenPassword.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {
