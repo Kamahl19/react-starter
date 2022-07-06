@@ -161,6 +161,7 @@ module.exports = {
         /**
          * Use additional rules
          */
+        '@typescript-eslint/consistent-type-imports': 'error',
         'import/first': 'error',
         'import/no-anonymous-default-export': 'error',
 
