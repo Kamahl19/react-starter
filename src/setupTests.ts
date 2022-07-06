@@ -2,8 +2,6 @@ import createFetchMock from 'vitest-fetch-mock';
 
 import '@testing-library/jest-dom';
 
-import 'common/i18next';
-
 // Suppress oaf-react-router warning about missing title
 document.title = 'React Starter';
 
@@ -24,3 +22,6 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 });
+
+// eslint-disable-next-line import/first
+import 'common/i18next';
