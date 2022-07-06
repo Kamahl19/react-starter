@@ -20,12 +20,7 @@ const ForgottenPasswordContainer = () => {
       try {
         await forgottenPassword(payload);
 
-        message.success(
-          t('auth.forgottenPassword.success', {
-            defaultValue:
-              'An e-mail with further instructions has been sent to your e-mail address.',
-          })
-        );
+        message.success(t('auth.forgottenPassword.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {

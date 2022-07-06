@@ -16,18 +16,15 @@ const ResetPassword = ({ isLoading, onSubmit }: Props) => {
   return (
     <Form<ResetPasswordPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('resetPassword.password.label', { defaultValue: 'New Password' })}
+        label={t('resetPassword.password.label')}
         name="password"
         rules={password}
         validateFirst
       >
-        <Input.Password
-          autoFocus
-          placeholder={t('resetPassword.password.placeholder', { defaultValue: 'New Password' })}
-        />
+        <Input.Password autoFocus placeholder={t('resetPassword.password.placeholder')} />
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoading}>
-        {t('resetPassword.submit', { defaultValue: 'Submit' })}
+        {t('resetPassword.submit')}
       </Button>
     </Form>
   );

@@ -4,7 +4,6 @@ import { message } from 'antd';
 import { type ErrorResponse, type ApiError } from 'api';
 import { useAuth } from 'common/auth';
 import { buildURL } from 'common/apiClient';
-import { t } from 'common/i18next';
 
 const fetcher = async <Data>(url: string, token?: string): Promise<Data> => {
   const init = {
@@ -29,7 +28,7 @@ const fetcher = async <Data>(url: string, token?: string): Promise<Data> => {
 };
 
 const onError = (err: Error | ApiError) => {
-  void message.error(t('api.apiError', { defaultValue: 'An error occurred' }) + `: ${err.message}`);
+  void message.error(err.message);
 };
 
 const keyIsFalsy = (key: unknown): key is null | undefined | false =>

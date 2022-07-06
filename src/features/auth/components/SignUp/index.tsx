@@ -26,37 +26,20 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
   return (
     <Form<CreateUserPayload> form={form} onFinish={onSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('signUp.email.label', { defaultValue: 'E-mail' })}
+        label={t('signUp.email.label')}
         name="email"
         rules={email}
         validateFirst
         validateStatus={isUserEmailAvailable ? undefined : 'error'}
-        help={
-          isUserEmailAvailable
-            ? undefined
-            : t('signUp.email.taken', {
-                defaultValue: 'This e-mail is already used. Please log in or use another e-mail.',
-              })
-        }
+        help={isUserEmailAvailable ? undefined : t('signUp.email.taken')}
       >
-        <Input
-          autoFocus
-          placeholder={t('signUp.email.placeholder', { defaultValue: 'E-mail' })}
-          autoComplete="off"
-        />
+        <Input autoFocus placeholder={t('signUp.email.placeholder')} autoComplete="off" />
       </Form.Item>
-      <Form.Item
-        label={t('signUp.password.label', { defaultValue: 'Password' })}
-        name="password"
-        rules={password}
-        validateFirst
-      >
-        <Input.Password
-          placeholder={t('signUp.password.placeholder', { defaultValue: 'Password' })}
-        />
+      <Form.Item label={t('signUp.password.label')} name="password" rules={password} validateFirst>
+        <Input.Password placeholder={t('signUp.password.placeholder')} />
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoading}>
-        {t('signUp.submit', { defaultValue: 'Sign Up' })}
+        {t('signUp.submit')}
       </Button>
     </Form>
   );

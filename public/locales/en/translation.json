@@ -1,1 +1,98 @@
-{}
+{
+  "auth": {
+    "confirmEmail": {
+      "success": "Your e-mail has been confirmed successfully. You can log in now."
+    },
+    "forgottenPassword": {
+      "success": "An e-mail with further instructions has been sent to your e-mail address."
+    },
+    "loginFailed": "Login has failed",
+    "resetPassword": {
+      "success": "Your password was changed successfully. You can log in now."
+    },
+    "signUp": {
+      "success": "Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address."
+    }
+  },
+  "authLayout": {
+    "login": "Log In",
+    "signUp": "Sign Up"
+  },
+  "changePassword": {
+    "currentPassword": {
+      "label": "Current Password",
+      "placeholder": "Current Password"
+    },
+    "newPassword": {
+      "label": "New Password",
+      "placeholder": "New Password"
+    },
+    "submit": "Submit",
+    "success": "Your password has been changed successfully.",
+    "title": "Change Password"
+  },
+  "dashboardLayout": {
+    "header": {
+      "logout": "Logout",
+      "profile": "Profile"
+    },
+    "sidebar": {
+      "home": "Home"
+    }
+  },
+  "forgottenPassword": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "E-mail"
+    },
+    "submit": "Submit"
+  },
+  "logIn": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "E-mail"
+    },
+    "forgotPassword": "Forgot password?",
+    "logIn": "Log In",
+    "password": {
+      "label": "Password",
+      "placeholder": "Password"
+    }
+  },
+  "notFound": {
+    "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
+    "title": "Page not found"
+  },
+  "profile": {
+    "header": {
+      "isConfirmed": "Confirmed"
+    },
+    "menu": {
+      "changePassword": "Change Password"
+    }
+  },
+  "resetPassword": {
+    "password": {
+      "label": "New Password",
+      "placeholder": "New Password"
+    },
+    "submit": "Submit"
+  },
+  "signUp": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "E-mail",
+      "taken": "This e-mail is already used. Please log in or use another e-mail."
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Password"
+    },
+    "submit": "Sign Up"
+  },
+  "validation": {
+    "email": "E-mail is not valid",
+    "required": "Field is required",
+    "stringMinLength": "Field must be at least {{min}} characters long"
+  }
+}

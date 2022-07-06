@@ -15,7 +15,7 @@ const Sidebar = () => {
       [
         {
           to: DASHBOARD_ROUTES.home.to,
-          label: t('dashboardLayout.sidebar.home', { defaultValue: 'Home' }),
+          label: t('dashboardLayout.sidebar.home'),
           icon: <HomeOutlined />,
         },
       ].map(({ to, label, icon }) => ({

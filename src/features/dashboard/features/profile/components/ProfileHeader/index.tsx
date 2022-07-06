@@ -14,7 +14,7 @@ const ProfileHeader = ({ user }: Props) => {
   return (
     <PageHeader avatar={{ icon: <UserOutlined /> }} title={user.email}>
       <Descriptions size="small">
-        <Descriptions.Item label={t('profile.header.isConfirmed', { defaultValue: 'Confirmed' })}>
+        <Descriptions.Item label={t('profile.header.isConfirmed')}>
           {user.isConfirmed ? (
             <CheckCircleTwoTone twoToneColor="#52c41a" style={{ fontSize: 20 }} />
           ) : (

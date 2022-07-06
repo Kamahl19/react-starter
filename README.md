@@ -1,13 +1,13 @@
 # React Starter
 
 [![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=master)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amaster)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-ts/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-vite/deploys)
 
 ## Getting Started
 
 Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
 
-Master branch is always passing CI build and it's deployed online at https://react-starter-ts.netlify.com
+Master branch is always passing CI build and it's deployed online at https://react-starter-vite.netlify.com
 
 ## Keeping up with updates
 
@@ -28,7 +28,7 @@ Once you start building your own app on top of React Starter you will probably w
 - [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [SWR](https://swr.vercel.app/) - hooks for data fetching with stale-while-revalidate strategy
 - [i18next](https://www.i18next.com/) - internationalization framework
-  - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys/values and produces i18n resource file
+  - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
 - [LESS](http://lesscss.org/) - dynamic stylesheet language
 - [Recoil](https://recoiljs.org/) - state management library
   - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
@@ -91,7 +91,7 @@ There are multiple ways how to run ESLint.
 
 ## i18n
 
-Running `yarn extract-translations` will update alphabetically sorted JSON files with key-translations pairs. It will use default messages for keys without explicit translations.
+Running `yarn extract-translations` will update alphabetically sorted JSON file with i18n keys.
 
 ## Analysing production JS bundle
 

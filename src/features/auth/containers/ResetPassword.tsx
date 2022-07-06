@@ -23,11 +23,7 @@ const ResetPasswordContainer = () => {
       try {
         await resetPassword(payload);
 
-        message.success(
-          t('auth.resetPassword.success', {
-            defaultValue: 'Your password was changed successfully. You can log in now.',
-          })
-        );
+        message.success(t('auth.resetPassword.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {

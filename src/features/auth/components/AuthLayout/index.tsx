@@ -15,11 +15,11 @@ const AuthLayout = () => {
       [
         {
           to: AUTH_ROUTES.login.to,
-          label: t('authLayout.login', { defaultValue: 'Log In' }),
+          label: t('authLayout.login'),
         },
         {
           to: AUTH_ROUTES.signUp.to,
-          label: t('authLayout.signUp', { defaultValue: 'Sign Up' }),
+          label: t('authLayout.signUp'),
         },
       ].map(({ to, label }) => ({
         key: to,

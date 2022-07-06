@@ -18,31 +18,22 @@ const Login = ({ onSubmit, isLoading }: Props) => {
 
   return (
     <Form<LoginPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
-      <Form.Item
-        label={t('logIn.email.label', { defaultValue: 'E-mail' })}
-        name="email"
-        rules={email}
-        validateFirst
-      >
-        <Input autoFocus placeholder={t('logIn.email.placeholder', { defaultValue: 'E-mail' })} />
+      <Form.Item label={t('logIn.email.label')} name="email" rules={email} validateFirst>
+        <Input autoFocus placeholder={t('logIn.email.placeholder')} />
       </Form.Item>
       <Form.Item
-        label={t('logIn.password.label', { defaultValue: 'Password' })}
+        label={t('logIn.password.label')}
         name="password"
         rules={passwordNoCheck}
         validateFirst
       >
-        <Input.Password
-          placeholder={t('logIn.password.placeholder', { defaultValue: 'Password' })}
-        />
+        <Input.Password placeholder={t('logIn.password.placeholder')} />
       </Form.Item>
       <Form.Item>
-        <Link to={AUTH_ROUTES.forgottenPassword.to}>
-          {t('logIn.forgotPassword', { defaultValue: 'Forgot password?' })}
-        </Link>
+        <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('logIn.forgotPassword')}</Link>
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoading}>
-        {t('logIn.logIn', { defaultValue: 'Log In' })}
+        {t('logIn.logIn')}
       </Button>
     </Form>
   );

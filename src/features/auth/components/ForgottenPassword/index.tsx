@@ -16,18 +16,15 @@ const ForgottenPassword = ({ isLoading, onSubmit }: Props) => {
   return (
     <Form<ForgottenPasswordPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('forgottenPassword.email.label', { defaultValue: 'E-mail' })}
+        label={t('forgottenPassword.email.label')}
         name="email"
         rules={email}
         validateFirst
       >
-        <Input
-          autoFocus
-          placeholder={t('forgottenPassword.email.placeholder', { defaultValue: 'E-mail' })}
-        />
+        <Input autoFocus placeholder={t('forgottenPassword.email.placeholder')} />
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoading}>
-        {t('forgottenPassword.submit', { defaultValue: 'Submit' })}
+        {t('forgottenPassword.submit')}
       </Button>
     </Form>
   );

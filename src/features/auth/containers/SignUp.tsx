@@ -20,12 +20,7 @@ const SignUpContainer = () => {
       try {
         await createUser(payload);
 
-        message.success(
-          t('auth.signUp.success', {
-            defaultValue:
-              'Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address.',
-          })
-        );
+        message.success(t('auth.signUp.success'));
 
         navigate(AUTH_ROUTES.login.to);
       } catch (error) {

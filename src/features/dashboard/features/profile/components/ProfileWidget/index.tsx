@@ -16,7 +16,7 @@ const ProfileWidget = ({ children }: Props) => {
     () => [
       {
         to: DASHBOARD_ROUTES.profileChangePassword.to,
-        label: t('profile.menu.changePassword', { defaultValue: 'Change Password' }),
+        label: t('profile.menu.changePassword'),
       },
     ],
     [t]

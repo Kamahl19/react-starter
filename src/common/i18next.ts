@@ -7,25 +7,21 @@ export const LANGUAGE_CODES = {
   EN: 'en',
 };
 
-// see: https://www.i18next.com/overview/configuration-options
 i18next
   .use(Backend)
   .use(initReactI18next)
   .init({
-    // debug: import.meta.env.DEV,
+    debug: import.meta.env.DEV,
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     lng: LANGUAGE_CODES.EN,
     fallbackLng: LANGUAGE_CODES.EN,
     supportedLngs: [LANGUAGE_CODES.EN],
-    nonExplicitSupportedLngs: true,
     interpolation: {
-      escapeValue: false,
-    },
-    react: {
-      transWrapTextNodes: 'span',
+      escapeValue: false, // React escapes by default
     },
   });
 
-export const t = i18next.t.bind(i18next);
+// eslint-disable-next-line unicorn/prefer-export-from
+export default i18next;

@@ -25,18 +25,14 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
 
       form.resetFields();
 
-      message.success(
-        t('changePassword.success', {
-          defaultValue: 'Your password has been changed successfully.',
-        })
-      );
+      message.success(t('changePassword.success'));
     },
     [onSubmit, form, t]
   );
 
   return (
     <>
-      <Title level={4}>{t('changePassword.title', { defaultValue: 'Change Password' })}</Title>
+      <Title level={4}>{t('changePassword.title')}</Title>
       <Form<ChangePasswordPayload>
         form={form}
         onFinish={handleSubmit}
@@ -44,31 +40,23 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
         scrollToFirstError
       >
         <Form.Item
-          label={t('changePassword.currentPassword.label', { defaultValue: 'Current Password' })}
+          label={t('changePassword.currentPassword.label')}
           name="currentPassword"
           rules={passwordNoCheck}
           validateFirst
         >
-          <Input.Password
-            placeholder={t('changePassword.currentPassword.placeholder', {
-              defaultValue: 'Current Password',
-            })}
-          />
+          <Input.Password placeholder={t('changePassword.currentPassword.placeholder')} />
         </Form.Item>
         <Form.Item
-          label={t('changePassword.newPassword.label', { defaultValue: 'New Password' })}
+          label={t('changePassword.newPassword.label')}
           name="password"
           rules={password}
           validateFirst
         >
-          <Input.Password
-            placeholder={t('changePassword.newPassword.placeholder', {
-              defaultValue: 'New Password',
-            })}
-          />
+          <Input.Password placeholder={t('changePassword.newPassword.placeholder')} />
         </Form.Item>
         <Button type="primary" htmlType="submit" loading={isLoading}>
-          {t('changePassword.submit', { defaultValue: 'Submit' })}
+          {t('changePassword.submit')}
         </Button>
       </Form>
     </>
