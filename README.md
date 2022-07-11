@@ -1,13 +1,12 @@
 # React Starter
 
 [![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=master)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amaster)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0bece35d-bed0-49ae-8236-08d67acd4031/deploy-status)](https://app.netlify.com/sites/react-starter-vite/deploys)
 
 ## Getting Started
 
 Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
 
-Master branch is always passing CI build and it's deployed online at https://react-starter-vite.netlify.com
+Master branch is always passing CI build.
 
 ## Keeping up with updates
 
@@ -39,7 +38,7 @@ Once you start building your own app on top of React Starter you will probably w
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [Husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
-- [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch and Netlify to deploy each PR & Master branch automatically
+- [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 
 ## Prerequisites
@@ -111,11 +110,6 @@ This project is using [GitHub's Actions](https://github.com/features/actions) to
    - Select build checks being run in CI.yml
 2. Update path to your repository (eg. `Kamahl19/react-starter`) and name of the branch for CI badge in `README.md`
 
-This project is using [Netlify](https://www.netlify.com/) to deploy each PR and Master branch automatically. If you don't use Netlify you can remove the `netlify.toml` file, otherwise follow these steps to setup Netlify:
-
-1. Follow [Netlify's instructions](https://docs.netlify.com/)
-2. Update Netlify status badge in `README.md` according to [these instructions](https://docs.netlify.com/monitor-sites/status-badges/)
-
 ## More Docs & Guides
 
 This project is built on top of `Vite` with many [more usefull guides](https://vitejs.dev/guide/).
@@ -123,7 +117,3 @@ This project is built on top of `Vite` with many [more usefull guides](https://v
 ## License
 
 This is open source software [licensed as MIT](https://github.com/Kamahl19/react-starter/blob/master/LICENSE).
-
-<a href="https://www.netlify.com">
-  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
-</a>
