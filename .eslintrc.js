@@ -38,11 +38,6 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': ['.js', '.jsx'],
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
   },
   rules: {
     /**
@@ -135,6 +130,13 @@ module.exports = {
       parserOptions: {
         project: './tsconfig.json',
         jsxPragma: null,
+      },
+      settings: {
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+          },
+        },
       },
       rules: {
         /**
