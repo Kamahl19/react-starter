@@ -12,7 +12,7 @@ export default defineConfig({
     reactPlugin(),
     tsconfigPathsPlugin(),
     svgrPlugin(),
-    momentToDayjsPlugin(),
+    momentToDayjsPlugin(), // https://ant.design/docs/react/replace-moment
     checkerPlugin({
       overlay: false,
       typescript: true,
@@ -34,6 +34,7 @@ export default defineConfig({
   },
   server: {
     open: true,
+    port: 3000,
   },
   build: {
     sourcemap: true,

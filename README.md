@@ -43,7 +43,7 @@ Once you start building your own app on top of React Starter you will probably w
 
 ## Prerequisites
 
-Edit the `.env.development` file according to your needs.
+Edit the `.env` file according to your needs.
 
 ## Start app
 
