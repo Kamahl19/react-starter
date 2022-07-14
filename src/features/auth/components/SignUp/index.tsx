@@ -19,7 +19,7 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
 
   const [form] = Form.useForm<CreateUserPayload>();
 
-  const [emailValue] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
+  const [emailValue = ''] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
 
   const isUserEmailAvailable = useFetchUserEmailAvailability(emailValue);
 
