@@ -75,5 +75,4 @@ export const swrConfig: SWRConfiguration = {
   onError,
   use: [urlMiddleware, authMiddleware],
   revalidateOnMount: true,
-  revalidateOnFocus: false,
 };

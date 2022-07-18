@@ -2,21 +2,6 @@
 
 [![Master CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=master)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amaster)
 
-## Getting Started
-
-Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
-
-Master branch is always passing CI build.
-
-## Keeping up with updates
-
-Once you start building your own app on top of React Starter you will probably want to keep up-to-date with the new updates of React Starter. This can be easily achieved using GitHub's compare feature. We suggest this process:
-
-1. When you clone the React Starter repo, don't forget to write down the hash of [latest master's commit](https://github.com/Kamahl19/react-starter/commits/master)
-2. Every once in a while, compare the version of React Starter you used with the current version of React Starter like this `https://github.com/Kamahl19/react-starter/compare/{YOUR_LATEST_REACT_STARTER_COMMIT_HASH}...master`
-3. Go through the diff and apply the changes in your own app
-4. Commit these changes into your own repo with this commit message: `Updating to React Starter hash: {LATEST_REACT_STARTER_COMMIT_HASH}`. This way you always keep the hash of the React Starter's version you currently use in your app
-
 ## What’s Inside?
 
 - [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
@@ -41,6 +26,12 @@ Once you start building your own app on top of React Starter you will probably w
 - [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 
+## Getting Started
+
+Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
+
+Master branch is always passing CI build.
+
 ## Prerequisites
 
 Edit the `.env` file according to your needs.
@@ -58,20 +49,6 @@ To build the app for production, run `yarn build` in app root directory. Your ap
 ## Test app
 
 Run `yarn test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
-
-## Project structure
-
-```
--| .github/: GitHub workflows for CI/CD
--| .husky/: pre-commit hook
--| public/: Public assets
--| src/
- |--| api/: Communication with API server.
- |--| app/: Main application (framework) files.
- |--| common/: Base components, services, hooks, utils etc.
- |--| features/: Features bundled into separate modules including components, containers, routes etc.
- |--| index.tsx: application entry file
-```
 
 ## Prettier
 
@@ -112,7 +89,16 @@ This project is using [GitHub's Actions](https://github.com/features/actions) to
 
 ## More Docs & Guides
 
-This project is built on top of `Vite` with many [more usefull guides](https://vitejs.dev/guide/).
+Please read [DOCS.md for more useful guides and documentation](./DOCS.md).
+
+## Keeping up with updates
+
+Once you start building your own app on top of React Starter you will probably want to keep up-to-date with the new updates of React Starter. This can be easily achieved using GitHub's compare feature. We suggest this process:
+
+1. When you clone the React Starter repo, don't forget to write down the hash of [latest master's commit](https://github.com/Kamahl19/react-starter/commits/master)
+2. Every once in a while, compare the version of React Starter you used with the current version of React Starter like this `https://github.com/Kamahl19/react-starter/compare/{YOUR_LATEST_REACT_STARTER_COMMIT_HASH}...master`
+3. Go through the diff and apply the changes in your own app
+4. Commit these changes into your own repo with this commit message: `Updating to React Starter hash: {LATEST_REACT_STARTER_COMMIT_HASH}`. This way you always keep the hash of the React Starter's version you currently use in your app
 
 ## License
 
