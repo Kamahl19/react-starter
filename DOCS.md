@@ -10,7 +10,7 @@ Build tooling for both development and production is provided by [Vite](https://
 
 It's best to start with this video [Vite in 100 Seconds](https://www.youtube.com/watch?v=KCrXgy8qtjM). You can continue with [Why Vite](https://vitejs.dev/guide/why.html) and its [Features](https://vitejs.dev/guide/features.html). There is also a [good article from Shopify Engineering](https://shopify.engineering/developer-experience-with-hydrogen-and-vite) about why they chose Vite for building Shopify frontends.
 
-[Vite configuration](./vite.config.ts) for this project also uses plugins for [React](https://github.com/vitejs/vite/tree/main/packages/plugin-react), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), [auto-preffixing](https://github.com/postcss/autoprefixer) CSS, and processing [Less](https://lesscss.org/features/).
+Vite configuration [vite.config.ts](./vite.config.ts) for this project also uses plugins for [React](https://github.com/vitejs/vite/tree/main/packages/plugin-react), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), [auto-preffixing](https://github.com/postcss/autoprefixer) CSS, and processing [Less](https://lesscss.org/features/).
 
 This project is also entirely written in [TypeScript](https://www.typescriptlang.org/), a strongly typed programming language that builds on JavaScript. There is a good Get Started both for [JavaScript programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) and [Java Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html). The TS compiler options are defined in [tsconfig.json](./tsconfig.json).
 
@@ -30,7 +30,7 @@ To configure code that executes before tests run (eg. to mock API or set global 
 
 ## Linting & Formatting
 
-Code-quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom [ESLint configuration](./.eslintrc.js) includes these rules and plugins:
+Code-quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom ESLint configuration [.eslintrc.js](./.eslintrc.js) includes these rules and plugins:
 
 - [recommended eslint rules](https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js) built-in ESLint recommended rules
 - [typescript](https://github.com/typescript-eslint/typescript-eslint) provides [recommended rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts), [type checking rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts) and [strict rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts) for TypeScript
@@ -50,11 +50,11 @@ ESLint runs when:
 - developer starts Vite dev server `yarn start`
 - in IDE on background if supported ([VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [IntelliJ IDEA](https://www.jetbrains.com/help/webstorm/eslint.html))
 - automatically on `pre-commit` hook, right before code is commited
-  - [defining actions](./.husky/pre-commit) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
+  - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
   - linting only the files and changes being commited enables [lint-staged](https://github.com/okonet/lint-staged)
-- during [continuous integration](./.github/workflows/CI.yml)
+- during continuous integration defined in [.github/workflows/CI.yml](./.github/workflows/CI.yml)
 
-Formatting of the whole codebase (js, ts, jsx, json, html, css, less, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes all original styling and ensures that all outputted code conforms to a consistent style. This project uses default Prettier configuration [with the small exception](./.prettierrc). You can read more about [Why Prettier](https://prettier.io/docs/en/why-prettier.html) or [Editors integration](https://prettier.io/docs/en/editors.html).
+Formatting of the whole codebase (js, ts, jsx, json, html, css, less, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes all original styling and ensures that all outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with the small exception defined in [.prettierrc](./.prettierrc). You can read more about [Why Prettier](https://prettier.io/docs/en/why-prettier.html) or [Editors integration](https://prettier.io/docs/en/editors.html).
 
 Prettier runs when:
 
@@ -65,7 +65,7 @@ Prettier runs when:
 
 ## UI Components
 
-This projects already includes [Ant.Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [theme-variables.less](./src/app/styles/theme-variables.less).
+This projects already includes [Ant.Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
 
 AntD includes a powerful [Form](https://ant.design/components/form/) component including validations. Reusable custom validation rules are defined in [src/common/validations.ts](./src/common/validations.ts) and are available via hook.
 
@@ -86,7 +86,7 @@ All Less files in this project are being included in the [src/app/styles/main.le
 
 Internationalization is covered by the [i18next](https://www.i18next.com/) framework. i18next goes beyond just providing the standard i18n features such as (plurals, context, interpolation, format). It provides a complete solution to localize the product from web to mobile and desktop. It's framework and platform agnostic with support for React, Angular, Vue, Nodejs, iOS and others. You can read more about its [benefits here](https://www.i18next.com/overview/comparison-to-others).
 
-React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison with react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's [configuration for i18next](./src/common/i18next.ts) includes also [i18next-http-backend](https://github.com/i18next/i18next-http-backend) for async loading of resources stored in [public/locales/{LANG}/translation.json](./public/locales/en/translation.json). IDE support is covered by [TypeScript typings](./src//i18n.d.ts).
+React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison with react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's configuration for i18next defined in [src/common/i18next.ts](./src/common/i18next.ts) includes also [i18next-http-backend](https://github.com/i18next/i18next-http-backend) for async loading of resources stored in [public/locales/{LANG}/translation.json](./public/locales/en/translation.json). IDE support is covered by TypeScript typings [src/i18n.d.ts](./src/i18n.d.ts).
 
 i18next ecosystem provides [many more plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators etc. This project includes one such plugin [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
 
@@ -94,7 +94,7 @@ i18next ecosystem provides [many more plugins and tools](https://www.i18next.com
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to first read a [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview), then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly about v6 changes. The docs also provides a [simple Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To level up the understanding of React Router with the concepts, vocabulary, and design principles go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
 
-React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment in a URL or announcing navigation to users with screen readers. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by [wrapping the history with oaf-react-router's](./src/app/Router.tsx) function and supplying the wrapped history to the React Router.
+React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment in a URL or announcing navigation to users with screen readers. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by wrapping the history with oaf-react-router's function in [src/app/Router.tsx](./src/app/Router.tsx) and supplying the wrapped history to the React Router.
 
 To easily observe and debug the routing functionality in development mode, [src/app/Router.tsx](./src/app/Router.tsx) includes `RouterDebugObserver` to log all location changes such as push, pop, and replace.
 
