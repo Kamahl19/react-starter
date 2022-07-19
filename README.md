@@ -9,7 +9,7 @@
 - [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
 - [Ant.Design](https://ant.design/) - UI library
-- [JWT](https://jwt.io/) Authorization - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
+- [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [SWR](https://swr.vercel.app/) - hooks for data fetching with stale-while-revalidate strategy
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
