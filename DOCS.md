@@ -117,13 +117,29 @@ To easily observe and debug state changes in development mode, [src/app/Recoil.t
 
 This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of React tree.
 
-## Data Fetching
+## Data Fetching and Network Communication
 
 [SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will be always fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
 
 SWR library is transport and protocol agnostic, it can be used by native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), Axios, GraphQL library or any other asynchronous function which returns the data. It provides built-in cache, request deduplication, polling on interval, [data dependency](https://swr.vercel.app/docs/conditional-fetching), [revalidation](https://swr.vercel.app/docs/revalidation) on focus or network recovery, [error retry](https://swr.vercel.app/docs/error-handling), [pagination](https://swr.vercel.app/docs/pagination), [optimistic UI](https://swr.vercel.app/docs/mutation), SSR support, [Suspense](https://swr.vercel.app/docs/suspense) support, and others.
 
+This project configures SWR in [src/common/swr.ts](./src/common/swr.ts) with couple of middlewares. There is a `authMiddleware` which reads auth token and a `urlMiddleware` to build the API url based on host, endpoint and parameters. There is also a `fetcher` function based on [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and an error handling.
+
 To simplify showing the "loading" state across the whole application, there is a [useIsLoading](./src/common/hooks/useIsLoading.ts) hook. This function accepts a string `key` representing the API call or any other async operation. It returns `isLoading` boolean to show/hide loading component and a `wrap` function used to wrap the actual async function.
+
+Network communicaton other then data fetching (or when SWR strategy is not useful) is facilitated by [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based [src/common/apiClient.ts](./src/common/apiClient.ts). It provides async functions for each HTTP method (get, post, put, patch, delete), injects auth token automatically and includes error handling.
+
+Real world usage examples of SWR, `apiClient` and `useIsLoading` can be found in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
+
+## Authentication
+
+A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides 3 simple hooks: `useLogin` to do the log in, `useLogout` to do the log out and `useAuth` to get current information (`token`, `userId`, `isLoggedIn`).
+
+It also provides 2 [guard components](./src/common/auth/guards.tsx) `RequireIsLoggedIn` and `RequireIsAnonymous` to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
+
+There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login user after page reload if token is present in local storage.
+
+Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts).
 
 ## React
 
@@ -187,6 +203,12 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── vite.config.ts : contains Vite [configuration](https://vitejs.dev/config/)
 ├── yarn.lock : auto-generated file to keep dependency versions, should be handled entirely by Yarn
 ```
+
+The entrypoint of the application is [src/index.tsx](./src/index.tsx). It includes styles, intializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
+
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, SWR, Router, and AntD. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
+
+[App.tsx](./src/app/App.tsx) is a top-most component including business logic. Top routes such as auth routes and dashboard routes are rendered there based on user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 
 The [src/features](./src/features) folder contains encapsulated features / parts / modules of the application which contain everything specific to that feature eg. routing, containers, components, styles, tests and even its sub-features encapsulated in the nested `features` folder. The feature folder structure is up to the development team to decide but it's good to follow these principles:
 
