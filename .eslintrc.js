@@ -104,7 +104,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/*.{spec,test}.*'],
+      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
       extends: [
         // https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts
         'plugin:testing-library/react',
