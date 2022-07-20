@@ -19,6 +19,3 @@ vi.stubGlobal('matchMedia', (query: string) => ({
   removeEventListener: vi.fn(),
   dispatchEvent: vi.fn(),
 }));
-
-// eslint-disable-next-line import/first
-import 'common/i18next';

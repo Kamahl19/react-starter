@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from 'testUtils';
 
-import Root from './Root';
+import App from './App';
 
 it('renders without crashing', async () => {
-  render(<Root />);
+  render(<App />);
 
   const loginButton = await screen.findByRole('button');
 
