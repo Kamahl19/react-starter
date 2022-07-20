@@ -102,22 +102,22 @@ To easily observe and debug the routing functionality during development, there 
 
 ## State Management
 
-This project doesn't include [Redux](https://react-redux.js.org/) library. It has a lot of pros but also several cons and it isn't a silver bullet for state management in every application. It brings new concepts and patterns to the table increasing the complexity, requires a couple other companion libraries, requires lot's of boilerplate, there is no data encapsulation and it's hard to achieve type-safety. It's also not particularly useful when the app uses one data source per view and often it's being misused as an "API data cache". However if you really need or want to use it feel free to do so.
+This project doesn't include [Redux](https://react-redux.js.org/) library. It has a lot of pros and cons but it isn't a silver bullet for state management in every application. It increases the complexity by bringing new concepts and patterns to the table. It requires several other companion libraries and lots of boilerplate. There is no data encapsulation and it's hard to achieve type-safety. Also, it isn't particularly useful when the app uses one data source per view and is often misused as an "API data cache". However, if you really need or want to use it, feel free to do so.
 
-Using only the built-in [React Context](https://reactjs.org/docs/context.html) and [useState hook](https://reactjs.org/docs/hooks-state.html) can get out of hands pretty quickly in mid-size application so some state management library with higher abstraction is necessary. The [Recoil](https://recoiljs.org/) state management library built by Facebook seems to be the best choice.
+Using only the built-in [React Context](https://reactjs.org/docs/context.html) and [useState hook](https://reactjs.org/docs/hooks-state.html) can get out of hand quickly in mid-size application. Therefor some state management library with higher abstraction is necessary. The [Recoil](https://recoiljs.org/) state management library built by Facebook seems to be the best choice.
 
-Recoil leverages [React-like approach and same mental model](https://recoiljs.org/docs/introduction/motivation), doesn't bring any new concepts or difficult patterns and feels like using a global version of React's built-in useState hook. Recoil handles app-wide state observations well, it's boilerplate-free, supports [React v18 concurrency](https://reactjs.org/blog/2022/03/29/react-v18.html#what-is-concurrent-react) and encourages distributed and incremental state definition.
+Recoil leverages [React-like approach and the same mental model](https://recoiljs.org/docs/introduction/motivation) and doesn't bring any new concepts or difficult patterns. It feels like using a global version of React's built-in useState hook. Recoil handles app-wide state observations well, it's boilerplate-free, supports [React v18 concurrency](https://reactjs.org/blog/2022/03/29/react-v18.html#what-is-concurrent-react) and encourages distributed and incremental state definition.
 
 Recoil provides a data-graph that flows from shared states into React components. The two core concepts of Recoil according to the official [documentation](https://recoiljs.org/docs/introduction/core-concepts/) are:
 
-- [Atoms](https://recoiljs.org/docs/introduction/core-concepts/#atoms), which are units of the global state provided by Recoil, components can access and subscribe to changes made to them.
-- [Selectors](https://recoiljs.org/docs/introduction/core-concepts/#selectors) with which we can transform states either synchronously or asynchronously, and components can also access and subscribe to.
+- [Atoms](https://recoiljs.org/docs/introduction/core-concepts/#atoms) - units of the global state provided by Recoil. Components can access and subscribe to changes made to them.
+- [Selectors](https://recoiljs.org/docs/introduction/core-concepts/#selectors) - can be used to transform states either synchronously or asynchronously. Components can also access and subscribe to them.
 
 There is also a [To-Do list tutorial](https://recoiljs.org/docs/basic-tutorial/intro), a great [Explain Like I'm 5](https://www.youtube.com/watch?v=U9XStcquQyY) video, and a [Deep Dive](https://www.youtube.com/watch?v=_ISAA_Jt9kI) video.
 
-To easily observe and debug state changes in development mode, [src/app/Recoil.tsx](./src/app/Recoil.tsx) includes `RecoilDebugObserver` to log all state changes.
+To easily observe and debug state changes during development, there is `RecoilDebugObserver` in [src/app/Recoil.tsx](./src/app/Recoil.tsx) which logs all state changes.
 
-This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of React tree.
+This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of the React tree.
 
 ## Data Fetching and Network Communication
 
