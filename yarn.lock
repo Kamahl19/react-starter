@@ -1525,10 +1525,10 @@ date-fns@2.x:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
   integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
-dayjs@1.11.3, dayjs@1.x:
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
-  integrity sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==
+dayjs@1.11.4, dayjs@1.x:
+  version "1.11.4"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.4.tgz#3b3c10ca378140d8917e06ebc13a4922af4f433e"
+  integrity sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -1981,10 +1981,10 @@ eslint-import-resolver-node@^0.3.6:
     debug "^3.2.7"
     resolve "^1.20.0"
 
-eslint-import-resolver-typescript@3.2.7:
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.2.7.tgz#b873d549d9b00a880c54f9b352f7336c303794b0"
-  integrity sha512-WvcsRy3aPmwVsuS/XVliAJWpIdTlaFXXZPZk3TCbvvF8RtaAkjAhcLL5bl5VEoTmE+XnTHjIbWMzNZcOQpK/DA==
+eslint-import-resolver-typescript@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.3.0.tgz#c2b9f420563bdcb4b84d550d81e579f8dc867d5b"
+  integrity sha512-vlooCGKfDX59rH5TbtluOekinPlIS5Ab+dyQUoCCJoE1IV11R/kn6J+RoMBuBkJhzJEIKJ4myQJhw6lGIXfkRA==
   dependencies:
     debug "^4.3.4"
     enhanced-resolve "^5.10.0"
