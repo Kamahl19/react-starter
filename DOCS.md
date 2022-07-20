@@ -65,13 +65,15 @@ Prettier runs when:
 
 ## UI Components
 
-This projects already includes [Ant.Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
+This projects already includes [Ant Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
 
-AntD includes a powerful [Form](https://ant.design/components/form/) component including validations. Reusable custom validation rules are defined in [src/common/validations.ts](./src/common/validations.ts) and are available via hook.
+[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/AntDesignConfig.tsx](./src/app/AntDesignConfig.tsx).
 
-AntD provides several datetime related components that by default use [Moment.js](https://momentjs.com/) library which is infamouse for its huge size. Moment.js will be dropped in the next major AntD release. Until then AntD also supports other smaller datetime libraries such as [Day.js](https://day.js.org/) and allows us to [replace Moment.js](https://ant.design/docs/react/replace-moment) globally. This is already done in this project using [moment-to-dayjs](https://github.com/Dunqing/unplugin-moment-to-dayjs) Vite plugin.
+Ant Design includes a powerful [Form](https://ant.design/components/form/) component including validations. Reusable custom validation rules are defined in [src/common/validations.ts](./src/common/validations.ts) and are available via hook.
 
-On top of that, this project already comes with [few components](./src/common/components/) built on top of AntD such as:
+Ant Design provides several datetime related components that by default use [Moment.js](https://momentjs.com/) library which is infamouse for its huge size. Moment.js will be dropped in the next major Ant Design release. Until then Ant Design also supports other smaller datetime libraries such as [Day.js](https://day.js.org/) and allows us to [replace Moment.js](https://ant.design/docs/react/replace-moment) globally. This is already done in this project using [moment-to-dayjs](https://github.com/Dunqing/unplugin-moment-to-dayjs) Vite plugin.
+
+On top of that, this project already comes with [few components](./src/common/components/) built on top of Ant Design such as:
 
 - [AdminLayout](./src/common/components/AdminLayout/) is a full-featured responsive dashboard layout with sidebar, navbar and space for page content
 - [LoadingScreen](./src/common/components/LoadingScreen/index.tsx) is a full-page loader
@@ -206,7 +208,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint of the application is [src/index.tsx](./src/index.tsx). It includes styles, intializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, SWR, Router, and AntD. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, SWR, Router, and Ant Design. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
 
 [App.tsx](./src/app/App.tsx) is a top-most component including business logic. Top routes such as auth routes and dashboard routes are rendered there based on user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 
