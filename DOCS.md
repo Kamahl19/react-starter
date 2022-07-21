@@ -26,7 +26,7 @@ Since [2018](https://github.com/testing-library/react-testing-library/releases/t
 
 Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest.
 
-To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/setupTests.ts](./src/setupTests.ts).
+To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/setupTests.ts](./src/setupTests.ts). There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers.
 
 ## Linting & Formatting
 
@@ -121,9 +121,9 @@ This project also includes [recoil-persist](https://github.com/polemius/recoil-p
 
 ## Data Fetching and Network Communication
 
-[SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will be always fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
+[SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will always be fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
 
-SWR library is transport and protocol agnostic, it can be used by native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), Axios, GraphQL library or any other asynchronous function which returns the data. It provides built-in cache, request deduplication, polling on interval, [data dependency](https://swr.vercel.app/docs/conditional-fetching), [revalidation](https://swr.vercel.app/docs/revalidation) on focus or network recovery, [error retry](https://swr.vercel.app/docs/error-handling), [pagination](https://swr.vercel.app/docs/pagination), [optimistic UI](https://swr.vercel.app/docs/mutation), SSR support, [Suspense](https://swr.vercel.app/docs/suspense) support, and others.
+SWR library is transport and protocol agnostic, it can be used by native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), Axios, GraphQL library or any other asynchronous function which returns data. It provides built-in cache, request deduplication, polling on interval, [data dependency](https://swr.vercel.app/docs/conditional-fetching), [revalidation](https://swr.vercel.app/docs/revalidation) on focus or network recovery, [error retry](https://swr.vercel.app/docs/error-handling), [pagination](https://swr.vercel.app/docs/pagination), [optimistic UI](https://swr.vercel.app/docs/mutation), SSR support, [Suspense](https://swr.vercel.app/docs/suspense) support, and others.
 
 This project configures SWR in [src/common/swr.ts](./src/common/swr.ts) with couple of middlewares. There is a `authMiddleware` which reads auth token and a `urlMiddleware` to build the API url based on host, endpoint and parameters. There is also a `fetcher` function based on [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and an error handling.
 
@@ -139,30 +139,30 @@ A token-based API agnostic authentication is already included in this project. I
 
 It also provides 2 [guard components](./src/common/auth/guards.tsx) `RequireIsLoggedIn` and `RequireIsAnonymous` to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
-There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login user after page reload if token is present in local storage.
+There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in local storage.
 
 Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts).
 
 ## React
 
-React has [grew](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) [significantly](https://reactjs.org/blog/2022/03/29/react-v18.html) in the last few years. [New concepts](https://reactjs.org/blog/2018/11/13/react-conf-recap.html) and patterns have emerged and were built-into the framework. Here is the list of the most important ones:
+React has [grown](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) [significantly](https://reactjs.org/blog/2022/03/29/react-v18.html) in the last few years. [New concepts](https://reactjs.org/blog/2018/11/13/react-conf-recap.html) and patterns have emerged and were built into the framework. Here is the list of the most important ones:
 
 - [Hooks](https://reactjs.org/docs/hooks-intro.html) are explained in detail [below](#react-hooks)
 - [Context](https://reactjs.org/docs/context.html) provides a way to pass data through the component tree without having to pass props down manually at every level (prop drilling)
-- [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) catch JS errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This project also includes [react-error-boundary](https://github.com/bvaughn/react-error-boundary) library for better and reusable error boundary component
+- [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) catch JS errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This project also includes [react-error-boundary](https://github.com/bvaughn/react-error-boundary) library providing better and reusable `ErrorBoundary` component
 - [Code Splitting](https://reactjs.org/docs/code-splitting.html) to avoid winding up with a large JS bundle
-- [Transitions](https://reactjs.org/docs/react-api.html#transitions) allow to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content
+- [Transitions](https://reactjs.org/docs/react-api.html#transitions) allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content
 - [Concurrent React](https://reactjs.org/blog/2022/03/29/react-v18.html#what-is-concurrent-react)
 
 ### React Hooks
 
-[Hooks](https://reactjs.org/docs/hooks-intro.html) replace all the patterns for stateful logic reuse such as [render props](https://reactjs.org/docs/render-props.html), [higher-order components](https://reactjs.org/docs/higher-order-components.html), and other abstractions. With Hooks, we can extract stateful logic from a component so it can be tested independently and reused without changing component hierarchy.
+[Hooks](https://reactjs.org/docs/hooks-intro.html) replace all the patterns for stateful logic reuse such as [render props](https://reactjs.org/docs/render-props.html), [higher-order components](https://reactjs.org/docs/higher-order-components.html), and other abstractions. With Hooks, we can extract stateful logic from a component so it can be tested independently and reused without changing the component hierarchy.
 
-Hooks also help to avoid complex components that are hard to understand. Traditionally a (class) component mixed stateful logic, side effects and UI. It was done using lifecycle methods which combined mix of unrelated code (data fetching, event listeners setup) in single method while splitting related code (event listeners cleanup) to different lifecycle methods. This led to bugs, made it difficult to split large components into smaller ones because stateful logic was all over the place, and it was hard to cover such component with tests. With Hooks, we can split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
+Hooks also help to avoid complex components that are hard to understand. Traditionally, a class component mixes stateful logic, side effects and UI. It is done using lifecycle methods which combine mix of unrelated code (data fetching, event listeners setup) in a single method while splitting related code (event listeners cleanup) to different lifecycle methods. This leads to bugs, makes it difficult to split large components into smaller ones because stateful logic is all over the place, and it is hard to cover such component with tests. With Hooks, we can split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
 
-Hooks also made class components obsolete. They were often a barrier to learning React. In JavaScript, [this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) keyword works very different from how it works in most languages. Classes also made events binding "difficult", they don't minify very well and make hot reloading unreliable.
+Hooks also make class components obsolete. They are often a barrier to learning React. In JavaScript, [this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) keyword works very differently from how it works in most languages. Classes also make events binding "difficult", they don't minify very well and make hot reloading unreliable.
 
-To start using hooks read [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html), [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) and [FAQ](https://reactjs.org/docs/hooks-faq.html).
+To start using hooks, read [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html), [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) and [FAQ](https://reactjs.org/docs/hooks-faq.html).
 
 React has several built-in hooks such as:
 
@@ -190,6 +190,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file
 │   ├── setupTests.tsx : Executes before tests to mock API or set global settings
+│   ├── testUtils.tsx : Provides custom render function for testing
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
 ├── .env contains : environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)
@@ -206,16 +207,16 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── yarn.lock : auto-generated file to keep dependency versions, should be handled entirely by Yarn
 ```
 
-The entrypoint of the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
+The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
 [Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, SWR, Router, and Ant Design. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
 
-[App.tsx](./src/app/App.tsx) is a top-most component including business logic. Top routes such as auth routes and dashboard routes are rendered there based on user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
+The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 
-The [src/features](./src/features) folder contains encapsulated features / parts / modules of the application which contain everything specific to that feature e.g. routing, containers, components, styles, tests and even its sub-features encapsulated in the nested `features` folder. The feature folder structure is up to the development team to decide but it's good to follow these principles:
+The [src/features](./src/features) folder contains encapsulated features / parts / modules of the application. Every feature contains everything specific to that feature e.g. routing, containers, components, styles, tests and even its sub-features encapsulated in the nested `features` folder. The [src/features](./src/features) folder structure is up to the development team, however, it's good to follow these principles:
 
-- make components, hooks and other code reusable if possible and move it up to [src/common/components](./src/common/components), [src/common/hooks](./src/common/hooks) or other folder
+- make components, hooks and the rest of the code reusable, if possible, and move it up to [src/common/components](./src/common/components), [src/common/hooks](./src/common/hooks) or other folder
 - keep router code close to pages that are being rendered by these routes e.g. [src/features/auth/index.ts](./src/features/auth/index.tsx) and [src/features/auth/routes.ts](./src/features/auth/routes.ts)
 - keep styles close to components they belong to
-- you can structure a single feature e.g. [src/features/dashboard](./src/features/dashboard) to many nested features e.g. [src/features/dashboard/features/profile](./src/features/dashboard/features/profile)
-- you can split components to "presentational" (let's call them dumb or just components) and "structural" (let's call them smart or containers). Both could be stateful or stateless. There is an article [Not All Components Are Created Equal](https://formidable.com/blog/2021/react-components/) which outlines options to structure components.
+- you can split a single feature e.g. [src/features/dashboard](./src/features/dashboard) into several nested features e.g. [src/features/dashboard/features/profile](./src/features/dashboard/features/profile)
+- you can split components to "presentational" (let's call them dumb or just components) and "structural" (let's call them smart or containers). Both could be either stateful or stateless. There is an article [Not All Components Are Created Equal](https://formidable.com/blog/2021/react-components/) which outlines options to structure components.

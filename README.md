@@ -26,6 +26,8 @@
 - [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Master branch
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 
+You can read more about what's included and why here [DOCS.md](./DOCS.md).
+
 ## Getting Started
 
 Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
@@ -89,7 +91,7 @@ This project is using [GitHub's Actions](https://github.com/features/actions) to
 
 ## More Docs & Guides
 
-Please read [DOCS.md for more useful guides and documentation](./DOCS.md).
+Please read [DOCS.md](./DOCS.md) for more useful guides and documentation.
 
 ## Keeping up with updates
 
