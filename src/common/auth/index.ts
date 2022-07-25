@@ -14,9 +14,9 @@ import {
   useResetAuthState,
 } from './state';
 
-export * from './guards';
-
 export { default as PersistAuthGate } from './PersistAuthGate';
+export { default as RequireIsAnonymous } from './PersistAuthGate';
+export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
 export const useLogin = () => {
   const { t } = useTranslation();

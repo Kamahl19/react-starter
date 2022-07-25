@@ -137,7 +137,7 @@ Real world usage examples of SWR, `apiClient` and `useIsLoading` can be found in
 
 A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides 3 simple hooks: `useLogin` to do the log in, `useLogout` to do the log out and `useAuth` to get current information (`token`, `userId`, `isLoggedIn`).
 
-It also provides 2 [guard components](./src/common/auth/guards.tsx) `RequireIsLoggedIn` and `RequireIsAnonymous` to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
+It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/RequireIsLoggedIn.tsx) and [RequireIsAnonymous](./src/common/auth/RequireIsAnonymous.tsx), to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
 There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in local storage.
 
