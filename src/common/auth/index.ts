@@ -15,7 +15,7 @@ import {
 } from './state';
 
 export { default as PersistAuthGate } from './PersistAuthGate';
-export { default as RequireIsAnonymous } from './PersistAuthGate';
+export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
 export const useLogin = () => {
