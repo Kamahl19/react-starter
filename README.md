@@ -46,7 +46,7 @@ All the Auth functionality such as Sign-up, Login, Reset password etc. requires 
 
 ## Build app
 
-To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed! See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
+To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
 
 ## Test app
 
@@ -65,11 +65,11 @@ There are multiple ways how to run ESLint.
 - CLI: `yarn lint`
 - in terminal while developing (after running `yarn start`)
 - it runs automatically on `pre-commit` hook
-- in IDE if supported (Visual Studio Code supports reports)
+- in IDE if supported
 
 ## i18n
 
-Running `yarn extract-translations` will update alphabetically sorted JSON file with i18n keys.
+Running `yarn extract-translations` will first parse the whole codebase to find all used i18n keys. Then it inserts missing keys into the JSON file and removes deprecated keys which are not used in the codebase anymore. The result will be an alphabetically sorted JSON containing all the currently used i18n keys in the codebase.
 
 ## Analysing production JS bundle
 

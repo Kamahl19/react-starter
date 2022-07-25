@@ -193,7 +193,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   ├── testUtils.tsx : Provides custom render function for testing
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
-├── .env contains : environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)
+├── .env : contains environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)
 ├── .eslintignore : to ignore files when running ESLint
 ├── .eslintrc.js : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
 ├── .prettierignore : to ignore files when running Prettier
