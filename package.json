@@ -91,7 +91,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-error-boundary": "3.1.4",
-    "react-i18next": "11.18.1",
+    "react-i18next": "11.18.3",
     "react-router-dom": "6.3.0",
     "recoil": "0.7.4",
     "recoil-nexus": "0.4.0",
