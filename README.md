@@ -40,21 +40,21 @@ Edit the `.env` file according to your needs.
 
 ## Start app
 
-To run the app locally, run `yarn start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
+To run the app locally, run `npm start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
 
 All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with React Starter out of the box.
 
 ## Build app
 
-To build the app for production, run `yarn build` in app root directory. Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
+To build the app for production, run `npm run build` in app root directory. Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
 
 ## Test app
 
-Run `yarn test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
+Run `npm test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
 
 ## Prettier
 
-This project uses [Prettier](https://prettier.io/), an opinionated code formatter. In order to format code manually, run `yarn format` in app root directory. All the code is also formatted automatically on `pre-commit` hook. There is also `yarn format-check` for CI purposes to check if code is formatted properly.
+This project uses [Prettier](https://prettier.io/), an opinionated code formatter. In order to format code manually, run `npm run format` in app root directory. All the code is also formatted automatically on `pre-commit` hook. There is also `npm run format-check` for CI purposes to check if code is formatted properly.
 
 ## ESLint
 
@@ -62,18 +62,18 @@ Project comes with ESLint configured. It helps you prevent common errors.
 
 There are multiple ways how to run ESLint.
 
-- CLI: `yarn lint`
-- in terminal while developing (after running `yarn start`)
+- CLI: `npm run lint`
+- in terminal while developing (after running `npm start`)
 - it runs automatically on `pre-commit` hook
 - in IDE if supported
 
 ## i18n
 
-Running `yarn extract-translations` will first parse the whole codebase to find all used i18n keys. Then it inserts missing keys into the JSON file and removes deprecated keys which are not used in the codebase anymore. The result will be an alphabetically sorted JSON containing all the currently used i18n keys in the codebase.
+Running `npm run extract-translations` will first parse the whole codebase to find all used i18n keys. Then it inserts missing keys into the JSON file and removes deprecated keys which are not used in the codebase anymore. The result will be an alphabetically sorted JSON containing all the currently used i18n keys in the codebase.
 
 ## Analysing production JS bundle
 
-Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `yarn analyze`.
+Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `npm run analyze`.
 
 ## Updating dependencies
 

@@ -15,12 +15,12 @@ jobs:
         with:
           node-version: 16
           check-latest: true
-          cache: 'yarn'
+          cache: 'npm'
       - run: |
-          yarn install --frozen-lockfile
-          yarn lint
-          yarn format-check
-          yarn test
-          yarn build
+          npm install
+          npm run lint
+          npm run format-check
+          npm test
+          npm run build
         env:
           CI: true

@@ -18,7 +18,7 @@ This project is also entirely written in [TypeScript](https://www.typescriptlang
 
 Testing a Vite based project is easiest with [Vitest](https://vitest.dev/) which uses the same configuration (through [vite.config.ts](./vite.config.ts)), sharing a common transformation pipeline during development, build, and test time. Vitest is a [Jest](https://jestjs.io/) drop-in replacement with the same API using the same libraries under the hood. Please read [Why Vitest](https://vitest.dev/guide/why.html) and [Comparison with Jest](https://vitest.dev/guide/comparisons.html#jest) to understand the need for migration from Jest to Vitest and its benefits. Here is a handy summary of its [Features](https://vitest.dev/guide/features.html) and [IDE Integration](https://vitest.dev/guide/ide.html) with IntelliJ IDEA and VSCode.
 
-Vitest also provides a [neat UI](https://vitest.dev/guide/ui.html) to view and interact with the tests. Open it by running `yarn test:ui`.
+Vitest also provides a [neat UI](https://vitest.dev/guide/ui.html) to view and interact with the tests. Open it by running `npm run test:ui`.
 
 Generally an [Enzyme](https://github.com/enzymejs/enzyme) library was used for testing React components. However [Enzyme is dead](https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl), its last commit is from [09/21](https://github.com/enzymejs/enzyme/commits/master) and it doesn't work for [React v17](https://github.com/enzymejs/enzyme/issues/2429) nor [React v18](https://github.com/enzymejs/enzyme/issues/2524). For projects with hundreds/thousands of Enzyme based tests, this is a disaster. Although it isn't such a bad thing for new projects. Enzyme encouraged bad testing practices e.g. [shallow rendering](https://kentcdodds.com/blog/why-i-never-use-shallow-rendering) and [testing implementation details](https://kentcdodds.com/blog/testing-implementation-details) such as internal state, internal methods of the component, its lifecycle methods, and children.
 
@@ -46,8 +46,8 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 
 ESLint runs when:
 
-- developer manually executes `yarn lint` command
-- developer starts Vite dev server by `yarn start` command
+- developer manually executes `npm run lint` command
+- developer starts Vite dev server by `npm start` command
 - in IDE on background if supported ([VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [IntelliJ IDEA](https://www.jetbrains.com/help/webstorm/eslint.html))
 - automatically on `pre-commit` hook, right before code is committed
   - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
@@ -58,7 +58,7 @@ Formatting of the entire codebase (js, ts, jsx, json, html, css, less, md...) is
 
 Prettier runs when:
 
-- developer manually executes `yarn format` command
+- developer manually executes `npm run format` command
 - in IDE on file-save if configured ([VSCode](https://github.com/prettier/prettier-vscode), [IntelliJ IDEA](https://prettier.io/docs/en/webstorm.html))
 - automatically on `pre-commit` hook, right before code is committed
 - during CI
@@ -200,11 +200,11 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
+├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser
 ├── tsconfig.vite.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for running Vite locally in Node.js
 ├── vite.config.ts : contains Vite [configuration](https://vitejs.dev/config/)
-├── yarn.lock : auto-generated file to keep dependency versions, should be handled entirely by Yarn
 ```
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.

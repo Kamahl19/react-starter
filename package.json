@@ -13,11 +13,12 @@
     "url": "https://github.com/Kamahl19/react-starter/issues"
   },
   "engines": {
-    "node": ">=14.18",
-    "yarn": "1.x"
+    "node": ">=16.0",
+    "npm": ">=8.0.0",
+    "yarn": "YARN NO LONGER USED - use npm instead."
   },
   "scripts": {
-    "analyze": "yarn build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
+    "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
     "build": "vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
