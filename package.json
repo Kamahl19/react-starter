@@ -52,7 +52,7 @@
     "@vitest/ui": "0.20.2",
     "autoprefixer": "10.4.8",
     "confusing-browser-globals": "1.0.11",
-    "eslint": "8.20.0",
+    "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "3.3.0",
     "eslint-plugin-eslint-comments": "3.2.0",
