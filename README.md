@@ -36,7 +36,12 @@ Master branch is always passing CI build.
 
 ## Prerequisites
 
-Edit the `.env` file according to your needs.
+1. Install [nvm](https://github.com/nvm-sh/nvm) (Node version manager)
+1. Install Node v16 `nvm install 16`
+1. Use Node v16 `nvm use 16`
+1. Upgrade NPM CLI `npm upgrade -g npm`
+1. Install dependencies `npm install`
+1. Edit the `.env` file according to your needs
 
 ## Start app
 
