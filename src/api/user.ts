@@ -20,39 +20,59 @@ export type ChangePasswordPayload = {
   currentPassword: string;
 };
 
-type UserResponse = {
+export type UserResponse = {
   user: User;
 };
+
+export type ConfirmEmailResponse = boolean;
 
 export type ForgottenPasswordPayload = {
   email: string;
 };
 
+export type ForgottenPasswordResponse = boolean;
+
 export type ResetPasswordPayload = {
   password: string;
 };
 
+export type ResetPasswordResponse = boolean;
+
 export const useCreateUser = () => {
-  const { isLoading, wrap } = useIsLoading('user.createUser');
+  const { isLoading, startLoading, stopLoading } = useIsLoading('user.createUser');
 
   return useMemo(
     () => ({
       isLoading,
-      createUser: async (payload: CreateUserPayload) => wrap(post<UserResponse>('/user', payload)),
+      createUser: async (payload: CreateUserPayload) => {
+        try {
+          await startLoading();
+          return await post<UserResponse>('/user', payload);
+        } finally {
+          await stopLoading();
+        }
+      },
     }),
-    [wrap, isLoading]
+    [isLoading, startLoading, stopLoading]
   );
 };
 
 export const useConfirmEmail = (token: string) => {
-  const { isLoading, wrap } = useIsLoading('user.confirmEmail');
+  const { isLoading, startLoading, stopLoading } = useIsLoading('user.confirmEmail');
 
   return useMemo(
     () => ({
       isLoading,
-      confirmEmail: async () => wrap(patch<boolean>(`/user/confirm-email/${token}`)),
+      confirmEmail: async () => {
+        try {
+          await startLoading();
+          return await patch<ConfirmEmailResponse>(`/user/confirm-email/${token}`);
+        } finally {
+          await stopLoading();
+        }
+      },
     }),
-    [wrap, isLoading, token]
+    [isLoading, startLoading, stopLoading, token]
   );
 };
 
@@ -70,40 +90,58 @@ export const useFetchUser = (userId: string) => {
 };
 
 export const useChangePassword = (userId: string) => {
-  const { isLoading, wrap } = useIsLoading('user.changePassword');
+  const { isLoading, startLoading, stopLoading } = useIsLoading('user.changePassword');
 
   return useMemo(
     () => ({
       isLoading,
-      changePassword: async (payload: ChangePasswordPayload) =>
-        wrap(patch<UserResponse>(`/user/${userId}/password`, payload)),
+      changePassword: async (payload: ChangePasswordPayload) => {
+        try {
+          await startLoading();
+          return await patch<UserResponse>(`/user/${userId}/password`, payload);
+        } finally {
+          await stopLoading();
+        }
+      },
     }),
-    [wrap, isLoading, userId]
+    [isLoading, startLoading, stopLoading, userId]
   );
 };
 
 export const useForgottenPassword = () => {
-  const { isLoading, wrap } = useIsLoading('user.forgottenPassword');
+  const { isLoading, startLoading, stopLoading } = useIsLoading('user.forgottenPassword');
 
   return useMemo(
     () => ({
       isLoading,
-      forgottenPassword: async (payload: ForgottenPasswordPayload) =>
-        wrap(post<boolean>('/user/forgot-password', payload)),
+      forgottenPassword: async (payload: ForgottenPasswordPayload) => {
+        try {
+          await startLoading();
+          return await post<ForgottenPasswordResponse>('/user/forgot-password', payload);
+        } finally {
+          await stopLoading();
+        }
+      },
     }),
-    [wrap, isLoading]
+    [isLoading, startLoading, stopLoading]
   );
 };
 
 export const useResetPassword = (token: string) => {
-  const { isLoading, wrap } = useIsLoading('user.resetPassword');
+  const { isLoading, startLoading, stopLoading } = useIsLoading('user.resetPassword');
 
   return useMemo(
     () => ({
       isLoading,
-      resetPassword: async (payload: ResetPasswordPayload) =>
-        wrap(patch<boolean>('/user/reset-password', { ...payload, token })),
+      resetPassword: async (payload: ResetPasswordPayload) => {
+        try {
+          await startLoading();
+          return await patch<ResetPasswordResponse>('/user/reset-password', { ...payload, token });
+        } finally {
+          await stopLoading();
+        }
+      },
     }),
-    [wrap, isLoading, token]
+    [isLoading, startLoading, stopLoading, token]
   );
 };

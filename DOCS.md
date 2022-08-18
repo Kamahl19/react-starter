@@ -127,7 +127,7 @@ SWR library is transport and protocol agnostic, it can be used by native [Fetch 
 
 This project configures SWR in [src/common/swr.ts](./src/common/swr.ts) with couple of middlewares. There is a `authMiddleware` which reads auth token and a `urlMiddleware` to build the API url based on host, endpoint and parameters. There is also a `fetcher` function based on [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and an error handling.
 
-To simplify showing the "loading" state across the whole application, there is a [useIsLoading](./src/common/hooks/useIsLoading.ts) hook. This function accepts a string `key` representing the API call or any other async operation. It returns `isLoading` boolean to show/hide loading component and a `wrap` function used to wrap the actual async function.
+To simplify showing the "loading" state across the whole application, there is a [useIsLoading](./src/common/hooks/useIsLoading.ts) hook. This function accepts a string `key` representing the API call or any other async operation. It returns `isLoading` boolean to show/hide loading component and a pair of `startLoading`/`stopLoading` functions.
 
 Network communicaton other then data fetching (or when SWR strategy is not useful) is facilitated by [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based [src/common/apiClient.ts](./src/common/apiClient.ts). It provides async functions for each HTTP method (get, post, put, patch, delete), injects auth token automatically and includes error handling.
 
