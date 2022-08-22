@@ -16,9 +16,13 @@ This project is also entirely written in [TypeScript](https://www.typescriptlang
 
 ## Testing
 
+### Vitest
+
 Testing a Vite based project is easiest with [Vitest](https://vitest.dev/) which uses the same configuration (through [vite.config.ts](./vite.config.ts)), sharing a common transformation pipeline during development, build, and test time. Vitest is a [Jest](https://jestjs.io/) drop-in replacement with the same API using the same libraries under the hood. Please read [Why Vitest](https://vitest.dev/guide/why.html) and [Comparison with Jest](https://vitest.dev/guide/comparisons.html#jest) to understand the need for migration from Jest to Vitest and its benefits. Here is a handy summary of its [Features](https://vitest.dev/guide/features.html) and [IDE Integration](https://vitest.dev/guide/ide.html) with IntelliJ IDEA and VSCode.
 
 Vitest also provides a [neat UI](https://vitest.dev/guide/ui.html) to view and interact with the tests. Open it by running `npm run test:ui`.
+
+### Testing Library
 
 Generally an [Enzyme](https://github.com/enzymejs/enzyme) library was used for testing React components. However [Enzyme is dead](https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl), its last commit is from [09/21](https://github.com/enzymejs/enzyme/commits/master) and it doesn't work for [React v17](https://github.com/enzymejs/enzyme/issues/2429) nor [React v18](https://github.com/enzymejs/enzyme/issues/2524). For projects with hundreds/thousands of Enzyme based tests, this is a disaster. Although it isn't such a bad thing for new projects. Enzyme encouraged bad testing practices e.g. [shallow rendering](https://kentcdodds.com/blog/why-i-never-use-shallow-rendering) and [testing implementation details](https://kentcdodds.com/blog/testing-implementation-details) such as internal state, internal methods of the component, its lifecycle methods, and children.
 
@@ -26,9 +30,27 @@ Since [2018](https://github.com/testing-library/react-testing-library/releases/t
 
 Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest.
 
-To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/setupTests.ts](./src/setupTests.ts). There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers.
+### MSW
+
+[Mock Service Worker](https://mswjs.io/) mocks APIs by intercepting requests on the network level. It allows a developer to seamlessly reuse the same API mock definition for testing, development, and debugging. It keeps application's code and tests unaware whether something is mocked or not. MSW uses [declarative request handlers](./src/mocks/handlers.ts) to capture requests and provide a response resolver function that returns a mocked response. It works only during development and testing and [doesn't get bundled](./src/index.tsx) into the production code.
+
+### Configuration
+
+To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/setupTests.ts](./src/setupTests.ts). It currently:
+
+- polyfills `fetch` API
+- polyfills `window.matchMedia` and sets window width to 1200px
+- initializes `i18next`
+- extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
+- setups MSW to mock API
+
+There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers such as SWR, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
+
+Currently there is only 1 test which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
 
 ## Linting & Formatting
+
+### ESLint
 
 Code quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom ESLint configuration [.eslintrc.js](./.eslintrc.js) includes these rules and plugins:
 
@@ -47,12 +69,14 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 ESLint runs when:
 
 - developer manually executes `npm run lint` command
-- developer starts Vite dev server by `npm start` command
+- developer starts Vite dev server by `npm run start` command
 - in IDE on background if supported ([VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [IntelliJ IDEA](https://www.jetbrains.com/help/webstorm/eslint.html))
 - automatically on `pre-commit` hook, right before code is committed
   - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
   - linting only the files and changes being committed enables [lint-staged](https://github.com/okonet/lint-staged)
 - during continuous integration defined in [.github/workflows/CI.yml](./.github/workflows/CI.yml)
+
+### Prettier
 
 Formatting of the entire codebase (js, ts, jsx, json, html, css, less, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
 
@@ -187,6 +211,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   │   ├── components/ : Generic UI components
 │   │   ├── hooks/ : Generic React hooks
 │   ├── features/ : Features bundled into separate modules including components, containers, routes etc.
+│   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file
 │   ├── setupTests.tsx : Executes before tests to mock API or set global settings
@@ -200,6 +225,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
+├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser

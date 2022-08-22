@@ -1,7 +1,7 @@
 {
   "authLayout": {
     "menu": {
-      "login": "Log In",
+      "login": "Login",
       "signUp": "Sign Up"
     }
   },
@@ -81,7 +81,7 @@
       "label": "Password",
       "placeholder": "Password"
     },
-    "submit": "Sign Up",
+    "submit": "Submit",
     "success": "Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address."
   },
   "validation": {

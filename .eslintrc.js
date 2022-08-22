@@ -111,6 +111,9 @@ module.exports = {
         // https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38
         'plugin:jest-dom/recommended',
       ],
+      rules: {
+        'testing-library/no-debugging-utils': 'off',
+      },
     },
     {
       files: ['**/*.ts?(x)'],

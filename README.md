@@ -6,8 +6,6 @@
 
 - [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
 - [Vite](https://vitejs.dev/) - next generation frontend tooling
-- [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
-  - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
 - [Ant.Design](https://ant.design/) - UI library
 - [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [SWR](https://swr.vercel.app/) - hooks for data fetching with stale-while-revalidate strategy
@@ -20,6 +18,12 @@
 - [React Router](https://reactrouter.com/) - declarative routing
   - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - accessible wrapper for React Router to set proper scroll position & focus
 - [react-error-boundary](https://github.com/bvaughn/react-error-boundary) - simple reusable React error boundary component
+- [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
+  - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
+  - [MSW](https://mswjs.io/) - API mocking library for browser and Node.js
+  - [@mswjs/data](https://mswjs.io/) - data modeling and relation library for testing
+  - [cross-fetch](https://github.com/lquixada/cross-fetch) - polyfill Fetch API for testing
+  - [mock-match-media](https://github.com/Ayc0/mock-match-media) - mock window.matchMedia for testing
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [Husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
@@ -32,8 +36,6 @@ You can read more about what's included and why here [DOCS.md](./DOCS.md).
 
 Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
 
-Master branch is always passing CI build.
-
 ## Prerequisites
 
 1. Install [nvm](https://github.com/nvm-sh/nvm) (Node version manager)
@@ -45,9 +47,9 @@ Master branch is always passing CI build.
 
 ## Start app
 
-To run the app locally, run `npm start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
+To run the app locally, run `npm run start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
 
-All the Auth functionality such as Sign-up, Login, Reset password etc. requires a backend app. You can either write your own or use the [Node API Starter](https://github.com/Kamahl19/node-api-starter) which works with React Starter out of the box.
+This project includes [Mock Service Worker](https://mswjs.io/) to mock API. It starts automatically and provides API for authentication and user functionality.
 
 ## Build app
 
@@ -55,7 +57,7 @@ To build the app for production, run `npm run build` in app root directory. Your
 
 ## Test app
 
-Run `npm test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
+Run `npm run test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
 
 ## Prettier
 
@@ -68,7 +70,7 @@ Project comes with ESLint configured. It helps you prevent common errors.
 There are multiple ways how to run ESLint.
 
 - CLI: `npm run lint`
-- in terminal while developing (after running `npm start`)
+- in terminal while developing (after running `npm run start`)
 - it runs automatically on `pre-commit` hook
 - in IDE if supported
 
