@@ -56,8 +56,6 @@ export const useLogout = () => {
       await logout();
     } finally {
       resetAuthState();
-
-      window.location.reload();
     }
   }, [resetAuthState]);
 };

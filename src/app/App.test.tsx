@@ -5,26 +5,25 @@ import App from './App';
 const email = 'email@example.com';
 const password = 'password';
 
-it('creates user and logs-in', async () => {
+test('creates user and logs-in', async () => {
   const { click, type } = userEvent.setup();
 
   render(<App />);
 
   // Sign up
-  await click(await screen.findByText('Sign Up'));
-  await type(await screen.findByPlaceholderText('E-mail'), email);
-  await type(await screen.findByPlaceholderText('Password'), password);
-  await click(await screen.findByText('Submit'));
+  await click(await screen.findByRole('link', { name: 'Sign Up' }));
+  await type(await screen.findByLabelText('E-mail'), email);
+  await type(await screen.findByLabelText('Password'), password);
+  await click(await screen.findByRole('button', { name: 'Sign Up' }));
 
   // Log in
-  const loginButton = await screen.findByText('Log In');
-  await type(await screen.findByPlaceholderText('E-mail'), email);
-  await type(await screen.findByPlaceholderText('Password'), password);
-  await click(loginButton);
+  await screen.findByText(/Your account has been successfully created/);
+  await type(await screen.findByLabelText('E-mail'), email);
+  await type(await screen.findByLabelText('Password'), password);
+  await click(await screen.findByRole('button', { name: 'Log In' }));
 
   // Log out
   await click(await screen.findByText(email));
   await click(await screen.findByText('Logout'));
-
-  expect(await screen.findByText('Log In')).toBeInTheDocument();
+  expect(await screen.findByRole('link', { name: 'Log In' })).toBeInTheDocument();
 });

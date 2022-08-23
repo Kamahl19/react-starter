@@ -33,7 +33,7 @@ const Login = ({ onSubmit, isLoading }: Props) => {
         <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('logIn.forgotPassword')}</Link>
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoading}>
-        {t('logIn.logIn')}
+        {t('logIn.submit')}
       </Button>
     </Form>
   );
