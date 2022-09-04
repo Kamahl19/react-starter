@@ -80,7 +80,7 @@ const AdminLayout = ({
             className="admin-layout-drawer"
             closable={false}
             placement="left"
-            visible={isDrawerVisible}
+            open={isDrawerVisible}
             width={sidebarWidth}
             onClose={toggleIsDrawerVisible}
           >

@@ -36,7 +36,7 @@ const HamburgerMenu = ({ items }: Props) => {
       overlayClassName="navbar-popover"
       title={<CloseOutlined onClick={() => setIsVisible(false)} />}
       trigger="click"
-      visible={isVisible}
+      open={isVisible}
       onVisibleChange={setIsVisible}
     >
       <span className="navbar-trigger">
