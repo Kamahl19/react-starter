@@ -37,7 +37,7 @@ const HamburgerMenu = ({ items }: Props) => {
       title={<CloseOutlined onClick={() => setIsVisible(false)} />}
       trigger="click"
       open={isVisible}
-      onVisibleChange={setIsVisible}
+      onOpenChange={setIsVisible}
     >
       <span className="navbar-trigger">
         <MenuOutlined />

@@ -47,7 +47,7 @@ Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.gi
 
 ## Start app
 
-To run the app locally, run `npm run start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
+To run the app locally, run `npm start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
 
 This project includes [Mock Service Worker](https://mswjs.io/) to mock API. It starts automatically and provides API for authentication and user functionality.
 
@@ -70,7 +70,7 @@ Project comes with ESLint configured. It helps you prevent common errors.
 There are multiple ways how to run ESLint.
 
 - CLI: `npm run lint`
-- in terminal while developing (after running `npm run start`)
+- in terminal while developing (after running `npm start`)
 - it runs automatically on `pre-commit` hook
 - in IDE if supported
 

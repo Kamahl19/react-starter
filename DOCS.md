@@ -69,7 +69,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 ESLint runs when:
 
 - developer manually executes `npm run lint` command
-- developer starts Vite dev server by `npm run start` command
+- developer starts Vite dev server by `npm start` command
 - in IDE on background if supported ([VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [IntelliJ IDEA](https://www.jetbrains.com/help/webstorm/eslint.html))
 - automatically on `pre-commit` hook, right before code is committed
   - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)

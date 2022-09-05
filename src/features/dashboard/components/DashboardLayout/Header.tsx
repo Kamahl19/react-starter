@@ -69,7 +69,7 @@ const HeaderDropdown = ({ children, overlay }: HeaderDropdownProps) => {
   return (
     <Dropdown
       className="dashboard-layout-header-dropdown"
-      onVisibleChange={setIsVisible}
+      onOpenChange={setIsVisible}
       open={isVisible}
       trigger={['click']}
       overlay={menu}
