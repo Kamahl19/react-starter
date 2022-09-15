@@ -74,7 +74,7 @@
     "less": "4.1.3",
     "lint-staged": "13.0.3",
     "mock-match-media": "0.3.0",
-    "msw": "0.47.1",
+    "msw": "0.47.3",
     "prettier": "2.7.1",
     "source-map-explorer": "2.5.2",
     "typescript": "4.7.4",
