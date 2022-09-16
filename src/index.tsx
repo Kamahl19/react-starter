@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 import 'app/styles/main.less';
-import 'common/i18next';
+import 'app/i18n';
 import Root from 'app/Root';
 
 if (import.meta.env.DEV) {
