@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, message, Typography } from 'antd';
+import { Button, Form, Input, Typography } from 'antd';
 
 import { type ChangePasswordPayload, PASSWORD_MIN_LENGTH } from 'api';
 
@@ -19,12 +19,9 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
   const handleSubmit = useCallback(
     async (values: ChangePasswordPayload) => {
       await onSubmit(values);
-
       form.resetFields();
-
-      message.success(t('changePassword.success'));
     },
-    [onSubmit, form, t]
+    [onSubmit, form]
   );
 
   return (
