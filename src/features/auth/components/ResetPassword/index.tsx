@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 
-import { type ResetPasswordPayload } from 'api';
-import { useValidationRules } from 'common/validations';
+import { type ResetPasswordPayload, PASSWORD_MIN_LENGTH } from 'api';
 
 type Props = {
   isLoading: boolean;
@@ -11,14 +10,13 @@ type Props = {
 
 const ResetPassword = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
-  const { password } = useValidationRules();
 
   return (
     <Form<ResetPasswordPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
         label={t('resetPassword.password.label')}
         name="password"
-        rules={password}
+        rules={[{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }]}
         validateFirst
       >
         <Input.Password autoFocus placeholder={t('resetPassword.password.placeholder')} />

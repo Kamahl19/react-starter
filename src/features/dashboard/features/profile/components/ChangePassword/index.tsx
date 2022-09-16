@@ -2,8 +2,7 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input, message, Typography } from 'antd';
 
-import { type ChangePasswordPayload } from 'api';
-import { useValidationRules } from 'common/validations';
+import { type ChangePasswordPayload, PASSWORD_MIN_LENGTH } from 'api';
 
 const { Title } = Typography;
 
@@ -14,8 +13,6 @@ type Props = {
 
 const ChangePassword = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
-
-  const { password, passwordNoCheck } = useValidationRules();
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
@@ -42,7 +39,7 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
         <Form.Item
           label={t('changePassword.currentPassword.label')}
           name="currentPassword"
-          rules={passwordNoCheck}
+          rules={[{ required: true }]}
           validateFirst
         >
           <Input.Password placeholder={t('changePassword.currentPassword.placeholder')} />
@@ -50,7 +47,7 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
         <Form.Item
           label={t('changePassword.newPassword.label')}
           name="password"
-          rules={password}
+          rules={[{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }]}
           validateFirst
         >
           <Input.Password placeholder={t('changePassword.newPassword.placeholder')} />

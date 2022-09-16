@@ -93,7 +93,7 @@ This project already includes [Ant Design](https://ant.design/), a design system
 
 [Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/AntDesignConfig.tsx](./src/app/AntDesignConfig.tsx).
 
-Ant Design includes a powerful [Form](https://ant.design/components/form/) component including validations. Reusable custom validation rules are defined in [src/common/validations.ts](./src/common/validations.ts) and are available via hook.
+Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations.
 
 Ant Design provides several datetime related components which internally use [Moment.js](https://momentjs.com/) library. Moment.js is infamous for its huge size and will be dropped in the next major Ant Design release. Until then, Ant Design also supports other smaller datetime libraries such as [Day.js](https://day.js.org/) and allows us to [replace Moment.js](https://ant.design/docs/react/replace-moment) globally. This has already been done in this project using [moment-to-dayjs](https://github.com/Dunqing/unplugin-moment-to-dayjs) Vite plugin.
 

@@ -83,10 +83,5 @@
     },
     "submit": "Sign Up",
     "success": "Your account has been successfully created. An e-mail with further instructions has been sent to your e-mail address."
-  },
-  "validation": {
-    "email": "E-mail is not valid",
-    "required": "Field is required",
-    "stringMinLength": "Field must be at least {{min}} characters long"
   }
 }
