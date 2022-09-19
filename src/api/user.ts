@@ -4,6 +4,12 @@ import useSWR from 'swr';
 import { useIsLoading } from 'common/hooks';
 import { post, patch } from 'common/apiClient';
 
+import { createValidation } from './common';
+
+/**
+ * Types
+ */
+
 export type User = {
   id: string;
   email: string;
@@ -37,6 +43,62 @@ export type ResetPasswordPayload = {
 };
 
 export type ResetPasswordResponse = boolean;
+
+/**
+ * Constants
+ */
+
+const PASSWORD_MIN_LENGTH = 6;
+
+/**
+ * Validations
+ */
+
+export const emailRule = { required: true, type: 'email' } as const;
+
+export const passwordRule = { required: true, type: 'string', min: PASSWORD_MIN_LENGTH } as const;
+
+export const useCreateUserValidation = () =>
+  useMemo(
+    () =>
+      createValidation<CreateUserPayload>({
+        email: [emailRule],
+        password: [passwordRule],
+      }),
+    []
+  );
+
+export const useForgottenPasswordValidation = () =>
+  useMemo(
+    () =>
+      createValidation<ForgottenPasswordPayload>({
+        email: [emailRule],
+      }),
+    []
+  );
+
+export const useChangePasswordValidation = () =>
+  useMemo(
+    () =>
+      createValidation<ChangePasswordPayload>({
+        currentPassword: [{ required: true, type: 'string' }],
+        password: [passwordRule],
+      }),
+    []
+  );
+
+export const useResetPasswordValidation = () =>
+  useMemo(
+    () =>
+      createValidation<ResetPasswordPayload>({
+        password: [passwordRule],
+      }),
+    []
+  );
+
+/**
+ * Endpoints
+ */
 
 export const useCreateUser = () => {
   const { isLoading, startLoading, stopLoading } = useIsLoading('user.createUser');

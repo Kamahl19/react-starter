@@ -2,7 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 import { useDebounce } from 'use-debounce';
 
-import { type CreateUserPayload, PASSWORD_MIN_LENGTH, useFetchUserEmailAvailability } from 'api';
+import {
+  type CreateUserPayload,
+  useFetchUserEmailAvailability,
+  useCreateUserValidation,
+} from 'api';
 
 const DEBOUNCE_MS = 500;
 
@@ -13,6 +17,8 @@ type Props = {
 
 const SignUp = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
+
+  const validation = useCreateUserValidation();
 
   const [form] = Form.useForm<CreateUserPayload>();
 
@@ -25,7 +31,7 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
       <Form.Item
         label={t('signUp.email.label')}
         name="email"
-        rules={[{ required: true, type: 'email' }]}
+        rules={validation.email}
         validateFirst
         validateStatus={isUserEmailAvailable ? undefined : 'error'}
         help={isUserEmailAvailable ? undefined : t('signUp.email.taken')}
@@ -35,7 +41,7 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
       <Form.Item
         label={t('signUp.password.label')}
         name="password"
-        rules={[{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }]}
+        rules={validation.password}
         validateFirst
       >
         <Input.Password placeholder={t('signUp.password.placeholder')} />

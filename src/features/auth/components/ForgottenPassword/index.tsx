@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
 
-import { type ForgottenPasswordPayload } from 'api';
+import { type ForgottenPasswordPayload, useForgottenPasswordValidation } from 'api';
 
 type Props = {
   isLoading: boolean;
@@ -11,12 +11,14 @@ type Props = {
 const ForgottenPassword = ({ isLoading, onSubmit }: Props) => {
   const { t } = useTranslation();
 
+  const validation = useForgottenPasswordValidation();
+
   return (
     <Form<ForgottenPasswordPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
         label={t('forgottenPassword.email.label')}
         name="email"
-        rules={[{ required: true, type: 'email' }]}
+        rules={validation.email}
         validateFirst
       >
         <Input autoFocus placeholder={t('forgottenPassword.email.placeholder')} />

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Form, Input } from 'antd';
 
-import { type LoginPayload } from 'api';
+import { type LoginPayload, useLoginValidation } from 'api';
 
 import { AUTH_ROUTES } from '../../routes';
 
@@ -14,20 +14,17 @@ type Props = {
 const Login = ({ onSubmit, isLoading }: Props) => {
   const { t } = useTranslation();
 
+  const validation = useLoginValidation();
+
   return (
     <Form<LoginPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
-      <Form.Item
-        label={t('logIn.email.label')}
-        name="email"
-        rules={[{ required: true, type: 'email' }]}
-        validateFirst
-      >
+      <Form.Item label={t('logIn.email.label')} name="email" rules={validation.email} validateFirst>
         <Input autoFocus placeholder={t('logIn.email.placeholder')} />
       </Form.Item>
       <Form.Item
         label={t('logIn.password.label')}
         name="password"
-        rules={[{ required: true }]}
+        rules={validation.password}
         validateFirst
       >
         <Input.Password placeholder={t('logIn.password.placeholder')} />
