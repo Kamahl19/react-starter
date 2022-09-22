@@ -54,7 +54,7 @@
     "@typescript-eslint/parser": "5.38.0",
     "@vitejs/plugin-react": "2.1.0",
     "@vitest/ui": "0.23.4",
-    "autoprefixer": "10.4.11",
+    "autoprefixer": "10.4.12",
     "confusing-browser-globals": "1.0.11",
     "cross-fetch": "3.1.5",
     "eslint": "8.23.1",
