@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { post, patch } from 'common/apiClient';
 
 import { createValidation } from './common';
-import { emailRule } from './user';
+import { emailRule, passwordRule } from './user';
 
 /**
  * Types
@@ -33,7 +33,7 @@ export const useLoginValidation = () =>
     () =>
       createValidation<LoginPayload>({
         email: [emailRule],
-        password: [{ required: true, type: 'string' }],
+        password: [{ ...passwordRule, min: undefined }],
       }),
     []
   );

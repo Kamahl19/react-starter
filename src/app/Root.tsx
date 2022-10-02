@@ -32,7 +32,13 @@ const Root = () => (
 export default Root;
 
 const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => (
-  <div>
+  <div
+    style={{
+      display: 'grid',
+      placeContent: 'center',
+      height: '100%',
+    }}
+  >
     <h1>Unexpected Error</h1>
     <p>This is a problem on our side, not yours.</p>
     <p>

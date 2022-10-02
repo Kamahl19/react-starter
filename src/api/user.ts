@@ -81,7 +81,7 @@ export const useChangePasswordValidation = () =>
   useMemo(
     () =>
       createValidation<ChangePasswordPayload>({
-        currentPassword: [{ required: true, type: 'string' }],
+        currentPassword: [{ ...passwordRule, min: undefined }],
         password: [passwordRule],
       }),
     []

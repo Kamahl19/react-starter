@@ -7,9 +7,8 @@ type Props = {
 const LoadingScreen = ({ fullVPHeight }: Props) => (
   <div
     style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      display: 'grid',
+      placeContent: 'center',
       height: fullVPHeight ? '100vh' : '100%',
     }}
   >

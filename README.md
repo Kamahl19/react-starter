@@ -39,10 +39,10 @@ Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.gi
 ## Prerequisites
 
 1. Install [nvm](https://github.com/nvm-sh/nvm) (Node version manager)
-1. Install Node v16 `nvm install 16`
-1. Use Node v16 `nvm use 16`
+1. Install Node v18 `nvm install 18`
+1. Use Node v18 `nvm use 18`
 1. Upgrade NPM CLI `npm upgrade -g npm`
-1. Install dependencies `npm install`
+1. Install dependencies `npm i`
 1. Edit the `.env` file according to your needs
 
 ## Start app

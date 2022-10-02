@@ -18,8 +18,7 @@ export default Router;
 
 const RouterDebugObserver = () => {
   useEffect(
-    () =>
-      history.listen(({ location, action }) => console.log('History changed', location, action)),
+    () => history.listen(({ location, action }) => console.log('History change', location, action)),
     []
   );
 

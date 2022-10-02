@@ -145,6 +145,7 @@ module.exports = {
         /**
          * Turn-off recommended rules
          */
+        '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/non-nullable-type-assertion-style': 'off',
 
