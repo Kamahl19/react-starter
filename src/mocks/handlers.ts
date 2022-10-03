@@ -8,15 +8,16 @@ import type {
   CreateUserPayload,
   UserResponse,
   ChangePasswordPayload,
-  ErrorResponse,
+  ApiError,
 } from 'api';
+import { PASSWORD_MIN_LENGTH } from 'api';
 
 import { db } from './db';
 
-const parseToken = (authHeader: string | null) => (authHeader ?? '').split(' ')[1];
+const getTokenFromHeader = (authHeader: string | null) => (authHeader ?? '').split(' ')[1];
 
 export const handlers = [
-  rest.post<LoginPayload, PathParams, LoginResponse | ErrorResponse>(
+  rest.post<LoginPayload, PathParams, LoginResponse | ApiError>(
     '/api/auth/login',
     async (req, res, ctx) => {
       const body = await req.json<LoginPayload>();
@@ -25,7 +26,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 400, message: 'Bad request' } })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
         );
       }
 
@@ -35,7 +36,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 401, message: 'Unauthorized' } })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
         );
       }
 
@@ -63,7 +64,7 @@ export const handlers = [
     }
   ),
 
-  rest.post<CreateUserPayload, PathParams, UserResponse | ErrorResponse>(
+  rest.post<CreateUserPayload, PathParams, UserResponse | ApiError>(
     '/api/user',
     async (req, res, ctx) => {
       const body = await req.json<CreateUserPayload>();
@@ -72,7 +73,21 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 400, message: 'Bad request' } })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+        );
+      }
+
+      if (body.password.length < PASSWORD_MIN_LENGTH) {
+        return res(
+          ctx.status(422),
+          ctx.delay(100),
+          ctx.json<ApiError>({
+            status: 422,
+            message: 'Validation error',
+            details: {
+              password: `Password must be at least ${PASSWORD_MIN_LENGTH} characters long`,
+            },
+          })
         );
       }
 
@@ -82,7 +97,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 409, message: 'User already exists' } })
+          ctx.json<ApiError>({ status: 409, message: 'User already exists' })
         );
       }
 
@@ -92,18 +107,18 @@ export const handlers = [
     }
   ),
 
-  rest.get<never, PathParams<'userId'>, UserResponse | ErrorResponse>(
+  rest.get<never, PathParams<'userId'>, UserResponse | ApiError>(
     '/api/user/:userId',
     (req, res, ctx) => {
       const userId = req.params.userId as string;
 
-      const token = parseToken(req.headers.get('authorization'));
+      const token = getTokenFromHeader(req.headers.get('authorization'));
 
       if (!token) {
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 401, message: 'Unauthorized' } })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
         );
       }
 
@@ -113,7 +128,7 @@ export const handlers = [
         return res(
           ctx.status(404),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 404, message: 'User not found' } })
+          ctx.json<ApiError>({ status: 404, message: 'User not found' })
         );
       }
 
@@ -121,18 +136,18 @@ export const handlers = [
     }
   ),
 
-  rest.patch<ChangePasswordPayload, PathParams<'userId'>, UserResponse | ErrorResponse>(
+  rest.patch<ChangePasswordPayload, PathParams<'userId'>, UserResponse | ApiError>(
     '/api/user/:userId/password',
     async (req, res, ctx) => {
       const userId = req.params.userId as string;
 
-      const token = parseToken(req.headers.get('authorization'));
+      const token = getTokenFromHeader(req.headers.get('authorization'));
 
       if (!token) {
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 401, message: 'Unauthorized' } })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
         );
       }
 
@@ -142,7 +157,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 400, message: 'Bad request' } })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
         );
       }
 
@@ -152,7 +167,7 @@ export const handlers = [
         return res(
           ctx.status(404),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 404, message: 'User not found' } })
+          ctx.json<ApiError>({ status: 404, message: 'User not found' })
         );
       }
 
@@ -160,7 +175,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ErrorResponse>({ error: { status: 400, message: 'Bad request' } })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
         );
       }
 

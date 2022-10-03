@@ -24,7 +24,7 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
 
   const [emailValue = ''] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
 
-  const isUserEmailAvailable = useFetchUserEmailAvailability(emailValue);
+  const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
 
   return (
     <Form<CreateUserPayload> form={form} onFinish={onSubmit} layout="vertical" scrollToFirstError>

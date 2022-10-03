@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { type ApiError, type ForgottenPasswordPayload, useForgottenPassword } from 'api';
+import { type ForgottenPasswordPayload, useForgottenPassword, handleApiError } from 'api';
 
 import { AUTH_ROUTES } from '../routes';
 import ForgottenPassword from '../components/ForgottenPassword';
@@ -13,21 +13,18 @@ const ForgottenPasswordContainer = () => {
 
   const navigate = useNavigate();
 
-  const { forgottenPassword, isLoading } = useForgottenPassword();
+  const { mutate, isLoading } = useForgottenPassword();
 
   const handleSubmit = useCallback(
-    async (payload: ForgottenPasswordPayload) => {
-      try {
-        await forgottenPassword(payload);
-
-        message.success(t('forgottenPassword.success'));
-
-        navigate(AUTH_ROUTES.login.to);
-      } catch (error) {
-        message.error((error as ApiError).message);
-      }
-    },
-    [t, navigate, forgottenPassword]
+    (payload: ForgottenPasswordPayload) =>
+      mutate(payload, {
+        onSuccess: () => {
+          message.success(t('forgottenPassword.success'));
+          navigate(AUTH_ROUTES.login.to);
+        },
+        onError: handleApiError((msg: string) => message.error(msg)),
+      }),
+    [t, navigate, mutate]
   );
 
   return <ForgottenPassword isLoading={isLoading} onSubmit={handleSubmit} />;

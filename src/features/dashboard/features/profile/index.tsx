@@ -10,12 +10,16 @@ import ProfileWidget from './components/ProfileWidget';
 import ChangePasswordContainer from './containers/ChangePassword';
 
 const ProfileContainer = () => {
-  const { userId = '' } = useAuth();
+  const { userId } = useAuth();
 
-  const { user } = useFetchUser(userId);
+  const userQuery = useFetchUser(userId);
 
-  if (!user) {
+  if (userQuery.isLoading) {
     return <LoadingScreen />;
+  }
+
+  if (userQuery.isError) {
+    throw userQuery.error;
   }
 
   return (
@@ -23,7 +27,7 @@ const ProfileContainer = () => {
       <Route
         element={
           <>
-            <ProfileHeader user={user} />
+            <ProfileHeader user={userQuery.data.user} />
             <ProfileWidget>
               <Outlet />
             </ProfileWidget>

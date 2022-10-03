@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-import { type ApiError, type CreateUserPayload, useCreateUser } from 'api';
+import { type CreateUserPayload, useCreateUser, handleApiError } from 'api';
 
 import { AUTH_ROUTES } from '../routes';
 import SignUp from '../components/SignUp';
@@ -13,21 +13,18 @@ const SignUpContainer = () => {
 
   const navigate = useNavigate();
 
-  const { createUser, isLoading } = useCreateUser();
+  const { mutate, isLoading } = useCreateUser();
 
   const handleSubmit = useCallback(
-    async (payload: CreateUserPayload) => {
-      try {
-        await createUser(payload);
-
-        message.success(t('signUp.success'));
-
-        navigate(AUTH_ROUTES.login.to);
-      } catch (error) {
-        message.error((error as ApiError).message);
-      }
-    },
-    [t, navigate, createUser]
+    (payload: CreateUserPayload) =>
+      mutate(payload, {
+        onSuccess: () => {
+          message.success(t('signUp.success'));
+          navigate(AUTH_ROUTES.login.to);
+        },
+        onError: handleApiError((msg: string) => message.error(msg)),
+      }),
+    [t, navigate, mutate]
   );
 
   return <SignUp isLoading={isLoading} onSubmit={handleSubmit} />;

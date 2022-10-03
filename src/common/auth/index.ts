@@ -1,8 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { getRecoil } from 'recoil-nexus';
-import { message } from 'antd';
-import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { type LoginPayload, login, logout } from 'api';
 
@@ -19,8 +18,6 @@ export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
 export const useLogin = () => {
-  const { t } = useTranslation();
-
   const setAuthState = useSetAuthState();
   const resetAuthState = useResetAuthState();
   const [isLoading, setIsLoading] = useState(false);
@@ -28,36 +25,44 @@ export const useLogin = () => {
   return useMemo(
     () => ({
       isLoading,
-      login: async (payload: LoginPayload) => {
+      login: async (payload: LoginPayload, { onError }: { onError?: (error: unknown) => void }) => {
         try {
           setIsLoading(true);
-
-          const data = await login(payload);
-
-          setAuthState(data);
-        } catch {
-          message.error(t('logIn.failed'));
-
+          setAuthState(await login(payload));
+        } catch (error: unknown) {
+          onError?.(error);
           resetAuthState();
         } finally {
           setIsLoading(false);
         }
       },
     }),
-    [setAuthState, resetAuthState, setIsLoading, t, isLoading]
+    [setAuthState, resetAuthState, setIsLoading, isLoading]
   );
 };
 
 export const useLogout = () => {
   const resetAuthState = useResetAuthState();
+  const [isLoading, setIsLoading] = useState(false);
 
-  return useCallback(async () => {
-    try {
-      await logout();
-    } finally {
-      resetAuthState();
-    }
-  }, [resetAuthState]);
+  const queryClient = useQueryClient();
+
+  return useMemo(
+    () => ({
+      isLoading,
+      logout: async () => {
+        try {
+          setIsLoading(true);
+          await logout();
+        } finally {
+          resetAuthState();
+          queryClient.removeQueries();
+          setIsLoading(false);
+        }
+      },
+    }),
+    [queryClient, resetAuthState, setIsLoading, isLoading]
+  );
 };
 
 export const useAuth = () => {

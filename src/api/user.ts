@@ -1,10 +1,8 @@
 import { useMemo } from 'react';
-import useSWR from 'swr';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
-import { useIsLoading } from 'common/hooks';
-import { post, patch } from 'common/apiClient';
-
-import { createValidation } from './common';
+import { get, post, patch } from './client';
+import { getURL, getAuthorizationHeader, createValidation } from './common';
 
 /**
  * Types
@@ -48,7 +46,7 @@ export type ResetPasswordResponse = boolean;
  * Constants
  */
 
-const PASSWORD_MIN_LENGTH = 6;
+export const PASSWORD_MIN_LENGTH = 6;
 
 /**
  * Validations
@@ -100,110 +98,58 @@ export const useResetPasswordValidation = () =>
  * Endpoints
  */
 
-export const useCreateUser = () => {
-  const { isLoading, startLoading, stopLoading } = useIsLoading('user.createUser');
+const createUser = (body: CreateUserPayload) =>
+  post<UserResponse>(getURL('/user'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
 
-  return useMemo(
-    () => ({
-      isLoading,
-      createUser: async (payload: CreateUserPayload) => {
-        try {
-          await startLoading();
-          return await post<UserResponse>('/user', payload);
-        } finally {
-          await stopLoading();
-        }
-      },
-    }),
-    [isLoading, startLoading, stopLoading]
+const confirmEmail = (token: string) =>
+  patch<ConfirmEmailResponse>(getURL('/user/confirm-email'), {
+    headers: getAuthorizationHeader(token),
+  });
+
+const fetchUser = (userId: string) =>
+  get<UserResponse>(getURL(`/user/${userId}`), {
+    headers: getAuthorizationHeader(),
+  });
+
+const changePassword = (userId: string, body: ChangePasswordPayload) =>
+  patch<UserResponse>(getURL(`/user/${userId}/password`), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+const forgottenPassword = (body: ForgottenPasswordPayload) =>
+  post<ForgottenPasswordResponse>(getURL('/user/forgot-password'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+const resetPassword = (token: string, body: ResetPasswordPayload) =>
+  patch<ResetPasswordResponse>(getURL('/user/reset-password'), {
+    headers: getAuthorizationHeader(token),
+    body,
+  });
+
+/**
+ * Hooks
+ */
+
+export const useCreateUser = () => useMutation(createUser);
+
+export const useConfirmEmail = () => useMutation(confirmEmail);
+
+export const useFetchUser = (userId: string) => useQuery(['user', userId], () => fetchUser(userId));
+
+export const useChangePassword = () =>
+  useMutation(({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
+    changePassword(userId, payload)
   );
-};
 
-export const useConfirmEmail = (token: string) => {
-  const { isLoading, startLoading, stopLoading } = useIsLoading('user.confirmEmail');
+export const useForgottenPassword = () => useMutation(forgottenPassword);
 
-  return useMemo(
-    () => ({
-      isLoading,
-      confirmEmail: async () => {
-        try {
-          await startLoading();
-          return await patch<ConfirmEmailResponse>(`/user/confirm-email/${token}`);
-        } finally {
-          await stopLoading();
-        }
-      },
-    }),
-    [isLoading, startLoading, stopLoading, token]
+export const useResetPassword = () =>
+  useMutation(({ token, payload }: { token: string; payload: ResetPasswordPayload }) =>
+    resetPassword(token, payload)
   );
-};
-
-export const useFetchUser = (userId: string) => {
-  const { data, isValidating, mutate } = useSWR<UserResponse>(`/user/${userId}`);
-
-  return useMemo(
-    () => ({
-      user: data?.user,
-      isLoading: isValidating,
-      mutate,
-    }),
-    [data, isValidating, mutate]
-  );
-};
-
-export const useChangePassword = (userId: string) => {
-  const { isLoading, startLoading, stopLoading } = useIsLoading('user.changePassword');
-
-  return useMemo(
-    () => ({
-      isLoading,
-      changePassword: async (payload: ChangePasswordPayload) => {
-        try {
-          await startLoading();
-          return await patch<UserResponse>(`/user/${userId}/password`, payload);
-        } finally {
-          await stopLoading();
-        }
-      },
-    }),
-    [isLoading, startLoading, stopLoading, userId]
-  );
-};
-
-export const useForgottenPassword = () => {
-  const { isLoading, startLoading, stopLoading } = useIsLoading('user.forgottenPassword');
-
-  return useMemo(
-    () => ({
-      isLoading,
-      forgottenPassword: async (payload: ForgottenPasswordPayload) => {
-        try {
-          await startLoading();
-          return await post<ForgottenPasswordResponse>('/user/forgot-password', payload);
-        } finally {
-          await stopLoading();
-        }
-      },
-    }),
-    [isLoading, startLoading, stopLoading]
-  );
-};
-
-export const useResetPassword = (token: string) => {
-  const { isLoading, startLoading, stopLoading } = useIsLoading('user.resetPassword');
-
-  return useMemo(
-    () => ({
-      isLoading,
-      resetPassword: async (payload: ResetPasswordPayload) => {
-        try {
-          await startLoading();
-          return await patch<ResetPasswordResponse>('/user/reset-password', { ...payload, token });
-        } finally {
-          await stopLoading();
-        }
-      },
-    }),
-    [isLoading, startLoading, stopLoading, token]
-  );
-};

@@ -10,19 +10,23 @@ import Home from './features/home';
 import Profile from './features/profile';
 
 const DashboardContainer = () => {
-  const { userId = '' } = useAuth();
+  const { userId } = useAuth();
 
-  const logout = useLogout();
+  const { logout, isLoading: logoutIsLoading } = useLogout();
 
-  const { user } = useFetchUser(userId);
+  const userQuery = useFetchUser(userId);
 
-  if (!user) {
+  if (userQuery.isLoading || logoutIsLoading) {
     return <LoadingScreen fullVPHeight />;
+  }
+
+  if (userQuery.isError) {
+    throw userQuery.error;
   }
 
   return (
     <Routes>
-      <Route element={<DashboardLayout email={user.email} logout={logout} />}>
+      <Route element={<DashboardLayout email={userQuery.data.user.email} logout={logout} />}>
         <Route index element={<Navigate replace to={DASHBOARD_ROUTES.home.to} />} />
         <Route path={DASHBOARD_ROUTES.home.path} element={<Home />} />
         <Route path={DASHBOARD_ROUTES.profile.path} element={<Profile />} />

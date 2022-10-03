@@ -4,12 +4,12 @@ import { recoilPersist } from 'recoil-persist';
 const { persistAtom } = recoilPersist({ key: 'auth' });
 
 type AuthState = {
-  userId?: string;
+  userId: string;
   token?: string;
 };
 
 const initialState: AuthState = {
-  userId: undefined,
+  userId: '',
   token: undefined,
 };
 
@@ -26,7 +26,8 @@ export const tokenState = atom<AuthState['token']>({
 
 export const isLoggedInSelector = selector({
   key: 'isLoggedIn',
-  get: ({ get }) => !!(get(tokenState) && get(userIdState)),
+  get: ({ get }) =>
+    get(tokenState) !== initialState.token && get(userIdState) !== initialState.userId,
 });
 
 export const useSetAuthState = () =>

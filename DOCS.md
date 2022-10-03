@@ -44,9 +44,9 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 - extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - setups MSW to mock API
 
-There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers such as SWR, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
+There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
 
-Currently there is only 1 test which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
+Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
 
 ## Linting & Formatting
 
@@ -145,6 +145,17 @@ This project also includes [recoil-persist](https://github.com/polemius/recoil-p
 
 ## Data Fetching and Network Communication
 
+TODO
+
+<!--
+https://tanstack.com/query/v4
+https://tanstack.com/query/v4/docs/overview
+https://tanstack.com/query/v4/docs/devtools
+https://www.youtube.com/watch?v=seU46c6Jz7E
+https://dev.to/g_abud/why-i-quit-redux-1knl
+https://tkdodo.eu/blog/practical-react-query
+[](./src/app/Query.tsx)
+
 [SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will always be fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
 
 SWR library is transport and protocol agnostic, it can be used by native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), Axios, GraphQL library or any other asynchronous function which returns data. It provides built-in cache, request deduplication, polling on interval, [data dependency](https://swr.vercel.app/docs/conditional-fetching), [revalidation](https://swr.vercel.app/docs/revalidation) on focus or network recovery, [error retry](https://swr.vercel.app/docs/error-handling), [pagination](https://swr.vercel.app/docs/pagination), [optimistic UI](https://swr.vercel.app/docs/mutation), SSR support, [Suspense](https://swr.vercel.app/docs/suspense) support, and others.
@@ -156,16 +167,17 @@ To simplify showing the "loading" state across the whole application, there is a
 Network communicaton other then data fetching (or when SWR strategy is not useful) is facilitated by [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based [src/common/apiClient.ts](./src/common/apiClient.ts). It provides async functions for each HTTP method (get, post, put, patch, delete), injects auth token automatically and includes error handling.
 
 Real world usage examples of SWR, `apiClient` and `useIsLoading` can be found in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
+-->
 
 ## Authentication
 
-A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides 3 simple hooks: `useLogin` to do the log in, `useLogout` to do the log out and `useAuth` to get current information (`token`, `userId`, `isLoggedIn`).
+A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides 3 simple hooks: `useLogin` to perform a login operation, `useLogout` to perform a logout operation, and `useAuth` hook to get current information (`token`, `userId`, `isLoggedIn`).
 
 It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/RequireIsLoggedIn.tsx) and [RequireIsAnonymous](./src/common/auth/RequireIsAnonymous.tsx), to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
-There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in local storage.
+Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage` using the [recoil-persist](https://github.com/polemius/recoil-persist) library.
 
-Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts).
+There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in `localStorage`.
 
 ## React
 
@@ -235,7 +247,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, SWR, Router, and Ant Design. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, react-query, Router, and Ant Design. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

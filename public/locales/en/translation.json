@@ -19,6 +19,7 @@
     "title": "Change Password"
   },
   "confirmEmail": {
+    "failed": "E-mail confirmation has failed",
     "success": "Your e-mail has been confirmed successfully. You can log in now."
   },
   "dashboardLayout": {

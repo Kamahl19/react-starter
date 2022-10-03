@@ -8,7 +8,7 @@ const { Title } = Typography;
 
 type Props = {
   isLoading: boolean;
-  onSubmit: (values: ChangePasswordPayload) => Promise<void>;
+  onSubmit: (values: ChangePasswordPayload, onSuccess: VoidFunction) => void;
 };
 
 const ChangePassword = ({ isLoading, onSubmit }: Props) => {
@@ -19,10 +19,7 @@ const ChangePassword = ({ isLoading, onSubmit }: Props) => {
   const [form] = Form.useForm<ChangePasswordPayload>();
 
   const handleSubmit = useCallback(
-    async (values: ChangePasswordPayload) => {
-      await onSubmit(values);
-      form.resetFields();
-    },
+    (values: ChangePasswordPayload) => onSubmit(values, () => form.resetFields()),
     [onSubmit, form]
   );
 

@@ -1,14 +1,13 @@
 import { Suspense } from 'react';
-import { SWRConfig } from 'swr';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 
 import { LoadingScreen } from 'common/components';
 import { PersistAuthGate } from 'common/auth';
-import { swrConfig } from 'common/swr';
 
 import AntDesignConfig from './AntDesignConfig';
 import Recoil from './Recoil';
 import Router from './Router';
+import Query from './Query';
 import App from './App';
 
 const Root = () => (
@@ -16,13 +15,13 @@ const Root = () => (
     <Suspense fallback={<LoadingScreen fullVPHeight />}>
       <AntDesignConfig>
         <Recoil>
-          <SWRConfig value={swrConfig}>
+          <Query>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
               <Router>
                 <App />
               </Router>
             </PersistAuthGate>
-          </SWRConfig>
+          </Query>
         </Recoil>
       </AntDesignConfig>
     </Suspense>

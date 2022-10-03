@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 
-import { post, patch } from 'common/apiClient';
-
-import { createValidation } from './common';
+import { get, post, patch } from './client';
+import { getURL, getAuthorizationHeader, createValidation } from './common';
 import { emailRule, passwordRule } from './user';
 
 /**
@@ -42,16 +41,30 @@ export const useLoginValidation = () =>
  * Endpoints
  */
 
-export const login = (payload: LoginPayload) => post<LoginResponse>('/auth/login', payload);
+export const login = (body: LoginPayload) =>
+  post<LoginResponse>(getURL('/auth/login'), {
+    body,
+  });
 
-export const relogin = () => patch<LoginResponse>('/auth/relogin');
+export const relogin = () =>
+  patch<LoginResponse>(getURL('/auth/relogin'), {
+    headers: getAuthorizationHeader(),
+  });
 
-export const logout = () => post<LogoutResponse>('/auth/logout');
+export const logout = () =>
+  post<LogoutResponse>(getURL('/auth/logout'), {
+    headers: getAuthorizationHeader(),
+  });
 
-export const useFetchUserEmailAvailability = (email: string) => {
-  const { data } = useSWR<UserEmailAvailabilityResponse>(
-    /\S+@\S+\.\S+/u.test(email) ? `/auth/email-availability/${email}` : null
-  );
+const fetchUserEmailAvailability = (email: string) =>
+  get<UserEmailAvailabilityResponse>(getURL(`/auth/email-availability/${email}`));
 
-  return data ?? true;
-};
+/**
+ * Hooks
+ */
+
+export const useFetchUserEmailAvailability = (email: string) =>
+  useQuery(['auth', 'email-availability', email], () => fetchUserEmailAvailability(email), {
+    enabled: /\S+@\S+\.\S+/u.test(email),
+    initialData: true,
+  });
