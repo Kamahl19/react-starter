@@ -1,23 +1,30 @@
-import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { message, Button, Form, Input } from 'antd';
 
 import { type LoginPayload, useLoginValidation } from 'api';
+import { useLogin } from 'common/auth';
 
 import { AUTH_ROUTES } from '../../routes';
 
-type Props = {
-  onSubmit: (values: LoginPayload) => void;
-  isLoading: boolean;
-};
-
-const Login = ({ onSubmit, isLoading }: Props) => {
+const Login = () => {
   const { t } = useTranslation();
 
   const validation = useLoginValidation();
 
+  const { login, isLoading } = useLogin();
+
+  const handleLogin = useCallback(
+    (payload: LoginPayload) =>
+      login(payload, {
+        onError: () => void message.error(t('logIn.failed')),
+      }),
+    [t, login]
+  );
+
   return (
-    <Form<LoginPayload> onFinish={onSubmit} layout="vertical" scrollToFirstError>
+    <Form<LoginPayload> onFinish={handleLogin} layout="vertical" scrollToFirstError>
       <Form.Item label={t('logIn.email.label')} name="email" rules={validation.email} validateFirst>
         <Input autoFocus placeholder={t('logIn.email.placeholder')} />
       </Form.Item>

@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
 import { useAuth, useLogout } from 'common/auth';
@@ -9,7 +9,7 @@ import DashboardLayout from './components/DashboardLayout';
 import Home from './features/home';
 import Profile from './features/profile';
 
-const DashboardContainer = () => {
+const Dashboard = () => {
   const { userId } = useAuth();
 
   const { logout, isLoading: logoutIsLoading } = useLogout();
@@ -26,7 +26,13 @@ const DashboardContainer = () => {
 
   return (
     <Routes>
-      <Route element={<DashboardLayout email={userQuery.data.user.email} logout={logout} />}>
+      <Route
+        element={
+          <DashboardLayout email={userQuery.data.user.email} logout={logout}>
+            <Outlet />
+          </DashboardLayout>
+        }
+      >
         <Route index element={<Navigate replace to={DASHBOARD_ROUTES.home.to} />} />
         <Route path={DASHBOARD_ROUTES.home.path} element={<Home />} />
         <Route path={DASHBOARD_ROUTES.profile.path} element={<Profile />} />
@@ -36,4 +42,4 @@ const DashboardContainer = () => {
   );
 };
 
-export default DashboardContainer;
+export default Dashboard;

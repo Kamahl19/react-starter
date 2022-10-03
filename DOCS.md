@@ -222,7 +222,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   │   ├── auth/ : Authentication related logic
 │   │   ├── components/ : Generic UI components
 │   │   ├── hooks/ : Generic React hooks
-│   ├── features/ : Features bundled into separate modules including components, containers, routes etc.
+│   ├── features/ : Features bundled into separate modules
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file
@@ -251,10 +251,9 @@ The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includ
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 
-The [src/features](./src/features) folder contains encapsulated features / parts / modules of the application. Every feature contains everything specific to that feature e.g. routing, containers, components, styles, tests and even its sub-features encapsulated in the nested `features` folder. The [src/features](./src/features) folder structure is up to the development team, however, it's good to follow these principles:
+The [src/features](./src/features) folder contains encapsulated features / parts / modules of the application. Every feature contains everything specific to that feature e.g. routing, components, styles, tests and even its sub-features encapsulated in the nested `features` folder. The [src/features](./src/features) folder structure is up to the development team, however, it's good to follow these principles:
 
 - make components, hooks and the rest of the code reusable, if possible, and move it up to [src/common/components](./src/common/components), [src/common/hooks](./src/common/hooks) or other folder
 - keep router code close to pages that are being rendered by these routes e.g. [src/features/auth/index.ts](./src/features/auth/index.tsx) and [src/features/auth/routes.ts](./src/features/auth/routes.ts)
-- keep styles close to components they belong to
+- keep styles and assets close to components they belong to
 - you can split a single feature e.g. [src/features/dashboard](./src/features/dashboard) into several nested features e.g. [src/features/dashboard/features/profile](./src/features/dashboard/features/profile)
-- you can split components to "presentational" (let's call them dumb or just components) and "structural" (let's call them smart or containers). Both could be either stateful or stateless. There is an article [Not All Components Are Created Equal](https://formidable.com/blog/2021/react-components/) which outlines options to structure components.

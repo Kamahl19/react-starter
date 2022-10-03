@@ -1,24 +1,41 @@
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input } from 'antd';
+import { message, Button, Form, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 
 import {
   type CreateUserPayload,
+  useCreateUser,
   useFetchUserEmailAvailability,
   useCreateUserValidation,
+  handleApiError,
 } from 'api';
+
+import { AUTH_ROUTES } from '../../routes';
 
 const DEBOUNCE_MS = 500;
 
-type Props = {
-  isLoading: boolean;
-  onSubmit: (values: CreateUserPayload) => void;
-};
-
-const SignUp = ({ isLoading, onSubmit }: Props) => {
+const SignUp = () => {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   const validation = useCreateUserValidation();
+
+  const { mutate, isLoading } = useCreateUser();
+
+  const handleSubmit = useCallback(
+    (payload: CreateUserPayload) =>
+      mutate(payload, {
+        onSuccess: () => {
+          message.success(t('signUp.success'));
+          navigate(AUTH_ROUTES.login.to);
+        },
+        onError: handleApiError((msg: string) => message.error(msg)),
+      }),
+    [t, navigate, mutate]
+  );
 
   const [form] = Form.useForm<CreateUserPayload>();
 
@@ -27,7 +44,12 @@ const SignUp = ({ isLoading, onSubmit }: Props) => {
   const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
 
   return (
-    <Form<CreateUserPayload> form={form} onFinish={onSubmit} layout="vertical" scrollToFirstError>
+    <Form<CreateUserPayload>
+      form={form}
+      onFinish={handleSubmit}
+      layout="vertical"
+      scrollToFirstError
+    >
       <Form.Item
         label={t('signUp.email.label')}
         name="email"

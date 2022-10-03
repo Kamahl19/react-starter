@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { RequireIsLoggedIn, RequireIsAnonymous, useAuth } from 'common/auth';
 import { NotFound } from 'common/components';
 
-import AuthContainer from 'features/auth';
+import Auth from 'features/auth';
 import { AUTH_ROUTES } from 'features/auth/routes';
-import DashboardContainer from 'features/dashboard';
+import Dashboard from 'features/dashboard';
 import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
 
 const rootPath = '/';
@@ -25,7 +25,7 @@ const App = () => {
         path={AUTH_ROUTES.index.path}
         element={
           <RequireIsAnonymous redirectTo={rootPath}>
-            <AuthContainer />
+            <Auth />
           </RequireIsAnonymous>
         }
       />
@@ -33,7 +33,7 @@ const App = () => {
         path={DASHBOARD_ROUTES.index.path}
         element={
           <RequireIsLoggedIn redirectTo={rootPath}>
-            <DashboardContainer />
+            <Dashboard />
           </RequireIsLoggedIn>
         }
       />

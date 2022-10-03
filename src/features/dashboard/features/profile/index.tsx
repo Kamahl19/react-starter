@@ -1,15 +1,14 @@
-import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
 import { LoadingScreen, NotFound } from 'common/components';
 import { useAuth } from 'common/auth';
 
 import { DASHBOARD_ROUTES } from '../../routes';
-import ProfileHeader from './components/ProfileHeader';
-import ProfileWidget from './components/ProfileWidget';
-import ChangePasswordContainer from './containers/ChangePassword';
+import ProfileLayout from './components/ProfileLayout';
+import ChangePassword from './pages/ChangePassword';
 
-const ProfileContainer = () => {
+const Profile = () => {
   const { userId } = useAuth();
 
   const userQuery = useFetchUser(userId);
@@ -26,26 +25,20 @@ const ProfileContainer = () => {
     <Routes>
       <Route
         element={
-          <>
-            <ProfileHeader user={userQuery.data.user} />
-            <ProfileWidget>
-              <Outlet />
-            </ProfileWidget>
-          </>
+          <ProfileLayout user={userQuery.data.user}>
+            <Outlet />
+          </ProfileLayout>
         }
       >
         <Route
           index
           element={<Navigate replace to={DASHBOARD_ROUTES.profileChangePassword.to} />}
         />
-        <Route
-          path={DASHBOARD_ROUTES.profileChangePassword.path}
-          element={<ChangePasswordContainer />}
-        />
+        <Route path={DASHBOARD_ROUTES.profileChangePassword.path} element={<ChangePassword />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
 };
 
-export default ProfileContainer;
+export default Profile;

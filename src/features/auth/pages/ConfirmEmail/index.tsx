@@ -6,9 +6,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { isApiError, useConfirmEmail } from 'api';
 import { LoadingScreen } from 'common/components';
 
-import { AUTH_ROUTES } from '../routes';
+import { AUTH_ROUTES } from '../../routes';
 
-const ConfirmEmailContainer = () => {
+const ConfirmEmail = () => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -44,4 +44,4 @@ const ConfirmEmailContainer = () => {
   return null;
 };
 
-export default ConfirmEmailContainer;
+export default ConfirmEmail;

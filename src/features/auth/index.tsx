@@ -1,18 +1,24 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { NotFound } from 'common/components';
 
 import { AUTH_ROUTES } from './routes';
 import AuthLayout from './components/AuthLayout';
-import SignUp from './containers/SignUp';
-import ForgottenPassword from './containers/ForgottenPassword';
-import Login from './containers/Login';
-import ConfirmEmail from './containers/ConfirmEmail';
-import ResetPassword from './containers/ResetPassword';
+import SignUp from './pages/SignUp';
+import ForgottenPassword from './pages/ForgottenPassword';
+import Login from './pages/Login';
+import ConfirmEmail from './pages/ConfirmEmail';
+import ResetPassword from './pages/ResetPassword';
 
-const AuthContainer = () => (
+const Auth = () => (
   <Routes>
-    <Route element={<AuthLayout />}>
+    <Route
+      element={
+        <AuthLayout>
+          <Outlet />
+        </AuthLayout>
+      }
+    >
       <Route index element={<Navigate replace to={AUTH_ROUTES.login.to} />} />
       <Route path={AUTH_ROUTES.login.path} element={<Login />} />
       <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
@@ -24,4 +30,4 @@ const AuthContainer = () => (
   </Routes>
 );
 
-export default AuthContainer;
+export default Auth;

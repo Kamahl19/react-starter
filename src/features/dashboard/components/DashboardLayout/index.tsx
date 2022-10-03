@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { type ReactNode, useContext } from 'react';
 
 import { Logo } from 'common/components';
 import { AdminLayout, AdminLayoutContext, SidebarState } from 'common/components/AdminLayout';
@@ -12,9 +11,10 @@ import Sidebar from './Sidebar';
 type Props = {
   email: string;
   logout: VoidFunction;
+  children: ReactNode;
 };
 
-const DashboardLayout = ({ email, logout }: Props) => (
+const DashboardLayout = ({ email, logout, children }: Props) => (
   <AdminLayout
     className="dashboard-layout"
     smallLogo={<Logo to={DASHBOARD_ROUTES.home.to} size="small" style={{ paddingLeft: 12 }} />}
@@ -22,7 +22,7 @@ const DashboardLayout = ({ email, logout }: Props) => (
     headerContent={<Header email={email} logout={logout} />}
     sidebarContent={<Sidebar />}
   >
-    <Outlet />
+    {children}
   </AdminLayout>
 );
 

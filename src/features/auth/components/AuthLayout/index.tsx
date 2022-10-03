@@ -1,13 +1,17 @@
-import { useMemo } from 'react';
+import { type ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { Navbar, Logo } from 'common/components';
 
 import { AUTH_ROUTES } from '../../routes';
 
-const AuthLayout = () => {
+type Props = {
+  children: ReactNode;
+};
+
+const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
 
   const menuItems = useMemo(
@@ -34,9 +38,7 @@ const AuthLayout = () => {
         <Logo to={AUTH_ROUTES.login.to} size="large" />
         <Navbar items={menuItems} />
       </Layout.Header>
-      <Layout.Content>
-        <Outlet />
-      </Layout.Content>
+      <Layout.Content>{children}</Layout.Content>
     </Layout>
   );
 };

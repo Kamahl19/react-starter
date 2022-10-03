@@ -1,26 +1,42 @@
 import { useCallback } from 'react';
+import { message, Button, Form, Input, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, Typography } from 'antd';
 
-import { type ChangePasswordPayload, useChangePasswordValidation } from 'api';
+import {
+  type ChangePasswordPayload,
+  useChangePassword,
+  useChangePasswordValidation,
+  handleApiError,
+} from 'api';
+import { useAuth } from 'common/auth';
 
 const { Title } = Typography;
 
-type Props = {
-  isLoading: boolean;
-  onSubmit: (values: ChangePasswordPayload, onSuccess: VoidFunction) => void;
-};
-
-const ChangePassword = ({ isLoading, onSubmit }: Props) => {
+const ChangePassword = () => {
   const { t } = useTranslation();
+
+  const { userId } = useAuth();
 
   const validation = useChangePasswordValidation();
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
+  const { mutate, isLoading } = useChangePassword();
+
   const handleSubmit = useCallback(
-    (values: ChangePasswordPayload) => onSubmit(values, () => form.resetFields()),
-    [onSubmit, form]
+    (payload: ChangePasswordPayload) => {
+      mutate(
+        { userId, payload },
+        {
+          onSuccess: () => {
+            message.success(t('changePassword.success'));
+            form.resetFields();
+          },
+          onError: handleApiError((msg: string) => message.error(msg)),
+        }
+      );
+    },
+    [userId, mutate, form, t]
   );
 
   return (
