@@ -91,7 +91,7 @@ Prettier runs when:
 
 This project already includes [Ant Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override the [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
 
-[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/AntDesignConfig.tsx](./src/app/AntDesignConfig.tsx).
+[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesignConfig.tsx](./src/app/providers/AntDesignConfig.tsx).
 
 Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations.
 
@@ -120,9 +120,9 @@ i18next ecosystem provides [many more plugins and tools](https://www.i18next.com
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
 
-React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment, or announcing navigation to screen reader users. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by wrapping the `history` object with oaf-react-router's function in [src/app/Router.tsx](./src/app/Router.tsx) and supplying the wrapped `history` object to the React Router.
+React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment, or announcing navigation to screen reader users. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by wrapping the `history` object with oaf-react-router's function in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) and supplying the wrapped `history` object to the React Router.
 
-To easily observe and debug the routing functionality during development, there is `RouterDebugObserver` in [src/app/Router.tsx](./src/app/Router.tsx) which logs all location changes such as push, pop, and replace.
+To easily observe and debug the routing functionality during development, there is `RouterDebugObserver` in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) which logs all location changes such as push, pop, and replace.
 
 ## State Management
 
@@ -139,7 +139,7 @@ Recoil provides a data-graph that flows from shared states into React components
 
 There is also a [To-Do list tutorial](https://recoiljs.org/docs/basic-tutorial/intro), a great [Explain Like I'm 5](https://www.youtube.com/watch?v=U9XStcquQyY) video, and a [Deep Dive](https://www.youtube.com/watch?v=_ISAA_Jt9kI) video.
 
-To easily observe and debug state changes during development, there is `RecoilDebugObserver` in [src/app/Recoil.tsx](./src/app/Recoil.tsx) which logs all state changes.
+To easily observe and debug state changes during development, there is `RecoilDebugObserver` in [src/app/providers/Recoil.tsx](./src/app/providers/Recoil.tsx) which logs all state changes.
 
 This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of the React tree.
 
@@ -154,7 +154,7 @@ https://tanstack.com/query/v4/docs/devtools
 https://www.youtube.com/watch?v=seU46c6Jz7E
 https://dev.to/g_abud/why-i-quit-redux-1knl
 https://tkdodo.eu/blog/practical-react-query
-[](./src/app/Query.tsx)
+[](./src/app/providers/Query.tsx)
 
 [SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will always be fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
 

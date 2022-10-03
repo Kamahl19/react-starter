@@ -4,10 +4,10 @@ import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { LoadingScreen } from 'common/components';
 import { PersistAuthGate } from 'common/auth';
 
-import AntDesignConfig from './AntDesignConfig';
-import Recoil from './Recoil';
-import Router from './Router';
-import Query from './Query';
+import AntDesignConfig from './providers/AntDesignConfig';
+import Recoil from './providers/Recoil';
+import Router from './providers/Router';
+import Query from './providers/Query';
 import App from './App';
 
 const Root = () => (

@@ -5,10 +5,10 @@ import { render, type RenderOptions } from '@testing-library/react';
 import { PersistAuthGate } from 'common/auth';
 import { LoadingScreen } from 'common/components';
 
-import AntDesignConfig from './app/AntDesignConfig';
-import Recoil from './app/Recoil';
-import Router from './app/Router';
-import { createQueryClient } from './app/Query';
+import AntDesignConfig from './app/providers/AntDesignConfig';
+import Recoil from './app/providers/Recoil';
+import Router from './app/providers/Router';
+import { createQueryClient } from './app/providers/Query';
 
 type ProvidersProps = {
   children: ReactNode;

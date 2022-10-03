@@ -25,12 +25,12 @@ export const useLogin = () => {
   return useMemo(
     () => ({
       isLoading,
-      login: async (payload: LoginPayload, { onError }: { onError?: (error: unknown) => void }) => {
+      login: async (payload: LoginPayload, opts?: { onError?: (error: unknown) => void }) => {
         try {
           setIsLoading(true);
           setAuthState(await login(payload));
         } catch (error: unknown) {
-          onError?.(error);
+          opts?.onError?.(error);
           resetAuthState();
         } finally {
           setIsLoading(false);
