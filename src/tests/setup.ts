@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 
 import { dropDB } from 'mocks/db';
 import { server } from 'mocks/server';
-import translation from '../public/locales/en/translation.json';
+import translation from '../../public/locales/en/translation.json';
 
 // Suppress oaf-react-router warning about missing title
 document.title = 'React Starter';

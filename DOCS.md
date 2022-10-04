@@ -36,7 +36,7 @@ Testing Library also provides a [user-event](https://testing-library.com/docs/us
 
 ### Configuration
 
-To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/setupTests.ts](./src/setupTests.ts). It currently:
+To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/tests/setup.ts](./src/tests/setup.ts). It currently:
 
 - polyfills `fetch` API
 - polyfills `window.matchMedia` and sets window width to 1200px
@@ -44,7 +44,7 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 - extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - setups MSW to mock API
 
-There is also [src/testUtils.tsx](./src/testUtils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
+There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
 
 Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
 
@@ -226,8 +226,9 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file
-│   ├── setupTests.tsx : Executes before tests to mock API or set global settings
-│   ├── testUtils.tsx : Provides custom render function for testing
+│   ├── tests/ : Testing related functionality
+│   │   ├── setup.tsx : Executes before tests to mock API or set global settings
+│   │   ├── utils.tsx : Provides custom render function for testing
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
 ├── .env : contains environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)

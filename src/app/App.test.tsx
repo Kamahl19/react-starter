@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from 'testUtils';
+import { render, screen, userEvent } from 'tests/utils';
 
 import App from './App';
 

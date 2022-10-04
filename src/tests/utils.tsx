@@ -2,13 +2,12 @@ import { Suspense, type ReactNode, type ReactElement } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { render, type RenderOptions } from '@testing-library/react';
 
+import AntDesignConfig from 'app/providers/AntDesignConfig';
+import Recoil from 'app/providers/Recoil';
+import Router from 'app/providers/Router';
+import { createQueryClient } from 'app/providers/Query';
 import { PersistAuthGate } from 'common/auth';
 import { LoadingScreen } from 'common/components';
-
-import AntDesignConfig from './app/providers/AntDesignConfig';
-import Recoil from './app/providers/Recoil';
-import Router from './app/providers/Router';
-import { createQueryClient } from './app/providers/Query';
 
 type ProvidersProps = {
   children: ReactNode;
