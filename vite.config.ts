@@ -17,7 +17,7 @@ export default defineConfig({
       overlay: false,
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "./**/*.{js,ts,tsx}" --cache',
+        lintCommand: 'eslint "./**/*.{js,ts,tsx}"',
       },
     }),
   ],

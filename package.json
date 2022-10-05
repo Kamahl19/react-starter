@@ -23,7 +23,7 @@
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
     "extract-translations": "i18next",
-    "lint": "eslint \"./**/*.{js,ts,tsx}\" --cache",
+    "lint": "eslint \"./**/*.{js,ts,tsx}\"",
     "preview": "vite preview",
     "start": "vite",
     "test": "vitest",
@@ -32,7 +32,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --fix --cache"
+      "eslint --fix"
     ],
     "**/*": [
       "prettier --write --ignore-unknown"
