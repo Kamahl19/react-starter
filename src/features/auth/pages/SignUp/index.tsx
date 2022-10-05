@@ -8,9 +8,9 @@ import {
   type CreateUserPayload,
   useCreateUser,
   useFetchUserEmailAvailability,
-  useCreateUserValidation,
   handleApiError,
 } from 'api';
+import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
 
@@ -21,7 +21,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const validation = useCreateUserValidation();
+  const rules = useValidationRules();
 
   const { mutate, isLoading } = useCreateUser();
 
@@ -53,7 +53,7 @@ const SignUp = () => {
       <Form.Item
         label={t('signUp.email.label')}
         name="email"
-        rules={validation.email}
+        rules={rules.email}
         validateFirst
         validateStatus={isUserEmailAvailable ? undefined : 'error'}
         help={isUserEmailAvailable ? undefined : t('signUp.email.taken')}
@@ -63,7 +63,7 @@ const SignUp = () => {
       <Form.Item
         label={t('signUp.password.label')}
         name="password"
-        rules={validation.password}
+        rules={rules.password}
         validateFirst
       >
         <Input.Password placeholder={t('signUp.password.placeholder')} />

@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 import { get, post, patch } from './client';
-import { getURL, getAuthorizationHeader, createValidation } from './common';
+import { getURL, getAuthorizationHeader } from './common';
 
 /**
  * Types
@@ -47,52 +46,6 @@ export type ResetPasswordResponse = boolean;
  */
 
 export const PASSWORD_MIN_LENGTH = 6;
-
-/**
- * Validations
- */
-
-export const emailRule = { required: true, type: 'email' } as const;
-
-export const passwordRule = { required: true, type: 'string', min: PASSWORD_MIN_LENGTH } as const;
-
-export const useCreateUserValidation = () =>
-  useMemo(
-    () =>
-      createValidation<CreateUserPayload>({
-        email: [emailRule],
-        password: [passwordRule],
-      }),
-    []
-  );
-
-export const useForgottenPasswordValidation = () =>
-  useMemo(
-    () =>
-      createValidation<ForgottenPasswordPayload>({
-        email: [emailRule],
-      }),
-    []
-  );
-
-export const useChangePasswordValidation = () =>
-  useMemo(
-    () =>
-      createValidation<ChangePasswordPayload>({
-        currentPassword: [{ ...passwordRule, min: undefined }],
-        password: [passwordRule],
-      }),
-    []
-  );
-
-export const useResetPasswordValidation = () =>
-  useMemo(
-    () =>
-      createValidation<ResetPasswordPayload>({
-        password: [passwordRule],
-      }),
-    []
-  );
 
 /**
  * Endpoints

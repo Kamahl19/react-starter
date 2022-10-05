@@ -1,9 +1,7 @@
-import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { get, post, patch } from './client';
-import { getURL, getAuthorizationHeader, createValidation } from './common';
-import { emailRule, passwordRule } from './user';
+import { getURL, getAuthorizationHeader } from './common';
 
 /**
  * Types
@@ -22,20 +20,6 @@ export type LoginResponse = {
 export type LogoutResponse = boolean;
 
 export type UserEmailAvailabilityResponse = boolean;
-
-/**
- * Validations
- */
-
-export const useLoginValidation = () =>
-  useMemo(
-    () =>
-      createValidation<LoginPayload>({
-        email: [emailRule],
-        password: [{ ...passwordRule, min: undefined }],
-      }),
-    []
-  );
 
 /**
  * Endpoints

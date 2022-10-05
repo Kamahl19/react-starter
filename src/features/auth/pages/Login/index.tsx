@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { message, Button, Form, Input } from 'antd';
 
-import { type LoginPayload, useLoginValidation } from 'api';
+import { type LoginPayload } from 'api';
 import { useLogin } from 'common/auth';
+import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
 
 const Login = () => {
   const { t } = useTranslation();
 
-  const validation = useLoginValidation();
+  const rules = useValidationRules();
 
   const { login, isLoading } = useLogin();
 
@@ -25,13 +26,13 @@ const Login = () => {
 
   return (
     <Form<LoginPayload> onFinish={handleLogin} layout="vertical" scrollToFirstError>
-      <Form.Item label={t('logIn.email.label')} name="email" rules={validation.email} validateFirst>
+      <Form.Item label={t('logIn.email.label')} name="email" rules={rules.email} validateFirst>
         <Input autoFocus placeholder={t('logIn.email.placeholder')} />
       </Form.Item>
       <Form.Item
         label={t('logIn.password.label')}
         name="password"
-        rules={validation.password}
+        rules={rules.requiredString}
         validateFirst
       >
         <Input.Password placeholder={t('logIn.password.placeholder')} />

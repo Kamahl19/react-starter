@@ -3,12 +3,8 @@ import { message, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  type ForgottenPasswordPayload,
-  useForgottenPassword,
-  useForgottenPasswordValidation,
-  handleApiError,
-} from 'api';
+import { type ForgottenPasswordPayload, useForgottenPassword, handleApiError } from 'api';
+import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
 
@@ -17,7 +13,7 @@ const ForgottenPassword = () => {
 
   const navigate = useNavigate();
 
-  const validation = useForgottenPasswordValidation();
+  const rules = useValidationRules();
 
   const { mutate, isLoading } = useForgottenPassword();
 
@@ -38,7 +34,7 @@ const ForgottenPassword = () => {
       <Form.Item
         label={t('forgottenPassword.email.label')}
         name="email"
-        rules={validation.email}
+        rules={rules.email}
         validateFirst
       >
         <Input autoFocus placeholder={t('forgottenPassword.email.placeholder')} />

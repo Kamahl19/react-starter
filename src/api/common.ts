@@ -1,5 +1,4 @@
 import qs from 'query-string';
-import { type FormRule } from 'antd';
 
 import { getToken } from 'common/auth';
 
@@ -26,8 +25,6 @@ export const getAuthorizationHeader = (token?: string) => {
   const t = token ?? getToken();
   return t ? { Authorization: `Bearer ${t}` } : undefined;
 };
-
-export const createValidation = <P>(rules: Record<keyof P, FormRule[]>) => rules;
 
 export const isApiError = (error: unknown): error is ApiError => {
   return (
