@@ -1,4 +1,5 @@
 import qs from 'query-string';
+import is from '@sindresorhus/is';
 
 import { getToken } from 'common/auth';
 
@@ -26,14 +27,12 @@ export const getAuthorizationHeader = (token?: string) => {
   return t ? { Authorization: `Bearer ${t}` } : undefined;
 };
 
-export const isApiError = (error: unknown): error is ApiError => {
-  return (
-    error !== null &&
-    typeof error === 'object' &&
-    typeof (error as ApiError).status === 'number' &&
-    typeof (error as ApiError).message === 'string'
-  );
-};
+export const isApiError = (e: unknown): e is ApiError =>
+  is.nonEmptyObject(e) &&
+  is.number((e as ApiError).status) &&
+  is.string((e as ApiError).message) &&
+  (is.undefined((e as ApiError).details) ||
+    is.nonEmptyObject<string, string>((e as ApiError).details));
 
 export const handleApiError = (handler: (error: string) => void) => (error: unknown) => {
   if (isApiError(error)) {
