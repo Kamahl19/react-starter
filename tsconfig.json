@@ -22,7 +22,7 @@
     "types": ["vite-plugin-svgr/client", "vitest/globals"],
     "useDefineForClassFields": true
   },
-  "include": ["src"],
+  "include": ["src", "i18next-parser.config.ts"],
   "references": [
     {
       "path": "./tsconfig.vite.json"
