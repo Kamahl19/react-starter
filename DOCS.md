@@ -171,13 +171,15 @@ Real world usage examples of SWR, `apiClient` and `useIsLoading` can be found in
 
 ## Authentication
 
-A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides 3 simple hooks: `useLogin` to perform a login operation, `useLogout` to perform a logout operation, and `useAuth` hook to get current information (`token`, `userId`, `isLoggedIn`).
+A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides a `useAuth` hook. This hook returns current auth state (`token`, `userId`, `isLoggedIn`, and loading indicators), `login` method to perform a login operation, `relogin` method to renew the token, and `logout` method to perform a logout operation.
 
 It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/RequireIsLoggedIn.tsx) and [RequireIsAnonymous](./src/common/auth/RequireIsAnonymous.tsx), to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
+It also provides `getToken` method which servers as an escape hatch in case we need to get JWT token outside of React components. This is in fact used in [src/api/common.ts](./src/api/common.ts) to inject token to API call headers.
+
 Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage` using the [recoil-persist](https://github.com/polemius/recoil-persist) library.
 
-There is also a [src/common/auth/PersistAuthGate.tsx](./src/common/auth/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in `localStorage`.
+There is also a [src/app/PersistAuthGate.tsx](./src/app/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in `localStorage`.
 
 ## React
 

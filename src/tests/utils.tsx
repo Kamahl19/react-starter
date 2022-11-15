@@ -6,7 +6,7 @@ import AntDesignConfig from 'app/providers/AntDesignConfig';
 import Recoil from 'app/providers/Recoil';
 import Router from 'app/providers/Router';
 import { createQueryClient } from 'app/providers/Query';
-import { PersistAuthGate } from 'common/auth';
+import PersistAuthGate from 'app/PersistAuthGate';
 import { LoadingScreen } from 'common/components';
 
 type ProvidersProps = {

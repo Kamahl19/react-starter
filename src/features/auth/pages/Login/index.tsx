@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { message, Button, Form, Input } from 'antd';
 
-import { type LoginPayload } from 'api';
-import { useLogin } from 'common/auth';
+import { type LoginPayload, isApiError } from 'api';
+import { useAuth } from 'common/auth';
 import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
@@ -14,14 +14,18 @@ const Login = () => {
 
   const rules = useValidationRules();
 
-  const { login, isLoading } = useLogin();
+  const { login, isLoginLoading } = useAuth();
 
   const handleLogin = useCallback(
     (payload: LoginPayload) =>
       login(payload, {
-        onError: () => void message.error(t('logIn.failed')),
+        onError: (error) => {
+          if (isApiError(error)) {
+            message.error(error.message);
+          }
+        },
       }),
-    [t, login]
+    [login]
   );
 
   return (
@@ -40,7 +44,7 @@ const Login = () => {
       <Form.Item>
         <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('logIn.forgotPassword')}</Link>
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={isLoading}>
+      <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
         {t('logIn.submit')}
       </Button>
     </Form>

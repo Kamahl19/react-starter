@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
-import { useAuth, useLogout } from 'common/auth';
+import { useAuth } from 'common/auth';
 import { LoadingScreen, NotFound } from 'common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
@@ -10,13 +10,11 @@ import Home from './features/home';
 import Profile from './features/profile';
 
 const Dashboard = () => {
-  const { userId } = useAuth();
-
-  const { logout, isLoading: logoutIsLoading } = useLogout();
+  const { userId, logout, isLogoutLoading } = useAuth();
 
   const userQuery = useFetchUser(userId);
 
-  if (userQuery.isLoading || logoutIsLoading) {
+  if (userQuery.isLoading || isLogoutLoading) {
     return <LoadingScreen fullVPHeight />;
   }
 

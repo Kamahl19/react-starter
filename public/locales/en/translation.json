@@ -44,7 +44,6 @@
       "label": "E-mail",
       "placeholder": "E-mail"
     },
-    "failed": "Login has failed",
     "forgotPassword": "Forgot password?",
     "submit": "Log In",
     "password": {

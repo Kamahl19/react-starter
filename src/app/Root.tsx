@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
 
 import { LoadingScreen } from 'common/components';
-import { PersistAuthGate } from 'common/auth';
 
 import AntDesignConfig from './providers/AntDesignConfig';
 import Recoil from './providers/Recoil';
 import Router from './providers/Router';
+import PersistAuthGate from './PersistAuthGate';
 import Query from './providers/Query';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
 import App from './App';

@@ -8,26 +8,41 @@ type AuthState = {
   token?: string;
 };
 
-const initialState: AuthState = {
+const initialAuthState: AuthState = {
   userId: '',
   token: undefined,
 };
 
 export const userIdState = atom<AuthState['userId']>({
   key: 'userId',
-  default: initialState.userId,
+  default: initialAuthState.userId,
 });
 
 export const tokenState = atom<AuthState['token']>({
   key: 'token',
-  default: initialState.token,
+  default: initialAuthState.token,
   effects: [persistAtom],
 });
 
 export const isLoggedInSelector = selector({
   key: 'isLoggedIn',
   get: ({ get }) =>
-    get(tokenState) !== initialState.token && get(userIdState) !== initialState.userId,
+    get(tokenState) !== initialAuthState.token && get(userIdState) !== initialAuthState.userId,
+});
+
+export const isLoginLoadingState = atom({
+  key: 'isLoginLoading',
+  default: false,
+});
+
+export const isReloginLoadingState = atom({
+  key: 'isReloginLoading',
+  default: false,
+});
+
+export const isLogoutLoadingState = atom({
+  key: 'isLogoutLoading',
+  default: false,
 });
 
 export const useSetAuthState = () =>
@@ -37,7 +52,7 @@ export const useSetAuthState = () =>
   });
 
 export const useResetAuthState = () =>
-  useRecoilTransaction_UNSTABLE(({ set }) => () => {
-    set(userIdState, initialState.userId);
-    set(tokenState, initialState.token);
+  useRecoilTransaction_UNSTABLE(({ reset }) => () => {
+    reset(userIdState);
+    reset(tokenState);
   });

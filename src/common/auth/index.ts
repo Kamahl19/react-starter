@@ -1,76 +1,106 @@
-import { useMemo, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useMemo, useCallback } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { getRecoil } from 'recoil-nexus';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { type LoginPayload, login, logout } from 'api';
+import {
+  type LoginPayload,
+  login as loginApi,
+  relogin as reloginApi,
+  logout as logoutApi,
+} from 'api';
 
 import {
   userIdState,
   tokenState,
   isLoggedInSelector,
+  isLoginLoadingState,
+  isReloginLoadingState,
+  isLogoutLoadingState,
   useSetAuthState,
   useResetAuthState,
 } from './state';
 
-export { default as PersistAuthGate } from './PersistAuthGate';
 export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
-export const useLogin = () => {
-  const setAuthState = useSetAuthState();
-  const resetAuthState = useResetAuthState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  return useMemo(
-    () => ({
-      isLoading,
-      login: async (payload: LoginPayload, opts?: { onError?: (error: unknown) => void }) => {
-        try {
-          setIsLoading(true);
-          setAuthState(await login(payload));
-        } catch (error: unknown) {
-          opts?.onError?.(error);
-          resetAuthState();
-        } finally {
-          setIsLoading(false);
-        }
-      },
-    }),
-    [setAuthState, resetAuthState, setIsLoading, isLoading]
-  );
-};
-
-export const useLogout = () => {
-  const resetAuthState = useResetAuthState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const queryClient = useQueryClient();
-
-  return useMemo(
-    () => ({
-      isLoading,
-      logout: async () => {
-        try {
-          setIsLoading(true);
-          await logout();
-        } finally {
-          resetAuthState();
-          queryClient.removeQueries();
-          setIsLoading(false);
-        }
-      },
-    }),
-    [queryClient, resetAuthState, setIsLoading, isLoading]
-  );
-};
+export const getToken = () => getRecoil(tokenState);
 
 export const useAuth = () => {
   const userId = useRecoilValue(userIdState);
   const token = useRecoilValue(tokenState);
   const isLoggedIn = useRecoilValue(isLoggedInSelector);
+  const isLoginLoading = useRecoilValue(isLoginLoadingState);
+  const isReloginLoading = useRecoilValue(isReloginLoadingState);
+  const isLogoutLoading = useRecoilValue(isLogoutLoadingState);
 
-  return useMemo(() => ({ userId, token, isLoggedIn }), [userId, token, isLoggedIn]);
+  const setAuthState = useSetAuthState();
+  const resetAuthState = useResetAuthState();
+
+  const setIsLoginLoadingState = useSetRecoilState(isLoginLoadingState);
+  const setIsReloginLoadingState = useSetRecoilState(isReloginLoadingState);
+  const setIsLogoutLoadingState = useSetRecoilState(isLogoutLoadingState);
+
+  const login = useCallback(
+    async (payload: LoginPayload, opts?: { onError?: (error: unknown) => void }) => {
+      try {
+        setIsLoginLoadingState(true);
+        setAuthState(await loginApi(payload));
+      } catch (error: unknown) {
+        opts?.onError?.(error);
+      } finally {
+        setIsLoginLoadingState(false);
+      }
+    },
+    [setAuthState, setIsLoginLoadingState]
+  );
+
+  const relogin = useCallback(async () => {
+    try {
+      setIsReloginLoadingState(true);
+      setAuthState(await reloginApi());
+    } catch {
+      resetAuthState();
+    } finally {
+      setIsReloginLoadingState(false);
+    }
+  }, [setAuthState, resetAuthState, setIsReloginLoadingState]);
+
+  const queryClient = useQueryClient();
+
+  const logout = useCallback(async () => {
+    try {
+      setIsLogoutLoadingState(true);
+      await logoutApi();
+    } finally {
+      resetAuthState();
+      queryClient.removeQueries();
+      setIsLogoutLoadingState(false);
+    }
+  }, [resetAuthState, setIsLogoutLoadingState, queryClient]);
+
+  return useMemo(
+    () => ({
+      userId,
+      token,
+      isLoggedIn,
+      isLoginLoading,
+      isReloginLoading,
+      isLogoutLoading,
+      login,
+      relogin,
+      logout,
+    }),
+    [
+      userId,
+      token,
+      isLoggedIn,
+      isLoginLoading,
+      isReloginLoading,
+      isLogoutLoading,
+      login,
+      relogin,
+      logout,
+    ]
+  );
 };
-
-export const getToken = () => getRecoil(tokenState);
