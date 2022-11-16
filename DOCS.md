@@ -143,31 +143,17 @@ To easily observe and debug state changes during development, there is `RecoilDe
 
 This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of the React tree.
 
-## Data Fetching and Network Communication
+## Data Fetching and Mutating
 
-TODO
+[React Query](https://tanstack.com/query/) is an asynchronous state management library for React. It gives us declarative, always-up-to-date, auto-managed [queries](https://tanstack.com/query/v4/docs/guides/queries) and [mutations](https://tanstack.com/query/v4/docs/guides/mutations) that directly improve both the developer and user experiences. We only have to specify [where to get the data](https://tanstack.com/query/v4/docs/guides/query-functions) and how fresh we need them to be and the rest is automatic. It handles [caching](https://tanstack.com/query/v4/docs/guides/caching), [background updates](https://tanstack.com/query/v4/docs/guides/background-fetching-indicators) and stale data. There's no global state to manage, reducers, normalization systems or heavy configurations to understand. It works out of the box with [zero-configuration](https://tanstack.com/query/v4/docs/guides/important-defaults) but it's also configurable down to each observer instance of a query with knobs and options to fit every use-case. It comes wired up with dedicated [devtools](https://tanstack.com/query/v4/docs/devtools), [pagination](https://tanstack.com/query/v4/docs/guides/paginated-queries), [infinite-loading](https://tanstack.com/query/v4/docs/guides/infinite-queries) APIs, [error retries](https://tanstack.com/query/v4/docs/guides/query-retries), first class mutation tools for updating the data, [optimistic updates](https://tanstack.com/query/v4/docs/guides/optimistic-updates), and many other features.
 
-<!--
-https://tanstack.com/query/v4
-https://tanstack.com/query/v4/docs/overview
-https://tanstack.com/query/v4/docs/devtools
-https://www.youtube.com/watch?v=seU46c6Jz7E
-https://dev.to/g_abud/why-i-quit-redux-1knl
-https://tkdodo.eu/blog/practical-react-query
-[](./src/app/providers/Query.tsx)
+In the previous section ([State Management](#state-management)) we mentioned that Redux is often misused as an "API data cache". React Query library is basically replacing Redux for this use-case. You can read more about it here: "[Does React Query replace client state](https://tanstack.com/query/v4/docs/guides/does-this-replace-client-state)", "[Why I Stopped Using Redux](https://dev.to/g_abud/why-i-quit-redux-1knl)", and [It’s Time to Break up with your Global State](https://www.youtube.com/watch?v=seU46c6Jz7E).
 
-[SWR](https://swr.vercel.app/) library provides React hooks for data fetching inspired by stale-while-revalidate (a HTTP cache invalidation) strategy. SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR library, components will get a stream of data updates constantly and automatically. And the UI will always be fast and reactive. Please read the [Getting Started](https://swr.vercel.app/docs/getting-started#make-it-reusable) for a simple usage example and comparison with non-SWR code.
+If you want to read more about React Query there is an [extensive documentation](https://tanstack.com/query/v4/docs/overview) and a series of blog posts "[Practical React Query](https://tkdodo.eu/blog/practical-react-query)".
 
-SWR library is transport and protocol agnostic, it can be used by native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), Axios, GraphQL library or any other asynchronous function which returns data. It provides built-in cache, request deduplication, polling on interval, [data dependency](https://swr.vercel.app/docs/conditional-fetching), [revalidation](https://swr.vercel.app/docs/revalidation) on focus or network recovery, [error retry](https://swr.vercel.app/docs/error-handling), [pagination](https://swr.vercel.app/docs/pagination), [optimistic UI](https://swr.vercel.app/docs/mutation), SSR support, [Suspense](https://swr.vercel.app/docs/suspense) support, and others.
+In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React Query provider to which you can pass custom configuration. It also includes dedicated Devtools for easy visualisation and debugging of queries.
 
-This project configures SWR in [src/common/swr.ts](./src/common/swr.ts) with couple of middlewares. There is a `authMiddleware` which reads auth token and a `urlMiddleware` to build the API url based on host, endpoint and parameters. There is also a `fetcher` function based on [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and an error handling.
-
-To simplify showing the "loading" state across the whole application, there is a [useIsLoading](./src/common/hooks/useIsLoading.ts) hook. This function accepts a string `key` representing the API call or any other async operation. It returns `isLoading` boolean to show/hide loading component and a pair of `startLoading`/`stopLoading` functions.
-
-Network communicaton other then data fetching (or when SWR strategy is not useful) is facilitated by [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based [src/common/apiClient.ts](./src/common/apiClient.ts). It provides async functions for each HTTP method (get, post, put, patch, delete), injects auth token automatically and includes error handling.
-
-Real world usage examples of SWR, `apiClient` and `useIsLoading` can be found in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
--->
+A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
 
 ## Authentication
 
