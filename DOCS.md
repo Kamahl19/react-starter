@@ -224,7 +224,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .eslintrc.js : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
 ├── .prettierignore : to ignore files when running Prettier
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
-├── i18next-parser.config.ts : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
+├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
 ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
