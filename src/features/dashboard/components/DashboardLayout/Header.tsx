@@ -1,10 +1,10 @@
-import { type ReactNode, type ReactElement, useState, useMemo, cloneElement } from 'react';
-import { Link } from 'react-router-dom';
-import { Avatar, Dropdown, Space } from 'antd';
+import { type ReactNode, useState, useMemo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Avatar, Dropdown, Space, type MenuProps } from 'antd';
 import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
-import { Menu } from 'common/components';
+import { getSelectedKeys } from 'common/routerUtils';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -16,7 +16,9 @@ type Props = {
 const Header = ({ email, logout }: Props) => {
   const { t } = useTranslation();
 
-  const menuItems = useMemo(
+  const { pathname } = useLocation();
+
+  const items = useMemo(
     () => [
       {
         key: DASHBOARD_ROUTES.profile.to,
@@ -39,11 +41,20 @@ const Header = ({ email, logout }: Props) => {
     [t, logout]
   );
 
+  const selectedKeys = useMemo(
+    () =>
+      getSelectedKeys(
+        items.map((i) => String(i.key)),
+        pathname
+      ),
+    [items, pathname]
+  );
+
   return (
     <div className="dashboard-layout-header">
       <div className="dashboard-layout-header-left" />
       <Space size="large">
-        <HeaderDropdown overlay={<Menu items={menuItems} />}>
+        <HeaderDropdown menu={{ items, selectedKeys }}>
           <Avatar size="small" icon={<UserOutlined />} /> {email}
         </HeaderDropdown>
       </Space>
@@ -55,15 +66,18 @@ export default Header;
 
 type HeaderDropdownProps = {
   children: ReactNode;
-  overlay: ReactElement;
+  menu: MenuProps;
 };
 
-const HeaderDropdown = ({ children, overlay }: HeaderDropdownProps) => {
+const HeaderDropdown = ({ children, menu }: HeaderDropdownProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const menu = useMemo(
-    () => cloneElement(overlay, { onClick: () => setIsVisible(false) }),
-    [overlay]
+  const menuProps = useMemo(
+    () => ({
+      ...menu,
+      onClick: () => setIsVisible(false),
+    }),
+    [menu]
   );
 
   return (
@@ -72,7 +86,7 @@ const HeaderDropdown = ({ children, overlay }: HeaderDropdownProps) => {
       onOpenChange={setIsVisible}
       open={isVisible}
       trigger={['click']}
-      overlay={menu}
+      menu={menuProps}
       overlayClassName="dashboard-layout-header-dropdown-container"
     >
       <div>
