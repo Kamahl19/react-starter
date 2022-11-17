@@ -10,16 +10,15 @@ import Sidebar from './Sidebar';
 
 type Props = {
   email: string;
-  logout: VoidFunction;
   children: ReactNode;
 };
 
-const DashboardLayout = ({ email, logout, children }: Props) => (
+const DashboardLayout = ({ email, children }: Props) => (
   <AdminLayout
     className="dashboard-layout"
     smallLogo={<Logo to={DASHBOARD_ROUTES.home.to} size="small" style={{ paddingLeft: 12 }} />}
     logo={<DashboardLogo />}
-    headerContent={<Header email={email} logout={logout} />}
+    headerContent={<Header email={email} />}
     sidebarContent={<Sidebar />}
   >
     {children}

@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
-import { LoadingScreen, NotFound } from 'common/components';
+import { LoadingScreen, NotFound, ResultError } from 'common/components';
 import { useAuth } from 'common/auth';
 
 import { DASHBOARD_ROUTES } from '../../routes';
@@ -11,21 +11,26 @@ import ChangePassword from './pages/ChangePassword';
 const Profile = () => {
   const { userId } = useAuth();
 
-  const userQuery = useFetchUser(userId);
+  const {
+    isLoading: userIsLoading,
+    isError: userIsError,
+    error: userError,
+    data,
+  } = useFetchUser(userId);
 
-  if (userQuery.isLoading) {
+  if (userIsLoading) {
     return <LoadingScreen />;
   }
 
-  if (userQuery.isError) {
-    throw userQuery.error;
+  if (userIsError) {
+    return <ResultError error={userError} card />;
   }
 
   return (
     <Routes>
       <Route
         element={
-          <ProfileLayout user={userQuery.data.user}>
+          <ProfileLayout user={data.user}>
             <Outlet />
           </ProfileLayout>
         }

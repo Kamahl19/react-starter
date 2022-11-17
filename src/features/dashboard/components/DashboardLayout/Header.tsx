@@ -5,18 +5,20 @@ import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
 import { getSelectedKeys } from 'common/routerUtils';
+import { useAuth } from 'common/auth';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
 type Props = {
   email: string;
-  logout: VoidFunction;
 };
 
-const Header = ({ email, logout }: Props) => {
+const Header = ({ email }: Props) => {
   const { t } = useTranslation();
 
   const { pathname } = useLocation();
+
+  const { logout } = useAuth();
 
   const items = useMemo(
     () => [

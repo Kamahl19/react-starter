@@ -1,6 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { get, post, patch } from './client';
+import { post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './common';
 
 /**
@@ -19,8 +17,6 @@ export type LoginResponse = {
 
 export type LogoutResponse = boolean;
 
-export type UserEmailAvailabilityResponse = boolean;
-
 /**
  * Endpoints
  */
@@ -38,17 +34,4 @@ export const relogin = () =>
 export const logout = () =>
   post<LogoutResponse>(getURL('/auth/logout'), {
     headers: getAuthorizationHeader(),
-  });
-
-const fetchUserEmailAvailability = (email: string) =>
-  get<UserEmailAvailabilityResponse>(getURL(`/auth/email-availability/${email}`));
-
-/**
- * Hooks
- */
-
-export const useFetchUserEmailAvailability = (email: string) =>
-  useQuery(['auth', 'email-availability', email], () => fetchUserEmailAvailability(email), {
-    enabled: /\S+@\S+\.\S+/u.test(email),
-    initialData: true,
   });

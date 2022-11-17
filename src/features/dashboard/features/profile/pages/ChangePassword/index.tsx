@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { message, Button, Form, Input, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { type ChangePasswordPayload, useChangePassword, handleApiError } from 'api';
+import { type ChangePasswordPayload, useChangePassword, isApiError } from 'api';
 import { useAuth } from 'common/auth';
 import { useValidationRules } from 'common/validations';
 
@@ -17,22 +17,25 @@ const ChangePassword = () => {
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
-  const { mutate, isLoading } = useChangePassword();
+  const { mutate: changePassword, isLoading: changePasswordIsLoading } = useChangePassword();
 
   const handleSubmit = useCallback(
-    (payload: ChangePasswordPayload) => {
-      mutate(
+    (payload: ChangePasswordPayload) =>
+      changePassword(
         { userId, payload },
         {
           onSuccess: () => {
             message.success(t('changePassword.success'));
             form.resetFields();
           },
-          onError: handleApiError((msg: string) => message.error(msg)),
+          onError: (error) => {
+            if (isApiError(error)) {
+              message.error(error.message);
+            }
+          },
         }
-      );
-    },
-    [userId, mutate, form, t]
+      ),
+    [t, userId, changePassword, form]
   );
 
   return (
@@ -60,7 +63,7 @@ const ChangePassword = () => {
         >
           <Input.Password placeholder={t('changePassword.newPassword.placeholder')} />
         </Form.Item>
-        <Button type="primary" htmlType="submit" loading={isLoading}>
+        <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
           {t('changePassword.submit')}
         </Button>
       </Form>

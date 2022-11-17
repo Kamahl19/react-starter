@@ -3,7 +3,7 @@ import { message, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { type ResetPasswordPayload, useResetPassword, handleApiError } from 'api';
+import { type ResetPasswordPayload, useResetPassword, isApiError } from 'api';
 import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
@@ -18,22 +18,26 @@ const ResetPassword = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') ?? '';
 
-  const { mutate, isLoading } = useResetPassword();
+  const { mutate: resetPassword, isLoading: resetPasswordIsLoading } = useResetPassword();
 
   const handleSubmit = useCallback(
     (payload: ResetPasswordPayload) => {
-      mutate(
+      resetPassword(
         { token, payload },
         {
           onSuccess: () => {
             message.success(t('resetPassword.success'));
             navigate(AUTH_ROUTES.login.to);
           },
-          onError: handleApiError((msg: string) => message.error(msg)),
+          onError: (error) => {
+            if (isApiError(error)) {
+              message.error(error.message);
+            }
+          },
         }
       );
     },
-    [t, navigate, mutate, token]
+    [t, navigate, resetPassword, token]
   );
 
   return (
@@ -46,7 +50,7 @@ const ResetPassword = () => {
       >
         <Input.Password autoFocus placeholder={t('resetPassword.password.placeholder')} />
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={isLoading}>
+      <Button block type="primary" htmlType="submit" loading={resetPasswordIsLoading}>
         {t('resetPassword.submit')}
       </Button>
     </Form>

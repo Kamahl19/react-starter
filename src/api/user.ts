@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { get, post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './common';
@@ -41,6 +41,8 @@ export type ResetPasswordPayload = {
 
 export type ResetPasswordResponse = boolean;
 
+export type UserEmailAvailabilityResponse = boolean;
+
 /**
  * Constants
  */
@@ -50,6 +52,9 @@ export const PASSWORD_MIN_LENGTH = 6;
 /**
  * Endpoints
  */
+
+const fetchUserEmailAvailability = (email: string) =>
+  get<UserEmailAvailabilityResponse>(getURL(`/user/email-availability/${email}`));
 
 const createUser = (body: CreateUserPayload) =>
   post<UserResponse>(getURL('/user'), {
@@ -89,16 +94,39 @@ const resetPassword = (token: string, body: ResetPasswordPayload) =>
  * Hooks
  */
 
-export const useCreateUser = () => useMutation(createUser);
+export const useFetchUserEmailAvailability = (email: string) =>
+  useQuery(['user', 'email-availability', email], () => fetchUserEmailAvailability(email), {
+    enabled: /\S+@\S+\.\S+/u.test(email),
+    initialData: true,
+  });
+
+export const useCreateUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(createUser, {
+    onSuccess: (data) => {
+      queryClient.setQueryData(['user', 'email-availability', data.user.email], false);
+    },
+  });
+};
 
 export const useConfirmEmail = () => useMutation(confirmEmail);
 
 export const useFetchUser = (userId: string) => useQuery(['user', userId], () => fetchUser(userId));
 
-export const useChangePassword = () =>
-  useMutation(({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
-    changePassword(userId, payload)
+export const useChangePassword = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
+      changePassword(userId, payload),
+    {
+      onSuccess: (data) => {
+        queryClient.setQueryData(['user', data.user.id], data);
+      },
+    }
   );
+};
 
 export const useForgottenPassword = () => useMutation(forgottenPassword);
 

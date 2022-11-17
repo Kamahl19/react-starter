@@ -19,7 +19,6 @@
     "title": "Change Password"
   },
   "confirmEmail": {
-    "failed": "E-mail confirmation has failed",
     "success": "Your e-mail has been confirmed successfully. You can log in now."
   },
   "dashboardLayout": {
@@ -45,11 +44,11 @@
       "placeholder": "E-mail"
     },
     "forgotPassword": "Forgot password?",
-    "submit": "Log In",
     "password": {
       "label": "Password",
       "placeholder": "Password"
-    }
+    },
+    "submit": "Log In"
   },
   "notFound": {
     "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
@@ -70,6 +69,10 @@
     },
     "submit": "Submit",
     "success": "Your password was changed successfully. You can log in now."
+  },
+  "resultError": {
+    "title": "Something went wrong",
+    "retry": "Retry"
   },
   "signUp": {
     "email": {

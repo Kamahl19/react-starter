@@ -18,12 +18,13 @@ const apiClient = async <R>(url: string, { body, headers, ...initRest }: Init = 
 
   const resp = await fetch(url, init);
 
+  const json: unknown = await resp.json();
+
   if (!resp.ok) {
-    // eslint-disable-next-line @typescript-eslint/no-throw-literal
-    throw await resp.json();
+    throw json;
   }
 
-  return (await resp.json()) as R;
+  return json as R;
 };
 
 export const get = <R>(url: string, init?: Init) =>

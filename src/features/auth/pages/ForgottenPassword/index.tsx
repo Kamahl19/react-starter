@@ -3,7 +3,7 @@ import { message, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { type ForgottenPasswordPayload, useForgottenPassword, handleApiError } from 'api';
+import { type ForgottenPasswordPayload, useForgottenPassword, isApiError } from 'api';
 import { useValidationRules } from 'common/validations';
 
 import { AUTH_ROUTES } from '../../routes';
@@ -15,18 +15,23 @@ const ForgottenPassword = () => {
 
   const rules = useValidationRules();
 
-  const { mutate, isLoading } = useForgottenPassword();
+  const { mutate: forgottenPassword, isLoading: forgottenPasswordIsLoading } =
+    useForgottenPassword();
 
   const handleSubmit = useCallback(
     (payload: ForgottenPasswordPayload) =>
-      mutate(payload, {
+      forgottenPassword(payload, {
         onSuccess: () => {
           message.success(t('forgottenPassword.success'));
           navigate(AUTH_ROUTES.login.to);
         },
-        onError: handleApiError((msg: string) => message.error(msg)),
+        onError: (error) => {
+          if (isApiError(error)) {
+            message.error(error.message);
+          }
+        },
       }),
-    [t, navigate, mutate]
+    [t, navigate, forgottenPassword]
   );
 
   return (
@@ -39,7 +44,7 @@ const ForgottenPassword = () => {
       >
         <Input autoFocus placeholder={t('forgottenPassword.email.placeholder')} />
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={isLoading}>
+      <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
         {t('forgottenPassword.submit')}
       </Button>
     </Form>

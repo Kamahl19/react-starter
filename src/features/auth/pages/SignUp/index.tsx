@@ -8,7 +8,7 @@ import {
   type CreateUserPayload,
   useCreateUser,
   useFetchUserEmailAvailability,
-  handleApiError,
+  isApiError,
 } from 'api';
 import { useValidationRules } from 'common/validations';
 
@@ -23,18 +23,22 @@ const SignUp = () => {
 
   const rules = useValidationRules();
 
-  const { mutate, isLoading } = useCreateUser();
+  const { mutate: createUser, isLoading: createUserIsLoading } = useCreateUser();
 
   const handleSubmit = useCallback(
     (payload: CreateUserPayload) =>
-      mutate(payload, {
+      createUser(payload, {
         onSuccess: () => {
           message.success(t('signUp.success'));
           navigate(AUTH_ROUTES.login.to);
         },
-        onError: handleApiError((msg: string) => message.error(msg)),
+        onError: (error) => {
+          if (isApiError(error)) {
+            message.error(error.message);
+          }
+        },
       }),
-    [t, navigate, mutate]
+    [t, navigate, createUser]
   );
 
   const [form] = Form.useForm<CreateUserPayload>();
@@ -68,7 +72,7 @@ const SignUp = () => {
       >
         <Input.Password placeholder={t('signUp.password.placeholder')} />
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={isLoading}>
+      <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
         {t('signUp.submit')}
       </Button>
     </Form>

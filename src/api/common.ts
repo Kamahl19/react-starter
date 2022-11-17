@@ -33,15 +33,3 @@ export const isApiError = (e: unknown): e is ApiError =>
   is.string((e as ApiError).message) &&
   (is.undefined((e as ApiError).details) ||
     is.nonEmptyObject<string, string>((e as ApiError).details));
-
-export const handleApiError = (handler: (error: string) => void) => (error: unknown) => {
-  if (isApiError(error)) {
-    if (error.details) {
-      for (const [, detail] of Object.entries(error.details)) {
-        handler(detail);
-      }
-    } else {
-      handler(error.message);
-    }
-  }
-};

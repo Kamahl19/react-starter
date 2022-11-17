@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { message, Result } from 'antd';
+import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { isApiError, useConfirmEmail } from 'api';
-import { LoadingScreen } from 'common/components';
+import { useConfirmEmail } from 'api';
+import { LoadingScreen, ResultError } from 'common/components';
 
 import { AUTH_ROUTES } from '../../routes';
 
@@ -16,10 +16,15 @@ const ConfirmEmail = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') ?? '';
 
-  const { mutate, isLoading, error } = useConfirmEmail();
+  const {
+    mutate: confirmEmail,
+    isLoading: confirmEmailIsLoading,
+    isError: isConfirmEmailError,
+    error: confirmEmailError,
+  } = useConfirmEmail();
 
   useEffect(() => {
-    mutate(token, {
+    confirmEmail(token, {
       onSuccess: () => {
         message.success(t('confirmEmail.success'));
         navigate(AUTH_ROUTES.login.to);
@@ -27,18 +32,12 @@ const ConfirmEmail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isLoading) {
+  if (confirmEmailIsLoading) {
     return <LoadingScreen />;
   }
 
-  if (error) {
-    return (
-      <Result
-        status="error"
-        title={t('confirmEmail.failed')}
-        subTitle={isApiError(error) ? error.message : ''}
-      />
-    );
+  if (isConfirmEmailError) {
+    return <ResultError onReset={() => window.location.reload()} error={confirmEmailError} />;
   }
 
   return null;
