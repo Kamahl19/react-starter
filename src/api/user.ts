@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { createQueryKeys } from '@lukemorales/query-key-factory';
 
 import { get, post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './common';
@@ -94,9 +95,14 @@ const resetPassword = (token: string, body: ResetPasswordPayload) =>
  * Hooks
  */
 
+export const userQueryKeys = createQueryKeys('user', {
+  byId: (userId: string) => [userId],
+  emailAvailability: (email: string) => [email],
+});
+
 export const useFetchUserEmailAvailability = (email: string) =>
   useQuery({
-    queryKey: ['user', 'email-availability', email],
+    queryKey: userQueryKeys.emailAvailability(email).queryKey,
     queryFn: () => fetchUserEmailAvailability(email),
     enabled: /\S+@\S+\.\S+/u.test(email),
     initialData: true,
@@ -107,7 +113,7 @@ export const useCreateUser = () => {
 
   return useMutation(createUser, {
     onSuccess: (data) => {
-      queryClient.setQueryData(['user', 'email-availability', data.user.email], false);
+      queryClient.setQueryData(userQueryKeys.emailAvailability(data.user.email).queryKey, false);
     },
   });
 };
@@ -116,7 +122,7 @@ export const useConfirmEmail = () => useMutation(confirmEmail);
 
 export const useFetchUser = (userId: string) =>
   useQuery({
-    queryKey: ['user', userId],
+    queryKey: userQueryKeys.byId(userId).queryKey,
     queryFn: () => fetchUser(userId),
   });
 
@@ -128,7 +134,7 @@ export const useChangePassword = () => {
       changePassword(userId, payload),
     {
       onSuccess: (data) => {
-        queryClient.setQueryData(['user', data.user.id], data);
+        queryClient.setQueryData(userQueryKeys.byId(data.user.id).queryKey, data);
       },
     }
   );
