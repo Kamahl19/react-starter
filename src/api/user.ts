@@ -95,7 +95,9 @@ const resetPassword = (token: string, body: ResetPasswordPayload) =>
  */
 
 export const useFetchUserEmailAvailability = (email: string) =>
-  useQuery(['user', 'email-availability', email], () => fetchUserEmailAvailability(email), {
+  useQuery({
+    queryKey: ['user', 'email-availability', email],
+    queryFn: () => fetchUserEmailAvailability(email),
     enabled: /\S+@\S+\.\S+/u.test(email),
     initialData: true,
   });
@@ -112,7 +114,11 @@ export const useCreateUser = () => {
 
 export const useConfirmEmail = () => useMutation(confirmEmail);
 
-export const useFetchUser = (userId: string) => useQuery(['user', userId], () => fetchUser(userId));
+export const useFetchUser = (userId: string) =>
+  useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => fetchUser(userId),
+  });
 
 export const useChangePassword = () => {
   const queryClient = useQueryClient();
