@@ -9,11 +9,13 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     // https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
     'plugin:import/recommended',
+    // https://github.com/import-js/eslint-plugin-import/blob/main/config/react.js
+    'plugin:import/react',
     // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js
     'plugin:unicorn/recommended',
-    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L126
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L33
     'plugin:react/recommended',
-    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L171
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L40
     'plugin:react/jsx-runtime',
     // https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js#L14
     'plugin:react-hooks/recommended',
@@ -39,7 +41,6 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': ['.js', '.jsx'],
   },
   rules: {
     /**
@@ -68,7 +69,7 @@ module.exports = {
      */
     'array-callback-return': 'error',
     'default-case': 'error',
-    eqeqeq: ['error', 'smart'],
+    eqeqeq: ['error'],
     'no-array-constructor': 'error',
     'no-caller': 'error',
     'no-eval': 'error',
@@ -147,14 +148,15 @@ module.exports = {
         /**
          * Turn-off recommended rules
          */
-        '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
-        '@typescript-eslint/non-nullable-type-assertion-style': 'off',
 
-        // 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
+        /**
+         * 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
+         */
         'import/default': 'off',
         'import/namespace': 'off',
         'import/no-named-as-default-member': 'off',
+        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
 
         /**
          * Adjust recommended rules
@@ -170,17 +172,13 @@ module.exports = {
          * Use additional rules
          */
         '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/no-redeclare': 'error',
         'import/first': 'error',
         'import/no-anonymous-default-export': 'error',
 
         /**
          * Replace additional rules
          */
-        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
-        'no-array-constructor': 'off',
-        '@typescript-eslint/no-array-constructor': 'error',
-        'no-implied-eval': 'off',
-        '@typescript-eslint/no-implied-eval': 'error',
         'no-loop-func': 'off',
         '@typescript-eslint/no-loop-func': 'error',
         'no-unused-expressions': 'off',
@@ -188,10 +186,6 @@ module.exports = {
           'error',
           { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
         ],
-        'no-throw-literal': 'off',
-        '@typescript-eslint/no-throw-literal': 'error',
-        'no-useless-constructor': 'off',
-        '@typescript-eslint/no-useless-constructor': 'error',
       },
     },
   ],

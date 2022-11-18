@@ -23,7 +23,7 @@ const Providers = ({ children }: ProvidersProps) => {
     logger: {
       log: console.log,
       warn: console.warn,
-      error: () => {},
+      error: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     },
   });
 

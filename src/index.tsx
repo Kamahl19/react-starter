@@ -12,6 +12,6 @@ if (import.meta.env.DEV) {
   });
 }
 
-const root = createRoot(document.querySelector('#root') as HTMLElement);
+const root = createRoot(document.querySelector('#root')!); // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
 root.render(<Root />);
