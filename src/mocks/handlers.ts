@@ -55,7 +55,7 @@ export const handlers = [
   }),
 
   rest.get<never, PathParams<'email'>, UserEmailAvailabilityResponse>(
-    '/api/auth/email-availability/:email',
+    '/api/user/email-availability/:email',
     async (req, res, ctx) => {
       const isAvailable =
         db.user.findFirst({ where: { email: { equals: req.params.email as string } } }) === null;
