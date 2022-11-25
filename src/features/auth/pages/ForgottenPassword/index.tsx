@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { type ForgottenPasswordPayload, useForgottenPassword, isApiError } from 'api';
-import { useValidationRules } from 'common/validations';
 
+import { useForgottenPasswordRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
 
 const ForgottenPassword = () => {
@@ -13,7 +13,7 @@ const ForgottenPassword = () => {
 
   const navigate = useNavigate();
 
-  const rules = useValidationRules();
+  const rules = useForgottenPasswordRules();
 
   const { mutate: forgottenPassword, isLoading: forgottenPasswordIsLoading } =
     useForgottenPassword();

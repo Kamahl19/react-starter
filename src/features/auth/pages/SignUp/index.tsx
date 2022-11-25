@@ -10,8 +10,8 @@ import {
   useFetchUserEmailAvailability,
   isApiError,
 } from 'api';
-import { useValidationRules } from 'common/validations';
 
+import { useSignUpRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
 
 const DEBOUNCE_MS = 500;
@@ -21,7 +21,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const rules = useValidationRules();
+  const rules = useSignUpRules();
 
   const { mutate: createUser, isLoading: createUserIsLoading } = useCreateUser();
 

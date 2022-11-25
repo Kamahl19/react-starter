@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { type ResetPasswordPayload, useResetPassword, isApiError } from 'api';
-import { useValidationRules } from 'common/validations';
 
+import { useResetPasswordRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
 
 const ResetPassword = () => {
@@ -13,7 +13,7 @@ const ResetPassword = () => {
 
   const navigate = useNavigate();
 
-  const rules = useValidationRules();
+  const rules = useResetPasswordRules();
 
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') ?? '';
@@ -45,7 +45,7 @@ const ResetPassword = () => {
       <Form.Item
         label={t('resetPassword.password.label')}
         name="password"
-        rules={rules.email}
+        rules={rules.password}
         validateFirst
       >
         <Input.Password autoFocus placeholder={t('resetPassword.password.placeholder')} />

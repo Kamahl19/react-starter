@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword, isApiError } from 'api';
 import { useAuth } from 'common/auth';
-import { useValidationRules } from 'common/validations';
+
+import { useChangePasswordRules } from '../../validations';
 
 const { Title } = Typography;
 
@@ -13,7 +14,7 @@ const ChangePassword = () => {
 
   const { userId } = useAuth();
 
-  const rules = useValidationRules();
+  const rules = useChangePasswordRules();
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
@@ -50,7 +51,7 @@ const ChangePassword = () => {
         <Form.Item
           label={t('changePassword.currentPassword.label')}
           name="currentPassword"
-          rules={rules.requiredString}
+          rules={rules.currentPassword}
           validateFirst
         >
           <Input.Password placeholder={t('changePassword.currentPassword.placeholder')} />

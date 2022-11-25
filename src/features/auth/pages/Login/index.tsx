@@ -5,14 +5,14 @@ import { message, Button, Form, Input } from 'antd';
 
 import { type LoginPayload, isApiError } from 'api';
 import { useAuth } from 'common/auth';
-import { useValidationRules } from 'common/validations';
 
+import { useLoginRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
 
 const Login = () => {
   const { t } = useTranslation();
 
-  const rules = useValidationRules();
+  const rules = useLoginRules();
 
   const { login, isLoginLoading } = useAuth();
 
@@ -36,7 +36,7 @@ const Login = () => {
       <Form.Item
         label={t('logIn.password.label')}
         name="password"
-        rules={rules.requiredString}
+        rules={rules.password}
         validateFirst
       >
         <Input.Password placeholder={t('logIn.password.placeholder')} />
