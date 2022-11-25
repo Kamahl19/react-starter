@@ -23,5 +23,5 @@ const RecoilDebugObserver = () => {
     }
   });
 
-  return null;
+  return <></>;
 };

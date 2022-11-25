@@ -22,5 +22,5 @@ const RouterDebugObserver = () => {
     []
   );
 
-  return null;
+  return <></>;
 };

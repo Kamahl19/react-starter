@@ -40,7 +40,7 @@ const ConfirmEmail = () => {
     return <ResultError onReset={() => window.location.reload()} error={confirmEmailError} />;
   }
 
-  return null;
+  return <></>;
 };
 
 export default ConfirmEmail;

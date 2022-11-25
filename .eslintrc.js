@@ -51,7 +51,6 @@ module.exports = {
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'unicorn/filename-case': 'off',
-    'unicorn/no-null': 'off',
     'unicorn/prevent-abbreviations': 'off',
 
     /**
