@@ -24,6 +24,7 @@ const apiClient = async <R>(url: string, { body, headers, ...initRest }: Init = 
     throw json;
   }
 
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return json as R;
 };
 

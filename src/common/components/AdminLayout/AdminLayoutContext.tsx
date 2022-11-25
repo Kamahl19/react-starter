@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import { type SiderProps } from 'antd';
 
 export enum SidebarState {
@@ -17,6 +17,16 @@ type AdminLayoutContextProps = {
   toggle: VoidFunction;
 };
 
-const AdminLayoutContext = createContext({} as AdminLayoutContextProps);
+const AdminLayoutContext = createContext<AdminLayoutContextProps | undefined>(undefined);
 
 export default AdminLayoutContext;
+
+export const useAdminLayoutContext = () => {
+  const ctx = useContext(AdminLayoutContext);
+
+  if (ctx === undefined) {
+    throw new Error('AdminLayoutContext has not been set, value is undefined');
+  }
+
+  return useMemo(() => ctx, [ctx]);
+};

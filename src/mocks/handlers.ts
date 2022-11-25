@@ -1,4 +1,4 @@
-import { rest, type PathParams } from 'msw';
+import { rest } from 'msw';
 
 import type {
   LoginPayload,
@@ -17,7 +17,7 @@ import { db } from './db';
 const getTokenFromHeader = (authHeader: string | null) => (authHeader ?? '').split(' ')[1];
 
 export const handlers = [
-  rest.post<LoginPayload, PathParams, LoginResponse | ApiError>(
+  rest.post<LoginPayload, never, LoginResponse | ApiError>(
     '/api/auth/login',
     async (req, res, ctx) => {
       const body = await req.json<LoginPayload>();
@@ -54,17 +54,17 @@ export const handlers = [
     return res(ctx.delay(100), ctx.json<LogoutResponse>(true));
   }),
 
-  rest.get<never, PathParams<'email'>, UserEmailAvailabilityResponse>(
+  rest.get<never, { email: string }, UserEmailAvailabilityResponse>(
     '/api/user/email-availability/:email',
     async (req, res, ctx) => {
       const isAvailable =
-        db.user.findFirst({ where: { email: { equals: req.params.email as string } } }) === null;
+        db.user.findFirst({ where: { email: { equals: req.params.email } } }) === null;
 
       return res(ctx.delay(100), ctx.json<UserEmailAvailabilityResponse>(isAvailable));
     }
   ),
 
-  rest.post<CreateUserPayload, PathParams, UserResponse | ApiError>(
+  rest.post<CreateUserPayload, never, UserResponse | ApiError>(
     '/api/user',
     async (req, res, ctx) => {
       const body = await req.json<CreateUserPayload>();
@@ -107,10 +107,10 @@ export const handlers = [
     }
   ),
 
-  rest.get<never, PathParams<'userId'>, UserResponse | ApiError>(
+  rest.get<never, { userId: string }, UserResponse | ApiError>(
     '/api/user/:userId',
     (req, res, ctx) => {
-      const userId = req.params.userId as string;
+      const userId = req.params.userId;
 
       const token = getTokenFromHeader(req.headers.get('authorization'));
 
@@ -136,10 +136,10 @@ export const handlers = [
     }
   ),
 
-  rest.patch<ChangePasswordPayload, PathParams<'userId'>, UserResponse | ApiError>(
+  rest.patch<ChangePasswordPayload, { userId: string }, UserResponse | ApiError>(
     '/api/user/:userId/password',
     async (req, res, ctx) => {
-      const userId = req.params.userId as string;
+      const userId = req.params.userId;
 
       const token = getTokenFromHeader(req.headers.get('authorization'));
 

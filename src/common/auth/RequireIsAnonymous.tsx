@@ -1,4 +1,5 @@
 import { type ReactElement } from 'react';
+import is from '@sindresorhus/is';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '.';
@@ -9,7 +10,9 @@ type Props = {
 };
 
 const RequireIsAnonymous = ({ redirectTo, children }: Props) => {
-  const { from: to = redirectTo } = (useLocation().state ?? {}) as { from?: string };
+  const { state } = useLocation();
+
+  const to = is.nonEmptyObject(state) && is.string(state.from) ? state.from : redirectTo;
 
   const { isLoggedIn } = useAuth();
 

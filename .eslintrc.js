@@ -161,6 +161,7 @@ module.exports = {
         /**
          * Adjust recommended rules
          */
+        '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'never' }],
         '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/no-misused-promises': [
           'error',

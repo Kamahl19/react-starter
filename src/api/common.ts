@@ -29,7 +29,6 @@ export const getAuthorizationHeader = (token?: string) => {
 
 export const isApiError = (e: unknown): e is ApiError =>
   is.nonEmptyObject(e) &&
-  is.number((e as ApiError).status) &&
-  is.string((e as ApiError).message) &&
-  (is.undefined((e as ApiError).details) ||
-    is.nonEmptyObject<string, string>((e as ApiError).details));
+  is.number(e.status) &&
+  is.string(e.message) &&
+  (is.undefined(e.details) || is.nonEmptyObject<string, string>(e.details));

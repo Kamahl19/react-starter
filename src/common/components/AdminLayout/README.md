@@ -14,7 +14,7 @@ const Page = () => (
 );
 
 const Logo = () => {
-  const { sidebarState } = useContext(AdminLayoutContext);
+  const { sidebarState } = useAdminLayoutContext();
 
   return (
     <h1 style={{ color: sidebarState === SidebarState.CLOSED_DRAWER ? 'black' : 'white' }}>Logo</h1>
@@ -61,3 +61,7 @@ AdminLayoutContext stores the current state of the `AdminLayout`. These values a
 | `sidebarState`    | Enum              | based on previous 3 values, indicates one of 4 states of sidebar (`openSidebar`, `collapsedSidebar`, `openDrawer`, `closedDrawer`) |
 | `sidebarTheme`    | 'light' \| 'dark' | color theme of the sidebar                                                                                                         |
 | `toggle`          | VoidFunction      | toggle sidebar from outside                                                                                                        |
+
+### `useAdminLayoutContext`
+
+useAdminLayoutContext returns value of the AdminLayoutContext.

@@ -1,7 +1,7 @@
-import { type ReactNode, useContext } from 'react';
+import { type ReactNode } from 'react';
 
 import { Logo } from 'common/components';
-import { AdminLayout, AdminLayoutContext, SidebarState } from 'common/components/AdminLayout';
+import { AdminLayout, SidebarState, useAdminLayoutContext } from 'common/components/AdminLayout';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -28,7 +28,7 @@ const DashboardLayout = ({ email, children }: Props) => (
 export default DashboardLayout;
 
 const DashboardLogo = () => {
-  const { sidebarState } = useContext(AdminLayoutContext);
+  const { sidebarState } = useAdminLayoutContext();
 
   return (
     <Logo
