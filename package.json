@@ -108,6 +108,6 @@
     "recoil": "0.7.6",
     "recoil-nexus": "0.4.0",
     "recoil-persist": "4.2.0",
-    "use-debounce": "8.0.4"
+    "use-debounce": "9.0.2"
   }
 }
