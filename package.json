@@ -97,7 +97,7 @@
     "dayjs": "1.11.6",
     "history": "5.3.0",
     "i18next": "22.0.6",
-    "i18next-http-backend": "2.0.1",
+    "i18next-http-backend": "2.1.0",
     "oaf-react-router": "3.0.1",
     "query-string": "7.1.1",
     "react": "18.2.0",
