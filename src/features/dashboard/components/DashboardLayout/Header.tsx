@@ -24,7 +24,7 @@ const Header = ({ email }: Props) => {
     () => [
       {
         key: DASHBOARD_ROUTES.profile.to,
-        label: <Link to={DASHBOARD_ROUTES.profile.to}>{t('dashboardLayout.header.profile')}</Link>,
+        label: <Link to={DASHBOARD_ROUTES.profile.to}>{t('dashboard:topMenu.profile')}</Link>,
         icon: <UserOutlined />,
       },
       {
@@ -35,7 +35,7 @@ const Header = ({ email }: Props) => {
         key: 'logout',
         label: (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-          <a onClick={logout}>{t('dashboardLayout.header.logout')}</a>
+          <a onClick={logout}>{t('dashboard:topMenu.logout')}</a>
         ),
         icon: <LogoutOutlined />,
       },

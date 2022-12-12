@@ -23,4 +23,4 @@ export const AUTH_ROUTES = {
     path: 'reset-password',
     to: '/auth/reset-password',
   },
-};
+} as const;

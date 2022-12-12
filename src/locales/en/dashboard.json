@@ -1,0 +1,9 @@
+{
+  "sidebarMenu": {
+    "home": "Home"
+  },
+  "topMenu": {
+    "logout": "Logout",
+    "profile": "Profile"
+  }
+}

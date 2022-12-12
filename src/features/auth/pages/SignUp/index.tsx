@@ -4,12 +4,8 @@ import { message, Button, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 
-import {
-  type CreateUserPayload,
-  useCreateUser,
-  useFetchUserEmailAvailability,
-  isApiError,
-} from 'api';
+import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from 'api';
+import { useApiErrorMessage } from 'common/hooks';
 
 import { useSignUpRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
@@ -21,7 +17,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const rules = useSignUpRules();
+  const onError = useApiErrorMessage();
 
   const { mutate: createUser, isLoading: createUserIsLoading } = useCreateUser();
 
@@ -29,16 +25,12 @@ const SignUp = () => {
     (payload: CreateUserPayload) =>
       createUser(payload, {
         onSuccess: () => {
-          message.success(t('signUp.success'));
+          message.success(t('auth:signUp.success'));
           navigate(AUTH_ROUTES.login.to);
         },
-        onError: (error) => {
-          if (isApiError(error)) {
-            message.error(error.message);
-          }
-        },
+        onError,
       }),
-    [t, navigate, createUser]
+    [t, navigate, createUser, onError]
   );
 
   const [form] = Form.useForm<CreateUserPayload>();
@@ -46,6 +38,8 @@ const SignUp = () => {
   const [emailValue = ''] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
 
   const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
+
+  const rules = useSignUpRules();
 
   return (
     <Form<CreateUserPayload>
@@ -55,25 +49,25 @@ const SignUp = () => {
       scrollToFirstError
     >
       <Form.Item
-        label={t('signUp.email.label')}
+        label={t('auth:signUp.email.label')}
         name="email"
         rules={rules.email}
         validateFirst
         validateStatus={isUserEmailAvailable ? undefined : 'error'}
-        help={isUserEmailAvailable ? undefined : t('signUp.email.taken')}
+        help={isUserEmailAvailable ? undefined : t('auth:signUp.email.taken')}
       >
-        <Input autoFocus placeholder={t('signUp.email.placeholder')} autoComplete="off" />
+        <Input autoFocus autoComplete="off" />
       </Form.Item>
       <Form.Item
-        label={t('signUp.password.label')}
+        label={t('auth:signUp.password.label')}
         name="password"
         rules={rules.password}
         validateFirst
       >
-        <Input.Password placeholder={t('signUp.password.placeholder')} />
+        <Input.Password />
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
-        {t('signUp.submit')}
+        {t('auth:signUp.submit')}
       </Button>
     </Form>
   );

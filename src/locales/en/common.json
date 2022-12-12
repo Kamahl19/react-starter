@@ -1,0 +1,10 @@
+{
+  "notFound": {
+    "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
+    "title": "Page not found"
+  },
+  "resultError": {
+    "retry": "Retry",
+    "title": "Something went wrong"
+  }
+}

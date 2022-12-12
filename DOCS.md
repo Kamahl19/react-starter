@@ -103,6 +103,7 @@ On top of that, this project already comes with [several components](./src/commo
 - [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices
 - [NotFound](./src/common/components/NotFound/index.tsx) is a 404 component
+- [PageHeader](./src/common/components/PageHeader/index.tsx) is a simplified version of [Ant v4 PageHeader](https://4x.ant.design/components/page-header/) component which was removed from Ant v5
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
@@ -112,15 +113,17 @@ All Less files in this project are being imported in the [src/app/styles/main.le
 
 Internationalization is covered by the [i18next](https://www.i18next.com/) framework. i18next goes beyond just providing the standard i18n features such as (plurals, context, interpolation, format). It provides a complete solution to localize the product from web to mobile and desktop. It's framework and platform agnostic and it supports React, Angular, Vue, Nodejs, iOS and others. You can read more about its [benefits here](https://www.i18next.com/overview/comparison-to-others).
 
-React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison to react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's i18next configuration is defined in [src/app/i18n.ts](./src/app/i18n.ts) and includes [i18next-http-backend](https://github.com/i18next/i18next-http-backend) for async loading of resources stored in [public/locales/{LANG}/translation.json](./public/locales/en/translation.json). IDE support is covered by TypeScript typings [src/i18n.d.ts](./src/i18n.d.ts).
+React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison to react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's i18next configuration is defined in [src/app/i18n.ts](./src/app/i18n.ts). Translations in form of JSON files are located in `src/locales/{language}/{namespace}.json`. IDE support is covered by TypeScript typings [src/i18n.d.ts](./src/i18n.d.ts).
 
-i18next ecosystem provides [many more plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators, etc. This project includes one such plugin [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
+i18next ecosystem provides [many plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators, etc. This project includes one such plugin [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
 
 ## React Router
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
 
 React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment, or announcing navigation to screen reader users. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by wrapping the `history` object with oaf-react-router's function in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) and supplying the wrapped `history` object to the React Router.
+
+Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) and used in [src/features/dashboard/components/DashboardPageHeader/index.tsx](./src/features/dashboard/components/DashboardPageHeader/index.tsx).
 
 To easily observe and debug the routing functionality during development, there is `RouterDebugObserver` in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) which logs all location changes such as push, pop, and replace.
 
@@ -213,6 +216,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   │   ├── components/ : Generic UI components
 │   │   ├── hooks/ : Generic React hooks
 │   ├── features/ : Features bundled into separate modules
+│   ├── locales/ : Translation JSON files
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file

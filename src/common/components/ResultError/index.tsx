@@ -28,12 +28,12 @@ const ResultError = ({ onReset, error, card, fullVPHeight, ...props }: Props) =>
         height: fullVPHeight ? '100vh' : '100%',
       }}
       status={status}
-      title={t('resultError.title')}
+      title={t('common:resultError.title')}
       subTitle={subTitle}
       extra={
         onReset ? (
           <Button type="primary" onClick={onReset}>
-            {t('resultError.retry')}
+            {t('common:resultError.retry')}
           </Button>
         ) : undefined
       }

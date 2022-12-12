@@ -3,7 +3,8 @@ import { message, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { type ForgottenPasswordPayload, useForgottenPassword, isApiError } from 'api';
+import { type ForgottenPasswordPayload, useForgottenPassword } from 'api';
+import { useApiErrorMessage } from 'common/hooks';
 
 import { useForgottenPasswordRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
@@ -13,7 +14,7 @@ const ForgottenPassword = () => {
 
   const navigate = useNavigate();
 
-  const rules = useForgottenPasswordRules();
+  const onError = useApiErrorMessage();
 
   const { mutate: forgottenPassword, isLoading: forgottenPasswordIsLoading } =
     useForgottenPassword();
@@ -22,30 +23,28 @@ const ForgottenPassword = () => {
     (payload: ForgottenPasswordPayload) =>
       forgottenPassword(payload, {
         onSuccess: () => {
-          message.success(t('forgottenPassword.success'));
+          message.success(t('auth:forgottenPassword.success'));
           navigate(AUTH_ROUTES.login.to);
         },
-        onError: (error) => {
-          if (isApiError(error)) {
-            message.error(error.message);
-          }
-        },
+        onError,
       }),
-    [t, navigate, forgottenPassword]
+    [t, navigate, forgottenPassword, onError]
   );
+
+  const rules = useForgottenPasswordRules();
 
   return (
     <Form<ForgottenPasswordPayload> onFinish={handleSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('forgottenPassword.email.label')}
+        label={t('auth:forgottenPassword.email.label')}
         name="email"
         rules={rules.email}
         validateFirst
       >
-        <Input autoFocus placeholder={t('forgottenPassword.email.placeholder')} />
+        <Input autoFocus />
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
-        {t('forgottenPassword.submit')}
+        {t('global:submit')}
       </Button>
     </Form>
   );

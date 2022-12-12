@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { message, Button, Form, Input, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { type ChangePasswordPayload, useChangePassword, isApiError } from 'api';
+import { type ChangePasswordPayload, useChangePassword } from 'api';
 import { useAuth } from 'common/auth';
+import { useApiErrorMessage } from 'common/hooks';
 
 import { useChangePasswordRules } from '../../validations';
 
@@ -14,9 +15,9 @@ const ChangePassword = () => {
 
   const { userId } = useAuth();
 
-  const rules = useChangePasswordRules();
-
   const [form] = Form.useForm<ChangePasswordPayload>();
+
+  const onError = useApiErrorMessage();
 
   const { mutate: changePassword, isLoading: changePasswordIsLoading } = useChangePassword();
 
@@ -26,22 +27,21 @@ const ChangePassword = () => {
         { userId, payload },
         {
           onSuccess: () => {
-            message.success(t('changePassword.success'));
+            message.success(t('profile:changePassword.success'));
             form.resetFields();
           },
-          onError: (error) => {
-            if (isApiError(error)) {
-              message.error(error.message);
-            }
-          },
+          onError,
         }
       ),
-    [t, userId, changePassword, form]
+    [t, userId, changePassword, form, onError]
   );
+
+  const rules = useChangePasswordRules();
 
   return (
     <>
-      <Title level={4}>{t('changePassword.title')}</Title>
+      <Title level={4}>{t('profile:changePassword.title')}</Title>
+
       <Form<ChangePasswordPayload>
         form={form}
         onFinish={handleSubmit}
@@ -49,23 +49,23 @@ const ChangePassword = () => {
         scrollToFirstError
       >
         <Form.Item
-          label={t('changePassword.currentPassword.label')}
+          label={t('profile:changePassword.currentPassword.label')}
           name="currentPassword"
           rules={rules.currentPassword}
           validateFirst
         >
-          <Input.Password autoFocus placeholder={t('changePassword.currentPassword.placeholder')} />
+          <Input.Password autoFocus />
         </Form.Item>
         <Form.Item
-          label={t('changePassword.newPassword.label')}
+          label={t('profile:changePassword.newPassword.label')}
           name="password"
           rules={rules.password}
           validateFirst
         >
-          <Input.Password placeholder={t('changePassword.newPassword.placeholder')} />
+          <Input.Password />
         </Form.Item>
         <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
-          {t('changePassword.submit')}
+          {t('global:submit')}
         </Button>
       </Form>
     </>

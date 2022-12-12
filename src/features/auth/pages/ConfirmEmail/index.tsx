@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useConfirmEmail } from 'api';
+import { useTokenParam } from 'common/hooks';
 import { LoadingScreen, ResultError } from 'common/components';
 
 import { AUTH_ROUTES } from '../../routes';
@@ -13,8 +14,7 @@ const ConfirmEmail = () => {
 
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get('token') ?? '';
+  const token = useTokenParam();
 
   const {
     mutate: confirmEmail,
@@ -26,7 +26,7 @@ const ConfirmEmail = () => {
   useEffect(() => {
     confirmEmail(token, {
       onSuccess: () => {
-        message.success(t('confirmEmail.success'));
+        message.success(t('auth:confirmEmail.success'));
         navigate(AUTH_ROUTES.login.to);
       },
     });

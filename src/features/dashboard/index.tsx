@@ -31,7 +31,7 @@ const Dashboard = () => {
     <Routes>
       <Route
         element={
-          <DashboardLayout email={data.user.email}>
+          <DashboardLayout user={data.user}>
             <Outlet />
           </DashboardLayout>
         }

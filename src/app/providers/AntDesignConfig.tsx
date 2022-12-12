@@ -6,15 +6,8 @@ message.config({
   duration: 5,
 });
 
-const config = {
-  locale: en_US,
-  pageHeader: {
-    ghost: false,
-  },
-};
-
 const AntDesignConfig = ({ children }: { children: ReactNode }) => (
-  <ConfigProvider {...config}>{children}</ConfigProvider>
+  <ConfigProvider locale={en_US}>{children}</ConfigProvider>
 );
 
 export default AntDesignConfig;

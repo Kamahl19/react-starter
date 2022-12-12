@@ -19,11 +19,11 @@ const AuthLayout = ({ children }: Props) => {
       [
         {
           to: AUTH_ROUTES.login.to,
-          label: t('authLayout.menu.login'),
+          label: t('auth:menu.login'),
         },
         {
           to: AUTH_ROUTES.signUp.to,
-          label: t('authLayout.menu.signUp'),
+          label: t('auth:menu.signUp'),
         },
       ].map(({ to, label }) => ({
         key: to,

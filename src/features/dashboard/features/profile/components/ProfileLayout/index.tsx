@@ -1,11 +1,12 @@
-import { type ReactNode, useMemo } from 'react';
+import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PageHeader, Descriptions } from 'antd';
-import { UserOutlined, CheckCircleTwoTone, ExclamationCircleTwoTone } from '@ant-design/icons';
+import { Descriptions } from 'antd';
+import { CheckCircleTwoTone, ExclamationCircleTwoTone } from '@ant-design/icons';
 
 import { type User } from 'api';
 import { Widget } from 'common/components';
 
+import DashboardPageHeader from '../../../../components/DashboardPageHeader';
 import { DASHBOARD_ROUTES } from '../../../../routes';
 
 type Props = {
@@ -16,21 +17,11 @@ type Props = {
 const ProfileLayout = ({ user, children }: Props) => {
   const { t } = useTranslation();
 
-  const menuItems = useMemo(
-    () => [
-      {
-        to: DASHBOARD_ROUTES.profileChangePassword.to,
-        label: t('profile.menu.changePassword'),
-      },
-    ],
-    [t]
-  );
-
   return (
     <>
-      <PageHeader avatar={{ icon: <UserOutlined /> }} title={user.email}>
+      <DashboardPageHeader title={user.email}>
         <Descriptions size="small">
-          <Descriptions.Item label={t('profile.header.isConfirmed')}>
+          <Descriptions.Item label={t('profile:header.isConfirmed')}>
             {user.isConfirmed ? (
               <CheckCircleTwoTone twoToneColor="#52c41a" style={{ fontSize: 20 }} />
             ) : (
@@ -38,8 +29,18 @@ const ProfileLayout = ({ user, children }: Props) => {
             )}
           </Descriptions.Item>
         </Descriptions>
-      </PageHeader>
-      <Widget menuItems={menuItems}>{children}</Widget>
+      </DashboardPageHeader>
+
+      <Widget
+        menuItems={[
+          {
+            to: DASHBOARD_ROUTES.profileChangePassword.to,
+            label: t('profile:menu.changePassword'),
+          },
+        ]}
+      >
+        {children}
+      </Widget>
     </>
   );
 };

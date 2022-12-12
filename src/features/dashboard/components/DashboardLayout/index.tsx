@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 
+import { type User } from 'api';
 import { Logo } from 'common/components';
 import { AdminLayout, SidebarState, useAdminLayoutContext } from 'common/components/AdminLayout';
 
@@ -9,16 +10,16 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 
 type Props = {
-  email: string;
+  user: User;
   children: ReactNode;
 };
 
-const DashboardLayout = ({ email, children }: Props) => (
+const DashboardLayout = ({ user, children }: Props) => (
   <AdminLayout
     className="dashboard-layout"
     smallLogo={<Logo to={DASHBOARD_ROUTES.home.to} size="small" style={{ paddingLeft: 12 }} />}
     logo={<DashboardLogo />}
-    headerContent={<Header email={email} />}
+    headerContent={<Header email={user.email} />}
     sidebarContent={<Sidebar />}
   >
     {children}

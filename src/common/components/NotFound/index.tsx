@@ -4,7 +4,13 @@ import { Result } from 'antd';
 const NotFound = () => {
   const { t } = useTranslation();
 
-  return <Result status={404} title={t('notFound.title')} subTitle={t('notFound.subtitle')} />;
+  return (
+    <Result
+      status={404}
+      title={t('common:notFound.title')}
+      subTitle={t('common:notFound.subtitle')}
+    />
+  );
 };
 
 export default NotFound;

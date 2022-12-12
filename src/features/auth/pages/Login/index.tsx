@@ -1,10 +1,11 @@
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { message, Button, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
-import { type LoginPayload, isApiError } from 'api';
+import { type LoginPayload } from 'api';
 import { useAuth } from 'common/auth';
+import { useApiErrorMessage } from 'common/hooks';
 
 import { useLoginRules } from '../../validations';
 import { AUTH_ROUTES } from '../../routes';
@@ -12,40 +13,38 @@ import { AUTH_ROUTES } from '../../routes';
 const Login = () => {
   const { t } = useTranslation();
 
-  const rules = useLoginRules();
+  const onError = useApiErrorMessage();
 
   const { login, isLoginLoading } = useAuth();
 
   const handleLogin = useCallback(
     (payload: LoginPayload) =>
       login(payload, {
-        onError: (error) => {
-          if (isApiError(error)) {
-            message.error(error.message);
-          }
-        },
+        onError,
       }),
-    [login]
+    [login, onError]
   );
+
+  const rules = useLoginRules();
 
   return (
     <Form<LoginPayload> onFinish={handleLogin} layout="vertical" scrollToFirstError>
-      <Form.Item label={t('logIn.email.label')} name="email" rules={rules.email} validateFirst>
-        <Input autoFocus placeholder={t('logIn.email.placeholder')} />
+      <Form.Item label={t('auth:logIn.email.label')} name="email" rules={rules.email} validateFirst>
+        <Input autoFocus />
       </Form.Item>
       <Form.Item
-        label={t('logIn.password.label')}
+        label={t('auth:logIn.password.label')}
         name="password"
         rules={rules.password}
         validateFirst
       >
-        <Input.Password placeholder={t('logIn.password.placeholder')} />
+        <Input.Password />
       </Form.Item>
       <Form.Item>
-        <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('logIn.forgotPassword')}</Link>
+        <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('auth:logIn.forgotPassword')}</Link>
       </Form.Item>
       <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
-        {t('logIn.submit')}
+        {t('auth:logIn.submit')}
       </Button>
     </Form>
   );
