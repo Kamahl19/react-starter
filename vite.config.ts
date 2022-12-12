@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
-import momentToDayjsPlugin from 'unplugin-moment-to-dayjs/vite';
 import checkerPlugin from 'vite-plugin-checker';
 
 export default defineConfig({
@@ -12,7 +11,6 @@ export default defineConfig({
     reactPlugin(),
     tsconfigPathsPlugin(),
     svgrPlugin(),
-    momentToDayjsPlugin(), // https://ant.design/docs/react/replace-moment
     checkerPlugin({
       overlay: false,
       typescript: true,
