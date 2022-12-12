@@ -61,6 +61,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js#L43) checkes for accessibility best practices in JSX
 - [import](https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js) validates proper ES module imports and exports, [also for TypeScript](https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js)
 - [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js) provides additional powerful rules for more strict linting
+- [@tanstack/eslint-plugin-query](https://tanstack.com/query/v4/docs/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
 - [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments/blob/master/lib/configs/recommended.js) checks ESLint directive comments (e.g. `//eslint-disable-line`)
 - [prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
 - [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts) checks for best practices and anticipates common mistakes when writing tests with Testing Library
@@ -93,7 +94,7 @@ This project already includes [Ant Design](https://ant.design/), a design system
 
 [Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesignConfig.tsx](./src/app/providers/AntDesignConfig.tsx).
 
-Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations. Reusable custom validation rules are defined in [src/common/validations.ts](./src/common/validations.ts) and are available via hook `useValidationRules`.
+Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations. Validation utilities and reusable validation rules are defined in [src/common/validations.ts](./src/common/validations.ts). Feature-specific validations are defined in the feature folder such as [src/features/auth/validations.ts](./src/features/auth/validations.ts).
 
 On top of that, this project already comes with [several components](./src/common/components/) built on top of Ant Design such as:
 
@@ -102,6 +103,7 @@ On top of that, this project already comes with [several components](./src/commo
 - [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices
 - [NotFound](./src/common/components/NotFound/index.tsx) is a 404 component
+- [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
 All Less files in this project are being imported in the [src/app/styles/main.less](./src/app/styles/main.less) which itself is imported in [src/index.tsx](./src/index.tsx) to be processed by Vite and inserted into production `index.html` file.
@@ -152,6 +154,8 @@ If you want to read more about React Query there is an [extensive documentation]
 In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React Query provider to which you can pass custom configuration. It also includes dedicated Devtools for easy visualisation and debugging of queries.
 
 A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
+
+In addition, [query-key-factory](https://github.com/lukemorales/query-key-factory) is used for typesafe query key management and auto-completion of query keys. It allows developer to focus on writing and invalidating queries without the hassle of remembering how the key is set-up for specific query.
 
 ## Authentication
 
@@ -234,7 +238,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as Recoil, react-query, Router, and Ant Design. It also contains one app-wide Error Boundary and Suspense component. Wrapped inside all that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesignConfig](./src/app/providers/AntDesignConfig.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and [Router](././src/app/providers/Router.tsx). It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

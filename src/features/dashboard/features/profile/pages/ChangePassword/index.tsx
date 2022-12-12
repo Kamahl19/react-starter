@@ -54,7 +54,7 @@ const ChangePassword = () => {
           rules={rules.currentPassword}
           validateFirst
         >
-          <Input.Password placeholder={t('changePassword.currentPassword.placeholder')} />
+          <Input.Password autoFocus placeholder={t('changePassword.currentPassword.placeholder')} />
         </Form.Item>
         <Form.Item
           label={t('changePassword.newPassword.label')}

@@ -5,7 +5,9 @@ import { wrapHistory } from 'oaf-react-router';
 
 const history = createBrowserHistory();
 
-wrapHistory(history);
+wrapHistory(history, {
+  repairFocus: false, // Disable focus repair, as it clashes with autoFocus
+});
 
 const Router = ({ children }: { children: ReactNode }) => (
   <HistoryRouter history={history}>
