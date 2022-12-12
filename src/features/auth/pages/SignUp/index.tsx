@@ -49,17 +49,17 @@ const SignUp = () => {
       scrollToFirstError
     >
       <Form.Item
-        label={t('auth:signUp.email.label')}
+        label={t('auth:signUp.email')}
         name="email"
         rules={rules.email}
         validateFirst
         validateStatus={isUserEmailAvailable ? undefined : 'error'}
-        help={isUserEmailAvailable ? undefined : t('auth:signUp.email.taken')}
+        help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
       >
         <Input autoFocus autoComplete="off" />
       </Form.Item>
       <Form.Item
-        label={t('auth:signUp.password.label')}
+        label={t('auth:signUp.password')}
         name="password"
         rules={rules.password}
         validateFirst

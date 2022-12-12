@@ -49,7 +49,7 @@ const ChangePassword = () => {
         scrollToFirstError
       >
         <Form.Item
-          label={t('profile:changePassword.currentPassword.label')}
+          label={t('profile:changePassword.currentPassword')}
           name="currentPassword"
           rules={rules.currentPassword}
           validateFirst
@@ -57,7 +57,7 @@ const ChangePassword = () => {
           <Input.Password autoFocus />
         </Form.Item>
         <Form.Item
-          label={t('profile:changePassword.newPassword.label')}
+          label={t('profile:changePassword.newPassword')}
           name="password"
           rules={rules.password}
           validateFirst

@@ -41,7 +41,7 @@ const ResetPassword = () => {
   return (
     <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('auth:resetPassword.password.label')}
+        label={t('auth:resetPassword.password')}
         name="password"
         rules={rules.password}
         validateFirst

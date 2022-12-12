@@ -4,12 +4,8 @@
     "index": "Profile"
   },
   "changePassword": {
-    "currentPassword": {
-      "label": "Current Password"
-    },
-    "newPassword": {
-      "label": "New Password"
-    },
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
     "success": "Your password has been changed successfully.",
     "title": "Change Password"
   },

@@ -29,11 +29,11 @@ const Login = () => {
 
   return (
     <Form<LoginPayload> onFinish={handleLogin} layout="vertical" scrollToFirstError>
-      <Form.Item label={t('auth:logIn.email.label')} name="email" rules={rules.email} validateFirst>
+      <Form.Item label={t('auth:logIn.email')} name="email" rules={rules.email} validateFirst>
         <Input autoFocus />
       </Form.Item>
       <Form.Item
-        label={t('auth:logIn.password.label')}
+        label={t('auth:logIn.password')}
         name="password"
         rules={rules.password}
         validateFirst

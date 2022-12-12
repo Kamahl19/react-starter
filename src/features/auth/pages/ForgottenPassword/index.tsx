@@ -36,7 +36,7 @@ const ForgottenPassword = () => {
   return (
     <Form<ForgottenPasswordPayload> onFinish={handleSubmit} layout="vertical" scrollToFirstError>
       <Form.Item
-        label={t('auth:forgottenPassword.email.label')}
+        label={t('auth:forgottenPassword.email')}
         name="email"
         rules={rules.email}
         validateFirst
