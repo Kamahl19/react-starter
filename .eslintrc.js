@@ -26,6 +26,7 @@ module.exports = {
     // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
     'prettier',
   ],
+  plugins: ['@emotion'],
   env: {
     browser: true,
     es2022: true,
@@ -58,6 +59,7 @@ module.exports = {
      */
     'no-empty': ['error', { allowEmptyCatch: true }],
     'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react-hooks/exhaustive-deps': [
       'error',
       { additionalHooks: '(useRecoilCallback|useRecoilTransaction)' },
@@ -103,6 +105,7 @@ module.exports = {
     'react/no-array-index-key': 'error',
     'react/no-typos': 'error',
     'react/style-prop-object': 'error',
+    '@emotion/syntax-preference': ['error', 'object'],
   },
   overrides: [
     {
@@ -175,6 +178,7 @@ module.exports = {
         '@typescript-eslint/no-redeclare': 'error',
         'import/first': 'error',
         'import/no-anonymous-default-export': 'error',
+        '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
 
         /**
          * Replace additional rules

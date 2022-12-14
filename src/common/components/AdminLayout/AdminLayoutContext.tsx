@@ -1,5 +1,4 @@
 import { createContext, useContext, useMemo } from 'react';
-import { type SiderProps } from 'antd';
 
 export enum SidebarState {
   OPEN_SIDEBAR = 'openSidebar',
@@ -8,8 +7,7 @@ export enum SidebarState {
   CLOSED_DRAWER = 'closedDrawer',
 }
 
-type AdminLayoutContextProps = {
-  sidebarTheme: SiderProps['theme'];
+type Props = {
   isCollapsed: boolean;
   isDrawerVisible: boolean;
   useDrawer: boolean;
@@ -17,7 +15,7 @@ type AdminLayoutContextProps = {
   toggle: VoidFunction;
 };
 
-const AdminLayoutContext = createContext<AdminLayoutContextProps | undefined>(undefined);
+const AdminLayoutContext = createContext<Props | undefined>(undefined);
 
 export default AdminLayoutContext;
 

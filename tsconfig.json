@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "lib": ["dom", "dom.iterable", "esnext", "webworker"],
     "module": "esnext",
     "moduleResolution": "node",

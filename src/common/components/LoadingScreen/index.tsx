@@ -1,17 +1,13 @@
 import { Spin } from 'antd';
 
+import { centeredCss, fullVPHeightCss } from 'common/styleUtils';
+
 type Props = {
   fullVPHeight?: boolean;
 };
 
 const LoadingScreen = ({ fullVPHeight }: Props) => (
-  <div
-    style={{
-      display: 'grid',
-      placeContent: 'center',
-      height: fullVPHeight ? '100vh' : '100%',
-    }}
-  >
+  <div css={[centeredCss, fullVPHeight && fullVPHeightCss]}>
     <Spin size="large" />
   </div>
 );

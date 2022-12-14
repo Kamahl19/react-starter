@@ -1,13 +1,19 @@
 import { useCallback } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 
 import { isApiError } from 'api';
 
-const useApiErrorMessage = () =>
-  useCallback((error: unknown) => {
-    if (isApiError(error)) {
-      message.error(error.message);
-    }
-  }, []);
+const useApiErrorMessage = () => {
+  const { message } = App.useApp();
+
+  return useCallback(
+    (error: unknown) => {
+      if (isApiError(error)) {
+        message.error(error.message);
+      }
+    },
+    [message]
+  );
+};
 
 export default useApiErrorMessage;

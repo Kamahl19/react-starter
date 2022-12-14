@@ -7,11 +7,12 @@
 - [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
 - [Vite](https://vitejs.dev/) - next generation frontend tooling
 - [Ant.Design](https://ant.design/) - UI library
+  - [Emotion](https://emotion.sh/) - CSS in JS library
+  - Light and Dark themes
 - [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [react-query](https://tanstack.com/query/) - asynchronous state management with declarative, always-up-to-date auto-managed queries and mutations
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
-- [LESS](http://lesscss.org/) - dynamic stylesheet language
 - [Recoil](https://recoiljs.org/) - state management library
   - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
   - [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) - allows accessing Recoil store from outside components

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { message, Button, Form, Input } from 'antd';
+import { App, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ import { AUTH_ROUTES } from '../../routes';
 
 const ForgottenPassword = () => {
   const { t } = useTranslation();
+
+  const { message } = App.useApp();
 
   const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const ForgottenPassword = () => {
         },
         onError,
       }),
-    [t, navigate, forgottenPassword, onError]
+    [t, navigate, forgottenPassword, onError, message]
   );
 
   const rules = useForgottenPasswordRules();

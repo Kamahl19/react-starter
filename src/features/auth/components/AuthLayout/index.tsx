@@ -1,9 +1,12 @@
 import { type ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Layout } from 'antd';
+import { Layout, Row, Col, Space } from 'antd';
+import { css } from '@emotion/react';
 
+import { ThemeSwitch } from 'app/theme';
 import { Navbar, Logo } from 'common/components';
+import { createStyles, getMQ } from 'common/styleUtils';
 
 import { AUTH_ROUTES } from '../../routes';
 
@@ -33,14 +36,63 @@ const AuthLayout = ({ children }: Props) => {
   );
 
   return (
-    <Layout className="auth-layout">
-      <Layout.Header>
-        <Logo to={AUTH_ROUTES.login.to} size="large" />
-        <Navbar items={menuItems} />
+    <Layout css={styles.layout}>
+      <Layout.Header css={styles.header}>
+        <Row justify="space-between" wrap={false}>
+          <Col>
+            <Logo to={AUTH_ROUTES.login.to} />
+          </Col>
+          <Col>
+            <Space size="large">
+              <ThemeSwitch />
+              <Navbar items={menuItems} mobileMenuBreakpoint="md" />
+            </Space>
+          </Col>
+        </Row>
       </Layout.Header>
-      <Layout.Content>{children}</Layout.Content>
+      <Layout.Content css={styles.content}>{children}</Layout.Content>
     </Layout>
   );
 };
 
 export default AuthLayout;
+
+const styles = createStyles({
+  layout: css({
+    minHeight: '100vh',
+  }),
+
+  header: ({ token, isDark }) =>
+    css({
+      position: 'sticky',
+      top: 0,
+      boxShadow: token.boxShadow,
+      zIndex: 19,
+
+      '&&': {
+        background: isDark ? undefined : token.colorBgContainer,
+        paddingInline: token.paddingLG,
+
+        [getMQ(token).smMax]: {
+          paddingInline: token.paddingSM,
+        },
+      },
+    }),
+
+  content: ({ token }) =>
+    css({
+      display: 'grid',
+      height: '100%',
+      padding: token.paddingLG,
+
+      [getMQ(token).smMax]: {
+        padding: token.paddingSM,
+      },
+
+      '.ant-form': {
+        width: '100%',
+        maxWidth: 400,
+        margin: 'auto',
+      },
+    }),
+});

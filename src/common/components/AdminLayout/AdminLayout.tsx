@@ -1,38 +1,39 @@
 import { type ReactNode, useState, useCallback, useMemo } from 'react';
-import { Layout, Drawer, Grid, type SiderProps } from 'antd';
+import { Layout, Drawer, Row, Col, type SiderProps } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import cn from 'classnames';
+import { css } from '@emotion/react';
 
+import {
+  createStyles,
+  fullVPHeightCss,
+  getMQ,
+  useBreakpoint,
+  type Breakpoint,
+} from 'common/styleUtils';
 import AdminLayoutContext, { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 
-const { Sider, Header, Content } = Layout;
-
-type AdminLayoutProps = {
+type Props = {
   className?: string;
   logo?: ReactNode;
-  smallLogo?: ReactNode;
   children?: ReactNode;
   headerContent?: ReactNode;
   sidebarContent?: ReactNode;
-  sidebarBreakpoint?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+  sidebarBreakpoint?: Breakpoint;
   sidebarCollapsedWidth?: SiderProps['collapsedWidth'];
   sidebarWidth?: SiderProps['width'];
-  sidebarTheme?: SiderProps['theme'];
 };
 
 const AdminLayout = ({
   className,
   logo,
-  smallLogo,
   children,
   headerContent,
   sidebarContent,
   sidebarBreakpoint = 'lg',
   sidebarCollapsedWidth = 80,
   sidebarWidth = 256,
-  sidebarTheme = 'dark',
-}: AdminLayoutProps) => {
-  const { [sidebarBreakpoint]: isBreakpoint } = Grid.useBreakpoint();
+}: Props) => {
+  const { [sidebarBreakpoint]: isBreakpoint } = useBreakpoint();
 
   const useDrawer = !isBreakpoint;
 
@@ -50,11 +51,17 @@ const AdminLayout = ({
     [useDrawer, toggleIsDrawerVisible, toggleIsCollapsed]
   );
 
-  const sidebarState = getSidebarState({ useDrawer, isCollapsed, isDrawerVisible });
+  const sidebarState = useDrawer
+    ? isDrawerVisible
+      ? SidebarState.OPEN_DRAWER
+      : SidebarState.CLOSED_DRAWER
+    : isCollapsed
+    ? SidebarState.COLLAPSED_SIDEBAR
+    : SidebarState.OPEN_SIDEBAR;
 
   const value = useMemo(
-    () => ({ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),
-    [sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle]
+    () => ({ isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),
+    [isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle]
   );
 
   const sidebarProps = useMemo(
@@ -70,14 +77,14 @@ const AdminLayout = ({
 
   return (
     <AdminLayoutContext.Provider value={value}>
-      <Layout className={cn('admin-layout', className)}>
+      <Layout className={className}>
         {useDrawer ? (
           <Drawer
-            className="admin-layout-drawer"
             closable={false}
             placement="left"
             open={isDrawerVisible}
             width={sidebarWidth}
+            css={styles.drawer}
             onClose={toggleIsDrawerVisible}
           >
             <Sidebar {...sidebarProps} />
@@ -85,20 +92,23 @@ const AdminLayout = ({
         ) : (
           <Sidebar {...sidebarProps} />
         )}
-        <Layout className="admin-layout-main">
-          <Header className="admin-layout-main-header">
-            {useDrawer && (
-              <>
-                {smallLogo}
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-                <span className="admin-layout-drawer-trigger" onClick={toggleIsDrawerVisible}>
-                  <MenuOutlined />
-                </span>
-              </>
-            )}
-            {headerContent}
-          </Header>
-          <Content className="admin-layout-main-content">{children}</Content>
+        <Layout css={fullVPHeightCss}>
+          <Layout.Header css={styles.header}>
+            <Row justify="space-between" wrap={false}>
+              <Col>
+                {useDrawer && (
+                  <>
+                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                    <div css={styles.drawerTrigger} onClick={toggleIsDrawerVisible}>
+                      <MenuOutlined />
+                    </div>
+                  </>
+                )}
+              </Col>
+              <Col>{headerContent}</Col>
+            </Row>
+          </Layout.Header>
+          <Layout.Content css={styles.content}>{children}</Layout.Content>
         </Layout>
       </Layout>
     </AdminLayoutContext.Provider>
@@ -122,37 +132,88 @@ const Sidebar = ({
   sidebarWidth,
   onCollapse,
 }: SidebarProps) => {
-  const { sidebarTheme, isCollapsed, useDrawer } = useAdminLayoutContext();
+  const { isCollapsed, useDrawer } = useAdminLayoutContext();
 
   return (
-    <Sider
-      className="admin-layout-sidebar"
+    <Layout.Sider
+      css={[styles.sidebar, fullVPHeightCss]}
       collapsible={!useDrawer}
       collapsed={isCollapsed && !useDrawer}
       onCollapse={onCollapse}
       collapsedWidth={sidebarCollapsedWidth}
-      theme={sidebarTheme}
       width={sidebarWidth}
+      theme="dark"
     >
-      <div className="admin-layout-sidebar-logo">{logo}</div>
-      {sidebarContent && <div className="admin-layout-sidebar-content">{sidebarContent}</div>}
-    </Sider>
+      <div css={styles.sidebarLogo}>{logo}</div>
+      {sidebarContent && <div css={styles.sidebarContent}>{sidebarContent}</div>}
+    </Layout.Sider>
   );
 };
 
-const getSidebarState = ({
-  useDrawer,
-  isCollapsed,
-  isDrawerVisible,
-}: {
-  useDrawer: boolean;
-  isCollapsed: boolean;
-  isDrawerVisible: boolean;
-}) =>
-  useDrawer
-    ? isDrawerVisible
-      ? SidebarState.OPEN_DRAWER
-      : SidebarState.CLOSED_DRAWER
-    : isCollapsed
-    ? SidebarState.COLLAPSED_SIDEBAR
-    : SidebarState.OPEN_SIDEBAR;
+const styles = createStyles({
+  header: ({ token, isDark }) =>
+    css({
+      boxShadow: token.boxShadow,
+      zIndex: 19,
+
+      '&&': {
+        background: isDark ? undefined : token.colorBgContainer,
+        paddingInline: token.paddingLG,
+
+        [getMQ(token).smMax]: {
+          paddingInline: token.paddingSM,
+        },
+      },
+    }),
+
+  content: ({ token }) =>
+    css({
+      overflowY: 'auto',
+      padding: token.paddingLG,
+
+      [getMQ(token).smMax]: {
+        padding: token.paddingSM,
+      },
+    }),
+
+  sidebar: css({
+    '.ant-layout-sider-children': {
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+    },
+  }),
+
+  sidebarLogo: ({ token }) =>
+    css({
+      flex: 'none',
+      height: token.controlHeight * 2, // TODO use Layout.layoutHeaderHeight once it's exported from Ant
+      display: 'grid',
+      placeContent: 'center',
+    }),
+
+  sidebarContent: css({
+    overflowY: 'auto',
+
+    '&& .ant-menu-inline': {
+      borderRight: 0,
+    },
+  }),
+
+  drawerTrigger: ({ token }) =>
+    css({
+      paddingInline: token.paddingMD,
+      textAlign: 'center',
+      fontSize: 24,
+    }),
+
+  drawer: css({
+    '&&': {
+      background: '#001529', // TODO use Layout.colorBgHeader once it's exported from Ant
+    },
+
+    '.ant-drawer-body': {
+      padding: 0,
+    },
+  }),
+});

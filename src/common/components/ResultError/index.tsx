@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Card, Result, type ResultProps } from 'antd';
 
 import { isApiError } from 'api';
+import { centeredCss, fullVPHeightCss } from 'common/styleUtils';
 
 type Props = ResultProps & {
   onReset?: VoidFunction;
@@ -19,11 +20,7 @@ const ResultError = ({ onReset, error, card, fullVPHeight, ...props }: Props) =>
 
   const Content = (
     <Result
-      style={{
-        display: 'grid',
-        placeContent: 'center',
-        height: fullVPHeight ? '100vh' : '100%',
-      }}
+      css={[centeredCss, fullVPHeight && fullVPHeightCss]}
       status={status}
       title={t('common:resultError.title')}
       subTitle={subTitle}

@@ -8,28 +8,22 @@ import checkerPlugin from 'vite-plugin-checker';
 
 export default defineConfig({
   plugins: [
-    reactPlugin(),
+    reactPlugin({
+      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      },
+    }),
     tsconfigPathsPlugin(),
     svgrPlugin(),
     checkerPlugin({
       overlay: false,
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "./**/*.{js,ts,tsx}" --max-warnings 0',
+        lintCommand: 'eslint "./**/*.{js,ts,tsx}" --max-warnings 0 --cache',
       },
     }),
   ],
-  css: {
-    postcss: {
-      plugins: [require('autoprefixer')],
-    },
-    preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        rewriteUrls: 'all',
-      },
-    },
-  },
   server: {
     open: true,
     port: 3000,

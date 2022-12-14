@@ -10,7 +10,7 @@ type Props = MenuProps & {
 };
 
 const SidebarMenu = ({ onClick, items, ...props }: Props) => {
-  const { sidebarTheme, toggle, sidebarState } = useAdminLayoutContext();
+  const { toggle, sidebarState } = useAdminLayoutContext();
 
   const menuOnClick = useCallback<Required<MenuProps>['onClick']>(
     (info) => {
@@ -25,7 +25,7 @@ const SidebarMenu = ({ onClick, items, ...props }: Props) => {
     [onClick, toggle, sidebarState]
   );
 
-  return <Menu mode="inline" theme={sidebarTheme} onClick={menuOnClick} items={items} {...props} />;
+  return <Menu mode="inline" theme="dark" onClick={menuOnClick} items={items} {...props} />;
 };
 
 export default SidebarMenu;

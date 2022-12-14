@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ import { AUTH_ROUTES } from '../../routes';
 
 const ConfirmEmail = () => {
   const { t } = useTranslation();
+
+  const { message } = App.useApp();
 
   const navigate = useNavigate();
 

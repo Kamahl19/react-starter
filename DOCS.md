@@ -10,7 +10,7 @@ Build tooling for both development and production is provided by [Vite](https://
 
 It's best to start with this video [Vite in 100 Seconds](https://www.youtube.com/watch?v=KCrXgy8qtjM). You can continue with [Why Vite](https://vitejs.dev/guide/why.html) and its [Features](https://vitejs.dev/guide/features.html). There is also a [good article from Shopify Engineering](https://shopify.engineering/developer-experience-with-hydrogen-and-vite) about why they chose Vite for building Shopify frontends.
 
-Vite configuration [vite.config.ts](./vite.config.ts) in this project also uses plugins for [React](https://github.com/vitejs/vite/tree/main/packages/plugin-react), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), [auto-prefixing](https://github.com/postcss/autoprefixer) CSS, and processing [Less](https://lesscss.org/features/).
+Vite configuration [vite.config.ts](./vite.config.ts) in this project also uses plugins for [React](https://github.com/vitejs/vite/tree/main/packages/plugin-react), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), and [Emotion](https://emotion.sh/) CSS in JS.
 
 This project is also entirely written in [TypeScript](https://www.typescriptlang.org/), a strongly typed programming language that builds on JavaScript. There is a good Get Started both for [JavaScript programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) and [Java Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html). The TS compiler options are defined in [tsconfig.json](./tsconfig.json).
 
@@ -26,7 +26,7 @@ Vitest also provides a [neat UI](https://vitest.dev/guide/ui.html) to view and i
 
 Generally an [Enzyme](https://github.com/enzymejs/enzyme) library was used for testing React components. However [Enzyme is dead](https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl), its last commit is from [09/21](https://github.com/enzymejs/enzyme/commits/master) and it doesn't work for [React v17](https://github.com/enzymejs/enzyme/issues/2429) nor [React v18](https://github.com/enzymejs/enzyme/issues/2524). For projects with hundreds/thousands of Enzyme based tests, this is a disaster. Although it isn't such a bad thing for new projects. Enzyme encouraged bad testing practices e.g. [shallow rendering](https://kentcdodds.com/blog/why-i-never-use-shallow-rendering) and [testing implementation details](https://kentcdodds.com/blog/testing-implementation-details) such as internal state, internal methods of the component, its lifecycle methods, and children.
 
-Since [2018](https://github.com/testing-library/react-testing-library/releases/tag/v1.0.0), there is a better alternative ([recommended by React](https://reactjs.org/docs/testing.html#tools)) for testing frontend applications called [Testing Library](https://testing-library.com/). It's framework agnostic and officially supports testing plain DOM, React, React Native, Angular, Vue, Marko, Svelte, Preact, and many others. It encourages good testing practices and follows the principle of "The more your tests resemble the way your software is used, the more confidence they provide". It enables the developer to write unit tests, integration tests, and e2e tests. You can read more in the [Introduction](https://testing-library.com/docs/), [Guiding Principles](https://testing-library.com/docs/guiding-principles) and [FAQ](https://testing-library.com/docs/dom-testing-library/faq). To read more about the React-specific part, go to [FAQ](https://testing-library.com/docs/react-testing-library/faq) or [Migrate from Enzyme](https://testing-library.com/docs/react-testing-library/migrate-from-enzyme). There is also [an example](https://testing-library.com/docs/react-testing-library/example-intro) of testing a React component.
+There is a better alternative ([recommended by React](https://reactjs.org/docs/testing.html#tools)) for testing frontend applications called [Testing Library](https://testing-library.com/). It's framework agnostic and officially supports testing plain DOM, React, React Native, Angular, Vue, Marko, Svelte, Preact, and many others. It encourages good testing practices and follows the principle of "The more your tests resemble the way your software is used, the more confidence they provide". It enables the developer to write unit tests, integration tests, and e2e tests. You can read more in the [Introduction](https://testing-library.com/docs/), [Guiding Principles](https://testing-library.com/docs/guiding-principles) and [FAQ](https://testing-library.com/docs/dom-testing-library/faq). To read more about the React-specific part, go to [FAQ](https://testing-library.com/docs/react-testing-library/faq) or [Migrate from Enzyme](https://testing-library.com/docs/react-testing-library/migrate-from-enzyme). There is also [an example](https://testing-library.com/docs/react-testing-library/example-intro) of testing a React component.
 
 Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest.
 
@@ -44,7 +44,7 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 - extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - setups MSW to mock API
 
-There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Router... It also re-exports everything related to `testing-library`.
+There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
 
 Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
 
@@ -62,6 +62,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [import](https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js) validates proper ES module imports and exports, [also for TypeScript](https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js)
 - [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js) provides additional powerful rules for more strict linting
 - [@tanstack/eslint-plugin-query](https://tanstack.com/query/v4/docs/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
+- [@emotion/eslint-plugin](https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin) enforces css-in-js styles written as objects
 - [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments/blob/master/lib/configs/recommended.js) checks ESLint directive comments (e.g. `//eslint-disable-line`)
 - [prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
 - [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts) checks for best practices and anticipates common mistakes when writing tests with Testing Library
@@ -79,7 +80,7 @@ ESLint runs when:
 
 ### Prettier
 
-Formatting of the entire codebase (js, ts, jsx, json, html, css, less, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
+Formatting of the entire codebase (js, ts, jsx, json, html, css, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
 
 Prettier runs when:
 
@@ -90,7 +91,11 @@ Prettier runs when:
 
 ## UI Components
 
-This project already includes [Ant Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override the [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
+This project already includes [Ant Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme) using themes.
+
+This projects comes with 2 themes: default and dark. To customize these themes, override the theme tokens in [src/app/theme/baseConfig.ts](./src/app/theme/baseConfig.ts) and [src/app/theme/darkConfig.ts](./src/app/theme/darkConfig.ts) respectively. The full list of theme tokens is available in [Ant Design documentation](https://ant.design/docs/react/customize-theme#theme). Ant Design provides a [Theme Editor](https://ant.design/theme-editor/) to help you create your own theme. Global styles are defined in [src/app/theme/GlobalStyles.tsx](./src/app/theme/GlobalStyles.tsx).
+
+Currently selected theme is stored in Recoil state and can be retrieved using [useIsDark()](./src/app/theme/ThemeProvider.tsx) hook. The theme can be changed using the [src/app/theme/ThemeSwitch.tsx](./src/app/theme/ThemeSwitch.tsx).
 
 [Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
@@ -100,6 +105,7 @@ On top of that, this project already comes with [several components](./src/commo
 
 - [AdminLayout](./src/common/components/AdminLayout/) is a full-featured, responsive, dashboard layout with sidebar, navigation bar and space for page content
 - [LoadingScreen](./src/common/components/LoadingScreen/index.tsx) is a full-page loader
+- [Logo](./src/common/components/Logo/index.tsx) is a simple logo component
 - [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices
 - [NotFound](./src/common/components/NotFound/index.tsx) is a 404 component
@@ -107,7 +113,19 @@ On top of that, this project already comes with [several components](./src/commo
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
-All Less files in this project are being imported in the [src/app/styles/main.less](./src/app/styles/main.less) which itself is imported in [src/index.tsx](./src/index.tsx) to be processed by Vite and inserted into production `index.html` file.
+## Styling using Emotion (css-in-js)
+
+[Emotion](https://emotion.sh/docs) is a library designed for writing css styles with JavaScript. It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities. The primary way to style elements with emotion is [the css prop](https://emotion.sh/docs/css-prop). It provides a concise and flexible API to style your components. In this project we use ESLint rule to only allow [objects for defining styles](https://emotion.sh/docs/object-styles). You can read more about [Best Practices](https://emotion.sh/docs/best-practices) [classNames](https://emotion.sh/docs/class-names).
+
+The [Emotion Theme](https://emotion.sh/docs/theming) is provided by the [src/app/theme/ThemeProvider.tsx](./src/app/theme/ThemeProvider.tsx) and typed by [src/app/theme/types.d.ts](./src/app/theme/types.d.ts). It includes the full Ant's theme `token` and `isDark` flag to indicate which theme is currently being used. Emotion styles can access this `Theme` context using the `createStyles()` helper function.
+
+There is also [src/common/styleUtils.ts](./src/common/styleUtils.ts) which contains some useful functions for styling such as:
+
+- `createStyles()` is a helper for accessing the `Theme` context (`token`, `isDark`) in Emotion styles
+- `getMQ()` is a helper for writing media queries in Emotion styles
+- `useBreakpoint()` is a re-export of Ant's [Grid.useBreakpoint hook](https://ant.design/components/grid#components-grid-demo-usebreakpoint)
+- `centeredCss` is a style for centering content
+- `fullVPHeightCss` is a style for making an element full viewport height.
 
 ## i18n
 
@@ -201,10 +219,13 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ```
 ├── .github/ : GitHub workflows for CI/CD
 ├── .husky/ : Git hooks e.g. the pre-commit hook
+├── .vscode/ : VSCode configuration
 ├── public/ : Public static assets
 ├── src/
 │   ├── api/ : Communication with API server
-│   ├── app/ : Application-wide (framework) files e.g. providers, top-router or global styles
+│   ├── app/ : Application-wide (framework) files
+│   │   ├── providers/ : providers for AntD, Recoil, Query
+│   │   ├── theme/ : customising AntD theme, Dark mode, global styles, Emotion setup
 │   ├── common/ : Reusable functionality
 │   │   ├── auth/ : Authentication related logic
 │   │   ├── components/ : Generic UI components
@@ -212,20 +233,22 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   ├── features/ : Features bundled into separate modules
 │   ├── i18n/ : i18n configuration and translation JSON files
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
-│   ├── index.tsx : Application entry file
 │   ├── tests/ : Testing related functionality
 │   │   ├── setup.tsx : Executes before tests to mock API or set global settings
 │   │   ├── utils.tsx : Provides custom render function for testing
+│   ├── index.tsx : Application entry file
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
 ├── .env : contains environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)
 ├── .eslintignore : to ignore files when running ESLint
 ├── .eslintrc.js : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
+├── .gitignore : to keep Git from tracking specific files
 ├── .prettierignore : to ignore files when running Prettier
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
 ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
+├── package.json : holds metadata about the project and its dependencies
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser
@@ -235,7 +258,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesign](./src/app/providers/AntDesign.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [Recoil](././src/app/providers/Recoil.tsx), [AntDesign](./src/app/providers/AntDesign.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 
