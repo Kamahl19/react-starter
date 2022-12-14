@@ -16,8 +16,6 @@ type Props = {
 const Header = ({ email }: Props) => {
   const { t } = useTranslation();
 
-  const { pathname } = useLocation();
-
   const { logout } = useAuth();
 
   const items = useMemo(
@@ -42,6 +40,8 @@ const Header = ({ email }: Props) => {
     ],
     [t, logout]
   );
+
+  const { pathname } = useLocation();
 
   const selectedKeys = useMemo(
     () =>

@@ -121,11 +121,7 @@ i18next ecosystem provides [many plugins and tools](https://www.i18next.com/over
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
 
-React Router lacks some accessibility features such as resetting scroll and focus after push, restoring scroll and focus after pop, scrolling down to the element identified by the hash fragment, or announcing navigation to screen reader users. All of this is provided by [oaf-react-router](https://github.com/oaf-project/oaf-react-router) library already included in this project. It works by wrapping the `history` object with oaf-react-router's function in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) and supplying the wrapped `history` object to the React Router.
-
 Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) and used in [src/features/dashboard/components/DashboardPageHeader/index.tsx](./src/features/dashboard/components/DashboardPageHeader/index.tsx).
-
-To easily observe and debug the routing functionality during development, there is `RouterDebugObserver` in [src/app/providers/Router.tsx](./src/app/providers/Router.tsx) which logs all location changes such as push, pop, and replace.
 
 ## State Management
 
@@ -242,7 +238,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesignConfig](./src/app/providers/AntDesignConfig.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and [Router](././src/app/providers/Router.tsx). It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesignConfig](./src/app/providers/AntDesignConfig.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

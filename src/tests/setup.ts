@@ -7,9 +7,6 @@ import { server } from 'mocks/server';
 
 import 'app/i18n';
 
-// Suppress oaf-react-router warning about missing title
-document.title = 'React Starter';
-
 // Fetch API
 vi.stubGlobal('fetch', fetch);
 

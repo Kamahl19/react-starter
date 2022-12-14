@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { LoadingScreen } from 'common/components';
 
 import AntDesignConfig from './providers/AntDesignConfig';
 import Recoil from './providers/Recoil';
-import Router from './providers/Router';
 import PersistAuthGate from './PersistAuthGate';
 import Query from './providers/Query';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
@@ -17,9 +17,9 @@ const Root = () => (
         <Recoil>
           <Query>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
-              <Router>
+              <BrowserRouter>
                 <App />
-              </Router>
+              </BrowserRouter>
             </PersistAuthGate>
           </Query>
         </Recoil>

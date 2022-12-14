@@ -10,7 +10,7 @@ type Props = {
 };
 
 const RequireIsAnonymous = ({ redirectTo, children }: Props) => {
-  const { state } = useLocation();
+  const state: unknown = useLocation().state;
 
   const to = is.nonEmptyObject(state) && is.string(state.from) ? state.from : redirectTo;
 

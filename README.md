@@ -9,6 +9,7 @@
 - [Ant.Design](https://ant.design/) - UI library
 - [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [react-query](https://tanstack.com/query/) - asynchronous state management with declarative, always-up-to-date auto-managed queries and mutations
+  - [query-key-factory](https://github.com/lukemorales/query-key-factory) - library for creating typesafe standardized query keys for react-query
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
 - [LESS](http://lesscss.org/) - dynamic stylesheet language
@@ -16,7 +17,7 @@
   - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
   - [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) - allows accessing Recoil store from outside components
 - [React Router](https://reactrouter.com/) - declarative routing
-  - [oaf-react-router](https://github.com/oaf-project/oaf-react-router) - accessible wrapper for React Router to set proper scroll position & focus
+  - [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) - hook for generating route breadcrumbs
 - [react-error-boundary](https://github.com/bvaughn/react-error-boundary) - simple reusable React error boundary component
 - [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
