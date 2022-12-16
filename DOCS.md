@@ -92,7 +92,7 @@ Prettier runs when:
 
 This project already includes [Ant Design](https://ant.design/), a design system and a UI components library for enterprise-level products developed by Alibaba / Alipay. It provides an extensive [set of UI components](https://ant.design/components/overview/) and an easy way of [customising the design](https://ant.design/docs/react/customize-theme). Just override the [default LESS variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less) by editing the [src/app/styles/theme-variables.less](./src/app/styles/theme-variables.less).
 
-[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesignConfig.tsx](./src/app/providers/AntDesignConfig.tsx).
+[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
 Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations. Validation utilities and reusable validation rules are defined in [src/common/validations.ts](./src/common/validations.ts). Feature-specific validations are defined in the feature folder such as [src/features/auth/validations.ts](./src/features/auth/validations.ts).
 
@@ -238,7 +238,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesignConfig](./src/app/providers/AntDesignConfig.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [AntDesign](./src/app/providers/AntDesign.tsx), [Recoil](././src/app/providers/Recoil.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

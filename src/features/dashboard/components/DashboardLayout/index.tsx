@@ -17,8 +17,8 @@ type Props = {
 const DashboardLayout = ({ user, children }: Props) => (
   <AdminLayout
     className="dashboard-layout"
-    smallLogo={<Logo to={DASHBOARD_ROUTES.home.to} size="small" style={{ paddingLeft: 12 }} />}
-    logo={<DashboardLogo />}
+    smallLogo={<LogoSmall />}
+    logo={<LogoLarge />}
     headerContent={<Header email={user.email} />}
     sidebarContent={<Sidebar />}
   >
@@ -28,7 +28,7 @@ const DashboardLayout = ({ user, children }: Props) => (
 
 export default DashboardLayout;
 
-const DashboardLogo = () => {
+const LogoLarge = () => {
   const { sidebarState } = useAdminLayoutContext();
 
   return (
@@ -39,3 +39,7 @@ const DashboardLogo = () => {
     />
   );
 };
+
+const LogoSmall = () => (
+  <Logo to={DASHBOARD_ROUTES.home.to} size="small" style={{ paddingLeft: 12 }} />
+);

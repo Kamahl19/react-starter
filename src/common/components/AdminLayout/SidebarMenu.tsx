@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { type MenuProps } from 'antd';
-import { type MenuClickEventHandler } from 'rc-menu/lib/interface';
 
 import { Menu } from 'common/components';
 
@@ -13,7 +12,7 @@ type Props = MenuProps & {
 const SidebarMenu = ({ onClick, items, ...props }: Props) => {
   const { sidebarTheme, toggle, sidebarState } = useAdminLayoutContext();
 
-  const menuOnClick = useCallback<MenuClickEventHandler>(
+  const menuOnClick = useCallback<Required<MenuProps>['onClick']>(
     (info) => {
       if (onClick) {
         onClick(info);

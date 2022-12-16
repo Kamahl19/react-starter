@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { render, type RenderOptions } from '@testing-library/react';
 
-import AntDesignConfig from 'app/providers/AntDesignConfig';
+import AntDesign from 'app/providers/AntDesign';
 import Recoil from 'app/providers/Recoil';
 import { createQueryClient } from 'app/providers/Query';
 import PersistAuthGate from 'app/PersistAuthGate';
@@ -28,8 +28,8 @@ const Providers = ({ children }: ProvidersProps) => {
   });
 
   return (
-    <Suspense fallback={<LoadingScreen fullVPHeight />}>
-      <AntDesignConfig>
+    <AntDesign>
+      <Suspense fallback={<LoadingScreen fullVPHeight />}>
         <Recoil>
           <QueryClientProvider client={queryClient}>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
@@ -37,8 +37,8 @@ const Providers = ({ children }: ProvidersProps) => {
             </PersistAuthGate>
           </QueryClientProvider>
         </Recoil>
-      </AntDesignConfig>
-    </Suspense>
+      </Suspense>
+    </AntDesign>
   );
 };
 

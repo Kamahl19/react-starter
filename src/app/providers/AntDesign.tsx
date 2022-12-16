@@ -6,8 +6,8 @@ message.config({
   duration: 5,
 });
 
-const AntDesignConfig = ({ children }: { children: ReactNode }) => (
+const AntDesign = ({ children }: { children: ReactNode }) => (
   <ConfigProvider locale={en_US}>{children}</ConfigProvider>
 );
 
-export default AntDesignConfig;
+export default AntDesign;

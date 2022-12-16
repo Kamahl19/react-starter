@@ -3,7 +3,7 @@ import { Layout, Drawer, Grid, type SiderProps } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import cn from 'classnames';
 
-import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
+import AdminLayoutContext, { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 
 const { Sider, Header, Content } = Layout;
 
@@ -52,24 +52,20 @@ const AdminLayout = ({
 
   const sidebarState = getSidebarState({ useDrawer, isCollapsed, isDrawerVisible });
 
-  const Sidebar = (
-    <Sider
-      className="admin-layout-sidebar"
-      collapsible={!useDrawer}
-      collapsed={isCollapsed}
-      onCollapse={setIsCollapsed}
-      collapsedWidth={sidebarCollapsedWidth}
-      theme={sidebarTheme}
-      width={sidebarWidth}
-    >
-      <div className="admin-layout-sidebar-logo">{logo}</div>
-      {sidebarContent && <div className="admin-layout-sidebar-content">{sidebarContent}</div>}
-    </Sider>
-  );
-
   const value = useMemo(
     () => ({ sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),
     [sidebarTheme, isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle]
+  );
+
+  const sidebarProps = useMemo(
+    () => ({
+      logo,
+      sidebarCollapsedWidth,
+      sidebarContent,
+      sidebarWidth,
+      onCollapse: setIsCollapsed,
+    }),
+    [sidebarCollapsedWidth, sidebarWidth, logo, sidebarContent]
   );
 
   return (
@@ -84,10 +80,10 @@ const AdminLayout = ({
             width={sidebarWidth}
             onClose={toggleIsDrawerVisible}
           >
-            {Sidebar}
+            <Sidebar {...sidebarProps} />
           </Drawer>
         ) : (
-          Sidebar
+          <Sidebar {...sidebarProps} />
         )}
         <Layout className="admin-layout-main">
           <Header className="admin-layout-main-header">
@@ -110,6 +106,39 @@ const AdminLayout = ({
 };
 
 export default AdminLayout;
+
+type SidebarProps = {
+  logo?: ReactNode;
+  sidebarCollapsedWidth?: SiderProps['collapsedWidth'];
+  sidebarContent?: ReactNode;
+  sidebarWidth?: SiderProps['width'];
+  onCollapse: Required<SiderProps>['onCollapse'];
+};
+
+const Sidebar = ({
+  logo,
+  sidebarCollapsedWidth,
+  sidebarContent,
+  sidebarWidth,
+  onCollapse,
+}: SidebarProps) => {
+  const { sidebarTheme, isCollapsed, useDrawer } = useAdminLayoutContext();
+
+  return (
+    <Sider
+      className="admin-layout-sidebar"
+      collapsible={!useDrawer}
+      collapsed={isCollapsed}
+      onCollapse={onCollapse}
+      collapsedWidth={sidebarCollapsedWidth}
+      theme={sidebarTheme}
+      width={sidebarWidth}
+    >
+      <div className="admin-layout-sidebar-logo">{logo}</div>
+      {sidebarContent && <div className="admin-layout-sidebar-content">{sidebarContent}</div>}
+    </Sider>
+  );
+};
 
 const getSidebarState = ({
   useDrawer,
