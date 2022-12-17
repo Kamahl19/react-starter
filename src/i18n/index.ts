@@ -1,13 +1,13 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import auth from 'locales/en/auth.json';
-import common from 'locales/en/common.json';
-import dashboard from 'locales/en/dashboard.json';
-import global from 'locales/en/global.json';
-import profile from 'locales/en/profile.json';
+import auth from './en/auth.json';
+import common from './en/common.json';
+import dashboard from './en/dashboard.json';
+import global from './en/global.json';
+import profile from './en/profile.json';
 
-// Maps to src/locales/:language_code
+// Maps to src/i18n/:language_code
 export const LANGUAGE_CODES = {
   EN: 'en',
 } as const;

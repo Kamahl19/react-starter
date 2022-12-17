@@ -1,10 +1,10 @@
-import { type ReactElement, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 
 import { useAuth } from 'common/auth';
 
 type Props = {
-  children: ReactElement;
-  loading: ReactElement;
+  children: ReactNode;
+  loading: ReactNode;
 };
 
 const PersistAuthGate = ({ children, loading }: Props) => {
@@ -17,10 +17,10 @@ const PersistAuthGate = ({ children, loading }: Props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if ((token && !isLoggedIn) || isReloginLoading) {
-    return loading;
+    return <>{loading}</>;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default PersistAuthGate;

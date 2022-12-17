@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { dropDB } from 'mocks/db';
 import { server } from 'mocks/server';
 
-import 'app/i18n';
+import 'i18n';
 
 // Fetch API
 vi.stubGlobal('fetch', fetch);

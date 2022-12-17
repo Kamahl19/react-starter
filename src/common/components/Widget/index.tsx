@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 import { Menu } from 'common/components';
 
-type WidgetProps = CardProps & {
+type Props = CardProps & {
   menuItems?: {
     to: string;
     label: string;
   }[];
 };
 
-const Widget = ({ className, menuItems, children, ...props }: WidgetProps) => {
+const Widget = ({ className, menuItems, children, ...props }: Props) => {
   const items = useMemo(
     () =>
       menuItems?.map(({ to, label }) => ({

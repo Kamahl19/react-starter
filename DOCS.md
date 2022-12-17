@@ -113,7 +113,7 @@ All Less files in this project are being imported in the [src/app/styles/main.le
 
 Internationalization is covered by the [i18next](https://www.i18next.com/) framework. i18next goes beyond just providing the standard i18n features such as (plurals, context, interpolation, format). It provides a complete solution to localize the product from web to mobile and desktop. It's framework and platform agnostic and it supports React, Angular, Vue, Nodejs, iOS and others. You can read more about its [benefits here](https://www.i18next.com/overview/comparison-to-others).
 
-React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison to react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's i18next configuration is defined in [src/app/i18n.ts](./src/app/i18n.ts). Translations in form of JSON files are located in `src/locales/{language}/{namespace}.json`. IDE support is covered by TypeScript typings [src/i18n.d.ts](./src/i18n.d.ts).
+React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison to react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's i18next configuration is defined in [src/i18n/index.ts](./src/i18n/index.ts). Translations in form of JSON files are located in `src/i18n/{language}/{namespace}.json`. IDE support is covered by TypeScript typings [src/i18n/types.d.ts](./src/i18n/types.d.ts).
 
 i18next ecosystem provides [many plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators, etc. This project includes one such plugin [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
 
@@ -212,9 +212,8 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   │   ├── components/ : Generic UI components
 │   │   ├── hooks/ : Generic React hooks
 │   ├── features/ : Features bundled into separate modules
-│   ├── locales/ : Translation JSON files
+│   ├── i18n/ : i18n configuration and translation JSON files
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
-│   ├── i18n.d.ts : Typing for i18n keys
 │   ├── index.tsx : Application entry file
 │   ├── tests/ : Testing related functionality
 │   │   ├── setup.tsx : Executes before tests to mock API or set global settings
