@@ -128,7 +128,7 @@ const Sidebar = ({
     <Sider
       className="admin-layout-sidebar"
       collapsible={!useDrawer}
-      collapsed={isCollapsed}
+      collapsed={isCollapsed && !useDrawer}
       onCollapse={onCollapse}
       collapsedWidth={sidebarCollapsedWidth}
       theme={sidebarTheme}
