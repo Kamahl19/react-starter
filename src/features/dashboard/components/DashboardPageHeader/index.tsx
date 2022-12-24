@@ -13,14 +13,12 @@ const routes = Object.values(DASHBOARD_ROUTES).map(({ absPath: path, Breadcrumb:
 
 type Props = Omit<PageHeaderProps, 'breadcrumbs'>;
 
-const DashboardPageHeader = ({ children, title, extra, backTo }: Props) => {
+const DashboardPageHeader = (props: Props) => {
   const breadcrumbs = useBreadcrumbs(routes, { disableDefaults: true });
 
   return (
     <PageHeader
-      title={title}
-      extra={extra}
-      backTo={backTo}
+      {...props}
       breadcrumbs={
         <Breadcrumb>
           {breadcrumbs.map(({ match, breadcrumb }) => (
@@ -30,9 +28,7 @@ const DashboardPageHeader = ({ children, title, extra, backTo }: Props) => {
           ))}
         </Breadcrumb>
       }
-    >
-      {children}
-    </PageHeader>
+    />
   );
 };
 

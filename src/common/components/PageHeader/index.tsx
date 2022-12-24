@@ -8,19 +8,26 @@ export type PageHeaderProps = {
   title?: ReactNode;
   extra?: ReactNode;
   backTo?: string;
+  onBack?: VoidFunction;
   breadcrumbs?: ReactNode;
 };
 
-const PageHeader = ({ children, title, extra, backTo, breadcrumbs }: PageHeaderProps) => (
+const PageHeader = ({ children, title, extra, backTo, onBack, breadcrumbs }: PageHeaderProps) => (
   <div className="page-header">
     {breadcrumbs}
-    {(title || backTo || extra) && (
+    {(title || backTo || onBack || extra) && (
       <div className="page-header-heading">
         <div className="page-header-heading-left">
           {backTo && (
             <Link to={backTo} className="page-header-back">
               <ArrowLeftOutlined />
             </Link>
+          )}
+          {onBack && (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <span onClick={onBack} className="page-header-back">
+              <ArrowLeftOutlined />
+            </span>
           )}
           {title && <span className="page-header-heading-title">{title}</span>}
         </div>
