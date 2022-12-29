@@ -9,7 +9,6 @@
 - [Ant.Design](https://ant.design/) - UI library
 - [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
 - [react-query](https://tanstack.com/query/) - asynchronous state management with declarative, always-up-to-date auto-managed queries and mutations
-  - [query-key-factory](https://github.com/lukemorales/query-key-factory) - library for creating typesafe standardized query keys for react-query
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
 - [LESS](http://lesscss.org/) - dynamic stylesheet language

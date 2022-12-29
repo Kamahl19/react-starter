@@ -154,8 +154,6 @@ In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React
 
 A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
 
-In addition, [query-key-factory](https://github.com/lukemorales/query-key-factory) is used for typesafe query key management and auto-completion of query keys. It allows developer to focus on writing and invalidating queries without the hassle of remembering how the key is set-up for specific query.
-
 ## Authentication
 
 A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides a `useAuth` hook. This hook returns current auth state (`token`, `userId`, `isLoggedIn`, and loading indicators), `login` method to perform a login operation, `relogin` method to renew the token, and `logout` method to perform a logout operation.
