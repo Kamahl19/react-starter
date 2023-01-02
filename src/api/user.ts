@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { get, post, patch } from './client';
-import { getURL, getAuthorizationHeader, type QueryContextFromKeys } from './common';
+import { getURL, getAuthorizationHeader } from './common';
 
 /**
  * Types
@@ -53,9 +53,7 @@ export const PASSWORD_MIN_LENGTH = 6;
  * Endpoints
  */
 
-const fetchUserEmailAvailability = ({
-  queryKey: [{ email }],
-}: QueryContextFromKeys<typeof userQueryKeys>['emailAvailability']) =>
+const fetchUserEmailAvailability = (email: string) =>
   get<UserEmailAvailabilityResponse>(getURL(`/user/email-availability/${email}`));
 
 const createUser = (body: CreateUserPayload) =>
@@ -69,9 +67,7 @@ const confirmEmail = (token: string) =>
     headers: getAuthorizationHeader(token),
   });
 
-const fetchUser = ({
-  queryKey: [{ userId }],
-}: QueryContextFromKeys<typeof userQueryKeys>['user']) =>
+const fetchUser = (userId: string) =>
   get<UserResponse>(getURL(`/user/${userId}`), {
     headers: getAuthorizationHeader(),
   });
@@ -99,10 +95,9 @@ const resetPassword = (token: string, body: ResetPasswordPayload) =>
  */
 
 export const userQueryKeys = {
-  all: [{ scope: 'users' }] as const,
-  user: (userId: string) => [{ ...userQueryKeys.all[0], entity: 'user', userId }] as const,
-  emailAvailability: (email: string) =>
-    [{ ...userQueryKeys.all[0], entity: 'emailAvailability', email }] as const,
+  all: ['user'] as const,
+  user: (userId: string) => [...userQueryKeys.all, userId] as const,
+  emailAvailability: (email: string) => [...userQueryKeys.all, 'emailAvailability', email] as const,
 };
 
 /**
@@ -112,7 +107,7 @@ export const userQueryKeys = {
 export const useFetchUserEmailAvailability = (email: string) =>
   useQuery({
     queryKey: userQueryKeys.emailAvailability(email),
-    queryFn: fetchUserEmailAvailability,
+    queryFn: () => fetchUserEmailAvailability(email),
     enabled: /\S+@\S+\.\S+/u.test(email),
     initialData: true,
   });
@@ -132,7 +127,7 @@ export const useConfirmEmail = () => useMutation(confirmEmail);
 export const useFetchUser = (userId: string) =>
   useQuery({
     queryKey: userQueryKeys.user(userId),
-    queryFn: fetchUser,
+    queryFn: () => fetchUser(userId),
   });
 
 export const useChangePassword = () => {
