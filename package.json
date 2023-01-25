@@ -42,7 +42,7 @@
     "workerDirectory": "."
   },
   "devDependencies": {
-    "@mswjs/data": "0.11.1",
+    "@mswjs/data": "0.11.2",
     "@tanstack/eslint-plugin-query": "4.21.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
