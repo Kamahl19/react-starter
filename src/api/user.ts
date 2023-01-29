@@ -115,14 +115,18 @@ export const useFetchUserEmailAvailability = (email: string) =>
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(createUser, {
+  return useMutation({
+    mutationFn: createUser,
     onSuccess: (data) => {
       queryClient.setQueryData(userQueryKeys.emailAvailability(data.user.email), false);
     },
   });
 };
 
-export const useConfirmEmail = () => useMutation(confirmEmail);
+export const useConfirmEmail = () =>
+  useMutation({
+    mutationFn: confirmEmail,
+  });
 
 export const useFetchUser = (userId: string) =>
   useQuery({
@@ -133,20 +137,22 @@ export const useFetchUser = (userId: string) =>
 export const useChangePassword = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
+  return useMutation({
+    mutationFn: ({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
       changePassword(userId, payload),
-    {
-      onSuccess: (data) => {
-        queryClient.setQueryData(userQueryKeys.user(data.user.id), data);
-      },
-    }
-  );
+    onSuccess: (data) => {
+      queryClient.setQueryData(userQueryKeys.user(data.user.id), data);
+    },
+  });
 };
 
-export const useForgottenPassword = () => useMutation(forgottenPassword);
+export const useForgottenPassword = () =>
+  useMutation({
+    mutationFn: forgottenPassword,
+  });
 
 export const useResetPassword = () =>
-  useMutation(({ token, payload }: { token: string; payload: ResetPasswordPayload }) =>
-    resetPassword(token, payload)
-  );
+  useMutation({
+    mutationFn: ({ token, payload }: { token: string; payload: ResetPasswordPayload }) =>
+      resetPassword(token, payload),
+  });
