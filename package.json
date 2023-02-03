@@ -53,7 +53,7 @@
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
     "@vitejs/plugin-react": "3.0.1",
-    "@vitest/ui": "0.28.3",
+    "@vitest/ui": "0.28.4",
     "autoprefixer": "10.4.13",
     "confusing-browser-globals": "1.0.11",
     "cross-fetch": "3.1.5",
@@ -82,7 +82,7 @@
     "vite-plugin-checker": "0.5.5",
     "vite-plugin-svgr": "2.4.0",
     "vite-tsconfig-paths": "4.0.5",
-    "vitest": "0.28.3"
+    "vitest": "0.28.4"
   },
   "dependencies": {
     "@ant-design/icons": "4.8.0",
