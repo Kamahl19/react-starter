@@ -1,11 +1,14 @@
 import { type ReactNode, useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Avatar, Dropdown, Space, type MenuProps } from 'antd';
+import { Avatar, Dropdown, Space, Typography, Row, Col, type MenuProps } from 'antd';
 import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { css, ClassNames } from '@emotion/react';
 
+import { ThemeSwitch } from 'app/theme';
 import { getSelectedKeys } from 'common/routerUtils';
 import { useAuth } from 'common/auth';
+import { getMQ } from 'common/styleUtils';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -15,11 +18,11 @@ type Props = {
 
 const Header = ({ email }: Props) => {
   const { t } = useTranslation();
-
   const { logout } = useAuth();
+  const { pathname } = useLocation();
 
-  const items = useMemo(
-    () => [
+  const menuProps = useMemo(() => {
+    const items = [
       {
         key: DASHBOARD_ROUTES.profile.to,
         label: <Link to={DASHBOARD_ROUTES.profile.to}>{t('dashboard:topMenu.profile')}</Link>,
@@ -31,36 +34,33 @@ const Header = ({ email }: Props) => {
       },
       {
         key: 'logout',
-        label: (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-          <a onClick={logout}>{t('dashboard:topMenu.logout')}</a>
-        ),
+        label: <Typography.Link onClick={logout}>{t('dashboard:topMenu.logout')}</Typography.Link>,
         icon: <LogoutOutlined />,
       },
-    ],
-    [t, logout]
-  );
+    ];
 
-  const { pathname } = useLocation();
-
-  const selectedKeys = useMemo(
-    () =>
-      getSelectedKeys(
-        items.map((i) => String(i.key)),
+    return {
+      items,
+      selectedKeys: getSelectedKeys(
+        items.map((i) => `${i.key}`),
         pathname
       ),
-    [items, pathname]
-  );
+    };
+  }, [t, logout, pathname]);
 
   return (
-    <div className="dashboard-layout-header">
-      <div className="dashboard-layout-header-left" />
-      <Space size="large">
-        <HeaderDropdown menu={{ items, selectedKeys }}>
-          <Avatar size="small" icon={<UserOutlined />} /> {email}
-        </HeaderDropdown>
-      </Space>
-    </div>
+    <Row justify="space-between" wrap={false}>
+      <Col />
+      <Col>
+        <Space size="large">
+          <ThemeSwitch />
+          <HeaderDropdown menu={menuProps}>
+            <Avatar size="small" icon={<UserOutlined />} />
+            {email}
+          </HeaderDropdown>
+        </Space>
+      </Col>
+    </Row>
   );
 };
 
@@ -83,17 +83,40 @@ const HeaderDropdown = ({ children, menu }: HeaderDropdownProps) => {
   );
 
   return (
-    <Dropdown
-      className="dashboard-layout-header-dropdown"
-      onOpenChange={setIsVisible}
-      open={isVisible}
-      trigger={['click']}
-      menu={menuProps}
-      overlayClassName="dashboard-layout-header-dropdown-container"
-    >
-      <div>
-        {children} <DownOutlined />
-      </div>
-    </Dropdown>
+    <ClassNames>
+      {({ css, theme: { token } }) => (
+        <Dropdown
+          css={styles.dropdown}
+          onOpenChange={setIsVisible}
+          open={isVisible}
+          trigger={['click']}
+          menu={menuProps}
+          overlayClassName={css({
+            [getMQ(token).smMax]: {
+              width: '100vw',
+
+              '.ant-dropdown-menu': {
+                borderRadius: 0,
+              },
+
+              '&& .ant-dropdown-menu-item': {
+                paddingBlock: token.paddingSM,
+              },
+            },
+          })}
+        >
+          <Space>
+            {children}
+            <DownOutlined />
+          </Space>
+        </Dropdown>
+      )}
+    </ClassNames>
   );
+};
+
+const styles = {
+  dropdown: css({
+    cursor: 'pointer',
+  }),
 };

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { message, Button, Form, Input } from 'antd';
+import { App, Button, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 
@@ -14,6 +14,8 @@ const DEBOUNCE_MS = 500;
 
 const SignUp = () => {
   const { t } = useTranslation();
+
+  const { message } = App.useApp();
 
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ const SignUp = () => {
         },
         onError,
       }),
-    [t, navigate, createUser, onError]
+    [t, navigate, createUser, onError, message]
   );
 
   const [form] = Form.useForm<CreateUserPayload>();

@@ -1,6 +1,8 @@
 import { type ReactNode } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 
+import { centeredCss } from 'common/styleUtils';
+
 type Props = {
   children: ReactNode;
 };
@@ -8,7 +10,7 @@ type Props = {
 const GlobalErrorBoundary = ({ children }: Props) => (
   <ErrorBoundary
     FallbackComponent={({ resetErrorBoundary, error }: FallbackProps) => (
-      <div style={{ display: 'grid', placeContent: 'center', height: '100%' }}>
+      <div css={centeredCss}>
         <h1>Unexpected Error</h1>
         <p>This is a problem on our side, not yours.</p>
         <pre>Error: {error.message}</pre>

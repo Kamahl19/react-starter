@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { message, Button, Form, Input, Typography } from 'antd';
+import { App, Button, Form, Input, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword } from 'api';
@@ -14,6 +14,8 @@ const ChangePassword = () => {
   const { t } = useTranslation();
 
   const { userId } = useAuth();
+
+  const { message } = App.useApp();
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
@@ -33,7 +35,7 @@ const ChangePassword = () => {
           onError,
         }
       ),
-    [t, userId, changePassword, form, onError]
+    [t, userId, changePassword, form, onError, message]
   );
 
   const rules = useChangePasswordRules();

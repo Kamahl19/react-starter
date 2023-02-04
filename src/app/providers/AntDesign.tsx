@@ -1,13 +1,19 @@
 import { type ReactNode } from 'react';
-import { ConfigProvider, message } from 'antd';
-import en_US from 'antd/lib/locale/en_US';
+import { ConfigProvider, App, message } from 'antd';
+import en_US from 'antd/locale/en_US';
+
+import { ThemeProvider } from '../theme';
 
 message.config({
   duration: 5,
 });
 
 const AntDesign = ({ children }: { children: ReactNode }) => (
-  <ConfigProvider locale={en_US}>{children}</ConfigProvider>
+  <ConfigProvider locale={en_US}>
+    <ThemeProvider>
+      <App>{children}</App>
+    </ThemeProvider>
+  </ConfigProvider>
 );
 
 export default AntDesign;

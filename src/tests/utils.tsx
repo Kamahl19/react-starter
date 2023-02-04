@@ -9,11 +9,11 @@ import { createQueryClient } from 'app/providers/Query';
 import PersistAuthGate from 'app/PersistAuthGate';
 import { LoadingScreen } from 'common/components';
 
-type ProvidersProps = {
+type Props = {
   children: ReactNode;
 };
 
-const Providers = ({ children }: ProvidersProps) => {
+const Providers = ({ children }: Props) => {
   const queryClient = createQueryClient({
     defaultOptions: {
       queries: {
@@ -28,17 +28,17 @@ const Providers = ({ children }: ProvidersProps) => {
   });
 
   return (
-    <AntDesign>
-      <Suspense fallback={<LoadingScreen fullVPHeight />}>
-        <Recoil>
+    <Recoil>
+      <AntDesign>
+        <Suspense fallback={<LoadingScreen fullVPHeight />}>
           <QueryClientProvider client={queryClient}>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
               <BrowserRouter>{children}</BrowserRouter>
             </PersistAuthGate>
           </QueryClientProvider>
-        </Recoil>
-      </Suspense>
-    </AntDesign>
+        </Suspense>
+      </AntDesign>
+    </Recoil>
   );
 };
 

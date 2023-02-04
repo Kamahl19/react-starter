@@ -1,7 +1,6 @@
 import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Descriptions } from 'antd';
-import { CheckCircleTwoTone, ExclamationCircleTwoTone } from '@ant-design/icons';
 
 import { type User } from 'api';
 import { Widget } from 'common/components';
@@ -22,11 +21,7 @@ const ProfileLayout = ({ user, children }: Props) => {
       <DashboardPageHeader title={user.email}>
         <Descriptions size="small">
           <Descriptions.Item label={t('profile:header.isConfirmed')}>
-            {user.isConfirmed ? (
-              <CheckCircleTwoTone twoToneColor="#52c41a" />
-            ) : (
-              <ExclamationCircleTwoTone twoToneColor="red" />
-            )}
+            {user.isConfirmed ? <>✅</> : <>❌</>}
           </Descriptions.Item>
         </Descriptions>
       </DashboardPageHeader>

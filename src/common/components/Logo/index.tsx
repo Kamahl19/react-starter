@@ -1,20 +1,29 @@
-import { type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import cn from 'classnames';
+import { css } from '@emotion/react';
+
+import { createStyles } from 'common/styleUtils';
+
+import logoImg from './logo.svg';
 
 type Props = {
   to: string;
-  size: 'small' | 'large';
-  inverted?: boolean;
-  style?: CSSProperties;
+  className?: string;
 };
 
-const Logo = ({ to, size, inverted, style }: Props) => {
-  return (
-    <h1 style={style} className={cn('logo', { 'logo-inverted': inverted })}>
-      <Link to={to}>{size === 'small' ? 'RS' : 'React Starter'}</Link>
-    </h1>
-  );
-};
+const Logo = ({ to, className }: Props) => (
+  <Link to={to} css={styles.self} className={className}>
+    <img src={logoImg} alt="Home" />
+  </Link>
+);
 
 export default Logo;
+
+const styles = createStyles({
+  self: css({
+    display: 'block',
+
+    img: {
+      height: 40,
+    },
+  }),
+});

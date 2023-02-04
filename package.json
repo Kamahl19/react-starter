@@ -23,7 +23,7 @@
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
     "extract-translations": "i18next",
-    "lint": "eslint \"./**/*.{js,ts,tsx}\" --max-warnings 0",
+    "lint": "eslint \"./**/*.{js,ts,tsx}\" --max-warnings 0 --cache",
     "preview": "vite preview",
     "start": "vite",
     "test": "vitest",
@@ -32,7 +32,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix --cache"
     ],
     "**/*": [
       "prettier --write --ignore-unknown"
@@ -42,6 +42,8 @@
     "workerDirectory": "."
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "11.10.5",
+    "@emotion/eslint-plugin": "11.10.0",
     "@mswjs/data": "0.11.2",
     "@tanstack/eslint-plugin-query": "4.24.5",
     "@testing-library/jest-dom": "5.16.5",
@@ -54,7 +56,6 @@
     "@typescript-eslint/parser": "5.50.0",
     "@vitejs/plugin-react": "3.1.0",
     "@vitest/ui": "0.28.4",
-    "autoprefixer": "10.4.13",
     "confusing-browser-globals": "1.0.11",
     "cross-fetch": "3.1.5",
     "eslint": "8.33.0",
@@ -72,7 +73,6 @@
     "husky": "8.0.3",
     "i18next-parser": "7.6.0",
     "jsdom": "21.1.0",
-    "less": "4.1.3",
     "lint-staged": "13.1.0",
     "mock-match-media": "0.4.2",
     "msw": "1.0.0",
@@ -86,12 +86,13 @@
     "vitest": "0.28.4"
   },
   "dependencies": {
-    "@ant-design/icons": "4.8.0",
+    "@ant-design/icons": "5.0.1",
+    "@emotion/react": "11.10.5",
     "@sindresorhus/is": "5.3.0",
     "@tanstack/react-query": "4.24.4",
     "@tanstack/react-query-devtools": "4.24.4",
-    "antd": "4.24.7",
-    "classnames": "2.3.2",
+    "antd": "5.1.7",
+    "deepmerge-ts": "4.2.2",
     "i18next": "22.4.9",
     "query-string": "8.1.0",
     "react": "18.2.0",

@@ -1,45 +1,63 @@
 import { type ReactNode } from 'react';
-import { Space } from 'antd';
-import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Space, Typography, Row, Col } from 'antd';
+import { css } from '@emotion/react';
 
-export type PageHeaderProps = {
+import { createStyles, getMQ } from 'common/styleUtils';
+
+export type Props = {
   children?: ReactNode;
   title?: ReactNode;
   extra?: ReactNode;
-  backTo?: string;
-  onBack?: VoidFunction;
   breadcrumbs?: ReactNode;
 };
 
-const PageHeader = ({ children, title, extra, backTo, onBack, breadcrumbs }: PageHeaderProps) => (
-  <div className="page-header">
-    {breadcrumbs}
-    {(title || backTo || onBack || extra) && (
-      <div className="page-header-heading">
-        <div className="page-header-heading-left">
-          {backTo && (
-            <Link to={backTo} className="page-header-back">
-              <ArrowLeftOutlined />
-            </Link>
+const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => (
+  <div css={styles.self}>
+    <Space direction="vertical" size={12}>
+      {breadcrumbs}
+      {(title || extra) && (
+        <Row align="middle" justify="space-between">
+          {title && (
+            <Col>
+              <Typography.Title level={4} css={styles.headingTitle}>
+                {title}
+              </Typography.Title>
+            </Col>
           )}
-          {onBack && (
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-            <span onClick={onBack} className="page-header-back">
-              <ArrowLeftOutlined />
-            </span>
-          )}
-          {title && <span className="page-header-heading-title">{title}</span>}
-        </div>
-        {extra && (
-          <span className="page-header-heading-extra">
-            <Space>{extra}</Space>
-          </span>
-        )}
-      </div>
-    )}
-    {children && <div className="page-header-content">{children}</div>}
+          {extra && <Col>{extra}</Col>}
+        </Row>
+      )}
+      {children}
+    </Space>
   </div>
 );
 
 export default PageHeader;
+
+const styles = createStyles({
+  self: ({ token }) =>
+    css({
+      padding: token.paddingLG,
+      marginTop: -token.marginLG,
+      marginInline: -token.marginLG,
+      marginBottom: token.marginLG,
+      background: token.colorBgContainer,
+
+      [getMQ(token).smMax]: {
+        padding: token.paddingSM,
+        marginTop: -token.marginSM,
+        marginInline: -token.marginSM,
+        marginBottom: token.marginSM,
+      },
+
+      '.ant-descriptions tbody :last-child td': {
+        paddingBottom: 0,
+      },
+    }),
+
+  headingTitle: css({
+    '&&': {
+      marginBottom: 0,
+    },
+  }),
+});

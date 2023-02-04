@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Menu as MenuOrig, type MenuProps } from 'antd';
 import { useLocation } from 'react-router-dom';
 
+import { useIsDark } from 'app/theme';
 import { getSelectedKeys } from 'common/routerUtils';
 
 type Props = MenuProps & {
@@ -9,6 +10,8 @@ type Props = MenuProps & {
 };
 
 const Menu = (props: Props) => {
+  const isDark = useIsDark();
+
   const { pathname } = useLocation();
 
   const selectedKeys = useMemo(
@@ -20,7 +23,7 @@ const Menu = (props: Props) => {
     [props.items, pathname]
   );
 
-  return <MenuOrig selectedKeys={selectedKeys} {...props} />;
+  return <MenuOrig selectedKeys={selectedKeys} theme={isDark ? 'dark' : 'light'} {...props} />;
 };
 
 export default Menu;
