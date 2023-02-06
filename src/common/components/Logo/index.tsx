@@ -1,24 +1,25 @@
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 
-import { createStyles } from 'common/styleUtils';
-
-import logoImg from './logo.svg';
+import logoSmall from './logo-small.svg';
+import logoLarge from './logo-large.svg';
 
 type Props = {
   to: string;
   className?: string;
+  isSmall?: boolean;
+  inverted?: boolean;
 };
 
-const Logo = ({ to, className }: Props) => (
-  <Link to={to} css={styles.self} className={className}>
-    <img src={logoImg} alt="Home" />
+const Logo = ({ to, className, isSmall, inverted }: Props) => (
+  <Link to={to} css={[styles.self, inverted && styles.inverted]} className={className}>
+    <img src={isSmall ? logoSmall : logoLarge} alt="Home" />
   </Link>
 );
 
 export default Logo;
 
-const styles = createStyles({
+const styles = {
   self: css({
     display: 'block',
 
@@ -26,4 +27,10 @@ const styles = createStyles({
       height: 40,
     },
   }),
-});
+
+  inverted: css({
+    img: {
+      filter: 'invert(100%)',
+    },
+  }),
+};

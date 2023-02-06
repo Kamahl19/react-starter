@@ -5,9 +5,9 @@ import { LoadingScreen } from 'common/components';
 
 import AntDesign from './providers/AntDesign';
 import Recoil from './providers/Recoil';
-import PersistAuthGate from './PersistAuthGate';
 import Query from './providers/Query';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
+import PersistAuthGate from './PersistAuthGate';
 import App from './App';
 
 const Root = () => (
