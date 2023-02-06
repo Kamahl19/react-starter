@@ -12,7 +12,7 @@ const queryClient = createQueryClient();
 const Query = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     {children}
-    <ReactQueryDevtools />
+    <ReactQueryDevtools position="bottom-right" />
   </QueryClientProvider>
 );
 

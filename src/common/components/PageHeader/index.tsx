@@ -14,17 +14,17 @@ export type Props = {
 const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => (
   <div css={styles.self}>
     <Space direction="vertical" size={12}>
-      {breadcrumbs}
-      {(title || extra) && (
+      {(breadcrumbs || title || extra) && (
         <Row align="middle" justify="space-between">
-          {title && (
-            <Col>
-              <Typography.Title level={4} css={styles.headingTitle}>
-                {title}
-              </Typography.Title>
-            </Col>
-          )}
-          {extra && <Col>{extra}</Col>}
+          <Col>{breadcrumbs ?? (title && <Title>{title}</Title>)}</Col>
+          <Col>{extra}</Col>
+        </Row>
+      )}
+      {breadcrumbs && title && (
+        <Row align="middle" justify="space-between">
+          <Col>
+            <Title>{title}</Title>
+          </Col>
         </Row>
       )}
       {children}
@@ -33,6 +33,12 @@ const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => (
 );
 
 export default PageHeader;
+
+const Title = ({ children }: { children: ReactNode }) => (
+  <Typography.Title level={4} css={styles.headingTitle}>
+    {children}
+  </Typography.Title>
+);
 
 const styles = createStyles({
   self: ({ token }) =>
@@ -48,6 +54,10 @@ const styles = createStyles({
         marginTop: -token.marginSM,
         marginInline: -token.marginSM,
         marginBottom: token.marginSM,
+      },
+
+      '> .ant-space': {
+        width: '100%',
       },
 
       '.ant-descriptions tbody :last-child td': {
