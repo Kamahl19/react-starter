@@ -9,7 +9,7 @@ message.config({
 });
 
 const AntDesign = ({ children }: { children: ReactNode }) => (
-  <ConfigProvider locale={en_US}>
+  <ConfigProvider locale={en_US} form={{ scrollToFirstError: true }}>
     <ThemeProvider>
       <App>{children}</App>
     </ThemeProvider>

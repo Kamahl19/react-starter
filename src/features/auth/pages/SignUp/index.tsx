@@ -44,12 +44,7 @@ const SignUp = () => {
   const rules = useSignUpRules();
 
   return (
-    <Form<CreateUserPayload>
-      form={form}
-      onFinish={handleSubmit}
-      layout="vertical"
-      scrollToFirstError
-    >
+    <Form<CreateUserPayload> form={form} onFinish={handleSubmit} layout="vertical">
       <Form.Item
         label={t('auth:signUp.email')}
         name="email"

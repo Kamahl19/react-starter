@@ -1,6 +1,5 @@
 import { deepmergeCustom } from 'deepmerge-ts';
-import { theme } from 'antd';
-import { type ThemeConfig } from 'antd/es/config-provider/context'; // TODO fix import
+import { theme, type ThemeConfig } from 'antd';
 
 const baseConfig: ThemeConfig = {
   algorithm: theme.defaultAlgorithm,

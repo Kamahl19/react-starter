@@ -28,7 +28,7 @@ const Login = () => {
   const rules = useLoginRules();
 
   return (
-    <Form<LoginPayload> onFinish={handleLogin} layout="vertical" scrollToFirstError>
+    <Form<LoginPayload> onFinish={handleLogin} layout="vertical">
       <Form.Item label={t('auth:logIn.email')} name="email" rules={rules.email} validateFirst>
         <Input autoFocus />
       </Form.Item>

@@ -1,7 +1,7 @@
 import { type SerializedStyles, type Theme, css } from '@emotion/react';
 import { Grid } from 'antd';
 
-export { type Breakpoint } from 'antd/es/_util/responsiveObserver';
+export { type Breakpoint } from 'antd';
 
 export const useBreakpoint = () => Grid.useBreakpoint();
 

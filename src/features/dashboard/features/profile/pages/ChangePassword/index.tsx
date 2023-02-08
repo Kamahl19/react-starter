@@ -44,12 +44,7 @@ const ChangePassword = () => {
     <>
       <Title level={4}>{t('profile:changePassword.title')}</Title>
 
-      <Form<ChangePasswordPayload>
-        form={form}
-        onFinish={handleSubmit}
-        layout="vertical"
-        scrollToFirstError
-      >
+      <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item
           label={t('profile:changePassword.currentPassword')}
           name="currentPassword"

@@ -41,7 +41,7 @@ const ResetPassword = () => {
   const rules = useResetPasswordRules();
 
   return (
-    <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical" scrollToFirstError>
+    <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical">
       <Form.Item
         label={t('auth:resetPassword.password')}
         name="password"
