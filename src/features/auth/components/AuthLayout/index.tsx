@@ -68,7 +68,7 @@ const styles = createStyles({
     css({
       position: 'sticky',
       top: 0,
-      boxShadow: token.boxShadow,
+      boxShadow: token.boxShadowTertiary,
       zIndex: 19,
 
       '&&': {

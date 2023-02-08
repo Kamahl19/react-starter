@@ -153,7 +153,7 @@ const Sidebar = ({
 const styles = createStyles({
   header: ({ token, isDark }) =>
     css({
-      boxShadow: token.boxShadow,
+      boxShadow: token.boxShadowTertiary,
       zIndex: 19,
 
       '&&': {
