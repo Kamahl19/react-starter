@@ -1,15 +1,10 @@
 import { useCallback } from 'react';
-import { type MenuProps } from 'antd';
 
-import { Menu } from 'common/components';
+import { Menu, type MenuProps } from 'common/components';
 
 import { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 
-type Props = MenuProps & {
-  items: Required<MenuProps>['items'];
-};
-
-const SidebarMenu = ({ onClick, items, ...props }: Props) => {
+const SidebarMenu = ({ onClick, items, ...props }: MenuProps) => {
   const { toggle, sidebarState } = useAdminLayoutContext();
 
   const menuOnClick = useCallback<Required<MenuProps>['onClick']>(

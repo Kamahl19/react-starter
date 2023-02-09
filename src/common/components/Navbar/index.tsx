@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Dropdown, type MenuProps } from 'antd';
+import { Dropdown } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { ClassNames, css } from '@emotion/react';
 
-import { Menu } from 'common/components';
+import { createMenuProps, Menu, type MenuProps } from 'common/components';
 import { createStyles, useBreakpoint, type Breakpoint } from 'common/styleUtils';
 
-type Items = Required<MenuProps>['items'];
-
 type Props = {
-  items: Items;
+  items: MenuProps['items'];
   mobileMenuBreakpoint: Breakpoint;
 };
 
@@ -24,7 +22,7 @@ const Navbar = ({ items, mobileMenuBreakpoint }: Props) =>
 export default Navbar;
 
 type MobileMenuProps = {
-  items: Items;
+  items: MenuProps['items'];
 };
 
 const MobileMenu = ({ items }: MobileMenuProps) => {
@@ -34,11 +32,13 @@ const MobileMenu = ({ items }: MobileMenuProps) => {
 
   useEffect(() => setIsVisible(false), [pathname]);
 
+  const menuProps = useMemo(() => createMenuProps({ items }, pathname), [items, pathname]);
+
   return (
     <ClassNames>
       {({ css, theme: { token } }) => (
         <Dropdown
-          menu={{ items }}
+          menu={menuProps}
           trigger={['click']}
           open={isVisible}
           onOpenChange={setIsVisible}

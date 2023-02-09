@@ -1,5 +1,6 @@
-import { type ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Descriptions } from 'antd';
 
 import { type User } from 'api';
@@ -16,6 +17,20 @@ type Props = {
 const ProfileLayout = ({ user, children }: Props) => {
   const { t } = useTranslation();
 
+  const menuItems = useMemo(
+    () => [
+      {
+        key: DASHBOARD_ROUTES.profileChangePassword.to,
+        label: (
+          <Link to={DASHBOARD_ROUTES.profileChangePassword.to}>
+            {t('profile:menu.changePassword')}
+          </Link>
+        ),
+      },
+    ],
+    [t]
+  );
+
   return (
     <>
       <DashboardPageHeader title={user.email}>
@@ -26,16 +41,7 @@ const ProfileLayout = ({ user, children }: Props) => {
         </Descriptions>
       </DashboardPageHeader>
 
-      <Widget
-        menuItems={[
-          {
-            to: DASHBOARD_ROUTES.profileChangePassword.to,
-            label: t('profile:menu.changePassword'),
-          },
-        ]}
-      >
-        {children}
-      </Widget>
+      <Widget menuItems={menuItems}>{children}</Widget>
     </>
   );
 };

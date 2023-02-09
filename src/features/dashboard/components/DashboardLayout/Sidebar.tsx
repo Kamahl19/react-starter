@@ -11,23 +11,18 @@ const Sidebar = () => {
   const { t } = useTranslation();
 
   const menuItems = useMemo(
-    () =>
-      [
-        {
-          to: DASHBOARD_ROUTES.home.to,
-          label: t('dashboard:sidebarMenu.home'),
-          icon: <HomeOutlined />,
-        },
-        {
-          to: '404',
-          label: '404',
-          icon: <StopOutlined />,
-        },
-      ].map(({ to, label, icon }) => ({
-        key: to,
-        label: <Link to={to}>{label}</Link>,
-        icon,
-      })),
+    () => [
+      {
+        key: DASHBOARD_ROUTES.home.to,
+        label: <Link to={DASHBOARD_ROUTES.home.to}>{t('dashboard:sidebarMenu.home')}</Link>,
+        icon: <HomeOutlined />,
+      },
+      {
+        key: '/app/404',
+        label: <Link to="404">404</Link>,
+        icon: <StopOutlined />,
+      },
+    ],
     [t]
   );
 

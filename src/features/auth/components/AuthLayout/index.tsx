@@ -20,20 +20,16 @@ const AuthLayout = ({ children }: Props) => {
   const isDark = useIsDark();
 
   const menuItems = useMemo(
-    () =>
-      [
-        {
-          to: AUTH_ROUTES.login.to,
-          label: t('auth:menu.login'),
-        },
-        {
-          to: AUTH_ROUTES.signUp.to,
-          label: t('auth:menu.signUp'),
-        },
-      ].map(({ to, label }) => ({
-        key: to,
-        label: <Link to={to}>{label}</Link>,
-      })),
+    () => [
+      {
+        key: AUTH_ROUTES.login.to,
+        label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.login')}</Link>,
+      },
+      {
+        key: AUTH_ROUTES.signUp.to,
+        label: <Link to={AUTH_ROUTES.signUp.to}>{t('auth:menu.signUp')}</Link>,
+      },
+    ],
     [t]
   );
 

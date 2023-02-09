@@ -1,35 +1,19 @@
-import { useMemo } from 'react';
 import { Card, type CardProps } from 'antd';
 import { css } from '@emotion/react';
-import { Link } from 'react-router-dom';
 
-import { Menu } from 'common/components';
+import { Menu, type MenuProps } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
 type Props = CardProps & {
-  menuItems?: {
-    to: string;
-    label: string;
-  }[];
+  menuItems?: MenuProps['items'];
 };
 
-const Widget = ({ menuItems, children, ...props }: Props) => {
-  const items = useMemo(
-    () =>
-      menuItems?.map(({ to, label }) => ({
-        key: to,
-        label: <Link to={to}>{label}</Link>,
-      })),
-    [menuItems]
-  );
-
-  return (
-    <Card bordered={false} css={[styles.self, items && styles.withMenu]} {...props}>
-      {items && <Menu mode="inline" items={items} theme="light" css={styles.menu} />}
-      <div>{children}</div>
-    </Card>
-  );
-};
+const Widget = ({ menuItems, children, ...props }: Props) => (
+  <Card bordered={false} css={[styles.self, menuItems && styles.withMenu]} {...props}>
+    {menuItems && <Menu mode="inline" items={menuItems} theme="light" css={styles.menu} />}
+    <div>{children}</div>
+  </Card>
+);
 
 export default Widget;
 

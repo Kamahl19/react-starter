@@ -1,14 +1,14 @@
 import { type ReactNode, useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Avatar, Dropdown, Space, Typography, Row, Col, type MenuProps } from 'antd';
+import { Avatar, Dropdown, Space, Typography, Row, Col } from 'antd';
 import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { css, ClassNames } from '@emotion/react';
 
 import { ThemeSwitch } from 'app/theme';
-import { getSelectedKeys } from 'common/routerUtils';
 import { useAuth } from 'common/auth';
 import { getMQ } from 'common/styleUtils';
+import { createMenuProps, type MenuProps } from 'common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -19,10 +19,9 @@ type Props = {
 const Header = ({ email }: Props) => {
   const { t } = useTranslation();
   const { logout } = useAuth();
-  const { pathname } = useLocation();
 
-  const menuProps = useMemo(() => {
-    const items = [
+  const menuItems = useMemo(
+    () => [
       {
         key: DASHBOARD_ROUTES.profile.to,
         label: <Link to={DASHBOARD_ROUTES.profile.to}>{t('dashboard:topMenu.profile')}</Link>,
@@ -37,16 +36,9 @@ const Header = ({ email }: Props) => {
         label: <Typography.Link onClick={logout}>{t('dashboard:topMenu.logout')}</Typography.Link>,
         icon: <LogoutOutlined />,
       },
-    ];
-
-    return {
-      items,
-      selectedKeys: getSelectedKeys(
-        items.map((i) => `${i.key}`),
-        pathname
-      ),
-    };
-  }, [t, logout, pathname]);
+    ],
+    [t, logout]
+  );
 
   return (
     <Row justify="space-between" wrap={false}>
@@ -54,7 +46,7 @@ const Header = ({ email }: Props) => {
       <Col>
         <Space size="large">
           <ThemeSwitch />
-          <HeaderDropdown menu={menuProps}>
+          <HeaderDropdown items={menuItems}>
             <Avatar size="small" icon={<UserOutlined />} />
             {email}
           </HeaderDropdown>
@@ -68,18 +60,24 @@ export default Header;
 
 type HeaderDropdownProps = {
   children: ReactNode;
-  menu: MenuProps;
+  items: MenuProps['items'];
 };
 
-const HeaderDropdown = ({ children, menu }: HeaderDropdownProps) => {
+const HeaderDropdown = ({ children, items }: HeaderDropdownProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  const { pathname } = useLocation();
+
   const menuProps = useMemo(
-    () => ({
-      ...menu,
-      onClick: () => setIsVisible(false),
-    }),
-    [menu]
+    () =>
+      createMenuProps(
+        {
+          items,
+          onClick: () => setIsVisible(false),
+        },
+        pathname
+      ),
+    [pathname, items]
   );
 
   return (
