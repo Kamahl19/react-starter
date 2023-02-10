@@ -10,6 +10,9 @@
   - [Emotion](https://emotion.sh/) - CSS in JS library
   - Light and Dark themes
 - [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Login, Logout, Forgotten password, Email verification
+- [Zod](https://github.com/colinhacks/zod) - TypeScript-first schema validation with static type inference
+- [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based API client
+  - [zod-fetch](https://github.com/mattpocock/zod-fetch) - to make API client type-safe
 - [react-query](https://tanstack.com/query/) - asynchronous state management with declarative, always-up-to-date auto-managed queries and mutations
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file

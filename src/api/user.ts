@@ -1,47 +1,8 @@
+import { z } from 'zod';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { get, post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './common';
-
-/**
- * Types
- */
-
-export type User = {
-  id: string;
-  email: string;
-  isConfirmed: boolean;
-};
-
-export type CreateUserPayload = {
-  email: string;
-  password: string;
-};
-
-export type ChangePasswordPayload = {
-  password: string;
-  currentPassword: string;
-};
-
-export type UserResponse = {
-  user: User;
-};
-
-export type ConfirmEmailResponse = boolean;
-
-export type ForgottenPasswordPayload = {
-  email: string;
-};
-
-export type ForgottenPasswordResponse = boolean;
-
-export type ResetPasswordPayload = {
-  password: string;
-};
-
-export type ResetPasswordResponse = boolean;
-
-export type UserEmailAvailabilityResponse = boolean;
 
 /**
  * Constants
@@ -50,42 +11,97 @@ export type UserEmailAvailabilityResponse = boolean;
 export const PASSWORD_MIN_LENGTH = 6;
 
 /**
+ * Schemas
+ */
+
+export const userSchema = z.object({
+  id: z.string(),
+  email: z.string(),
+  isConfirmed: z.boolean(),
+});
+
+export const createUserPayloadSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export const changePasswordPayloadSchema = z.object({
+  password: z.string(),
+  currentPassword: z.string(),
+});
+
+export const userResponseSchema = z.object({
+  user: userSchema,
+});
+
+export const confirmEmailResponseSchema = z.boolean();
+
+export const forgottenPasswordPayloadSchema = z.object({
+  email: z.string(),
+});
+
+export const forgottenPasswordResponseSchema = z.boolean();
+
+export const resetPasswordPayloadSchema = z.object({
+  password: z.string(),
+});
+
+export const resetPasswordResponseSchema = z.boolean();
+
+export const userEmailAvailabilityResponseSchema = z.boolean();
+
+/**
+ * Types
+ */
+
+export type User = z.infer<typeof userSchema>;
+export type CreateUserPayload = z.infer<typeof createUserPayloadSchema>;
+export type ChangePasswordPayload = z.infer<typeof changePasswordPayloadSchema>;
+export type UserResponse = z.infer<typeof userResponseSchema>;
+export type ConfirmEmailResponse = z.infer<typeof confirmEmailResponseSchema>;
+export type ForgottenPasswordPayload = z.infer<typeof forgottenPasswordPayloadSchema>;
+export type ForgottenPasswordResponse = z.infer<typeof forgottenPasswordResponseSchema>;
+export type ResetPasswordPayload = z.infer<typeof resetPasswordPayloadSchema>;
+export type ResetPasswordResponse = z.infer<typeof resetPasswordResponseSchema>;
+export type UserEmailAvailabilityResponse = z.infer<typeof userEmailAvailabilityResponseSchema>;
+
+/**
  * Endpoints
  */
 
 const fetchUserEmailAvailability = (email: string) =>
-  get<UserEmailAvailabilityResponse>(getURL(`/user/email-availability/${email}`));
+  get(userEmailAvailabilityResponseSchema, getURL(`/user/email-availability/${email}`));
 
 const createUser = (body: CreateUserPayload) =>
-  post<UserResponse>(getURL('/user'), {
+  post(userResponseSchema, getURL('/user'), {
     headers: getAuthorizationHeader(),
     body,
   });
 
 const confirmEmail = (token: string) =>
-  patch<ConfirmEmailResponse>(getURL('/user/confirm-email'), {
+  patch(confirmEmailResponseSchema, getURL('/user/confirm-email'), {
     headers: getAuthorizationHeader(token),
   });
 
 const fetchUser = (userId: string) =>
-  get<UserResponse>(getURL(`/user/${userId}`), {
+  get(userResponseSchema, getURL(`/user/${userId}`), {
     headers: getAuthorizationHeader(),
   });
 
 const changePassword = (userId: string, body: ChangePasswordPayload) =>
-  patch<UserResponse>(getURL(`/user/${userId}/password`), {
+  patch(userResponseSchema, getURL(`/user/${userId}/password`), {
     headers: getAuthorizationHeader(),
     body,
   });
 
 const forgottenPassword = (body: ForgottenPasswordPayload) =>
-  post<ForgottenPasswordResponse>(getURL('/user/forgot-password'), {
+  post(forgottenPasswordResponseSchema, getURL('/user/forgot-password'), {
     headers: getAuthorizationHeader(),
     body,
   });
 
 const resetPassword = (token: string, body: ResetPasswordPayload) =>
-  patch<ResetPasswordResponse>(getURL('/user/reset-password'), {
+  patch(resetPasswordResponseSchema, getURL('/user/reset-password'), {
     headers: getAuthorizationHeader(token),
     body,
   });

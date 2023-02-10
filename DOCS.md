@@ -172,6 +172,8 @@ In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React
 
 A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
 
+Thanks to the [zod](https://github.com/colinhacks/zod) schema validation library, we can also type-check the data returned from the API to ensure that it matches the expected shape. You can read more about this idea in the [Type-Safe Data Fetching](https://tkdodo.eu/blog/type-safe-react-query#trust-again) blog post.
+
 ## Authentication
 
 A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides a `useAuth` hook. This hook returns current auth state (`token`, `userId`, `isLoggedIn`, and loading indicators), `login` method to perform a login operation, `relogin` method to renew the token, and `logout` method to perform a logout operation.

@@ -1,37 +1,47 @@
+import { z } from 'zod';
+
 import { post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './common';
 
 /**
- * Types
+ * Schemas
  */
 
-export type LoginPayload = {
-  email: string;
-  password: string;
-};
+export const loginPayloadSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
 
-export type LoginResponse = {
-  token: string;
-  userId: string;
-};
+export const loginResponseSchema = z.object({
+  token: z.string(),
+  userId: z.string(),
+});
 
-export type LogoutResponse = boolean;
+export const logoutResponseSchema = z.boolean();
+
+/**
+ *  Types
+ */
+
+export type LoginPayload = z.infer<typeof loginPayloadSchema>;
+export type LoginResponse = z.infer<typeof loginResponseSchema>;
+export type LogoutResponse = z.infer<typeof logoutResponseSchema>;
 
 /**
  * Endpoints
  */
 
 export const login = (body: LoginPayload) =>
-  post<LoginResponse>(getURL('/auth/login'), {
+  post(loginResponseSchema, getURL('/auth/login'), {
     body,
   });
 
 export const relogin = () =>
-  patch<LoginResponse>(getURL('/auth/relogin'), {
+  patch(loginResponseSchema, getURL('/auth/relogin'), {
     headers: getAuthorizationHeader(),
   });
 
 export const logout = () =>
-  post<LogoutResponse>(getURL('/auth/logout'), {
+  post(logoutResponseSchema, getURL('/auth/logout'), {
     headers: getAuthorizationHeader(),
   });
