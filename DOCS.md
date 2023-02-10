@@ -172,7 +172,7 @@ In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React
 
 A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
 
-Thanks to the [zod](https://github.com/colinhacks/zod) schema validation library, we can also type-check the data returned from the API to ensure that it matches the expected shape. You can read more about this idea in the [Type-Safe Data Fetching](https://tkdodo.eu/blog/type-safe-react-query#trust-again) blog post.
+Thanks to the [zod](https://github.com/colinhacks/zod) schema validation library, we can also type-check the data returned from the API to ensure that it matches the expected shape. You can read more about this idea in the "[Type-Safe React Query](https://tkdodo.eu/blog/type-safe-react-query#trust-again)" and "[https://timdeschryver.dev/blog/why-we-should-verify-http-response-bodies-and-why-we-should-use-zod-for-this](Why we should verify HTTP response bodies)" posts.
 
 ## Authentication
 
