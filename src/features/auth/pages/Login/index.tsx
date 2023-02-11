@@ -43,9 +43,11 @@ const Login = () => {
       <Form.Item>
         <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('auth:logIn.forgotPassword')}</Link>
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
-        {t('auth:logIn.submit')}
-      </Button>
+      <Form.Item noStyle>
+        <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
+          {t('auth:logIn.submit')}
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

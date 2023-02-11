@@ -8,10 +8,10 @@ type AuthState = {
   token?: string;
 };
 
-const initialAuthState: AuthState = {
+const initialAuthState = {
   userId: '',
   token: undefined,
-};
+} satisfies AuthState;
 
 export const userIdState = atom<AuthState['userId']>({
   key: 'userId',

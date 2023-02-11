@@ -1,5 +1,6 @@
 import qs from 'query-string';
 import is from '@sindresorhus/is';
+import { type Status } from '@tshttp/status';
 
 import { getToken } from 'common/auth';
 
@@ -8,7 +9,7 @@ import { getToken } from 'common/auth';
  */
 
 export type ApiError = {
-  status: number;
+  status: (typeof Status)[keyof typeof Status];
   message: string;
   details?: Record<string, string>;
 };

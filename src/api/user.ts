@@ -14,41 +14,41 @@ export const PASSWORD_MIN_LENGTH = 6;
  * Schemas
  */
 
-export const userSchema = z.object({
+const userSchema = z.object({
   id: z.string(),
   email: z.string(),
   isConfirmed: z.boolean(),
 });
 
-export const createUserPayloadSchema = z.object({
+const createUserPayloadSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
 
-export const changePasswordPayloadSchema = z.object({
+const changePasswordPayloadSchema = z.object({
   password: z.string(),
   currentPassword: z.string(),
 });
 
-export const userResponseSchema = z.object({
+const userResponseSchema = z.object({
   user: userSchema,
 });
 
-export const confirmEmailResponseSchema = z.boolean();
+const confirmEmailResponseSchema = z.boolean();
 
-export const forgottenPasswordPayloadSchema = z.object({
+const forgottenPasswordPayloadSchema = z.object({
   email: z.string(),
 });
 
-export const forgottenPasswordResponseSchema = z.boolean();
+const forgottenPasswordResponseSchema = z.boolean();
 
-export const resetPasswordPayloadSchema = z.object({
+const resetPasswordPayloadSchema = z.object({
   password: z.string(),
 });
 
-export const resetPasswordResponseSchema = z.boolean();
+const resetPasswordResponseSchema = z.boolean();
 
-export const userEmailAvailabilityResponseSchema = z.boolean();
+const userEmailAvailabilityResponseSchema = z.boolean();
 
 /**
  * Types
@@ -58,11 +58,8 @@ export type User = z.infer<typeof userSchema>;
 export type CreateUserPayload = z.infer<typeof createUserPayloadSchema>;
 export type ChangePasswordPayload = z.infer<typeof changePasswordPayloadSchema>;
 export type UserResponse = z.infer<typeof userResponseSchema>;
-export type ConfirmEmailResponse = z.infer<typeof confirmEmailResponseSchema>;
 export type ForgottenPasswordPayload = z.infer<typeof forgottenPasswordPayloadSchema>;
-export type ForgottenPasswordResponse = z.infer<typeof forgottenPasswordResponseSchema>;
 export type ResetPasswordPayload = z.infer<typeof resetPasswordPayloadSchema>;
-export type ResetPasswordResponse = z.infer<typeof resetPasswordResponseSchema>;
 export type UserEmailAvailabilityResponse = z.infer<typeof userEmailAvailabilityResponseSchema>;
 
 /**

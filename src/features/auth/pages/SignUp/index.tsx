@@ -63,9 +63,11 @@ const SignUp = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
-        {t('auth:signUp.submit')}
-      </Button>
+      <Form.Item noStyle>
+        <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
+          {t('auth:signUp.submit')}
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

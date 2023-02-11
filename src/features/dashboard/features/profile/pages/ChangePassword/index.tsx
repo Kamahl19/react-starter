@@ -61,9 +61,11 @@ const ChangePassword = () => {
         >
           <Input.Password />
         </Form.Item>
-        <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
-          {t('global:submit')}
-        </Button>
+        <Form.Item noStyle>
+          <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
+            {t('global:submit')}
+          </Button>
+        </Form.Item>
       </Form>
     </>
   );

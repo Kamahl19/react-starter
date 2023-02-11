@@ -7,17 +7,17 @@ import { getURL, getAuthorizationHeader } from './common';
  * Schemas
  */
 
-export const loginPayloadSchema = z.object({
+const loginPayloadSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
 
-export const loginResponseSchema = z.object({
+const loginResponseSchema = z.object({
   token: z.string(),
   userId: z.string(),
 });
 
-export const logoutResponseSchema = z.boolean();
+const logoutResponseSchema = z.boolean();
 
 /**
  *  Types

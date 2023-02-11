@@ -45,9 +45,11 @@ const ForgottenPassword = () => {
       >
         <Input autoFocus />
       </Form.Item>
-      <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
-        {t('global:submit')}
-      </Button>
+      <Form.Item noStyle>
+        <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
+          {t('global:submit')}
+        </Button>
+      </Form.Item>
     </Form>
   );
 };
