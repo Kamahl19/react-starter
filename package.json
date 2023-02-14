@@ -73,7 +73,7 @@
     "husky": "8.0.3",
     "i18next-parser": "7.6.0",
     "jsdom": "21.1.0",
-    "lint-staged": "13.1.1",
+    "lint-staged": "13.1.2",
     "mock-match-media": "0.4.2",
     "msw": "1.0.1",
     "prettier": "2.8.4",
