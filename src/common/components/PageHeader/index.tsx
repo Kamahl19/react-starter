@@ -18,7 +18,7 @@ const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => {
 
   return (
     <div css={styles.self}>
-      <Space direction="vertical" size={12}>
+      <Space direction="vertical" size={12} css={styles.space}>
         {breadcrumbs}
         {(title || extra) && (
           <Row align="middle" justify="space-between">
@@ -68,14 +68,14 @@ const styles = createStyles({
         marginBottom: token.marginSM,
       },
 
-      '> .ant-space': {
-        width: '100%',
-      },
-
       '.ant-descriptions tbody :last-child td': {
         paddingBottom: 0,
       },
     }),
+
+  space: css({
+    width: '100%',
+  }),
 
   title: css({
     '&&': {
