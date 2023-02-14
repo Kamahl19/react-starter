@@ -93,7 +93,7 @@ const AdminLayout = ({
           <Sidebar {...sidebarProps} />
         )}
         <Layout css={fullVPHeightCss}>
-          <Layout.Header css={styles.header}>
+          <Layout.Header css={[styles.header, styles.shadowBottom]}>
             <Row justify="space-between" wrap={false}>
               <Col>
                 {useDrawer && (
@@ -142,22 +142,27 @@ const Sidebar = ({
       onCollapse={onCollapse}
       collapsedWidth={sidebarCollapsedWidth}
       width={sidebarWidth}
-      theme="dark"
+      theme="light"
     >
-      <div css={styles.sidebarLogo}>{logo}</div>
+      <div css={[styles.sidebarLogo, styles.shadowBottom]}>{logo}</div>
       {sidebarContent && <div css={styles.sidebarContent}>{sidebarContent}</div>}
     </Layout.Sider>
   );
 };
 
 const styles = createStyles({
-  header: ({ token, isDark }) =>
+  shadowBottom: ({ token }) =>
     css({
       boxShadow: token.boxShadowTertiary,
+      clipPath: 'inset(0 0 -7px 0)',
+    }),
+
+  header: ({ token }) =>
+    css({
       zIndex: 19,
 
       '&&': {
-        background: isDark ? undefined : token.colorBgContainer,
+        background: token.colorBgContainer,
         paddingInline: token.paddingLG,
 
         [getMQ(token).smMax]: {
@@ -176,13 +181,16 @@ const styles = createStyles({
       },
     }),
 
-  sidebar: css({
-    '.ant-layout-sider-children': {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-    },
-  }),
+  sidebar: ({ token }) =>
+    css({
+      boxShadow: token.boxShadowTertiary,
+
+      '.ant-layout-sider-children': {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      },
+    }),
 
   sidebarLogo: ({ token }) =>
     css({
@@ -208,10 +216,6 @@ const styles = createStyles({
     }),
 
   drawer: css({
-    '&&': {
-      background: '#001529', // TODO use Layout.colorBgHeader once it's exported from Ant
-    },
-
     '.ant-drawer-body': {
       padding: 0,
     },

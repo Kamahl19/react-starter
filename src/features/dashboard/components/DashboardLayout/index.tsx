@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 
 import { type User } from 'api';
+import { useIsDark } from 'app/theme';
 import { Logo } from 'common/components';
 import { AdminLayout, SidebarState, useAdminLayoutContext } from 'common/components/AdminLayout';
 
@@ -32,7 +33,7 @@ const SidebarLogo = () => {
   return (
     <Logo
       to={DASHBOARD_ROUTES.home.to}
-      inverted
+      inverted={useIsDark()}
       isSmall={sidebarState === SidebarState.COLLAPSED_SIDEBAR}
     />
   );

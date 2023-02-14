@@ -8,46 +8,58 @@ export type Props = {
   children?: ReactNode;
   title?: ReactNode;
   extra?: ReactNode;
-  breadcrumbs?: ReactNode;
+  breadcrumbs: ReactNode;
 };
 
-const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => (
-  <div css={styles.self}>
-    <Space direction="vertical" size={12}>
-      {(breadcrumbs || title || extra) && (
-        <Row align="middle" justify="space-between">
-          <Col>{breadcrumbs ?? (title && <Title>{title}</Title>)}</Col>
-          <Col>{extra}</Col>
-        </Row>
-      )}
-      {breadcrumbs && title && (
-        <Row align="middle" justify="space-between">
-          <Col>
-            <Title>{title}</Title>
-          </Col>
-        </Row>
-      )}
-      {children}
-    </Space>
-  </div>
-);
+const PageHeader = ({ children, title, extra, breadcrumbs }: Props) => {
+  if (!children && !title && !extra) {
+    return <div css={styles.onlyBreadcrumbs}>{breadcrumbs}</div>;
+  }
+
+  return (
+    <div css={styles.self}>
+      <Space direction="vertical" size={12}>
+        {breadcrumbs}
+        {(title || extra) && (
+          <Row align="middle" justify="space-between">
+            <Col>
+              {title && (
+                <Typography.Title level={4} css={styles.title}>
+                  {title}
+                </Typography.Title>
+              )}
+            </Col>
+            <Col>{extra}</Col>
+          </Row>
+        )}
+        {children}
+      </Space>
+    </div>
+  );
+};
 
 export default PageHeader;
 
-const Title = ({ children }: { children: ReactNode }) => (
-  <Typography.Title level={4} css={styles.headingTitle}>
-    {children}
-  </Typography.Title>
-);
-
 const styles = createStyles({
+  onlyBreadcrumbs: ({ token }) =>
+    css({
+      marginTop: -token.marginLG,
+      paddingBlock: token.paddingMD,
+
+      [getMQ(token).smMax]: {
+        marginTop: -token.marginSM,
+        paddingBlock: token.paddingSM,
+      },
+    }),
+
   self: ({ token }) =>
     css({
+      background: token.colorBgContainer,
       padding: token.paddingLG,
+      paddingTop: token.paddingMD,
       marginTop: -token.marginLG,
       marginInline: -token.marginLG,
       marginBottom: token.marginLG,
-      background: token.colorBgContainer,
 
       [getMQ(token).smMax]: {
         padding: token.paddingSM,
@@ -65,7 +77,7 @@ const styles = createStyles({
       },
     }),
 
-  headingTitle: css({
+  title: css({
     '&&': {
       marginBottom: 0,
     },

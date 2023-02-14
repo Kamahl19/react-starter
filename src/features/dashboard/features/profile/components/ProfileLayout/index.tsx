@@ -1,10 +1,9 @@
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Descriptions } from 'antd';
 
 import { type User } from 'api';
-import { Widget } from 'common/components';
+import { Descriptions, Widget } from 'common/components';
 
 import DashboardPageHeader from '../../../../components/DashboardPageHeader';
 import { DASHBOARD_ROUTES } from '../../../../routes';
@@ -34,7 +33,7 @@ const ProfileLayout = ({ user, children }: Props) => {
   return (
     <>
       <DashboardPageHeader title={user.email}>
-        <Descriptions size="small">
+        <Descriptions>
           <Descriptions.Item label={t('profile:header.isConfirmed')}>
             {user.isConfirmed ? <>✅</> : <>❌</>}
           </Descriptions.Item>

@@ -20,7 +20,7 @@ const SidebarMenu = ({ onClick, items, ...props }: MenuProps) => {
     [onClick, toggle, sidebarState]
   );
 
-  return <Menu mode="inline" theme="dark" onClick={menuOnClick} items={items} {...props} />;
+  return <Menu mode="inline" onClick={menuOnClick} items={items} {...props} />;
 };
 
 export default SidebarMenu;

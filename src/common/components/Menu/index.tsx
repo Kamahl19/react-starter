@@ -8,7 +8,6 @@ import type {
 } from 'antd/es/menu/hooks/useItems';
 import { useLocation } from 'react-router-dom';
 
-import { useIsDark } from 'app/theme';
 import { getSelectedKeys } from 'common/routerUtils';
 
 type ItemType =
@@ -30,13 +29,11 @@ export type Props = Omit<MenuProps, 'items'> & {
 };
 
 const Menu = (props: Props) => {
-  const isDark = useIsDark();
-
   const { pathname } = useLocation();
 
   const menuProps = useMemo(() => createMenuProps(props, pathname), [props, pathname]);
 
-  return <MenuOrig theme={isDark ? 'dark' : 'light'} {...menuProps} />;
+  return <MenuOrig {...menuProps} />;
 };
 
 export default Menu;

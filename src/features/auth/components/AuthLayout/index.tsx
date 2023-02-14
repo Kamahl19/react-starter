@@ -17,8 +17,6 @@ type Props = {
 const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
 
-  const isDark = useIsDark();
-
   const menuItems = useMemo(
     () => [
       {
@@ -38,7 +36,7 @@ const AuthLayout = ({ children }: Props) => {
       <Layout.Header css={styles.header}>
         <Row justify="space-between" wrap={false}>
           <Col>
-            <Logo to={AUTH_ROUTES.login.to} inverted={isDark} />
+            <Logo to={AUTH_ROUTES.login.to} inverted={useIsDark()} />
           </Col>
           <Col>
             <Space size="large">
@@ -60,7 +58,7 @@ const styles = createStyles({
     minHeight: '100vh',
   }),
 
-  header: ({ token, isDark }) =>
+  header: ({ token }) =>
     css({
       position: 'sticky',
       top: 0,
@@ -68,7 +66,7 @@ const styles = createStyles({
       zIndex: 19,
 
       '&&': {
-        background: isDark ? undefined : token.colorBgContainer,
+        background: token.colorBgContainer,
         paddingInline: token.paddingLG,
 
         [getMQ(token).smMax]: {

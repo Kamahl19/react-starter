@@ -1,14 +1,13 @@
 import { useCallback } from 'react';
-import { App, Button, Form, Input, Typography } from 'antd';
+import { App, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword } from 'api';
 import { useAuth } from 'common/auth';
 import { useApiErrorMessage } from 'common/hooks';
+import { Widget } from 'common/components';
 
 import { useChangePasswordRules } from '../../validations';
-
-const { Title } = Typography;
 
 const ChangePassword = () => {
   const { t } = useTranslation();
@@ -42,7 +41,7 @@ const ChangePassword = () => {
 
   return (
     <>
-      <Title level={4}>{t('profile:changePassword.title')}</Title>
+      <Widget.Header title={t('profile:changePassword.title')} />
 
       <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item

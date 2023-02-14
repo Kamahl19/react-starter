@@ -6,5 +6,9 @@
   "resultError": {
     "retry": "Retry",
     "title": "Something went wrong"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
   }
 }
