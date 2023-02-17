@@ -9,7 +9,7 @@ import { useAuth } from 'common/auth';
 import { Navbar, Logo } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
-import { AUTH_ROUTES } from '../../routes';
+import { AUTH_ROUTES } from '../routes';
 
 type Props = {
   children: ReactNode;

@@ -1,5 +1,4 @@
-import { type ReactNode } from 'react';
-import { Card, Row, Col, Typography, type CardProps } from 'antd';
+import { Card, type CardProps } from 'antd';
 import { css } from '@emotion/react';
 
 import { Menu, type MenuProps } from 'common/components';
@@ -15,24 +14,6 @@ const Widget = ({ menuItems, children, ...props }: Props) => (
     <div>{children}</div>
   </Card>
 );
-
-type WidgetHeaderProps = {
-  title: ReactNode;
-  extra?: ReactNode;
-};
-
-const WidgetHeader = ({ title, extra }: WidgetHeaderProps) => (
-  <Row justify="space-between" css={styles.widgetHeader}>
-    <Col>
-      <Typography.Title level={4} css={styles.title}>
-        {title}
-      </Typography.Title>
-    </Col>
-    {extra && <Col>{extra}</Col>}
-  </Row>
-);
-
-Widget.Header = WidgetHeader;
 
 export default Widget;
 
@@ -61,13 +42,9 @@ const styles = createStyles({
 
   menu: ({ token }) =>
     css({
-      '.ant-menu-item': {
-        marginInline: 0,
-        width: 'auto',
-      },
-
       [getMQ(token).mdMin]: {
         width: 220,
+        marginLeft: -token.paddingLG,
         marginRight: token.marginSM,
         paddingRight: token.paddingSM,
       },
@@ -81,16 +58,19 @@ const styles = createStyles({
           borderRight: 0,
         },
       },
-    }),
 
-  widgetHeader: ({ token }) =>
-    css({
-      marginBottom: token.marginMD,
-    }),
+      '.ant-menu-item': {
+        marginInline: 0,
+        width: 'auto',
 
-  title: css({
-    '&&': {
-      marginBottom: 0,
-    },
-  }),
+        '&:first-of-type': {
+          marginTop: 0,
+        },
+
+        [getMQ(token).mdMin]: {
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+        },
+      },
+    }),
 });

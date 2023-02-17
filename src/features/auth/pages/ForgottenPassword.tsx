@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { type ForgottenPasswordPayload, useForgottenPassword } from 'api';
 import { useApiErrorMessage } from 'common/hooks';
 
-import { useForgottenPasswordRules } from '../../validations';
+import { useForgottenPasswordRules } from '../validations';
 
 const ForgottenPassword = () => {
   const { t } = useTranslation();

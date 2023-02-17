@@ -7,8 +7,8 @@ import { type ResetPasswordPayload, useResetPassword } from 'api';
 import { useAuth } from 'common/auth';
 import { useApiErrorMessage, useTokenParam } from 'common/hooks';
 
-import { useResetPasswordRules } from '../../validations';
-import { AUTH_ROUTES } from '../../routes';
+import { useResetPasswordRules } from '../validations';
+import { AUTH_ROUTES } from '../routes';
 
 const ResetPassword = () => {
   const { t } = useTranslation();

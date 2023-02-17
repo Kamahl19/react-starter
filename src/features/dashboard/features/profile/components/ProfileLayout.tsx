@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { type User } from 'api';
 import { Descriptions, Widget } from 'common/components';
 
-import DashboardPageHeader from '../../../../components/DashboardPageHeader';
-import { DASHBOARD_ROUTES } from '../../../../routes';
+import DashboardPageHeader from '../../../components/DashboardPageHeader';
+import { DASHBOARD_ROUTES } from '../../../routes';
 
 type Props = {
   user: User;

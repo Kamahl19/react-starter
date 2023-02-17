@@ -5,9 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { type ChangePasswordPayload, useChangePassword } from 'api';
 import { useAuth } from 'common/auth';
 import { useApiErrorMessage } from 'common/hooks';
-import { Widget } from 'common/components';
 
-import { useChangePasswordRules } from '../../validations';
+import { useChangePasswordRules } from '../validations';
 
 const ChangePassword = () => {
   const { t } = useTranslation();
@@ -40,33 +39,29 @@ const ChangePassword = () => {
   const rules = useChangePasswordRules();
 
   return (
-    <>
-      <Widget.Header title={t('profile:changePassword.title')} />
-
-      <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item
-          label={t('profile:changePassword.currentPassword')}
-          name="currentPassword"
-          rules={rules.currentPassword}
-          validateFirst
-        >
-          <Input.Password autoFocus />
-        </Form.Item>
-        <Form.Item
-          label={t('profile:changePassword.newPassword')}
-          name="password"
-          rules={rules.password}
-          validateFirst
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item noStyle>
-          <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
-            {t('global:submit')}
-          </Button>
-        </Form.Item>
-      </Form>
-    </>
+    <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
+      <Form.Item
+        label={t('profile:changePassword.currentPassword')}
+        name="currentPassword"
+        rules={rules.currentPassword}
+        validateFirst
+      >
+        <Input.Password autoFocus />
+      </Form.Item>
+      <Form.Item
+        label={t('profile:changePassword.newPassword')}
+        name="password"
+        rules={rules.password}
+        validateFirst
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item noStyle>
+        <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
+          {t('global:submit')}
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 

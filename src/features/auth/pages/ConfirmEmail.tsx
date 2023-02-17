@@ -7,7 +7,7 @@ import { useConfirmEmail } from 'api';
 import { useTokenParam } from 'common/hooks';
 import { LoadingScreen, ResultError } from 'common/components';
 
-import { AUTH_ROUTES } from '../../routes';
+import { AUTH_ROUTES } from '../routes';
 
 const ConfirmEmail = () => {
   const { t } = useTranslation();

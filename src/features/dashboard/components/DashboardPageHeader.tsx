@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { PageHeader, type PageHeaderProps } from 'common/components';
 
-import { DASHBOARD_ROUTES } from '../../routes';
+import { DASHBOARD_ROUTES } from '../routes';
 
 const routes = Object.values(DASHBOARD_ROUTES).map(({ absPath: path, Breadcrumb: breadcrumb }) => ({
   path,

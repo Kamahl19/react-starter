@@ -7,8 +7,8 @@ import { type LoginPayload } from 'api';
 import { useAuth } from 'common/auth';
 import { useApiErrorMessage } from 'common/hooks';
 
-import { useLoginRules } from '../../validations';
-import { AUTH_ROUTES } from '../../routes';
+import { useLoginRules } from '../validations';
+import { AUTH_ROUTES } from '../routes';
 
 const Login = () => {
   const { t } = useTranslation();
