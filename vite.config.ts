@@ -5,9 +5,17 @@ import reactPlugin from '@vitejs/plugin-react';
 import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import checkerPlugin from 'vite-plugin-checker';
+import { ValidateEnv } from '@julr/vite-plugin-validate-env';
+import { z } from 'zod';
 
 export default defineConfig({
   plugins: [
+    ValidateEnv({
+      validator: 'zod',
+      schema: {
+        VITE_API_URL: z.string().url(),
+      },
+    }),
     reactPlugin({
       jsxImportSource: '@emotion/react',
       babel: {
