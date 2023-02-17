@@ -1,19 +1,17 @@
-import { type ReactNode } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '.';
 
 type Props = {
-  children: ReactNode;
   redirectTo: string;
 };
 
-const RequireIsLoggedIn = ({ redirectTo, children }: Props) => {
+const RequireIsLoggedIn = ({ redirectTo }: Props) => {
   const { pathname: from } = useLocation();
 
   const { isLoggedIn } = useAuth();
 
-  return isLoggedIn ? <>{children}</> : <Navigate replace to={redirectTo} state={{ from }} />;
+  return isLoggedIn ? <Outlet /> : <Navigate replace to={redirectTo} state={{ from }} />;
 };
 
 export default RequireIsLoggedIn;

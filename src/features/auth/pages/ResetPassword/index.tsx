@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { type ResetPasswordPayload, useResetPassword } from 'api';
+import { useAuth } from 'common/auth';
 import { useApiErrorMessage, useTokenParam } from 'common/hooks';
 
 import { useResetPasswordRules } from '../../validations';
@@ -13,6 +14,8 @@ const ResetPassword = () => {
   const { t } = useTranslation();
 
   const { message } = App.useApp();
+
+  const { isLoggedIn, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -29,13 +32,14 @@ const ResetPassword = () => {
         {
           onSuccess: () => {
             message.success(t('auth:resetPassword.success'));
+            isLoggedIn && logout();
             navigate(AUTH_ROUTES.login.to);
           },
           onError,
         }
       );
     },
-    [t, navigate, resetPassword, token, onError, message]
+    [t, navigate, resetPassword, token, onError, message, isLoggedIn, logout]
   );
 
   const rules = useResetPasswordRules();

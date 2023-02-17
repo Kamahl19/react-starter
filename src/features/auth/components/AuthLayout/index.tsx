@@ -5,6 +5,7 @@ import { Layout, Row, Col, Space } from 'antd';
 import { css } from '@emotion/react';
 
 import { ThemeSwitch, useIsDark } from 'app/theme';
+import { useAuth } from 'common/auth';
 import { Navbar, Logo } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
@@ -17,18 +18,23 @@ type Props = {
 const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
 
+  const { isLoggedIn } = useAuth();
+
   const menuItems = useMemo(
-    () => [
-      {
-        key: AUTH_ROUTES.login.to,
-        label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.login')}</Link>,
-      },
-      {
-        key: AUTH_ROUTES.signUp.to,
-        label: <Link to={AUTH_ROUTES.signUp.to}>{t('auth:menu.signUp')}</Link>,
-      },
-    ],
-    [t]
+    () =>
+      isLoggedIn
+        ? []
+        : [
+            {
+              key: AUTH_ROUTES.login.to,
+              label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.login')}</Link>,
+            },
+            {
+              key: AUTH_ROUTES.signUp.to,
+              label: <Link to={AUTH_ROUTES.signUp.to}>{t('auth:menu.signUp')}</Link>,
+            },
+          ],
+    [t, isLoggedIn]
   );
 
   return (
@@ -41,7 +47,7 @@ const AuthLayout = ({ children }: Props) => {
           <Col>
             <Space size="large">
               <ThemeSwitch />
-              <Navbar items={menuItems} mobileMenuBreakpoint="md" />
+              {menuItems.length > 0 && <Navbar items={menuItems} mobileMenuBreakpoint="md" />}
             </Space>
           </Col>
         </Row>

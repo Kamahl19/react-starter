@@ -1,20 +1,16 @@
 import { useCallback } from 'react';
 import { App, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { type ForgottenPasswordPayload, useForgottenPassword } from 'api';
 import { useApiErrorMessage } from 'common/hooks';
 
 import { useForgottenPasswordRules } from '../../validations';
-import { AUTH_ROUTES } from '../../routes';
 
 const ForgottenPassword = () => {
   const { t } = useTranslation();
 
   const { message } = App.useApp();
-
-  const navigate = useNavigate();
 
   const onError = useApiErrorMessage();
 
@@ -26,11 +22,10 @@ const ForgottenPassword = () => {
       forgottenPassword(payload, {
         onSuccess: () => {
           message.success(t('auth:forgottenPassword.success'));
-          navigate(AUTH_ROUTES.login.to);
         },
         onError,
       }),
-    [t, navigate, forgottenPassword, onError, message]
+    [t, forgottenPassword, onError, message]
   );
 
   const rules = useForgottenPasswordRules();

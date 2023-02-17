@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
+import { RequireIsAnonymous } from 'common/auth';
 import { NotFound } from 'common/components';
 
 import { AUTH_ROUTES } from './routes';
@@ -10,7 +11,7 @@ import Login from './pages/Login';
 import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
 
-const Auth = () => (
+const Auth = ({ rootPath }: { rootPath: string }) => (
   <Routes>
     <Route
       element={
@@ -19,11 +20,13 @@ const Auth = () => (
         </AuthLayout>
       }
     >
-      <Route index element={<Navigate replace to={AUTH_ROUTES.login.to} />} />
-      <Route path={AUTH_ROUTES.login.path} element={<Login />} />
-      <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
+      <Route element={<RequireIsAnonymous redirectTo={rootPath} />}>
+        <Route index element={<Navigate replace to={AUTH_ROUTES.login.to} />} />
+        <Route path={AUTH_ROUTES.login.path} element={<Login />} />
+        <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
+        <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
+      </Route>
       <Route path={AUTH_ROUTES.forgottenPassword.path} element={<ForgottenPassword />} />
-      <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       <Route path={AUTH_ROUTES.resetPassword.path} element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
     </Route>

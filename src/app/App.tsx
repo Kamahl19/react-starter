@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { RequireIsLoggedIn, RequireIsAnonymous, useAuth } from 'common/auth';
+import { RequireIsLoggedIn, useAuth } from 'common/auth';
 import { NotFound } from 'common/components';
 
 import Auth from 'features/auth';
@@ -21,22 +21,10 @@ const App = () => {
           <Navigate replace to={isLoggedIn ? DASHBOARD_ROUTES.index.to : AUTH_ROUTES.index.to} />
         }
       />
-      <Route
-        path={AUTH_ROUTES.index.path}
-        element={
-          <RequireIsAnonymous redirectTo={rootPath}>
-            <Auth />
-          </RequireIsAnonymous>
-        }
-      />
-      <Route
-        path={DASHBOARD_ROUTES.index.path}
-        element={
-          <RequireIsLoggedIn redirectTo={rootPath}>
-            <Dashboard />
-          </RequireIsLoggedIn>
-        }
-      />
+      <Route path={AUTH_ROUTES.index.path} element={<Auth rootPath={rootPath} />} />
+      <Route element={<RequireIsLoggedIn redirectTo={rootPath} />}>
+        <Route path={DASHBOARD_ROUTES.index.path} element={<Dashboard />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
