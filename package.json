@@ -42,7 +42,7 @@
     "workerDirectory": "."
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "11.10.5",
+    "@emotion/babel-plugin": "11.10.6",
     "@emotion/eslint-plugin": "11.10.0",
     "@mswjs/data": "0.11.2",
     "@tanstack/eslint-plugin-query": "4.24.7",
@@ -87,7 +87,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "5.0.1",
-    "@emotion/react": "11.10.5",
+    "@emotion/react": "11.10.6",
     "@sindresorhus/is": "5.3.0",
     "@tanstack/react-query": "4.24.6",
     "@tanstack/react-query-devtools": "4.24.6",
