@@ -21,7 +21,7 @@ export const resources = {
     global,
     profile,
   },
-} as const;
+} as const satisfies Record<LANGUAGE_CODES, object>;
 
 i18next
   .use(LanguageDetector)
