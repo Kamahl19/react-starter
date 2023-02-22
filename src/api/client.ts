@@ -21,7 +21,7 @@ const apiClient = createZodFetcher(
 
     const resp = await fetch(url, init);
 
-    const json: unknown = await resp.json();
+    const json = await resp.json();
 
     if (!resp.ok) {
       throw json;
