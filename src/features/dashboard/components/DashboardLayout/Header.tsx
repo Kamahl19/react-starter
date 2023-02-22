@@ -5,10 +5,9 @@ import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { css, ClassNames } from '@emotion/react';
 
-import { ThemeSwitch } from 'app/theme';
 import { useAuth } from 'common/auth';
 import { getMQ } from 'common/styleUtils';
-import { createMenuProps, type MenuProps } from 'common/components';
+import { ThemeSwitch, createMenuProps, type MenuProps } from 'common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 

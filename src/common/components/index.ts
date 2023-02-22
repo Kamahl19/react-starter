@@ -8,4 +8,5 @@ export { default as NotFound } from './NotFound';
 export { default as PageHeader } from './PageHeader';
 export type { Props as PageHeaderProps } from './PageHeader';
 export { default as ResultError } from './ResultError';
+export { default as ThemeSwitch } from './ThemeSwitch';
 export { default as Widget } from './Widget';

@@ -1,19 +1,18 @@
 import { Switch, type SwitchProps } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useRecoilState } from 'recoil';
 
-import { isDarkState } from './ThemeProvider';
+import { useIsDark } from 'app/theme';
 
 const ThemeSwitch = (props: SwitchProps) => {
   const { t } = useTranslation();
-  const [isDark, setIsDark] = useRecoilState(isDarkState);
+  const [isDark, setIsDark] = useIsDark();
 
   return (
     <Switch
       checked={isDark}
       onChange={() => setIsDark(!isDark)}
-      checkedChildren={<>{t('common:theme.dark')}</>}
-      unCheckedChildren={<>{t('common:theme.light')}</>}
+      checkedChildren={<>{t('common:themeSwitch.dark')}</>}
+      unCheckedChildren={<>{t('common:themeSwitch.light')}</>}
       {...props}
     />
   );

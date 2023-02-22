@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Space } from 'antd';
 import { css } from '@emotion/react';
 
-import { ThemeSwitch, useIsDark } from 'app/theme';
+import { useIsDark } from 'app/theme';
 import { useAuth } from 'common/auth';
-import { Navbar, Logo } from 'common/components';
+import { ThemeSwitch, Navbar, Logo } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
 import { AUTH_ROUTES } from '../routes';
@@ -17,8 +17,8 @@ type Props = {
 
 const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
-
   const { isLoggedIn } = useAuth();
+  const [isDark] = useIsDark();
 
   const menuItems = useMemo(
     () =>
@@ -42,7 +42,7 @@ const AuthLayout = ({ children }: Props) => {
       <Layout.Header css={styles.header}>
         <Row justify="space-between" wrap={false}>
           <Col>
-            <Logo to={AUTH_ROUTES.login.to} inverted={useIsDark()} />
+            <Logo to={AUTH_ROUTES.login.to} inverted={isDark} />
           </Col>
           <Col>
             <Space size="large">

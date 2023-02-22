@@ -7,7 +7,7 @@
     "retry": "Retry",
     "title": "Something went wrong"
   },
-  "theme": {
+  "themeSwitch": {
     "dark": "Dark",
     "light": "Light"
   }

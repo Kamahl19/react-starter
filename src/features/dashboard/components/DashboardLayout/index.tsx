@@ -29,11 +29,12 @@ export default DashboardLayout;
 
 const SidebarLogo = () => {
   const { sidebarState } = useAdminLayoutContext();
+  const [isDark] = useIsDark();
 
   return (
     <Logo
       to={DASHBOARD_ROUTES.home.to}
-      inverted={useIsDark()}
+      inverted={isDark}
       isSmall={sidebarState === SidebarState.COLLAPSED_SIDEBAR}
     />
   );

@@ -96,7 +96,7 @@ This project already includes [Ant Design](https://ant.design/), a design system
 
 This projects comes with 2 themes: default and dark. To customize these themes, override the theme tokens in [src/app/theme/baseConfig.ts](./src/app/theme/baseConfig.ts) and [src/app/theme/darkConfig.ts](./src/app/theme/darkConfig.ts) respectively. The full list of theme tokens is available in [Ant Design documentation](https://ant.design/docs/react/customize-theme#theme). Ant Design provides a [Theme Editor](https://ant.design/theme-editor/) to help you create your own theme. Global styles are defined in [src/app/theme/GlobalStyles.tsx](./src/app/theme/GlobalStyles.tsx).
 
-Currently selected theme is stored in Recoil state and can be retrieved using [useIsDark()](./src/app/theme/ThemeProvider.tsx) hook. The theme can be changed using the [src/app/theme/ThemeSwitch.tsx](./src/app/theme/ThemeSwitch.tsx).
+Currently selected theme is stored in Recoil state and can be retrieved or changed using [useIsDark](./src/app/theme/index.tsx) hook.
 
 [Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
@@ -112,13 +112,14 @@ On top of that, this project already comes with [several components](./src/commo
 - [NotFound](./src/common/components/NotFound/index.tsx) is a 404 component
 - [PageHeader](./src/common/components/PageHeader/index.tsx) is a simplified version of [Ant v4 PageHeader](https://4x.ant.design/components/page-header/) component which was removed from Ant v5
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
+- [ThemeSwitch](./src/common/components/ThemeSwitch/index.tsx) is a Switch component which toggles between light and dark theme
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
 ## Styling using Emotion (css-in-js)
 
 [Emotion](https://emotion.sh/docs) is a library designed for writing css styles with JavaScript. It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities. The primary way to style elements with emotion is [the css prop](https://emotion.sh/docs/css-prop). It provides a concise and flexible API to style your components. In this project we use ESLint rule to only allow [objects for defining styles](https://emotion.sh/docs/object-styles). You can read more about [Best Practices](https://emotion.sh/docs/best-practices) [classNames](https://emotion.sh/docs/class-names).
 
-The [Emotion Theme](https://emotion.sh/docs/theming) is provided by the [src/app/theme/ThemeProvider.tsx](./src/app/theme/ThemeProvider.tsx) and typed by [src/app/theme/types.d.ts](./src/app/theme/types.d.ts). It includes the full Ant's theme `token` and `isDark` flag to indicate which theme is currently being used. Emotion styles can access this `Theme` context using the `createStyles()` helper function.
+The [Emotion Theme](https://emotion.sh/docs/theming) is provided by the [ThemeProvider](./src/app/theme/index.tsx) and typed by [src/app/theme/types.d.ts](./src/app/theme/types.d.ts). It includes the full Ant's theme `token` and `isDark` flag to indicate which theme is currently being used. Emotion styles can access this `Theme` context using the `createStyles()` helper function.
 
 There is also [src/common/styleUtils.ts](./src/common/styleUtils.ts) which contains some useful functions for styling such as:
 

@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import { ConfigProvider, App, message } from 'antd';
 import en_US from 'antd/locale/en_US';
 
-import { ThemeProvider } from '../theme';
+import ThemeProvider from '../theme';
 
 message.config({
   duration: 5,
