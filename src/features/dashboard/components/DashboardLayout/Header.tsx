@@ -7,7 +7,7 @@ import { css, ClassNames } from '@emotion/react';
 
 import { useAuth } from 'common/auth';
 import { getMQ } from 'common/styleUtils';
-import { ThemeSwitch, createMenuProps, type MenuProps } from 'common/components';
+import { ThemeSwitch, LanguageSwitch, createMenuProps, type MenuProps } from 'common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -44,6 +44,7 @@ const Header = ({ email }: Props) => {
       <Col />
       <Col>
         <Space size="large">
+          <LanguageSwitch />
           <ThemeSwitch />
           <HeaderDropdown items={menuItems}>
             <Avatar size="small" icon={<UserOutlined />} />

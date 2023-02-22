@@ -106,6 +106,7 @@ On top of that, this project already comes with [several components](./src/commo
 
 - [AdminLayout](./src/common/components/AdminLayout/) is a full-featured, responsive, dashboard layout with sidebar, navigation bar and space for page content
 - [LoadingScreen](./src/common/components/LoadingScreen/index.tsx) is a full-page loader
+- [LanguageSwitch](./src/common/components/LanguageSwitch/index.tsx) is a Switch component which changes the language of the application
 - [Logo](./src/common/components/Logo/index.tsx) is a simple logo component
 - [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices
@@ -135,7 +136,7 @@ Internationalization is covered by the [i18next](https://www.i18next.com/) frame
 
 React support is provided by [react-i18next](https://react.i18next.com/). There is a short [comparison to react-i18n](https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions) library and a [Step by step guide](https://react.i18next.com/latest/using-with-hooks). This project's i18next configuration is defined in [src/i18n/index.ts](./src/i18n/index.ts). Translations in form of JSON files are located in `src/i18n/{language}/{namespace}.json`. IDE support is covered by TypeScript typings [src/i18n/types.d.ts](./src/i18n/types.d.ts).
 
-i18next ecosystem provides [many plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators, etc. This project includes one such plugin [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
+i18next ecosystem provides [many plugins and tools](https://www.i18next.com/overview/plugins-and-utils) to automate i18n management, to ease the cooperation between developers and translators, etc. This project includes one such plugin [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) for language detection in the browser. There is also [i18next-parser](https://github.com/i18next/i18next-parser) to parse the codebase and extract translation keys into JSON resource file.
 
 ## React Router
 

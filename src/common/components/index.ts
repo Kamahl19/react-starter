@@ -1,5 +1,6 @@
 export { default as Descriptions } from './Descriptions';
 export { default as LoadingScreen } from './LoadingScreen';
+export { default as LanguageSwitch } from './LanguageSwitch';
 export { default as Logo } from './Logo';
 export { default as Menu, createMenuProps } from './Menu';
 export type { Props as MenuProps } from './Menu';

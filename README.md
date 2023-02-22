@@ -15,6 +15,7 @@
   - [zod-fetch](https://github.com/mattpocock/zod-fetch) - to make API client type-safe
 - [react-query](https://tanstack.com/query/) - asynchronous state management with declarative, always-up-to-date auto-managed queries and mutations
 - [i18next](https://www.i18next.com/) - internationalization framework
+  - [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) - language detection plugin
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
 - [Recoil](https://recoiljs.org/) - state management library
   - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store

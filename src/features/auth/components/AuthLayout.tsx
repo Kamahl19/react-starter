@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 
 import { useIsDark } from 'app/theme';
 import { useAuth } from 'common/auth';
-import { ThemeSwitch, Navbar, Logo } from 'common/components';
+import { ThemeSwitch, LanguageSwitch, Navbar, Logo } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
 import { AUTH_ROUTES } from '../routes';
@@ -27,7 +27,7 @@ const AuthLayout = ({ children }: Props) => {
         : [
             {
               key: AUTH_ROUTES.login.to,
-              label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.login')}</Link>,
+              label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.logIn')}</Link>,
             },
             {
               key: AUTH_ROUTES.signUp.to,
@@ -46,6 +46,7 @@ const AuthLayout = ({ children }: Props) => {
           </Col>
           <Col>
             <Space size="large">
+              <LanguageSwitch />
               <ThemeSwitch />
               {menuItems.length > 0 && <Navbar items={menuItems} mobileMenuBreakpoint="md" />}
             </Space>
