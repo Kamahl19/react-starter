@@ -1,34 +1,17 @@
-import { useCallback, useMemo } from 'react';
-import { LANGUAGE_CODES } from 'i18n';
-import { useTranslation } from 'react-i18next';
 import { Select, type SelectProps } from 'antd';
 
-const NATIVE_NAMES = {
-  [LANGUAGE_CODES.EN]: 'English',
-} satisfies Record<LANGUAGE_CODES, string>;
+import { useCurrentLanguage, LANGUAGES_CONFIG } from 'i18n';
+
+const options = Object.entries(LANGUAGES_CONFIG).map(([value, { name, flag }]) => ({
+  value,
+  label: `${flag} ${name}`,
+}));
 
 const LanguageSwitch = (props: SelectProps) => {
-  const { i18n } = useTranslation();
-
-  const options = useMemo(
-    () =>
-      Object.values(LANGUAGE_CODES).map((lng) => ({
-        label: NATIVE_NAMES[lng],
-        value: lng,
-      })),
-    []
-  );
-
-  const handleChange = useCallback((lng: string) => i18n.changeLanguage(lng), [i18n]);
+  const [language, setLanguage] = useCurrentLanguage();
 
   return (
-    <Select
-      size="small"
-      {...props}
-      onChange={handleChange}
-      options={options}
-      value={i18n.resolvedLanguage}
-    />
+    <Select size="small" {...props} onChange={setLanguage} options={options} value={language} />
   );
 };
 

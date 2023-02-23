@@ -13,8 +13,8 @@ import App from './App';
 const Root = () => (
   <GlobalErrorBoundary>
     <Recoil>
-      <AntDesign>
-        <Suspense fallback={<LoadingScreen fullVPHeight />}>
+      <Suspense fallback={<LoadingScreen fullVPHeight />}>
+        <AntDesign>
           <Query>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
               <BrowserRouter>
@@ -22,8 +22,8 @@ const Root = () => (
               </BrowserRouter>
             </PersistAuthGate>
           </Query>
-        </Suspense>
-      </AntDesign>
+        </AntDesign>
+      </Suspense>
     </Recoil>
   </GlobalErrorBoundary>
 );

@@ -29,15 +29,15 @@ const Providers = ({ children }: Props) => {
 
   return (
     <Recoil>
-      <AntDesign>
-        <Suspense fallback={<LoadingScreen fullVPHeight />}>
+      <Suspense fallback={<LoadingScreen fullVPHeight />}>
+        <AntDesign>
           <QueryClientProvider client={queryClient}>
             <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
               <BrowserRouter>{children}</BrowserRouter>
             </PersistAuthGate>
           </QueryClientProvider>
-        </Suspense>
-      </AntDesign>
+        </AntDesign>
+      </Suspense>
     </Recoil>
   );
 };

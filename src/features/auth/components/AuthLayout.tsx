@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 
 import { useIsDark } from 'app/theme';
 import { useAuth } from 'common/auth';
-import { ThemeSwitch, LanguageSwitch, Navbar, Logo } from 'common/components';
+import { LanguageSwitch, ThemeSwitch, Navbar, Logo } from 'common/components';
 import { createStyles, getMQ } from 'common/styleUtils';
 
 import { AUTH_ROUTES } from '../routes';
