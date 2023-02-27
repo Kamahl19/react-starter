@@ -6,8 +6,8 @@ import { css } from '@emotion/react';
 
 import { useIsDark } from 'app/theme';
 import { useAuth } from 'common/auth';
-import { LanguageSwitch, ThemeSwitch, Navbar, Logo } from 'common/components';
-import { createStyles, getMQ } from 'common/styleUtils';
+import { LanguageSelector, ThemeSwitch, Navbar, Logo } from 'common/components';
+import { createStyles, getMQ, useBreakpoint } from 'common/styleUtils';
 
 import { AUTH_ROUTES } from '../routes';
 
@@ -19,6 +19,7 @@ const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [isDark] = useIsDark();
+  const { xs } = useBreakpoint();
 
   const menuItems = useMemo(
     () =>
@@ -42,11 +43,11 @@ const AuthLayout = ({ children }: Props) => {
       <Layout.Header css={styles.header}>
         <Row justify="space-between" wrap={false}>
           <Col>
-            <Logo to={AUTH_ROUTES.login.to} inverted={isDark} />
+            <Logo to={AUTH_ROUTES.login.to} inverted={isDark} isSmall={xs} />
           </Col>
           <Col>
             <Space size="large">
-              <LanguageSwitch />
+              <LanguageSelector />
               <ThemeSwitch />
               {menuItems.length > 0 && <Navbar items={menuItems} mobileMenuBreakpoint="md" />}
             </Space>

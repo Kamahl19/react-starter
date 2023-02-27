@@ -106,7 +106,7 @@ On top of that, this project already comes with [several components](./src/commo
 
 - [AdminLayout](./src/common/components/AdminLayout/) is a full-featured, responsive, dashboard layout with sidebar, navigation bar and space for page content
 - [LoadingScreen](./src/common/components/LoadingScreen/index.tsx) is a full-page loader
-- [LanguageSwitch](./src/common/components/LanguageSwitch/index.tsx) is a Switch component which changes the language of the application
+- [LanguageSelector](./src/common/components/LanguageSelector/index.tsx) is a component which changes the language of the application
 - [Logo](./src/common/components/Logo/index.tsx) is a simple logo component
 - [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices

@@ -20,6 +20,7 @@ export const SUPPORTED_LANGUAGES = ['en'] as const;
 
 export const LANGUAGES_CONFIG = {
   en: {
+    code: 'en',
     name: 'English',
     flag: '🇺🇸',
     dayjs: dayjsEN,
@@ -34,10 +35,17 @@ export const LANGUAGES_CONFIG = {
   },
 } as const satisfies Record<
   (typeof SUPPORTED_LANGUAGES)[number],
-  { name: string; flag: string; dayjs: object; antd: object; resources: object }
+  {
+    code: (typeof SUPPORTED_LANGUAGES)[number];
+    name: string;
+    flag: string;
+    dayjs: object;
+    antd: object;
+    resources: object;
+  }
 >;
 
-const resolveLanguage = (lng: string) =>
+export const resolveLanguage = (lng: string) =>
   SUPPORTED_LANGUAGES.includes(lng) ? lng : SUPPORTED_LANGUAGES[0];
 
 export const useCurrentLanguage = () => {
@@ -49,7 +57,7 @@ export const useCurrentLanguage = () => {
   );
 
   return useMemo(
-    () => [resolveLanguage(i18n.resolvedLanguage), changeLanguage] as const,
+    () => [LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)], changeLanguage] as const,
     [i18n.resolvedLanguage, changeLanguage]
   );
 };

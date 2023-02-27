@@ -35,11 +35,14 @@ const PageHeader = ({
         {(title || extra) && (
           <Row align="middle" justify="space-between">
             <Col>
-              {title && (
-                <Typography.Title level={4} css={styles.title}>
-                  {title}
-                </Typography.Title>
-              )}
+              {title &&
+                (typeof title === 'string' ? (
+                  <Typography.Title level={4} css={styles.title}>
+                    {title}
+                  </Typography.Title>
+                ) : (
+                  title
+                ))}
             </Col>
             <Col>{extra}</Col>
           </Row>

@@ -1,13 +1,11 @@
-import { type ReactNode, useState, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Avatar, Dropdown, Space, Typography, Row, Col } from 'antd';
-import { UserOutlined, DownOutlined, LogoutOutlined } from '@ant-design/icons';
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { Avatar, Space, Typography, Row, Col } from 'antd';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { css, ClassNames } from '@emotion/react';
 
 import { useAuth } from 'common/auth';
-import { getMQ } from 'common/styleUtils';
-import { ThemeSwitch, LanguageSwitch, createMenuProps, type MenuProps } from 'common/components';
+import { NavbarDropdown, ThemeSwitch, LanguageSelector } from 'common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -19,7 +17,7 @@ const Header = ({ email }: Props) => {
   const { t } = useTranslation();
   const { logout } = useAuth();
 
-  const menuItems = useMemo(
+  const items = useMemo(
     () => [
       {
         key: DASHBOARD_ROUTES.profile.to,
@@ -44,12 +42,14 @@ const Header = ({ email }: Props) => {
       <Col />
       <Col>
         <Space size="large">
-          <LanguageSwitch />
+          <LanguageSelector />
           <ThemeSwitch />
-          <HeaderDropdown items={menuItems}>
-            <Avatar size="small" icon={<UserOutlined />} />
-            {email}
-          </HeaderDropdown>
+          <NavbarDropdown menu={{ items }}>
+            <Space>
+              <Avatar size="small" icon={<UserOutlined />} />
+              {email}
+            </Space>
+          </NavbarDropdown>
         </Space>
       </Col>
     </Row>
@@ -57,64 +57,3 @@ const Header = ({ email }: Props) => {
 };
 
 export default Header;
-
-type HeaderDropdownProps = {
-  children: ReactNode;
-  items: MenuProps['items'];
-};
-
-const HeaderDropdown = ({ children, items }: HeaderDropdownProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const { pathname } = useLocation();
-
-  const menuProps = useMemo(
-    () =>
-      createMenuProps(
-        {
-          items,
-          onClick: () => setIsVisible(false),
-        },
-        pathname
-      ),
-    [pathname, items]
-  );
-
-  return (
-    <ClassNames>
-      {({ css, theme: { token } }) => (
-        <Dropdown
-          css={styles.dropdown}
-          onOpenChange={setIsVisible}
-          open={isVisible}
-          trigger={['click']}
-          menu={menuProps}
-          overlayClassName={css({
-            [getMQ(token).smMax]: {
-              width: '100vw',
-
-              '.ant-dropdown-menu': {
-                borderRadius: 0,
-              },
-
-              '&& .ant-dropdown-menu-item': {
-                paddingBlock: token.paddingSM,
-              },
-            },
-          })}
-        >
-          <Space>
-            {children}
-            <DownOutlined />
-          </Space>
-        </Dropdown>
-      )}
-    </ClassNames>
-  );
-};
-
-const styles = {
-  dropdown: css({
-    cursor: 'pointer',
-  }),
-};
