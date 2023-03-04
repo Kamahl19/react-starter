@@ -58,7 +58,7 @@ const ChangePassword = () => {
       </Form.Item>
       <Form.Item noStyle>
         <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
-          {t('global:submit')}
+          {t('global:save')}
         </Button>
       </Form.Item>
     </Form>

@@ -1,9 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { css } from '@emotion/react';
-import { Space } from 'antd';
 
 import { useCurrentLanguage, LANGUAGES_CONFIG, resolveLanguage } from 'i18n';
-import { createStyles } from 'common/styleUtils';
 import { NavbarDropdown } from 'common/components';
 
 const LanguageSelector = () => {
@@ -11,13 +8,9 @@ const LanguageSelector = () => {
 
   const items = useMemo(
     () =>
-      Object.entries(LANGUAGES_CONFIG).map(([value, { name, flag }]) => ({
+      Object.entries(LANGUAGES_CONFIG).map(([value, { name }]) => ({
         key: value,
-        label: (
-          <Space>
-            <span css={styles.flag}>{flag}</span> {name}
-          </Space>
-        ),
+        label: name,
       })),
     []
   );
@@ -30,21 +23,8 @@ const LanguageSelector = () => {
   );
 
   return (
-    <NavbarDropdown menu={{ items, onClick: handleClick }}>
-      <span role="img" aria-label={language.name} css={styles.flag}>
-        {language.flag}
-      </span>
-    </NavbarDropdown>
+    <NavbarDropdown menu={{ items, onClick: handleClick }}>{language.shortName}</NavbarDropdown>
   );
 };
 
 export default LanguageSelector;
-
-const styles = createStyles({
-  flag: ({ token }) =>
-    css({
-      fontSize: token.fontSizeXL,
-      verticalAlign: 'middle',
-      lineHeight: 1,
-    }),
-});

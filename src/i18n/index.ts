@@ -22,7 +22,7 @@ export const LANGUAGES_CONFIG = {
   en: {
     code: 'en',
     name: 'English',
-    flag: '🇺🇸',
+    shortName: 'EN',
     dayjs: dayjsEN,
     antd: antdEN,
     resources: {
@@ -38,7 +38,7 @@ export const LANGUAGES_CONFIG = {
   {
     code: (typeof SUPPORTED_LANGUAGES)[number];
     name: string;
-    flag: string;
+    shortName: string;
     dayjs: object;
     antd: object;
     resources: object;
