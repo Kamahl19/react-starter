@@ -20,13 +20,11 @@ const DashboardPageHeader = (props: Props) => {
     <PageHeader
       {...props}
       breadcrumbs={
-        <Breadcrumb>
-          {breadcrumbs.map(({ match, breadcrumb }) => (
-            <Breadcrumb.Item key={match.pathname}>
-              <Link to={match.pathname}>{breadcrumb}</Link>
-            </Breadcrumb.Item>
-          ))}
-        </Breadcrumb>
+        <Breadcrumb
+          items={breadcrumbs.map(({ match, breadcrumb }) => ({
+            title: <Link to={match.pathname}>{breadcrumb}</Link>,
+          }))}
+        />
       }
     />
   );
