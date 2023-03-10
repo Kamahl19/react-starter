@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch';
 import { matchMedia, setMedia, MediaQueryListEvent, cleanup as mmmCleanup } from 'mock-match-media';
 import '@testing-library/jest-dom';
 
@@ -6,9 +5,6 @@ import { dropDB } from 'mocks/db';
 import { server } from 'mocks/server';
 
 import 'i18n';
-
-// Fetch API
-vi.stubGlobal('fetch', fetch);
 
 // window.matchMedia
 vi.stubGlobal('matchMedia', matchMedia);

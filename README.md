@@ -27,7 +27,6 @@
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
   - [MSW](https://mswjs.io/) - API mocking library for browser and Node.js
   - [@mswjs/data](https://mswjs.io/) - data modeling and relation library for testing
-  - [cross-fetch](https://github.com/lquixada/cross-fetch) - polyfill Fetch API for testing
   - [mock-match-media](https://github.com/Ayc0/mock-match-media) - mock window.matchMedia for testing
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
