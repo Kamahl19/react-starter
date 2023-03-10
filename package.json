@@ -110,7 +110,7 @@
     "recoil-persist": "4.2.0",
     "use-debounce": "9.0.3",
     "use-react-router-breadcrumbs": "4.0.1",
-    "zod": "3.21.2",
+    "zod": "3.21.4",
     "zod-fetch": "0.1.0"
   }
 }
