@@ -112,6 +112,8 @@ module.exports = {
     {
       files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
       extends: [
+        // https://github.com/veritem/eslint-plugin-vitest/blob/main/src/index.ts#L68
+        'plugin:vitest/recommended',
         // https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts
         'plugin:testing-library/react',
         // https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38
