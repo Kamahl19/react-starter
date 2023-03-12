@@ -45,8 +45,10 @@ export const LANGUAGES_CONFIG = {
   }
 >;
 
-export const resolveLanguage = (lng: string) =>
-  SUPPORTED_LANGUAGES.includes(lng) ? lng : SUPPORTED_LANGUAGES[0];
+const isLanguage = (lng: string): lng is (typeof SUPPORTED_LANGUAGES)[number] =>
+  SUPPORTED_LANGUAGES.includes(lng);
+
+export const resolveLanguage = (lng: string) => (isLanguage(lng) ? lng : SUPPORTED_LANGUAGES[0]);
 
 export const useCurrentLanguage = () => {
   const { i18n } = useTranslation();
