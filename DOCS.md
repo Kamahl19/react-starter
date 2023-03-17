@@ -68,6 +68,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
 - [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts) checks for best practices and anticipates common mistakes when writing tests with Testing Library
 - [jest-dom](https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38) checks for best practices when writing tests with jest-dom
+- [eslint-plugin-vitest](https://github.com/veritem/eslint-plugin-vitest/blob/main/src/index.ts#L68) checks for best practices when writing tests with Vitest
 
 ESLint runs when:
 
