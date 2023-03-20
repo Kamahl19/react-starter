@@ -57,7 +57,7 @@
     "@typescript-eslint/eslint-plugin": "5.56.0",
     "@typescript-eslint/parser": "5.56.0",
     "@vitejs/plugin-react": "3.1.0",
-    "@vitest/ui": "0.29.5",
+    "@vitest/ui": "0.29.7",
     "confusing-browser-globals": "1.0.11",
     "eslint": "8.36.0",
     "eslint-config-prettier": "8.8.0",
@@ -86,7 +86,7 @@
     "vite-plugin-react-click-to-component": "2.0.0",
     "vite-plugin-svgr": "2.4.0",
     "vite-tsconfig-paths": "4.0.7",
-    "vitest": "0.29.5"
+    "vitest": "0.29.7"
   },
   "dependencies": {
     "@ant-design/icons": "5.0.1",
