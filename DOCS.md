@@ -1,5 +1,28 @@
 # Documentation
 
+- [Introduction](#introduction)
+- [Building](#building)
+- [Testing](#testing)
+  - [Vitest](#vitest)
+  - [Testing Library](#testing-library)
+  - [MSW](#msw)
+  - [Configuration](#configuration)
+- [Linting & Formatting](#linting---formatting)
+  - [ESLint](#eslint)
+  - [Prettier](#prettier)
+- [UI Components](#ui-components)
+- [Styling using Emotion (css-in-js)](#styling-using-emotion--css-in-js-)
+- [i18n](#i18n)
+- [React Router](#react-router)
+- [State Management](#state-management)
+- [Data Fetching and Mutating](#data-fetching-and-mutating)
+- [Authentication](#authentication)
+- [React](#react)
+  - [React Hooks](#react-hooks)
+- [Project structure](#project-structure)
+
+## Introduction
+
 This project is based on couple of dependencies. It's advised to read through their documentations to understand their basic principles and capabilities.
 
 Here is the list of selected documentation pages and other resources containing the most important and high-level information about these dependencies.
@@ -116,6 +139,8 @@ On top of that, this project already comes with [several components](./src/commo
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
 - [ThemeSwitch](./src/common/components/ThemeSwitch/index.tsx) is a Switch component which toggles between light and dark theme
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
+
+To easily debug components, there is a [vite-plugin-react-click-to-component](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component) which enables `Option + RightClick` React components in your browser to open the source in your editor.
 
 ## Styling using Emotion (css-in-js)
 

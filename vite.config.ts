@@ -6,6 +6,7 @@ import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import checkerPlugin from 'vite-plugin-checker';
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
+import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
 import { z } from 'zod';
 
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
+    reactClickToComponent(),
     tsconfigPathsPlugin(),
     svgrPlugin(),
     checkerPlugin({
