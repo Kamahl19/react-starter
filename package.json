@@ -45,7 +45,7 @@
     "@emotion/babel-plugin": "11.10.6",
     "@emotion/eslint-plugin": "11.10.0",
     "@julr/vite-plugin-validate-env": "0.2.2",
-    "@mswjs/data": "0.11.2",
+    "@mswjs/data": "0.12.0",
     "@tanstack/eslint-plugin-query": "4.27.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
