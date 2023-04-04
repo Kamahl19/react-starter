@@ -97,7 +97,7 @@
     "@tshttp/status": "2.0.0",
     "antd": "5.3.3",
     "dayjs": "1.11.7",
-    "deepmerge-ts": "5.0.0",
+    "deepmerge-ts": "5.1.0",
     "i18next": "22.4.13",
     "i18next-browser-languagedetector": "7.0.1",
     "query-string": "8.1.0",
