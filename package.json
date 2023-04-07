@@ -80,7 +80,7 @@
     "msw": "1.2.1",
     "prettier": "2.8.7",
     "source-map-explorer": "2.5.3",
-    "typescript": "5.0.2",
+    "typescript": "5.0.4",
     "vite": "4.2.1",
     "vite-plugin-checker": "0.5.6",
     "vite-plugin-react-click-to-component": "2.0.0",
