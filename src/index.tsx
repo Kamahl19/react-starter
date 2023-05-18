@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import 'i18n';
@@ -13,6 +14,10 @@ if (import.meta.env.DEV) {
 
 const root = createRoot(document.querySelector('#root')!); // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-root.render(<Root />);
+root.render(
+  <StrictMode>
+    <Root />
+  </StrictMode>
+);
 
 // TODO remove "headers-polyfill" from package.json when mswjs updates to 3.1.2
