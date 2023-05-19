@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { RequireIsAnonymous } from 'common/auth';
@@ -5,11 +6,12 @@ import { NotFound } from 'common/components';
 
 import { AUTH_ROUTES } from './routes';
 import AuthLayout from './components/AuthLayout';
-import SignUp from './pages/SignUp';
-import ForgottenPassword from './pages/ForgottenPassword';
-import Login from './pages/Login';
-import ConfirmEmail from './pages/ConfirmEmail';
-import ResetPassword from './pages/ResetPassword';
+
+const SignUp = lazy(() => import('./pages/SignUp'));
+const ForgottenPassword = lazy(() => import('./pages/ForgottenPassword'));
+const Login = lazy(() => import('./pages/Login'));
+const ConfirmEmail = lazy(() => import('./pages/ConfirmEmail'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
 const Auth = ({ rootPath }: { rootPath: string }) => (
   <Routes>

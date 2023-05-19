@@ -1,12 +1,14 @@
+import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { RequireIsLoggedIn, useAuth } from 'common/auth';
 import { NotFound } from 'common/components';
 
-import Auth from 'features/auth';
 import { AUTH_ROUTES } from 'features/auth/routes';
-import Dashboard from 'features/dashboard';
 import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
+
+const Auth = lazy(() => import('features/auth'));
+const Dashboard = lazy(() => import('features/dashboard'));
 
 const rootPath = '/';
 

@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
@@ -6,8 +7,9 @@ import { LoadingScreen, NotFound, ResultError } from 'common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
 import DashboardLayout from './components/DashboardLayout';
-import Home from './features/home';
-import Profile from './features/profile';
+
+const Home = lazy(() => import('./features/home'));
+const Profile = lazy(() => import('./features/profile'));
 
 const Dashboard = () => {
   const { userId, isLogoutLoading } = useAuth();
