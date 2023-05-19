@@ -20,4 +20,4 @@ root.render(
   </StrictMode>
 );
 
-// TODO remove "headers-polyfill" from package.json when mswjs updates to 3.1.2
+// TODO remove "rc-menu" from package.json when antd updates to 9.8.4
