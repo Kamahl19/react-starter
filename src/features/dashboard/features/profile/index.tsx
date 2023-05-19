@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
@@ -6,7 +7,8 @@ import { useAuth } from 'common/auth';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 import ProfileLayout from './components/ProfileLayout';
-import ChangePassword from './pages/ChangePassword';
+
+const ChangePassword = lazy(() => import('./pages/ChangePassword'));
 
 const Profile = () => {
   const { userId } = useAuth();
