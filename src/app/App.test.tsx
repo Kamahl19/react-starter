@@ -2,6 +2,12 @@ import { render, screen, userEvent } from 'tests/utils';
 
 import App from './App';
 
+// Preload lazy component to avoid increating timeout
+import 'features/auth';
+import 'features/dashboard';
+import 'features/auth/pages/SignUp';
+import 'features/auth/pages/Login';
+
 const email = 'email@example.com';
 const password = 'password';
 
