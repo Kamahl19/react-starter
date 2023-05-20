@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
@@ -34,7 +34,9 @@ const Dashboard = () => {
       <Route
         element={
           <DashboardLayout user={data.user}>
-            <Outlet />
+            <Suspense fallback={<LoadingScreen />}>
+              <Outlet />
+            </Suspense>
           </DashboardLayout>
         }
       >

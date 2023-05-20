@@ -1,8 +1,8 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { RequireIsAnonymous } from 'common/auth';
-import { NotFound } from 'common/components';
+import { LoadingScreen, NotFound } from 'common/components';
 
 import { AUTH_ROUTES } from './routes';
 import AuthLayout from './components/AuthLayout';
@@ -18,7 +18,9 @@ const Auth = ({ rootPath }: { rootPath: string }) => (
     <Route
       element={
         <AuthLayout>
-          <Outlet />
+          <Suspense fallback={<LoadingScreen />}>
+            <Outlet />
+          </Suspense>
         </AuthLayout>
       }
     >

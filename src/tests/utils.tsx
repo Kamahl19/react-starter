@@ -27,12 +27,14 @@ const Providers = ({ children }: Props) => {
     },
   });
 
+  const GlobalLoading = () => <LoadingScreen fullVPHeight />;
+
   return (
     <Recoil>
-      <Suspense fallback={<LoadingScreen fullVPHeight />}>
+      <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <QueryClientProvider client={queryClient}>
-            <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
+            <PersistAuthGate fallback={<GlobalLoading />}>
               <BrowserRouter>{children}</BrowserRouter>
             </PersistAuthGate>
           </QueryClientProvider>

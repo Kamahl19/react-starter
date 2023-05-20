@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
@@ -33,7 +33,9 @@ const Profile = () => {
       <Route
         element={
           <ProfileLayout user={data.user}>
-            <Outlet />
+            <Suspense fallback={<LoadingScreen />}>
+              <Outlet />
+            </Suspense>
           </ProfileLayout>
         }
       >

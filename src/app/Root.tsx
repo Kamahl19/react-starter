@@ -10,13 +10,15 @@ import GlobalErrorBoundary from './GlobalErrorBoundary';
 import PersistAuthGate from './PersistAuthGate';
 import App from './App';
 
+const GlobalLoading = () => <LoadingScreen fullVPHeight />;
+
 const Root = () => (
   <GlobalErrorBoundary>
     <Recoil>
-      <Suspense fallback={<LoadingScreen fullVPHeight />}>
+      <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <Query>
-            <PersistAuthGate loading={<LoadingScreen fullVPHeight />}>
+            <PersistAuthGate fallback={<GlobalLoading />}>
               <BrowserRouter>
                 <App />
               </BrowserRouter>

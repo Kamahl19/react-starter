@@ -5,11 +5,15 @@ import { useCurrentLanguage } from 'i18n';
 
 import ThemeProvider from '../theme';
 
-const AntDesign = ({ children }: { children: ReactNode }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const AntDesign = ({ children }: Props) => {
   const [language] = useCurrentLanguage();
 
   return (
-    <ConfigProvider locale={language.antd} form={{ scrollToFirstError: true }}>
+    <ConfigProvider locale={language.antd} form={{ scrollToFirstError: true, requiredMark: true }}>
       <ThemeProvider>
         <App message={{ duration: 5 }}>{children}</App>
       </ThemeProvider>
