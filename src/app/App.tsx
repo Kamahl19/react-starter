@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import { rootPath } from 'config';
 import { RequireIsLoggedIn, useAuth } from 'common/auth';
 import { NotFound } from 'common/components';
 
@@ -9,8 +10,6 @@ import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
 
 const Auth = lazy(() => import('features/auth'));
 const Dashboard = lazy(() => import('features/dashboard'));
-
-const rootPath = '/';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -23,7 +22,7 @@ const App = () => {
           <Navigate replace to={isLoggedIn ? DASHBOARD_ROUTES.index.to : AUTH_ROUTES.index.to} />
         }
       />
-      <Route path={AUTH_ROUTES.index.path} element={<Auth rootPath={rootPath} />} />
+      <Route path={AUTH_ROUTES.index.path} element={<Auth />} />
       <Route element={<RequireIsLoggedIn redirectTo={rootPath} />}>
         <Route path={DASHBOARD_ROUTES.index.path} element={<Dashboard />} />
       </Route>

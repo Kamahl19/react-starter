@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
+import { rootPath } from 'config';
 import { RequireIsAnonymous } from 'common/auth';
 import { LoadingScreen, NotFound } from 'common/components';
 
@@ -13,7 +14,7 @@ const Login = lazy(() => import('./pages/Login'));
 const ConfirmEmail = lazy(() => import('./pages/ConfirmEmail'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
-const Auth = ({ rootPath }: { rootPath: string }) => (
+const Auth = () => (
   <Routes>
     <Route
       element={
