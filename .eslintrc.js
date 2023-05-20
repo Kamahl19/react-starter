@@ -52,6 +52,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'unicorn/filename-case': 'off',
+    'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-useless-undefined': 'off',
     'unicorn/prevent-abbreviations': 'off',
 

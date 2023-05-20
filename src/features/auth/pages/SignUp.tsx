@@ -7,8 +7,8 @@ import { useDebounce } from 'use-debounce';
 import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from 'api';
 import { useApiErrorMessage } from 'common/hooks';
 
-import { useSignUpRules } from '../validations';
 import { AUTH_ROUTES } from '../routes';
+import { useSignUpRules } from '../validations';
 
 const DEBOUNCE_MS = 500;
 

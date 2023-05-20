@@ -1,13 +1,11 @@
 {
   "breadcrumbs": {
-    "changePassword": "Change Password",
     "index": "Profile"
   },
   "changePassword": {
     "currentPassword": "Current Password",
     "newPassword": "New Password",
-    "success": "Your password has been changed successfully.",
-    "title": "Change Password"
+    "success": "Your password has been changed successfully."
   },
   "header": {
     "isConfirmed": "Confirmed"

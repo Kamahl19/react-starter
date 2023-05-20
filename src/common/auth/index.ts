@@ -45,7 +45,10 @@ export const useAuth = () => {
     async (payload: LoginPayload, opts?: { onError?: (error: unknown) => void }) => {
       try {
         setIsLoginLoadingState(true);
-        setAuthState(await loginApi(payload));
+
+        const auth = await loginApi(payload);
+
+        setAuthState(auth);
       } catch (error: unknown) {
         opts?.onError?.(error);
       } finally {
@@ -58,7 +61,10 @@ export const useAuth = () => {
   const relogin = useCallback(async () => {
     try {
       setIsReloginLoadingState(true);
-      setAuthState(await reloginApi());
+
+      const auth = await reloginApi();
+
+      setAuthState(auth);
     } catch {
       resetAuthState();
     } finally {

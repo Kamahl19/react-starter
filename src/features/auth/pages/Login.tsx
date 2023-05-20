@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Button, Form, Input } from 'antd';
 
 import { type LoginPayload } from 'api';
@@ -13,22 +13,19 @@ import { AUTH_ROUTES } from '../routes';
 const Login = () => {
   const { t } = useTranslation();
 
-  const onError = useApiErrorMessage();
-
   const { login, isLoginLoading } = useAuth();
 
+  const onError = useApiErrorMessage();
+
   const handleLogin = useCallback(
-    (payload: LoginPayload) =>
-      login(payload, {
-        onError,
-      }),
+    (payload: LoginPayload) => login(payload, { onError }),
     [login, onError]
   );
 
   const rules = useLoginRules();
 
   return (
-    <Form<LoginPayload> onFinish={handleLogin} layout="vertical">
+    <Form<LoginPayload> onFinish={handleLogin} layout="vertical" requiredMark={false}>
       <Form.Item label={t('auth:logIn.email')} name="email" rules={rules.email} validateFirst>
         <Input autoFocus />
       </Form.Item>

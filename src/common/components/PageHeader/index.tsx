@@ -1,9 +1,9 @@
 import { type ReactNode } from 'react';
-import { Space, Typography, Row, Col } from 'antd';
+import { Typography, Row, Col } from 'antd';
 import { css } from '@emotion/react';
 
-import { createStyles, getMQ, useBreakpoint, type Breakpoint } from 'common/styleUtils';
-import { Menu, type MenuProps } from 'common/components';
+import { createStyles, getMQ, noMargin, useBreakpoint, type Breakpoint } from 'common/styleUtils';
+import { Menu, SpaceVertical, type MenuProps } from 'common/components';
 
 export type Props = {
   children?: ReactNode;
@@ -30,14 +30,14 @@ const PageHeader = ({
 
   return (
     <div css={[styles.self, menuItems && styles.withMenu]}>
-      <Space direction="vertical" size="large" css={styles.space}>
+      <SpaceVertical size="large">
         {breadcrumbs}
         {(title || extra) && (
           <Row align="middle" justify="space-between">
             <Col>
               {title &&
                 (typeof title === 'string' ? (
-                  <Typography.Title level={3} css={styles.title}>
+                  <Typography.Title level={3} css={noMargin}>
                     {title}
                   </Typography.Title>
                 ) : (
@@ -56,7 +56,7 @@ const PageHeader = ({
             css={styles.menu}
           />
         )}
-      </Space>
+      </SpaceVertical>
     </div>
   );
 };
@@ -85,18 +85,8 @@ const styles = createStyles({
       },
     }),
 
-  space: css({
-    width: '100%',
-  }),
-
   withMenu: css({
     paddingBottom: 0,
-  }),
-
-  title: css({
-    '&&': {
-      marginBottom: 0,
-    },
   }),
 
   menu: ({ token }) =>

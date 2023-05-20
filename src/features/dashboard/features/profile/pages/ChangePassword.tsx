@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { App, Button, Form, Input } from 'antd';
+import { App, Form, Input, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword } from 'api';
@@ -27,8 +27,8 @@ const ChangePassword = () => {
         { userId, payload },
         {
           onSuccess: () => {
-            message.success(t('profile:changePassword.success'));
             form.resetFields();
+            message.success(t('profile:changePassword.success'));
           },
           onError,
         }

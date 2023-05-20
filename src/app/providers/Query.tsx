@@ -7,7 +7,17 @@ export const createQueryClient = (config?: QueryClientConfig) =>
     ...config,
   });
 
-const queryClient = createQueryClient();
+const queryClient = createQueryClient(
+  import.meta.env.DEV
+    ? {
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+          },
+        },
+      }
+    : {}
+);
 
 const Query = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>

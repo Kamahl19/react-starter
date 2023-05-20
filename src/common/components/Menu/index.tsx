@@ -6,9 +6,7 @@ import type {
   MenuItemGroupType,
   MenuDividerType,
 } from 'antd/es/menu/hooks/useItems';
-import { useLocation } from 'react-router-dom';
-
-import { getSelectedKeys } from 'common/routerUtils';
+import { matchPath, useLocation } from 'react-router-dom';
 
 type ItemType =
   | MenuItemType
@@ -28,27 +26,28 @@ export type Props = Omit<MenuProps, 'items'> & {
   items: ItemType[];
 };
 
-const Menu = (props: Props) => {
-  const { pathname } = useLocation();
-
-  const menuProps = useMemo(() => createMenuProps(props, pathname), [props, pathname]);
-
-  return <MenuOrig {...menuProps} />;
-};
+const Menu = (props: Props) => <MenuOrig {...useCreateMenuProps(props)} />;
 
 export default Menu;
 
-export const createMenuProps = ({ items, ...props }: Props, pathname: string) => {
-  const filteredItems = filterItems(items);
+export const useCreateMenuProps = (props: Props) => {
+  const { pathname } = useLocation();
 
-  return {
-    ...props,
-    items: filteredItems,
-    selectedKeys: getSelectedKeys(
-      flattenItems(filteredItems).map(({ key }) => String(key)),
-      pathname
-    ),
-  };
+  const items = useMemo(() => filterItems(props.items), [props.items]);
+
+  const selectedKeys = useMemo(
+    () => getKeys(items).filter((path) => matchPath({ path, end: false }, pathname)),
+    [items, pathname]
+  );
+
+  return useMemo(
+    () => ({
+      ...props,
+      items,
+      selectedKeys,
+    }),
+    [props, items, selectedKeys]
+  );
 };
 
 const isDefined = (i: ItemType): i is ItemTypeDefined => i !== false && i !== null;
@@ -69,16 +68,16 @@ const filterItems = (arr: ItemType[]) => {
   return filtered;
 };
 
-const flattenItems = (items: ItemTypeDefined[]) => {
-  const flatItems: ItemTypeDefined[] = [];
+const getKeys = (items: ItemTypeDefined[]) => {
+  const keys: string[] = [];
 
   for (const item of items) {
     if ('children' in item && item.children?.length) {
-      flatItems.push(...flattenItems(item.children));
+      keys.push(...getKeys(item.children));
     } else {
-      flatItems.push(item);
+      keys.push(String(item.key));
     }
   }
 
-  return flatItems;
+  return keys;
 };

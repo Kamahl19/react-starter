@@ -34,3 +34,7 @@ export const centeredCss = css({
 export const fullVPHeightCss = css({
   height: '100vh',
 });
+
+export const noMargin = css({
+  margin: '0 !important',
+});

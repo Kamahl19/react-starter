@@ -27,7 +27,7 @@ export const tokenState = atom<AuthState['token']>({
 export const isLoggedInSelector = selector({
   key: 'isLoggedIn',
   get: ({ get }) =>
-    get(tokenState) !== initialAuthState.token && get(userIdState) !== initialAuthState.userId,
+    get(userIdState) !== initialAuthState.userId && get(tokenState) !== initialAuthState.token,
 });
 
 export const isLoginLoadingState = atom({

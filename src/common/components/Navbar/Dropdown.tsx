@@ -1,11 +1,10 @@
-import { type ReactNode, useState, useMemo, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { type ReactNode, useState, useCallback } from 'react';
 import { Dropdown, type DropdownProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { css, ClassNames } from '@emotion/react';
 
 import { createStyles, getMQ } from 'common/styleUtils';
-import { createMenuProps, type MenuProps } from 'common/components';
+import { useCreateMenuProps, type MenuProps } from 'common/components';
 
 type Props = Omit<DropdownProps, 'children' | 'menu' | 'open' | 'overlayClassName'> & {
   children: ReactNode;
@@ -24,22 +23,13 @@ const NavbarDropdown = ({ onOpenChange, menu, caret = true, children, ...props }
     [onOpenChange]
   );
 
-  const { pathname } = useLocation();
-
-  const menuProps = useMemo(
-    () =>
-      createMenuProps(
-        {
-          ...menu,
-          onClick: (...args) => {
-            menu.onClick?.(...args);
-            setIsVisible(false);
-          },
-        },
-        pathname
-      ),
-    [pathname, menu]
-  );
+  const menuProps = useCreateMenuProps({
+    ...menu,
+    onClick: (...args) => {
+      menu.onClick?.(...args);
+      setIsVisible(false);
+    },
+  });
 
   return (
     <ClassNames>
@@ -52,6 +42,8 @@ const NavbarDropdown = ({ onOpenChange, menu, caret = true, children, ...props }
           onOpenChange={handleOpenChange}
           open={isVisible}
           overlayClassName={css({
+            minWidth: '100px !important',
+
             [getMQ(token).smMax]: {
               width: '100vw',
 

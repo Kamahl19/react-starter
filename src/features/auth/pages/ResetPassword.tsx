@@ -7,8 +7,8 @@ import { type ResetPasswordPayload, useResetPassword } from 'api';
 import { useAuth } from 'common/auth';
 import { useApiErrorMessage, useTokenParam } from 'common/hooks';
 
-import { useResetPasswordRules } from '../validations';
 import { AUTH_ROUTES } from '../routes';
+import { useResetPasswordRules } from '../validations';
 
 const ResetPassword = () => {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const ResetPassword = () => {
   const { mutate: resetPassword, isLoading: resetPasswordIsLoading } = useResetPassword();
 
   const handleSubmit = useCallback(
-    (payload: ResetPasswordPayload) => {
+    (payload: ResetPasswordPayload) =>
       resetPassword(
         { token, payload },
         {
@@ -37,8 +37,7 @@ const ResetPassword = () => {
           },
           onError,
         }
-      );
-    },
+      ),
     [t, navigate, resetPassword, token, onError, message, isLoggedIn, logout]
   );
 

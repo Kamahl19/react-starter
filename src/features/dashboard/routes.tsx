@@ -31,10 +31,7 @@ export const DASHBOARD_ROUTES = {
     path: 'change-password',
     to: '/app/profile/change-password',
     absPath: '/app/profile/change-password',
-    Breadcrumb() {
-      const { t } = useTranslation();
-      return <>{t('profile:breadcrumbs.changePassword')}</>;
-    },
+    Breadcrumb: undefined,
   },
 } as const satisfies Record<
   string,

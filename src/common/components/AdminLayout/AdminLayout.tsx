@@ -190,6 +190,10 @@ const styles = createStyles({
         flexDirection: 'column',
         height: '100%',
       },
+
+      '.ant-layout-sider-trigger': {
+        transition: 'none',
+      },
     }),
 
   sidebarLogo: ({ token }) =>

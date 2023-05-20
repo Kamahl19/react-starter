@@ -14,15 +14,14 @@
   },
   "engines": {
     "node": ">=18.0",
-    "npm": ">=8.0",
-    "yarn": "YARN NO LONGER USED - use npm instead."
+    "npm": ">=8.0"
   },
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
     "build": "vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
-    "extract-translations": "i18next",
+    "i18n": "i18next",
     "lint": "eslint \"./**/*.{js,ts,tsx}\" --max-warnings 0",
     "preview": "vite preview",
     "start": "vite",
@@ -110,6 +109,7 @@
     "recoil-nexus": "0.4.0",
     "recoil-persist": "4.2.0",
     "use-debounce": "9.0.4",
+    "use-query-params": "2.2.1",
     "use-react-router-breadcrumbs": "4.0.1",
     "zod": "3.21.4",
     "zod-fetch": "0.1.0"

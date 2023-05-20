@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
 import { LoadingScreen, NotFound, ResultError } from 'common/components';

@@ -33,31 +33,31 @@ const apiClient = createZodFetcher(
 );
 
 export const get = <R>(schema: Schema<R>, url: string, init?: Init) =>
-  apiClient(schema, url, {
+  apiClient<R>(schema, url, {
     ...init,
     method: 'GET',
   });
 
 export const post = <R>(schema: Schema<R>, url: string, init?: Init) =>
-  apiClient(schema, url, {
+  apiClient<R>(schema, url, {
     ...init,
     method: 'POST',
   });
 
 export const put = <R>(schema: Schema<R>, url: string, init?: Init) =>
-  apiClient(schema, url, {
+  apiClient<R>(schema, url, {
     ...init,
     method: 'PUT',
   });
 
 export const patch = <R>(schema: Schema<R>, url: string, init?: Init) =>
-  apiClient(schema, url, {
+  apiClient<R>(schema, url, {
     ...init,
     method: 'PATCH',
   });
 
 export const del = <R>(schema: Schema<R>, url: string, init?: Init) =>
-  apiClient(schema, url, {
+  apiClient<R>(schema, url, {
     ...init,
     method: 'DELETE',
   });
