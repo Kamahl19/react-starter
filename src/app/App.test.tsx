@@ -2,10 +2,16 @@ import { render, screen, userEvent } from 'tests/utils';
 
 import App from './App';
 
-const email = 'email@example.com';
-const password = 'password';
+// Preload lazy components
+import 'features/auth';
+import 'features/dashboard';
+import 'features/auth/pages/SignUp';
+import 'features/auth/pages/Login';
 
 const timeout = 5000;
+
+const email = 'email@example.com';
+const password = 'password';
 
 test('creates user and logs-in', async () => {
   const { click, type } = userEvent.setup();
