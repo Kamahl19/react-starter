@@ -47,6 +47,12 @@ const Providers = ({ children }: Props) => {
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
   render(ui, { wrapper: Providers, ...options });
 
+export const DESKTOP_RESOLUTION_WIDTH = '1280px';
+export const DESKTOP_RESOLUTION_HEIGHT = '800px';
+
+export const MOBILE_RESOLUTION_WIDTH = '414px';
+export const MOBILE_RESOLUTION_HEIGHT = '896px';
+
 export * from '@testing-library/react'; // eslint-disable-line import/export
 export { customRender as render }; // eslint-disable-line import/export
 export { default as userEvent } from '@testing-library/user-event';
