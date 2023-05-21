@@ -33,6 +33,7 @@
 - [Husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
 - [CI/CD](https://github.com/features/actions) - Github Actions to run integration tests on each PR & Main branch
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
+- [rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer) - visualize and analyze your bundle
 
 You can read more about what's included and why here [DOCS.md](./DOCS.md).
 
@@ -82,9 +83,9 @@ There are multiple ways how to run ESLint.
 
 Running `npm run i18n` will first parse the whole codebase to find all used i18n keys. Then it inserts missing keys into the JSON files and removes deprecated keys which are not used in the codebase anymore. The result will be an alphabetically sorted JSONs containing all the currently used i18n keys in the codebase.
 
-## Analysing production JS bundle
+## Analysing & Visualizing production JS bundle
 
-Project comes with the `source-map-explorer` which analyzes the production JS bundle. To use it just run `npm run analyze`.
+Project comes with 2 different tools to analyze and visualize the production JS bundle. The `source-map-explorer` can be used via `npm run analyze` and the `rollup-plugin-visualizer` via `npm run visualize`.
 
 ## Updating dependencies
 

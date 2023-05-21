@@ -7,7 +7,10 @@ import svgrPlugin from 'vite-plugin-svgr';
 import checkerPlugin from 'vite-plugin-checker';
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { z } from 'zod';
+
+const visualize = process.env.VISUALIZE === 'true';
 
 export default defineConfig({
   plugins: [
@@ -33,6 +36,12 @@ export default defineConfig({
         lintCommand: 'eslint "./**/*.{js,ts,tsx}" --max-warnings 0',
       },
     }),
+    visualize &&
+      visualizer({
+        filename: 'dist/stats.html',
+        open: true,
+        template: 'sunburst',
+      }),
   ],
   server: {
     open: true,

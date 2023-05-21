@@ -18,6 +18,7 @@
   },
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
+    "visualize": "export VISUALIZE=true && npm run build",
     "build": "vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
@@ -77,6 +78,7 @@
     "mock-match-media": "0.4.2",
     "msw": "1.2.1",
     "prettier": "2.8.8",
+    "rollup-plugin-visualizer": "5.9.0",
     "source-map-explorer": "2.5.3",
     "typescript": "5.0.4",
     "vite": "4.3.8",
