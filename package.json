@@ -47,7 +47,6 @@
     "@julr/vite-plugin-validate-env": "0.2.2",
     "@mswjs/data": "0.12.0",
     "@tanstack/eslint-plugin-query": "4.29.8",
-    "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "14.4.3",
     "@total-typescript/ts-reset": "0.4.2",
@@ -86,7 +85,8 @@
     "vite-plugin-react-click-to-component": "2.0.0",
     "vite-plugin-svgr": "3.2.0",
     "vite-tsconfig-paths": "4.2.0",
-    "vitest": "0.31.1"
+    "vitest": "0.31.1",
+    "vitest-dom": "0.1.0"
   },
   "dependencies": {
     "@ant-design/icons": "5.1.0",

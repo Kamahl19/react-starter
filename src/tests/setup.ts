@@ -1,5 +1,5 @@
 import { matchMedia, setMedia, MediaQueryListEvent, cleanup as mmmCleanup } from 'mock-match-media';
-import '@testing-library/jest-dom';
+import 'vitest-dom/extend-expect';
 
 import { DESKTOP_RESOLUTION_HEIGHT, DESKTOP_RESOLUTION_WIDTH } from './utils';
 import { dropDB } from 'mocks/db';
