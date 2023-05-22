@@ -19,5 +19,3 @@ root.render(
     <Root />
   </StrictMode>
 );
-
-// TODO remove "rc-menu" from package.json when antd updates to 9.8.4
