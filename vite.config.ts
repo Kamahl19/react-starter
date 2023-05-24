@@ -17,7 +17,7 @@ export default defineConfig({
     ValidateEnv({
       validator: 'zod',
       schema: {
-        VITE_API_URL: z.string().url(),
+        VITE_API_URL: z.string().url().or(z.string().startsWith('/')),
       },
     }),
     reactPlugin({
