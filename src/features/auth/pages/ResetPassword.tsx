@@ -9,6 +9,7 @@ import { useApiErrorMessage, useTokenParam } from 'common/hooks';
 
 import { AUTH_ROUTES } from '../routes';
 import { useResetPasswordRules } from '../validations';
+import AuthCard from '../components/AuthCard';
 
 const ResetPassword = () => {
   const { t } = useTranslation();
@@ -44,21 +45,23 @@ const ResetPassword = () => {
   const rules = useResetPasswordRules();
 
   return (
-    <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical">
-      <Form.Item
-        label={t('auth:resetPassword.password')}
-        name="password"
-        rules={rules.password}
-        validateFirst
-      >
-        <Input.Password autoFocus />
-      </Form.Item>
-      <Form.Item noStyle>
-        <Button block type="primary" htmlType="submit" loading={resetPasswordIsLoading}>
-          {t('global:submit')}
-        </Button>
-      </Form.Item>
-    </Form>
+    <AuthCard title={t('auth:resetPassword.title')}>
+      <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical">
+        <Form.Item
+          label={t('auth:resetPassword.password')}
+          name="password"
+          rules={rules.password}
+          validateFirst
+        >
+          <Input.Password autoFocus />
+        </Form.Item>
+        <Form.Item noStyle>
+          <Button block type="primary" htmlType="submit" loading={resetPasswordIsLoading}>
+            {t('global:submit')}
+          </Button>
+        </Form.Item>
+      </Form>
+    </AuthCard>
   );
 };
 

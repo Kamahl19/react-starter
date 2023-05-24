@@ -6,6 +6,7 @@ import { type ForgottenPasswordPayload, useForgottenPassword } from 'api';
 import { useApiErrorMessage } from 'common/hooks';
 
 import { useForgottenPasswordRules } from '../validations';
+import AuthCard from '../components/AuthCard';
 
 const ForgottenPassword = () => {
   const { t } = useTranslation();
@@ -31,21 +32,23 @@ const ForgottenPassword = () => {
   const rules = useForgottenPasswordRules();
 
   return (
-    <Form<ForgottenPasswordPayload> onFinish={handleSubmit} layout="vertical">
-      <Form.Item
-        label={t('auth:forgottenPassword.email')}
-        name="email"
-        rules={rules.email}
-        validateFirst
-      >
-        <Input autoFocus />
-      </Form.Item>
-      <Form.Item noStyle>
-        <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
-          {t('global:submit')}
-        </Button>
-      </Form.Item>
-    </Form>
+    <AuthCard title={t('auth:forgottenPassword.title')}>
+      <Form<ForgottenPasswordPayload> onFinish={handleSubmit} layout="vertical">
+        <Form.Item
+          label={t('auth:forgottenPassword.email')}
+          name="email"
+          rules={rules.email}
+          validateFirst
+        >
+          <Input autoFocus />
+        </Form.Item>
+        <Form.Item noStyle>
+          <Button block type="primary" htmlType="submit" loading={forgottenPasswordIsLoading}>
+            {t('global:submit')}
+          </Button>
+        </Form.Item>
+      </Form>
+    </AuthCard>
   );
 };
 

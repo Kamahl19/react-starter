@@ -92,11 +92,5 @@ const styles = createStyles({
       [getMQ(token).smMax]: {
         padding: token.paddingSM,
       },
-
-      '.ant-form': {
-        width: '100%',
-        maxWidth: 400,
-        margin: 'auto',
-      },
     }),
 });
