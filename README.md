@@ -2,7 +2,11 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amain)
 
-## What’s Inside?
+## Documentation
+
+There is a more extensive documentation at [DOCS.md](./DOCS.md).
+
+## Features
 
 - [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
 - [Vite](https://vitejs.dev/) - next generation frontend tooling
@@ -36,34 +40,78 @@
 - [source-map-explorer](https://github.com/danvk/source-map-explorer) - analyze and debug space usage through source maps
 - [rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer) - visualize and analyze your bundle
 
-You can read more about what's included and why here [DOCS.md](./DOCS.md).
+## Installation
 
-## Getting Started
+1. [Install nvm](https://github.com/nvm-sh/nvm) (Node version manager)
+2. Install Node v18 and upgrade npm
 
-Just clone the repo with `git clone https://github.com/Kamahl19/react-starter.git` or click on "Use this template" button above.
+```
+nvm install 18
+nvm use 18
+npm upgrade -g npm
+```
 
-## Prerequisites
+3. Clone this repository
 
-1. Install [nvm](https://github.com/nvm-sh/nvm) (Node version manager)
-1. Install Node v18 `nvm install 18`
-1. Use Node v18 `nvm use 18`
-1. Upgrade NPM CLI `npm upgrade -g npm`
-1. Install dependencies `npm i`
-1. Edit the `.env` file according to your needs
+```
+git clone https://github.com/Kamahl19/react-starter.git
+```
 
-## Start app
+4. Install project dependencies
 
-To run the app locally, run `npm start` in app root directory. Vite will start web server in the development mode at `http://localhost:3000` (or the first next free port).
+```
+npm i
+```
+
+5. Edit the `.env` file
+
+## Usage
+
+Start the app locally
+
+```
+npm start
+```
+
+Vite will run web server in the development mode at `http://localhost:3000`.
 
 This project includes [Mock Service Worker](https://mswjs.io/) to mock API. It starts automatically and provides API for authentication and user functionality.
 
-## Build app
+## Building for Production
 
-To build the app for production, run `npm run build` in app root directory. Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
+Build the app for production
 
-## Test app
+```
+npm run build
+```
 
-Run `npm run test` to launch the test runner in the interactive watch mode. See [Vitest docs](https://vitest.dev/) for more information.
+Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
+
+### Analysing & Visualizing production JS bundle
+
+There are 2 different tools to analyze and visualize the production JS bundle:
+
+- `source-map-explorer`
+
+```
+npm run analyze
+```
+
+- `rollup-plugin-visualizer`
+
+```
+npm run visualize
+```
+
+## Testing
+
+Launch the test runner in the interactive watch mode
+
+```
+npm run test
+```
+
+See [Vitest docs](https://vitest.dev/) for more information.
 
 ## Prettier
 
@@ -83,10 +131,6 @@ There are multiple ways how to run ESLint.
 ## i18n
 
 Running `npm run i18n` will first parse the whole codebase to find all used i18n keys. Then it inserts missing keys into the JSON files and removes deprecated keys which are not used in the codebase anymore. The result will be an alphabetically sorted JSONs containing all the currently used i18n keys in the codebase.
-
-## Analysing & Visualizing production JS bundle
-
-Project comes with 2 different tools to analyze and visualize the production JS bundle. The `source-map-explorer` can be used via `npm run analyze` and the `rollup-plugin-visualizer` via `npm run visualize`.
 
 ## Updating dependencies
 
