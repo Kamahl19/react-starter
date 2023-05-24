@@ -42,34 +42,28 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
 
 ## Installation
 
-1. [Install nvm](https://github.com/nvm-sh/nvm) (Node version manager)
-2. Install Node v18 and upgrade npm
-
-```
-nvm install 18
-nvm use 18
-npm upgrade -g npm
-```
-
-3. Clone this repository
-
-```
-git clone https://github.com/Kamahl19/react-starter.git
-```
-
-4. Install project dependencies
-
-```
-npm i
-```
-
-5. Edit the `.env` file
+- [Install nvm](https://github.com/nvm-sh/nvm) (Node version manager)
+- Install Node v18 and upgrade npm
+  ```bash
+  nvm install 18
+  nvm use 18
+  npm upgrade -g npm
+  ```
+- Clone this repository
+  ```bash
+  git clone https://github.com/Kamahl19/react-starter.git
+  ```
+- Install project dependencies
+  ```bash
+  npm i
+  ```
+- Edit the `.env` file
 
 ## Usage
 
 Start the app locally
 
-```
+```bash
 npm start
 ```
 
@@ -81,7 +75,7 @@ This project includes [Mock Service Worker](https://mswjs.io/) to mock API. It s
 
 Build the app for production
 
-```
+```bash
 npm run build
 ```
 
@@ -91,23 +85,20 @@ Your app is then ready to be deployed from the `/dist` folder. See the [Building
 
 There are 2 different tools to analyze and visualize the production JS bundle:
 
-- `source-map-explorer`
-
-```
-npm run analyze
-```
-
-- `rollup-plugin-visualizer`
-
-```
-npm run visualize
-```
+- source-map-explorer
+  ```bash
+  npm run analyze
+  ```
+- rollup-plugin-visualizer
+  ```bash
+  npm run visualize
+  ```
 
 ## Testing
 
 Launch the test runner in the interactive watch mode
 
-```
+```bash
 npm run test
 ```
 
