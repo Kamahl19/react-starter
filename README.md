@@ -2,6 +2,8 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amain)
 
+### 🔥 [Live Preview](https://react-starter-kamahl19.vercel.app/)
+
 ## Documentation
 
 There is a more extensive documentation at [DOCS.md](./DOCS.md).
