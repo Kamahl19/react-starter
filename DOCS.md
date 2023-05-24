@@ -38,6 +38,8 @@ Vite configuration [vite.config.ts](./vite.config.ts) in this project also uses 
 This project is entirely written in [TypeScript](https://www.typescriptlang.org/), a strongly typed programming language that builds on JavaScript. There is a good Get Started both for [JavaScript programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) and [Java Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html). The TS compiler options are defined in [tsconfig.json](./tsconfig.json). A little types utility library [ts-reset
 ](https://github.com/total-typescript/ts-reset) to improve types for common JavaScript API's is also included.
 
+This project comes with 2 different tools to analyze and visualize the production JS bundle. The `source-map-explorer` can be used via `npm run analyze` and the `rollup-plugin-visualizer` via `npm run visualize`.
+
 ## Testing
 
 ### Vitest
@@ -71,6 +73,10 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
 
 Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
+
+### Testing on different screen resolutions
+
+By default the resolution is set to 1280x800 before each test. This can be changed in [src/tests/utils.tsx](./src/tests/utils.tsx). To change the resolution per test use the `setDesktopResolution` and `setMobileResolution` helper methods.
 
 ## Linting & Formatting
 
@@ -132,11 +138,12 @@ On top of that, this project already comes with [several components](./src/commo
 - [LoadingScreen](./src/common/components/LoadingScreen/index.tsx) is a full-page loader
 - [LanguageSelector](./src/common/components/LanguageSelector/index.tsx) is a component which changes the language of the application
 - [Logo](./src/common/components/Logo/index.tsx) is a simple logo component
-- [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing [active link](./src/common/routerUtils.ts) based on the current location
+- [Menu](./src/common/components/Menu/index.tsx) is a React Router aware menu showing active link based on the current location
 - [Navbar](./src/common/components/Navbar/index.tsx) is a horizontal menu which changes itself to a hamburger menu for mobile devices
 - [NotFound](./src/common/components/NotFound/index.tsx) is a 404 component
 - [PageHeader](./src/common/components/PageHeader/index.tsx) is a simplified version of [Ant v4 PageHeader](https://4x.ant.design/components/page-header/) component which was removed from Ant v5
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
+- [SpaceVertical](./src/common/components/SpaceVertical/index.tsx) is a better vertical Ant's Space component
 - [ThemeSwitch](./src/common/components/ThemeSwitch/index.tsx) is a Switch component which toggles between light and dark theme
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
@@ -167,6 +174,8 @@ i18next ecosystem provides [many plugins and tools](https://www.i18next.com/over
 ## React Router
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
+
+When creating an app with easily shareable URLs, you often want to encode state as query parameters, but all query parameters must be encoded as strings. Library [use-query-params](https://github.com/pbeshai/use-query-params) allows you to easily encode and decode data of any type as query parameters with smart memoization to prevent creating unnecessary duplicate objects. It's setup in the [src/app/providers/Router.tsx](./src/app/providers/Router.tsx).
 
 Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) and used in [src/features/dashboard/components/DashboardPageHeader/index.tsx](./src/features/dashboard/components/DashboardPageHeader/index.tsx).
 
@@ -199,7 +208,7 @@ If you want to read more about React Query there is an [extensive documentation]
 
 In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React Query provider to which you can pass custom configuration. It also includes dedicated Devtools for easy visualisation and debugging of queries.
 
-A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/user.ts](./src/api/user.ts) and [src/api/auth.ts](./src/api/auth.ts).
+A [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-based [src/api/client.ts](./src/api/client.ts) is provided to the React Query hooks. You can see its usage in [src/api/endpoints.ts](./src/api/endpoints.ts).
 
 Thanks to the [zod](https://github.com/colinhacks/zod) schema validation library, we can also type-check the data returned from the API to ensure that it matches the expected shape. You can read more about this idea in the "[Type-Safe React Query](https://tkdodo.eu/blog/type-safe-react-query#trust-again)" and "[https://timdeschryver.dev/blog/why-we-should-verify-http-response-bodies-and-why-we-should-use-zod-for-this](Why we should verify HTTP response bodies)" posts.
 
@@ -209,7 +218,7 @@ A token-based API agnostic authentication is already included in this project. I
 
 It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/RequireIsLoggedIn.tsx) and [RequireIsAnonymous](./src/common/auth/RequireIsAnonymous.tsx), to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
-It also provides `getToken` method which servers as an escape hatch in case we need to get JWT token outside of React components. This is in fact used in [src/api/common.ts](./src/api/common.ts) to inject token to API call headers.
+It also provides `getToken` method which servers as an escape hatch in case we need to get JWT token outside of React components. This is in fact used in [src/api/utils.ts](./src/api/utils.ts) to inject token to API call headers.
 
 Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage` using the [recoil-persist](https://github.com/polemius/recoil-persist) library.
 
@@ -255,7 +264,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── src/
 │   ├── api/ : Communication with API server
 │   ├── app/ : Application-wide (framework) files
-│   │   ├── providers/ : providers for AntD, Recoil, Query
+│   │   ├── providers/ : providers for AntD, Recoil, Query, Router
 │   │   ├── theme/ : customising AntD theme, Dark mode, global styles, Emotion setup
 │   ├── common/ : Reusable functionality
 │   │   ├── auth/ : Authentication related logic
@@ -267,6 +276,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 │   ├── tests/ : Testing related functionality
 │   │   ├── setup.tsx : Executes before tests to mock API or set global settings
 │   │   ├── utils.tsx : Provides custom render function for testing
+│   ├── config.ts : Global configuration
 │   ├── index.tsx : Application entry file
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
@@ -289,7 +299,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [Recoil](././src/app/providers/Recoil.tsx), [AntDesign](./src/app/providers/AntDesign.tsx), [Query](././src/app/providers/Query.tsx), and Router. It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [Recoil](././src/app/providers/Recoil.tsx), [AntDesign](./src/app/providers/AntDesign.tsx), [Query](././src/app/providers/Query.tsx), and [Router](./src/app/providers/Router.tsx). It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

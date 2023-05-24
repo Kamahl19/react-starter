@@ -1,6 +1,7 @@
 import { Suspense, type ReactNode, type ReactElement } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { render, type RenderOptions } from '@testing-library/react';
+import { setMedia } from 'mock-match-media';
 
 import AntDesign from 'app/providers/AntDesign';
 import Recoil from 'app/providers/Recoil';
@@ -47,11 +48,17 @@ const Providers = ({ children }: Props) => {
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
   render(ui, { wrapper: Providers, ...options });
 
-export const DESKTOP_RESOLUTION_WIDTH = '1280px';
-export const DESKTOP_RESOLUTION_HEIGHT = '800px';
+const DESKTOP_RESOLUTION_WIDTH = '1280px';
+const DESKTOP_RESOLUTION_HEIGHT = '800px';
 
-export const MOBILE_RESOLUTION_WIDTH = '414px';
-export const MOBILE_RESOLUTION_HEIGHT = '896px';
+const MOBILE_RESOLUTION_WIDTH = '414px';
+const MOBILE_RESOLUTION_HEIGHT = '896px';
+
+export const setDesktopResolution = () =>
+  setMedia({ width: DESKTOP_RESOLUTION_WIDTH, height: DESKTOP_RESOLUTION_HEIGHT });
+
+export const setMobileResolution = () =>
+  setMedia({ width: MOBILE_RESOLUTION_WIDTH, height: MOBILE_RESOLUTION_HEIGHT });
 
 export * from '@testing-library/react'; // eslint-disable-line import/export
 export { customRender as render }; // eslint-disable-line import/export

@@ -1,15 +1,10 @@
+import { useMemo } from 'react';
 import { type SerializedStyles, type Theme, css } from '@emotion/react';
-import { Grid } from 'antd';
+import { type Breakpoint, theme } from 'antd';
+
+import { useMediaQuery } from './hooks';
 
 export { type Breakpoint } from 'antd';
-
-export const useBreakpoint = () => Grid.useBreakpoint();
-
-export const createStyles = <
-  T extends Record<string, SerializedStyles | ((theme: Theme) => SerializedStyles)>
->(
-  arg: T
-) => arg;
 
 export const getMQ = (token: Theme['token']) => ({
   xsMin: `@media (min-width: ${token.screenXSMin}px)`,
@@ -24,6 +19,28 @@ export const getMQ = (token: Theme['token']) => ({
   xlMax: `@media (max-width: ${token.screenXLMax}px)`,
   xxlMin: `@media (min-width: ${token.screenXXLMin}px)`,
 });
+
+export const useBreakpoint = (breakpoint: Breakpoint) => {
+  const { token } = theme.useToken();
+
+  const query = useMemo(() => {
+    const key = breakpoint === 'xs' ? 'xsMax' : (`${breakpoint}Min` satisfies `${Breakpoint}Min`);
+
+    return getMQ(token)[key].replace('@media ', '');
+  }, [breakpoint, token]);
+
+  return useMediaQuery(query);
+};
+
+export const createStyles = <
+  T extends Record<string, SerializedStyles | ((theme: Theme) => SerializedStyles)>
+>(
+  arg: T
+) => arg;
+
+/**
+ * Reusable styles
+ */
 
 export const centeredCss = css({
   display: 'grid',

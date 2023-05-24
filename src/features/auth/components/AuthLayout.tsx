@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [isDark] = useIsDark();
-  const { xs } = useBreakpoint();
+  const xs = useBreakpoint('xs');
 
   const menuItems = useMemo(
     () =>

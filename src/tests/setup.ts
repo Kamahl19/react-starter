@@ -1,7 +1,7 @@
-import { matchMedia, setMedia, MediaQueryListEvent, cleanup as mmmCleanup } from 'mock-match-media';
+import { matchMedia, MediaQueryListEvent, cleanup as mmmCleanup } from 'mock-match-media';
 import 'vitest-dom/extend-expect';
 
-import { DESKTOP_RESOLUTION_HEIGHT, DESKTOP_RESOLUTION_WIDTH } from './utils';
+import { setDesktopResolution } from './utils';
 import { dropDB } from 'mocks/db';
 import { server } from 'mocks/server';
 
@@ -10,7 +10,7 @@ import 'i18n';
 // window.matchMedia
 vi.stubGlobal('matchMedia', matchMedia);
 vi.stubGlobal('MediaQueryListEvent', MediaQueryListEvent);
-beforeEach(() => setMedia({ width: DESKTOP_RESOLUTION_WIDTH, height: DESKTOP_RESOLUTION_HEIGHT }));
+beforeEach(() => setDesktopResolution());
 afterEach(() => mmmCleanup());
 
 // MSW
