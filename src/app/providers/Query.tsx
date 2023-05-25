@@ -12,6 +12,7 @@ const queryClient = createQueryClient(
     ? {
         defaultOptions: {
           queries: {
+            // Disable refetching on switching from DevTools to the app
             refetchOnWindowFocus: false,
           },
         },

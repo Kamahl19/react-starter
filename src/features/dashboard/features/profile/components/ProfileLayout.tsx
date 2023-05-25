@@ -40,7 +40,7 @@ const ProfileLayout = ({ user, children }: Props) => {
         </Descriptions>
       </DashboardPageHeader>
 
-      <Widget menuItems={menuItems}>{children}</Widget>
+      <Widget.WithMenu menuItems={menuItems}>{children}</Widget.WithMenu>
     </>
   );
 };

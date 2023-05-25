@@ -9,6 +9,7 @@ import { useApiErrorMessage } from 'common/hooks';
 
 import { useLoginRules } from '../validations';
 import { AUTH_ROUTES } from '../routes';
+import AuthCard from '../components/AuthCard';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -25,27 +26,29 @@ const Login = () => {
   const rules = useLoginRules();
 
   return (
-    <Form<LoginPayload> onFinish={handleLogin} layout="vertical" requiredMark={false}>
-      <Form.Item label={t('auth:logIn.email')} name="email" rules={rules.email} validateFirst>
-        <Input autoFocus />
-      </Form.Item>
-      <Form.Item
-        label={t('auth:logIn.password')}
-        name="password"
-        rules={rules.password}
-        validateFirst
-      >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item>
-        <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('auth:logIn.forgotPassword')}</Link>
-      </Form.Item>
-      <Form.Item noStyle>
-        <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
-          {t('auth:logIn.submit')}
-        </Button>
-      </Form.Item>
-    </Form>
+    <AuthCard title={t('auth:logIn.title')}>
+      <Form<LoginPayload> onFinish={handleLogin} layout="vertical" requiredMark={false}>
+        <Form.Item label={t('auth:logIn.email')} name="email" rules={rules.email} validateFirst>
+          <Input autoFocus />
+        </Form.Item>
+        <Form.Item
+          label={t('auth:logIn.password')}
+          name="password"
+          rules={rules.password}
+          validateFirst
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item>
+          <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('auth:logIn.forgotPassword')}</Link>
+        </Form.Item>
+        <Form.Item noStyle>
+          <Button block type="primary" htmlType="submit" loading={isLoginLoading}>
+            {t('auth:logIn.submit')}
+          </Button>
+        </Form.Item>
+      </Form>
+    </AuthCard>
   );
 };
 

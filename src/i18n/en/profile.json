@@ -5,7 +5,8 @@
   "changePassword": {
     "currentPassword": "Current Password",
     "newPassword": "New Password",
-    "success": "Your password has been changed successfully."
+    "success": "Your password has been changed successfully.",
+    "title": "Change Password"
   },
   "header": {
     "isConfirmed": "Confirmed"

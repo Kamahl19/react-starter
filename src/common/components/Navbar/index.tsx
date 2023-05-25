@@ -2,7 +2,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
 
 import { Menu, type MenuProps } from 'common/components';
-import { createStyles, useBreakpoint, type Breakpoint } from 'common/styleUtils';
+import { createStyles, type Breakpoint, useBreakpoint } from 'common/styleUtils';
 
 import NavbarDropdown from './Dropdown';
 
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Navbar = ({ items, mobileMenuBreakpoint }: Props) =>
-  useBreakpoint()[mobileMenuBreakpoint] ? (
+  useBreakpoint(mobileMenuBreakpoint) ? (
     <Menu mode="horizontal" items={items} disabledOverflow css={styles.self} />
   ) : (
     <NavbarDropdown menu={{ items }} caret={false}>

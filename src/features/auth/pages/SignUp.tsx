@@ -9,6 +9,7 @@ import { useApiErrorMessage } from 'common/hooks';
 
 import { AUTH_ROUTES } from '../routes';
 import { useSignUpRules } from '../validations';
+import AuthCard from '../components/AuthCard';
 
 const DEBOUNCE_MS = 500;
 
@@ -44,31 +45,33 @@ const SignUp = () => {
   const rules = useSignUpRules();
 
   return (
-    <Form<CreateUserPayload> form={form} onFinish={handleSubmit} layout="vertical">
-      <Form.Item
-        label={t('auth:signUp.email')}
-        name="email"
-        rules={rules.email}
-        validateFirst
-        validateStatus={isUserEmailAvailable ? undefined : 'error'}
-        help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
-      >
-        <Input autoFocus autoComplete="off" />
-      </Form.Item>
-      <Form.Item
-        label={t('auth:signUp.password')}
-        name="password"
-        rules={rules.password}
-        validateFirst
-      >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item noStyle>
-        <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
-          {t('auth:signUp.submit')}
-        </Button>
-      </Form.Item>
-    </Form>
+    <AuthCard title={t('auth:signUp.title')}>
+      <Form<CreateUserPayload> form={form} onFinish={handleSubmit} layout="vertical">
+        <Form.Item
+          label={t('auth:signUp.email')}
+          name="email"
+          rules={rules.email}
+          validateFirst
+          validateStatus={isUserEmailAvailable ? undefined : 'error'}
+          help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
+        >
+          <Input autoFocus autoComplete="off" />
+        </Form.Item>
+        <Form.Item
+          label={t('auth:signUp.password')}
+          name="password"
+          rules={rules.password}
+          validateFirst
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item noStyle>
+          <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
+            {t('auth:signUp.submit')}
+          </Button>
+        </Form.Item>
+      </Form>
+    </AuthCard>
   );
 };
 

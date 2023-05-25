@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [isDark] = useIsDark();
-  const { xs } = useBreakpoint();
+  const xs = useBreakpoint('xs');
 
   const menuItems = useMemo(
     () =>
@@ -91,12 +91,6 @@ const styles = createStyles({
 
       [getMQ(token).smMax]: {
         padding: token.paddingSM,
-      },
-
-      '.ant-form': {
-        width: '100%',
-        maxWidth: 400,
-        margin: 'auto',
       },
     }),
 });

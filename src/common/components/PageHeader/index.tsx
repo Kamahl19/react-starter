@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import { Typography, Row, Col } from 'antd';
 import { css } from '@emotion/react';
 
-import { createStyles, getMQ, noMargin, useBreakpoint, type Breakpoint } from 'common/styleUtils';
+import { createStyles, getMQ, noMargin, type Breakpoint, useBreakpoint } from 'common/styleUtils';
 import { Menu, SpaceVertical, type MenuProps } from 'common/components';
 
 export type Props = {
@@ -22,7 +22,7 @@ const PageHeader = ({
   menuItems,
   menuBreakpoint = 'md',
 }: Props) => {
-  const { [menuBreakpoint]: isBreakpoint } = useBreakpoint();
+  const isBreakpoint = useBreakpoint(menuBreakpoint);
 
   if (!children && !title && !extra && !menuItems) {
     return <div css={styles.onlyBreadcrumbs}>{breadcrumbs}</div>;

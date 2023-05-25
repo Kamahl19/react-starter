@@ -7,8 +7,8 @@ import {
   createStyles,
   fullVPHeightCss,
   getMQ,
-  useBreakpoint,
   type Breakpoint,
+  useBreakpoint,
 } from 'common/styleUtils';
 import AdminLayoutContext, { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 
@@ -33,22 +33,15 @@ const AdminLayout = ({
   sidebarCollapsedWidth = 80,
   sidebarWidth = 256,
 }: Props) => {
-  const { [sidebarBreakpoint]: isBreakpoint } = useBreakpoint();
-
-  const useDrawer = !isBreakpoint;
+  const useDrawer = !useBreakpoint(sidebarBreakpoint);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleIsCollapsed = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);
 
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const toggleIsDrawerVisible = useCallback(
-    () => setIsDrawerVisible(!isDrawerVisible),
-    [isDrawerVisible]
-  );
 
   const toggle = useCallback(
-    () => (useDrawer ? toggleIsDrawerVisible() : toggleIsCollapsed()),
-    [useDrawer, toggleIsDrawerVisible, toggleIsCollapsed]
+    () => (useDrawer ? setIsDrawerVisible((s) => !s) : setIsCollapsed((s) => !s)),
+    [useDrawer]
   );
 
   const sidebarState = useDrawer
@@ -85,7 +78,7 @@ const AdminLayout = ({
             open={isDrawerVisible}
             width={sidebarWidth}
             css={styles.drawer}
-            onClose={toggleIsDrawerVisible}
+            onClose={() => setIsDrawerVisible((s) => !s)}
           >
             <Sidebar {...sidebarProps} />
           </Drawer>
@@ -99,7 +92,7 @@ const AdminLayout = ({
                 {useDrawer && (
                   <>
                     {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-                    <div css={styles.drawerTrigger} onClick={toggleIsDrawerVisible}>
+                    <div css={styles.drawerTrigger} onClick={() => setIsDrawerVisible((s) => !s)}>
                       <MenuOutlined />
                     </div>
                   </>
