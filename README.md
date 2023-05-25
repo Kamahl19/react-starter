@@ -2,6 +2,8 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amain)
 
+### 🔥 [Live Demo](https://react-starter-kamahl19.vercel.app/)
+
 ## Documentation
 
 There is a more extensive documentation at [DOCS.md](./DOCS.md).
@@ -80,6 +82,13 @@ npm run build
 ```
 
 Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
+
+### Remove Vercel Demo
+
+This project is being deployed to Vercel for demo purposes. Follow these steps to remove it:
+
+- Find all occurences of `__IS_VERCEL_DEMO__` and remove them
+- Delete `vercel.json` file
 
 ### Analysing & Visualizing production JS bundle
 

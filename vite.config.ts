@@ -43,6 +43,9 @@ export default defineConfig({
         template: 'sunburst',
       }),
   ],
+  define: {
+    __IS_VERCEL_DEMO__: process.env.VERCEL !== undefined,
+  },
   server: {
     open: true,
     port: 3000,

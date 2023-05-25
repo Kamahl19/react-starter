@@ -261,6 +261,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .husky/ : Git hooks e.g. the pre-commit hook
 ├── .vscode/ : VSCode configuration
 ├── public/ : Public static assets
+│   ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
 ├── src/
 │   ├── api/ : Communication with API server
 │   ├── app/ : Application-wide (framework) files
@@ -288,7 +289,6 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
-├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
 ├── package.json : holds metadata about the project and its dependencies
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
