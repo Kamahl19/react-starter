@@ -15,7 +15,7 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
 - [Ant.Design](https://ant.design/) - UI library
   - [Emotion](https://emotion.sh/) - CSS in JS library
   - Light and Dark themes
-- [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Sign-in, Sign-out, Forgotten password, Email verification
+- [JWT](https://jwt.io/) Authentication - including all the common features such as Sign-up, Sign-in, Sign-out, Reset password, Email confirmation
 - [Zod](https://github.com/colinhacks/zod) - TypeScript-first schema validation with static type inference
 - [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) based API client
   - [zod-fetch](https://github.com/mattpocock/zod-fetch) - to make API client type-safe

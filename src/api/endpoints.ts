@@ -4,7 +4,6 @@ import {
   signInResponseSchema,
   signOutResponseSchema,
   userResponseSchema,
-  forgottenPasswordResponseSchema,
   userEmailAvailabilityResponseSchema,
   confirmEmailResponseSchema,
   resetPasswordResponseSchema,
@@ -13,7 +12,6 @@ import type {
   SignInPayload,
   CreateUserPayload,
   ChangePasswordPayload,
-  ForgottenPasswordPayload,
   ResetPasswordPayload,
 } from './models';
 
@@ -65,14 +63,7 @@ export const changePassword = (userId: string, body: ChangePasswordPayload) =>
     body,
   });
 
-export const forgottenPassword = (body: ForgottenPasswordPayload) =>
-  post(forgottenPasswordResponseSchema, getURL('/user/forgot-password'), {
-    headers: getAuthorizationHeader(),
-    body,
-  });
-
-export const resetPassword = (token: string, body: ResetPasswordPayload) =>
-  patch(resetPasswordResponseSchema, getURL('/user/reset-password'), {
-    headers: getAuthorizationHeader(token),
+export const resetPassword = (body: ResetPasswordPayload, redirectTo: string) =>
+  patch(resetPasswordResponseSchema, getURL('/user/reset-password', { redirectTo }), {
     body,
   });

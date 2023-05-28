@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 
-import { createRules, passwordRule } from 'common/validations';
+import { PASSWORD_MIN_LENGTH } from 'api';
+import { createRules } from 'common/validations';
 
 export const useChangePasswordRules = () =>
   useMemo(
     () =>
       createRules({
-        currentPassword: [{ required: true, type: 'string' }],
-        password: [passwordRule],
+        password: [{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }],
       }),
     []
   );

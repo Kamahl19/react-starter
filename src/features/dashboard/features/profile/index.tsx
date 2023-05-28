@@ -13,19 +13,14 @@ const ChangePassword = lazy(() => import('./pages/ChangePassword'));
 const Profile = () => {
   const { userId } = useAuth();
 
-  const {
-    isLoading: userIsLoading,
-    isError: userIsError,
-    error: userError,
-    data,
-  } = useFetchUser(userId);
+  const { isLoading, isError, error, data } = useFetchUser(userId);
 
-  if (userIsLoading) {
+  if (isLoading) {
     return <LoadingScreen />;
   }
 
-  if (userIsError) {
-    return <ResultError error={userError} card />;
+  if (isError) {
+    return <ResultError error={error} card />;
   }
 
   return (

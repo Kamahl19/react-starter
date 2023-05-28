@@ -40,7 +40,7 @@ const SignIn = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item>
-          <Link to={AUTH_ROUTES.forgottenPassword.to}>{t('auth:signIn.forgotPassword')}</Link>
+          <Link to={AUTH_ROUTES.resetPassword.to}>{t('auth:signIn.resetPassword')}</Link>
         </Form.Item>
         <Form.Item noStyle>
           <Button block type="primary" htmlType="submit" loading={isLoading}>

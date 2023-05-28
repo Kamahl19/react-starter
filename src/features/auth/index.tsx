@@ -9,7 +9,6 @@ import { AUTH_ROUTES } from './routes';
 import AuthLayout from './components/AuthLayout';
 
 const SignUp = lazy(() => import('./pages/SignUp'));
-const ForgottenPassword = lazy(() => import('./pages/ForgottenPassword'));
 const SignIn = lazy(() => import('./pages/SignIn'));
 const ConfirmEmail = lazy(() => import('./pages/ConfirmEmail'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
@@ -31,7 +30,6 @@ const Auth = () => (
         <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
         <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       </Route>
-      <Route path={AUTH_ROUTES.forgottenPassword.path} element={<ForgottenPassword />} />
       <Route path={AUTH_ROUTES.resetPassword.path} element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
     </Route>

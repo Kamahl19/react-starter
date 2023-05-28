@@ -4,17 +4,11 @@ import {
   fetchUser,
   createUser,
   changePassword,
-  forgottenPassword,
   resetPassword,
   fetchUserEmailAvailability,
   confirmEmail,
 } from './endpoints';
-import type {
-  CreateUserPayload,
-  ChangePasswordPayload,
-  ForgottenPasswordPayload,
-  ResetPasswordPayload,
-} from './models';
+import type { CreateUserPayload, ChangePasswordPayload, ResetPasswordPayload } from './models';
 
 /**
  * User
@@ -60,15 +54,10 @@ export const useChangePassword = () => {
   });
 };
 
-export const useForgottenPassword = () =>
-  useMutation({
-    mutationFn: (payload: ForgottenPasswordPayload) => forgottenPassword(payload),
-  });
-
 export const useResetPassword = () =>
   useMutation({
-    mutationFn: ({ token, payload }: { token: string; payload: ResetPasswordPayload }) =>
-      resetPassword(token, payload),
+    mutationFn: ({ payload, redirectTo }: { payload: ResetPasswordPayload; redirectTo: string }) =>
+      resetPassword(payload, redirectTo),
   });
 
 export const useFetchUserEmailAvailability = (email: string) =>

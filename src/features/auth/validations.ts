@@ -1,6 +1,18 @@
 import { useMemo } from 'react';
 
-import { createRules, passwordRule, emailRule } from 'common/validations';
+import { PASSWORD_MIN_LENGTH } from 'api';
+import { createRules } from 'common/validations';
+
+export const emailRule = {
+  required: true,
+  type: 'email',
+} as const;
+
+export const passwordRule = {
+  required: true,
+  type: 'string',
+  min: PASSWORD_MIN_LENGTH,
+} as const;
 
 export const useSignUpRules = () =>
   useMemo(
@@ -22,20 +34,11 @@ export const useSignInRules = () =>
     []
   );
 
-export const useForgottenPasswordRules = () =>
-  useMemo(
-    () =>
-      createRules({
-        email: [emailRule],
-      }),
-    []
-  );
-
 export const useResetPasswordRules = () =>
   useMemo(
     () =>
       createRules({
-        password: [passwordRule],
+        email: [emailRule],
       }),
     []
   );

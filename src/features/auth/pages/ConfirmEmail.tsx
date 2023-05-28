@@ -18,15 +18,10 @@ const ConfirmEmail = () => {
 
   const token = useTokenParam();
 
-  const {
-    mutate: confirmEmail,
-    isLoading: confirmEmailIsLoading,
-    isError: isConfirmEmailError,
-    error: confirmEmailError,
-  } = useConfirmEmail();
+  const { mutate, isLoading, isError, error } = useConfirmEmail();
 
   useEffect(() => {
-    confirmEmail(token, {
+    mutate(token, {
       onSuccess: () => {
         message.success(t('auth:confirmEmail.success'));
         navigate(AUTH_ROUTES.signIn.to);
@@ -34,12 +29,12 @@ const ConfirmEmail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (confirmEmailIsLoading) {
+  if (isLoading) {
     return <LoadingScreen />;
   }
 
-  if (isConfirmEmailError) {
-    return <ResultError onReset={() => window.location.reload()} error={confirmEmailError} />;
+  if (isError) {
+    return <ResultError onReset={() => window.location.reload()} error={error} />;
   }
 
   return <></>;

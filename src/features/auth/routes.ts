@@ -7,10 +7,6 @@ export const AUTH_ROUTES = {
     path: 'sign-up',
     to: '/auth/sign-up',
   },
-  forgottenPassword: {
-    path: 'forgotten-password',
-    to: '/auth/forgotten-password',
-  },
   signIn: {
     path: 'sign-in',
     to: '/auth/sign-in',

@@ -20,11 +20,11 @@ const ChangePassword = () => {
 
   const onError = useApiErrorMessage();
 
-  const { mutate: changePassword, isLoading: changePasswordIsLoading } = useChangePassword();
+  const { mutate, isLoading } = useChangePassword();
 
   const handleSubmit = useCallback(
     (payload: ChangePasswordPayload) =>
-      changePassword(
+      mutate(
         { userId, payload },
         {
           onSuccess: () => {
@@ -34,7 +34,7 @@ const ChangePassword = () => {
           onError,
         }
       ),
-    [t, userId, changePassword, form, onError, message]
+    [t, userId, mutate, form, onError, message]
   );
 
   const rules = useChangePasswordRules();
@@ -45,23 +45,15 @@ const ChangePassword = () => {
 
       <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item
-          label={t('profile:changePassword.currentPassword')}
-          name="currentPassword"
-          rules={rules.currentPassword}
-          validateFirst
-        >
-          <Input.Password autoFocus />
-        </Form.Item>
-        <Form.Item
           label={t('profile:changePassword.newPassword')}
           name="password"
           rules={rules.password}
           validateFirst
         >
-          <Input.Password />
+          <Input.Password autoFocus />
         </Form.Item>
         <Form.Item noStyle>
-          <Button type="primary" htmlType="submit" loading={changePasswordIsLoading}>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             {t('global:save')}
           </Button>
         </Form.Item>

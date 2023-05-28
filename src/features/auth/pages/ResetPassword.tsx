@@ -1,13 +1,11 @@
 import { useCallback } from 'react';
 import { App, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { type ResetPasswordPayload, useResetPassword } from 'api';
-import { useAuth, useSignOut } from 'common/auth';
-import { useApiErrorMessage, useTokenParam } from 'common/hooks';
+import { useApiErrorMessage } from 'common/hooks';
+import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
 
-import { AUTH_ROUTES } from '../routes';
 import { useResetPasswordRules } from '../validations';
 import AuthCard from '../components/AuthCard';
 
@@ -16,31 +14,25 @@ const ResetPassword = () => {
 
   const { message } = App.useApp();
 
-  const { isLoggedIn } = useAuth();
-  const { signOut } = useSignOut();
-
-  const navigate = useNavigate();
-
-  const token = useTokenParam();
-
   const onError = useApiErrorMessage();
 
-  const { mutate: resetPassword, isLoading: resetPasswordIsLoading } = useResetPassword();
+  const { mutate, isLoading } = useResetPassword();
 
   const handleSubmit = useCallback(
     (payload: ResetPasswordPayload) =>
-      resetPassword(
-        { token, payload },
+      mutate(
+        {
+          payload,
+          redirectTo: `${window.location.origin}${DASHBOARD_ROUTES.profileChangePassword.to}`,
+        },
         {
           onSuccess: () => {
             message.success(t('auth:resetPassword.success'));
-            isLoggedIn && signOut();
-            navigate(AUTH_ROUTES.signIn.to);
           },
           onError,
         }
       ),
-    [t, navigate, resetPassword, token, onError, message, isLoggedIn, signOut]
+    [t, mutate, onError, message]
   );
 
   const rules = useResetPasswordRules();
@@ -49,15 +41,15 @@ const ResetPassword = () => {
     <AuthCard title={t('auth:resetPassword.title')}>
       <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical">
         <Form.Item
-          label={t('auth:resetPassword.password')}
-          name="password"
-          rules={rules.password}
+          label={t('auth:resetPassword.email')}
+          name="email"
+          rules={rules.email}
           validateFirst
         >
-          <Input.Password autoFocus />
+          <Input autoFocus />
         </Form.Item>
         <Form.Item noStyle>
-          <Button block type="primary" htmlType="submit" loading={resetPasswordIsLoading}>
+          <Button block type="primary" htmlType="submit" loading={isLoading}>
             {t('global:submit')}
           </Button>
         </Form.Item>

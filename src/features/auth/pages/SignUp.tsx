@@ -22,18 +22,18 @@ const SignUp = () => {
 
   const onError = useApiErrorMessage();
 
-  const { mutate: createUser, isLoading: createUserIsLoading } = useCreateUser();
+  const { mutate, isLoading } = useCreateUser();
 
   const handleSubmit = useCallback(
     (payload: CreateUserPayload) =>
-      createUser(payload, {
+      mutate(payload, {
         onSuccess: () => {
           message.success(t('auth:signUp.success'));
           navigate(AUTH_ROUTES.signIn.to);
         },
         onError,
       }),
-    [t, navigate, createUser, onError, message]
+    [t, navigate, mutate, onError, message]
   );
 
   const [form] = Form.useForm<CreateUserPayload>();
@@ -66,7 +66,7 @@ const SignUp = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item noStyle>
-          <Button block type="primary" htmlType="submit" loading={createUserIsLoading}>
+          <Button block type="primary" htmlType="submit" loading={isLoading}>
             {t('auth:signUp.submit')}
           </Button>
         </Form.Item>
