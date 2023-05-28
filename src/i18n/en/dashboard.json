@@ -3,7 +3,7 @@
     "home": "Home"
   },
   "topMenu": {
-    "signOut": "Sign out",
-    "profile": "Profile"
+    "profile": "Profile",
+    "signOut": "Sign out"
   }
 }
