@@ -27,8 +27,8 @@ const AuthLayout = ({ children }: Props) => {
         ? []
         : [
             {
-              key: AUTH_ROUTES.login.to,
-              label: <Link to={AUTH_ROUTES.login.to}>{t('auth:menu.logIn')}</Link>,
+              key: AUTH_ROUTES.signIn.to,
+              label: <Link to={AUTH_ROUTES.signIn.to}>{t('auth:menu.signIn')}</Link>,
             },
             {
               key: AUTH_ROUTES.signUp.to,
@@ -43,7 +43,7 @@ const AuthLayout = ({ children }: Props) => {
       <Layout.Header css={styles.header}>
         <Row justify="space-between" wrap={false}>
           <Col>
-            <Logo to={AUTH_ROUTES.login.to} inverted={isDark} isSmall={xs} />
+            <Logo to={AUTH_ROUTES.signIn.to} inverted={isDark} isSmall={xs} />
           </Col>
           <Col>
             <Space size="large">

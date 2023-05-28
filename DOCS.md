@@ -72,7 +72,7 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 
 There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
 
-Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Login -> Logout.
+Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Sign in -> Sign out.
 
 ### Testing on different screen resolutions
 
@@ -214,7 +214,7 @@ Thanks to the [zod](https://github.com/colinhacks/zod) schema validation library
 
 ## Authentication
 
-A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides a `useAuth` hook. This hook returns current auth state (`token`, `userId`, `isLoggedIn`, and loading indicators), `login` method to perform a login operation, `relogin` method to renew the token, and `logout` method to perform a logout operation.
+A token-based API agnostic authentication is already included in this project. It resides in [src/common/auth](./src/common/auth) and provides a `useAuth` hook. This hook returns current auth state (`token`, `userId`, `isLoggedIn`, and loading indicators), `signIn` method to perform a Sign-in operation, `relogin` method to renew the token, and `signOut` method to perform a Sign-out operation.
 
 It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/RequireIsLoggedIn.tsx) and [RequireIsAnonymous](./src/common/auth/RequireIsAnonymous.tsx), to [wrap routes](./src/app/App.tsx). They will automatically redirect the user based on being authenticated or not.
 
@@ -222,7 +222,7 @@ It also provides `getToken` method which servers as an escape hatch in case we n
 
 Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage` using the [recoil-persist](https://github.com/polemius/recoil-persist) library.
 
-There is also a [src/app/PersistAuthGate.tsx](./src/app/PersistAuthGate.tsx) to automatically re-login a user after the page reloads if token is present in `localStorage`.
+There is also a [src/app/PersistAuthGate.tsx](./src/app/PersistAuthGate.tsx) to automatically relogin a user after the page reloads if token is present in `localStorage`.
 
 ## React
 

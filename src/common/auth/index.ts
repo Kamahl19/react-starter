@@ -1,22 +1,19 @@
-import { useMemo, useCallback } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useMemo, useCallback, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { getRecoil } from 'recoil-nexus';
 import { useQueryClient } from '@tanstack/react-query';
 
 import {
-  type LoginPayload,
-  login as loginApi,
+  type SignInPayload,
+  signIn as signInApi,
   relogin as reloginApi,
-  logout as logoutApi,
+  signOut as signOutApi,
 } from 'api';
 
 import {
   userIdState,
   tokenState,
   isLoggedInSelector,
-  isLoginLoadingState,
-  isReloginLoadingState,
-  isLogoutLoadingState,
   useSetAuthState,
   useResetAuthState,
 } from './state';
@@ -30,83 +27,69 @@ export const useAuth = () => {
   const userId = useRecoilValue(userIdState);
   const token = useRecoilValue(tokenState);
   const isLoggedIn = useRecoilValue(isLoggedInSelector);
-  const isLoginLoading = useRecoilValue(isLoginLoadingState);
-  const isReloginLoading = useRecoilValue(isReloginLoadingState);
-  const isLogoutLoading = useRecoilValue(isLogoutLoadingState);
+
+  return useMemo(() => ({ userId, token, isLoggedIn }), [userId, token, isLoggedIn]);
+};
+
+export const useSignIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const setAuthState = useSetAuthState();
+
+  const signIn = useCallback(
+    async (payload: SignInPayload, opts?: { onError?: (error: unknown) => void }) => {
+      try {
+        setIsLoading(true);
+        setAuthState(await signInApi(payload));
+      } catch (error: unknown) {
+        opts?.onError?.(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [setAuthState, setIsLoading]
+  );
+
+  return useMemo(() => ({ isLoading, signIn }), [isLoading, signIn]);
+};
+
+export const useRelogin = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
   const setAuthState = useSetAuthState();
   const resetAuthState = useResetAuthState();
 
-  const setIsLoginLoadingState = useSetRecoilState(isLoginLoadingState);
-  const setIsReloginLoadingState = useSetRecoilState(isReloginLoadingState);
-  const setIsLogoutLoadingState = useSetRecoilState(isLogoutLoadingState);
-
-  const login = useCallback(
-    async (payload: LoginPayload, opts?: { onError?: (error: unknown) => void }) => {
-      try {
-        setIsLoginLoadingState(true);
-
-        const auth = await loginApi(payload);
-
-        setAuthState(auth);
-      } catch (error: unknown) {
-        opts?.onError?.(error);
-      } finally {
-        setIsLoginLoadingState(false);
-      }
-    },
-    [setAuthState, setIsLoginLoadingState]
-  );
-
   const relogin = useCallback(async () => {
     try {
-      setIsReloginLoadingState(true);
-
-      const auth = await reloginApi();
-
-      setAuthState(auth);
+      setIsLoading(true);
+      setAuthState(await reloginApi());
     } catch {
       resetAuthState();
     } finally {
-      setIsReloginLoadingState(false);
+      setIsLoading(false);
     }
-  }, [setAuthState, resetAuthState, setIsReloginLoadingState]);
+  }, [setAuthState, resetAuthState, setIsLoading]);
+
+  return useMemo(() => ({ isLoading, relogin }), [isLoading, relogin]);
+};
+
+export const useSignOut = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const resetAuthState = useResetAuthState();
 
   const queryClient = useQueryClient();
 
-  const logout = useCallback(async () => {
+  const signOut = useCallback(async () => {
     try {
-      setIsLogoutLoadingState(true);
-      await logoutApi();
+      setIsLoading(true);
+      await signOutApi();
     } finally {
       resetAuthState();
       queryClient.removeQueries();
-      setIsLogoutLoadingState(false);
+      setIsLoading(false);
     }
-  }, [resetAuthState, setIsLogoutLoadingState, queryClient]);
+  }, [resetAuthState, setIsLoading, queryClient]);
 
-  return useMemo(
-    () => ({
-      userId,
-      token,
-      isLoggedIn,
-      isLoginLoading,
-      isReloginLoading,
-      isLogoutLoading,
-      login,
-      relogin,
-      logout,
-    }),
-    [
-      userId,
-      token,
-      isLoggedIn,
-      isLoginLoading,
-      isReloginLoading,
-      isLogoutLoading,
-      login,
-      relogin,
-      logout,
-    ]
-  );
+  return useMemo(() => ({ isLoading, signOut }), [isLoading, signOut]);
 };

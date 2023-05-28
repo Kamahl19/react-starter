@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext } from 'react';
 
 export enum SidebarState {
   OPEN_SIDEBAR = 'openSidebar',
@@ -7,7 +7,7 @@ export enum SidebarState {
   CLOSED_DRAWER = 'closedDrawer',
 }
 
-type Props = {
+type ContextValue = {
   isCollapsed: boolean;
   isDrawerVisible: boolean;
   useDrawer: boolean;
@@ -15,7 +15,7 @@ type Props = {
   toggle: VoidFunction;
 };
 
-const AdminLayoutContext = createContext<Props | undefined>(undefined);
+const AdminLayoutContext = createContext<ContextValue | undefined>(undefined);
 
 export default AdminLayoutContext;
 
@@ -26,5 +26,5 @@ export const useAdminLayoutContext = () => {
     throw new Error('AdminLayoutContext has not been set, value is undefined');
   }
 
-  return useMemo(() => ctx, [ctx]);
+  return ctx;
 };

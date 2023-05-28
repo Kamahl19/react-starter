@@ -1,8 +1,8 @@
 import { get, post, patch } from './client';
 import { getURL, getAuthorizationHeader } from './utils';
 import {
-  loginResponseSchema,
-  logoutResponseSchema,
+  signInResponseSchema,
+  signOutResponseSchema,
   userResponseSchema,
   forgottenPasswordResponseSchema,
   userEmailAvailabilityResponseSchema,
@@ -10,7 +10,7 @@ import {
   resetPasswordResponseSchema,
 } from './models';
 import type {
-  LoginPayload,
+  SignInPayload,
   CreateUserPayload,
   ChangePasswordPayload,
   ForgottenPasswordPayload,
@@ -21,18 +21,18 @@ import type {
  * Auth
  */
 
-export const login = (body: LoginPayload) =>
-  post(loginResponseSchema, getURL('/auth/login'), {
+export const signIn = (body: SignInPayload) =>
+  post(signInResponseSchema, getURL('/auth/sign-in'), {
     body,
   });
 
 export const relogin = () =>
-  patch(loginResponseSchema, getURL('/auth/relogin'), {
+  patch(signInResponseSchema, getURL('/auth/relogin'), {
     headers: getAuthorizationHeader(),
   });
 
-export const logout = () =>
-  post(logoutResponseSchema, getURL('/auth/logout'), {
+export const signOut = () =>
+  post(signOutResponseSchema, getURL('/auth/sign-out'), {
     headers: getAuthorizationHeader(),
   });
 

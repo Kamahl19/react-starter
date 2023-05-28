@@ -10,7 +10,7 @@ import AuthLayout from './components/AuthLayout';
 
 const SignUp = lazy(() => import('./pages/SignUp'));
 const ForgottenPassword = lazy(() => import('./pages/ForgottenPassword'));
-const Login = lazy(() => import('./pages/Login'));
+const SignIn = lazy(() => import('./pages/SignIn'));
 const ConfirmEmail = lazy(() => import('./pages/ConfirmEmail'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
@@ -26,8 +26,8 @@ const Auth = () => (
       }
     >
       <Route element={<RequireIsAnonymous redirectTo={rootPath} />}>
-        <Route index element={<Navigate replace to={AUTH_ROUTES.login.to} />} />
-        <Route path={AUTH_ROUTES.login.path} element={<Login />} />
+        <Route index element={<Navigate replace to={AUTH_ROUTES.signIn.to} />} />
+        <Route path={AUTH_ROUTES.signIn.path} element={<SignIn />} />
         <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
         <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       </Route>

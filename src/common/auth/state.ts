@@ -30,21 +30,6 @@ export const isLoggedInSelector = selector({
     get(userIdState) !== initialAuthState.userId && get(tokenState) !== initialAuthState.token,
 });
 
-export const isLoginLoadingState = atom({
-  key: 'isLoginLoading',
-  default: false,
-});
-
-export const isReloginLoadingState = atom({
-  key: 'isReloginLoading',
-  default: false,
-});
-
-export const isLogoutLoadingState = atom({
-  key: 'isLogoutLoading',
-  default: false,
-});
-
 export const useSetAuthState = () =>
   useRecoilTransaction_UNSTABLE(({ set }) => (state: Required<AuthState>) => {
     set(userIdState, state.userId);

@@ -29,7 +29,7 @@ const SignUp = () => {
       createUser(payload, {
         onSuccess: () => {
           message.success(t('auth:signUp.success'));
-          navigate(AUTH_ROUTES.login.to);
+          navigate(AUTH_ROUTES.signIn.to);
         },
         onError,
       }),

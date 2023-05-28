@@ -11,9 +11,9 @@ export const AUTH_ROUTES = {
     path: 'forgotten-password',
     to: '/auth/forgotten-password',
   },
-  login: {
-    path: 'login',
-    to: '/auth/login',
+  signIn: {
+    path: 'sign-in',
+    to: '/auth/sign-in',
   },
   confirmEmail: {
     path: 'confirm-email',

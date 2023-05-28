@@ -35,7 +35,7 @@ const Providers = ({ children }: Props) => {
       <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <QueryClientProvider client={queryClient}>
-            <PersistAuthGate fallback={<GlobalLoading />}>
+            <PersistAuthGate loadingFallback={<GlobalLoading />}>
               <Router>{children}</Router>
             </PersistAuthGate>
           </QueryClientProvider>

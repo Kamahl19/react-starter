@@ -1,9 +1,9 @@
 import { rest } from 'msw';
 
 import type {
-  LoginPayload,
-  LoginResponse,
-  LogoutResponse,
+  SignInPayload,
+  SignInResponse,
+  SignOutResponse,
   UserEmailAvailabilityResponse,
   CreateUserPayload,
   UserResponse,
@@ -17,10 +17,10 @@ import { db } from './db';
 const getTokenFromHeader = (authHeader: string | null) => (authHeader ?? '').split(' ')[1];
 
 export const handlers = [
-  rest.post<LoginPayload, never, LoginResponse | ApiError>(
-    '/api/auth/login',
+  rest.post<SignInPayload, never, SignInResponse | ApiError>(
+    '/api/auth/sign-in',
     async (req, res, ctx) => {
-      const body = await req.json<LoginPayload>();
+      const body = await req.json<SignInPayload>();
 
       if (!body.email || !body.password) {
         return res(
@@ -42,7 +42,7 @@ export const handlers = [
 
       return res(
         ctx.delay(100),
-        ctx.json<LoginResponse>({
+        ctx.json<SignInResponse>({
           token: user.id,
           userId: user.id,
         })
@@ -50,8 +50,8 @@ export const handlers = [
     }
   ),
 
-  rest.post('/api/auth/logout', async (_, res, ctx) => {
-    return res(ctx.delay(100), ctx.json<LogoutResponse>(true));
+  rest.post('/api/auth/sign-out', async (_, res, ctx) => {
+    return res(ctx.delay(100), ctx.json<SignOutResponse>(true));
   }),
 
   rest.get<never, { email: string }, UserEmailAvailabilityResponse>(

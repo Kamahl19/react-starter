@@ -18,7 +18,7 @@ const Root = () => (
       <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <Query>
-            <PersistAuthGate fallback={<GlobalLoading />}>
+            <PersistAuthGate loadingFallback={<GlobalLoading />}>
               <Router>
                 <App />
               </Router>

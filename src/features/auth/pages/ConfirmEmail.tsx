@@ -29,7 +29,7 @@ const ConfirmEmail = () => {
     confirmEmail(token, {
       onSuccess: () => {
         message.success(t('auth:confirmEmail.success'));
-        navigate(AUTH_ROUTES.login.to);
+        navigate(AUTH_ROUTES.signIn.to);
       },
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

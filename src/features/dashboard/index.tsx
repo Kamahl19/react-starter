@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 import { useFetchUser } from 'api';
-import { useAuth } from 'common/auth';
+import { useAuth, useSignOut } from 'common/auth';
 import { LoadingScreen, NotFound, ResultError } from 'common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
@@ -12,7 +12,8 @@ const Home = lazy(() => import('./features/home'));
 const Profile = lazy(() => import('./features/profile'));
 
 const Dashboard = () => {
-  const { userId, isLogoutLoading } = useAuth();
+  const { userId } = useAuth();
+  const { isLoading: isSignOutLoading } = useSignOut();
 
   const {
     isLoading: userIsLoading,
@@ -21,7 +22,7 @@ const Dashboard = () => {
     data,
   } = useFetchUser(userId);
 
-  if (userIsLoading || isLogoutLoading) {
+  if (userIsLoading || isSignOutLoading) {
     return <LoadingScreen fullVPHeight />;
   }
 

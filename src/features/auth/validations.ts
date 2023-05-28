@@ -12,7 +12,7 @@ export const useSignUpRules = () =>
     []
   );
 
-export const useLoginRules = () =>
+export const useSignInRules = () =>
   useMemo(
     () =>
       createRules({

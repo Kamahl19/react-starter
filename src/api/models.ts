@@ -4,21 +4,21 @@ import { z } from 'zod';
  * Auth
  */
 
-export const loginPayloadSchema = z.object({
+export const signInPayloadSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
 
-export const loginResponseSchema = z.object({
+export const signInResponseSchema = z.object({
   token: z.string(),
   userId: z.string(),
 });
 
-export const logoutResponseSchema = z.boolean();
+export const signOutResponseSchema = z.boolean();
 
-export type LoginPayload = z.infer<typeof loginPayloadSchema>;
-export type LoginResponse = z.infer<typeof loginResponseSchema>;
-export type LogoutResponse = z.infer<typeof logoutResponseSchema>;
+export type SignInPayload = z.infer<typeof signInPayloadSchema>;
+export type SignInResponse = z.infer<typeof signInResponseSchema>;
+export type SignOutResponse = z.infer<typeof signOutResponseSchema>;
 
 /**
  * User

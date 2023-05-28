@@ -6,7 +6,7 @@ import App from './App';
 import 'features/auth';
 import 'features/dashboard';
 import 'features/auth/pages/SignUp';
-import 'features/auth/pages/Login';
+import 'features/auth/pages/SignIn';
 
 const timeout = 5000;
 
@@ -25,15 +25,15 @@ test('creates user and logs-in', async () => {
   await type(await screen.findByLabelText('auth:signUp.password'), password);
   await click(await screen.findByRole('button', { name: 'auth:signUp.submit' }));
 
-  // Log in
-  await screen.findByLabelText('auth:logIn.email');
-  await type(screen.getByLabelText('auth:logIn.email'), email);
-  await type(await screen.findByLabelText('auth:logIn.password'), password);
-  await click(await screen.findByRole('button', { name: 'auth:logIn.submit' }));
+  // Sign in
+  await screen.findByLabelText('auth:signIn.email');
+  await type(screen.getByLabelText('auth:signIn.email'), email);
+  await type(await screen.findByLabelText('auth:signIn.password'), password);
+  await click(await screen.findByRole('button', { name: 'auth:signIn.submit' }));
 
-  // Log out
+  // Sign out
   await screen.findByText(email, undefined, { timeout });
   await click(screen.getByText(email));
-  await click(await screen.findByText('dashboard:topMenu.logout'));
-  expect(await screen.findByRole('link', { name: 'auth:menu.logIn' })).toBeInTheDocument();
+  await click(await screen.findByText('dashboard:topMenu.signOut'));
+  expect(await screen.findByRole('link', { name: 'auth:menu.signIn' })).toBeInTheDocument();
 });
