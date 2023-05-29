@@ -11,8 +11,8 @@ import {
 } from 'api';
 
 import {
-  userIdState,
-  tokenState,
+  userIdAtom,
+  tokenAtom,
   isLoggedInSelector,
   useSetAuthState,
   useResetAuthState,
@@ -21,11 +21,11 @@ import {
 export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
-export const getToken = () => getRecoil(tokenState);
+export const getToken = () => getRecoil(tokenAtom);
 
 export const useAuth = () => {
-  const userId = useRecoilValue(userIdState);
-  const token = useRecoilValue(tokenState);
+  const userId = useRecoilValue(userIdAtom);
+  const token = useRecoilValue(tokenAtom);
   const isLoggedIn = useRecoilValue(isLoggedInSelector);
 
   return useMemo(() => ({ userId, token, isLoggedIn }), [userId, token, isLoggedIn]);

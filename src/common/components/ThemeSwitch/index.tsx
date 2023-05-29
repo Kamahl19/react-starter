@@ -5,12 +5,12 @@ import { useIsDark } from 'app/theme';
 
 const ThemeSwitch = (props: SwitchProps) => {
   const { t } = useTranslation();
-  const [isDark, setIsDark] = useIsDark();
+  const [isDark, toggleIsDark] = useIsDark();
 
   return (
     <Switch
       checked={isDark}
-      onChange={() => setIsDark(!isDark)}
+      onChange={toggleIsDark}
       checkedChildren={<>{t('common:themeSwitch.dark')}</>}
       unCheckedChildren={<>{t('common:themeSwitch.light')}</>}
       {...props}

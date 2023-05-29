@@ -8,13 +8,16 @@ import GlobalStyles from './GlobalStyles';
 import baseConfig from './baseConfig';
 import darkConfig from './darkConfig';
 
-const isDarkState = atom<boolean>({
+const isDarkAtom = atom<boolean>({
   key: 'isDark',
   default: false,
-  effects: [recoilPersist({ key: 'isDark' }).persistAtom],
+  effects: [recoilPersist().persistAtom],
 });
 
-export const useIsDark = () => useRecoilState(isDarkState);
+export const useIsDark = () => {
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  return useMemo(() => [isDark, () => setIsDark((prev) => !prev)] as const, [isDark, setIsDark]);
+};
 
 const Emotion = ({ children }: { children: ReactNode }) => {
   const { token } = antTheme.useToken();
