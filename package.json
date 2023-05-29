@@ -99,7 +99,7 @@
     "dayjs": "1.11.7",
     "deepmerge-ts": "5.1.0",
     "i18next": "22.5.0",
-    "i18next-browser-languagedetector": "7.0.1",
+    "i18next-browser-languagedetector": "7.0.2",
     "query-string": "8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
