@@ -8,14 +8,14 @@ import GlobalStyles from './GlobalStyles';
 import baseConfig from './baseConfig';
 import darkConfig from './darkConfig';
 
-const isDarkAtom = atom<boolean>({
+const isDarkState = atom<boolean>({
   key: 'isDark',
   default: false,
   effects: [recoilPersist().persistAtom],
 });
 
 export const useIsDark = () => {
-  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const [isDark, setIsDark] = useRecoilState(isDarkState);
   return useMemo(() => [isDark, () => setIsDark((prev) => !prev)] as const, [isDark, setIsDark]);
 };
 

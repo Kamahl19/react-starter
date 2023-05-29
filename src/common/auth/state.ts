@@ -11,12 +11,12 @@ const initialValue = {
   token: undefined,
 } satisfies AuthState;
 
-export const userIdAtom = atom<AuthState['userId']>({
+export const userIdState = atom<AuthState['userId']>({
   key: 'userId',
   default: initialValue.userId,
 });
 
-export const tokenAtom = atom<AuthState['token']>({
+export const tokenState = atom<AuthState['token']>({
   key: 'token',
   default: initialValue.token,
   effects: [recoilPersist().persistAtom],
@@ -25,17 +25,17 @@ export const tokenAtom = atom<AuthState['token']>({
 export const isLoggedInSelector = selector({
   key: 'isLoggedIn',
   get: ({ get }) =>
-    get(userIdAtom) !== initialValue.userId && get(tokenAtom) !== initialValue.token,
+    get(userIdState) !== initialValue.userId && get(tokenState) !== initialValue.token,
 });
 
 export const useSetAuthState = () =>
   useRecoilTransaction_UNSTABLE(({ set }) => (state: Required<AuthState>) => {
-    set(userIdAtom, state.userId);
-    set(tokenAtom, state.token);
+    set(userIdState, state.userId);
+    set(tokenState, state.token);
   });
 
 export const useResetAuthState = () =>
   useRecoilTransaction_UNSTABLE(({ reset }) => () => {
-    reset(userIdAtom);
-    reset(tokenAtom);
+    reset(userIdState);
+    reset(tokenState);
   });
