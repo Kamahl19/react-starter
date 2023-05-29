@@ -10,9 +10,3 @@ export const db = factory({
 });
 
 export const dropDB = () => drop(db);
-
-db.user.create({
-  email: 'example@domain.tld',
-  password: 'password',
-  isConfirmed: true,
-});

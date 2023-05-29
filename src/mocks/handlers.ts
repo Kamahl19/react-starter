@@ -9,7 +9,6 @@ import type {
   UserResponse,
   ChangePasswordPayload,
   ApiError,
-  ResetPasswordPayload,
 } from 'api';
 import { PASSWORD_MIN_LENGTH } from 'api';
 
@@ -38,39 +37,6 @@ export const handlers = [
           ctx.status(401),
           ctx.delay(100),
           ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
-        );
-      }
-
-      return res(
-        ctx.delay(100),
-        ctx.json<SignInResponse>({
-          token: user.id,
-          userId: user.id,
-        })
-      );
-    }
-  ),
-
-  rest.patch<never, never, SignInResponse | ApiError>(
-    '/api/auth/relogin',
-    async (req, res, ctx) => {
-      const token = getTokenFromHeader(req.headers.get('authorization'));
-
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
-        );
-      }
-
-      const user = db.user.findFirst({ where: { id: { equals: token } } });
-
-      if (!user) {
-        return res(
-          ctx.status(404),
-          ctx.delay(100),
-          ctx.json<ApiError>({ status: 404, message: 'User not found' })
         );
       }
 
@@ -138,32 +104,6 @@ export const handlers = [
       const user = db.user.create(body);
 
       return res(ctx.delay(100), ctx.json<UserResponse>({ user }));
-    }
-  ),
-
-  rest.patch<ResetPasswordPayload, never, boolean | ApiError>(
-    '/api/user/reset-password',
-    async (req, res, ctx) => {
-      const redirectTo = req.url.searchParams.get('redirectTo');
-      const body = await req.json<ResetPasswordPayload>();
-
-      if (!body.email || !redirectTo) {
-        return res(
-          ctx.status(400),
-          ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
-        );
-      }
-
-      body.email = body.email.toLowerCase();
-
-      const user = db.user.findFirst({ where: { email: { equals: body.email } } });
-
-      if (user) {
-        console.log(`Login link: ${redirectTo}?token=${user.id}`);
-      }
-
-      return res(ctx.delay(100), ctx.json<boolean>(true));
     }
   ),
 
