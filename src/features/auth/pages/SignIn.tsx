@@ -5,7 +5,7 @@ import { Button, Form, Input } from 'antd';
 
 import { type SignInPayload } from 'api';
 import { useSignIn } from 'common/auth';
-import { useApiErrorMessage } from 'common/hooks';
+import { usePrintErrorMessage } from 'common/hooks';
 
 import { useSignInRules } from '../validations';
 import { AUTH_ROUTES } from '../routes';
@@ -16,7 +16,7 @@ const SignIn = () => {
 
   const { signIn, isLoading } = useSignIn();
 
-  const onError = useApiErrorMessage();
+  const onError = usePrintErrorMessage();
 
   const handleSubmit = useCallback(
     (payload: SignInPayload) => signIn(payload, { onError }),

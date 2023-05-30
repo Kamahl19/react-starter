@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword } from 'api';
 import { useAuth } from 'common/auth';
-import { useApiErrorMessage } from 'common/hooks';
+import { usePrintErrorMessage } from 'common/hooks';
 import { Widget } from 'common/components';
 
 import { useChangePasswordRules } from '../validations';
@@ -18,7 +18,7 @@ const ChangePassword = () => {
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
-  const onError = useApiErrorMessage();
+  const onError = usePrintErrorMessage();
 
   const { mutate, isLoading } = useChangePassword();
 

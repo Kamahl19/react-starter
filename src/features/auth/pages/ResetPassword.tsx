@@ -3,7 +3,7 @@ import { App, Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { type ResetPasswordPayload, useResetPassword } from 'api';
-import { useApiErrorMessage } from 'common/hooks';
+import { usePrintErrorMessage } from 'common/hooks';
 import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
 
 import { useResetPasswordRules } from '../validations';
@@ -14,7 +14,7 @@ const ResetPassword = () => {
 
   const { message } = App.useApp();
 
-  const onError = useApiErrorMessage();
+  const onError = usePrintErrorMessage();
 
   const { mutate, isLoading } = useResetPassword();
 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 
 import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from 'api';
-import { useApiErrorMessage } from 'common/hooks';
+import { usePrintErrorMessage } from 'common/hooks';
 
 import { AUTH_ROUTES } from '../routes';
 import { useSignUpRules } from '../validations';
@@ -20,7 +20,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const onError = useApiErrorMessage();
+  const onError = usePrintErrorMessage();
 
   const { mutate, isLoading } = useCreateUser();
 

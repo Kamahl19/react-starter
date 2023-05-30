@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Card, Result, type ResultProps } from 'antd';
+import is from '@sindresorhus/is';
 
-import { isApiError } from 'api';
 import { centeredCss, fullVPHeightCss } from 'common/styleUtils';
 
 type Props = ResultProps & {
@@ -14,9 +14,17 @@ type Props = ResultProps & {
 const ResultError = ({ onReset, error, card, fullVPHeight, ...props }: Props) => {
   const { t } = useTranslation();
 
-  const subTitle = error instanceof Error || isApiError(error) ? error.message : undefined;
+  const subTitle =
+    is.nonEmptyObject(error) && is.string(error.message)
+      ? error.message
+      : is.string(error)
+      ? error
+      : undefined;
 
-  const status = isApiError(error) && isExceptionStatusType(error.status) ? error.status : 'error';
+  const status =
+    is.nonEmptyObject(error) && is.number(error.status) && isExceptionStatusType(error.status)
+      ? error.status
+      : 'error';
 
   const Content = (
     <Result
