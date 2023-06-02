@@ -96,7 +96,7 @@
     "@tanstack/react-query-devtools": "4.29.12",
     "@tshttp/status": "2.0.0",
     "antd": "5.5.2",
-    "dayjs": "1.11.7",
+    "dayjs": "1.11.8",
     "deepmerge-ts": "5.1.0",
     "i18next": "22.5.0",
     "i18next-browser-languagedetector": "7.0.2",
