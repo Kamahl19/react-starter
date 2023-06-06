@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "allowUnusedLabels": false,
@@ -9,9 +10,9 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "Node", // TODO use "bundler"
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
@@ -22,14 +23,14 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext",
+    "target": "ES2020",
     "types": ["vite-plugin-svgr/client", "vitest/globals"],
     "useDefineForClassFields": true
   },
   "include": ["src"],
   "references": [
     {
-      "path": "./tsconfig.vite.json"
+      "path": "./tsconfig.node.json"
     }
   ]
 }

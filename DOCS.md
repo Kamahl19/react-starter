@@ -82,7 +82,7 @@ By default the resolution is set to 1280x800 before each test. This can be chang
 
 ### ESLint
 
-Code quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom ESLint configuration [.eslintrc.js](./.eslintrc.js) includes these rules and plugins:
+Code quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom ESLint configuration [.eslintrc.cjs](./.eslintrc.cjs) includes these rules and plugins:
 
 - built-in [ESLint recommended rules](https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js)
 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) provides [recommended rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts), [type checking rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts) and [strict rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts) for TypeScript
@@ -283,17 +283,17 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .editorconfig : helps maintain consistent coding style across various IDEs and [works well](https://prettier.io/docs/en/configuration.html#editorconfig) with Prettier
 ├── .env : contains environment variables [consumed by Vite](https://vitejs.dev/guide/env-and-mode.html)
 ├── .eslintignore : to ignore files when running ESLint
-├── .eslintrc.js : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
+├── .eslintrc.cjs : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
 ├── .gitignore : to keep Git from tracking specific files
 ├── .prettierignore : to ignore files when running Prettier
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
-├── i18next-parser.config.js : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
+├── i18next-parser.config.mjs : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
 ├── package.json : holds metadata about the project and its dependencies
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser
-├── tsconfig.vite.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for running Vite locally in Node.js
+├── tsconfig.node.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for running Vite locally in Node.js
 ├── vite.config.ts : contains Vite [configuration](https://vitejs.dev/config/)
 ```
 

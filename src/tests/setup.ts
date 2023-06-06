@@ -1,4 +1,5 @@
-import { matchMedia, MediaQueryListEvent, cleanup as mmmCleanup } from 'mock-match-media';
+import { configMocks, type MockViewport } from 'jsdom-testing-mocks';
+import { act } from '@testing-library/react';
 import 'vitest-dom/extend-expect';
 
 import { setDesktopResolution } from './utils';
@@ -7,11 +8,16 @@ import { server } from 'mocks/server';
 
 import 'i18n';
 
-// window.matchMedia
-vi.stubGlobal('matchMedia', matchMedia);
-vi.stubGlobal('MediaQueryListEvent', MediaQueryListEvent);
-beforeEach(() => setDesktopResolution());
-afterEach(() => mmmCleanup());
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+configMocks({ act });
+
+let viewport: MockViewport;
+beforeEach(() => {
+  viewport = setDesktopResolution();
+});
+afterEach(() => {
+  viewport.cleanup();
+});
 
 // MSW
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));

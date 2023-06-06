@@ -1,5 +1,5 @@
 dist
-.eslintrc.js
-i18next-parser.config.js
+.eslintrc.cjs
+i18next-parser.config.mjs
 mockServiceWorker.js
 vite.config.ts

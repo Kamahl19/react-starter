@@ -29,10 +29,10 @@ module.exports = {
   plugins: ['@emotion'],
   env: {
     browser: true,
-    es2022: true,
+    es2020: true,
   },
   parserOptions: {
-    ecmaVersion: 2022,
+    ecmaVersion: 'latest',
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,

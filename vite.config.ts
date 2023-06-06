@@ -33,7 +33,7 @@ export default defineConfig({
       overlay: false,
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "./**/*.{js,ts,tsx}" --max-warnings 0',
+        lintCommand: 'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0',
       },
     }),
     visualize &&

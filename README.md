@@ -34,7 +34,7 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
   - [MSW](https://mswjs.io/) - API mocking library for browser and Node.js
   - [@mswjs/data](https://mswjs.io/) - data modeling and relation library for testing
-  - [mock-match-media](https://github.com/Ayc0/mock-match-media) - mock window.matchMedia for testing
+  - [jsdom-testing-mocks](https://github.com/trurl-master/jsdom-testing-mocks) - a set of tools for emulating browser behavior in jsdom environment
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
 - [Husky](https://github.com/typicode/husky) & [lint-staged](https://github.com/okonet/lint-staged) - run ESLint & Prettier before commiting new code
