@@ -80,7 +80,7 @@
     "prettier": "2.8.8",
     "rollup-plugin-visualizer": "5.9.0",
     "source-map-explorer": "2.5.3",
-    "typescript": "5.0.4",
+    "typescript": "5.1.3",
     "vite": "4.3.9",
     "vite-plugin-checker": "0.6.0",
     "vite-plugin-react-click-to-component": "2.0.0",
