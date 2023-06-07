@@ -3,12 +3,12 @@ import { useMemo } from 'react';
 import { PASSWORD_MIN_LENGTH } from 'api';
 import { createRules } from 'common/validations';
 
-export const emailRule = {
+const emailRule = {
   required: true,
   type: 'email',
 } as const;
 
-export const passwordRule = {
+const passwordRule = {
   required: true,
   type: 'string',
   min: PASSWORD_MIN_LENGTH,

@@ -45,7 +45,7 @@ const ChangePassword = () => {
 
       <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item
-          label={t('profile:changePassword.newPassword')}
+          label={t('profile:changePassword.password')}
           name="password"
           rules={rules.password}
           validateFirst

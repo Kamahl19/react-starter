@@ -23,5 +23,9 @@ const styles = createStyles({
     width: '100%',
     maxWidth: 400,
     margin: 'auto',
+
+    '.ant-result': {
+      paddingInline: 0,
+    },
   }),
 });

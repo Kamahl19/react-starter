@@ -3,8 +3,8 @@
     "index": "Profile"
   },
   "changePassword": {
-    "newPassword": "New Password",
-    "success": "Your password has been changed successfully.",
+    "password": "New Password",
+    "success": "Your password has been changed.",
     "title": "Change Password"
   },
   "header": {
