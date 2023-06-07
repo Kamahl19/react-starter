@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "5.1.4",
-    "@emotion/react": "11.11.0",
+    "@emotion/react": "11.11.1",
     "@sindresorhus/is": "5.4.1",
     "@tanstack/react-query": "4.29.12",
     "@tanstack/react-query-devtools": "4.29.12",
