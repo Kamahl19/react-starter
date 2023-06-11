@@ -291,7 +291,6 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── index.html : is the entry point to the application
 ├── package.json : holds metadata about the project and its dependencies
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
-├── renovate.json : contains configuration for [Renovate](https://github.com/renovatebot/renovate) to keep dependencies up-to-date
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser
 ├── tsconfig.node.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for running Vite locally in Node.js
 ├── vite.config.ts : contains Vite [configuration](https://vitejs.dev/config/)
