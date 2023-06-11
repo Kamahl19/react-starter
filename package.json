@@ -70,7 +70,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-testing-library": "5.11.0",
     "eslint-plugin-unicorn": "47.0.0",
-    "eslint-plugin-vitest": "0.2.5",
+    "eslint-plugin-vitest": "0.2.6",
     "husky": "8.0.3",
     "i18next-parser": "8.0.0",
     "jsdom": "22.1.0",
