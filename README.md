@@ -134,12 +134,12 @@ Running `npm run i18n` will first parse the whole codebase to find all used i18n
 
 ## CI/CD
 
-This project is using [GitHub's Actions](https://github.com/features/actions) to run [integration tests](.github/workflows/CI.yml) on each PR and Main branch. It includes running eslint, prettier, tests and building the app. PR becomes mergable only if it passes. We also show badge on top of `README.md` to show Main branch status. If you don't use GitHub you can remove the `.github` folder, otherwise follow these steps to configure your GitHub repository:
+This project is using [GitHub's Actions](https://github.com/features/actions) to run [integration tests](.github/workflows/test.yml) on each PR and Main branch. It includes running eslint, prettier, tests and building the app. PR becomes mergable only if it passes. We also show badge on top of `README.md` to show Main branch status. If you don't use GitHub you can remove the `.github` folder, otherwise follow these steps to configure your GitHub repository:
 
 1. Go to Settings -> Branches -> Add rule
    - Apply to your main branch
    - Require status checks to pass before merging
-   - Select build checks being run in CI.yml
+   - Select build checks being run in test.yml
 2. Update path to your repository (eg. `Kamahl19/react-starter`) and name of the branch for CI badge in `README.md`
 
 ## More Docs & Guides

@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
 import { App } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { useConfirmEmail } from 'api';
-import { useTokenParam } from 'common/hooks';
+import { useTokenParam, useOnMount } from 'common/hooks';
 import { LoadingScreen, ResultError } from 'common/components';
 
 import { AUTH_ROUTES } from '../routes';
@@ -20,14 +19,14 @@ const ConfirmEmail = () => {
 
   const { mutate, isLoading, isError, error } = useConfirmEmail();
 
-  useEffect(() => {
+  useOnMount(() => {
     mutate(token, {
       onSuccess: () => {
         message.success(t('auth:confirmEmail.success'));
         navigate(AUTH_ROUTES.signIn.to);
       },
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  });
 
   if (isLoading) {
     return <LoadingScreen />;

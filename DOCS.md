@@ -107,7 +107,7 @@ ESLint runs when:
 - automatically on `pre-commit` hook, right before code is committed
   - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
   - linting only the files and changes being committed enables [lint-staged](https://github.com/okonet/lint-staged)
-- during continuous integration defined in [.github/workflows/CI.yml](./.github/workflows/CI.yml)
+- during continuous integration defined in [.github/workflows/test.yml](./.github/workflows/test.yml)
 
 ### Prettier
 

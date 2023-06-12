@@ -1,6 +1,7 @@
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode } from 'react';
 
 import { useAuth, useRelogin } from 'common/auth';
+import { useOnMount } from 'common/hooks';
 
 type Props = {
   children: ReactNode;
@@ -11,11 +12,11 @@ const PersistAuthGate = ({ children, loadingFallback }: Props) => {
   const { token, isLoggedIn } = useAuth();
   const { relogin, isLoading } = useRelogin();
 
-  useEffect(() => {
+  useOnMount(() => {
     if (token) {
       relogin();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  });
 
   return <>{(token && !isLoggedIn) || isLoading ? loadingFallback : children}</>;
 };
