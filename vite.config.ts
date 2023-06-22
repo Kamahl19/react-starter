@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from 'vite';
-import reactPlugin from '@vitejs/plugin-react';
+import reactPlugin from '@vitejs/plugin-react-swc';
 import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import checkerPlugin from 'vite-plugin-checker';
@@ -22,9 +22,7 @@ export default defineConfig({
     }),
     reactPlugin({
       jsxImportSource: '@emotion/react',
-      babel: {
-        plugins: ['@emotion/babel-plugin'],
-      },
+      plugins: [['@swc/plugin-emotion', {}]],
     }),
     reactClickToComponent(),
     tsconfigPathsPlugin(),

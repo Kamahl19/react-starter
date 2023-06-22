@@ -1,11 +1,11 @@
 # dependencies
-node_modules
+node_modules/
 
 # testing
-/coverage
+/coverage/
 
 # production
-dist
+dist/
 
 # misc
 .DS_Store
@@ -13,12 +13,15 @@ Thumbs.db
 *.local
 
 # logs
-logs
+logs/
 *.log
 npm-debug.log*
 
 # IDE
-.idea
+.idea/
 
 # eslint
 .eslintcache
+
+# swc
+.swc/
