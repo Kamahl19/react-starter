@@ -33,7 +33,7 @@ const SidebarLogo = () => {
 
   return (
     <Logo
-      to={DASHBOARD_ROUTES.home.to}
+      to={DASHBOARD_ROUTES.index.to}
       inverted={isDark}
       isSmall={sidebarState === SidebarState.COLLAPSED_SIDEBAR}
     />
