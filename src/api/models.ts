@@ -59,3 +59,74 @@ export type ChangePasswordPayload = z.infer<typeof changePasswordPayloadSchema>;
 export type ResetPasswordPayload = z.infer<typeof resetPasswordPayloadSchema>;
 export type UserResponse = z.infer<typeof userResponseSchema>;
 export type UserEmailAvailabilityResponse = z.infer<typeof userEmailAvailabilityResponseSchema>;
+
+/**
+ * Bookshelf
+ */
+
+export const bookSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  author: z.string(),
+  description: z.string(),
+  isInList: z.boolean(),
+  finished: z.boolean(),
+  rating: z.number(),
+  note: z.string(),
+});
+
+export const bookResponseSchema = z.object({
+  book: bookSchema,
+});
+
+export const booksResponseSchema = z.object({
+  books: z.array(bookSchema),
+});
+
+export const readingListSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+  finished: z.boolean(),
+  rating: z.number(),
+  note: z.string(),
+});
+
+export const readingListResponseSchema = readingListSchema;
+
+export const addToReadingListPayloadSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+});
+
+export const removeFromReadingListPayloadSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+});
+
+export const markBookPayloadSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+  finished: z.boolean(),
+});
+
+export const setRatingPayloadSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+  rating: z.number(),
+});
+
+export const setNotePayloadSchema = z.object({
+  userId: z.string(),
+  bookId: z.string(),
+  note: z.string(),
+});
+
+export type Book = z.infer<typeof bookSchema>;
+export type BookResponse = z.infer<typeof bookResponseSchema>;
+export type BooksResponse = z.infer<typeof booksResponseSchema>;
+export type ReadingListResponse = z.infer<typeof readingListResponseSchema>;
+export type AddToReadingListPayload = z.infer<typeof addToReadingListPayloadSchema>;
+export type RemoveFromReadingListPayload = z.infer<typeof removeFromReadingListPayloadSchema>;
+export type MarkBookPayload = z.infer<typeof markBookPayloadSchema>;
+export type SetRatingPayload = z.infer<typeof setRatingPayloadSchema>;
+export type SetNotePayload = z.infer<typeof setNotePayloadSchema>;

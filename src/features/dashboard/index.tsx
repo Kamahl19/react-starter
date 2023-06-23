@@ -8,7 +8,7 @@ import { LoadingScreen, NotFound, ResultError } from 'common/components';
 import { DASHBOARD_ROUTES } from './routes';
 import DashboardLayout from './components/DashboardLayout';
 
-const Home = lazy(() => import('./features/home'));
+const Bookshelf = lazy(() => import('./features/bookshelf'));
 const Profile = lazy(() => import('./features/profile'));
 
 const Dashboard = () => {
@@ -41,8 +41,8 @@ const Dashboard = () => {
           </DashboardLayout>
         }
       >
-        <Route index element={<Navigate replace to={DASHBOARD_ROUTES.home.to} />} />
-        <Route path={DASHBOARD_ROUTES.home.path} element={<Home />} />
+        <Route index element={<Navigate replace to={DASHBOARD_ROUTES.bookshelf.to} />} />
+        <Route path={DASHBOARD_ROUTES.bookshelf.path} element={<Bookshelf />} />
         <Route path={DASHBOARD_ROUTES.profile.path} element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Route>

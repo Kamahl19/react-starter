@@ -7,8 +7,26 @@ import {
   resetPassword,
   fetchUserEmailAvailability,
   confirmEmail,
+  fetchBookshelfDiscover,
+  fetchBookshelfReadingList,
+  fetchBookshelfFinished,
+  fetchBook,
+  addToReadingList,
+  markBook,
+  setRating,
+  setNote,
+  removeFromReadingList,
 } from './endpoints';
-import type { CreateUserPayload, ChangePasswordPayload, ResetPasswordPayload } from './models';
+import type {
+  CreateUserPayload,
+  ChangePasswordPayload,
+  ResetPasswordPayload,
+  AddToReadingListPayload,
+  MarkBookPayload,
+  SetRatingPayload,
+  SetNotePayload,
+  RemoveFromReadingListPayload,
+} from './models';
 
 /**
  * User
@@ -67,3 +85,100 @@ export const useFetchUserEmailAvailability = (email: string) =>
     enabled: /\S+@\S+\.\S+/u.test(email),
     initialData: true,
   });
+
+/**
+ * Bookshelf
+ */
+
+const bookshelfQueryKeys = {
+  all: () => ['bookshelf'] as const,
+  list: () => [...bookshelfQueryKeys.all()] as const,
+  discover: () => [...bookshelfQueryKeys.list(), 'discover'] as const,
+  readingList: () => [...bookshelfQueryKeys.list(), 'readingList'] as const,
+  finished: () => [...bookshelfQueryKeys.list(), 'finished'] as const,
+  book: (bookId: string) => [...bookshelfQueryKeys.all(), bookId] as const,
+};
+
+export const useFetchBookshelfDiscover = () =>
+  useQuery({
+    queryKey: bookshelfQueryKeys.discover(),
+    queryFn: () => fetchBookshelfDiscover(),
+  });
+
+export const useFetchBookshelfReadingList = () =>
+  useQuery({
+    queryKey: bookshelfQueryKeys.readingList(),
+    queryFn: () => fetchBookshelfReadingList(),
+  });
+
+export const useFetchBookshelfFinished = () =>
+  useQuery({
+    queryKey: bookshelfQueryKeys.finished(),
+    queryFn: () => fetchBookshelfFinished(),
+  });
+
+export const useFetchBook = (bookId: string) =>
+  useQuery({
+    queryKey: bookshelfQueryKeys.book(bookId),
+    queryFn: () => fetchBook(bookId),
+  });
+
+export const useAddToReadingList = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: AddToReadingListPayload) => addToReadingList(payload),
+    onSuccess: ({ bookId }) => {
+      queryClient.invalidateQueries(bookshelfQueryKeys.list());
+      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+    },
+  });
+};
+
+export const useRemoveFromReadingList = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: RemoveFromReadingListPayload) => removeFromReadingList(payload),
+    onSuccess: ({ bookId }) => {
+      queryClient.invalidateQueries(bookshelfQueryKeys.list());
+      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+    },
+  });
+};
+
+export const useMarkBook = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: MarkBookPayload) => markBook(payload),
+    onSuccess: ({ bookId }) => {
+      queryClient.invalidateQueries(bookshelfQueryKeys.list());
+      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+    },
+  });
+};
+
+export const useSetRating = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: SetRatingPayload) => setRating(payload),
+    onSuccess: ({ bookId }) => {
+      queryClient.invalidateQueries(bookshelfQueryKeys.list());
+      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+    },
+  });
+};
+
+export const useSetNote = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: SetNotePayload) => setNote(payload),
+    onSuccess: ({ bookId }) => {
+      queryClient.invalidateQueries(bookshelfQueryKeys.list());
+      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+    },
+  });
+};

@@ -1,6 +1,10 @@
 {
   "sidebarMenu": {
-    "home": "Home"
+    "bookshelf": {
+      "discover": "Discover",
+      "finished": "Finished Books",
+      "readingList": "Reading List"
+    }
   },
   "topMenu": {
     "profile": "Profile",

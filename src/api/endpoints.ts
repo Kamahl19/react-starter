@@ -1,4 +1,4 @@
-import { get, post, patch } from './client';
+import { get, post, patch, del } from './client';
 import { getURL, getAuthorizationHeader } from './utils';
 import {
   signInResponseSchema,
@@ -7,12 +7,20 @@ import {
   userEmailAvailabilityResponseSchema,
   confirmEmailResponseSchema,
   resetPasswordResponseSchema,
+  booksResponseSchema,
+  bookResponseSchema,
+  readingListResponseSchema,
 } from './models';
 import type {
   SignInPayload,
   CreateUserPayload,
   ChangePasswordPayload,
   ResetPasswordPayload,
+  AddToReadingListPayload,
+  RemoveFromReadingListPayload,
+  MarkBookPayload,
+  SetNotePayload,
+  SetRatingPayload,
 } from './models';
 
 /**
@@ -65,5 +73,59 @@ export const changePassword = (userId: string, body: ChangePasswordPayload) =>
 
 export const resetPassword = (body: ResetPasswordPayload, redirectTo: string) =>
   patch(resetPasswordResponseSchema, getURL('/user/reset-password', { redirectTo }), {
+    body,
+  });
+
+/**
+ * Bookshelf
+ */
+
+export const fetchBookshelfDiscover = () =>
+  get(booksResponseSchema, getURL('/books/discover'), {
+    headers: getAuthorizationHeader(),
+  });
+
+export const fetchBookshelfReadingList = () =>
+  get(booksResponseSchema, getURL('/books/reading-list'), {
+    headers: getAuthorizationHeader(),
+  });
+
+export const fetchBookshelfFinished = () =>
+  get(booksResponseSchema, getURL('/books/finished'), {
+    headers: getAuthorizationHeader(),
+  });
+
+export const fetchBook = (bookId: string) =>
+  get(bookResponseSchema, getURL(`/books/${bookId}`), {
+    headers: getAuthorizationHeader(),
+  });
+
+export const addToReadingList = (body: AddToReadingListPayload) =>
+  post(readingListResponseSchema, getURL('/reading-list'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+export const removeFromReadingList = (body: RemoveFromReadingListPayload) =>
+  del(readingListResponseSchema, getURL('/reading-list'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+export const markBook = (body: MarkBookPayload) =>
+  patch(readingListResponseSchema, getURL('/reading-list/mark'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+export const setRating = (body: SetRatingPayload) =>
+  patch(readingListResponseSchema, getURL('/reading-list/rating'), {
+    headers: getAuthorizationHeader(),
+    body,
+  });
+
+export const setNote = (body: SetNotePayload) =>
+  patch(readingListResponseSchema, getURL('/reading-list/note'), {
+    headers: getAuthorizationHeader(),
     body,
   });

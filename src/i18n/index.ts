@@ -10,6 +10,7 @@ import dayjsEN from 'dayjs/locale/en';
 import antdEN from 'antd/locale/en_US';
 
 import auth from './en/auth.json';
+import bookshelf from './en/bookshelf.json';
 import common from './en/common.json';
 import dashboard from './en/dashboard.json';
 import global from './en/global.json';
@@ -27,6 +28,7 @@ export const LANGUAGES_CONFIG = {
     antd: antdEN,
     resources: {
       auth,
+      bookshelf,
       common,
       dashboard,
       global,
