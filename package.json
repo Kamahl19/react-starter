@@ -44,8 +44,8 @@
   },
   "devDependencies": {
     "@emotion/eslint-plugin": "11.11.0",
-    "@julr/vite-plugin-validate-env": "0.2.2",
-    "@mswjs/data": "0.13.0",
+    "@julr/vite-plugin-validate-env": "0.2.3",
+    "@mswjs/data": "github:noveogroup-amorgunov/mswjs-data#feat-persist",
     "@swc/plugin-emotion": "2.5.68",
     "@tanstack/eslint-plugin-query": "4.29.9",
     "@testing-library/react": "13.4.0",

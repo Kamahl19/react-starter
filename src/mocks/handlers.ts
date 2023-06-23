@@ -8,15 +8,19 @@ import type {
   CreateUserPayload,
   UserResponse,
   ChangePasswordPayload,
-  ApiError,
 } from 'api';
 import { PASSWORD_MIN_LENGTH } from 'api';
+import { type ApiError } from 'api/utils';
 
 import { db } from './db';
 
 const getTokenFromHeader = (authHeader: string | null) => (authHeader ?? '').split(' ')[1];
 
 export const handlers = [
+  /**
+   * Auth
+   */
+
   rest.post<SignInPayload, never, SignInResponse | ApiError>(
     '/api/auth/sign-in',
     async (req, res, ctx) => {
@@ -50,9 +54,46 @@ export const handlers = [
     }
   ),
 
+  rest.patch<never, never, SignInResponse | ApiError>(
+    '/api/auth/relogin',
+    async (req, res, ctx) => {
+      const token = getTokenFromHeader(req.headers.get('authorization'));
+
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.delay(100),
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+        );
+      }
+
+      const user = db.user.findFirst({ where: { id: { equals: token } } });
+
+      if (!user) {
+        return res(
+          ctx.status(401),
+          ctx.delay(100),
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+        );
+      }
+
+      return res(
+        ctx.delay(100),
+        ctx.json<SignInResponse>({
+          token: user.id,
+          userId: user.id,
+        })
+      );
+    }
+  ),
+
   rest.post('/api/auth/sign-out', async (_, res, ctx) => {
     return res(ctx.delay(100), ctx.json<SignOutResponse>(true));
   }),
+
+  /**
+   * User
+   */
 
   rest.get<never, { email: string }, UserEmailAvailabilityResponse>(
     '/api/user/email-availability/:email',
