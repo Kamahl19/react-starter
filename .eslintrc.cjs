@@ -174,6 +174,7 @@ module.exports = {
           { checksVoidReturn: { arguments: false, attributes: false } },
         ],
         '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+        '@typescript-eslint/restrict-template-expressions': ['error', { allowNever: true }],
 
         /**
          * Use additional rules
