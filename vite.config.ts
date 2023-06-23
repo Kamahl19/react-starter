@@ -1,10 +1,10 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from 'vite';
-import reactPlugin from '@vitejs/plugin-react-swc';
-import tsconfigPathsPlugin from 'vite-tsconfig-paths';
-import svgrPlugin from 'vite-plugin-svgr';
-import checkerPlugin from 'vite-plugin-checker';
+import react from '@vitejs/plugin-react-swc';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import svgr from 'vite-plugin-svgr';
+import checker from 'vite-plugin-checker';
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -20,14 +20,14 @@ export default defineConfig({
         VITE_API_URL: z.string().url().or(z.string().startsWith('/')),
       },
     }),
-    reactPlugin({
+    react({
       jsxImportSource: '@emotion/react',
       plugins: [['@swc/plugin-emotion', {}]],
     }),
     reactClickToComponent(),
-    tsconfigPathsPlugin(),
-    svgrPlugin(),
-    checkerPlugin({
+    tsconfigPaths(),
+    svgr(),
+    checker({
       overlay: false,
       typescript: true,
       eslint: {
