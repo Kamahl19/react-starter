@@ -32,9 +32,9 @@ const ChangePassword = () => {
             message.success(t('profile:changePassword.success'));
           },
           onError,
-        }
+        },
       ),
-    [t, userId, mutate, form, onError, message]
+    [t, userId, mutate, form, onError, message],
   );
 
   const rules = useChangePasswordRules();

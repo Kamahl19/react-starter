@@ -41,7 +41,7 @@ const AdminLayout = ({
 
   const toggle = useCallback(
     () => (useDrawer ? setIsDrawerVisible((s) => !s) : setIsCollapsed((s) => !s)),
-    [useDrawer]
+    [useDrawer],
   );
 
   const sidebarState = useDrawer
@@ -54,7 +54,7 @@ const AdminLayout = ({
 
   const value = useMemo(
     () => ({ isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),
-    [isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle]
+    [isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle],
   );
 
   const sidebarProps = useMemo(
@@ -65,7 +65,7 @@ const AdminLayout = ({
       sidebarWidth,
       onCollapse: setIsCollapsed,
     }),
-    [sidebarCollapsedWidth, sidebarWidth, logo, sidebarContent]
+    [sidebarCollapsedWidth, sidebarWidth, logo, sidebarContent],
   );
 
   return (

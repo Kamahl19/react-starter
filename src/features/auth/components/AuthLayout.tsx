@@ -35,7 +35,7 @@ const AuthLayout = ({ children }: Props) => {
               label: <Link to={AUTH_ROUTES.signUp.to}>{t('auth:menu.signUp')}</Link>,
             },
           ],
-    [t, isLoggedIn]
+    [t, isLoggedIn],
   );
 
   return (

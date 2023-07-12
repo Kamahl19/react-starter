@@ -17,7 +17,7 @@ const root = createRoot(document.querySelector('#root')!); // eslint-disable-lin
 root.render(
   <StrictMode>
     <Root />
-  </StrictMode>
+  </StrictMode>,
 );
 
 // TODO replace @mswjs/data fork with original repo after this is merged https://github.com/mswjs/data/pull/277

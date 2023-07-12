@@ -58,12 +58,12 @@ export const useCurrentLanguage = () => {
 
   const changeLanguage = useCallback(
     (lng: (typeof SUPPORTED_LANGUAGES)[number]) => i18n.changeLanguage(lng),
-    [i18n]
+    [i18n],
   );
 
   return useMemo(
     () => [LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)], changeLanguage] as const,
-    [i18n.resolvedLanguage, changeLanguage]
+    [i18n.resolvedLanguage, changeLanguage],
   );
 };
 
@@ -75,7 +75,7 @@ i18next
   .init({
     debug: import.meta.env.DEV,
     resources: Object.fromEntries(
-      Object.entries(LANGUAGES_CONFIG).map(([lng, { resources }]) => [lng, resources])
+      Object.entries(LANGUAGES_CONFIG).map(([lng, { resources }]) => [lng, resources]),
     ),
     lng: import.meta.env.CI || import.meta.env.VITEST ? 'cimode' : undefined,
     fallbackLng: SUPPORTED_LANGUAGES[0],

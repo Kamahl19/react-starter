@@ -37,7 +37,7 @@ export const useCreateMenuProps = (props: Props) => {
 
   const selectedKeys = useMemo(
     () => getKeys(items).filter((path) => matchPath({ path, end: false }, pathname)),
-    [items, pathname]
+    [items, pathname],
   );
 
   return useMemo(
@@ -46,7 +46,7 @@ export const useCreateMenuProps = (props: Props) => {
       items,
       selectedKeys,
     }),
-    [props, items, selectedKeys]
+    [props, items, selectedKeys],
   );
 };
 

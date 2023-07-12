@@ -21,7 +21,7 @@ export const useSignUpRules = () =>
         email: [emailRule],
         password: [passwordRule],
       }),
-    []
+    [],
   );
 
 export const useSignInRules = () =>
@@ -31,7 +31,7 @@ export const useSignInRules = () =>
         email: [emailRule],
         password: [{ required: true, type: 'string' }],
       }),
-    []
+    [],
   );
 
 export const useResetPasswordRules = () =>
@@ -40,5 +40,5 @@ export const useResetPasswordRules = () =>
       createRules({
         email: [emailRule],
       }),
-    []
+    [],
   );

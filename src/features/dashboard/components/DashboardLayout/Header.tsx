@@ -36,7 +36,7 @@ const Header = ({ email }: Props) => {
         icon: <LogoutOutlined />,
       },
     ],
-    [t, signOut]
+    [t, signOut],
   );
 
   return (

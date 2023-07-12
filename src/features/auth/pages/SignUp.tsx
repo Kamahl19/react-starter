@@ -26,7 +26,7 @@ const SignUp = () => {
         onSuccess: () => setSuccess(true),
         onError,
       }),
-    [mutate, onError, setSuccess]
+    [mutate, onError, setSuccess],
   );
 
   const [form] = Form.useForm<CreateUserPayload>();

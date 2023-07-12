@@ -33,9 +33,9 @@ export const useBreakpoint = (breakpoint: Breakpoint) => {
 };
 
 export const createStyles = <
-  T extends Record<string, SerializedStyles | ((theme: Theme) => SerializedStyles)>
+  T extends Record<string, SerializedStyles | ((theme: Theme) => SerializedStyles)>,
 >(
-  arg: T
+  arg: T,
 ) => arg;
 
 /**

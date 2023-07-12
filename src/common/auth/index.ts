@@ -43,7 +43,7 @@ export const useSignIn = () => {
         setIsLoading(false);
       }
     },
-    [setAuthState, setIsLoading]
+    [setAuthState, setIsLoading],
   );
 
   return useMemo(() => ({ isLoading, signIn }), [isLoading, signIn]);

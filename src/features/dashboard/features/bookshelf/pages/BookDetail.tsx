@@ -37,7 +37,7 @@ const BookDetail = () => {
 
   const handleAddToReadingList = useCallback(
     () => addToReadingList({ bookId, userId }, { onError }),
-    [onError, addToReadingList, bookId, userId]
+    [onError, addToReadingList, bookId, userId],
   );
 
   const { mutate: removeFromReadingList, isLoading: isRemoveFromReadingListLoading } =
@@ -50,23 +50,23 @@ const BookDetail = () => {
         {
           onSuccess: () => noteForm.setFieldValue('note', ''),
           onError,
-        }
+        },
       ),
-    [onError, removeFromReadingList, bookId, userId, noteForm]
+    [onError, removeFromReadingList, bookId, userId, noteForm],
   );
 
   const { mutate: markBook, isLoading: isMarkBookLoading } = useMarkBook();
 
   const handleMarkBook = useCallback(
     (finished: boolean) => markBook({ bookId, finished, userId }, { onError }),
-    [onError, markBook, userId, bookId]
+    [onError, markBook, userId, bookId],
   );
 
   const { mutate: setRating } = useSetRating();
 
   const handleSetRating = useCallback(
     (rating: number) => setRating({ bookId, rating, userId }, { onError }),
-    [onError, setRating, userId, bookId]
+    [onError, setRating, userId, bookId],
   );
 
   const { mutate: setNote, isLoading: isSetNoteLoading } = useSetNote();

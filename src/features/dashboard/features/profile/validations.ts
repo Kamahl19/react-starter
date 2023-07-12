@@ -9,5 +9,5 @@ export const useChangePasswordRules = () =>
       createRules({
         password: [{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }],
       }),
-    []
+    [],
   );

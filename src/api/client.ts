@@ -29,7 +29,7 @@ const apiClient = createZodFetcher(
 
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return json as R;
-  }
+  },
 );
 
 export const get = <R>(schema: Schema<R>, url: string, init?: Init) =>

@@ -27,7 +27,7 @@ const ProfileLayout = ({ user, children }: Props) => {
         ),
       },
     ],
-    [t]
+    [t],
   );
 
   return (

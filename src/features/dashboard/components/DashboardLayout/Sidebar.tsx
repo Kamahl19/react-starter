@@ -45,7 +45,7 @@ const Sidebar = () => {
         icon: <StopOutlined />,
       },
     ],
-    [t]
+    [t],
   );
 
   return <SidebarMenu items={menuItems} />;

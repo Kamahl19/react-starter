@@ -38,7 +38,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' }),
         );
       }
 
@@ -48,7 +48,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -57,9 +57,9 @@ export const handlers = [
         ctx.json<SignInResponse>({
           token: user.id,
           userId: user.id,
-        })
+        }),
       );
-    }
+    },
   ),
 
   rest.patch<never, never, SignInResponse | ApiError>(
@@ -71,7 +71,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -81,7 +81,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -90,9 +90,9 @@ export const handlers = [
         ctx.json<SignInResponse>({
           token: user.id,
           userId: user.id,
-        })
+        }),
       );
-    }
+    },
   ),
 
   rest.post('/api/auth/sign-out', async (_, res, ctx) => {
@@ -110,7 +110,7 @@ export const handlers = [
         db.user.findFirst({ where: { email: { equals: req.params.email } } }) === null;
 
       return res(ctx.delay(100), ctx.json<UserEmailAvailabilityResponse>(isAvailable));
-    }
+    },
   ),
 
   rest.post<CreateUserPayload, never, UserResponse | ApiError>(
@@ -122,7 +122,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' }),
         );
       }
 
@@ -136,7 +136,7 @@ export const handlers = [
             details: {
               password: `Password must be at least ${PASSWORD_MIN_LENGTH} characters long`,
             },
-          })
+          }),
         );
       }
 
@@ -146,14 +146,14 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'User already exists' })
+          ctx.json<ApiError>({ status: 409, message: 'User already exists' }),
         );
       }
 
       const user = db.user.create(body);
 
       return res(ctx.delay(100), ctx.json<UserResponse>({ user }));
-    }
+    },
   ),
 
   rest.get<never, { userId: string }, UserResponse | ApiError>(
@@ -167,7 +167,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -177,12 +177,12 @@ export const handlers = [
         return res(
           ctx.status(404),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 404, message: 'User not found' })
+          ctx.json<ApiError>({ status: 404, message: 'User not found' }),
         );
       }
 
       return res(ctx.delay(100), ctx.json<UserResponse>({ user }));
-    }
+    },
   ),
 
   rest.patch<ChangePasswordPayload, { userId: string }, UserResponse | ApiError>(
@@ -196,7 +196,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -206,7 +206,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' }),
         );
       }
 
@@ -216,7 +216,7 @@ export const handlers = [
         return res(
           ctx.status(404),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 404, message: 'User not found' })
+          ctx.json<ApiError>({ status: 404, message: 'User not found' }),
         );
       }
 
@@ -226,7 +226,7 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<UserResponse>({ user }));
-    }
+    },
   ),
 
   /**
@@ -240,7 +240,7 @@ export const handlers = [
       return res(
         ctx.status(401),
         ctx.delay(100),
-        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
       );
     }
 
@@ -273,7 +273,7 @@ export const handlers = [
       return res(
         ctx.status(401),
         ctx.delay(100),
-        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
       );
     }
 
@@ -311,7 +311,7 @@ export const handlers = [
       return res(
         ctx.status(401),
         ctx.delay(100),
-        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+        ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
       );
     }
 
@@ -353,7 +353,7 @@ export const handlers = [
         return res(
           ctx.status(401),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' })
+          ctx.json<ApiError>({ status: 401, message: 'Unauthorized' }),
         );
       }
 
@@ -370,7 +370,7 @@ export const handlers = [
         return res(
           ctx.status(404),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 404, message: 'User not found' })
+          ctx.json<ApiError>({ status: 404, message: 'User not found' }),
         );
       }
 
@@ -384,9 +384,9 @@ export const handlers = [
             rating: readingList?.rating ?? 0,
             note: readingList?.note ?? '',
           },
-        })
+        }),
       );
-    }
+    },
   ),
 
   rest.post<AddToReadingListPayload, never, ReadingListResponse | ApiError>(
@@ -398,7 +398,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' }),
         );
       }
 
@@ -413,7 +413,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'Already in reading list' })
+          ctx.json<ApiError>({ status: 409, message: 'Already in reading list' }),
         );
       }
 
@@ -425,7 +425,7 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<ReadingListResponse>(readingList));
-    }
+    },
   ),
 
   rest.delete<RemoveFromReadingListPayload, never, ReadingListResponse | ApiError>(
@@ -437,7 +437,7 @@ export const handlers = [
         return res(
           ctx.status(400),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 400, message: 'Bad request' })
+          ctx.json<ApiError>({ status: 400, message: 'Bad request' }),
         );
       }
 
@@ -452,7 +452,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' })
+          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' }),
         );
       }
 
@@ -464,7 +464,7 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<ReadingListResponse>(readingList));
-    }
+    },
   ),
 
   rest.patch<MarkBookPayload, never, ReadingListResponse | ApiError>(
@@ -483,7 +483,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' })
+          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' }),
         );
       }
 
@@ -496,7 +496,7 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<ReadingListResponse>(readingList));
-    }
+    },
   ),
 
   rest.patch<SetRatingPayload, never, ReadingListResponse | ApiError>(
@@ -515,7 +515,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' })
+          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' }),
         );
       }
 
@@ -530,7 +530,7 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<ReadingListResponse>(readingList));
-    }
+    },
   ),
 
   rest.patch<SetNotePayload, never, ReadingListResponse | ApiError>(
@@ -549,7 +549,7 @@ export const handlers = [
         return res(
           ctx.status(409),
           ctx.delay(100),
-          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' })
+          ctx.json<ApiError>({ status: 409, message: 'Not in reading list' }),
         );
       }
 
@@ -564,6 +564,6 @@ export const handlers = [
       });
 
       return res(ctx.delay(100), ctx.json<ReadingListResponse>(readingList));
-    }
+    },
   ),
 ];

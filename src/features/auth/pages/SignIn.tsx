@@ -20,7 +20,7 @@ const SignIn = () => {
 
   const handleSubmit = useCallback(
     (payload: SignInPayload) => signIn(payload, { onError }),
-    [signIn, onError]
+    [signIn, onError],
   );
 
   const rules = useSignInRules();

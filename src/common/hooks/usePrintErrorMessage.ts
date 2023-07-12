@@ -17,7 +17,7 @@ const usePrintErrorMessage = () => {
         message.error(t('global:unexpectedError'));
       }
     },
-    [t, message]
+    [t, message],
   );
 };
 

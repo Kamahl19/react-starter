@@ -12,14 +12,14 @@ const LanguageSelector = () => {
         key: value,
         label: name,
       })),
-    []
+    [],
   );
 
   const handleClick = useCallback(
     ({ key }: { key: string }) => {
       setLanguage(resolveLanguage(key));
     },
-    [setLanguage]
+    [setLanguage],
   );
 
   return (

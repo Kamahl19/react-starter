@@ -28,9 +28,9 @@ const ResetPassword = () => {
         {
           onSuccess: () => setSuccess(true),
           onError,
-        }
+        },
       ),
-    [mutate, onError]
+    [mutate, onError],
   );
 
   const rules = useResetPasswordRules();

@@ -72,7 +72,7 @@ const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId }, { onError }),
-    [onError, mutate, userId, bookId]
+    [onError, mutate, userId, bookId],
   );
 
   return (
@@ -93,7 +93,7 @@ const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId }, { onError }),
-    [onError, mutate, userId, bookId]
+    [onError, mutate, userId, bookId],
   );
 
   return (
@@ -114,7 +114,7 @@ const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId, finished: true }, { onError }),
-    [onError, mutate, userId, bookId]
+    [onError, mutate, userId, bookId],
   );
 
   return (
@@ -135,7 +135,7 @@ const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId, finished: false }, { onError }),
-    [onError, mutate, userId, bookId]
+    [onError, mutate, userId, bookId],
   );
 
   return (
@@ -154,7 +154,7 @@ const Rating = ({ bookId, value }: { bookId: string; value: number }) => {
 
   const handleChange = useCallback(
     (rating: number) => mutate({ bookId, userId, rating }, { onError }),
-    [onError, mutate, userId, bookId]
+    [onError, mutate, userId, bookId],
   );
 
   return <Rate allowClear={false} value={value} onChange={handleChange} />;

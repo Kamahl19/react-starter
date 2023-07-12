@@ -20,7 +20,7 @@ const NavbarDropdown = ({ onOpenChange, menu, caret = true, children, ...props }
       onOpenChange?.(open);
       setIsVisible(open);
     },
-    [onOpenChange]
+    [onOpenChange],
   );
 
   const menuProps = useCreateMenuProps({

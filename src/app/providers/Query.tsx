@@ -17,7 +17,7 @@ const queryClient = createQueryClient(
           },
         },
       }
-    : {}
+    : {},
 );
 
 const Query = ({ children }: { children: ReactNode }) => (
