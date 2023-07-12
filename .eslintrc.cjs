@@ -127,12 +127,10 @@ module.exports = {
     {
       files: ['**/*.ts?(x)'],
       extends: [
-        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
-        'plugin:@typescript-eslint/recommended',
-        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts
-        'plugin:@typescript-eslint/strict',
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict-type-checked.ts
+        'plugin:@typescript-eslint/strict-type-checked',
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/stylistic-type-checked.ts
+        'plugin:@typescript-eslint/stylistic-type-checked',
         // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
         'plugin:import/typescript',
         // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
@@ -140,7 +138,8 @@ module.exports = {
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: './tsconfig.json',
+        project: true,
+        tsconfigRootDir: __dirname,
         jsxPragma: null,
       },
       settings: {
@@ -154,10 +153,11 @@ module.exports = {
         /**
          * Turn-off recommended rules
          */
+        '@typescript-eslint/no-confusing-void-expression': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
 
         /**
-         * 'tsc' already handles this (https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import)
+         * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)
          */
         'import/default': 'off',
         'import/namespace': 'off',
@@ -175,6 +175,10 @@ module.exports = {
         ],
         '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
         '@typescript-eslint/restrict-template-expressions': ['error', { allowNever: true }],
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'error',
+          { ignoreMixedLogicalExpressions: true },
+        ],
 
         /**
          * Use additional rules
