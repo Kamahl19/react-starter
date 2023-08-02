@@ -37,8 +37,6 @@ There are multiple alternative versions of this starter project commited to diff
 - [react-error-boundary](https://github.com/bvaughn/react-error-boundary) - simple reusable React error boundary component
 - [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
-  - [MSW](https://mswjs.io/) - API mocking library for browser and Node.js
-  - [@mswjs/data](https://github.com/mswjs/data) - data modeling and relation library for testing
   - [jsdom-testing-mocks](https://github.com/trurl-master/jsdom-testing-mocks) - a set of tools for emulating browser behavior in jsdom environment
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
@@ -76,8 +74,6 @@ npm start
 
 Vite will run web server in the development mode at `http://localhost:3000`.
 
-This project includes [Mock Service Worker](https://mswjs.io/) to mock API. It starts automatically and provides API for authentication and user functionality.
-
 ## Building for Production
 
 Build the app for production
@@ -104,7 +100,6 @@ Now each commit pushed to the `main` branch will be deployed to production autom
 
 This project is being deployed to Vercel for demo purposes. Follow these steps to remove it:
 
-- Find all occurences of `process.env.VERCEL` and remove them
 - Delete `vercel.json` file
 
 ### Analysing & Visualizing production JS bundle

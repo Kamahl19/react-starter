@@ -21,7 +21,7 @@
     "i18n": "i18next",
     "lint": "eslint \"./**/*.{js,cjs,mjs,ts,tsx}\" --max-warnings 0",
     "prepare": "husky install",
-    "preview": "export IS_PREVIEW=true && vite build && vite preview --port 3000",
+    "preview": "vite build && vite preview --port 3000",
     "start": "vite",
     "test": "DEBUG_PRINT_LIMIT=100000 vitest",
     "test:ui": "DEBUG_PRINT_LIMIT=100000 vitest --ui",
@@ -64,7 +64,6 @@
     "@emotion/eslint-plugin": "11.11.0",
     "@eslint-community/eslint-plugin-eslint-comments": "4.1.0",
     "@julr/vite-plugin-validate-env": "1.0.1",
-    "@mswjs/data": "0.16.1",
     "@swc-jotai/debug-label": "0.1.0",
     "@swc-jotai/react-refresh": "0.1.0",
     "@swc/plugin-emotion": "2.5.105",
@@ -100,7 +99,6 @@
     "jsdom": "23.0.1",
     "jsdom-testing-mocks": "1.11.0",
     "lint-staged": "15.1.0",
-    "msw": "2.0.9",
     "prettier": "3.1.0",
     "prettier-plugin-packagejson": "2.4.6",
     "rollup-plugin-visualizer": "5.9.3",
@@ -116,8 +114,5 @@
   "engines": {
     "node": "18 || 20",
     "npm": ">=8.0"
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

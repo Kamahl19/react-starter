@@ -5,7 +5,6 @@
 - [Testing](#testing)
   - [Vitest](#vitest)
   - [Testing Library](#testing-library)
-  - [MSW](#msw)
   - [Configuration](#configuration)
 - [Linting & Formatting](#linting---formatting)
   - [ESLint](#eslint)
@@ -56,12 +55,6 @@ There is a better alternative ([recommended by React](https://reactjs.org/docs/t
 
 Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest.
 
-### MSW
-
-[Mock Service Worker](https://mswjs.io/) mocks APIs by intercepting requests on the network level. It allows a developer to seamlessly reuse the same API mock definition for testing, development, and debugging. It keeps application's code and tests unaware whether something is mocked or not. MSW uses [declarative request handlers](./src/mocks/handlers.ts) to capture requests and provide a response resolver function that returns a mocked response. It works only during development and testing and [doesn't get bundled](./src/index.tsx) into the production code.
-
-For data modeling and relations there is a [@mswjs/data](https://github.com/mswjs/data) library. When testing API interactions it's necessary to mock data. Instead of keeping a hard-coded set of fixtures, this library provides must-have tools for data-driven API mocking. Unfortunately, there is no persistence functionality out of the box, so data would be lost after page reload. To fix that, this project includes custom [persist extension](./src/mocks/persist.ts).
-
 ### Configuration
 
 To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/tests/setup.ts](./src/tests/setup.ts). It currently:
@@ -70,7 +63,6 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 - polyfills `window.matchMedia` and sets window width to 1200px
 - initializes `i18next`
 - extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
-- setups MSW to mock API
 
 There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Jotai, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
 
@@ -256,7 +248,6 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 ├── .husky/ : Git hooks e.g. the pre-commit hook
 ├── .vscode/ : VSCode configuration
 ├── public/ : Public static assets
-│   ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/integrations/browser)
 ├── src/
 │   ├── api/ : Communication with API server
 │   ├── app/ : Application-wide (framework) files
@@ -268,7 +259,6 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 │   │   ├── hooks/ : Generic React hooks
 │   ├── features/ : Features bundled into separate modules
 │   ├── i18n/ : i18n configuration and translation JSON files
-│   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── tests/ : Testing related functionality
 │   │   ├── setup.tsx : Executes before tests to mock API or set global settings
 │   │   ├── utils.tsx : Provides custom render function for testing
