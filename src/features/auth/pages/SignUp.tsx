@@ -1,60 +1,66 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, Result } from 'antd';
-import { useDebounce } from 'use-debounce';
+import { App, Button, Form, Input, Result } from 'antd';
 
-import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from '@/api';
+import { useSignUp, useResendConfirmation, type SignUpPayload } from '@/api';
 import { usePrintErrorMessage } from '@/common/hooks';
 
 import { useSignUpRules } from '../validations';
 import AuthCard from '../components/AuthCard';
 
-const DEBOUNCE_MS = 500;
-
 const SignUp = () => {
   const { t } = useTranslation();
 
-  const [success, setSuccess] = useState(false);
+  const { message } = App.useApp();
+
+  const [success, setSuccess] = useState<{ requiresConfirmation: boolean; email: string }>();
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isPending } = useCreateUser();
+  const { signUp, isPending } = useSignUp();
 
   const handleSubmit = useCallback(
-    (payload: CreateUserPayload) =>
-      mutate(payload, {
-        onSuccess: () => setSuccess(true),
+    (payload: SignUpPayload) =>
+      signUp(payload, {
+        onSuccess: ({ requiresConfirmation }) =>
+          setSuccess({ requiresConfirmation, email: payload.email }),
         onError,
       }),
-    [mutate, onError, setSuccess],
+    [signUp, onError],
   );
 
-  const [form] = Form.useForm<CreateUserPayload>();
+  const { resendConfirmation, isPending: isResendConfirmationPending } = useResendConfirmation();
 
-  const [emailValue = ''] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
-
-  const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
+  const handleResendConfirmation = useCallback(
+    () =>
+      resendConfirmation(
+        { email: success?.email ?? '' },
+        {
+          onSuccess: () => void message.success(t('auth:signUp.resendConfirmation.success')),
+          onError,
+        },
+      ),
+    [t, resendConfirmation, onError, message, success],
+  );
 
   const rules = useSignUpRules();
 
   return (
     <AuthCard title={t('auth:signUp.title')}>
-      {success ? (
+      {success?.requiresConfirmation ? (
         <Result
           status="success"
           title={t('auth:signUp.success.title')}
           subTitle={t('auth:signUp.success.subTitle')}
+          extra={
+            <Button onClick={handleResendConfirmation} loading={isResendConfirmationPending}>
+              {t('auth:signUp.resendConfirmation.button')}
+            </Button>
+          }
         />
       ) : (
-        <Form<CreateUserPayload> form={form} onFinish={handleSubmit} layout="vertical">
-          <Form.Item
-            label={t('auth:signUp.email')}
-            name="email"
-            rules={rules.email}
-            validateFirst
-            validateStatus={isUserEmailAvailable ? '' : 'error'}
-            help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
-          >
+        <Form<SignUpPayload> onFinish={handleSubmit} layout="vertical">
+          <Form.Item label={t('auth:signUp.email')} name="email" rules={rules.email} validateFirst>
             <Input autoFocus autoComplete="off" />
           </Form.Item>
           <Form.Item

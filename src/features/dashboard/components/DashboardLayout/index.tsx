@@ -18,7 +18,7 @@ type Props = {
 const DashboardLayout = ({ user, children }: Props) => (
   <AdminLayout
     logo={<SidebarLogo />}
-    headerContent={<Header email={user.email} />}
+    headerContent={<Header email={user.email ?? ''} />}
     sidebarContent={<Sidebar />}
   >
     {children}

@@ -7,7 +7,7 @@ import Jotai from './providers/Jotai';
 import Query from './providers/Query';
 import Router from './providers/Router';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
-import PersistAuthGate from './PersistAuthGate';
+import SupabaseAuth from './providers/SupabaseAuth';
 import App from './App';
 
 const GlobalLoading = () => <LoadingScreen fullVPHeight />;
@@ -18,11 +18,11 @@ const Root = () => (
       <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <Query>
-            <PersistAuthGate loadingFallback={<GlobalLoading />}>
+            <SupabaseAuth loadingFallback={<GlobalLoading />}>
               <Router>
                 <App />
               </Router>
-            </PersistAuthGate>
+            </SupabaseAuth>
           </Query>
         </AntDesign>
       </Suspense>

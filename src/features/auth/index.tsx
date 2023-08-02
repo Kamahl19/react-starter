@@ -10,7 +10,6 @@ import AuthLayout from './components/AuthLayout';
 
 const SignUp = lazy(() => import('./pages/SignUp'));
 const SignIn = lazy(() => import('./pages/SignIn'));
-const ConfirmEmail = lazy(() => import('./pages/ConfirmEmail'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
 const Auth = () => (
@@ -28,7 +27,6 @@ const Auth = () => (
         <Route index element={<Navigate replace to={AUTH_ROUTES.signIn.to} />} />
         <Route path={AUTH_ROUTES.signIn.path} element={<SignIn />} />
         <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
-        <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       </Route>
       <Route path={AUTH_ROUTES.resetPassword.path} element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />

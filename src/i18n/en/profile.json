@@ -8,7 +8,7 @@
     "title": "Change Password"
   },
   "header": {
-    "isConfirmed": "Confirmed"
+    "createdAt": "Created At"
   },
   "menu": {
     "changePassword": "Change Password"

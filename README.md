@@ -2,7 +2,7 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow:test+branch:main)
 
-### 🔥 [Live Demo](https://react-starter-delta-one.vercel.app/) 🔥
+### 🔥 [Live Demo](https://react-starter-git-supabase-kamahl19.vercel.app/) 🔥
 
 ## Documentation
 
@@ -124,6 +124,40 @@ npm run test
 ```
 
 See [Vitest docs](https://vitest.dev/) for more information.
+
+## Supabase TODO
+
+### Local Development
+
+- Install Docker
+- No need to install Supabase CLI, it's already installed via npm
+- Run `npm run supabase:login`
+- Run `npm run supabase:start`
+- Update `.env` file with the generated `VITE_SUPABASE_ANON_KEY`
+- Run `npm run supabase:open:dashboard` to open local Supabase dashboard
+- Run `npm run supabase:open:email` to open local email server
+- Run `npm run supabase:stop`
+- Altering the database schema (https://supabase.com/docs/guides/cli/managing-environments#auto-schema-diff)
+  - Change DB schema via local Supabase dashboard Studio
+  - Run `npm run supabase:db:diff -- -f {migration_file_name}` to create a migration file
+  - Run `npm run supabase:migration:up` to apply the migration locally or `npm run supabase:db:reset` to also reset the DB
+  - Run `npm run supabase:gen-types` to regenerate TypeScript types
+- [optional] Run `npx supabase db remote commit` to create migration file with changes made in remote DB
+  - Apply the migration locally
+
+### Deploy to Supabase
+
+- Create `dev` branch for staging
+- Create 2 new supabase remote projects for production and staging
+- Update `STAGING_PROJECT_ID` in `.github/workflows/staging.yml` and `PRODUCTION_PROJECT_ID` in `.github/workflows/production.yml`
+- Set Github's secrets `SUPABASE_ACCESS_TOKEN`, `STAGING_DB_PASSWORD` and `PRODUCTION_DB_PASSWORD`
+- Pushing to `dev` branch will deploy DB migrations to staging
+- Pushing to `main` branch will deploy DB migrations to production
+
+### Deploy to Vercel
+
+- TODO
+  - https://supabase.com/partners/integrations/vercel
 
 ## Prettier
 

@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Space, Typography, Row, Col } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
-import { useSignOut } from '@/common/auth';
+import { useSignOut } from '@/api';
+import { usePrintErrorMessage } from '@/common/hooks';
 import { NavbarDropdown, ThemeSwitch, LanguageSelector } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
@@ -15,7 +16,12 @@ type Props = {
 
 const Header = ({ email }: Props) => {
   const { t } = useTranslation();
+
+  const onError = usePrintErrorMessage();
+
   const { signOut } = useSignOut();
+
+  const handleSignOut = useCallback(() => signOut({ onError }), [signOut, onError]);
 
   const items = useMemo(
     () => [
@@ -31,12 +37,14 @@ const Header = ({ email }: Props) => {
       {
         key: 'signOut',
         label: (
-          <Typography.Link onClick={signOut}>{t('dashboard:topMenu.signOut')}</Typography.Link>
+          <Typography.Link onClick={handleSignOut}>
+            {t('dashboard:topMenu.signOut')}
+          </Typography.Link>
         ),
         icon: <LogoutOutlined />,
       },
     ],
-    [t, signOut],
+    [t, handleSignOut],
   );
 
   return (

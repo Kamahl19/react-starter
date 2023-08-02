@@ -16,21 +16,16 @@ const ResetPassword = () => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isPending } = useResetPassword();
+  const { resetPassword, isPending } = useResetPassword();
 
   const handleSubmit = useCallback(
     (payload: ResetPasswordPayload) =>
-      mutate(
-        {
-          payload,
-          redirectTo: `${window.location.origin}${DASHBOARD_ROUTES.profileChangePassword.to}`,
-        },
-        {
-          onSuccess: () => setSuccess(true),
-          onError,
-        },
-      ),
-    [mutate, onError],
+      resetPassword(payload, {
+        redirectTo: `${window.location.origin}${DASHBOARD_ROUTES.profileChangePassword.to}`,
+        onSuccess: () => setSuccess(true),
+        onError,
+      }),
+    [resetPassword, onError],
   );
 
   const rules = useResetPasswordRules();

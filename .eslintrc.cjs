@@ -197,6 +197,7 @@ module.exports = {
          */
         '@typescript-eslint/no-confusing-void-expression': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/no-throw-literal': 'off',
 
         /**
          * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)

@@ -7,7 +7,7 @@ import AntDesign from '@/app/providers/AntDesign';
 import Jotai from '@/app/providers/Jotai';
 import Router from '@/app/providers/Router';
 import { createQueryClient } from '@/app/providers/Query';
-import PersistAuthGate from '@/app/PersistAuthGate';
+import SupabaseAuth from '@/app/providers/SupabaseAuth';
 import { LoadingScreen } from '@/common/components';
 
 import { DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from './constants';
@@ -32,9 +32,9 @@ const Providers = ({ children }: Props) => {
       <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <QueryClientProvider client={queryClient}>
-            <PersistAuthGate loadingFallback={<GlobalLoading />}>
+            <SupabaseAuth loadingFallback={<GlobalLoading />}>
               <Router>{children}</Router>
-            </PersistAuthGate>
+            </SupabaseAuth>
           </QueryClientProvider>
         </AntDesign>
       </Suspense>

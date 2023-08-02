@@ -1,0 +1,25 @@
+name: Deploy to Staging
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Test and Build]
+    types: [completed]
+    branches: [dev]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
+      STAGING_PROJECT_ID: xyz # TODO: replace with your project ID
+    steps:
+      - uses: actions/checkout@v3
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase link --project-ref $STAGING_PROJECT_ID
+      - run: supabase db push
+# TODO: deploy to vercel or netlify https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow

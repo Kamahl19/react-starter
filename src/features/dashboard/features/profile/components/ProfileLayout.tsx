@@ -34,8 +34,8 @@ const ProfileLayout = ({ user, children }: Props) => {
     <>
       <DashboardPageHeader title={user.email}>
         <Descriptions>
-          <Descriptions.Item label={t('profile:header.isConfirmed')}>
-            {user.isConfirmed ? <>✅</> : <>❌</>}
+          <Descriptions.Item label={t('profile:header.createdAt')}>
+            {user.created_at}
           </Descriptions.Item>
         </Descriptions>
       </DashboardPageHeader>

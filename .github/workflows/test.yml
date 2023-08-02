@@ -2,7 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - dev
   pull_request:
   workflow_dispatch:
 
@@ -16,6 +18,9 @@ jobs:
           node-version: 20
           check-latest: true
           cache: 'npm'
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
       - run: |
           npm ci
           npm run lint
@@ -24,3 +29,14 @@ jobs:
           npm run build
         env:
           CI: true
+      - run: supabase db start
+      - run: supabase db lint
+      - run: supabase test db
+      - name: Verify generated types are up-to-date
+        run: |
+          npm run supabase:gen-types
+          if [ "$(git diff --ignore-space-at-eol src/api/database.types.ts | wc -l)" -gt "0" ]; then
+            echo "Detected uncommitted changes after build. See status below:"
+            git diff
+            exit 1
+          fi

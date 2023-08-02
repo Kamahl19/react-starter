@@ -1,90 +1,27 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import {
-  fetchUser,
-  createUser,
-  changePassword,
-  resetPassword,
-  fetchUserEmailAvailability,
-  confirmEmail,
-  fetchBookshelfDiscover,
-  fetchBookshelfReadingList,
-  fetchBookshelfFinished,
-  fetchBook,
-  addToReadingList,
-  markBook,
-  setRating,
-  setNote,
-  removeFromReadingList,
-} from './endpoints';
+import { useAuth } from '@/common/auth';
+
+import supabase from './client';
 import type {
-  CreateUserPayload,
-  ChangePasswordPayload,
-  ResetPasswordPayload,
+  BookResponse,
+  BooksResponse,
   AddToReadingListPayload,
   MarkBookPayload,
   SetRatingPayload,
   SetNotePayload,
   RemoveFromReadingListPayload,
 } from './models';
+import type { UpdateReadingList, InsertReadingList } from './database.types';
 
-/**
- * User
- */
+class ErrorWithStatus extends Error {
+  status: number;
 
-const userQueryKeys = {
-  all: ['user'] as const,
-  user: (userId: string) => [...userQueryKeys.all, userId] as const,
-  emailAvailability: (email: string) => [...userQueryKeys.all, 'emailAvailability', email] as const,
-};
-
-export const useFetchUser = (userId: string) =>
-  useQuery({
-    queryKey: userQueryKeys.user(userId),
-    queryFn: () => fetchUser(userId),
-  });
-
-export const useCreateUser = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (payload: CreateUserPayload) => createUser(payload),
-    onSuccess: (data) => {
-      queryClient.setQueryData(userQueryKeys.emailAvailability(data.user.email), false);
-    },
-  });
-};
-
-export const useConfirmEmail = () =>
-  useMutation({
-    mutationFn: (token: string) => confirmEmail(token),
-  });
-
-export const useChangePassword = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: ({ userId, payload }: { userId: string; payload: ChangePasswordPayload }) =>
-      changePassword(userId, payload),
-    onSuccess: (data) => {
-      queryClient.setQueryData(userQueryKeys.user(data.user.id), data);
-    },
-  });
-};
-
-export const useResetPassword = () =>
-  useMutation({
-    mutationFn: ({ payload, redirectTo }: { payload: ResetPasswordPayload; redirectTo: string }) =>
-      resetPassword(payload, redirectTo),
-  });
-
-export const useFetchUserEmailAvailability = (email: string) =>
-  useQuery({
-    queryKey: userQueryKeys.emailAvailability(email),
-    queryFn: () => fetchUserEmailAvailability(email),
-    enabled: /\S+@\S+\.\S+/u.test(email),
-    initialData: true,
-  });
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
 
 /**
  * Bookshelf
@@ -92,42 +29,176 @@ export const useFetchUserEmailAvailability = (email: string) =>
 
 const bookshelfQueryKeys = {
   all: () => ['bookshelf'] as const,
-  list: () => [...bookshelfQueryKeys.all()] as const,
+  list: () => [...bookshelfQueryKeys.all(), 'list'] as const,
   discover: () => [...bookshelfQueryKeys.list(), 'discover'] as const,
-  readingList: () => [...bookshelfQueryKeys.list(), 'readingList'] as const,
-  finished: () => [...bookshelfQueryKeys.list(), 'finished'] as const,
-  book: (bookId: string) => [...bookshelfQueryKeys.all(), bookId] as const,
+  readingList: (userId: string) => [...bookshelfQueryKeys.list(), 'readingList', userId] as const,
+  finished: (userId: string) => [...bookshelfQueryKeys.list(), 'finished', userId] as const,
+  book: (bookId: string) => [...bookshelfQueryKeys.all(), 'detail', bookId] as const,
 };
 
 export const useFetchBookshelfDiscover = () =>
   useQuery({
     queryKey: bookshelfQueryKeys.discover(),
-    queryFn: () => fetchBookshelfDiscover(),
+    queryFn: async (): Promise<BooksResponse> => {
+      const { data, error } = await supabase
+        .from('books')
+        // TODO select no columns from reading_list after https://github.com/supabase/postgrest-js/issues/445
+        .select(
+          `
+          *,
+          reading_list(bookId)
+        `,
+        )
+        .is('reading_list[0]', null) // eslint-disable-line unicorn/no-null
+        .order('title');
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        books: data.map(({ reading_list, ...book }) => ({
+          ...book, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          isInList: false,
+          finished: false,
+          rating: 0,
+          note: '',
+        })),
+      };
+    },
   });
 
-export const useFetchBookshelfReadingList = () =>
-  useQuery({
-    queryKey: bookshelfQueryKeys.readingList(),
-    queryFn: () => fetchBookshelfReadingList(),
-  });
+export const useFetchBookshelfReadingList = () => {
+  const { userId } = useAuth();
 
-export const useFetchBookshelfFinished = () =>
-  useQuery({
-    queryKey: bookshelfQueryKeys.finished(),
-    queryFn: () => fetchBookshelfFinished(),
+  return useQuery({
+    queryKey: bookshelfQueryKeys.readingList(userId),
+    queryFn: async (): Promise<BooksResponse> => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .select(
+          `
+          *,
+          book:books(*)
+        `,
+        )
+        .eq('userId', userId)
+        .eq('finished', false)
+        .order('book(title)');
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        books: data.map(({ book, finished, rating, note }) => ({
+          ...book!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          isInList: true,
+          finished,
+          rating,
+          note,
+        })),
+      };
+    },
   });
+};
+
+export const useFetchBookshelfFinished = () => {
+  const { userId } = useAuth();
+
+  return useQuery({
+    queryKey: bookshelfQueryKeys.finished(userId),
+    queryFn: async (): Promise<BooksResponse> => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .select(
+          `
+          *,
+          book:books(*)
+        `,
+        )
+        .eq('userId', userId)
+        .eq('finished', true)
+        .order('book(title)');
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        books: data.map(({ book, finished, rating, note }) => ({
+          ...book!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          isInList: true,
+          finished,
+          rating,
+          note,
+        })),
+      };
+    },
+  });
+};
 
 export const useFetchBook = (bookId: string) =>
   useQuery({
     queryKey: bookshelfQueryKeys.book(bookId),
-    queryFn: () => fetchBook(bookId),
+    queryFn: async (): Promise<BookResponse> => {
+      const { data, error } = await supabase
+        .from('books')
+        .select(
+          `
+          *,
+          reading_list(*)
+        `,
+        )
+        .eq('id', bookId)
+        .maybeSingle();
+
+      if (error) {
+        throw error;
+      }
+
+      if (!data) {
+        throw new ErrorWithStatus('Book not found', 404);
+      }
+
+      const { reading_list, ...book } = data;
+
+      // TODO array -> single object https://github.com/orgs/supabase/discussions/7610
+      const readingList = reading_list[0] ?? {
+        finished: false,
+        rating: 0,
+        note: '',
+      };
+
+      return {
+        book: {
+          ...book,
+          isInList: reading_list.length > 0,
+          finished: readingList.finished,
+          rating: readingList.rating,
+          note: readingList.note,
+        },
+      };
+    },
   });
 
 export const useAddToReadingList = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: AddToReadingListPayload) => addToReadingList(payload),
+    mutationFn: async ({ userId, bookId }: AddToReadingListPayload) => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .upsert<InsertReadingList>({ userId, bookId }, { ignoreDuplicates: true })
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
+    },
     onSuccess: ({ bookId }) => {
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
@@ -139,7 +210,20 @@ export const useRemoveFromReadingList = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: RemoveFromReadingListPayload) => removeFromReadingList(payload),
+    mutationFn: async ({ userId, bookId }: RemoveFromReadingListPayload) => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .delete()
+        .match({ userId, bookId })
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
+    },
     onSuccess: ({ bookId }) => {
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
@@ -151,7 +235,20 @@ export const useMarkBook = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: MarkBookPayload) => markBook(payload),
+    mutationFn: async ({ userId, bookId, finished }: MarkBookPayload) => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .update<UpdateReadingList>({ finished })
+        .match({ userId, bookId })
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
+    },
     onSuccess: ({ bookId }) => {
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
@@ -163,7 +260,20 @@ export const useSetRating = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: SetRatingPayload) => setRating(payload),
+    mutationFn: async ({ userId, bookId, rating }: SetRatingPayload) => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .update<UpdateReadingList>({ rating })
+        .match({ userId, bookId })
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
+    },
     onSuccess: ({ bookId }) => {
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
@@ -175,7 +285,20 @@ export const useSetNote = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: SetNotePayload) => setNote(payload),
+    mutationFn: async ({ userId, bookId, note }: SetNotePayload) => {
+      const { data, error } = await supabase
+        .from('reading_list')
+        .update<UpdateReadingList>({ note })
+        .match({ userId, bookId })
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
+    },
     onSuccess: ({ bookId }) => {
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
       queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });

@@ -3,7 +3,6 @@ import { App, Form, Input, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { type ChangePasswordPayload, useChangePassword } from '@/api';
-import { useAuth } from '@/common/auth';
 import { usePrintErrorMessage } from '@/common/hooks';
 import { Widget } from '@/common/components';
 
@@ -12,29 +11,24 @@ import { useChangePasswordRules } from '../validations';
 const ChangePassword = () => {
   const { t } = useTranslation();
 
-  const { userId } = useAuth();
-
   const { message } = App.useApp();
 
   const [form] = Form.useForm<ChangePasswordPayload>();
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isPending } = useChangePassword();
+  const { changePassword, isPending } = useChangePassword();
 
   const handleSubmit = useCallback(
     (payload: ChangePasswordPayload) =>
-      mutate(
-        { userId, payload },
-        {
-          onSuccess: () => {
-            form.resetFields();
-            message.success(t('profile:changePassword.success'));
-          },
-          onError,
+      changePassword(payload, {
+        onSuccess: () => {
+          form.resetFields();
+          message.success(t('profile:changePassword.success'));
         },
-      ),
-    [t, userId, mutate, form, onError, message],
+        onError,
+      }),
+    [t, changePassword, form, onError, message],
   );
 
   const rules = useChangePasswordRules();

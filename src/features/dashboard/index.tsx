@@ -1,9 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
-import { useFetchUser } from '@/api';
-import { useAuth, useSignOut } from '@/common/auth';
-import { LoadingScreen, NotFound, ResultError } from '@/common/components';
+import { useSignOut } from '@/api';
+import { useAuth } from '@/common/auth';
+import { LoadingScreen, NotFound } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
 import DashboardLayout from './components/DashboardLayout';
@@ -12,29 +12,18 @@ const Bookshelf = lazy(() => import('./features/bookshelf'));
 const Profile = lazy(() => import('./features/profile'));
 
 const Dashboard = () => {
-  const { userId } = useAuth();
+  const { user } = useAuth();
   const { isPending: isSignOutPending } = useSignOut();
 
-  const {
-    isPending: userIsPending,
-    isError: userIsError,
-    error: userError,
-    data,
-  } = useFetchUser(userId);
-
-  if (userIsPending || isSignOutPending) {
+  if (isSignOutPending) {
     return <LoadingScreen fullVPHeight />;
-  }
-
-  if (userIsError) {
-    return <ResultError error={userError} onReset={() => window.location.reload()} fullVPHeight />;
   }
 
   return (
     <Routes>
       <Route
         element={
-          <DashboardLayout user={data.user}>
+          <DashboardLayout user={user}>
             <Suspense fallback={<LoadingScreen />}>
               <Outlet />
             </Suspense>
