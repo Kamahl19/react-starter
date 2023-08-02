@@ -90,13 +90,13 @@
     "vitest-dom": "0.1.0"
   },
   "dependencies": {
-    "@ant-design/icons": "5.1.4",
+    "@ant-design/icons": "5.2.4",
     "@emotion/react": "11.11.1",
     "@sindresorhus/is": "5.6.0",
     "@tanstack/react-query": "4.32.1",
     "@tanstack/react-query-devtools": "4.32.1",
     "@tshttp/status": "2.0.0",
-    "antd": "5.8.0",
+    "antd": "5.8.1",
     "dayjs": "1.11.9",
     "deepmerge-ts": "5.1.0",
     "i18next": "23.4.1",
