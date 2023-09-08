@@ -45,10 +45,10 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
 ## Installation
 
 - [Install nvm](https://github.com/nvm-sh/nvm) (Node version manager)
-- Install Node v18 and upgrade npm
+- Install Node v20 and upgrade npm
   ```bash
-  nvm install 18
-  nvm use 18
+  nvm install 20
+  nvm use 20
   npm upgrade -g npm
   ```
 - Clone this repository
