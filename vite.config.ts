@@ -12,7 +12,7 @@ import { z } from 'zod';
 
 const visualize = process.env.VISUALIZE === 'true';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     ValidateEnv({
       validator: 'zod',
@@ -27,13 +27,14 @@ export default defineConfig({
     reactClickToComponent(),
     tsconfigPaths(),
     svgr(),
-    checker({
-      overlay: false,
-      typescript: true,
-      eslint: {
-        lintCommand: 'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0',
-      },
-    }),
+    mode !== 'test' &&
+      checker({
+        overlay: false,
+        typescript: true,
+        eslint: {
+          lintCommand: 'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0',
+        },
+      }),
     visualize &&
       visualizer({
         filename: 'dist/stats.html',
@@ -58,4 +59,4 @@ export default defineConfig({
     setupFiles: 'src/tests/setup.ts',
     mockReset: true,
   },
-});
+}));

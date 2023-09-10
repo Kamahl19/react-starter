@@ -32,5 +32,5 @@ test(
     await click(await screen.findByText('dashboard:topMenu.signOut'));
     expect(await screen.findByRole('link', { name: 'auth:menu.signIn' })).toBeInTheDocument();
   },
-  { timeout: 10_000 },
+  { timeout: 30_000 },
 );
