@@ -1,6 +1,6 @@
 # React Starter
 
-[![Main CI Status](https://github.com/Kamahl19/react-starter/workflows/CI/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow%3ACI+branch%3Amain)
+[![Main CI Status](https://github.com/Kamahl19/react-starter/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow:test+branch:main)
 
 ### 🔥 [Live Demo](https://react-starter-kamahl19.vercel.app/)
 
