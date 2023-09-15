@@ -25,7 +25,7 @@
     "format-check": "prettier --check . --ignore-unknown",
     "i18n": "i18next",
     "lint": "eslint \"./**/*.{js,cjs,mjs,ts,tsx}\" --max-warnings 0",
-    "preview": "vite build && vite preview --port 3000",
+    "preview": "export IS_PREVIEW=true && vite build && vite preview --port 3000",
     "start": "vite",
     "test": "vitest",
     "test:ui": "vitest --ui",

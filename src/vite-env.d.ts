@@ -10,4 +10,4 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-declare const __IS_VERCEL_DEMO__: boolean;
+declare const __ENABLE_MSW_IN_PROD__: boolean;

@@ -12,6 +12,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { z } from 'zod';
 
 const visualize = process.env.VISUALIZE === 'true';
+const isPreview = process.env.IS_PREVIEW === 'true';
 
 export default defineConfig(({ mode }) => ({
   plugins: [
@@ -47,7 +48,7 @@ export default defineConfig(({ mode }) => ({
       }),
   ],
   define: {
-    __IS_VERCEL_DEMO__: process.env.VERCEL !== undefined,
+    __ENABLE_MSW_IN_PROD__: process.env.VERCEL !== undefined || isPreview,
   },
   server: {
     open: true,

@@ -2,7 +2,7 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow:test+branch:main)
 
-### 🔥 [Live Demo](https://react-starter-kamahl19.vercel.app/)
+### 🔥 [Live Demo](https://react-starter-kamahl19.vercel.app/) 🔥
 
 ## Documentation
 
@@ -87,7 +87,7 @@ Your app is then ready to be deployed from the `/dist` folder. See the [Building
 
 This project is being deployed to Vercel for demo purposes. Follow these steps to remove it:
 
-- Find all occurences of `__IS_VERCEL_DEMO__` and remove them
+- Find all occurences of `process.env.VERCEL` and remove them
 - Delete `vercel.json` file
 
 ### Analysing & Visualizing production JS bundle
