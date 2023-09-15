@@ -20,7 +20,7 @@
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
     "visualize": "export VISUALIZE=true && npm run build",
-    "build": "vite build --debug",
+    "build": "vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
     "i18n": "i18next",
