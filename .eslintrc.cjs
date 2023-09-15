@@ -53,8 +53,10 @@ module.exports = {
     'react/prop-types': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-await-expression-member': 'off',
     'unicorn/no-useless-undefined': 'off',
     'unicorn/prevent-abbreviations': 'off',
+    'unicorn/prefer-top-level-await': 'off', // TODO enable once top-level-await is supported by default in Vite
 
     /**
      * Adjust recommended rules
