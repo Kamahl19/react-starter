@@ -24,6 +24,10 @@ const apiClient = createZodFetcher(
     const json = await resp.json();
 
     if (!resp.ok) {
+      if (import.meta.env.DEV) {
+        console.error('API client error:', json);
+      }
+
       throw json;
     }
 

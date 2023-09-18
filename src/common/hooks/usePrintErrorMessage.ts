@@ -9,6 +9,10 @@ const usePrintErrorMessage = () => {
 
   return useCallback(
     (error: unknown) => {
+      if (import.meta.env.DEV) {
+        console.error(error);
+      }
+
       if (is.nonEmptyObject(error) && is.string(error.message)) {
         message.error(error.message);
       } else if (is.string(error)) {

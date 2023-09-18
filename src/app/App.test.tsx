@@ -12,12 +12,15 @@ test(
 
     render(<App />);
 
+    expect(await screen.findByRole('link', { name: 'auth:menu.signUp' })).toBeInTheDocument();
+
     // Sign up
-    await screen.findByRole('link', { name: 'auth:menu.signUp' });
     await click(screen.getByRole('link', { name: 'auth:menu.signUp' }));
     await type(await screen.findByLabelText('auth:signUp.email'), email);
     await type(await screen.findByLabelText('auth:signUp.password'), password);
     await click(await screen.findByRole('button', { name: 'auth:signUp.submit' }));
+
+    expect(await screen.findByText('auth:signUp.success.title')).toBeInTheDocument();
 
     // Sign in
     await click(screen.getByRole('link', { name: 'auth:menu.signIn' }));
@@ -26,8 +29,9 @@ test(
     await type(await screen.findByLabelText('auth:signIn.password'), password);
     await click(await screen.findByRole('button', { name: 'auth:signIn.submit' }));
 
+    expect(await screen.findByText(email)).toBeInTheDocument();
+
     // Sign out
-    await screen.findByText(email);
     await click(screen.getByText(email));
     await click(await screen.findByText('dashboard:topMenu.signOut'));
     expect(await screen.findByRole('link', { name: 'auth:menu.signIn' })).toBeInTheDocument();
