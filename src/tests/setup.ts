@@ -1,6 +1,6 @@
 import { configMocks, type MockViewport } from 'jsdom-testing-mocks';
 import { act } from '@testing-library/react';
-import 'vitest-dom/extend-expect';
+import '@testing-library/jest-dom/vitest';
 
 import { setDesktopResolution } from './utils';
 import { dropDB } from 'mocks/db';

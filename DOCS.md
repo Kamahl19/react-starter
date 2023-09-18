@@ -54,7 +54,7 @@ Generally an [Enzyme](https://github.com/enzymejs/enzyme) library was used for t
 
 There is a better alternative ([recommended by React](https://reactjs.org/docs/testing.html#tools)) for testing frontend applications called [Testing Library](https://testing-library.com/). It's framework agnostic and officially supports testing plain DOM, React, React Native, Angular, Vue, Marko, Svelte, Preact, and many others. It encourages good testing practices and follows the principle of "The more your tests resemble the way your software is used, the more confidence they provide". It enables the developer to write unit tests, integration tests, and e2e tests. You can read more in the [Introduction](https://testing-library.com/docs/), [Guiding Principles](https://testing-library.com/docs/guiding-principles) and [FAQ](https://testing-library.com/docs/dom-testing-library/faq). To read more about the React-specific part, go to [FAQ](https://testing-library.com/docs/react-testing-library/faq) or [Migrate from Enzyme](https://testing-library.com/docs/react-testing-library/migrate-from-enzyme). There is also [an example](https://testing-library.com/docs/react-testing-library/example-intro) of testing a React component.
 
-Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest. This project actually uses [vitest-dom](https://github.com/chaance/vitest-dom) which is a drop-in replacement for "jest-dom" with the same API.
+Testing Library also provides a [user-event](https://testing-library.com/docs/user-event/intro/) companion library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser. Another useful companion library is [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides [custom DOM element matchers](https://github.com/testing-library/jest-dom#custom-matchers) for Jest.
 
 ### MSW
 
@@ -196,7 +196,9 @@ There is also a [To-Do list tutorial](https://recoiljs.org/docs/basic-tutorial/i
 
 To easily observe and debug state changes during development, there is `RecoilDebugObserver` in [src/app/providers/Recoil.tsx](./src/app/providers/Recoil.tsx) which logs all state changes.
 
-This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating Recoil state and [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) as an escape hatch in case a Recoil state needs to be accessed outside of the React tree.
+In case it's necessary to access the Recoil state outside of the React components tree, there are `getRecoil()`, `getRecoilPromise()`, `setRecoil()` and `resetRecoil()` in [src/app/providers/Recoil.tsx](./src/app/providers/Recoil.tsx) which serve as an escape hatch to get/set the Recoil state.
+
+This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating the Recoil state.
 
 ## Data Fetching and Mutating
 

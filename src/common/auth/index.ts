@@ -1,10 +1,10 @@
 import { useMemo, useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { getRecoil } from 'recoil-nexus';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { type SignInPayload } from 'api';
 import { signIn as signInApi, relogin as reloginApi, signOut as signOutApi } from 'api/endpoints';
+import { getRecoil } from 'app/providers/Recoil';
 
 import {
   userIdState,

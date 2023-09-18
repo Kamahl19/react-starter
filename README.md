@@ -25,7 +25,6 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
 - [Recoil](https://recoiljs.org/) - state management library
   - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
-  - [recoil-nexus](https://github.com/luisanton-io/recoil-nexus) - allows accessing Recoil store from outside components
 - [React Router](https://reactrouter.com/) - declarative routing
   - [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) - hook for generating route breadcrumbs
   - [use-query-params](https://github.com/pbeshai/use-query-params) - hook for managing state in URL query parameters with easy serialization
