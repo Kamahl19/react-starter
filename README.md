@@ -82,6 +82,18 @@ npm run build
 
 Your app is then ready to be deployed from the `/dist` folder. See the [Building for Production](https://vitejs.dev/guide/build.html#browser-compatibility) and [Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html) for more information.
 
+## Deploying to Vercel
+
+You can read more about [how to deploy to Vercel here](https://vercel.com/docs/getting-started-with-vercel). In short, these are the necessary steps:
+
+0. Confugiration file [vercel.json](./vercel.json) is already created in this project
+1. Create new Vercel Project
+2. Import GitHub repository
+3. Add environment variable `VITE_API_URL` with value `/api`
+4. Hit Deploy
+
+Now each commit pushed to the `main` branch will be deployed to production automatically. Each branch or Pull Request will be [deployed as preview](https://vercel.com/docs/deployments/preview-deployments).
+
 ### Remove Vercel Demo
 
 This project is being deployed to Vercel for demo purposes. Follow these steps to remove it:
