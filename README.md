@@ -8,6 +8,14 @@
 
 There is a more extensive documentation at [DOCS.md](./DOCS.md).
 
+## Branches
+
+There are multiple alternative versions of this starter project commited to different branches:
+
+- [main branch](https://github.com/Kamahl19/react-starter) - the most general version of this starter
+- [Jotai branch](https://github.com/Kamahl19/react-starter/tree/jotai) - using [Jotai](https://github.com/pmndrs/jotai) instead of Recoil for global state management. See the [diff here](https://github.com/Kamahl19/react-starter/compare/main...jotai).
+- [Supabase branch](https://github.com/Kamahl19/react-starter/tree/supabase) - using Supabase (Firebase alternative) which provides a Postgres database, authentication, instant APIs, edge functions, realtime subscriptions, storage, etc... See the [diff here](https://github.com/Kamahl19/react-starter/compare/main...supabase).
+
 ## Features
 
 - [TypeScript](https://www.typescriptlang.org/) - typed superset of JavaScript
