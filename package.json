@@ -42,6 +42,9 @@
   "msw": {
     "workerDirectory": "public"
   },
+  "overrides": {
+    "@swc/core": "1.3.88"
+  },
   "devDependencies": {
     "@emotion/eslint-plugin": "11.11.0",
     "@julr/vite-plugin-validate-env": "0.2.4",
