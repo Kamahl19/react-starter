@@ -2,7 +2,7 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow:test+branch:main)
 
-### 🔥 [Live Demo](https://react-starter-kamahl19.vercel.app/) 🔥
+### 🔥 [Live Demo](https://react-starter-delta-one.vercel.app/) 🔥
 
 ## Documentation
 
