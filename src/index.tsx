@@ -19,7 +19,7 @@ async function startMSW() {
 
     worker.start({
       onUnhandledRequest: ({ url }, { warning }) =>
-        url.href.includes(import.meta.env.VITE_API_URL) ? warning() : undefined,
+        url.includes(import.meta.env.VITE_API_URL) ? warning() : undefined,
     });
   }
 
