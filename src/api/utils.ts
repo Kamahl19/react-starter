@@ -1,5 +1,5 @@
 import qs from 'query-string';
-import { type Status } from '@tshttp/status';
+import { type Status } from '@reflet/http';
 
 import { getToken } from 'common/auth';
 
