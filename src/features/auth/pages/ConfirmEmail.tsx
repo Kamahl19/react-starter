@@ -17,7 +17,7 @@ const ConfirmEmail = () => {
 
   const token = useTokenParam();
 
-  const { mutate, isLoading, isError, error } = useConfirmEmail();
+  const { mutate, isPending, isError, error } = useConfirmEmail();
 
   useOnMount(() => {
     mutate(token, {
@@ -28,7 +28,7 @@ const ConfirmEmail = () => {
     });
   });
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingScreen />;
   }
 

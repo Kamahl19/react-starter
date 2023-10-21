@@ -68,7 +68,7 @@ const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useAddToReadingList();
+  const { mutate, isPending } = useAddToReadingList();
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId }, { onError }),
@@ -76,7 +76,7 @@ const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" loading={isLoading} onClick={handleClick}>
+    <Button type="primary" loading={isPending} onClick={handleClick}>
       {t('bookshelf:action.addToReadingList')}
     </Button>
   );
@@ -89,7 +89,7 @@ const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useRemoveFromReadingList();
+  const { mutate, isPending } = useRemoveFromReadingList();
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId }, { onError }),
@@ -97,7 +97,7 @@ const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" danger loading={isLoading} onClick={handleClick}>
+    <Button type="primary" danger loading={isPending} onClick={handleClick}>
       {t('bookshelf:action.removeFromReadingList')}
     </Button>
   );
@@ -110,7 +110,7 @@ const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useMarkBook();
+  const { mutate, isPending } = useMarkBook();
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId, finished: true }, { onError }),
@@ -118,7 +118,7 @@ const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" loading={isLoading} onClick={handleClick}>
+    <Button type="primary" loading={isPending} onClick={handleClick}>
       {t('bookshelf:action.markAsRead')}
     </Button>
   );
@@ -131,7 +131,7 @@ const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useMarkBook();
+  const { mutate, isPending } = useMarkBook();
 
   const handleClick = useCallback(
     () => mutate({ bookId, userId, finished: false }, { onError }),
@@ -139,7 +139,7 @@ const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button danger loading={isLoading} onClick={handleClick}>
+    <Button danger loading={isPending} onClick={handleClick}>
       {t('bookshelf:action.markAsUnread')}
     </Button>
   );

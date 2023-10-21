@@ -20,7 +20,7 @@ const ChangePassword = () => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useChangePassword();
+  const { mutate, isPending } = useChangePassword();
 
   const handleSubmit = useCallback(
     (payload: ChangePasswordPayload) =>
@@ -53,7 +53,7 @@ const ChangePassword = () => {
           <Input.Password autoFocus />
         </Form.Item>
         <Form.Item noStyle>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
+          <Button type="primary" htmlType="submit" loading={isPending}>
             {t('global:save')}
           </Button>
         </Form.Item>

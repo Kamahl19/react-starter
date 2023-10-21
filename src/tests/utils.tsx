@@ -21,11 +21,6 @@ const Providers = ({ children }: Props) => {
         retry: false,
       },
     },
-    logger: {
-      log: console.log,
-      warn: console.warn,
-      error: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
-    },
   });
 
   const GlobalLoading = () => <LoadingScreen fullVPHeight />;

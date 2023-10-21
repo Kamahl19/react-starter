@@ -129,8 +129,8 @@ export const useAddToReadingList = () => {
   return useMutation({
     mutationFn: (payload: AddToReadingListPayload) => addToReadingList(payload),
     onSuccess: ({ bookId }) => {
-      queryClient.invalidateQueries(bookshelfQueryKeys.list());
-      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
     },
   });
 };
@@ -141,8 +141,8 @@ export const useRemoveFromReadingList = () => {
   return useMutation({
     mutationFn: (payload: RemoveFromReadingListPayload) => removeFromReadingList(payload),
     onSuccess: ({ bookId }) => {
-      queryClient.invalidateQueries(bookshelfQueryKeys.list());
-      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
     },
   });
 };
@@ -153,8 +153,8 @@ export const useMarkBook = () => {
   return useMutation({
     mutationFn: (payload: MarkBookPayload) => markBook(payload),
     onSuccess: ({ bookId }) => {
-      queryClient.invalidateQueries(bookshelfQueryKeys.list());
-      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
     },
   });
 };
@@ -165,8 +165,8 @@ export const useSetRating = () => {
   return useMutation({
     mutationFn: (payload: SetRatingPayload) => setRating(payload),
     onSuccess: ({ bookId }) => {
-      queryClient.invalidateQueries(bookshelfQueryKeys.list());
-      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
     },
   });
 };
@@ -177,8 +177,8 @@ export const useSetNote = () => {
   return useMutation({
     mutationFn: (payload: SetNotePayload) => setNote(payload),
     onSuccess: ({ bookId }) => {
-      queryClient.invalidateQueries(bookshelfQueryKeys.list());
-      queryClient.invalidateQueries(bookshelfQueryKeys.book(bookId));
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.list() });
+      queryClient.invalidateQueries({ queryKey: bookshelfQueryKeys.book(bookId) });
     },
   });
 };

@@ -16,7 +16,7 @@ const ResetPassword = () => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useResetPassword();
+  const { mutate, isPending } = useResetPassword();
 
   const handleSubmit = useCallback(
     (payload: ResetPasswordPayload) =>
@@ -50,7 +50,7 @@ const ResetPassword = () => {
             <Input autoFocus />
           </Form.Item>
           <Form.Item noStyle>
-            <Button block type="primary" htmlType="submit" loading={isLoading}>
+            <Button block type="primary" htmlType="submit" loading={isPending}>
               {t('global:submit')}
             </Button>
           </Form.Item>

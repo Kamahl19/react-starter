@@ -21,7 +21,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js#L43
     'plugin:jsx-a11y/recommended',
-    // https://github.com/TanStack/query/blob/main/packages/eslint-plugin-query/src/configs/index.ts
+    // https://github.com/TanStack/query/blob/main/packages/eslint-plugin-query/src/configs.ts
     'plugin:@tanstack/eslint-plugin-query/recommended',
     // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
     'prettier',

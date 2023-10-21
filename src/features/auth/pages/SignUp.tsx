@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const onError = usePrintErrorMessage();
 
-  const { mutate, isLoading } = useCreateUser();
+  const { mutate, isPending } = useCreateUser();
 
   const handleSubmit = useCallback(
     (payload: CreateUserPayload) =>
@@ -66,7 +66,7 @@ const SignUp = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item noStyle>
-            <Button block type="primary" htmlType="submit" loading={isLoading}>
+            <Button block type="primary" htmlType="submit" loading={isPending}>
               {t('auth:signUp.submit')}
             </Button>
           </Form.Item>

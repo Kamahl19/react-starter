@@ -27,20 +27,20 @@ const BookDetail = () => {
 
   const { userId } = useAuth();
 
-  const { data, isLoading, isError, error } = useFetchBook(bookId);
+  const { data, isPending, isError, error } = useFetchBook(bookId);
 
   const onError = usePrintErrorMessage();
 
   const [noteForm] = Form.useForm<NoteFormValues>();
 
-  const { mutate: addToReadingList, isLoading: isAddToReadingListLoading } = useAddToReadingList();
+  const { mutate: addToReadingList, isPending: isAddToReadingListPending } = useAddToReadingList();
 
   const handleAddToReadingList = useCallback(
     () => addToReadingList({ bookId, userId }, { onError }),
     [onError, addToReadingList, bookId, userId],
   );
 
-  const { mutate: removeFromReadingList, isLoading: isRemoveFromReadingListLoading } =
+  const { mutate: removeFromReadingList, isPending: isRemoveFromReadingListPending } =
     useRemoveFromReadingList();
 
   const handleRemoveFromReadingList = useCallback(
@@ -55,7 +55,7 @@ const BookDetail = () => {
     [onError, removeFromReadingList, bookId, userId, noteForm],
   );
 
-  const { mutate: markBook, isLoading: isMarkBookLoading } = useMarkBook();
+  const { mutate: markBook, isPending: isMarkBookPending } = useMarkBook();
 
   const handleMarkBook = useCallback(
     (finished: boolean) => markBook({ bookId, finished, userId }, { onError }),
@@ -69,13 +69,13 @@ const BookDetail = () => {
     [onError, setRating, userId, bookId],
   );
 
-  const { mutate: setNote, isLoading: isSetNoteLoading } = useSetNote();
+  const { mutate: setNote, isPending: isSetNotePending } = useSetNote();
 
   const handleSetNote = useCallback(() => {
     noteForm.validateFields().then(({ note }) => setNote({ bookId, note, userId }, { onError }));
   }, [onError, setNote, userId, bookId, noteForm]);
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingScreen />;
   }
 
@@ -102,13 +102,13 @@ const BookDetail = () => {
           book.isInList ? (
             <Space>
               {book.finished ? (
-                <Button danger loading={isMarkBookLoading} onClick={() => handleMarkBook(false)}>
+                <Button danger loading={isMarkBookPending} onClick={() => handleMarkBook(false)}>
                   {t('bookshelf:action.markAsUnread')}
                 </Button>
               ) : (
                 <Button
                   type="primary"
-                  loading={isMarkBookLoading}
+                  loading={isMarkBookPending}
                   onClick={() => handleMarkBook(true)}
                 >
                   {t('bookshelf:action.markAsRead')}
@@ -117,7 +117,7 @@ const BookDetail = () => {
               <Button
                 type="primary"
                 danger
-                loading={isRemoveFromReadingListLoading}
+                loading={isRemoveFromReadingListPending}
                 onClick={handleRemoveFromReadingList}
               >
                 {t('bookshelf:action.removeFromReadingList')}
@@ -126,7 +126,7 @@ const BookDetail = () => {
           ) : (
             <Button
               type="primary"
-              loading={isAddToReadingListLoading}
+              loading={isAddToReadingListPending}
               onClick={handleAddToReadingList}
             >
               {t('bookshelf:action.addToReadingList')}
@@ -147,7 +147,7 @@ const BookDetail = () => {
           title={
             <Space>
               {t('bookshelf:note')}
-              <Spin spinning={isSetNoteLoading} />
+              <Spin spinning={isSetNotePending} />
             </Space>
           }
         >

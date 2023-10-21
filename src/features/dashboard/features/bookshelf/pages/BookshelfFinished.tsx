@@ -5,9 +5,9 @@ import DashboardPageHeader from '../../../components/DashboardPageHeader';
 import List from '../components/List';
 
 const BookshelfFinished = () => {
-  const { data, isLoading, isError, error } = useFetchBookshelfFinished();
+  const { data, isPending, isError, error } = useFetchBookshelfFinished();
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingScreen />;
   }
 

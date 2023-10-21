@@ -13,16 +13,16 @@ const Profile = lazy(() => import('./features/profile'));
 
 const Dashboard = () => {
   const { userId } = useAuth();
-  const { isLoading: isSignOutLoading } = useSignOut();
+  const { isPending: isSignOutPending } = useSignOut();
 
   const {
-    isLoading: userIsLoading,
+    isPending: userIsPending,
     isError: userIsError,
     error: userError,
     data,
   } = useFetchUser(userId);
 
-  if (userIsLoading || isSignOutLoading) {
+  if (userIsPending || isSignOutPending) {
     return <LoadingScreen fullVPHeight />;
   }
 

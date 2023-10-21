@@ -14,7 +14,7 @@ import AuthCard from '../components/AuthCard';
 const SignIn = () => {
   const { t } = useTranslation();
 
-  const { signIn, isLoading } = useSignIn();
+  const { signIn, isPending } = useSignIn();
 
   const onError = usePrintErrorMessage();
 
@@ -43,7 +43,7 @@ const SignIn = () => {
           <Link to={AUTH_ROUTES.resetPassword.to}>{t('auth:signIn.resetPassword')}</Link>
         </Form.Item>
         <Form.Item noStyle>
-          <Button block type="primary" htmlType="submit" loading={isLoading}>
+          <Button block type="primary" htmlType="submit" loading={isPending}>
             {t('auth:signIn.submit')}
           </Button>
         </Form.Item>

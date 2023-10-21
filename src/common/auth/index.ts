@@ -28,49 +28,49 @@ export const useAuth = () => {
 };
 
 export const useSignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const setAuthState = useSetAuthState();
 
   const signIn = useCallback(
     async (payload: SignInPayload, opts?: { onError?: (error: unknown) => void }) => {
       try {
-        setIsLoading(true);
+        setIsPending(true);
         setAuthState(await signInApi(payload));
       } catch (error: unknown) {
         opts?.onError?.(error);
       } finally {
-        setIsLoading(false);
+        setIsPending(false);
       }
     },
-    [setAuthState, setIsLoading],
+    [setAuthState, setIsPending],
   );
 
-  return useMemo(() => ({ isLoading, signIn }), [isLoading, signIn]);
+  return useMemo(() => ({ isPending, signIn }), [isPending, signIn]);
 };
 
 export const useRelogin = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const setAuthState = useSetAuthState();
   const resetAuthState = useResetAuthState();
 
   const relogin = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setIsPending(true);
       setAuthState(await reloginApi());
     } catch {
       resetAuthState();
     } finally {
-      setIsLoading(false);
+      setIsPending(false);
     }
-  }, [setAuthState, resetAuthState, setIsLoading]);
+  }, [setAuthState, resetAuthState, setIsPending]);
 
-  return useMemo(() => ({ isLoading, relogin }), [isLoading, relogin]);
+  return useMemo(() => ({ isPending, relogin }), [isPending, relogin]);
 };
 
 export const useSignOut = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const resetAuthState = useResetAuthState();
 
@@ -78,14 +78,14 @@ export const useSignOut = () => {
 
   const signOut = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setIsPending(true);
       await signOutApi();
     } finally {
       resetAuthState();
       queryClient.removeQueries();
-      setIsLoading(false);
+      setIsPending(false);
     }
-  }, [resetAuthState, setIsLoading, queryClient]);
+  }, [resetAuthState, setIsPending, queryClient]);
 
-  return useMemo(() => ({ isLoading, signOut }), [isLoading, signOut]);
+  return useMemo(() => ({ isPending, signOut }), [isPending, signOut]);
 };

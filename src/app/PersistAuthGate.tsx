@@ -10,7 +10,7 @@ type Props = {
 
 const PersistAuthGate = ({ children, loadingFallback }: Props) => {
   const { token, isLoggedIn } = useAuth();
-  const { relogin, isLoading } = useRelogin();
+  const { relogin, isPending } = useRelogin();
 
   useOnMount(() => {
     if (token) {
@@ -18,7 +18,7 @@ const PersistAuthGate = ({ children, loadingFallback }: Props) => {
     }
   });
 
-  return <>{(token && !isLoggedIn) || isLoading ? loadingFallback : children}</>;
+  return <>{(token && !isLoggedIn) || isPending ? loadingFallback : children}</>;
 };
 
 export default PersistAuthGate;
