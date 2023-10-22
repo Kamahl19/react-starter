@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 import legacy from '@vitejs/plugin-legacy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
-import checker from 'vite-plugin-checker';
+import { checker } from 'vite-plugin-checker';
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
 import { visualizer } from 'rollup-plugin-visualizer';

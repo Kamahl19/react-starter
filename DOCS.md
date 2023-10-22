@@ -289,7 +289,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .gitignore : to keep Git from tracking specific files
 ├── .prettierignore : to ignore files when running Prettier
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
-├── i18next-parser.config.mjs : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
+├── i18next-parser.config.json : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
 ├── package.json : holds metadata about the project and its dependencies
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm

@@ -3,27 +3,17 @@
 module.exports = {
   root: true,
   extends: [
-    // https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js
     'eslint:recommended',
-    // https://github.com/mysticatea/eslint-plugin-eslint-comments/blob/master/lib/configs/recommended.js
     'plugin:eslint-comments/recommended',
-    // https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js
     'plugin:import/recommended',
-    // https://github.com/import-js/eslint-plugin-import/blob/main/config/react.js
     'plugin:import/react',
-    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js
     'plugin:unicorn/recommended',
-    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L33
     'plugin:react/recommended',
-    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L40
     'plugin:react/jsx-runtime',
-    // https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js#L14
     'plugin:react-hooks/recommended',
-    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js#L43
+    'plugin:react-prefer-function-component/recommended',
     'plugin:jsx-a11y/recommended',
-    // https://github.com/TanStack/query/blob/main/packages/eslint-plugin-query/src/configs.ts
     'plugin:@tanstack/eslint-plugin-query/recommended',
-    // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
     'prettier',
   ],
   plugins: ['@emotion'],
@@ -49,8 +39,10 @@ module.exports = {
      */
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-autofocus': 'off',
+
     'react/display-name': 'off',
     'react/prop-types': 'off',
+
     'unicorn/filename-case': 'off',
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-await-expression-member': 'off',
@@ -63,7 +55,9 @@ module.exports = {
      */
     'no-empty': ['error', { allowEmptyCatch: true }],
     'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
+
     'react-hooks/exhaustive-deps': [
       'error',
       { additionalHooks: '(useRecoilCallback|useRecoilTransaction)' },
@@ -90,7 +84,70 @@ module.exports = {
     'no-new-func': 'error',
     'no-new-object': 'error',
     'no-new-wrappers': 'error',
-    'no-restricted-globals': ['error'].concat(require('confusing-browser-globals')),
+    'no-restricted-globals': [
+      'error',
+      'addEventListener',
+      'blur',
+      'close',
+      'closed',
+      'confirm',
+      'defaultstatus',
+      'defaultStatus',
+      'error',
+      'event',
+      'external',
+      'find',
+      'focus',
+      'frameElement',
+      'frames',
+      'history',
+      'innerHeight',
+      'innerWidth',
+      'isFinite',
+      'isNaN',
+      'length',
+      'location',
+      'locationbar',
+      'menubar',
+      'moveBy',
+      'moveTo',
+      'name',
+      'onblur',
+      'onerror',
+      'onfocus',
+      'onload',
+      'onresize',
+      'onunload',
+      'open',
+      'opener',
+      'opera',
+      'outerHeight',
+      'outerWidth',
+      'pageXOffset',
+      'pageYOffset',
+      'parent',
+      'print',
+      'removeEventListener',
+      'resizeBy',
+      'resizeTo',
+      'screen',
+      'screenLeft',
+      'screenTop',
+      'screenX',
+      'screenY',
+      'scroll',
+      'scrollbars',
+      'scrollBy',
+      'scrollTo',
+      'scrollX',
+      'scrollY',
+      'self',
+      'status',
+      'statusbar',
+      'stop',
+      'toolbar',
+      'top',
+    ],
     'no-script-url': 'error',
     'no-self-compare': 'error',
     'no-sequences': 'error',
@@ -105,37 +162,21 @@ module.exports = {
     'no-useless-constructor': 'error',
     'no-useless-rename': 'error',
     strict: ['error', 'never'],
+
     'react/jsx-pascal-case': ['error', { allowAllCaps: true }],
     'react/no-array-index-key': 'error',
     'react/no-typos': 'error',
     'react/style-prop-object': 'error',
+
     '@emotion/syntax-preference': ['error', 'object'],
   },
   overrides: [
     {
-      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
-      extends: [
-        // https://github.com/veritem/eslint-plugin-vitest/blob/main/src/index.ts#L68
-        'plugin:vitest/recommended',
-        // https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts
-        'plugin:testing-library/react',
-        // https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38
-        'plugin:jest-dom/recommended',
-      ],
-      rules: {
-        'testing-library/no-debugging-utils': 'off',
-      },
-    },
-    {
       files: ['**/*.ts?(x)'],
       extends: [
-        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict-type-checked.ts
         'plugin:@typescript-eslint/strict-type-checked',
-        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/stylistic-type-checked.ts
         'plugin:@typescript-eslint/stylistic-type-checked',
-        // https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js
         'plugin:import/typescript',
-        // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
         'prettier',
       ],
       parser: '@typescript-eslint/parser',
@@ -161,10 +202,11 @@ module.exports = {
         /**
          * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)
          */
+        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
+
         'import/default': 'off',
         'import/namespace': 'off',
         'import/no-named-as-default-member': 'off',
-        'default-case': 'off', // 'tsc' noFallthroughCasesInSwitch option is more robust
 
         /**
          * Adjust recommended rules
@@ -185,10 +227,11 @@ module.exports = {
         /**
          * Use additional rules
          */
-        '@typescript-eslint/consistent-type-imports': 'error',
-        '@typescript-eslint/no-redeclare': 'error',
         'import/first': 'error',
         'import/no-anonymous-default-export': 'error',
+
+        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/no-redeclare': 'error',
         '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
 
         /**
@@ -201,6 +244,33 @@ module.exports = {
           'error',
           { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
         ],
+      },
+    },
+    {
+      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
+      extends: [
+        'plugin:vitest/recommended',
+        'plugin:testing-library/react',
+        'plugin:jest-dom/recommended',
+      ],
+      rules: {
+        'testing-library/no-debugging-utils': 'off',
+      },
+    },
+    {
+      files: ['vite.config.ts'],
+      parserOptions: {
+        project: ['./tsconfig.node.json'],
+      },
+    },
+    {
+      files: ['.eslintrc.cjs'],
+      env: {
+        node: true,
+      },
+      rules: {
+        strict: 'off',
+        'unicorn/no-null': 'off',
       },
     },
   ],
