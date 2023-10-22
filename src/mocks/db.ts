@@ -1,4 +1,6 @@
-import { drop, factory, primaryKey, persist } from '@mswjs/data';
+import { drop, factory, primaryKey } from '@mswjs/data';
+
+import persist from './persist';
 
 const generateRandomId = () => Math.random().toString().split('.')[1] ?? '';
 

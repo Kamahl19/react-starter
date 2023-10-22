@@ -26,5 +26,4 @@ async function startMSW() {
   return undefined;
 }
 
-// TODO replace @mswjs/data fork with original repo after this is merged https://github.com/mswjs/data/pull/277
 // TODO remove override for @swc/core in package.json

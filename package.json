@@ -48,7 +48,7 @@
   "devDependencies": {
     "@emotion/eslint-plugin": "11.11.0",
     "@julr/vite-plugin-validate-env": "0.2.4",
-    "@mswjs/data": "github:noveogroup-amorgunov/mswjs-data#feat-persist-extension",
+    "@mswjs/data": "0.14.0",
     "@swc/plugin-emotion": "2.5.92",
     "@tanstack/eslint-plugin-query": "5.0.0",
     "@testing-library/jest-dom": "6.1.4",
@@ -75,7 +75,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-testing-library": "6.1.0",
     "eslint-plugin-unicorn": "48.0.1",
-    "eslint-plugin-vitest": "0.3.3",
+    "eslint-plugin-vitest": "0.3.6",
     "husky": "8.0.3",
     "i18next-parser": "8.9.0",
     "jsdom": "22.1.0",
