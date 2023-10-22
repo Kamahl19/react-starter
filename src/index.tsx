@@ -25,5 +25,3 @@ async function startMSW() {
 
   return undefined;
 }
-
-// TODO remove override for @swc/core in package.json
