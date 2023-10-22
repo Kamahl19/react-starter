@@ -6,6 +6,7 @@ coverage
 
 # Production
 dist
+dist-ssr
 
 # Misc
 .DS_Store
