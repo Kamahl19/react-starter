@@ -266,7 +266,7 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 ├── .husky/ : Git hooks e.g. the pre-commit hook
 ├── .vscode/ : VSCode configuration
 ├── public/ : Public static assets
-│   ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/faq#why-do-i-see-the-detected-outdated-service-worker-error-in-my-console)
+│   ├── mockServiceWorker.js : part of [MSW library](https://mswjs.io/docs/integrations/browser)
 ├── src/
 │   ├── api/ : Communication with API server
 │   ├── app/ : Application-wide (framework) files
