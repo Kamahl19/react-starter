@@ -33,7 +33,7 @@ Build tooling for both development and production is provided by [Vite](https://
 
 It's best to start with this video [Vite in 100 Seconds](https://www.youtube.com/watch?v=KCrXgy8qtjM). You can continue with [Why Vite](https://vitejs.dev/guide/why.html) and its [Features](https://vitejs.dev/guide/features.html). There is also a [good article from Shopify Engineering](https://shopify.engineering/developer-experience-with-hydrogen-and-vite) about why they chose Vite for building Shopify frontends.
 
-Vite configuration [vite.config.ts](./vite.config.ts) in this project also uses plugins for [React](https://github.com/vitejs/vite/tree/main/packages/plugin-react), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), [Emotion](https://emotion.sh/) CSS in JS, and [validating env vars](https://github.com/Julien-R44/vite-plugin-validate-env).
+Vite configuration [vite.config.ts](./vite.config.ts) in this project also uses plugins for [legacy browsers](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy), [React](https://github.com/vitejs/vite-plugin-react-swc), [SVG components](https://github.com/pd4d10/vite-plugin-svgr), checking [TS types](https://vite-plugin-checker.netlify.app/checkers/typescript.html) and [ESLint](https://vite-plugin-checker.netlify.app/checkers/eslint.html), resolving [TS path mappings](https://github.com/aleclarson/vite-tsconfig-paths), [Emotion](https://emotion.sh/) CSS in JS, and [validating env vars](https://github.com/Julien-R44/vite-plugin-validate-env).
 
 This project is entirely written in [TypeScript](https://www.typescriptlang.org/), a strongly typed programming language that builds on JavaScript. There is a good Get Started both for [JavaScript programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) and [Java Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html). The TS compiler options are defined in [tsconfig.json](./tsconfig.json). A little types utility library [ts-reset
 ](https://github.com/total-typescript/ts-reset) to improve types for common JavaScript API's is also included.
@@ -60,6 +60,8 @@ Testing Library also provides a [user-event](https://testing-library.com/docs/us
 
 [Mock Service Worker](https://mswjs.io/) mocks APIs by intercepting requests on the network level. It allows a developer to seamlessly reuse the same API mock definition for testing, development, and debugging. It keeps application's code and tests unaware whether something is mocked or not. MSW uses [declarative request handlers](./src/mocks/handlers.ts) to capture requests and provide a response resolver function that returns a mocked response. It works only during development and testing and [doesn't get bundled](./src/index.tsx) into the production code.
 
+For data modeling and relations there is a [@mswjs/data](https://github.com/mswjs/data) library. When testing API interactions it's necessary to mock data. Instead of keeping a hard-coded set of fixtures, this library provides must-have tools for data-driven API mocking. Unfortunately, there is no persistence functionality out of the box, so data would be lost after page reload. To fix that, this project includes custom [persist extension](./src/mocks/persist.ts).
+
 ### Configuration
 
 To configure code that executes before the tests run (e.g. to mock API or set global settings) take a look at [src/tests/setup.ts](./src/tests/setup.ts). It currently:
@@ -84,20 +86,20 @@ By default the resolution is set to 1280x800 before each test. This can be chang
 
 Code quality concerns, best practices, possible logical issues etc. are checked by [ESLint](https://eslint.org/docs/latest/user-guide/). Our custom ESLint configuration [.eslintrc.cjs](./.eslintrc.cjs) includes these rules and plugins:
 
-- built-in [ESLint recommended rules](https://github.com/eslint/eslint/blob/main/conf/eslint-recommended.js)
-- [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) provides [recommended & strict rules with type-checking capabilities](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict-type-checked.ts), and [stylistic rules](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/stylistic-type-checked.ts) for TypeScript
-- [react](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/index.js#L126) provides React-specific rules
-- [react-hooks](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js#L14) enforces the [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
-- [jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js#L43) checkes for accessibility best practices in JSX
-- [import](https://github.com/import-js/eslint-plugin-import/blob/main/config/recommended.js) validates proper ES module imports and exports, [also for TypeScript](https://github.com/import-js/eslint-plugin-import/blob/main/config/typescript.js)
-- [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/configs/recommended.js) provides additional powerful rules for more strict linting
-- [@tanstack/eslint-plugin-query](https://tanstack.com/query/v4/docs/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
+- built-in [ESLint recommended rules](https://eslint.org/docs/latest/rules/)
+- [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) provides [recommended & strict rules with type-checking capabilities](https://typescript-eslint.io/linting/configs#strict-type-checked), and [stylistic rules](https://typescript-eslint.io/linting/configs#stylistic-type-checked) for TypeScript
+- [react](https://github.com/jsx-eslint/eslint-plugin-react) provides React-specific rules
+- [react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks) enforces the [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+- [jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) checkes for accessibility best practices in JSX
+- [import](https://github.com/import-js/eslint-plugin-import) validates proper ES module imports and exports
+- [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) provides additional powerful rules for more strict linting
+- [@tanstack/eslint-plugin-query](https://tanstack.com/query/latest/docs/react/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
 - [@emotion/eslint-plugin](https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin) enforces css-in-js styles written as objects
-- [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments/blob/master/lib/configs/recommended.js) checks ESLint directive comments (e.g. `//eslint-disable-line`)
-- [prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
-- [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/react.ts) checks for best practices and anticipates common mistakes when writing tests with Testing Library
-- [jest-dom](https://github.com/testing-library/eslint-plugin-jest-dom/blob/main/src/index.js#L38) checks for best practices when writing tests with jest-dom
-- [eslint-plugin-vitest](https://github.com/veritem/eslint-plugin-vitest/blob/main/src/index.ts#L68) checks for best practices when writing tests with Vitest
+- [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments) checks ESLint directive comments (e.g. `//eslint-disable-line`)
+- [prettier](https://github.com/prettier/eslint-config-prettier) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
+- [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/tree/main) checks for best practices and anticipates common mistakes when writing tests with Testing Library
+- [jest-dom](https://github.com/testing-library/eslint-plugin-jest-dom) checks for best practices when writing tests with jest-dom
+- [eslint-plugin-vitest](https://github.com/veritem/eslint-plugin-vitest) checks for best practices when writing tests with Vitest
 
 ESLint runs when:
 
@@ -106,7 +108,7 @@ ESLint runs when:
 - in IDE on background if supported ([VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [IntelliJ IDEA](https://www.jetbrains.com/help/webstorm/eslint.html))
 - automatically on `pre-commit` hook, right before code is committed
   - defining actions ([.husky/pre-commit](./.husky/pre-commit)) for git hooks is enabled by [Husky](https://github.com/typicode/husky)
-  - linting only the files and changes being committed enables [lint-staged](https://github.com/okonet/lint-staged)
+  - linting only the files and changes being committed enables [lint-staged](https://github.com/lint-staged/lint-staged)
 - during continuous integration defined in [.github/workflows/test.yml](./.github/workflows/test.yml)
 
 ### Prettier
@@ -128,7 +130,7 @@ This projects comes with 2 themes: default and dark. To customize these themes, 
 
 Currently selected theme is stored in Recoil state and can be retrieved or changed using [useIsDark](./src/app/theme/index.tsx) hook.
 
-[Global configuration](https://ant.design/components/config-provider/#API) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
+[Global configuration](https://ant.design/components/config-provider#api) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
 Ant Design includes a powerful [Form](https://ant.design/components/form/) component including input validations. Validation utilities and reusable validation rules are defined in [src/common/validations.ts](./src/common/validations.ts). Feature-specific validations are defined in the feature folder such as [src/features/auth/validations.ts](./src/features/auth/validations.ts).
 
@@ -173,7 +175,7 @@ i18next ecosystem provides [many plugins and tools](https://www.i18next.com/over
 
 ## React Router
 
-A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/docs/en/v6/getting-started/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/docs/en/v6/getting-started/concepts).
+A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/en/main/start/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/en/main/start/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/en/main/start/concepts).
 
 When creating an app with easily shareable URLs, you often want to encode state as query parameters, but all query parameters must be encoded as strings. Library [use-query-params](https://github.com/pbeshai/use-query-params) allows you to easily encode and decode data of any type as query parameters with smart memoization to prevent creating unnecessary duplicate objects. It's setup in the [src/app/providers/Router.tsx](./src/app/providers/Router.tsx).
 
@@ -183,9 +185,9 @@ Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://g
 
 This project doesn't include [Redux](https://react-redux.js.org/) library. It has a lot of pros and cons but it isn't a silver bullet for state management in every application. It increases the complexity by bringing new concepts and patterns to the table. It requires several other companion libraries and lots of boilerplate. There is no data encapsulation and it's hard to achieve type-safety. Also, it isn't particularly useful when the app uses one data source per view and is often misused as an "API data cache". However, if you really need or want to use it, feel free to do so.
 
-Using only the built-in [React Context](https://reactjs.org/docs/context.html) and [useState hook](https://reactjs.org/docs/hooks-state.html) can get out of hand quickly in mid-size application. Therefor some state management library with higher abstraction is necessary. The [Recoil](https://recoiljs.org/) state management library built by Facebook seems to be the best choice.
+Using only the built-in [React Context](https://react.dev/learn/passing-data-deeply-with-context) and [useState hook](https://react.dev/reference/react/useState) can get out of hand quickly in mid-size application. Therefor some state management library with higher abstraction is necessary. The [Recoil](https://recoiljs.org/) state management library built by Facebook seems to be the best choice.
 
-Recoil leverages [React-like approach and the same mental model](https://recoiljs.org/docs/introduction/motivation) and doesn't bring any new concepts or difficult patterns. It feels like using a global version of React's built-in useState hook. Recoil handles app-wide state observations well, it's boilerplate-free, supports [React v18 concurrency](https://reactjs.org/blog/2022/03/29/react-v18.html#what-is-concurrent-react) and encourages distributed and incremental state definition.
+Recoil leverages [React-like approach and the same mental model](https://recoiljs.org/docs/introduction/motivation) and doesn't bring any new concepts or difficult patterns. It feels like using a global version of React's built-in useState hook. Recoil handles app-wide state observations well, it's boilerplate-free, supports [React v18 concurrency](https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react) and encourages distributed and incremental state definition.
 
 Recoil provides a data-graph that flows from shared states into React components. The two core concepts of Recoil according to the official [documentation](https://recoiljs.org/docs/introduction/core-concepts/) are:
 
@@ -202,11 +204,11 @@ This project also includes [recoil-persist](https://github.com/polemius/recoil-p
 
 ## Data Fetching and Mutating
 
-[React Query](https://tanstack.com/query/) is an asynchronous state management library for React. It gives us declarative, always-up-to-date, auto-managed [queries](https://tanstack.com/query/v4/docs/guides/queries) and [mutations](https://tanstack.com/query/v4/docs/guides/mutations) that directly improve both the developer and user experiences. We only have to specify [where to get the data](https://tanstack.com/query/v4/docs/guides/query-functions) and how fresh we need them to be and the rest is automatic. It handles [caching](https://tanstack.com/query/v4/docs/guides/caching), [background updates](https://tanstack.com/query/v4/docs/guides/background-fetching-indicators) and stale data. There's no global state to manage, reducers, normalization systems or heavy configurations to understand. It works out of the box with [zero-configuration](https://tanstack.com/query/v4/docs/guides/important-defaults) but it's also configurable down to each observer instance of a query with knobs and options to fit every use-case. It comes wired up with dedicated [devtools](https://tanstack.com/query/v4/docs/devtools), [pagination](https://tanstack.com/query/v4/docs/guides/paginated-queries), [infinite-loading](https://tanstack.com/query/v4/docs/guides/infinite-queries) APIs, [error retries](https://tanstack.com/query/v4/docs/guides/query-retries), first class mutation tools for updating the data, [optimistic updates](https://tanstack.com/query/v4/docs/guides/optimistic-updates), and many other features.
+[React Query](https://tanstack.com/query/) is an asynchronous state management library for React. It gives us declarative, always-up-to-date, auto-managed [queries](https://tanstack.com/query/latest/docs/guides/queries) and [mutations](https://tanstack.com/query/latest/docs/guides/mutations) that directly improve both the developer and user experiences. We only have to specify [where to get the data](https://tanstack.com/query/latest/docs/react/guides/query-functions) and how fresh we need them to be and the rest is automatic. It handles [caching](https://tanstack.com/query/latest/docs/guides/caching), [background updates](https://tanstack.com/query/latest/docs/guides/background-fetching-indicators) and stale data. There's no global state to manage, reducers, normalization systems or heavy configurations to understand. It works out of the box with [zero-configuration](https://tanstack.com/query/latest/docs/react/guides/important-defaults) but it's also configurable down to each observer instance of a query with knobs and options to fit every use-case. It comes wired up with dedicated [devtools](https://tanstack.com/query/latest/docs/react/devtools), [pagination](https://tanstack.com/query/latest/docs/guides/paginated-queries), [infinite-loading](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) APIs, [error retries](https://tanstack.com/query/latest/docs/guides/query-retries), first class mutation tools for updating the data, [optimistic updates](https://tanstack.com/query/latest/docs/react/guides/optimistic-updates), and many other features.
 
-In the previous section ([State Management](#state-management)) we mentioned that Redux is often misused as an "API data cache". React Query library is basically replacing Redux for this use-case. You can read more about it here: "[Does React Query replace client state](https://tanstack.com/query/v4/docs/guides/does-this-replace-client-state)", "[Why I Stopped Using Redux](https://dev.to/g_abud/why-i-quit-redux-1knl)", [It’s Time to Break up with your Global State](https://www.youtube.com/watch?v=seU46c6Jz7E), and [Thinking in React Query](https://tkdodo.eu/blog/thinking-in-react-query).
+In the previous section ([State Management](#state-management)) we mentioned that Redux is often misused as an "API data cache". React Query library is basically replacing Redux for this use-case. You can read more about it here: "[Does React Query replace client state](https://tanstack.com/query/latest/docs/react/guides/does-this-replace-client-state)", "[Why I Stopped Using Redux](https://dev.to/g_abud/why-i-quit-redux-1knl)", [It’s Time to Break up with your Global State](https://www.youtube.com/watch?v=seU46c6Jz7E), and [Thinking in React Query](https://tkdodo.eu/blog/thinking-in-react-query).
 
-If you want to read more about React Query there is an [extensive documentation](https://tanstack.com/query/v4/docs/overview) and a series of blog posts "[Practical React Query](https://tkdodo.eu/blog/practical-react-query)".
+If you want to read more about React Query there is an [extensive documentation](https://tanstack.com/query/latest/docs/react/overview) and a series of blog posts "[Practical React Query](https://tkdodo.eu/blog/practical-react-query)".
 
 In [src/app/providers/Query.tsx](./src/app/providers/Query.tsx) there is a React Query provider to which you can pass custom configuration. It also includes dedicated Devtools for easy visualisation and debugging of queries.
 
@@ -228,18 +230,18 @@ There is also a [src/app/PersistAuthGate.tsx](./src/app/PersistAuthGate.tsx) to 
 
 ## React
 
-React has [grown](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) [significantly](https://reactjs.org/blog/2022/03/29/react-v18.html) in the last few years. [New concepts](https://reactjs.org/blog/2018/11/13/react-conf-recap.html) and patterns have emerged and were built into the framework. Here is the list of the most important ones:
+React has [grown](https://legacy.reactjs.org/blog/2019/02/06/react-v16.8.0.html) [significantly](https://react.dev/blog/2022/03/29/react-v18) in the last few years. [New concepts](https://react.dev/community/videos#react-conf-2018) and patterns have emerged and were built into the framework. Here is the list of the most important ones:
 
-- [Hooks](https://reactjs.org/docs/hooks-intro.html) are explained in detail [below](#react-hooks)
-- [Context](https://reactjs.org/docs/context.html) provides a way to pass data through the component tree without having to pass props down manually at every level (prop drilling)
-- [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) catch JS errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This project also includes [react-error-boundary](https://github.com/bvaughn/react-error-boundary) library providing better and reusable `ErrorBoundary` component
-- [Code Splitting](https://reactjs.org/docs/code-splitting.html) to avoid winding up with a large JS bundle
-- [Transitions](https://reactjs.org/docs/react-api.html#transitions) allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content
-- [Concurrent React](https://reactjs.org/blog/2022/03/29/react-v18.html#what-is-concurrent-react)
+- [Hooks](https://react.dev/reference/react) are explained in detail [below](#react-hooks)
+- [Context](https://react.dev/learn/passing-data-deeply-with-context) provides a way to pass data through the component tree without having to pass props down manually at every level (prop drilling)
+- [Error Boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary) catch JS errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This project also includes [react-error-boundary](https://github.com/bvaughn/react-error-boundary) library providing better and reusable `ErrorBoundary` component
+- [Code Splitting](https://react.dev/reference/react/lazy) to avoid winding up with a large JS bundle
+- [Transitions](https://react.dev/reference/react/startTransition) allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content
+- [Concurrent React](https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react)
 
 ### React Hooks
 
-[Hooks](https://reactjs.org/docs/hooks-intro.html) replace all the patterns for stateful logic reuse such as [render props](https://reactjs.org/docs/render-props.html), [higher-order components](https://reactjs.org/docs/higher-order-components.html), and other abstractions. With Hooks, we can extract stateful logic from a component so it can be tested independently and reused without changing the component hierarchy.
+[Hooks](https://react.dev/reference/react) replace all the patterns for stateful logic reuse such as [render props](https://reactjs.org/docs/render-props.html), [higher-order components](https://reactjs.org/docs/higher-order-components.html), and other abstractions. With Hooks, we can extract stateful logic from a component so it can be tested independently and reused without changing the component hierarchy.
 
 Hooks also help to avoid complex components that are hard to understand. Traditionally, a class component mixes stateful logic, side effects and UI. It is done using lifecycle methods which combine mix of unrelated code (data fetching, event listeners setup) in a single method while splitting related code (event listeners cleanup) to different lifecycle methods. This leads to bugs, makes it difficult to split large components into smaller ones because stateful logic is all over the place, and it is hard to cover such component with tests. With Hooks, we can split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
 
@@ -249,12 +251,12 @@ To start using hooks, read [Hooks at a Glance](https://reactjs.org/docs/hooks-ov
 
 React has several built-in hooks such as:
 
-- [useState](https://reactjs.org/docs/hooks-state.html) allows for state management in function component and replaces `this.setState` and `this.state`
-- [useEffect](https://reactjs.org/docs/hooks-effect.html) allows performing side effects in function components and replaces `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`
-- [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext) allows using React Context in function component
-- [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer), [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback), [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) and [others](https://reactjs.org/docs/hooks-reference.html)
+- [useState](https://react.dev/reference/react/useState) allows for state management in function component and replaces `this.setState` and `this.state`
+- [useEffect](https://react.dev/reference/react/useEffect) allows performing side effects in function components and replaces `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`
+- [useContext](https://react.dev/reference/react/useContext) allows using React Context in function component
+- [useReducer](https://react.dev/reference/react/useReducer), [useCallback](https://react.dev/reference/react/useCallback), [useMemo](https://react.dev/reference/react/useMemo) and [others](https://react.dev/reference/react)
 
-The best part is that developers can [build their own](https://reactjs.org/docs/hooks-custom.html) hooks to extract component logic into reusable functions.
+The best part is that developers can [build their own](https://react.dev/learn/reusing-logic-with-custom-hooks) hooks to extract component logic into reusable functions.
 
 ## Project structure
 
@@ -287,6 +289,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── .eslintignore : to ignore files when running ESLint
 ├── .eslintrc.cjs : contains ESLint [configuration](https://eslint.org/docs/latest/user-guide/configuring/)
 ├── .gitignore : to keep Git from tracking specific files
+├── .npmrc : an NPM [config](https://docs.npmjs.com/cli/using-npm/config)
 ├── .prettierignore : to ignore files when running Prettier
 ├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.json : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
@@ -295,6 +298,7 @@ The best part is that developers can [build their own](https://reactjs.org/docs/
 ├── package-lock.json : auto-generated file to keep dependency versions, should be handled entirely by npm
 ├── tsconfig.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for application running in browser
 ├── tsconfig.node.json : contains TypeScript [configuration](https://www.typescriptlang.org/tsconfig/) for running Vite locally in Node.js
+├── vercel.json : Vercel deployment [configuration](https://vercel.com/docs/projects/project-configuration)
 ├── vite.config.ts : contains Vite [configuration](https://vitejs.dev/config/)
 ```
 

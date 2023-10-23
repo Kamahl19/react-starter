@@ -40,7 +40,7 @@ There are multiple alternative versions of this starter project commited to diff
 - [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
   - [MSW](https://mswjs.io/) - API mocking library for browser and Node.js
-  - [@mswjs/data](https://mswjs.io/) - data modeling and relation library for testing
+  - [@mswjs/data](https://github.com/mswjs/data) - data modeling and relation library for testing
   - [jsdom-testing-mocks](https://github.com/trurl-master/jsdom-testing-mocks) - a set of tools for emulating browser behavior in jsdom environment
 - [Prettier](https://prettier.io/) - opinionated code formatter
 - [ESLint](https://eslint.org/) - pluggable linting utility
@@ -153,7 +153,11 @@ Running `npm run i18n` will first parse the whole codebase to find all used i18n
 
 ## CI/CD
 
-This project is using [GitHub's Actions](https://github.com/features/actions) to run [integration tests](.github/workflows/test.yml) on each PR and Main branch. It includes running eslint, prettier, tests and building the app. PR becomes mergable only if it passes. We also show badge on top of `README.md` to show Main branch status. If you don't use GitHub you can remove the `.github` folder, otherwise follow these steps to configure your GitHub repository:
+This project is using [GitHub's Actions](https://github.com/features/actions) to run [integration tests](.github/workflows/test.yml) on each PR and Main branch. It includes running eslint, prettier, tests and building the app. PR becomes mergable only if it passes. We also show badge on top of `README.md` to show Main branch status.
+
+There is also a [code-quality action](.github/workflows/codeql-analysis.yml) to run [Github's CodeQL](https://codeql.github.com/) analysis.
+
+If you don't use GitHub you can remove the `.github` folder, otherwise follow these steps to configure your GitHub repository:
 
 1. Go to Settings -> Branches -> Add rule
    - Apply to your main branch
