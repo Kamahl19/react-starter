@@ -96,7 +96,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) provides additional powerful rules for more strict linting
 - [@tanstack/eslint-plugin-query](https://tanstack.com/query/latest/docs/react/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
 - [@emotion/eslint-plugin](https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin) enforces css-in-js styles written as objects
-- [eslint-comments](https://github.com/mysticatea/eslint-plugin-eslint-comments) checks ESLint directive comments (e.g. `//eslint-disable-line`)
+- [eslint-comments](https://eslint-community.github.io/eslint-plugin-eslint-comments/) checks ESLint directive comments (e.g. `//eslint-disable-line`)
 - [prettier](https://github.com/prettier/eslint-config-prettier) turns off all stylistic rules that are unnecessary when using Prettier or might conflict with Prettier
 - [testing-library](https://github.com/testing-library/eslint-plugin-testing-library/tree/main) checks for best practices and anticipates common mistakes when writing tests with Testing Library
 - [jest-dom](https://github.com/testing-library/eslint-plugin-jest-dom) checks for best practices when writing tests with jest-dom

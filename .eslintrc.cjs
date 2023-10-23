@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
-    'plugin:eslint-comments/recommended',
+    'plugin:@eslint-community/eslint-comments/recommended',
     'plugin:import/recommended',
     'plugin:import/react',
     'plugin:unicorn/recommended',
