@@ -91,6 +91,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [react](https://github.com/jsx-eslint/eslint-plugin-react) provides React-specific rules
 - [react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks) enforces the [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
 - [jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) checkes for accessibility best practices in JSX
+- [react-prefer-function-component](https://github.com/tatethurston/eslint-plugin-react-prefer-function-component) enforces function components in React
 - [import](https://github.com/import-js/eslint-plugin-import) validates proper ES module imports and exports
 - [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) provides additional powerful rules for more strict linting
 - [@tanstack/eslint-plugin-query](https://tanstack.com/query/latest/docs/react/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
