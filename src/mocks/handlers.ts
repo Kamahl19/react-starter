@@ -1,4 +1,5 @@
 import { http, HttpResponse, delay } from 'msw';
+import { Status, RequestHeader } from '@reflet/http';
 
 import type {
   SignInPayload,
@@ -37,8 +38,8 @@ export const handlers = [
       if (!body.email || !body.password) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 400, message: 'Bad request' },
-          { status: 400 },
+          { status: Status.BadRequest, message: 'Bad request' },
+          { status: Status.BadRequest },
         );
       }
 
@@ -47,8 +48,8 @@ export const handlers = [
       if (!user || user.password !== body.password) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 401, message: 'Unauthorized' },
-          { status: 401 },
+          { status: Status.Unauthorized, message: 'Unauthorized' },
+          { status: Status.Unauthorized },
         );
       }
 
@@ -61,18 +62,24 @@ export const handlers = [
   ),
 
   http.patch<never, never, SignInResponse | ApiError>('/api/auth/relogin', async ({ request }) => {
-    const token = getTokenFromHeader(request.headers.get('authorization'));
+    const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
     if (!token) {
       await delay(100);
-      return HttpResponse.json<ApiError>({ status: 401, message: 'Unauthorized' }, { status: 401 });
+      return HttpResponse.json<ApiError>(
+        { status: Status.Unauthorized, message: 'Unauthorized' },
+        { status: Status.Unauthorized },
+      );
     }
 
     const user = db.user.findFirst({ where: { id: { equals: token } } });
 
     if (!user) {
       await delay(100);
-      return HttpResponse.json<ApiError>({ status: 401, message: 'Unauthorized' }, { status: 401 });
+      return HttpResponse.json<ApiError>(
+        { status: Status.Unauthorized, message: 'Unauthorized' },
+        { status: Status.Unauthorized },
+      );
     }
 
     await delay(100);
@@ -106,20 +113,23 @@ export const handlers = [
 
     if (!body.email || !body.password) {
       await delay(100);
-      return HttpResponse.json<ApiError>({ status: 400, message: 'Bad request' }, { status: 400 });
+      return HttpResponse.json<ApiError>(
+        { status: Status.BadRequest, message: 'Bad request' },
+        { status: Status.BadRequest },
+      );
     }
 
     if (body.password.length < PASSWORD_MIN_LENGTH) {
       await delay(100);
       return HttpResponse.json<ApiError>(
         {
-          status: 422,
+          status: Status.UnprocessableEntity,
           message: 'Validation error',
           details: {
             password: `Password must be at least ${PASSWORD_MIN_LENGTH} characters long`,
           },
         },
-        { status: 422 },
+        { status: Status.UnprocessableEntity },
       );
     }
 
@@ -128,8 +138,8 @@ export const handlers = [
     if (db.user.findFirst({ where: { email: { equals: body.email } } }) !== null) {
       await delay(100);
       return HttpResponse.json<ApiError>(
-        { status: 409, message: 'User already exists' },
-        { status: 409 },
+        { status: Status.Conflict, message: 'User already exists' },
+        { status: Status.Conflict },
       );
     }
 
@@ -142,13 +152,13 @@ export const handlers = [
   http.get<{ userId: string }, never, UserResponse | ApiError>(
     '/api/user/:userId',
     async ({ request, params: { userId } }) => {
-      const token = getTokenFromHeader(request.headers.get('authorization'));
+      const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
       if (!token) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 401, message: 'Unauthorized' },
-          { status: 401 },
+          { status: Status.Unauthorized, message: 'Unauthorized' },
+          { status: Status.Unauthorized },
         );
       }
 
@@ -157,8 +167,8 @@ export const handlers = [
       if (!user) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 404, message: 'User not found' },
-          { status: 404 },
+          { status: Status.NotFound, message: 'User not found' },
+          { status: Status.NotFound },
         );
       }
 
@@ -170,13 +180,13 @@ export const handlers = [
   http.patch<{ userId: string }, ChangePasswordPayload, UserResponse | ApiError>(
     '/api/user/:userId/password',
     async ({ request, params: { userId } }) => {
-      const token = getTokenFromHeader(request.headers.get('authorization'));
+      const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
       if (!token) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 401, message: 'Unauthorized' },
-          { status: 401 },
+          { status: Status.Unauthorized, message: 'Unauthorized' },
+          { status: Status.Unauthorized },
         );
       }
 
@@ -185,8 +195,8 @@ export const handlers = [
       if (!body.password) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 400, message: 'Bad request' },
-          { status: 400 },
+          { status: Status.BadRequest, message: 'Bad request' },
+          { status: Status.BadRequest },
         );
       }
 
@@ -195,8 +205,8 @@ export const handlers = [
       if (!user) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 404, message: 'User not found' },
-          { status: 404 },
+          { status: Status.NotFound, message: 'User not found' },
+          { status: Status.NotFound },
         );
       }
 
@@ -215,11 +225,14 @@ export const handlers = [
    */
 
   http.get<never, never, BooksResponse | ApiError>('/api/books/discover', async ({ request }) => {
-    const token = getTokenFromHeader(request.headers.get('authorization'));
+    const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
     if (!token) {
       await delay(100);
-      return HttpResponse.json<ApiError>({ status: 401, message: 'Unauthorized' }, { status: 401 });
+      return HttpResponse.json<ApiError>(
+        { status: Status.Unauthorized, message: 'Unauthorized' },
+        { status: Status.Unauthorized },
+      );
     }
 
     const books = db.book
@@ -248,13 +261,13 @@ export const handlers = [
   http.get<never, never, BooksResponse | ApiError>(
     '/api/books/reading-list',
     async ({ request }) => {
-      const token = getTokenFromHeader(request.headers.get('authorization'));
+      const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
       if (!token) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 401, message: 'Unauthorized' },
-          { status: 401 },
+          { status: Status.Unauthorized, message: 'Unauthorized' },
+          { status: Status.Unauthorized },
         );
       }
 
@@ -288,11 +301,14 @@ export const handlers = [
   ),
 
   http.get<never, never, BooksResponse | ApiError>('/api/books/finished', async ({ request }) => {
-    const token = getTokenFromHeader(request.headers.get('authorization'));
+    const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
     if (!token) {
       await delay(100);
-      return HttpResponse.json<ApiError>({ status: 401, message: 'Unauthorized' }, { status: 401 });
+      return HttpResponse.json<ApiError>(
+        { status: Status.Unauthorized, message: 'Unauthorized' },
+        { status: Status.Unauthorized },
+      );
     }
 
     const readingList = db.readingList.findMany({
@@ -326,13 +342,13 @@ export const handlers = [
   http.get<{ bookId: string }, never, BookResponse | ApiError>(
     '/api/books/:bookId',
     async ({ request, params: { bookId } }) => {
-      const token = getTokenFromHeader(request.headers.get('authorization'));
+      const token = getTokenFromHeader(request.headers.get(RequestHeader.Authorization));
 
       if (!token) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 401, message: 'Unauthorized' },
-          { status: 401 },
+          { status: Status.Unauthorized, message: 'Unauthorized' },
+          { status: Status.Unauthorized },
         );
       }
 
@@ -348,8 +364,8 @@ export const handlers = [
       if (!book) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 404, message: 'User not found' },
-          { status: 404 },
+          { status: Status.NotFound, message: 'User not found' },
+          { status: Status.NotFound },
         );
       }
 
@@ -374,8 +390,8 @@ export const handlers = [
       if (!body.userId || !body.bookId) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 400, message: 'Bad request' },
-          { status: 400 },
+          { status: Status.BadRequest, message: 'Bad request' },
+          { status: Status.BadRequest },
         );
       }
 
@@ -389,8 +405,8 @@ export const handlers = [
       ) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 409, message: 'Already in reading list' },
-          { status: 409 },
+          { status: Status.Conflict, message: 'Already in reading list' },
+          { status: Status.Conflict },
         );
       }
 
@@ -414,8 +430,8 @@ export const handlers = [
       if (!body.userId || !body.bookId) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 400, message: 'Bad request' },
-          { status: 400 },
+          { status: Status.BadRequest, message: 'Bad request' },
+          { status: Status.BadRequest },
         );
       }
 
@@ -429,8 +445,8 @@ export const handlers = [
       if (readingList === null) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 409, message: 'Not in reading list' },
-          { status: 409 },
+          { status: Status.Conflict, message: 'Not in reading list' },
+          { status: Status.Conflict },
         );
       }
 
@@ -461,8 +477,8 @@ export const handlers = [
       if (readingList === null) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 409, message: 'Not in reading list' },
-          { status: 409 },
+          { status: Status.Conflict, message: 'Not in reading list' },
+          { status: Status.Conflict },
         );
       }
 
@@ -494,8 +510,8 @@ export const handlers = [
       if (readingList === null) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 409, message: 'Not in reading list' },
-          { status: 409 },
+          { status: Status.Conflict, message: 'Not in reading list' },
+          { status: Status.Conflict },
         );
       }
 
@@ -529,8 +545,8 @@ export const handlers = [
       if (readingList === null) {
         await delay(100);
         return HttpResponse.json<ApiError>(
-          { status: 409, message: 'Not in reading list' },
-          { status: 409 },
+          { status: Status.Conflict, message: 'Not in reading list' },
+          { status: Status.Conflict },
         );
       }
 

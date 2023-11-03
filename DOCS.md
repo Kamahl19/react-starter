@@ -94,6 +94,7 @@ Code quality concerns, best practices, possible logical issues etc. are checked 
 - [react-prefer-function-component](https://github.com/tatethurston/eslint-plugin-react-prefer-function-component) enforces function components in React
 - [import](https://github.com/import-js/eslint-plugin-import) validates proper ES module imports and exports
 - [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) provides additional powerful rules for more strict linting
+- [sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs) provides rules to help produce [Clean Code](https://www.sonarsource.com/solutions/clean-code/) by detecting bugs and suspicious patterns
 - [@tanstack/eslint-plugin-query](https://tanstack.com/query/latest/docs/react/eslint/eslint-plugin-query) enforces best practices and avoids common mistakes when using react-query
 - [@emotion/eslint-plugin](https://github.com/emotion-js/emotion/tree/main/packages/eslint-plugin) enforces css-in-js styles written as objects
 - [eslint-comments](https://eslint-community.github.io/eslint-plugin-eslint-comments/) checks ESLint directive comments (e.g. `//eslint-disable-line`)

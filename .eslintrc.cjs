@@ -8,6 +8,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/react',
     'plugin:unicorn/recommended',
+    'plugin:sonarjs/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
@@ -49,6 +50,8 @@ module.exports = {
     'unicorn/no-useless-undefined': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/prefer-top-level-await': 'off', // TODO enable once top-level-await is supported by default in Vite
+
+    'sonarjs/no-duplicate-string': 'off',
 
     /**
      * Adjust recommended rules
