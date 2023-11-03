@@ -61,11 +61,6 @@ module.exports = {
 
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
 
-    'react-hooks/exhaustive-deps': [
-      'error',
-      { additionalHooks: '(useRecoilCallback|useRecoilTransaction)' },
-    ],
-
     /**
      * Use additional rules
      */

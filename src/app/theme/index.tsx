@@ -1,23 +1,23 @@
 import { type ReactNode, useMemo } from 'react';
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { ConfigProvider, theme as antTheme } from 'antd';
-import { atom, useRecoilState } from 'recoil';
-import { recoilPersist } from 'recoil-persist';
+import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 import GlobalStyles from './GlobalStyles';
 import baseConfig from './baseConfig';
 import darkConfig from './darkConfig';
 
-const isDarkState = atom<boolean>({
-  key: 'isDark',
-  default: false,
-  effects: [recoilPersist().persistAtom],
-});
+const isDarkPersistedAtom = atomWithStorage('isDark', localStorage.getItem('isDark') === 'true');
 
-export const useIsDark = () => {
-  const [isDark, setIsDark] = useRecoilState(isDarkState);
-  return useMemo(() => [isDark, () => setIsDark((prev) => !prev)] as const, [isDark, setIsDark]);
-};
+const isDarkAtom = atom(
+  (get) => get(isDarkPersistedAtom),
+  (get, set) => {
+    set(isDarkPersistedAtom, !get(isDarkPersistedAtom));
+  },
+);
+
+export const useIsDark = () => useAtom(isDarkAtom);
 
 const Emotion = ({ children }: { children: ReactNode }) => {
   const { token } = antTheme.useToken();

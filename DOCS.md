@@ -72,7 +72,7 @@ To configure code that executes before the tests run (e.g. to mock API or set gl
 - extends Vitest matchers with [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - setups MSW to mock API
 
-There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Recoil, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
+There is also [src/tests/utils.tsx](./src/tests/utils.tsx) which provides custom render function for testing and wraps test with necessary providers such as react-query, Jotai, Ant, Emotion, Router... It also re-exports everything related to `testing-library`.
 
 Currently there is [only 1 test](./src/app/App.test.tsx) which is basically a "smoke test". It makes sure that the app renders without crashing and tests a happy path of Sign up -> Sign in -> Sign out.
 
@@ -130,7 +130,7 @@ This project already includes [Ant Design](https://ant.design/), a design system
 
 This projects comes with 2 themes: default and dark. To customize these themes, override the theme tokens in [src/app/theme/baseConfig.ts](./src/app/theme/baseConfig.ts) and [src/app/theme/darkConfig.ts](./src/app/theme/darkConfig.ts) respectively. The full list of theme tokens is available in [Ant Design documentation](https://ant.design/docs/react/customize-theme#theme). Ant Design provides a [Theme Editor](https://ant.design/theme-editor/) to help you create your own theme. Global styles are defined in [src/app/theme/GlobalStyles.tsx](./src/app/theme/GlobalStyles.tsx).
 
-Currently selected theme is stored in Recoil state and can be retrieved or changed using [useIsDark](./src/app/theme/index.tsx) hook.
+Currently selected theme is stored in Jotai state and can be retrieved or changed using [useIsDark](./src/app/theme/index.tsx) hook.
 
 [Global configuration](https://ant.design/components/config-provider#api) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
@@ -187,22 +187,11 @@ Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://g
 
 This project doesn't include [Redux](https://react-redux.js.org/) library. It has a lot of pros and cons but it isn't a silver bullet for state management in every application. It increases the complexity by bringing new concepts and patterns to the table. It requires several other companion libraries and lots of boilerplate. There is no data encapsulation and it's hard to achieve type-safety. Also, it isn't particularly useful when the app uses one data source per view and is often misused as an "API data cache". However, if you really need or want to use it, feel free to do so.
 
-Using only the built-in [React Context](https://react.dev/learn/passing-data-deeply-with-context) and [useState hook](https://react.dev/reference/react/useState) can get out of hand quickly in mid-size application. Therefor some state management library with higher abstraction is necessary. The [Recoil](https://recoiljs.org/) state management library built by Facebook seems to be the best choice.
+Using only the built-in [React Context](https://react.dev/learn/passing-data-deeply-with-context) and [useState hook](https://react.dev/reference/react/useState) can get out of hand quickly in mid-size application. Therefor some state management library with higher abstraction is necessary. The [Jotai](https://jotai.org/) state management library seems to be the best choice.
 
-Recoil leverages [React-like approach and the same mental model](https://recoiljs.org/docs/introduction/motivation) and doesn't bring any new concepts or difficult patterns. It feels like using a global version of React's built-in useState hook. Recoil handles app-wide state observations well, it's boilerplate-free, supports [React v18 concurrency](https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react) and encourages distributed and incremental state definition.
+[Jotai](https://jotai.org/) takes an atomic approach to global React state management with a model inspired by [Recoil](https://recoiljs.org/). It allows building state by combining atoms and renders are automatically optimized based on atom dependency. This solves the extra re-render issue of React context and eliminates the need for memoization.
 
-Recoil provides a data-graph that flows from shared states into React components. The two core concepts of Recoil according to the official [documentation](https://recoiljs.org/docs/introduction/core-concepts/) are:
-
-- [Atoms](https://recoiljs.org/docs/introduction/core-concepts/#atoms) - units of the global state provided by Recoil. Components can access and subscribe to changes made to them.
-- [Selectors](https://recoiljs.org/docs/introduction/core-concepts/#selectors) - can be used to transform states either synchronously or asynchronously. Components can also access and subscribe to them.
-
-There is also a [To-Do list tutorial](https://recoiljs.org/docs/basic-tutorial/intro), a great [Explain Like I'm 5](https://www.youtube.com/watch?v=U9XStcquQyY) video, and a [Deep Dive](https://www.youtube.com/watch?v=_ISAA_Jt9kI) video.
-
-To easily observe and debug state changes during development, there is `RecoilDebugObserver` in [src/app/providers/Recoil.tsx](./src/app/providers/Recoil.tsx) which logs all state changes.
-
-In case it's necessary to access the Recoil state outside of the React components tree, there are `getRecoil()`, `getRecoilPromise()`, `setRecoil()` and `resetRecoil()` in [src/app/providers/Recoil.tsx](./src/app/providers/Recoil.tsx) which serve as an escape hatch to get/set the Recoil state.
-
-This project also includes [recoil-persist](https://github.com/polemius/recoil-persist) for persisting and rehydrating the Recoil state.
+Jotai has a very minimal API and is TypeScript oriented. It is as simple to use as React's `useState` hook, but all state is globally accessible, derived state is easy to implement, and unnecessary re-renders are automatically eliminated. Jotai also includes a utils for persisting an atom in localStorage, hydrating an atom during server-side rendering, creating atoms with Redux-like reducers and action types, and much more.
 
 ## Data Fetching and Mutating
 
@@ -226,7 +215,7 @@ It also provides 2 guard components, [RequireIsLoggedIn](./src/common/auth/Requi
 
 It also provides `getToken` method which servers as an escape hatch in case we need to get JWT token outside of React components. This is in fact used in [src/api/utils.ts](./src/api/utils.ts) to inject token to API call headers.
 
-Internally, all auth state is stored by Recoil in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage` using the [recoil-persist](https://github.com/polemius/recoil-persist) library.
+Internally, all auth state is stored by Jotai in [src/common/auth/state.ts](./src/common/auth/state.ts). The JWT token is persisted in `localStorage`.
 
 There is also a [src/app/PersistAuthGate.tsx](./src/app/PersistAuthGate.tsx) to automatically relogin a user after the page reloads if token is present in `localStorage`.
 
@@ -271,7 +260,7 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 ├── src/
 │   ├── api/ : Communication with API server
 │   ├── app/ : Application-wide (framework) files
-│   │   ├── providers/ : providers for AntD, Recoil, Query, Router
+│   │   ├── providers/ : providers for AntD, Jotai, Query, Router
 │   │   ├── theme/ : customising AntD theme, Dark mode, global styles, Emotion setup
 │   ├── common/ : Reusable functionality
 │   │   ├── auth/ : Authentication related logic
@@ -306,7 +295,7 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 
 The entrypoint to the application is [src/index.tsx](./src/index.tsx). It includes styles, initializes i18n resources and renders [src/app/Root.tsx](./src/app/Root.tsx) into html.
 
-[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [Recoil](././src/app/providers/Recoil.tsx), [AntDesign](./src/app/providers/AntDesign.tsx), [Query](././src/app/providers/Query.tsx), and [Router](./src/app/providers/Router.tsx). It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
+[Root.tsx](./src/app/Root.tsx) is a root React component. It renders all the application-wide providers such as [Jotai](././src/app/providers/Jotai.tsx), [AntDesign](./src/app/providers/AntDesign.tsx), [Query](././src/app/providers/Query.tsx), and [Router](./src/app/providers/Router.tsx). It also includes [GlobalErrorBoundary](./src/app/GlobalErrorBoundary.tsx) as a last instance for catching errors and a Suspense with global loading indicator. Wrapped inside all of that is an [src/app/App.tsx](./src/app/App.tsx).
 
 The actual business logic starts at [App.tsx](./src/app/App.tsx) file. Top routes such as auth routes and dashboard routes are rendered there based on a user being logged-in or anonymous. Components for these routes are coming from [src/features](./src/features) folder.
 

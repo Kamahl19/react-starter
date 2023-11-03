@@ -1,5 +1,6 @@
-import { atom, selector, useRecoilTransaction_UNSTABLE } from 'recoil';
-import { recoilPersist } from 'recoil-persist';
+import { useCallback } from 'react';
+import { atom, useSetAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 type AuthState = {
   userId: string;
@@ -11,31 +12,32 @@ const initialValue = {
   token: undefined,
 } satisfies AuthState;
 
-export const userIdState = atom<AuthState['userId']>({
-  key: 'userId',
-  default: initialValue.userId,
-});
+export const userIdAtom = atom(initialValue.userId);
 
-export const tokenState = atom<AuthState['token']>({
-  key: 'token',
-  default: initialValue.token,
-  effects: [recoilPersist().persistAtom],
-});
+export const tokenAtom = atomWithStorage<AuthState['token']>(
+  'token',
+  localStorage.getItem('token') ?? initialValue.token,
+);
 
-export const isLoggedInSelector = selector({
-  key: 'isLoggedIn',
-  get: ({ get }) =>
-    get(userIdState) !== initialValue.userId && get(tokenState) !== initialValue.token,
-});
+export const isLoggedInAtom = atom(
+  (get) => get(userIdAtom) !== initialValue.userId && get(tokenAtom) !== initialValue.token,
+);
 
-export const useSetAuthState = () =>
-  useRecoilTransaction_UNSTABLE(({ set }) => (state: Required<AuthState>) => {
-    set(userIdState, state.userId);
-    set(tokenState, state.token);
-  });
+export const useSetAuthState = () => {
+  const setUserId = useSetAtom(userIdAtom);
+  const setToken = useSetAtom(tokenAtom);
 
-export const useResetAuthState = () =>
-  useRecoilTransaction_UNSTABLE(({ reset }) => () => {
-    reset(userIdState);
-    reset(tokenState);
-  });
+  return useCallback(
+    ({ userId, token }: AuthState) => {
+      setUserId(userId);
+      setToken(token);
+    },
+    [setUserId, setToken],
+  );
+};
+
+export const useResetAuthState = () => {
+  const setAuthState = useSetAuthState();
+
+  return useCallback(() => setAuthState(initialValue), [setAuthState]);
+};

@@ -1,28 +1,22 @@
 import { useMemo, useCallback, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { type SignInPayload } from 'api';
 import { signIn as signInApi, relogin as reloginApi, signOut as signOutApi } from 'api/endpoints';
-import { getRecoil } from 'app/providers/Recoil';
+import { store } from 'app/providers/Jotai';
 
-import {
-  userIdState,
-  tokenState,
-  isLoggedInSelector,
-  useSetAuthState,
-  useResetAuthState,
-} from './state';
+import { userIdAtom, tokenAtom, isLoggedInAtom, useSetAuthState, useResetAuthState } from './state';
 
 export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
-export const getToken = () => getRecoil(tokenState);
+export const getToken = () => store.get(tokenAtom);
 
 export const useAuth = () => {
-  const userId = useRecoilValue(userIdState);
-  const token = useRecoilValue(tokenState);
-  const isLoggedIn = useRecoilValue(isLoggedInSelector);
+  const userId = useAtomValue(userIdAtom);
+  const token = useAtomValue(tokenAtom);
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
 
   return useMemo(() => ({ userId, token, isLoggedIn }), [userId, token, isLoggedIn]);
 };

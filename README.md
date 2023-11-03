@@ -13,7 +13,6 @@ There is a more extensive documentation at [DOCS.md](./DOCS.md).
 There are multiple alternative versions of this starter project commited to different branches:
 
 - [main branch](https://github.com/Kamahl19/react-starter) - the most general version of this starter
-- [Jotai branch](https://github.com/Kamahl19/react-starter/tree/jotai) - using [Jotai](https://github.com/pmndrs/jotai) instead of Recoil for global state management. See the [diff here](https://github.com/Kamahl19/react-starter/compare/main...jotai).
 - [Supabase branch](https://github.com/Kamahl19/react-starter/tree/supabase) - using Supabase (Firebase alternative) which provides a Postgres database, authentication, instant APIs, edge functions, realtime subscriptions, storage, etc... See the [diff here](https://github.com/Kamahl19/react-starter/compare/main...supabase).
 
 ## Features
@@ -31,8 +30,7 @@ There are multiple alternative versions of this starter project commited to diff
 - [i18next](https://www.i18next.com/) - internationalization framework
   - [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) - language detection plugin
   - [i18next-parser](https://github.com/i18next/i18next-parser) - parses the code, extracts translation keys and produces i18n resource file
-- [Recoil](https://recoiljs.org/) - state management library
-  - [recoil-persist](https://github.com/polemius/recoil-persist) - persist and rehydrate Recoil store
+- [Jotai](https://jotai.org/) - state management library
 - [React Router](https://reactrouter.com/) - declarative routing
   - [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) - hook for generating route breadcrumbs
   - [use-query-params](https://github.com/pbeshai/use-query-params) - hook for managing state in URL query parameters with easy serialization

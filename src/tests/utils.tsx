@@ -4,7 +4,7 @@ import { render, type RenderOptions } from '@testing-library/react';
 import { mockViewport } from 'jsdom-testing-mocks';
 
 import AntDesign from 'app/providers/AntDesign';
-import Recoil from 'app/providers/Recoil';
+import Jotai from 'app/providers/Jotai';
 import Router from 'app/providers/Router';
 import { createQueryClient } from 'app/providers/Query';
 import PersistAuthGate from 'app/PersistAuthGate';
@@ -26,7 +26,7 @@ const Providers = ({ children }: Props) => {
   const GlobalLoading = () => <LoadingScreen fullVPHeight />;
 
   return (
-    <Recoil>
+    <Jotai>
       <Suspense fallback={<GlobalLoading />}>
         <AntDesign>
           <QueryClientProvider client={queryClient}>
@@ -36,7 +36,7 @@ const Providers = ({ children }: Props) => {
           </QueryClientProvider>
         </AntDesign>
       </Suspense>
-    </Recoil>
+    </Jotai>
   );
 };
 
