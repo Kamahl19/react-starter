@@ -15,9 +15,9 @@ type Props = Omit<DropdownProps, 'children' | 'menu' | 'open' | 'overlayClassNam
 const NavbarDropdown = ({ onOpenChange, menu, caret = true, children, ...props }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleOpenChange = useCallback(
-    (open: boolean) => {
-      onOpenChange?.(open);
+  const handleOpenChange = useCallback<Required<DropdownProps>['onOpenChange']>(
+    (open, info) => {
+      onOpenChange?.(open, info);
       setIsVisible(open);
     },
     [onOpenChange],
