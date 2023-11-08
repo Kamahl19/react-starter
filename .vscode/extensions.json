@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "visualstudioexptteam.vscodeintellicode",
+    "yoavbls.pretty-ts-errors",
     "zixuanchen.vitest-explorer"
   ]
 }

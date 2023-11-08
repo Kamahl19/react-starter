@@ -1,37 +1,54 @@
-import { type ReactNode, useMemo } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { ConfigProvider, theme as antTheme } from 'antd';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 import GlobalStyles from './GlobalStyles';
 import baseConfig from './baseConfig';
 import darkConfig from './darkConfig';
 
-const isDarkPersistedAtom = atomWithStorage('isDark', localStorage.getItem('isDark') === 'true');
+export enum Theme {
+  LIGHT = 'light',
+  DARK = 'dark',
+}
 
-const isDarkAtom = atom(
-  (get) => get(isDarkPersistedAtom),
-  (get, set) => {
-    set(isDarkPersistedAtom, !get(isDarkPersistedAtom));
-  },
+const STORAGE_KEY = 'theme';
+
+const themePersistedAtom = atomWithStorage<Theme>(
+  STORAGE_KEY,
+  Object.values(Theme).includes(`${localStorage.getItem(STORAGE_KEY)}`)
+    ? (localStorage.getItem(STORAGE_KEY) as Theme) // eslint-disable-line @typescript-eslint/consistent-type-assertions
+    : window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? Theme.DARK
+    : Theme.LIGHT,
 );
 
-export const useIsDark = () => useAtom(isDarkAtom);
+export const useTheme = () => useAtom(themePersistedAtom);
 
 const Emotion = ({ children }: { children: ReactNode }) => {
   const { token } = antTheme.useToken();
-  const [isDark] = useIsDark();
+  const [themeName] = useTheme();
 
-  const theme = useMemo(() => ({ token, isDark }), [token, isDark]);
+  const theme = useMemo(
+    () => ({
+      token,
+      theme: themeName,
+    }),
+    [token, themeName],
+  );
 
   return <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>;
 };
 
-const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDark] = useIsDark();
+type Props = {
+  children: ReactNode;
+};
 
-  const theme = useMemo(() => (isDark ? darkConfig : baseConfig), [isDark]);
+const ThemeProvider = ({ children }: Props) => {
+  const [themeName] = useTheme();
+
+  const theme = useMemo(() => (themeName === Theme.DARK ? darkConfig : baseConfig), [themeName]);
 
   return (
     <ConfigProvider theme={theme}>

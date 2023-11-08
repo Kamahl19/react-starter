@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 
 import { type User } from 'api';
-import { useIsDark } from 'app/theme';
+import { useTheme, Theme } from 'app/theme';
 import { Logo } from 'common/components';
 import { AdminLayout, SidebarState, useAdminLayoutContext } from 'common/components/AdminLayout';
 
@@ -29,12 +29,12 @@ export default DashboardLayout;
 
 const SidebarLogo = () => {
   const { sidebarState } = useAdminLayoutContext();
-  const [isDark] = useIsDark();
+  const [theme] = useTheme();
 
   return (
     <Logo
       to={DASHBOARD_ROUTES.index.to}
-      inverted={isDark}
+      inverted={theme === Theme.DARK}
       isSmall={sidebarState === SidebarState.COLLAPSED_SIDEBAR}
     />
   );

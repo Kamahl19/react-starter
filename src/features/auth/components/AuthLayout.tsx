@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Space } from 'antd';
 import { css } from '@emotion/react';
 
-import { useIsDark } from 'app/theme';
+import { useTheme, Theme } from 'app/theme';
 import { useAuth } from 'common/auth';
 import { LanguageSelector, ThemeSwitch, Navbar, Logo } from 'common/components';
 import { createStyles, getMQ, useBreakpoint } from 'common/styleUtils';
@@ -18,7 +18,7 @@ type Props = {
 const AuthLayout = ({ children }: Props) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const [isDark] = useIsDark();
+  const [theme] = useTheme();
   const xs = useBreakpoint('xs');
 
   const menuItems = useMemo(
@@ -43,7 +43,7 @@ const AuthLayout = ({ children }: Props) => {
       <Layout.Header css={styles.header}>
         <Row justify="space-between" wrap={false}>
           <Col>
-            <Logo to={AUTH_ROUTES.signIn.to} inverted={isDark} isSmall={xs} />
+            <Logo to={AUTH_ROUTES.signIn.to} inverted={theme === Theme.DARK} isSmall={xs} />
           </Col>
           <Col>
             <Space size="large">

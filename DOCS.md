@@ -130,7 +130,7 @@ This project already includes [Ant Design](https://ant.design/), a design system
 
 This projects comes with 2 themes: default and dark. To customize these themes, override the theme tokens in [src/app/theme/baseConfig.ts](./src/app/theme/baseConfig.ts) and [src/app/theme/darkConfig.ts](./src/app/theme/darkConfig.ts) respectively. The full list of theme tokens is available in [Ant Design documentation](https://ant.design/docs/react/customize-theme#theme). Ant Design provides a [Theme Editor](https://ant.design/theme-editor/) to help you create your own theme. Global styles are defined in [src/app/theme/GlobalStyles.tsx](./src/app/theme/GlobalStyles.tsx).
 
-Currently selected theme is stored in Jotai state and can be retrieved or changed using [useIsDark](./src/app/theme/index.tsx) hook.
+Currently selected theme is stored in Jotai state and can be retrieved or changed using [useTheme](./src/app/theme/index.tsx) hook.
 
 [Global configuration](https://ant.design/components/config-provider#api) for all components resides in [src/app/providers/AntDesign.tsx](./src/app/providers/AntDesign.tsx).
 
@@ -157,11 +157,11 @@ To easily debug components, there is a [vite-plugin-react-click-to-component](ht
 
 [Emotion](https://emotion.sh/docs) is a library designed for writing css styles with JavaScript. It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities. The primary way to style elements with emotion is [the css prop](https://emotion.sh/docs/css-prop). It provides a concise and flexible API to style your components. In this project we use ESLint rule to only allow [objects for defining styles](https://emotion.sh/docs/object-styles). You can read more about [Best Practices](https://emotion.sh/docs/best-practices) [classNames](https://emotion.sh/docs/class-names).
 
-The [Emotion Theme](https://emotion.sh/docs/theming) is provided by the [ThemeProvider](./src/app/theme/index.tsx) and typed by [src/app/theme/types.d.ts](./src/app/theme/types.d.ts). It includes the full Ant's theme `token` and `isDark` flag to indicate which theme is currently being used. Emotion styles can access this `Theme` context using the `createStyles()` helper function.
+The [Emotion Theme](https://emotion.sh/docs/theming) is provided by the [ThemeProvider](./src/app/theme/index.tsx) and typed by [src/app/theme/types.d.ts](./src/app/theme/types.d.ts). It includes the full Ant's theme `token` and `theme` name to indicate which theme is currently being used. Emotion styles can access this `Theme` context using the `createStyles()` helper function.
 
 There is also [src/common/styleUtils.ts](./src/common/styleUtils.ts) which contains some useful functions for styling such as:
 
-- `createStyles()` is a helper for accessing the `Theme` context (`token`, `isDark`) in Emotion styles
+- `createStyles()` is a helper for accessing the `Theme` context (`token`, `theme`) in Emotion styles
 - `getMQ()` is a helper for writing media queries in Emotion styles
 - `useBreakpoint()` is a re-export of Ant's [Grid.useBreakpoint hook](https://ant.design/components/grid#components-grid-demo-usebreakpoint)
 - `centeredCss` is a style for centering content
