@@ -9,7 +9,7 @@ import {
   getMQ,
   type Breakpoint,
   useBreakpoint,
-} from 'common/styleUtils';
+} from '@/common/styleUtils';
 import AdminLayoutContext, { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 
 type Props = {

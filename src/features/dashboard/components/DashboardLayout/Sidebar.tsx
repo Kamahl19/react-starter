@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BookOutlined, StopOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
-import { SidebarMenu } from 'common/components/AdminLayout';
+import { SidebarMenu } from '@/common/components/AdminLayout';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 

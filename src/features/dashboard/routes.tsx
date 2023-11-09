@@ -2,7 +2,7 @@ import { generatePath, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { type BreadcrumbsRoute } from 'use-react-router-breadcrumbs';
 
-import { useFetchBook } from 'api';
+import { useFetchBook } from '@/api';
 
 /**
  * Routes

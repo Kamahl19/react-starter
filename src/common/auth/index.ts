@@ -2,9 +2,9 @@ import { useMemo, useCallback, useState } from 'react';
 import { useAtomValue } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { type SignInPayload } from 'api';
-import { signIn as signInApi, relogin as reloginApi, signOut as signOutApi } from 'api/endpoints';
-import { store } from 'app/providers/Jotai';
+import { type SignInPayload } from '@/api';
+import { signIn as signInApi, relogin as reloginApi, signOut as signOutApi } from '@/api/endpoints';
+import { store } from '@/app/providers/Jotai';
 
 import { userIdAtom, tokenAtom, isLoggedInAtom, useSetAuthState, useResetAuthState } from './state';
 

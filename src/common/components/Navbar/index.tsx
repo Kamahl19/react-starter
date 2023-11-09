@@ -1,8 +1,8 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
 
-import { Menu, type MenuProps } from 'common/components';
-import { createStyles, type Breakpoint, useBreakpoint } from 'common/styleUtils';
+import { Menu, type MenuProps } from '@/common/components';
+import { createStyles, type Breakpoint, useBreakpoint } from '@/common/styleUtils';
 
 import NavbarDropdown from './Dropdown';
 

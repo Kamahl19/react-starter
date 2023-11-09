@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { centeredCss } from 'common/styleUtils';
+import { centeredCss } from '@/common/styleUtils';
 
 type Props = {
   children: ReactNode;

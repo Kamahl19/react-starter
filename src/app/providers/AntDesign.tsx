@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { ConfigProvider, App } from 'antd';
 
-import { useCurrentLanguage } from 'i18n';
+import { useCurrentLanguage } from '@/i18n';
 
 import ThemeProvider from '../theme';
 

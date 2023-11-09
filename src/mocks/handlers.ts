@@ -17,9 +17,9 @@ import type {
   MarkBookPayload,
   SetRatingPayload,
   SetNotePayload,
-} from 'api';
-import { PASSWORD_MIN_LENGTH } from 'api';
-import { type ApiError } from 'api/utils';
+} from '@/api';
+import { PASSWORD_MIN_LENGTH } from '@/api';
+import { type ApiError } from '@/api/utils';
 
 import { db } from './db';
 

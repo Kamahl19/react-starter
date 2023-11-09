@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Form, Input } from 'antd';
 
-import { type SignInPayload } from 'api';
-import { useSignIn } from 'common/auth';
-import { usePrintErrorMessage } from 'common/hooks';
+import { type SignInPayload } from '@/api';
+import { useSignIn } from '@/common/auth';
+import { usePrintErrorMessage } from '@/common/hooks';
 
 import { useSignInRules } from '../validations';
 import { AUTH_ROUTES } from '../routes';

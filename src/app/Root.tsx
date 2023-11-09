@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { LoadingScreen } from 'common/components';
+import { LoadingScreen } from '@/common/components';
 
 import AntDesign from './providers/AntDesign';
 import Jotai from './providers/Jotai';

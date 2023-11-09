@@ -1,5 +1,5 @@
-import { useFetchBookshelfDiscover } from 'api';
-import { LoadingScreen, ResultError } from 'common/components';
+import { useFetchBookshelfDiscover } from '@/api';
+import { LoadingScreen, ResultError } from '@/common/components';
 
 import DashboardPageHeader from '../../../components/DashboardPageHeader';
 import List from '../components/List';

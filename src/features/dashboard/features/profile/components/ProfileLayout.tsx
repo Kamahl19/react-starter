@@ -2,8 +2,8 @@ import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { type User } from 'api';
-import { Descriptions, Widget } from 'common/components';
+import { type User } from '@/api';
+import { Descriptions, Widget } from '@/common/components';
 
 import DashboardPageHeader from '../../../components/DashboardPageHeader';
 import { DASHBOARD_ROUTES } from '../../../routes';

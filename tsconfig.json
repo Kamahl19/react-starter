@@ -5,7 +5,6 @@
     "allowSyntheticDefaultImports": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-    "baseUrl": "src",
     "esModuleInterop": false,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -25,7 +24,10 @@
     "strict": true,
     "target": "ES2020",
     "types": ["vite-plugin-svgr/client", "vitest/globals"],
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "references": [

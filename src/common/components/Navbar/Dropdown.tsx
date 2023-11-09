@@ -3,8 +3,8 @@ import { Dropdown, type DropdownProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { css, ClassNames } from '@emotion/react';
 
-import { createStyles, getMQ } from 'common/styleUtils';
-import { useCreateMenuProps, type MenuProps } from 'common/components';
+import { createStyles, getMQ } from '@/common/styleUtils';
+import { useCreateMenuProps, type MenuProps } from '@/common/components';
 
 type Props = Omit<DropdownProps, 'children' | 'menu' | 'open' | 'overlayClassName'> & {
   children: ReactNode;

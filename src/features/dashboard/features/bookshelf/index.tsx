@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import { NotFound } from 'common/components';
+import { NotFound } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 

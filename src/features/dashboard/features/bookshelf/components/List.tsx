@@ -9,10 +9,10 @@ import {
   useMarkBook,
   useSetRating,
   type Book,
-} from 'api';
-import { useAuth } from 'common/auth';
-import { Widget } from 'common/components';
-import { usePrintErrorMessage } from 'common/hooks';
+} from '@/api';
+import { useAuth } from '@/common/auth';
+import { Widget } from '@/common/components';
+import { usePrintErrorMessage } from '@/common/hooks';
 
 import { DASHBOARD_ROUTES } from '../../../routes';
 

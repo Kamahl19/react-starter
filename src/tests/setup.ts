@@ -2,10 +2,10 @@ import { configMocks, mockViewport, type MockViewport } from 'jsdom-testing-mock
 import { act } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
-import { dropDB } from 'mocks/db';
-import { server } from 'mocks/server';
+import { dropDB } from '@/mocks/db';
+import { server } from '@/mocks/server';
 
-import 'i18n';
+import '@/i18n';
 
 import { DESKTOP_VIEWPORT } from './constants';
 

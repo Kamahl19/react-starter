@@ -2,7 +2,7 @@ import { Breadcrumb } from 'antd';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import { Link } from 'react-router-dom';
 
-import { PageHeader, type PageHeaderProps } from 'common/components';
+import { PageHeader, type PageHeaderProps } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from '../routes';
 

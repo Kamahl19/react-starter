@@ -2,8 +2,8 @@ import { type ReactNode } from 'react';
 import { Card, type CardProps, Typography, Row, Col, Divider } from 'antd';
 import { css } from '@emotion/react';
 
-import { Menu, type MenuProps } from 'common/components';
-import { createStyles, getMQ, useBreakpoint } from 'common/styleUtils';
+import { Menu, type MenuProps } from '@/common/components';
+import { createStyles, getMQ, useBreakpoint } from '@/common/styleUtils';
 
 const Widget = (props: CardProps) => <Card bordered={false} css={styles.self} {...props} />;
 

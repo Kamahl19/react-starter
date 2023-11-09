@@ -2,8 +2,8 @@ import { type ReactNode } from 'react';
 import { Typography, Row, Col } from 'antd';
 import { css } from '@emotion/react';
 
-import { createStyles, getMQ, noMargin, type Breakpoint, useBreakpoint } from 'common/styleUtils';
-import { Menu, SpaceVertical, type MenuProps } from 'common/components';
+import { createStyles, getMQ, noMargin, type Breakpoint, useBreakpoint } from '@/common/styleUtils';
+import { Menu, SpaceVertical, type MenuProps } from '@/common/components';
 
 export type Props = {
   children?: ReactNode;

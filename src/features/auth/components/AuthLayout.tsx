@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Space } from 'antd';
 import { css } from '@emotion/react';
 
-import { useTheme, Theme } from 'app/theme';
-import { useAuth } from 'common/auth';
-import { LanguageSelector, ThemeSwitch, Navbar, Logo } from 'common/components';
-import { createStyles, getMQ, useBreakpoint } from 'common/styleUtils';
+import { useTheme, Theme } from '@/app/theme';
+import { useAuth } from '@/common/auth';
+import { LanguageSelector, ThemeSwitch, Navbar, Logo } from '@/common/components';
+import { createStyles, getMQ, useBreakpoint } from '@/common/styleUtils';
 
 import { AUTH_ROUTES } from '../routes';
 

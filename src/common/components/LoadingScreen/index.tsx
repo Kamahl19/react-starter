@@ -1,6 +1,6 @@
 import { Spin } from 'antd';
 
-import { centeredCss, fullVPHeightCss } from 'common/styleUtils';
+import { centeredCss, fullVPHeightCss } from '@/common/styleUtils';
 
 type Props = {
   fullVPHeight?: boolean;

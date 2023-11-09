@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import { Card, Typography } from 'antd';
 import { css } from '@emotion/react';
 
-import { createStyles } from 'common/styleUtils';
+import { createStyles } from '@/common/styleUtils';
 
 type Props = {
   children: ReactNode;

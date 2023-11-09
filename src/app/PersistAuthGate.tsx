@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 
-import { useAuth, useRelogin } from 'common/auth';
-import { useOnMount } from 'common/hooks';
+import { useAuth, useRelogin } from '@/common/auth';
+import { useOnMount } from '@/common/hooks';
 
 type Props = {
   children: ReactNode;

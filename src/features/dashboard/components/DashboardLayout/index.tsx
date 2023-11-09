@@ -1,9 +1,9 @@
 import { type ReactNode } from 'react';
 
-import { type User } from 'api';
-import { useTheme, Theme } from 'app/theme';
-import { Logo } from 'common/components';
-import { AdminLayout, SidebarState, useAdminLayoutContext } from 'common/components/AdminLayout';
+import { type User } from '@/api';
+import { useTheme, Theme } from '@/app/theme';
+import { Logo } from '@/common/components';
+import { AdminLayout, SidebarState, useAdminLayoutContext } from '@/common/components/AdminLayout';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 

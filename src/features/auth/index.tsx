@@ -1,9 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
-import { rootPath } from 'config';
-import { RequireIsAnonymous } from 'common/auth';
-import { LoadingScreen, NotFound } from 'common/components';
+import { rootPath } from '@/config';
+import { RequireIsAnonymous } from '@/common/auth';
+import { LoadingScreen, NotFound } from '@/common/components';
 
 import { AUTH_ROUTES } from './routes';
 import AuthLayout from './components/AuthLayout';

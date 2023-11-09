@@ -2,9 +2,9 @@ import { App } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { useConfirmEmail } from 'api';
-import { useTokenParam, useOnMount } from 'common/hooks';
-import { LoadingScreen, ResultError } from 'common/components';
+import { useConfirmEmail } from '@/api';
+import { useTokenParam, useOnMount } from '@/common/hooks';
+import { LoadingScreen, ResultError } from '@/common/components';
 
 import { AUTH_ROUTES } from '../routes';
 

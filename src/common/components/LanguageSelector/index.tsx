@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
-import { useCurrentLanguage, LANGUAGES_CONFIG, resolveLanguage } from 'i18n';
-import { NavbarDropdown } from 'common/components';
+import { useCurrentLanguage, LANGUAGES_CONFIG, resolveLanguage } from '@/i18n';
+import { NavbarDropdown } from '@/common/components';
 
 const LanguageSelector = () => {
   const [language, setLanguage] = useCurrentLanguage();

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { Menu, type MenuProps } from 'common/components';
+import { Menu, type MenuProps } from '@/common/components';
 
 import { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
 

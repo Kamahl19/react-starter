@@ -1,7 +1,7 @@
 import { Switch, type SwitchProps } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { useTheme, Theme } from 'app/theme';
+import { useTheme, Theme } from '@/app/theme';
 
 const ThemeSwitch = (props: SwitchProps) => {
   const { t } = useTranslation();

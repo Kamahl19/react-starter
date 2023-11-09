@@ -9,11 +9,11 @@ import {
   useMarkBook,
   useSetRating,
   useSetNote,
-} from 'api';
-import { useAuth } from 'common/auth';
-import { Descriptions, LoadingScreen, ResultError, Widget } from 'common/components';
-import { usePrintErrorMessage } from 'common/hooks';
-import { noMargin } from 'common/styleUtils';
+} from '@/api';
+import { useAuth } from '@/common/auth';
+import { Descriptions, LoadingScreen, ResultError, Widget } from '@/common/components';
+import { usePrintErrorMessage } from '@/common/hooks';
+import { noMargin } from '@/common/styleUtils';
 
 import DashboardPageHeader from '../../../components/DashboardPageHeader';
 import { useBookshelfParams } from '../../../routes';

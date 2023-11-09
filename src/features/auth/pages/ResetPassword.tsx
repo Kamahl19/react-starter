@@ -2,9 +2,9 @@ import { useCallback, useState } from 'react';
 import { Button, Form, Input, Result } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { type ResetPasswordPayload, useResetPassword } from 'api';
-import { usePrintErrorMessage } from 'common/hooks';
-import { DASHBOARD_ROUTES } from 'features/dashboard/routes';
+import { type ResetPasswordPayload, useResetPassword } from '@/api';
+import { usePrintErrorMessage } from '@/common/hooks';
+import { DASHBOARD_ROUTES } from '@/features/dashboard/routes';
 
 import { useResetPasswordRules } from '../validations';
 import AuthCard from '../components/AuthCard';

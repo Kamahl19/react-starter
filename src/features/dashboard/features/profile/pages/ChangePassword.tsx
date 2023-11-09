@@ -2,10 +2,10 @@ import { useCallback } from 'react';
 import { App, Form, Input, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { type ChangePasswordPayload, useChangePassword } from 'api';
-import { useAuth } from 'common/auth';
-import { usePrintErrorMessage } from 'common/hooks';
-import { Widget } from 'common/components';
+import { type ChangePasswordPayload, useChangePassword } from '@/api';
+import { useAuth } from '@/common/auth';
+import { usePrintErrorMessage } from '@/common/hooks';
+import { Widget } from '@/common/components';
 
 import { useChangePasswordRules } from '../validations';
 

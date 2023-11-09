@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Card, Result, type ResultProps } from 'antd';
 import is from '@sindresorhus/is';
 
-import { centeredCss, fullVPHeightCss } from 'common/styleUtils';
+import { centeredCss, fullVPHeightCss } from '@/common/styleUtils';
 
 type Props = ResultProps & {
   onReset?: VoidFunction;

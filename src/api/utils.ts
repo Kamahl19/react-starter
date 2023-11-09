@@ -1,7 +1,7 @@
 import qs from 'query-string';
 import { type Status } from '@reflet/http';
 
-import { getToken } from 'common/auth';
+import { getToken } from '@/common/auth';
 
 export type ApiError = {
   status: (typeof Status)[keyof typeof Status];

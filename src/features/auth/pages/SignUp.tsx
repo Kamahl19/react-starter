@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form, Input, Result } from 'antd';
 import { useDebounce } from 'use-debounce';
 
-import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from 'api';
-import { usePrintErrorMessage } from 'common/hooks';
+import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from '@/api';
+import { usePrintErrorMessage } from '@/common/hooks';
 
 import { useSignUpRules } from '../validations';
 import AuthCard from '../components/AuthCard';

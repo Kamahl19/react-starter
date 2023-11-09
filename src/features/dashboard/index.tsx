@@ -1,9 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
-import { useFetchUser } from 'api';
-import { useAuth, useSignOut } from 'common/auth';
-import { LoadingScreen, NotFound, ResultError } from 'common/components';
+import { useFetchUser } from '@/api';
+import { useAuth, useSignOut } from '@/common/auth';
+import { LoadingScreen, NotFound, ResultError } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
 import DashboardLayout from './components/DashboardLayout';
