@@ -10,6 +10,8 @@ import { createQueryClient } from 'app/providers/Query';
 import PersistAuthGate from 'app/PersistAuthGate';
 import { LoadingScreen } from 'common/components';
 
+import { DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from './constants';
+
 type Props = {
   children: ReactNode;
 };
@@ -43,9 +45,9 @@ const Providers = ({ children }: Props) => {
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
   render(ui, { wrapper: Providers, ...options });
 
-export const setDesktopResolution = () => mockViewport({ width: '1280px', height: '800px' });
+export const setDesktopResolution = () => mockViewport(DESKTOP_VIEWPORT);
 
-export const setMobileResolution = () => mockViewport({ width: '414px', height: '896px' });
+export const setMobileResolution = () => mockViewport(MOBILE_VIEWPORT);
 
 export * from '@testing-library/react'; // eslint-disable-line import/export
 export { customRender as render }; // eslint-disable-line import/export
