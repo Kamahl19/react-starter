@@ -1,35 +1,31 @@
 {
   "name": "react-starter",
   "version": "1.0.0",
-  "description": "React TypeScript application starter",
   "private": true,
-  "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
-  "license": "MIT",
+  "description": "React TypeScript application starter",
+  "bugs": {
+    "url": "https://github.com/Kamahl19/react-starter/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kamahl19/react-starter.git"
   },
-  "bugs": {
-    "url": "https://github.com/Kamahl19/react-starter/issues"
-  },
+  "license": "MIT",
+  "author": "Martin Litvaj <kamahl19@gmail.com> (http://litvaj.com)",
   "type": "module",
-  "engines": {
-    "node": "18 || 20",
-    "npm": ">=8.0"
-  },
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
-    "visualize": "export VISUALIZE=true && npm run build",
     "build": "vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
     "i18n": "i18next",
     "lint": "eslint \"./**/*.{js,cjs,mjs,ts,tsx}\" --max-warnings 0",
+    "prepare": "husky install",
     "preview": "export IS_PREVIEW=true && vite build && vite preview --port 3000",
     "start": "vite",
     "test": "DEBUG_PRINT_LIMIT=100000 vitest",
     "test:ui": "DEBUG_PRINT_LIMIT=100000 vitest --ui",
-    "prepare": "husky install"
+    "visualize": "export VISUALIZE=true && npm run build"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts,tsx}": [
@@ -39,8 +35,31 @@
       "prettier --write --ignore-unknown"
     ]
   },
-  "msw": {
-    "workerDirectory": "public"
+  "dependencies": {
+    "@ant-design/icons": "5.2.6",
+    "@emotion/react": "11.11.1",
+    "@reflet/http": "1.0.0",
+    "@sindresorhus/is": "6.1.0",
+    "@tanstack/react-query": "5.8.1",
+    "@tanstack/react-query-devtools": "5.8.1",
+    "antd": "5.11.1",
+    "dayjs": "1.11.10",
+    "deepmerge-ts": "5.1.0",
+    "i18next": "23.6.0",
+    "i18next-browser-languagedetector": "7.1.0",
+    "jotai": "2.5.1",
+    "jotai-devtools": "0.7.0",
+    "query-string": "8.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-error-boundary": "4.0.11",
+    "react-i18next": "13.3.1",
+    "react-router-dom": "6.18.0",
+    "use-debounce": "10.0.0",
+    "use-query-params": "2.2.1",
+    "use-react-router-breadcrumbs": "4.0.1",
+    "zod": "3.22.4",
+    "zod-fetch": "0.1.1"
   },
   "devDependencies": {
     "@emotion/eslint-plugin": "11.11.0",
@@ -83,6 +102,7 @@
     "lint-staged": "15.0.2",
     "msw": "2.0.4",
     "prettier": "3.0.3",
+    "prettier-plugin-packagejson": "2.4.6",
     "rollup-plugin-visualizer": "5.9.2",
     "source-map-explorer": "2.5.3",
     "terser": "5.24.0",
@@ -94,30 +114,11 @@
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6"
   },
-  "dependencies": {
-    "@ant-design/icons": "5.2.6",
-    "@emotion/react": "11.11.1",
-    "@reflet/http": "1.0.0",
-    "@sindresorhus/is": "6.1.0",
-    "@tanstack/react-query": "5.8.1",
-    "@tanstack/react-query-devtools": "5.8.1",
-    "antd": "5.11.1",
-    "dayjs": "1.11.10",
-    "deepmerge-ts": "5.1.0",
-    "i18next": "23.6.0",
-    "i18next-browser-languagedetector": "7.1.0",
-    "jotai": "2.5.1",
-    "jotai-devtools": "0.7.0",
-    "query-string": "8.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-error-boundary": "4.0.11",
-    "react-i18next": "13.3.1",
-    "react-router-dom": "6.18.0",
-    "use-debounce": "10.0.0",
-    "use-query-params": "2.2.1",
-    "use-react-router-breadcrumbs": "4.0.1",
-    "zod": "3.22.4",
-    "zod-fetch": "0.1.1"
+  "engines": {
+    "node": "18 || 20",
+    "npm": ">=8.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

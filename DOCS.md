@@ -115,7 +115,9 @@ ESLint runs when:
 
 ### Prettier
 
-Formatting of the entire codebase (js, ts, jsx, json, html, css, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
+Formatting of the entire codebase (js(x), ts(x), json, html, css, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
+
+On top of there, there is a [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) to sort the keys of a `package.json`` file using [sort-package-json](https://github.com/keithamus/sort-package-json).
 
 Prettier runs when:
 
