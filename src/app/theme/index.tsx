@@ -20,8 +20,8 @@ const themePersistedAtom = atomWithStorage<Theme>(
   Object.values(Theme).includes(`${localStorage.getItem(STORAGE_KEY)}`)
     ? (localStorage.getItem(STORAGE_KEY) as Theme) // eslint-disable-line @typescript-eslint/consistent-type-assertions
     : window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? Theme.DARK
-    : Theme.LIGHT,
+      ? Theme.DARK
+      : Theme.LIGHT,
 );
 
 export const useTheme = () => useAtom(themePersistedAtom);

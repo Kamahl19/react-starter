@@ -49,8 +49,8 @@ const AdminLayout = ({
       ? SidebarState.OPEN_DRAWER
       : SidebarState.CLOSED_DRAWER
     : isCollapsed
-    ? SidebarState.COLLAPSED_SIDEBAR
-    : SidebarState.OPEN_SIDEBAR;
+      ? SidebarState.COLLAPSED_SIDEBAR
+      : SidebarState.OPEN_SIDEBAR;
 
   const value = useMemo(
     () => ({ isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle }),

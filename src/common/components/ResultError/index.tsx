@@ -18,8 +18,8 @@ const ResultError = ({ onReset, error, card, fullVPHeight, ...props }: Props) =>
     is.nonEmptyObject(error) && is.string(error.message)
       ? error.message
       : is.string(error)
-      ? error
-      : undefined;
+        ? error
+        : undefined;
 
   const status =
     is.nonEmptyObject(error) && is.number(error.status) && isExceptionStatusType(error.status)
