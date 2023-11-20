@@ -7,7 +7,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 import { checker } from 'vite-plugin-checker';
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
-import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { z } from 'zod';
 
@@ -33,7 +32,6 @@ export default defineConfig(({ mode }) => ({
     legacy({
       targets: ['defaults'],
     }),
-    reactClickToComponent(),
     tsconfigPaths(),
     svgr(),
     mode !== 'test' &&
