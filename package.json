@@ -119,5 +119,10 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "overrides": {
+    "rollup-plugin-visualizer": {
+      "rollup": "4"
+    }
   }
 }
