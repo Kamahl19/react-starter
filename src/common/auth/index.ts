@@ -1,30 +1,22 @@
 import { useMemo, useCallback, useState } from 'react';
-import { useAtomValue } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { type SignInPayload } from '@/api';
 import { signIn as signInApi, relogin as reloginApi, signOut as signOutApi } from '@/api/endpoints';
-import { store } from '@/app/providers/Jotai';
 
-import { userIdAtom, tokenAtom, isLoggedInAtom, useSetAuthState, useResetAuthState } from './state';
+import { useAuthState } from './state';
 
 export { default as RequireIsAnonymous } from './RequireIsAnonymous';
 export { default as RequireIsLoggedIn } from './RequireIsLoggedIn';
 
-export const getToken = () => store.get(tokenAtom);
+export { getToken } from './state';
 
-export const useAuth = () => {
-  const userId = useAtomValue(userIdAtom);
-  const token = useAtomValue(tokenAtom);
-  const isLoggedIn = useAtomValue(isLoggedInAtom);
-
-  return useMemo(() => ({ userId, token, isLoggedIn }), [userId, token, isLoggedIn]);
-};
+export const useAuth = () => useAuthState()[0];
 
 export const useSignIn = () => {
   const [isPending, setIsPending] = useState(false);
 
-  const setAuthState = useSetAuthState();
+  const [, setAuthState] = useAuthState();
 
   const signIn = useCallback(
     async (payload: SignInPayload, opts?: { onError?: (error: unknown) => void }) => {
@@ -46,19 +38,18 @@ export const useSignIn = () => {
 export const useRelogin = () => {
   const [isPending, setIsPending] = useState(false);
 
-  const setAuthState = useSetAuthState();
-  const resetAuthState = useResetAuthState();
+  const [, setAuthState] = useAuthState();
 
   const relogin = useCallback(async () => {
     try {
       setIsPending(true);
       setAuthState(await reloginApi());
     } catch {
-      resetAuthState();
+      setAuthState();
     } finally {
       setIsPending(false);
     }
-  }, [setAuthState, resetAuthState, setIsPending]);
+  }, [setAuthState, setIsPending]);
 
   return useMemo(() => ({ isPending, relogin }), [isPending, relogin]);
 };
@@ -66,7 +57,7 @@ export const useRelogin = () => {
 export const useSignOut = () => {
   const [isPending, setIsPending] = useState(false);
 
-  const resetAuthState = useResetAuthState();
+  const [, setAuthState] = useAuthState();
 
   const queryClient = useQueryClient();
 
@@ -75,11 +66,11 @@ export const useSignOut = () => {
       setIsPending(true);
       await signOutApi();
     } finally {
-      resetAuthState();
+      setAuthState();
       queryClient.removeQueries();
       setIsPending(false);
     }
-  }, [resetAuthState, setIsPending, queryClient]);
+  }, [setAuthState, setIsPending, queryClient]);
 
   return useMemo(() => ({ isPending, signOut }), [isPending, signOut]);
 };

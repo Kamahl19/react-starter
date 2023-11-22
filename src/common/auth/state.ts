@@ -1,43 +1,51 @@
-import { useCallback } from 'react';
-import { atom, useSetAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
+import { useMemo } from 'react';
+import { atom, useAtom, useAtomValue } from 'jotai';
+
+import { store } from '@/app/providers/Jotai';
 
 type AuthState = {
   userId: string;
-  token?: string;
+  token: string | undefined;
 };
 
-const initialValue = {
+const initialValue: AuthState = {
   userId: '',
   token: undefined,
-} satisfies AuthState;
+};
 
-export const userIdAtom = atom(initialValue.userId);
+const userIdAtom = atom(initialValue.userId);
 
-export const tokenAtom = atomWithStorage<AuthState['token']>(
-  'token',
-  localStorage.getItem('token') ?? initialValue.token,
+const baseTokenAtom = atom(localStorage.getItem('token') ?? initialValue.token);
+const tokenAtom = atom(
+  (get) => get(baseTokenAtom),
+  (_, set, value: AuthState['token']) => {
+    set(baseTokenAtom, value);
+    value === undefined
+      ? window.localStorage.removeItem('token')
+      : window.localStorage.setItem('token', value);
+  },
 );
 
-export const isLoggedInAtom = atom(
+const isLoggedInAtom = atom(
   (get) => get(userIdAtom) !== initialValue.userId && get(tokenAtom) !== initialValue.token,
 );
 
-export const useSetAuthState = () => {
-  const setUserId = useSetAtom(userIdAtom);
-  const setToken = useSetAtom(tokenAtom);
+export const useAuthState = () => {
+  const [userId, setUserId] = useAtom(userIdAtom);
+  const [token, setToken] = useAtom(tokenAtom);
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
 
-  return useCallback(
-    ({ userId, token }: AuthState) => {
-      setUserId(userId);
-      setToken(token);
-    },
-    [setUserId, setToken],
+  return useMemo(
+    () =>
+      [
+        { userId, token, isLoggedIn },
+        ({ userId, token }: AuthState = initialValue) => {
+          setUserId(userId);
+          setToken(token);
+        },
+      ] as const,
+    [userId, token, isLoggedIn, setUserId, setToken],
   );
 };
 
-export const useResetAuthState = () => {
-  const setAuthState = useSetAuthState();
-
-  return useCallback(() => setAuthState(initialValue), [setAuthState]);
-};
+export const getToken = () => store.get(tokenAtom);
