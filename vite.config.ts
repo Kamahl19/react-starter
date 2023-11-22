@@ -2,7 +2,6 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import legacy from '@vitejs/plugin-legacy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 import { checker } from 'vite-plugin-checker';
@@ -28,9 +27,6 @@ export default defineConfig(({ mode }) => ({
         ['@swc-jotai/debug-label', {}],
         ['@swc-jotai/react-refresh', {}],
       ],
-    }),
-    legacy({
-      targets: ['defaults'],
     }),
     tsconfigPaths(),
     svgr(),
