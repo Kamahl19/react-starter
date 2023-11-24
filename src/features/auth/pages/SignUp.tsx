@@ -52,7 +52,7 @@ const SignUp = () => {
             name="email"
             rules={rules.email}
             validateFirst
-            validateStatus={isUserEmailAvailable ? undefined : 'error'}
+            validateStatus={isUserEmailAvailable ? '' : 'error'}
             help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
           >
             <Input autoFocus autoComplete="off" />

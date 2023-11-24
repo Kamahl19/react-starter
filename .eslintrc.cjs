@@ -47,6 +47,7 @@ module.exports = {
     'unicorn/filename-case': 'off',
     'unicorn/no-array-callback-reference': 'off',
     'unicorn/no-await-expression-member': 'off',
+    'unicorn/no-null': 'off',
     'unicorn/no-useless-undefined': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/prefer-top-level-await': 'off', // TODO enable once top-level-await is supported by default in Vite
@@ -268,7 +269,6 @@ module.exports = {
       },
       rules: {
         strict: 'off',
-        'unicorn/no-null': 'off',
       },
     },
   ],

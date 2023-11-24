@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Card, Result, type ResultProps } from 'antd';
-import is from '@sindresorhus/is';
 
 import { centeredCss, fullVPHeightCss } from '@/common/styleUtils';
 
@@ -15,14 +14,21 @@ const ResultError = ({ onReset, error, card, fullVPHeight, ...props }: Props) =>
   const { t } = useTranslation();
 
   const subTitle =
-    is.nonEmptyObject(error) && is.string(error.message)
+    typeof error === 'object' &&
+    error !== null &&
+    'message' in error &&
+    typeof error.message === 'string'
       ? error.message
-      : is.string(error)
+      : typeof error === 'string'
         ? error
         : undefined;
 
   const status =
-    is.nonEmptyObject(error) && is.number(error.status) && isExceptionStatusType(error.status)
+    typeof error === 'object' &&
+    error !== null &&
+    'status' in error &&
+    typeof error.status === 'number' &&
+    isExceptionStatusType(error.status)
       ? error.status
       : 'error';
 

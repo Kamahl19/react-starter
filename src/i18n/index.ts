@@ -77,7 +77,9 @@ i18next
     resources: Object.fromEntries(
       Object.entries(LANGUAGES_CONFIG).map(([lng, { resources }]) => [lng, resources]),
     ),
-    lng: import.meta.env.CI || import.meta.env.VITEST ? 'cimode' : undefined,
+    ...(import.meta.env.CI === 'true' || import.meta.env.VITEST === 'true'
+      ? { lng: 'cimode' }
+      : {}),
     fallbackLng: SUPPORTED_LANGUAGES[0],
     supportedLngs: SUPPORTED_LANGUAGES,
     ns: Object.keys(LANGUAGES_CONFIG[SUPPORTED_LANGUAGES[0]].resources),

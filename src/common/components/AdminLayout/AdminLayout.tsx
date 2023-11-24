@@ -10,7 +10,7 @@ import {
   type Breakpoint,
   useBreakpoint,
 } from '@/common/styleUtils';
-import AdminLayoutContext, { SidebarState, useAdminLayoutContext } from './AdminLayoutContext';
+import AdminLayoutContext, { SidebarState } from './AdminLayoutContext';
 
 type Props = {
   className?: string;
@@ -57,17 +57,6 @@ const AdminLayout = ({
     [isCollapsed, useDrawer, isDrawerVisible, sidebarState, toggle],
   );
 
-  const sidebarProps = useMemo(
-    () => ({
-      logo,
-      sidebarCollapsedWidth,
-      sidebarContent,
-      sidebarWidth,
-      onCollapse: setIsCollapsed,
-    }),
-    [sidebarCollapsedWidth, sidebarWidth, logo, sidebarContent],
-  );
-
   return (
     <AdminLayoutContext.Provider value={value}>
       <Layout className={className}>
@@ -80,10 +69,32 @@ const AdminLayout = ({
             css={styles.drawer}
             onClose={() => setIsDrawerVisible((s) => !s)}
           >
-            <Sidebar {...sidebarProps} />
+            <Layout.Sider
+              css={[styles.sidebar, fullVPHeightCss]}
+              collapsible={!useDrawer}
+              collapsed={isCollapsed && !useDrawer}
+              onCollapse={setIsCollapsed}
+              collapsedWidth={sidebarCollapsedWidth}
+              width={sidebarWidth}
+              theme="light"
+            >
+              <div css={[styles.sidebarLogo, styles.shadowBottom]}>{logo}</div>
+              {sidebarContent && <div css={styles.sidebarContent}>{sidebarContent}</div>}
+            </Layout.Sider>
           </Drawer>
         ) : (
-          <Sidebar {...sidebarProps} />
+          <Layout.Sider
+            css={[styles.sidebar, fullVPHeightCss]}
+            collapsible={!useDrawer}
+            collapsed={isCollapsed && !useDrawer}
+            onCollapse={setIsCollapsed}
+            collapsedWidth={sidebarCollapsedWidth}
+            width={sidebarWidth}
+            theme="light"
+          >
+            <div css={[styles.sidebarLogo, styles.shadowBottom]}>{logo}</div>
+            {sidebarContent && <div css={styles.sidebarContent}>{sidebarContent}</div>}
+          </Layout.Sider>
         )}
         <Layout css={fullVPHeightCss}>
           <Layout.Header css={[styles.header, styles.shadowBottom]}>
@@ -109,39 +120,6 @@ const AdminLayout = ({
 };
 
 export default AdminLayout;
-
-type SidebarProps = {
-  logo?: ReactNode;
-  sidebarCollapsedWidth?: SiderProps['collapsedWidth'];
-  sidebarContent?: ReactNode;
-  sidebarWidth?: SiderProps['width'];
-  onCollapse: Required<SiderProps>['onCollapse'];
-};
-
-const Sidebar = ({
-  logo,
-  sidebarCollapsedWidth,
-  sidebarContent,
-  sidebarWidth,
-  onCollapse,
-}: SidebarProps) => {
-  const { isCollapsed, useDrawer } = useAdminLayoutContext();
-
-  return (
-    <Layout.Sider
-      css={[styles.sidebar, fullVPHeightCss]}
-      collapsible={!useDrawer}
-      collapsed={isCollapsed && !useDrawer}
-      onCollapse={onCollapse}
-      collapsedWidth={sidebarCollapsedWidth}
-      width={sidebarWidth}
-      theme="light"
-    >
-      <div css={[styles.sidebarLogo, styles.shadowBottom]}>{logo}</div>
-      {sidebarContent && <div css={styles.sidebarContent}>{sidebarContent}</div>}
-    </Layout.Sider>
-  );
-};
 
 const styles = createStyles({
   shadowBottom: ({ token }) =>

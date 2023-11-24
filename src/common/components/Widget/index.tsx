@@ -21,17 +21,19 @@ const WidgetWithMenu = ({
   return (
     <Widget bordered={false} {...props}>
       <Row justify="space-between" gutter={12} wrap={!md}>
-        <Col flex={md ? '220px' : undefined} span={md ? undefined : 24}>
+        <Col {...(md ? { flex: '220px' } : { span: 24 })}>
           <Menu mode="inline" items={menuItems} css={styles.menu} />
           {extra}
         </Col>
-        <Col span={md ? undefined : 24}>
-          {md ? (
+        {md ? (
+          <Col>
             <Divider type="vertical" css={styles.dividerVertical} />
-          ) : (
+          </Col>
+        ) : (
+          <Col span={24}>
             <Divider type="horizontal" />
-          )}
-        </Col>
+          </Col>
+        )}
         <Col flex="1">{children}</Col>
       </Row>
     </Widget>

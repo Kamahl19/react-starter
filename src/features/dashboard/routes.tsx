@@ -12,13 +12,13 @@ export const DASHBOARD_ROUTES = {
     path: 'app/*',
     to: '/app',
     absPath: '/app',
-    Breadcrumb: undefined,
+    Breadcrumb: null,
   },
   bookshelf: {
     path: 'bookshelf/*',
     to: '/app/bookshelf',
     absPath: '/app/bookshelf',
-    Breadcrumb: undefined,
+    Breadcrumb: null,
   },
   bookshelfDiscover: {
     path: 'discover',
@@ -70,7 +70,7 @@ export const DASHBOARD_ROUTES = {
     path: 'change-password',
     to: '/app/profile/change-password',
     absPath: '/app/profile/change-password',
-    Breadcrumb: undefined,
+    Breadcrumb: null,
   },
 } as const satisfies Record<
   string,
@@ -78,7 +78,7 @@ export const DASHBOARD_ROUTES = {
     path: string;
     to: string | ((...args: string[]) => string);
     absPath: string;
-    Breadcrumb: BreadcrumbsRoute['breadcrumb'];
+    Breadcrumb: Required<BreadcrumbsRoute>['breadcrumb'];
   }
 >;
 

@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { App } from 'antd';
 import { useTranslation } from 'react-i18next';
-import is from '@sindresorhus/is';
 
 const usePrintErrorMessage = () => {
   const { t } = useTranslation();
@@ -13,9 +12,14 @@ const usePrintErrorMessage = () => {
         console.error(error);
       }
 
-      if (is.nonEmptyObject(error) && is.string(error.message)) {
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'message' in error &&
+        typeof error.message === 'string'
+      ) {
         message.error(error.message);
-      } else if (is.string(error)) {
+      } else if (typeof error === 'string') {
         message.error(error);
       } else {
         message.error(t('global:unexpectedError'));

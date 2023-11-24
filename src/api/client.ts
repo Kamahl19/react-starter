@@ -1,18 +1,20 @@
 import { createZodFetcher, type Schema } from 'zod-fetch';
 
-type Init = Omit<RequestInit, 'body'> & {
+type FetchUrl = Parameters<typeof fetch>[0];
+
+type FetchInit = Omit<NonNullable<Parameters<typeof fetch>[1]>, 'body'> & {
   body?: unknown;
 };
 
 const apiClient = createZodFetcher(
-  async <R>(url: string, { body, headers, ...initRest }: Init = {}) => {
+  async <R>(url: FetchUrl, { body, headers, ...initRest }: FetchInit = {}) => {
     const init = {
       ...initRest,
       headers: {
         ...(body ? { 'Content-Type': 'application/json' } : undefined),
         ...headers,
       },
-      body: body ? JSON.stringify(body) : undefined,
+      body: body ? JSON.stringify(body) : null,
     };
 
     if (import.meta.env.DEV) {
@@ -36,31 +38,31 @@ const apiClient = createZodFetcher(
   },
 );
 
-export const get = <R>(schema: Schema<R>, url: string, init?: Init) =>
+export const get = <R>(schema: Schema<R>, url: FetchUrl, init?: FetchInit) =>
   apiClient<R>(schema, url, {
     ...init,
     method: 'GET',
   });
 
-export const post = <R>(schema: Schema<R>, url: string, init?: Init) =>
+export const post = <R>(schema: Schema<R>, url: FetchUrl, init?: FetchInit) =>
   apiClient<R>(schema, url, {
     ...init,
     method: 'POST',
   });
 
-export const put = <R>(schema: Schema<R>, url: string, init?: Init) =>
+export const put = <R>(schema: Schema<R>, url: FetchUrl, init?: FetchInit) =>
   apiClient<R>(schema, url, {
     ...init,
     method: 'PUT',
   });
 
-export const patch = <R>(schema: Schema<R>, url: string, init?: Init) =>
+export const patch = <R>(schema: Schema<R>, url: FetchUrl, init?: FetchInit) =>
   apiClient<R>(schema, url, {
     ...init,
     method: 'PATCH',
   });
 
-export const del = <R>(schema: Schema<R>, url: string, init?: Init) =>
+export const del = <R>(schema: Schema<R>, url: FetchUrl, init?: FetchInit) =>
   apiClient<R>(schema, url, {
     ...init,
     method: 'DELETE',

@@ -1,38 +1,16 @@
 {
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/vite-react/tsconfig.json"],
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "esModuleInterop": false,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
+    "checkJs": false,
     "jsxImportSource": "@emotion/react",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "ES2020",
+    "lib": ["es2020", "dom", "dom.iterable"],
+    "target": "es2020",
     "types": ["vite-plugin-svgr/client", "vitest/globals"],
-    "useDefineForClassFields": true,
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
