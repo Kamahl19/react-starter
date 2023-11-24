@@ -15,7 +15,7 @@
   "type": "module",
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'dist/assets/*.js' --no-border-checks",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "format": "prettier --write . --ignore-unknown",
     "format-check": "prettier --check . --ignore-unknown",
     "i18n": "i18next",
@@ -41,7 +41,7 @@
     "@reflet/http": "1.0.0",
     "@tanstack/react-query": "5.8.6",
     "@tanstack/react-query-devtools": "5.8.6",
-    "antd": "5.11.3",
+    "antd": "5.11.4",
     "dayjs": "1.11.10",
     "deepmerge-ts": "5.1.0",
     "i18next": "23.7.6",
