@@ -3,8 +3,6 @@
   "compilerOptions": {
     "checkJs": false,
     "jsxImportSource": "@emotion/react",
-    "lib": ["es2022", "dom", "dom.iterable"],
-    "target": "es2022",
     "types": ["vite-plugin-svgr/client", "vitest/globals"],
     "paths": {
       "@/*": ["./src/*"]
