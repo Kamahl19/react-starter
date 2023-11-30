@@ -9,10 +9,6 @@ import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { z } from 'zod';
 
-const isVisualize = process.env.VISUALIZE === 'true';
-const enableChecker = process.env.VITEST !== 'true';
-const enableMSWInProd = process.env.VERCEL === 'true' || process.env.IS_PREVIEW === 'true';
-
 export default defineConfig(({ mode }) => ({
   plugins: [
     ValidateEnv({
@@ -31,7 +27,7 @@ export default defineConfig(({ mode }) => ({
     }),
     tsconfigPaths(),
     svgr(),
-    enableChecker &&
+    mode !== 'test' &&
       checker({
         enableBuild: false,
         overlay: false,
@@ -40,7 +36,7 @@ export default defineConfig(({ mode }) => ({
           lintCommand: 'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0',
         },
       }),
-    isVisualize &&
+    process.env.VISUALIZE === 'true' &&
       visualizer({
         filename: 'dist/stats.html',
         open: true,
@@ -48,7 +44,7 @@ export default defineConfig(({ mode }) => ({
       }),
   ],
   define: {
-    __ENABLE_MSW_IN_PROD__: enableMSWInProd,
+    __ENABLE_MSW_IN_PROD__: process.env.VERCEL !== undefined || process.env.IS_PREVIEW === 'true',
   },
   server: {
     open: true,
