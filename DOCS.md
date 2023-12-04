@@ -179,8 +179,6 @@ i18next ecosystem provides [many plugins and tools](https://www.i18next.com/over
 
 A de facto standard for route management in React apps is a [React Router](https://reactrouter.com/). This project uses the newest v6 version which brings new features and removes some previously confusing concepts. It's best to read [Quick Start Overview](https://reactrouter.com/en/main/start/overview) first, then proceed to [FAQ](https://reactrouter.com/docs/en/v6/getting-started/faq) mostly related to v6 changes. The documentation also provides a simple [Tutorial](https://reactrouter.com/en/main/start/tutorial). To improve understanding of concepts, vocabulary, and design principles of React Router, go to the [Main Concepts](https://reactrouter.com/en/main/start/concepts).
 
-When creating an app with easily shareable URLs, you often want to encode state as query parameters, but all query parameters must be encoded as strings. Library [use-query-params](https://github.com/pbeshai/use-query-params) allows you to easily encode and decode data of any type as query parameters with smart memoization to prevent creating unnecessary duplicate objects. It's setup in the [src/app/providers/Router.tsx](./src/app/providers/Router.tsx).
-
 Generation of breadcrumbs is covered by [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) and used in [src/features/dashboard/components/DashboardPageHeader/index.tsx](./src/features/dashboard/components/DashboardPageHeader/index.tsx).
 
 ## State Management

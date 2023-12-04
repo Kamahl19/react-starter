@@ -33,7 +33,6 @@ There are multiple alternative versions of this starter project commited to diff
 - [Jotai](https://jotai.org/) - state management library
 - [React Router](https://reactrouter.com/) - declarative routing
   - [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs) - hook for generating route breadcrumbs
-  - [use-query-params](https://github.com/pbeshai/use-query-params) - hook for managing state in URL query parameters with easy serialization
 - [react-error-boundary](https://github.com/bvaughn/react-error-boundary) - simple reusable React error boundary component
 - [Vitest](https://vitest.dev/) - blazing fast Vite-native unit test framework
   - [Testing Library](https://testing-library.com/) - simple and complete testing utilities that encourage good testing practices
