@@ -1,16 +1,57 @@
-import { render, screen, userEvent } from '@/tests/utils';
+import { screen, render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { Suspense, type ReactNode } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
 
+import { dropDB } from '@/mocks/db';
+import { server } from '@/mocks/server';
+import { LoadingScreen } from '@/common/components';
+
+import AntDesign from './providers/AntDesign';
+import Jotai from './providers/Jotai';
+import Router from './providers/Router';
+import { createQueryClient } from './providers/Query';
+import PersistAuthGate from './PersistAuthGate';
 import App from './App';
+
+// TODO replace this smoketest with proper Playwright e2e test
+
+const queryClient = createQueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+const Providers = ({ children }: { children: ReactNode }) => (
+  <Jotai>
+    <Suspense fallback={<LoadingScreen fullVPHeight />}>
+      <AntDesign>
+        <QueryClientProvider client={queryClient}>
+          <PersistAuthGate loadingFallback={<LoadingScreen fullVPHeight />}>
+            <Router>{children}</Router>
+          </PersistAuthGate>
+        </QueryClientProvider>
+      </AntDesign>
+    </Suspense>
+  </Jotai>
+);
 
 const email = 'email@example.com';
 const password = 'password';
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => server.resetHandlers());
+afterEach(() => dropDB());
+afterAll(() => server.close());
 
 test(
   'creates user and logs-in',
   async () => {
     const { click, type } = userEvent.setup();
 
-    render(<App />);
+    render(<App />, { wrapper: Providers });
 
     expect(await screen.findByRole('link', { name: 'auth:menu.signUp' })).toBeInTheDocument();
 

@@ -269,7 +269,7 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 │   ├── mocks/ : API mocks by [MSW](https://mswjs.io/)
 │   ├── tests/ : Testing related functionality
 │   │   ├── setup.tsx : Executes before tests to mock API or set global settings
-│   │   ├── utils.tsx : Provides custom render function for testing
+│   │   ├── utils.tsx : Provides custom utils for testing
 │   ├── config.ts : Global configuration
 │   ├── index.tsx : Application entry file
 │   ├── vite-env.d.ts : Vite specific typings e.g. environment values
