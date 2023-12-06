@@ -102,7 +102,7 @@ const AdminLayout = ({
               <Col>
                 {useDrawer && (
                   <>
-                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
                     <div css={styles.drawerTrigger} onClick={() => setIsDrawerVisible((s) => !s)}>
                       <MenuOutlined />
                     </div>

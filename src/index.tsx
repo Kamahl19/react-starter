@@ -4,24 +4,34 @@ import { createRoot } from 'react-dom/client';
 import '@/i18n';
 import Root from '@/app/Root';
 
-startMSW().then(() => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  createRoot(document.querySelector('#root')!).render(
-    <StrictMode>
-      <Root />
-    </StrictMode>,
-  );
-});
+startMSW()
+  .then(() => {
+    const rootEl = document.querySelector('#root');
+
+    if (!rootEl) {
+      throw new Error('No #root element');
+    }
+
+    createRoot(rootEl).render(
+      <StrictMode>
+        <Root />
+      </StrictMode>,
+    );
+  })
+  // eslint-disable-next-line unicorn/prefer-top-level-await
+  .catch((error) => {
+    throw error;
+  });
 
 async function startMSW() {
-  if (import.meta.env.DEV || __ENABLE_MSW_IN_PROD__) {
-    const { worker } = await import('@/mocks/browser');
-
-    worker.start({
-      onUnhandledRequest: ({ url }, { warning }) =>
-        url.includes(import.meta.env.VITE_API_URL) ? warning() : undefined,
-    });
+  if (!import.meta.env.DEV && !__ENABLE_MSW_IN_PROD__) {
+    return;
   }
 
-  return undefined;
+  const { worker } = await import('@/mocks/browser');
+
+  await worker.start({
+    onUnhandledRequest: ({ url }, { warning }) =>
+      url.includes(import.meta.env.VITE_API_URL) ? warning() : undefined,
+  });
 }

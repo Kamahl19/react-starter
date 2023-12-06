@@ -71,8 +71,9 @@ const BookDetail = () => {
 
   const { mutate: setNote, isPending: isSetNotePending } = useSetNote();
 
-  const handleSetNote = useCallback(() => {
-    noteForm.validateFields().then(({ note }) => setNote({ bookId, note, userId }, { onError }));
+  const handleSetNote = useCallback(async () => {
+    const { note } = await noteForm.validateFields();
+    setNote({ bookId, note, userId }, { onError });
   }, [onError, setNote, userId, bookId, noteForm]);
 
   if (isPending) {

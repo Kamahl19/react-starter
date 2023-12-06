@@ -22,7 +22,7 @@ const ConfirmEmail = () => {
   useOnMount(() => {
     mutate(token, {
       onSuccess: () => {
-        message.success(t('auth:confirmEmail.success'));
+        void message.success(t('auth:confirmEmail.success'));
         navigate(AUTH_ROUTES.signIn.to);
       },
     });

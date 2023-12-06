@@ -29,7 +29,7 @@ const SignIn = () => {
     <AuthCard title={t('auth:signIn.title')}>
       <Form<SignInPayload> onFinish={handleSubmit} layout="vertical" requiredMark={false}>
         <Form.Item label={t('auth:signIn.email')} name="email" rules={rules.email} validateFirst>
-          <Input autoFocus />
+          <Input />
         </Form.Item>
         <Form.Item
           label={t('auth:signIn.password')}

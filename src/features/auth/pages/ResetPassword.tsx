@@ -47,7 +47,7 @@ const ResetPassword = () => {
             rules={rules.email}
             validateFirst
           >
-            <Input autoFocus />
+            <Input />
           </Form.Item>
           <Form.Item noStyle>
             <Button block type="primary" htmlType="submit" loading={isPending}>

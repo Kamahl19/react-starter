@@ -55,7 +55,7 @@ const SignUp = () => {
             validateStatus={isUserEmailAvailable ? '' : 'error'}
             help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
           >
-            <Input autoFocus autoComplete="off" />
+            <Input autoComplete="off" />
           </Form.Item>
           <Form.Item
             label={t('auth:signUp.password')}

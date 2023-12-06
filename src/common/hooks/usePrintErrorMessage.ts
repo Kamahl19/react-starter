@@ -18,11 +18,11 @@ const usePrintErrorMessage = () => {
         'message' in error &&
         typeof error.message === 'string'
       ) {
-        message.error(error.message);
+        void message.error(error.message);
       } else if (typeof error === 'string') {
-        message.error(error);
+        void message.error(error);
       } else {
-        message.error(t('global:unexpectedError'));
+        void message.error(t('global:unexpectedError'));
       }
     },
     [t, message],

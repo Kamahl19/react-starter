@@ -29,7 +29,7 @@ const ChangePassword = () => {
         {
           onSuccess: () => {
             form.resetFields();
-            message.success(t('profile:changePassword.success'));
+            void message.success(t('profile:changePassword.success'));
           },
           onError,
         },
@@ -50,7 +50,7 @@ const ChangePassword = () => {
           rules={rules.password}
           validateFirst
         >
-          <Input.Password autoFocus />
+          <Input.Password />
         </Form.Item>
         <Form.Item noStyle>
           <Button type="primary" htmlType="submit" loading={isPending}>

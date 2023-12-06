@@ -16,9 +16,7 @@ const LanguageSelector = () => {
   );
 
   const handleClick = useCallback(
-    ({ key }: { key: string }) => {
-      setLanguage(resolveLanguage(key));
-    },
+    ({ key }: { key: string }) => void setLanguage(resolveLanguage(key)),
     [setLanguage],
   );
 

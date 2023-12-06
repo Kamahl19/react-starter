@@ -69,7 +69,7 @@ export const useCurrentLanguage = () => {
 
 i18next.on('languageChanged', (language) => dayjs.locale(resolveLanguage(language)));
 
-i18next
+void i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({

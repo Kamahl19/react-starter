@@ -14,7 +14,7 @@ const PersistAuthGate = ({ children, loadingFallback }: Props) => {
 
   useOnMount(() => {
     if (token) {
-      relogin();
+      void relogin();
     }
   });
 
