@@ -48,7 +48,7 @@ module.exports = {
      * Additional rules
      */
     'array-callback-return': 'error',
-    eqeqeq: ['error'],
+    eqeqeq: 'error',
     'no-array-constructor': 'error',
     'no-caller': 'error',
     'no-eval': 'error',
