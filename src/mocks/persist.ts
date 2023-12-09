@@ -29,7 +29,6 @@ type SerializedModels<Dictionary extends ModelDictionary> = Record<
   Map<PrimaryKeyType, SerializedEntity>
 >;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function persist<Dictionary extends ModelDictionary>(
   factory: FactoryAPI<Dictionary>,
 ) {

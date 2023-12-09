@@ -33,7 +33,8 @@ export default defineConfig(({ mode }) => ({
         overlay: false,
         typescript: true,
         eslint: {
-          lintCommand: 'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0',
+          lintCommand:
+            'eslint "./**/*.{js,cjs,mjs,ts,tsx}" --max-warnings 0 --report-unused-disable-directives',
         },
       }),
     process.env.VISUALIZE === 'true' &&
