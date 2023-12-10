@@ -156,7 +156,7 @@ module.exports = {
       ],
     },
     {
-      files: ['vite.config.ts'],
+      files: ['vite.config.ts', 'i18next-parser.config.ts'],
       parserOptions: {
         project: ['./tsconfig.node.json'],
       },
