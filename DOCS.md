@@ -115,7 +115,7 @@ ESLint runs when:
 
 ### Prettier
 
-Formatting of the entire codebase (js(x), ts(x), json, html, css, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc.js](./.prettierrc.js). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
+Formatting of the entire codebase (js(x), ts(x), json, html, css, md...) is covered by [Prettier](https://prettier.io/docs/en/index.html). Prettier is an opinionated code formatter which removes original styling and ensures that outputted code conforms to a consistent style. This project uses mostly default Prettier configuration with a small exception defined in [.prettierrc](./.prettierrc). You can read more about it here: [Why Prettier](https://prettier.io/docs/en/why-prettier.html) and [Editors Integration](https://prettier.io/docs/en/editors.html).
 
 On top of there, there is a [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) to sort the keys of a `package.json`` file using [sort-package-json](https://github.com/keithamus/sort-package-json).
 
@@ -280,7 +280,7 @@ The best part is that developers can [build their own](https://react.dev/learn/r
 ├── .gitignore : to keep Git from tracking specific files
 ├── .npmrc : an NPM [config](https://docs.npmjs.com/cli/using-npm/config)
 ├── .prettierignore : to ignore files when running Prettier
-├── .prettierrc.js : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
+├── .prettierrc : contains Prettier [configuration](https://prettier.io/docs/en/options.html)
 ├── i18next-parser.config.ts : contains configuration for [i18next-parser](https://github.com/i18next/i18next-parser)
 ├── index.html : is the entry point to the application
 ├── package.json : holds metadata about the project and its dependencies
