@@ -89,6 +89,7 @@ module.exports = {
         'plugin:@typescript-eslint/strict-type-checked',
         'plugin:@typescript-eslint/stylistic-type-checked',
         'plugin:import/typescript',
+        'plugin:tailwindcss/recommended',
         'prettier',
       ],
       parser: '@typescript-eslint/parser',
@@ -102,9 +103,19 @@ module.exports = {
             alwaysTryTypes: true,
           },
         },
+        tailwindcss: {
+          callees: ['clsx', 'cva', 'cn'],
+          config: 'tailwind.config.js',
+        },
       },
       rules: {
         curly: 'error', // Prettier disables this https://github.com/prettier/eslint-config-prettier/tree/main?tab=readme-ov-file#curly
+
+        /**
+         * Turn-off recommended rules
+         */
+        'tailwindcss/classnames-order': 'off', // covered by prettier-plugin-tailwindcss
+        'tailwindcss/migration-from-tailwind-2': 'off',
 
         /**
          * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)

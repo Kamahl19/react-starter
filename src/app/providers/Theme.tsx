@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
@@ -27,6 +27,14 @@ type Props = {
 };
 
 const ThemeProvider = ({ children }: Props) => {
+  const [theme] = useTheme();
+
+  useEffect(() => {
+    const rootEl = window.document.documentElement;
+    rootEl.classList.remove(...Object.values(Theme));
+    rootEl.classList.add(theme === Theme.SYSTEM ? getSystemTheme() : theme);
+  }, [theme]);
+
   return children;
 };
 
