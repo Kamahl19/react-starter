@@ -18,6 +18,3 @@ beforeEach(() => {
 afterEach(() => {
   viewport.cleanup();
 });
-
-// https://github.com/yiminghe/async-validator#how-to-avoid-global-warning
-vi.stubGlobal('ASYNC_VALIDATOR_NO_WARNING', 1);

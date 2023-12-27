@@ -36,14 +36,11 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "5.2.6",
-    "@emotion/react": "11.11.3",
+    "@hookform/resolvers": "3.3.3",
     "@reflet/http": "1.0.0",
     "@tanstack/react-query": "5.17.0",
     "@tanstack/react-query-devtools": "5.17.0",
-    "antd": "5.12.7",
     "dayjs": "1.11.10",
-    "deepmerge-ts": "5.1.0",
     "i18next": "23.7.15",
     "i18next-browser-languagedetector": "7.2.0",
     "jotai": "2.6.1",
@@ -52,6 +49,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-error-boundary": "4.0.12",
+    "react-hook-form": "7.49.2",
     "react-i18next": "14.0.0",
     "react-router-dom": "6.21.1",
     "use-debounce": "10.0.0",
@@ -60,13 +58,11 @@
     "zod-fetch": "0.1.1"
   },
   "devDependencies": {
-    "@emotion/eslint-plugin": "11.11.0",
     "@eslint-community/eslint-plugin-eslint-comments": "4.1.0",
     "@julr/vite-plugin-validate-env": "1.0.1",
     "@mswjs/data": "0.16.1",
     "@swc-jotai/debug-label": "0.1.0",
     "@swc-jotai/react-refresh": "0.1.0",
-    "@swc/plugin-emotion": "2.5.108",
     "@tanstack/eslint-plugin-query": "5.14.6",
     "@testing-library/jest-dom": "6.1.6",
     "@testing-library/react": "14.1.2",

@@ -1,4 +1,7 @@
 {
+  "languageSelector": {
+    "selectLanguage": "Select Language"
+  },
   "notFound": {
     "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
     "title": "Page not found"
@@ -7,8 +10,10 @@
     "retry": "Retry",
     "title": "Something went wrong"
   },
-  "themeSwitch": {
+  "themeSelector": {
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "selectTheme": "Select Theme",
+    "system": "System"
   }
 }

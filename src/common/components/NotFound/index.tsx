@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { Result } from 'antd';
 
 const NotFound = () => {
   const { t } = useTranslation();
 
   return (
-    <Result
-      status={404}
-      title={t('common:notFound.title')}
-      subTitle={t('common:notFound.subtitle')}
-    />
+    <div>
+      <h2>{t('common:notFound.title')}</h2>
+      <h3>{t('common:notFound.subtitle')}</h3>
+    </div>
   );
 };
 

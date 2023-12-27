@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { type ChangeEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, Rate, Space, Spin, Typography } from 'antd';
 
 import {
   useFetchBook,
@@ -11,14 +10,12 @@ import {
   useSetNote,
 } from '@/api';
 import { useAuth } from '@/common/auth';
-import { Descriptions, LoadingScreen, ResultError, Widget } from '@/common/components';
+import { LoadingScreen, ResultError } from '@/common/components';
 import { usePrintErrorMessage } from '@/common/hooks';
-import { noMargin } from '@/common/styleUtils';
 
 import DashboardPageHeader from '../../../components/DashboardPageHeader';
 import { useBookshelfParams } from '../../../routes';
-
-type NoteFormValues = { note: string };
+import BookNote from '../components/BookNote';
 
 const BookDetail = () => {
   const { t } = useTranslation();
@@ -31,8 +28,6 @@ const BookDetail = () => {
 
   const onError = usePrintErrorMessage();
 
-  const [noteForm] = Form.useForm<NoteFormValues>();
-
   const { mutate: addToReadingList, isPending: isAddToReadingListPending } = useAddToReadingList();
 
   const handleAddToReadingList = useCallback(
@@ -44,15 +39,8 @@ const BookDetail = () => {
     useRemoveFromReadingList();
 
   const handleRemoveFromReadingList = useCallback(
-    () =>
-      removeFromReadingList(
-        { bookId, userId },
-        {
-          onSuccess: () => noteForm.setFieldValue('note', ''),
-          onError,
-        },
-      ),
-    [onError, removeFromReadingList, bookId, userId, noteForm],
+    () => removeFromReadingList({ bookId, userId }, { onError }),
+    [onError, removeFromReadingList, bookId, userId],
   );
 
   const { mutate: markBook, isPending: isMarkBookPending } = useMarkBook();
@@ -64,24 +52,25 @@ const BookDetail = () => {
 
   const { mutate: setRating } = useSetRating();
 
-  const handleSetRating = useCallback(
-    (rating: number) => setRating({ bookId, rating, userId }, { onError }),
+  const handleSetRating = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    ({ target }) =>
+      setRating({ bookId, rating: Number.parseInt(target.value), userId }, { onError }),
     [onError, setRating, userId, bookId],
   );
 
   const { mutate: setNote, isPending: isSetNotePending } = useSetNote();
 
-  const handleSetNote = useCallback(async () => {
-    const { note } = await noteForm.validateFields();
-    setNote({ bookId, note, userId }, { onError });
-  }, [onError, setNote, userId, bookId, noteForm]);
+  const handleSetNote = useCallback(
+    ({ note }: { note: string }) => setNote({ bookId, note, userId }, { onError }),
+    [onError, setNote, userId, bookId],
+  );
 
   if (isPending) {
     return <LoadingScreen />;
   }
 
   if (isError) {
-    return <ResultError error={error} card />;
+    return <ResultError error={error} />;
   }
 
   const { book } = data;
@@ -90,74 +79,62 @@ const BookDetail = () => {
     <>
       <DashboardPageHeader
         title={
-          <Space>
-            <Typography.Title level={3} css={noMargin}>
-              {book.title}
-            </Typography.Title>
+          <div>
+            <h3>{book.title}</h3>
             {book.finished && (
-              <Rate allowClear={false} value={book.rating} onChange={handleSetRating} />
+              <select onChange={handleSetRating} value={book.rating}>
+                {!book.rating && <option></option>}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             )}
-          </Space>
+          </div>
         }
         extra={
           book.isInList ? (
-            <Space>
+            <div>
               {book.finished ? (
-                <Button danger loading={isMarkBookPending} onClick={() => handleMarkBook(false)}>
+                <button disabled={isMarkBookPending} onClick={() => handleMarkBook(false)}>
                   {t('bookshelf:action.markAsUnread')}
-                </Button>
+                </button>
               ) : (
-                <Button
-                  type="primary"
-                  loading={isMarkBookPending}
-                  onClick={() => handleMarkBook(true)}
-                >
+                <button disabled={isMarkBookPending} onClick={() => handleMarkBook(true)}>
                   {t('bookshelf:action.markAsRead')}
-                </Button>
+                </button>
               )}
-              <Button
-                type="primary"
-                danger
-                loading={isRemoveFromReadingListPending}
+              <button
+                disabled={isRemoveFromReadingListPending}
                 onClick={handleRemoveFromReadingList}
               >
                 {t('bookshelf:action.removeFromReadingList')}
-              </Button>
-            </Space>
+              </button>
+            </div>
           ) : (
-            <Button
-              type="primary"
-              loading={isAddToReadingListPending}
-              onClick={handleAddToReadingList}
-            >
+            <button disabled={isAddToReadingListPending} onClick={handleAddToReadingList}>
               {t('bookshelf:action.addToReadingList')}
-            </Button>
+            </button>
           )
         }
       >
-        <Descriptions>
-          <Descriptions.Item label={t('bookshelf:author')}>{book.author}</Descriptions.Item>
-          <Descriptions.Item label={t('bookshelf:description')}>
-            {book.description}
-          </Descriptions.Item>
-        </Descriptions>
+        <div>
+          {t('bookshelf:author')}: {book.author}
+        </div>
+        <div>
+          {t('bookshelf:description')}: {book.description}
+        </div>
       </DashboardPageHeader>
 
       {book.isInList && (
-        <Widget
-          title={
-            <Space>
-              {t('bookshelf:note')}
-              <Spin spinning={isSetNotePending} />
-            </Space>
-          }
-        >
-          <Form<NoteFormValues> form={noteForm} onFinish={handleSetNote}>
-            <Form.Item name="note" initialValue={book.note} noStyle>
-              <Input.TextArea rows={5} onBlur={handleSetNote} />
-            </Form.Item>
-          </Form>
-        </Widget>
+        <div>
+          <h4>
+            {t('bookshelf:note')}
+            {isSetNotePending && <>Loading...</>}
+          </h4>
+          <BookNote onSubmit={handleSetNote} initialNote={book.note} />
+        </div>
       )}
     </>
   );

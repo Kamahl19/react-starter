@@ -1,63 +1,57 @@
 import { useCallback } from 'react';
-import { App, Form, Input, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { type ChangePasswordPayload, useChangePassword } from '@/api';
+import { useChangePassword } from '@/api';
 import { useAuth } from '@/common/auth';
 import { usePrintErrorMessage } from '@/common/hooks';
-import { Widget } from '@/common/components';
 
-import { useChangePasswordRules } from '../validations';
+import { useChangePasswordValidation, type ChangePasswordFields } from '../validations';
 
 const ChangePassword = () => {
   const { t } = useTranslation();
 
   const { userId } = useAuth();
 
-  const { message } = App.useApp();
-
-  const [form] = Form.useForm<ChangePasswordPayload>();
-
   const onError = usePrintErrorMessage();
 
   const { mutate, isPending } = useChangePassword();
 
-  const handleSubmit = useCallback(
-    (payload: ChangePasswordPayload) =>
+  const form = useForm<ChangePasswordFields>({
+    resolver: zodResolver(useChangePasswordValidation()),
+  });
+
+  const onSubmit = useCallback(
+    (values: ChangePasswordFields) =>
       mutate(
-        { userId, payload },
+        { userId, payload: values },
         {
           onSuccess: () => {
-            form.resetFields();
-            void message.success(t('profile:changePassword.success'));
+            form.reset();
+            window.alert(t('profile:changePassword.success'));
           },
           onError,
         },
       ),
-    [t, userId, mutate, form, onError, message],
+    [t, userId, mutate, form, onError],
   );
 
-  const rules = useChangePasswordRules();
+  const { errors } = form.formState;
 
   return (
     <>
-      <Widget.WithMenuTitle>{t('profile:changePassword.title')}</Widget.WithMenuTitle>
+      <h4>{t('profile:changePassword.title')}</h4>
 
-      <Form<ChangePasswordPayload> form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item
-          label={t('profile:changePassword.password')}
-          name="password"
-          rules={rules.password}
-          validateFirst
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item noStyle>
-          <Button type="primary" htmlType="submit" loading={isPending}>
-            {t('global:save')}
-          </Button>
-        </Form.Item>
-      </Form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <label htmlFor="password">{t('profile:changePassword.password')}</label>
+        <input type="password" id="password" {...form.register('password')} />
+        {errors.password?.message && <span>{errors.password.message}</span>}
+
+        <button type="submit" disabled={isPending}>
+          {t('global:save')}
+        </button>
+      </form>
     </>
   );
 };

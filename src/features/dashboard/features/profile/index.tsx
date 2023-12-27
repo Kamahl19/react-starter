@@ -20,7 +20,7 @@ const Profile = () => {
   }
 
   if (isError) {
-    return <ResultError error={error} card />;
+    return <ResultError error={error} />;
   }
 
   return (

@@ -6,8 +6,6 @@ import dayjs from 'dayjs';
 
 // DayJS locales https://github.com/iamkun/dayjs/tree/dev/src/locale
 import dayjsEN from 'dayjs/locale/en';
-// AntDesign locales https://github.com/ant-design/ant-design/tree/master/components/locale
-import antdEN from 'antd/locale/en_US';
 
 import auth from './en/auth.json';
 import bookshelf from './en/bookshelf.json';
@@ -25,7 +23,6 @@ export const LANGUAGES_CONFIG = {
     name: 'English',
     shortName: 'EN',
     dayjs: dayjsEN,
-    antd: antdEN,
     resources: {
       auth,
       bookshelf,
@@ -42,7 +39,6 @@ export const LANGUAGES_CONFIG = {
     name: string;
     shortName: string;
     dayjs: object;
-    antd: object;
     resources: object;
   }
 >;
@@ -56,14 +52,19 @@ export const resolveLanguage = (lng?: string) =>
 export const useCurrentLanguage = () => {
   const { i18n } = useTranslation();
 
-  const changeLanguage = useCallback(
+  const setLanguage = useCallback(
     (lng: (typeof SUPPORTED_LANGUAGES)[number]) => i18n.changeLanguage(lng),
     [i18n],
   );
 
   return useMemo(
-    () => [LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)], changeLanguage] as const,
-    [i18n.resolvedLanguage, changeLanguage],
+    () =>
+      ({
+        language: LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)],
+        setLanguage,
+        t: i18n.t,
+      }) as const,
+    [i18n.resolvedLanguage, i18n.t, setLanguage],
   );
 };
 

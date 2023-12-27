@@ -1,8 +1,4 @@
 import { type ReactNode } from 'react';
-import { Card, Typography } from 'antd';
-import { css } from '@emotion/react';
-
-import { createStyles } from '@/common/styleUtils';
 
 type Props = {
   children: ReactNode;
@@ -10,22 +6,16 @@ type Props = {
 };
 
 const AuthCard = ({ children, title }: Props) => (
-  <Card css={styles.self}>
-    <Typography.Title level={3}>{title}</Typography.Title>
+  <div
+    style={{
+      width: '100%',
+      maxWidth: 400,
+      margin: 'auto',
+    }}
+  >
+    <h3>{title}</h3>
     {children}
-  </Card>
+  </div>
 );
 
 export default AuthCard;
-
-const styles = createStyles({
-  self: css({
-    width: '100%',
-    maxWidth: 400,
-    margin: 'auto',
-
-    '.ant-result': {
-      paddingInline: 0,
-    },
-  }),
-});

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import { LoadingScreen } from '@/common/components';
 
-import AntDesign from './providers/AntDesign';
+import ThemeProvider from './providers/Theme';
 import Jotai from './providers/Jotai';
 import Query from './providers/Query';
 import Router from './providers/Router';
@@ -16,7 +16,7 @@ const Root = () => (
   <GlobalErrorBoundary>
     <Jotai>
       <Suspense fallback={<GlobalLoading />}>
-        <AntDesign>
+        <ThemeProvider>
           <Query>
             <PersistAuthGate loadingFallback={<GlobalLoading />}>
               <Router>
@@ -24,7 +24,7 @@ const Root = () => (
               </Router>
             </PersistAuthGate>
           </Query>
-        </AntDesign>
+        </ThemeProvider>
       </Suspense>
     </Jotai>
   </GlobalErrorBoundary>

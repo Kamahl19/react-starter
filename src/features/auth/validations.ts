@@ -1,44 +1,48 @@
 import { useMemo } from 'react';
+import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 
 import { PASSWORD_MIN_LENGTH } from '@/api';
-import { createRules } from '@/common/validations';
 
-const emailRule = {
-  required: true,
-  type: 'email',
-} as const;
+export const useSignUpValidation = () => {
+  const { t } = useTranslation();
 
-const passwordRule = {
-  required: true,
-  type: 'string',
-  min: PASSWORD_MIN_LENGTH,
-} as const;
-
-export const useSignUpRules = () =>
-  useMemo(
+  return useMemo(
     () =>
-      createRules({
-        email: [emailRule],
-        password: [passwordRule],
+      z.object({
+        email: z.string().email({ message: t('global:validations.email') }),
+        password: z.string().min(PASSWORD_MIN_LENGTH, {
+          message: t('global:validations.password', { minLength: PASSWORD_MIN_LENGTH }),
+        }),
       }),
-    [],
+    [t],
   );
+};
+export type SignUpFields = z.infer<ReturnType<typeof useSignUpValidation>>;
 
-export const useSignInRules = () =>
-  useMemo(
-    () =>
-      createRules({
-        email: [emailRule],
-        password: [{ required: true, type: 'string' }],
-      }),
-    [],
-  );
+export const useSignInValidation = () => {
+  const { t } = useTranslation();
 
-export const useResetPasswordRules = () =>
-  useMemo(
+  return useMemo(
     () =>
-      createRules({
-        email: [emailRule],
+      z.object({
+        email: z.string().email({ message: t('global:validations.email') }),
+        password: z.string().min(1, { message: t('global:validations.required') }),
       }),
-    [],
+    [t],
   );
+};
+export type SignInFields = z.infer<ReturnType<typeof useSignInValidation>>;
+
+export const useResetPasswordValidation = () => {
+  const { t } = useTranslation();
+
+  return useMemo(
+    () =>
+      z.object({
+        email: z.string().email({ message: t('global:validations.email') }),
+      }),
+    [t],
+  );
+};
+export type ResetPasswordFields = z.infer<ReturnType<typeof useResetPasswordValidation>>;

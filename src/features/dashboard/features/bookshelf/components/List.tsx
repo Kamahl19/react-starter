@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { type ChangeEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Typography, Button, Row, Col, Space, Rate, Empty } from 'antd';
 import { Link } from 'react-router-dom';
 
 import {
@@ -11,7 +10,6 @@ import {
   type Book,
 } from '@/api';
 import { useAuth } from '@/common/auth';
-import { Widget } from '@/common/components';
 import { usePrintErrorMessage } from '@/common/hooks';
 
 import { DASHBOARD_ROUTES } from '../../../routes';
@@ -22,41 +20,34 @@ type Props = {
 
 const List = ({ books }: Props) =>
   books.length === 0 ? (
-    <Widget>
-      <Empty />
-    </Widget>
+    <div>Empty</div>
   ) : (
-    <Row gutter={[16, 16]}>
+    <div>
       {books.map((book) => (
-        <Col key={book.id} span={24}>
-          <Widget
-            title={
-              <Space>
-                <Link to={DASHBOARD_ROUTES.bookshelfDetail.to(book.id)}>{book.title}</Link>
-                {book.finished && <Rating bookId={book.id} value={book.rating} />}
-              </Space>
-            }
-            extra={
-              book.isInList ? (
-                <Space>
-                  {book.finished ? (
-                    <MarkAsUnreadButton bookId={book.id} />
-                  ) : (
-                    <MarkAsReadButton bookId={book.id} />
-                  )}
-                  <RemoveFromReadingListButton bookId={book.id} />
-                </Space>
-              ) : (
-                <AddToReadingListButton bookId={book.id} />
-              )
-            }
-          >
-            <Typography.Paragraph italic>{book.author}</Typography.Paragraph>
-            <Typography.Text>{book.description}</Typography.Text>
-          </Widget>
-        </Col>
+        <div key={book.id}>
+          <div>
+            <h3>
+              <Link to={DASHBOARD_ROUTES.bookshelfDetail.to(book.id)}>{book.title}</Link>
+              {book.finished && <Rating bookId={book.id} value={book.rating} />}
+            </h3>
+            {book.isInList ? (
+              <div>
+                {book.finished ? (
+                  <MarkAsUnreadButton bookId={book.id} />
+                ) : (
+                  <MarkAsReadButton bookId={book.id} />
+                )}
+                <RemoveFromReadingListButton bookId={book.id} />
+              </div>
+            ) : (
+              <AddToReadingListButton bookId={book.id} />
+            )}
+            <p>{book.author}</p>
+            <p>{book.description}</p>
+          </div>
+        </div>
       ))}
-    </Row>
+    </div>
   );
 
 export default List;
@@ -76,9 +67,9 @@ const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" loading={isPending} onClick={handleClick}>
+    <button disabled={isPending} onClick={handleClick}>
       {t('bookshelf:action.addToReadingList')}
-    </Button>
+    </button>
   );
 };
 
@@ -97,9 +88,9 @@ const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" danger loading={isPending} onClick={handleClick}>
+    <button disabled={isPending} onClick={handleClick}>
       {t('bookshelf:action.removeFromReadingList')}
-    </Button>
+    </button>
   );
 };
 
@@ -118,9 +109,9 @@ const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button type="primary" loading={isPending} onClick={handleClick}>
+    <button disabled={isPending} onClick={handleClick}>
       {t('bookshelf:action.markAsRead')}
-    </Button>
+    </button>
   );
 };
 
@@ -139,9 +130,9 @@ const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
   );
 
   return (
-    <Button danger loading={isPending} onClick={handleClick}>
+    <button disabled={isPending} onClick={handleClick}>
       {t('bookshelf:action.markAsUnread')}
-    </Button>
+    </button>
   );
 };
 
@@ -152,10 +143,19 @@ const Rating = ({ bookId, value }: { bookId: string; value: number }) => {
 
   const { mutate } = useSetRating();
 
-  const handleChange = useCallback(
-    (rating: number) => mutate({ bookId, userId, rating }, { onError }),
+  const handleChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    ({ target }) => mutate({ bookId, userId, rating: Number.parseInt(target.value) }, { onError }),
     [onError, mutate, userId, bookId],
   );
 
-  return <Rate allowClear={false} value={value} onChange={handleChange} />;
+  return (
+    <select onChange={handleChange} value={value}>
+      {!value && <option></option>}
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  );
 };

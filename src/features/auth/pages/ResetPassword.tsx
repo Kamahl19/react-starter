@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react';
-import { Button, Form, Input, Result } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { type ResetPasswordPayload, useResetPassword } from '@/api';
+import { useResetPassword } from '@/api';
 import { usePrintErrorMessage } from '@/common/hooks';
 import { DASHBOARD_ROUTES } from '@/features/dashboard/routes';
 
-import { useResetPasswordRules } from '../validations';
+import { useResetPasswordValidation, type ResetPasswordFields } from '../validations';
 import AuthCard from '../components/AuthCard';
 
 const ResetPassword = () => {
@@ -18,43 +19,44 @@ const ResetPassword = () => {
 
   const { mutate, isPending } = useResetPassword();
 
-  const handleSubmit = useCallback(
-    (payload: ResetPasswordPayload) =>
+  const form = useForm<ResetPasswordFields>({
+    resolver: zodResolver(useResetPasswordValidation()),
+  });
+
+  const onSubmit = useCallback(
+    (values: ResetPasswordFields) =>
       mutate(
         {
-          payload,
+          payload: values,
           redirectTo: `${window.location.origin}${DASHBOARD_ROUTES.profileChangePassword.to}`,
         },
         {
-          onSuccess: () => setSuccess(true),
+          onSuccess: () => {
+            form.reset();
+            setSuccess(true);
+          },
           onError,
         },
       ),
-    [mutate, onError],
+    [mutate, onError, form],
   );
 
-  const rules = useResetPasswordRules();
+  const { errors } = form.formState;
 
   return (
     <AuthCard title={t('auth:resetPassword.title')}>
       {success ? (
-        <Result status="success" title={t('auth:resetPassword.success')} />
+        <h3>{t('auth:resetPassword.success')}</h3>
       ) : (
-        <Form<ResetPasswordPayload> onFinish={handleSubmit} layout="vertical">
-          <Form.Item
-            label={t('auth:resetPassword.email')}
-            name="email"
-            rules={rules.email}
-            validateFirst
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item noStyle>
-            <Button block type="primary" htmlType="submit" loading={isPending}>
-              {t('global:submit')}
-            </Button>
-          </Form.Item>
-        </Form>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <label htmlFor="password">{t('auth:resetPassword.email')}</label>
+          <input id="password" {...form.register('email')} />
+          {errors.email?.message && <span>{errors.email.message}</span>}
+
+          <button type="submit" disabled={isPending}>
+            {t('global:submit')}
+          </button>
+        </form>
       )}
     </AuthCard>
   );

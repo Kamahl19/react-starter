@@ -150,7 +150,7 @@ On top of that, this project already comes with [several components](./src/commo
 - [PageHeader](./src/common/components/PageHeader/index.tsx) is a simplified version of [Ant v4 PageHeader](https://4x.ant.design/components/page-header/) component which was removed from Ant v5
 - [ResultError](./src/common/components/ResultError/index.tsx) is an error component for both API and client-side errors
 - [SpaceVertical](./src/common/components/SpaceVertical/index.tsx) is a better vertical Ant's Space component
-- [ThemeSwitch](./src/common/components/ThemeSwitch/index.tsx) is a Switch component which toggles between light and dark theme
+- [ThemeSelector](./src/common/components/ThemeSelector/index.tsx) is a Switch component which toggles between light and dark theme
 - [Widget](./src/common/components/Widget/index.tsx) encapsulates data and UI parts in a card-based component
 
 ## Styling using Emotion (css-in-js)

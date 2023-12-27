@@ -1,5 +1,10 @@
 {
   "save": "Save",
   "submit": "Submit",
-  "unexpectedError": "Unexpected error occurred"
+  "unexpectedError": "Unexpected error occurred",
+  "validations": {
+    "email": "Email address is invalid",
+    "password": "Password must be at least {{minLength}} characters long",
+    "required": "Value is required"
+  }
 }

@@ -6,7 +6,7 @@ import { RequireIsAnonymous } from '@/common/auth';
 import { LoadingScreen, NotFound } from '@/common/components';
 
 import { AUTH_ROUTES } from './routes';
-import AuthLayout from './components/AuthLayout';
+import Layout from './components/Layout';
 
 const SignUp = lazy(() => import('./pages/SignUp'));
 const SignIn = lazy(() => import('./pages/SignIn'));
@@ -17,11 +17,11 @@ const Auth = () => (
   <Routes>
     <Route
       element={
-        <AuthLayout>
+        <Layout>
           <Suspense fallback={<LoadingScreen />}>
             <Outlet />
           </Suspense>
-        </AuthLayout>
+        </Layout>
       }
     >
       <Route element={<RequireIsAnonymous redirectTo={rootPath} />}>

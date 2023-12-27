@@ -15,7 +15,6 @@ module.exports = {
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
   ],
-  plugins: ['@emotion'],
   env: {
     browser: true,
     es2024: true,
@@ -82,10 +81,6 @@ module.exports = {
     'react/style-prop-object': 'error',
 
     'import/first': 'error',
-
-    // Emotion
-    'react/no-unknown-property': ['error', { ignore: ['css'] }],
-    '@emotion/syntax-preference': ['error', 'object'],
   },
   overrides: [
     {

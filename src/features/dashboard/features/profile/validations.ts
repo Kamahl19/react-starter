@@ -1,13 +1,20 @@
 import { useMemo } from 'react';
+import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 
 import { PASSWORD_MIN_LENGTH } from '@/api';
-import { createRules } from '@/common/validations';
 
-export const useChangePasswordRules = () =>
-  useMemo(
+export const useChangePasswordValidation = () => {
+  const { t } = useTranslation();
+
+  return useMemo(
     () =>
-      createRules({
-        password: [{ required: true, type: 'string', min: PASSWORD_MIN_LENGTH }],
+      z.object({
+        password: z.string().min(PASSWORD_MIN_LENGTH, {
+          message: t('global:validations.password', { minLength: PASSWORD_MIN_LENGTH }),
+        }),
       }),
-    [],
+    [t],
   );
+};
+export type ChangePasswordFields = z.infer<ReturnType<typeof useChangePasswordValidation>>;

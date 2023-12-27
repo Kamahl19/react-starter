@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, Result } from 'antd';
 import { useDebounce } from 'use-debounce';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { type CreateUserPayload, useCreateUser, useFetchUserEmailAvailability } from '@/api';
+import { useCreateUser, useFetchUserEmailAvailability } from '@/api';
 import { usePrintErrorMessage } from '@/common/hooks';
 
-import { useSignUpRules } from '../validations';
+import { useSignUpValidation, type SignUpFields } from '../validations';
 import AuthCard from '../components/AuthCard';
 
 const DEBOUNCE_MS = 500;
@@ -20,57 +21,48 @@ const SignUp = () => {
 
   const { mutate, isPending } = useCreateUser();
 
-  const handleSubmit = useCallback(
-    (payload: CreateUserPayload) =>
-      mutate(payload, {
-        onSuccess: () => setSuccess(true),
+  const form = useForm<SignUpFields>({ resolver: zodResolver(useSignUpValidation()) });
+
+  const onSubmit = useCallback(
+    (values: SignUpFields) =>
+      mutate(values, {
+        onSuccess: () => {
+          form.reset();
+          setSuccess(true);
+        },
         onError,
       }),
-    [mutate, onError, setSuccess],
+    [mutate, onError, setSuccess, form],
   );
 
-  const [form] = Form.useForm<CreateUserPayload>();
-
-  const [emailValue = ''] = useDebounce(Form.useWatch('email', form), DEBOUNCE_MS);
+  const [emailValue] = useDebounce(form.watch('email'), DEBOUNCE_MS);
 
   const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
 
-  const rules = useSignUpRules();
+  const { errors } = form.formState;
 
   return (
     <AuthCard title={t('auth:signUp.title')}>
       {success ? (
-        <Result
-          status="success"
-          title={t('auth:signUp.success.title')}
-          subTitle={t('auth:signUp.success.subTitle')}
-        />
+        <>
+          <h3>{t('auth:signUp.success.title')}</h3>
+          <h4>{t('auth:signUp.success.subTitle')}</h4>
+        </>
       ) : (
-        <Form<CreateUserPayload> form={form} onFinish={handleSubmit} layout="vertical">
-          <Form.Item
-            label={t('auth:signUp.email')}
-            name="email"
-            rules={rules.email}
-            validateFirst
-            validateStatus={isUserEmailAvailable ? '' : 'error'}
-            help={isUserEmailAvailable ? undefined : t('auth:signUp.emailTaken')}
-          >
-            <Input autoComplete="off" />
-          </Form.Item>
-          <Form.Item
-            label={t('auth:signUp.password')}
-            name="password"
-            rules={rules.password}
-            validateFirst
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item noStyle>
-            <Button block type="primary" htmlType="submit" loading={isPending}>
-              {t('auth:signUp.submit')}
-            </Button>
-          </Form.Item>
-        </Form>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <label htmlFor="email">{t('auth:signUp.email')}</label>
+          <input id="email" {...form.register('email')} />
+          {errors.email?.message && <span>{errors.email.message}</span>}
+          {!isUserEmailAvailable && <span>{t('auth:signUp.emailTaken')}</span>}
+
+          <label htmlFor="password">{t('auth:signUp.password')}</label>
+          <input type="password" id="password" {...form.register('password')} />
+          {errors.password?.message && <span>{errors.password.message}</span>}
+
+          <button type="submit" disabled={isPending}>
+            {t('auth:signUp.submit')}
+          </button>
+        </form>
       )}
     </AuthCard>
   );

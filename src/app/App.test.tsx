@@ -7,7 +7,7 @@ import { dropDB } from '@/mocks/db';
 import { server } from '@/mocks/server';
 import { LoadingScreen } from '@/common/components';
 
-import AntDesign from './providers/AntDesign';
+import ThemeProvider from './providers/Theme';
 import Jotai from './providers/Jotai';
 import Router from './providers/Router';
 import { createQueryClient } from './providers/Query';
@@ -27,13 +27,13 @@ const queryClient = createQueryClient({
 const Providers = ({ children }: { children: ReactNode }) => (
   <Jotai>
     <Suspense fallback={<LoadingScreen fullVPHeight />}>
-      <AntDesign>
+      <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <PersistAuthGate loadingFallback={<LoadingScreen fullVPHeight />}>
             <Router>{children}</Router>
           </PersistAuthGate>
         </QueryClientProvider>
-      </AntDesign>
+      </ThemeProvider>
     </Suspense>
   </Jotai>
 );

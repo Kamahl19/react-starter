@@ -18,9 +18,7 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     react({
-      jsxImportSource: '@emotion/react',
       plugins: [
-        ['@swc/plugin-emotion', {}],
         ['@swc-jotai/debug-label', {}],
         ['@swc-jotai/react-refresh', {}],
       ],

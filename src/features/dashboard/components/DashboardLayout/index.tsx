@@ -1,9 +1,9 @@
 import { type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import { type User } from '@/api';
-import { useTheme, Theme } from '@/app/theme';
 import { Logo } from '@/common/components';
-import { AdminLayout, SidebarState, useAdminLayoutContext } from '@/common/components/AdminLayout';
+import AdminLayout from '@/common/components/AdminLayout';
 
 import { DASHBOARD_ROUTES } from '../../routes';
 
@@ -17,7 +17,11 @@ type Props = {
 
 const DashboardLayout = ({ user, children }: Props) => (
   <AdminLayout
-    logo={<SidebarLogo />}
+    logo={
+      <Link to={DASHBOARD_ROUTES.index.to}>
+        <Logo />
+      </Link>
+    }
     headerContent={<Header email={user.email} />}
     sidebarContent={<Sidebar />}
   >
@@ -26,16 +30,3 @@ const DashboardLayout = ({ user, children }: Props) => (
 );
 
 export default DashboardLayout;
-
-const SidebarLogo = () => {
-  const { sidebarState } = useAdminLayoutContext();
-  const [theme] = useTheme();
-
-  return (
-    <Logo
-      to={DASHBOARD_ROUTES.index.to}
-      inverted={theme === Theme.DARK}
-      isSmall={sidebarState === SidebarState.COLLAPSED_SIDEBAR}
-    />
-  );
-};
