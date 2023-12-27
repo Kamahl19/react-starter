@@ -16,5 +16,5 @@ export const getURL = (path: string, params?: Record<string, unknown>) =>
 
 export const getAuthorizationHeader = (token?: string) => {
   const t = token ?? getToken();
-  return t ? { Authorization: `Bearer ${t}` } : {};
+  return t ? { Authorization: `Bearer ${t}` } : undefined;
 };

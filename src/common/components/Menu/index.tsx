@@ -57,7 +57,7 @@ const filterItems = (arr: ItemType[]) => {
 
   for (const item of arr) {
     if (isDefined(item)) {
-      if ('children' in item) {
+      if ('children' in item && item.children !== undefined) {
         filtered.push({ ...item, children: filterItems(item.children) });
       } else {
         filtered.push(item);
@@ -72,7 +72,7 @@ const getKeys = (items: ItemTypeDefined[]) => {
   const keys: string[] = [];
 
   for (const item of items) {
-    if ('children' in item && item.children.length > 0) {
+    if ('children' in item && item.children !== undefined && item.children.length > 0) {
       keys.push(...getKeys(item.children));
     } else {
       keys.push(String(item.key));
