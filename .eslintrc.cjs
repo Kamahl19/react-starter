@@ -48,6 +48,7 @@ module.exports = {
      * Additional rules
      */
     'array-callback-return': 'error',
+    curly: 'error',
     eqeqeq: 'error',
     'no-array-constructor': 'error',
     'no-caller': 'error',
@@ -108,6 +109,8 @@ module.exports = {
         },
       },
       rules: {
+        curly: 'error', // Prettier disables this https://github.com/prettier/eslint-config-prettier/tree/main?tab=readme-ov-file#curly
+
         /**
          * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)
          */
