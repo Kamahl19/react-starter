@@ -6,9 +6,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useCreateUser, useFetchUserEmailAvailability } from '@/api';
 import { usePrintErrorMessage } from '@/common/hooks';
+import { Form } from '@/common/components';
+import { Button } from '@/common/components/ui/button';
+import { Input } from '@/common/components/ui/input';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/common/components/ui/form';
 
+import FormWrapper from '../components/FormWrapper';
+import Success from '../components/Success';
 import { useSignUpValidation, type SignUpFields } from '../validations';
-import AuthCard from '../components/AuthCard';
 
 const DEBOUNCE_MS = 500;
 
@@ -21,7 +32,13 @@ const SignUp = () => {
 
   const { mutate, isPending } = useCreateUser();
 
-  const form = useForm<SignUpFields>({ resolver: zodResolver(useSignUpValidation()) });
+  const form = useForm<SignUpFields>({
+    resolver: zodResolver(useSignUpValidation()),
+    defaultValues: {
+      email: '',
+      password: '',
+    } satisfies SignUpFields,
+  });
 
   const onSubmit = useCallback(
     (values: SignUpFields) =>
@@ -39,32 +56,59 @@ const SignUp = () => {
 
   const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
 
-  const { errors } = form.formState;
+  if (success) {
+    return (
+      <Success
+        title={t('auth:signUp.success.title')}
+        description={t('auth:signUp.success.subTitle')}
+      />
+    );
+  }
 
   return (
-    <AuthCard title={t('auth:signUp.title')}>
-      {success ? (
-        <>
-          <h3>{t('auth:signUp.success.title')}</h3>
-          <h4>{t('auth:signUp.success.subTitle')}</h4>
-        </>
-      ) : (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <label htmlFor="email">{t('auth:signUp.email')}</label>
-          <input id="email" {...form.register('email')} />
-          {errors.email?.message && <span>{errors.email.message}</span>}
-          {!isUserEmailAvailable && <span>{t('auth:signUp.emailTaken')}</span>}
-
-          <label htmlFor="password">{t('auth:signUp.password')}</label>
-          <input type="password" id="password" {...form.register('password')} />
-          {errors.password?.message && <span>{errors.password.message}</span>}
-
-          <button type="submit" disabled={isPending}>
-            {t('auth:signUp.submit')}
-          </button>
-        </form>
-      )}
-    </AuthCard>
+    <FormWrapper title={t('auth:signUp.title')}>
+      <Form form={form} onSubmit={onSubmit} id="auth-form">
+        {{
+          formFields: (
+            <>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('auth:signUp.email')}</FormLabel>
+                    <FormControl>
+                      <Input type="email" {...field} />
+                    </FormControl>
+                    <FormMessage>
+                      {isUserEmailAvailable ? null : t('auth:signUp.emailTaken')}
+                    </FormMessage>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('auth:signUp.password')}</FormLabel>
+                    <FormControl>
+                      <Input type="password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </>
+          ),
+          footer: (
+            <Button form="auth-form" type="submit" disabled={isPending} loading={isPending} block>
+              {t('auth:signUp.submit')}
+            </Button>
+          ),
+        }}
+      </Form>
+    </FormWrapper>
   );
 };
 

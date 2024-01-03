@@ -1,13 +1,11 @@
 {
-  "sidebarMenu": {
-    "bookshelf": {
-      "discover": "Discover",
-      "finished": "Finished Books",
-      "readingList": "Reading List"
-    }
-  },
-  "topMenu": {
+  "header": {
+    "discover": "Discover Books",
+    "finished": "Finished Books",
+    "language": "Language",
     "profile": "Profile",
-    "signOut": "Sign Out"
+    "readingList": "Reading List",
+    "signOut": "Sign Out",
+    "theme": "Theme"
   }
 }

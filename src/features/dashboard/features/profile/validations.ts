@@ -17,4 +17,5 @@ export const useChangePasswordValidation = () => {
     [t],
   );
 };
+
 export type ChangePasswordFields = z.infer<ReturnType<typeof useChangePasswordValidation>>;

@@ -3,7 +3,7 @@ import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 
 import { rootPath } from '@/config';
 import { RequireIsAnonymous } from '@/common/auth';
-import { LoadingScreen, NotFound } from '@/common/components';
+import { Loading, NotFound } from '@/common/components';
 
 import { AUTH_ROUTES } from './routes';
 import Layout from './components/Layout';
@@ -18,7 +18,7 @@ const Auth = () => (
     <Route
       element={
         <Layout>
-          <Suspense fallback={<LoadingScreen />}>
+          <Suspense fallback={<Loading />}>
             <Outlet />
           </Suspense>
         </Layout>

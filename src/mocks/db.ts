@@ -9,7 +9,6 @@ export const db = factory({
     id: primaryKey(generateRandomId),
     email: String,
     password: String,
-    isConfirmed: () => true,
   },
   book: {
     id: primaryKey(generateRandomId),

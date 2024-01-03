@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 import { useConfirmEmail } from '@/api';
 import { useTokenParam, useOnMount } from '@/common/hooks';
-import { LoadingScreen, ResultError } from '@/common/components';
+import { Loading, ResultError } from '@/common/components';
 
 import { AUTH_ROUTES } from '../routes';
 
@@ -19,14 +20,14 @@ const ConfirmEmail = () => {
   useOnMount(() => {
     mutate(token, {
       onSuccess: () => {
-        window.alert(t('auth:confirmEmail.success'));
+        toast.success(t('auth:confirmEmail.success'));
         navigate(AUTH_ROUTES.signIn.to);
       },
     });
   });
 
   if (isPending) {
-    return <LoadingScreen />;
+    return <Loading />;
   }
 
   if (isError) {

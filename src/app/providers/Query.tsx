@@ -20,7 +20,11 @@ const queryClient = createQueryClient(
     : {},
 );
 
-const Query = ({ children }: { children: ReactNode }) => (
+type Props = {
+  children: ReactNode;
+};
+
+const Query = ({ children }: Props) => (
   <QueryClientProvider client={queryClient}>
     {children}
     <ReactQueryDevtools />

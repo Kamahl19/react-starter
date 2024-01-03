@@ -17,6 +17,10 @@ import profile from './en/profile.json';
 // Maps to src/i18n/{code}
 export const SUPPORTED_LANGUAGES = ['en'] as const;
 
+type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number];
+
+const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES[0];
+
 export const LANGUAGES_CONFIG = {
   en: {
     code: 'en',
@@ -33,9 +37,9 @@ export const LANGUAGES_CONFIG = {
     },
   },
 } as const satisfies Record<
-  (typeof SUPPORTED_LANGUAGES)[number],
+  LanguageCode,
   {
-    code: (typeof SUPPORTED_LANGUAGES)[number];
+    code: LanguageCode;
     name: string;
     shortName: string;
     dayjs: object;
@@ -43,29 +47,25 @@ export const LANGUAGES_CONFIG = {
   }
 >;
 
-const isLanguage = (lng: string): lng is (typeof SUPPORTED_LANGUAGES)[number] =>
-  SUPPORTED_LANGUAGES.includes(lng);
+const isLanguageCode = (v: unknown): v is LanguageCode =>
+  typeof v === 'string' && SUPPORTED_LANGUAGES.includes(v);
 
-export const resolveLanguage = (lng?: string) =>
-  lng && isLanguage(lng) ? lng : SUPPORTED_LANGUAGES[0];
+const resolveLanguage = (code?: string) => (code && isLanguageCode(code) ? code : DEFAULT_LANGUAGE);
 
-export const useCurrentLanguage = () => {
+export const useLanguage = () => {
   const { i18n } = useTranslation();
 
+  const language = useMemo(
+    () => LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)],
+    [i18n.resolvedLanguage],
+  );
+
   const setLanguage = useCallback(
-    (lng: (typeof SUPPORTED_LANGUAGES)[number]) => i18n.changeLanguage(lng),
+    (code: string) => i18n.changeLanguage(resolveLanguage(code)),
     [i18n],
   );
 
-  return useMemo(
-    () =>
-      ({
-        language: LANGUAGES_CONFIG[resolveLanguage(i18n.resolvedLanguage)],
-        setLanguage,
-        t: i18n.t,
-      }) as const,
-    [i18n.resolvedLanguage, i18n.t, setLanguage],
-  );
+  return useMemo(() => [language, setLanguage] as const, [language, setLanguage]);
 };
 
 i18next.on('languageChanged', (language) => dayjs.locale(resolveLanguage(language)));
@@ -81,9 +81,9 @@ void i18next
     ...(import.meta.env.CI === 'true' || import.meta.env.VITEST === 'true'
       ? { lng: 'cimode' }
       : {}),
-    fallbackLng: SUPPORTED_LANGUAGES[0],
+    fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
-    ns: Object.keys(LANGUAGES_CONFIG[SUPPORTED_LANGUAGES[0]].resources),
+    ns: Object.keys(LANGUAGES_CONFIG[DEFAULT_LANGUAGE].resources),
     defaultNS: false,
     returnNull: false,
     appendNamespaceToCIMode: true,

@@ -1,19 +1,15 @@
 {
-  "languageSelector": {
-    "selectLanguage": "Select Language"
-  },
+  "loading": "Loading...",
   "notFound": {
-    "subtitle": "Oops! Looks like the page you have requested doesn't exist.",
-    "title": "Page not found"
+    "subtitle": "This page could not be found.",
+    "title": "404"
   },
   "resultError": {
-    "retry": "Retry",
-    "title": "Something went wrong"
+    "description": "This is a problem on our side, not yours.",
+    "reload": "Reload",
+    "title": "Unexpected Error"
   },
-  "themeSelector": {
-    "dark": "Dark",
-    "light": "Light",
-    "selectTheme": "Select Theme",
-    "system": "System"
+  "stickyHeader": {
+    "toggleDrawer": "Open navigation"
   }
 }

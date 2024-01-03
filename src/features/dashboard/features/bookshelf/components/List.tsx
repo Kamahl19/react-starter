@@ -1,18 +1,24 @@
-import { type ChangeEventHandler, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { CircleOff } from 'lucide-react';
 
+import { type Book } from '@/api';
 import {
-  useAddToReadingList,
-  useRemoveFromReadingList,
-  useMarkBook,
-  useSetRating,
-  type Book,
-} from '@/api';
-import { useAuth } from '@/common/auth';
-import { usePrintErrorMessage } from '@/common/hooks';
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/common/components/ui/card';
 
 import { DASHBOARD_ROUTES } from '../../../routes';
+import RatingSelect from './RatingSelect';
+import {
+  AddToReadingListButton,
+  MarkAsReadButton,
+  MarkAsUnreadButton,
+  RemoveFromReadingListButton,
+} from './ActionButtons';
 
 type Props = {
   books: Book[];
@@ -20,142 +26,37 @@ type Props = {
 
 const List = ({ books }: Props) =>
   books.length === 0 ? (
-    <div>Empty</div>
+    <div className="flex h-full items-center justify-center">
+      <CircleOff className="h-14 w-14" />
+    </div>
   ) : (
-    <div>
+    <div className="flex flex-col gap-4">
       {books.map((book) => (
-        <div key={book.id}>
-          <div>
-            <h3>
-              <Link to={DASHBOARD_ROUTES.bookshelfDetail.to(book.id)}>{book.title}</Link>
-              {book.finished && <Rating bookId={book.id} value={book.rating} />}
-            </h3>
-            {book.isInList ? (
-              <div>
-                {book.finished ? (
-                  <MarkAsUnreadButton bookId={book.id} />
-                ) : (
-                  <MarkAsReadButton bookId={book.id} />
-                )}
-                <RemoveFromReadingListButton bookId={book.id} />
-              </div>
-            ) : (
-              <AddToReadingListButton bookId={book.id} />
-            )}
-            <p>{book.author}</p>
-            <p>{book.description}</p>
-          </div>
-        </div>
+        <Card key={book.id}>
+          <CardHeader>
+            <CardTitle>
+              <Link
+                to={DASHBOARD_ROUTES.bookshelfDetail.to(book.id)}
+                className="underline-offset-4 hover:underline"
+              >
+                {book.title}
+              </Link>
+            </CardTitle>
+            <CardDescription>{book.author}</CardDescription>
+          </CardHeader>
+          <CardContent>{book.description}</CardContent>
+          <CardFooter className="justify-between">
+            <div className="flex gap-x-4">
+              {book.isInList && book.finished && <MarkAsUnreadButton bookId={book.id} />}
+              {book.isInList && !book.finished && <MarkAsReadButton bookId={book.id} />}
+              {book.isInList && <RemoveFromReadingListButton bookId={book.id} />}
+              {!book.isInList && <AddToReadingListButton bookId={book.id} />}
+            </div>
+            {book.finished && <RatingSelect bookId={book.id} value={book.rating} />}
+          </CardFooter>
+        </Card>
       ))}
     </div>
   );
 
 export default List;
-
-const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
-
-  const { userId } = useAuth();
-
-  const onError = usePrintErrorMessage();
-
-  const { mutate, isPending } = useAddToReadingList();
-
-  const handleClick = useCallback(
-    () => mutate({ bookId, userId }, { onError }),
-    [onError, mutate, userId, bookId],
-  );
-
-  return (
-    <button disabled={isPending} onClick={handleClick}>
-      {t('bookshelf:action.addToReadingList')}
-    </button>
-  );
-};
-
-const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
-
-  const { userId } = useAuth();
-
-  const onError = usePrintErrorMessage();
-
-  const { mutate, isPending } = useRemoveFromReadingList();
-
-  const handleClick = useCallback(
-    () => mutate({ bookId, userId }, { onError }),
-    [onError, mutate, userId, bookId],
-  );
-
-  return (
-    <button disabled={isPending} onClick={handleClick}>
-      {t('bookshelf:action.removeFromReadingList')}
-    </button>
-  );
-};
-
-const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
-
-  const { userId } = useAuth();
-
-  const onError = usePrintErrorMessage();
-
-  const { mutate, isPending } = useMarkBook();
-
-  const handleClick = useCallback(
-    () => mutate({ bookId, userId, finished: true }, { onError }),
-    [onError, mutate, userId, bookId],
-  );
-
-  return (
-    <button disabled={isPending} onClick={handleClick}>
-      {t('bookshelf:action.markAsRead')}
-    </button>
-  );
-};
-
-const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
-
-  const { userId } = useAuth();
-
-  const onError = usePrintErrorMessage();
-
-  const { mutate, isPending } = useMarkBook();
-
-  const handleClick = useCallback(
-    () => mutate({ bookId, userId, finished: false }, { onError }),
-    [onError, mutate, userId, bookId],
-  );
-
-  return (
-    <button disabled={isPending} onClick={handleClick}>
-      {t('bookshelf:action.markAsUnread')}
-    </button>
-  );
-};
-
-const Rating = ({ bookId, value }: { bookId: string; value: number }) => {
-  const onError = usePrintErrorMessage();
-
-  const { userId } = useAuth();
-
-  const { mutate } = useSetRating();
-
-  const handleChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
-    ({ target }) => mutate({ bookId, userId, rating: Number.parseInt(target.value) }, { onError }),
-    [onError, mutate, userId, bookId],
-  );
-
-  return (
-    <select onChange={handleChange} value={value}>
-      {!value && <option></option>}
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-  );
-};

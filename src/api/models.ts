@@ -27,7 +27,6 @@ export type SignOutResponse = z.infer<typeof signOutResponseSchema>;
 export const userSchema = z.object({
   id: z.string(),
   email: z.string(),
-  isConfirmed: z.boolean(),
 });
 
 export const createUserPayloadSchema = z.object({

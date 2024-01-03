@@ -116,6 +116,7 @@ module.exports = {
          */
         'tailwindcss/classnames-order': 'off', // covered by prettier-plugin-tailwindcss
         'tailwindcss/migration-from-tailwind-2': 'off',
+        'tailwindcss/no-custom-classname': 'off',
 
         /**
          * 'tsc' already handles this (https://typescript-eslint.io/linting/troubleshooting/performance-troubleshooting#eslint-plugin-import)
@@ -154,6 +155,15 @@ module.exports = {
           { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
         ],
         '@typescript-eslint/consistent-type-imports': 'error', // Vite https://vitejs.dev/guide/features#transpile-only
+      },
+    },
+    {
+      // Shadcn-UI
+      files: ['src/common/components/ui/**/*.ts?(x)'],
+      rules: {
+        'react/prop-types': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        '@typescript-eslint/no-empty-interface': 'off',
       },
     },
     {

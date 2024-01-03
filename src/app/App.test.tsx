@@ -5,7 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 
 import { dropDB } from '@/mocks/db';
 import { server } from '@/mocks/server';
-import { LoadingScreen } from '@/common/components';
+import { Loading } from '@/common/components';
 
 import ThemeProvider from './providers/Theme';
 import Jotai from './providers/Jotai';
@@ -26,10 +26,10 @@ const queryClient = createQueryClient({
 
 const Providers = ({ children }: { children: ReactNode }) => (
   <Jotai>
-    <Suspense fallback={<LoadingScreen fullVPHeight />}>
+    <Suspense fallback={<Loading />}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <PersistAuthGate loadingFallback={<LoadingScreen fullVPHeight />}>
+          <PersistAuthGate loadingFallback={<Loading />}>
             <Router>{children}</Router>
           </PersistAuthGate>
         </QueryClientProvider>
@@ -53,10 +53,10 @@ test(
 
     render(<App />, { wrapper: Providers });
 
-    expect(await screen.findByRole('link', { name: 'auth:menu.signUp' })).toBeInTheDocument();
+    expect(await screen.findByRole('link', { name: 'auth:header.signUp' })).toBeInTheDocument();
 
     // Sign up
-    await click(screen.getByRole('link', { name: 'auth:menu.signUp' }));
+    await click(screen.getByRole('link', { name: 'auth:header.signUp' }));
     await type(await screen.findByLabelText('auth:signUp.email'), email);
     await type(await screen.findByLabelText('auth:signUp.password'), password);
     await click(await screen.findByRole('button', { name: 'auth:signUp.submit' }));
@@ -64,7 +64,7 @@ test(
     expect(await screen.findByText('auth:signUp.success.title')).toBeInTheDocument();
 
     // Sign in
-    await click(screen.getByRole('link', { name: 'auth:menu.signIn' }));
+    await click(screen.getByRole('link', { name: 'auth:header.signIn' }));
     await screen.findByLabelText('auth:signIn.email');
     await type(screen.getByLabelText('auth:signIn.email'), email);
     await type(await screen.findByLabelText('auth:signIn.password'), password);
@@ -74,8 +74,8 @@ test(
 
     // Sign out
     await click(screen.getByText(email));
-    await click(await screen.findByText('dashboard:topMenu.signOut'));
-    expect(await screen.findByRole('link', { name: 'auth:menu.signIn' })).toBeInTheDocument();
+    await click(await screen.findByText('dashboard:header.signOut'));
+    expect(await screen.findByRole('link', { name: 'auth:header.signIn' })).toBeInTheDocument();
   },
   { timeout: 30_000 },
 );

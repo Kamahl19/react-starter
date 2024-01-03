@@ -3,10 +3,10 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 import { useFetchUser } from '@/api';
 import { useAuth, useSignOut } from '@/common/auth';
-import { LoadingScreen, NotFound, ResultError } from '@/common/components';
+import { Loading, NotFound, ResultError } from '@/common/components';
 
 import { DASHBOARD_ROUTES } from './routes';
-import DashboardLayout from './components/DashboardLayout';
+import Layout from './components/Layout';
 
 const Bookshelf = lazy(() => import('./features/bookshelf'));
 const Profile = lazy(() => import('./features/profile'));
@@ -23,22 +23,28 @@ const Dashboard = () => {
   } = useFetchUser(userId);
 
   if (userIsPending || isSignOutPending) {
-    return <LoadingScreen fullVPHeight />;
+    return <Loading />;
   }
 
   if (userIsError) {
-    return <ResultError error={userError} onReset={() => window.location.reload()} fullVPHeight />;
+    return (
+      <ResultError
+        error={userError}
+        onReset={() => window.location.reload()}
+        className="container"
+      />
+    );
   }
 
   return (
     <Routes>
       <Route
         element={
-          <DashboardLayout user={data.user}>
-            <Suspense fallback={<LoadingScreen />}>
+          <Layout userEmail={data.user.email}>
+            <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
-          </DashboardLayout>
+          </Layout>
         }
       >
         <Route index element={<Navigate replace to={DASHBOARD_ROUTES.bookshelf.to} />} />

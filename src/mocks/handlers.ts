@@ -98,6 +98,11 @@ export const handlers = [
    * User
    */
 
+  http.patch<never, never, boolean>('/api/user/reset-password', async () => {
+    await delay(100);
+    return HttpResponse.json(true);
+  }),
+
   http.get<{ email: string }, never, UserEmailAvailabilityResponse>(
     '/api/user/email-availability/:email',
     async ({ params: { email } }) => {

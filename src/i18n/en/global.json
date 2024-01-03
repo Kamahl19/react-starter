@@ -1,6 +1,12 @@
 {
+  "close": "Close",
   "save": "Save",
   "submit": "Submit",
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
   "unexpectedError": "Unexpected error occurred",
   "validations": {
     "email": "Email address is invalid",

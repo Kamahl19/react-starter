@@ -5,12 +5,8 @@
     "markAsUnread": "Mark as unread",
     "removeFromReadingList": "Remove from reading list"
   },
-  "author": "Author",
-  "breadcrumbs": {
-    "discover": "Discover",
-    "finished": "Finished Books",
-    "readingList": "Reading List"
-  },
-  "description": "Description",
-  "note": "Note"
+  "note": "Note",
+  "ratingSelect": {
+    "label": "Select Rating"
+  }
 }
