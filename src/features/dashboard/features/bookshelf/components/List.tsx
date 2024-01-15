@@ -27,7 +27,7 @@ type Props = {
 const List = ({ books }: Props) =>
   books.length === 0 ? (
     <div className="flex h-full items-center justify-center">
-      <CircleOff className="h-14 w-14" />
+      <CircleOff className="size-14" />
     </div>
   ) : (
     <div className="flex flex-col gap-4">

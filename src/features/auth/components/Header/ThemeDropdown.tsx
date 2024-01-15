@@ -20,8 +20,8 @@ const ThemeDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Sun className="h-5 w-5 dark:hidden" />
-          <Moon className="hidden h-5 w-5 dark:block" />
+          <Sun className="size-5 dark:hidden" />
+          <Moon className="hidden size-5 dark:block" />
           <span className="sr-only">{t('auth:header.chooseTheme')}</span>
         </Button>
       </DropdownMenuTrigger>

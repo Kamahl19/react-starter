@@ -8,7 +8,7 @@ type Props = {
 const Logo = ({ to }: Props) => (
   <Link to={to}>
     <div className="flex gap-2">
-      <Rocket className="h-6 w-6" />
+      <Rocket className="size-6" />
       <span className="font-medium">React Starter</span>
     </div>
   </Link>

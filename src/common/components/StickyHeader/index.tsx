@@ -75,7 +75,7 @@ const Drawer = ({ headerSlot, items }: DrawerProps) => {
     <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Menu className="h-5 w-5" />
+          <Menu className="size-5" />
           <span className="sr-only">{t('common:stickyHeader.toggleDrawer')}</span>
         </Button>
       </SheetTrigger>

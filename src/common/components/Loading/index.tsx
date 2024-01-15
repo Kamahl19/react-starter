@@ -8,7 +8,7 @@ const Loading = () => {
 
   return (
     <div className="flex h-full items-center justify-center gap-x-2">
-      <Loader2 className="h-4 w-4 animate-spin" />
+      <Loader2 className="size-4 animate-spin" />
       <Typography variant="mutedText">{t('common:loading')}</Typography>
     </div>
   );

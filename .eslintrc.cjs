@@ -162,6 +162,7 @@ module.exports = {
       files: ['src/common/components/ui/**/*.ts?(x)'],
       rules: {
         'react/prop-types': 'off',
+        'tailwindcss/enforces-shorthand': 'off',
         '@typescript-eslint/consistent-type-definitions': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
       },

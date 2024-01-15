@@ -36,7 +36,7 @@ const UserDropdown = ({ email }: Props) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex cursor-pointer items-center gap-2">
-          <Avatar className="h-8 w-8">
+          <Avatar className="size-8">
             <AvatarFallback>{email.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <Typography variant="smallText">{email}</Typography>

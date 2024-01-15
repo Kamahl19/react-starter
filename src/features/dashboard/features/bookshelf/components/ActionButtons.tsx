@@ -41,7 +41,7 @@ export const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
   return (
     <ActionButton
       isPending={isPending}
-      icon={<BookPlus className="h-5 w-5" />}
+      icon={<BookPlus className="size-5" />}
       label={t('bookshelf:action.addToReadingList')}
       onClick={() => mutate({ bookId, userId }, { onError })}
     />
@@ -58,7 +58,7 @@ export const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
     <ActionButton
       variant="destructive"
       isPending={isPending}
-      icon={<BookMinus className="h-5 w-5" />}
+      icon={<BookMinus className="size-5" />}
       label={t('bookshelf:action.removeFromReadingList')}
       onClick={() => mutate({ bookId, userId }, { onError })}
     />
@@ -74,7 +74,7 @@ export const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
   return (
     <ActionButton
       isPending={isPending}
-      icon={<BookCheck className="h-5 w-5" />}
+      icon={<BookCheck className="size-5" />}
       label={t('bookshelf:action.markAsRead')}
       onClick={() => mutate({ bookId, userId, finished: true }, { onError })}
     />
@@ -90,7 +90,7 @@ export const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
   return (
     <ActionButton
       isPending={isPending}
-      icon={<BookX className="h-5 w-5" />}
+      icon={<BookX className="size-5" />}
       label={t('bookshelf:action.markAsUnread')}
       onClick={() => mutate({ bookId, userId, finished: false }, { onError })}
     />

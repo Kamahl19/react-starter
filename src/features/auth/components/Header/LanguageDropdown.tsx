@@ -20,7 +20,7 @@ const LanguageDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Languages className="h-5 w-5" />
+          <Languages className="size-5" />
           <span className="sr-only">{t('auth:header.chooseLanguage')}</span>
         </Button>
       </DropdownMenuTrigger>
