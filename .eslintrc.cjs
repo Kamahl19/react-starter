@@ -10,7 +10,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
-    'plugin:react-prefer-function-component/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
