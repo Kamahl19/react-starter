@@ -1,2 +1,14 @@
+# Dependencies
+node_modules
+
+# Testing
+coverage
+
+# Production
 dist
+dist-ssr
+
+# IDE
+.idea
+
 mockServiceWorker.js
