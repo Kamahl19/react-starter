@@ -1,14 +1,15 @@
-# Dependencies
-node_modules
+# dependencies
+/node_modules
 
-# Testing
-coverage
+# testing
+/coverage
 
-# Production
+# vite
 dist
 dist-ssr
+.swc
 
-# IDE
+# ide
 .idea
 
 mockServiceWorker.js

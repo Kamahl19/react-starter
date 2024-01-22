@@ -105,7 +105,7 @@ module.exports = {
         },
         tailwindcss: {
           callees: ['clsx', 'cva', 'cn'],
-          config: 'tailwind.config.js',
+          config: 'tailwind.config.ts',
         },
       },
       rules: {
@@ -176,7 +176,7 @@ module.exports = {
       ],
     },
     {
-      files: ['vite.config.ts', 'i18next-parser.config.ts'],
+      files: ['vite.config.ts', 'i18next-parser.config.ts', 'tailwind.config.ts'],
       parserOptions: {
         project: ['./tsconfig.node.json'],
       },

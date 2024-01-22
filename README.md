@@ -12,7 +12,6 @@
   - [tailwind-merge](https://github.com/dcastil/tailwind-merge) - merge Tailwind classes without conflicts
   - [clsx](https://github.com/lukeed/clsx) - utility to construct classNames conditionally
   - [cva](https://github.com/joe-bell/cva) - utility to create style variants
-  - [TW Config Viewer](https://github.com/rogden/tailwind-config-viewer) - UI tool for visualizing Tailwind config
 - [Radix UI](https://www.radix-ui.com/primitives) - low-level UI component library with a focus on a11y
   - [shadcn/ui](https://ui.shadcn.com/) - collection of designed components mostly based on Radix UI with focus on a11y
 - [lucide icons](https://lucide.dev/) - icons set

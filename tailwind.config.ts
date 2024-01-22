@@ -1,11 +1,12 @@
+import { type Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import tailwindcssAnimate from 'tailwindcss-animate';
 
 // Default config https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
 
-/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: 'class',
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+const config = {
+  darkMode: ['class'],
+  content: ['./index.html', './src/**/*.{js,ts,tsx}'],
   plugins: [tailwindcssAnimate],
   theme: {
     container: {
@@ -13,6 +14,10 @@ export default {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
+      },
+      screens: {
+        ...defaultTheme.screens,
+        '2xl': '1400px',
       },
     },
     extend: {
@@ -72,4 +77,6 @@ export default {
       },
     },
   },
-};
+} satisfies Config;
+
+export default config;

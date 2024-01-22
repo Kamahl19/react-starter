@@ -1,28 +1,30 @@
-# Dependencies
-node_modules
+# dependencies
+/node_modules
 
-# Testing
-coverage
+# testing
+/coverage
 
-# Production
+# vite
 dist
 dist-ssr
+.swc
 
-# Misc
+# misc
 .DS_Store
-Thumbs.db
-*.local
 
-# Logs
+# debug
 logs
 *.log
 npm-debug.log*
 
-# IDE
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# ide
 .idea
 
-# ESLint
+# eslint
 .eslintcache
-
-# SWC
-.swc

@@ -7,5 +7,5 @@
     "allowSyntheticDefaultImports": true,
     "strict": true
   },
-  "include": ["vite.config.ts", "i18next-parser.config.ts"]
+  "include": ["vite.config.ts", "i18next-parser.config.ts", "tailwind.config.ts"]
 }
