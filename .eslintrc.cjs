@@ -42,6 +42,7 @@ module.exports = {
     'unicorn/prevent-abbreviations': 'off',
 
     'sonarjs/no-duplicate-string': 'off',
+    'sonarjs/no-nested-template-literals': 'off',
 
     /**
      * Additional rules
