@@ -169,7 +169,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
+      files: ['**/*.{spec,test}.*'],
       extends: [
         'plugin:vitest/recommended',
         'plugin:testing-library/react',
