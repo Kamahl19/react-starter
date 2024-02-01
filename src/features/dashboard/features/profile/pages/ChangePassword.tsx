@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 
 import { useChangePassword } from '@/api';
 import { useAuth } from '@/common/auth';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import { Form, Typography } from '@/common/components';
 import { Button } from '@/common/components/ui/button';
 import {
@@ -26,7 +26,7 @@ const ChangePassword = () => {
 
   const { userId } = useAuth();
 
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
 
   const { mutate, isPending } = useChangePassword();
 

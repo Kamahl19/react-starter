@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-const usePrintErrorMessage = () => {
+const useShowErrorMessage = () => {
   const { t } = useTranslation('global');
 
   return useCallback(
@@ -28,4 +28,4 @@ const usePrintErrorMessage = () => {
   );
 };
 
-export default usePrintErrorMessage;
+export default useShowErrorMessage;

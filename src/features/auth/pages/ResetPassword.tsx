@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useResetPassword } from '@/api';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import { Form } from '@/common/components';
 import { Button } from '@/common/components/ui/button';
 import { Input } from '@/common/components/ui/input';
@@ -26,7 +26,7 @@ const ResetPassword = () => {
 
   const [success, setSuccess] = useState(false);
 
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
 
   const { mutate, isPending } = useResetPassword();
 

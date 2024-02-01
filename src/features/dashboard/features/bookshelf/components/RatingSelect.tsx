@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 
 import { useSetRating } from '@/api';
 import { useAuth } from '@/common/auth';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import {
   Select,
   SelectContent,
@@ -14,7 +14,7 @@ import {
 
 const RatingSelect = ({ bookId, value }: { bookId: string; value: number }) => {
   const { t } = useTranslation('bookshelf');
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
   const { userId } = useAuth();
   const { mutate } = useSetRating();
 

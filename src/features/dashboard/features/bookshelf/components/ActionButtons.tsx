@@ -4,7 +4,7 @@ import { BookCheck, BookMinus, BookPlus, BookX } from 'lucide-react';
 
 import { useAddToReadingList, useRemoveFromReadingList, useMarkBook } from '@/api';
 import { useAuth } from '@/common/auth';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import { Button, type ButtonProps } from '@/common/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/common/components/ui/tooltip';
 
@@ -35,7 +35,7 @@ const ActionButton = ({
 export const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
   const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
   const { mutate, isPending } = useAddToReadingList();
 
   return (
@@ -51,7 +51,7 @@ export const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
 export const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
   const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
   const { mutate, isPending } = useRemoveFromReadingList();
 
   return (
@@ -68,7 +68,7 @@ export const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
 export const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
   const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
   const { mutate, isPending } = useMarkBook();
 
   return (
@@ -84,7 +84,7 @@ export const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
 export const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
   const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
   const { mutate, isPending } = useMarkBook();
 
   return (

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useFetchBook, useSetNote } from '@/api';
 import { useAuth } from '@/common/auth';
 import { Form, Loading, ResultError } from '@/common/components';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import {
   Card,
   CardContent,
@@ -80,7 +80,7 @@ const Note = ({ bookId, initialNote }: NoteProps) => {
 
   const { userId } = useAuth();
 
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
 
   const { mutate, isPending } = useSetNote();
 

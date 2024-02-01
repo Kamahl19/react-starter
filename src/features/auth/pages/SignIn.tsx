@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useSignIn } from '@/common/auth';
-import { usePrintErrorMessage } from '@/common/hooks';
+import { useShowErrorMessage } from '@/common/hooks';
 import { Typography, Form } from '@/common/components';
 import { Button } from '@/common/components/ui/button';
 import { Input } from '@/common/components/ui/input';
@@ -26,7 +26,7 @@ const SignIn = () => {
 
   const { signIn, isPending } = useSignIn();
 
-  const onError = usePrintErrorMessage();
+  const onError = useShowErrorMessage();
 
   const form = useForm<SignInFields>({
     resolver: zodResolver(useSignInValidation()),
