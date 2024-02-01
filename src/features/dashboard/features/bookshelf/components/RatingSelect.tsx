@@ -13,7 +13,7 @@ import {
 } from '@/common/components/ui/select';
 
 const RatingSelect = ({ bookId, value }: { bookId: string; value: number }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
   const onError = usePrintErrorMessage();
   const { userId } = useAuth();
   const { mutate } = useSetRating();
@@ -26,7 +26,7 @@ const RatingSelect = ({ bookId, value }: { bookId: string; value: number }) => {
       value={value === 0 ? undefined : `${value}`}
     >
       <SelectTrigger className="w-[170px]">
-        <SelectValue placeholder={t('bookshelf:ratingSelect.label')} />
+        <SelectValue placeholder={t('ratingSelect.label')} />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="1">

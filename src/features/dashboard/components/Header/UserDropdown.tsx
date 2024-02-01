@@ -28,7 +28,7 @@ type Props = {
 };
 
 const UserDropdown = ({ email }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('dashboard');
 
   const { signOut } = useSignOut();
 
@@ -45,7 +45,7 @@ const UserDropdown = ({ email }: Props) => {
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link to={DASHBOARD_ROUTES.profile.to}>{t('dashboard:header.profile')}</Link>
+            <Link to={DASHBOARD_ROUTES.profile.to}>{t('header.profile')}</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -55,7 +55,7 @@ const UserDropdown = ({ email }: Props) => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem onSelect={signOut}>{t('dashboard:header.signOut')}</DropdownMenuItem>
+          <DropdownMenuItem onSelect={signOut}>{t('header.signOut')}</DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -65,13 +65,13 @@ const UserDropdown = ({ email }: Props) => {
 export default UserDropdown;
 
 const LanguageDropdown = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('dashboard');
 
   const [{ code }, setLanguage] = useLanguage();
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>{t('dashboard:header.language')}</DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger>{t('header.language')}</DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent>
           <DropdownMenuRadioGroup value={code} onValueChange={setLanguage}>
@@ -88,13 +88,13 @@ const LanguageDropdown = () => {
 };
 
 const ThemeDropdown = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('dashboard');
 
   const { rawTheme, setTheme, themes } = useTheme();
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>{t('dashboard:header.theme')}</DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger>{t('header.theme')}</DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent>
           <DropdownMenuRadioGroup value={rawTheme} onValueChange={setTheme}>

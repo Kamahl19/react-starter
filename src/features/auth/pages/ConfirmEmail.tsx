@@ -9,7 +9,7 @@ import { Loading, ResultError } from '@/common/components';
 import { AUTH_ROUTES } from '../routes';
 
 const ConfirmEmail = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const ConfirmEmail = () => {
   useOnMount(() => {
     mutate(token, {
       onSuccess: () => {
-        toast.success(t('auth:confirmEmail.success'));
+        toast.success(t('confirmEmail.success'));
         navigate(AUTH_ROUTES.signIn.to);
       },
     });

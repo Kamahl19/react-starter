@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 const usePrintErrorMessage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('global');
 
   return useCallback(
     (error: unknown) => {
@@ -21,7 +21,7 @@ const usePrintErrorMessage = () => {
       } else if (typeof error === 'string') {
         toast.error(error);
       } else {
-        toast.error(t('global:unexpectedError'));
+        toast.error(t('unexpectedError'));
       }
     },
     [t],

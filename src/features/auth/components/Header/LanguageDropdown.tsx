@@ -12,7 +12,7 @@ import {
 } from '@/common/components/ui/dropdown-menu';
 
 const LanguageDropdown = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const [{ code }, setLanguage] = useLanguage();
 
@@ -21,7 +21,7 @@ const LanguageDropdown = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
           <Languages className="size-5" />
-          <span className="sr-only">{t('auth:header.chooseLanguage')}</span>
+          <span className="sr-only">{t('header.chooseLanguage')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

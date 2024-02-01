@@ -61,7 +61,7 @@ type DrawerProps = {
 };
 
 const Drawer = ({ headerSlot, items }: DrawerProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -76,7 +76,7 @@ const Drawer = ({ headerSlot, items }: DrawerProps) => {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon">
           <Menu className="size-5" />
-          <span className="sr-only">{t('common:stickyHeader.toggleDrawer')}</span>
+          <span className="sr-only">{t('stickyHeader.toggleDrawer')}</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left">

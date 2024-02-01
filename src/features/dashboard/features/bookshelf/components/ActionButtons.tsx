@@ -33,7 +33,7 @@ const ActionButton = ({
 );
 
 export const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
   const onError = usePrintErrorMessage();
   const { mutate, isPending } = useAddToReadingList();
@@ -42,14 +42,14 @@ export const AddToReadingListButton = ({ bookId }: { bookId: string }) => {
     <ActionButton
       isPending={isPending}
       icon={<BookPlus className="size-5" />}
-      label={t('bookshelf:action.addToReadingList')}
+      label={t('action.addToReadingList')}
       onClick={() => mutate({ bookId, userId }, { onError })}
     />
   );
 };
 
 export const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
   const onError = usePrintErrorMessage();
   const { mutate, isPending } = useRemoveFromReadingList();
@@ -59,14 +59,14 @@ export const RemoveFromReadingListButton = ({ bookId }: { bookId: string }) => {
       variant="destructive"
       isPending={isPending}
       icon={<BookMinus className="size-5" />}
-      label={t('bookshelf:action.removeFromReadingList')}
+      label={t('action.removeFromReadingList')}
       onClick={() => mutate({ bookId, userId }, { onError })}
     />
   );
 };
 
 export const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
   const onError = usePrintErrorMessage();
   const { mutate, isPending } = useMarkBook();
@@ -75,14 +75,14 @@ export const MarkAsReadButton = ({ bookId }: { bookId: string }) => {
     <ActionButton
       isPending={isPending}
       icon={<BookCheck className="size-5" />}
-      label={t('bookshelf:action.markAsRead')}
+      label={t('action.markAsRead')}
       onClick={() => mutate({ bookId, userId, finished: true }, { onError })}
     />
   );
 };
 
 export const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
   const { userId } = useAuth();
   const onError = usePrintErrorMessage();
   const { mutate, isPending } = useMarkBook();
@@ -91,7 +91,7 @@ export const MarkAsUnreadButton = ({ bookId }: { bookId: string }) => {
     <ActionButton
       isPending={isPending}
       icon={<BookX className="size-5" />}
-      label={t('bookshelf:action.markAsUnread')}
+      label={t('action.markAsUnread')}
       onClick={() => mutate({ bookId, userId, finished: false }, { onError })}
     />
   );

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ResultError = ({ onReset, error, className }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   const message =
     typeof error === 'object' &&
@@ -27,12 +27,12 @@ const ResultError = ({ onReset, error, className }: Props) => {
   return (
     <div className={cn('flex h-full items-center justify-center', className)}>
       <div>
-        <Typography variant="h2">{t('common:resultError.title')}</Typography>
-        <Typography variant="p">{t('common:resultError.description')}</Typography>
+        <Typography variant="h2">{t('resultError.title')}</Typography>
+        <Typography variant="p">{t('resultError.description')}</Typography>
         {message && <Typography variant="blockquote">{message}</Typography>}
         {onReset && (
           <Button onClick={onReset} className="mt-7">
-            {t('common:resultError.reload')}
+            {t('resultError.reload')}
           </Button>
         )}
       </div>

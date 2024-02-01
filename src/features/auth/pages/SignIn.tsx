@@ -22,7 +22,7 @@ import { useSignInValidation, type SignInFields } from '../validations';
 import { AUTH_ROUTES } from '../routes';
 
 const SignIn = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const { signIn, isPending } = useSignIn();
 
@@ -42,7 +42,7 @@ const SignIn = () => {
   );
 
   return (
-    <FormWrapper title={t('auth:signIn.title')}>
+    <FormWrapper title={t('signIn.title')}>
       <Form form={form} onSubmit={onSubmit} id="auth-form">
         {{
           formFields: (
@@ -52,7 +52,7 @@ const SignIn = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('auth:signIn.email')}</FormLabel>
+                    <FormLabel>{t('signIn.email')}</FormLabel>
                     <FormControl>
                       <Input type="email" {...field} />
                     </FormControl>
@@ -65,7 +65,7 @@ const SignIn = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('auth:signIn.password')}</FormLabel>
+                    <FormLabel>{t('signIn.password')}</FormLabel>
                     <FormControl>
                       <Input type="password" {...field} />
                     </FormControl>
@@ -78,10 +78,10 @@ const SignIn = () => {
           footer: (
             <>
               <Button form="auth-form" type="submit" disabled={isPending} loading={isPending} block>
-                {t('auth:signIn.submit')}
+                {t('signIn.submit')}
               </Button>
               <Typography variant="regularText" className="mt-4">
-                <Link to={AUTH_ROUTES.resetPassword.to}>{t('auth:signIn.resetPassword')}</Link>
+                <Link to={AUTH_ROUTES.resetPassword.to}>{t('signIn.resetPassword')}</Link>
               </Typography>
             </>
           ),

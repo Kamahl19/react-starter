@@ -22,7 +22,7 @@ import Success from '../components/Success';
 import { useResetPasswordValidation, type ResetPasswordFields } from '../validations';
 
 const ResetPassword = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const [success, setSuccess] = useState(false);
 
@@ -58,14 +58,14 @@ const ResetPassword = () => {
   if (success) {
     return (
       <Success
-        title={t('auth:resetPassword.success.title')}
-        description={t('auth:resetPassword.success.subTitle')}
+        title={t('resetPassword.success.title')}
+        description={t('resetPassword.success.subTitle')}
       />
     );
   }
 
   return (
-    <FormWrapper title={t('auth:resetPassword.title')}>
+    <FormWrapper title={t('resetPassword.title')}>
       <Form form={form} onSubmit={onSubmit} id="auth-form">
         {{
           formFields: (
@@ -74,7 +74,7 @@ const ResetPassword = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('auth:resetPassword.email')}</FormLabel>
+                  <FormLabel>{t('resetPassword.email')}</FormLabel>
                   <FormControl>
                     <Input type="email" {...field} />
                   </FormControl>

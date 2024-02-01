@@ -76,7 +76,7 @@ type NoteProps = {
 };
 
 const Note = ({ bookId, initialNote }: NoteProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('bookshelf');
 
   const { userId } = useAuth();
 
@@ -102,7 +102,7 @@ const Note = ({ bookId, initialNote }: NoteProps) => {
               name="note"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('bookshelf:note')}</FormLabel>
+                  <FormLabel>{t('note')}</FormLabel>
                   <FormControl>
                     <Textarea rows={10} {...field} />
                   </FormControl>

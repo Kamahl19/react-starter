@@ -11,7 +11,7 @@ import LanguageDropdown from './LanguageDropdown';
 import ThemeDropdown from './ThemeDropdown';
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const { isLoggedIn } = useAuth();
 
@@ -22,8 +22,8 @@ const Header = () => {
       (isLoggedIn
         ? []
         : [
-            { to: AUTH_ROUTES.signIn.to, label: t('auth:header.signIn') },
-            { to: AUTH_ROUTES.signUp.to, label: t('auth:header.signUp') },
+            { to: AUTH_ROUTES.signIn.to, label: t('header.signIn') },
+            { to: AUTH_ROUTES.signUp.to, label: t('header.signUp') },
           ]
       ).map((item) => ({
         ...item,

@@ -12,7 +12,7 @@ import {
 } from '@/common/components/ui/dropdown-menu';
 
 const ThemeDropdown = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const { rawTheme, setTheme, themes } = useTheme();
 
@@ -22,7 +22,7 @@ const ThemeDropdown = () => {
         <Button variant="ghost" size="icon">
           <Sun className="size-5 dark:hidden" />
           <Moon className="hidden size-5 dark:block" />
-          <span className="sr-only">{t('auth:header.chooseTheme')}</span>
+          <span className="sr-only">{t('header.chooseTheme')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

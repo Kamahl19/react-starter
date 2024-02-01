@@ -12,16 +12,16 @@ type Props = {
 };
 
 const Header = ({ userEmail }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('dashboard');
 
   const { pathname } = useLocation();
 
   const items = useMemo(
     () =>
       [
-        { to: DASHBOARD_ROUTES.bookshelfDiscover.to, label: t('dashboard:header.discover') },
-        { to: DASHBOARD_ROUTES.bookshelfReadingList.to, label: t('dashboard:header.readingList') },
-        { to: DASHBOARD_ROUTES.bookshelfFinished.to, label: t('dashboard:header.finished') },
+        { to: DASHBOARD_ROUTES.bookshelfDiscover.to, label: t('header.discover') },
+        { to: DASHBOARD_ROUTES.bookshelfReadingList.to, label: t('header.readingList') },
+        { to: DASHBOARD_ROUTES.bookshelfFinished.to, label: t('header.finished') },
       ].map((item) => ({
         ...item,
         isActive: !!matchPath({ path: item.to, end: false }, pathname),

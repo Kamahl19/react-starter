@@ -33,15 +33,15 @@ const themePersistedAtom = atomWithStorage<Theme | typeof SYSTEM_THEME>(
 );
 
 export const useTheme = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('global');
 
   const [theme, setTheme] = useAtom(themePersistedAtom);
 
   const themes = useMemo(
     () => [
-      { value: Theme.LIGHT, label: t('global:theme.light') },
-      { value: Theme.DARK, label: t('global:theme.dark') },
-      { value: SYSTEM_THEME, label: t('global:theme.system') },
+      { value: Theme.LIGHT, label: t('theme.light') },
+      { value: Theme.DARK, label: t('theme.dark') },
+      { value: SYSTEM_THEME, label: t('theme.system') },
     ],
     [t],
   );

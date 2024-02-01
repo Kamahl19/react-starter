@@ -14,24 +14,24 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('profile');
 
   const { pathname } = useLocation();
 
   const items = useMemo(
     () =>
-      [
-        { to: DASHBOARD_ROUTES.profileChangePassword.to, label: t('profile:menu.changePassword') },
-      ].map((item) => ({
-        ...item,
-        isActive: !!matchPath({ path: item.to, end: false }, pathname),
-      })),
+      [{ to: DASHBOARD_ROUTES.profileChangePassword.to, label: t('menu.changePassword') }].map(
+        (item) => ({
+          ...item,
+          isActive: !!matchPath({ path: item.to, end: false }, pathname),
+        }),
+      ),
     [t, pathname],
   );
 
   return (
     <>
-      <Typography variant="h3">{t('profile:title')}</Typography>
+      <Typography variant="h3">{t('title')}</Typography>
 
       <Separator className="mb-6 mt-4" />
 

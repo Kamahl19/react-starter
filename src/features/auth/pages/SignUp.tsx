@@ -24,7 +24,7 @@ import { useSignUpValidation, type SignUpFields } from '../validations';
 const DEBOUNCE_MS = 500;
 
 const SignUp = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
 
   const [success, setSuccess] = useState(false);
 
@@ -57,16 +57,11 @@ const SignUp = () => {
   const { data: isUserEmailAvailable } = useFetchUserEmailAvailability(emailValue);
 
   if (success) {
-    return (
-      <Success
-        title={t('auth:signUp.success.title')}
-        description={t('auth:signUp.success.subTitle')}
-      />
-    );
+    return <Success title={t('signUp.success.title')} description={t('signUp.success.subTitle')} />;
   }
 
   return (
-    <FormWrapper title={t('auth:signUp.title')}>
+    <FormWrapper title={t('signUp.title')}>
       <Form form={form} onSubmit={onSubmit} id="auth-form">
         {{
           formFields: (
@@ -76,12 +71,12 @@ const SignUp = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('auth:signUp.email')}</FormLabel>
+                    <FormLabel>{t('signUp.email')}</FormLabel>
                     <FormControl>
                       <Input type="email" {...field} />
                     </FormControl>
                     <FormMessage>
-                      {isUserEmailAvailable ? null : t('auth:signUp.emailTaken')}
+                      {isUserEmailAvailable ? null : t('signUp.emailTaken')}
                     </FormMessage>
                   </FormItem>
                 )}
@@ -91,7 +86,7 @@ const SignUp = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('auth:signUp.password')}</FormLabel>
+                    <FormLabel>{t('signUp.password')}</FormLabel>
                     <FormControl>
                       <Input type="password" {...field} />
                     </FormControl>
@@ -103,7 +98,7 @@ const SignUp = () => {
           ),
           footer: (
             <Button form="auth-form" type="submit" disabled={isPending} loading={isPending} block>
-              {t('auth:signUp.submit')}
+              {t('signUp.submit')}
             </Button>
           ),
         }}
