@@ -2,10 +2,6 @@ import { useCallback, useMemo } from 'react';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, useTranslation } from 'react-i18next';
-import dayjs from 'dayjs';
-
-// DayJS locales https://github.com/iamkun/dayjs/tree/dev/src/locale
-import dayjsEN from 'dayjs/locale/en';
 
 import auth from './en/auth.json';
 import bookshelf from './en/bookshelf.json';
@@ -26,7 +22,6 @@ export const LANGUAGES_CONFIG = {
     code: 'en',
     name: 'English',
     shortName: 'EN',
-    dayjs: dayjsEN,
     resources: {
       auth,
       bookshelf,
@@ -42,7 +37,6 @@ export const LANGUAGES_CONFIG = {
     code: LanguageCode;
     name: string;
     shortName: string;
-    dayjs: object;
     resources: object;
   }
 >;
@@ -67,8 +61,6 @@ export const useLanguage = () => {
 
   return useMemo(() => [language, setLanguage] as const, [language, setLanguage]);
 };
-
-i18next.on('languageChanged', (language) => dayjs.locale(resolveLanguage(language)));
 
 void i18next
   .use(LanguageDetector)

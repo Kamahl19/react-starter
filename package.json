@@ -53,7 +53,6 @@
     "@tanstack/react-query-devtools": "5.18.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
-    "dayjs": "1.11.10",
     "i18next": "23.8.2",
     "i18next-browser-languagedetector": "7.2.0",
     "jotai": "2.6.4",
