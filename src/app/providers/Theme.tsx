@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 const STORAGE_KEY = 'theme';
@@ -27,15 +27,20 @@ const setThemeAttr = (theme: string) => {
   rootEl.classList.add(theme);
 };
 
-const themePersistedAtom = atomWithStorage<Theme | typeof SYSTEM_THEME>(
+const persistedThemeAtom = atomWithStorage<Theme | typeof SYSTEM_THEME>(
   STORAGE_KEY,
   getValidTheme(localStorage.getItem(STORAGE_KEY) ?? ''),
+);
+
+const themeAtom = atom(
+  (get) => getValidTheme(get(persistedThemeAtom)),
+  (_, set, theme: string) => set(persistedThemeAtom, getValidTheme(theme)),
 );
 
 export const useTheme = () => {
   const { t } = useTranslation('global');
 
-  const [theme, setTheme] = useAtom(themePersistedAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
 
   const themes = useMemo(
     () => [
@@ -51,7 +56,7 @@ export const useTheme = () => {
       ({
         theme: theme === SYSTEM_THEME ? getSystemTheme() : theme,
         rawTheme: theme,
-        setTheme: (theme: string) => setTheme(getValidTheme(theme)),
+        setTheme,
         themes,
       }) as const,
     [theme, setTheme, themes],
