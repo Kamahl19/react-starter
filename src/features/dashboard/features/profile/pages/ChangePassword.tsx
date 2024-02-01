@@ -22,7 +22,7 @@ import { Separator } from '@/common/components/ui/separator';
 import { useChangePasswordValidation, type ChangePasswordFields } from '../validations';
 
 const ChangePassword = () => {
-  const { t } = useTranslation('profile');
+  const { t } = useTranslation(['global', 'profile']);
 
   const { userId } = useAuth();
 
@@ -44,7 +44,7 @@ const ChangePassword = () => {
         {
           onSuccess: () => {
             form.reset();
-            toast.success(t('changePassword.success'));
+            toast.success(t('profile:changePassword.success'));
           },
           onError,
         },
@@ -54,7 +54,7 @@ const ChangePassword = () => {
 
   return (
     <>
-      <Typography variant="h4">{t('changePassword.title')}</Typography>
+      <Typography variant="h4">{t('profile:changePassword.title')}</Typography>
 
       <Separator className="my-4" />
 
@@ -66,7 +66,7 @@ const ChangePassword = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('changePassword.password')}</FormLabel>
+                  <FormLabel>{t('profile:changePassword.password')}</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
