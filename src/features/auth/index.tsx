@@ -28,8 +28,8 @@ const Auth = () => (
         <Route index element={<Navigate replace to={AUTH_ROUTES.signIn.to} />} />
         <Route path={AUTH_ROUTES.signIn.path} element={<SignIn />} />
         <Route path={AUTH_ROUTES.signUp.path} element={<SignUp />} />
-        <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       </Route>
+      <Route path={AUTH_ROUTES.confirmEmail.path} element={<ConfirmEmail />} />
       <Route path={AUTH_ROUTES.resetPassword.path} element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
     </Route>

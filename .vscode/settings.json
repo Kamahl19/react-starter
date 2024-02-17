@@ -8,9 +8,12 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  // https://github.com/paolotiu/tailwind-intellisense-regex-list
   "tailwindCSS.experimental.classRegex": [
-    // https://www.npmjs.com/package/clsx#tailwind-support
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // https://github.com/joe-bell/cva/discussions/85#discussioncomment-6781287
+    ["cva\\(([\\s\\S]+?)\\}[\\s]*?\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     // https://cva.style/docs/getting-started/installation#intellisense
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
