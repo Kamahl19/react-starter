@@ -2,8 +2,6 @@
 
 [![Main CI Status](https://github.com/Kamahl19/react-starter/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Kamahl19/react-starter/actions?query=workflow:test+branch:main)
 
-### 🔥 [Live Demo](https://react-starter-delta-one.vercel.app/) 🔥
-
 ## What's Included
 
 - [React](https://react.dev/) - library to build user interfaces
@@ -117,13 +115,6 @@ Read more about [how to deploy to Vercel here](https://vercel.com/docs/getting-s
 4. Hit Deploy
 
 Now each commit pushed to the `main` branch will be deployed to production automatically. Each branch or Pull Request will be [deployed as preview](https://vercel.com/docs/deployments/preview-deployments).
-
-### Remove Vercel Demo
-
-This project is being deployed to Vercel for demo purposes. Follow these steps to remove it:
-
-- Find all occurences of `process.env.VERCEL` and remove them
-- Delete `vercel.json` file
 
 ### Analysing & Visualizing production JS bundle
 

@@ -26,7 +26,7 @@ startMSW()
   });
 
 async function startMSW() {
-  if (!import.meta.env.DEV && !__ENABLE_MSW_IN_PROD__) {
+  if (!import.meta.env.DEV) {
     return;
   }
 

@@ -42,9 +42,6 @@ export default defineConfig(({ mode }) => ({
         template: 'sunburst',
       }),
   ],
-  define: {
-    __ENABLE_MSW_IN_PROD__: process.env.VERCEL !== undefined || process.env.IS_PREVIEW === 'true',
-  },
   server: {
     open: true,
     port: 3000,

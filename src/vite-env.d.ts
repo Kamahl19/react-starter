@@ -12,5 +12,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-
-declare const __ENABLE_MSW_IN_PROD__: boolean;
